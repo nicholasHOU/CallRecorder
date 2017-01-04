@@ -1,7 +1,7 @@
 buildscript {
     repositories {
         mavenCentral()
-        maven{
+        maven {
             url getProperty("MAVEN_REPO")
             credentials {
                 username = getProperty("MAVEN_USER")
@@ -18,7 +18,7 @@ buildscript {
 allprojects {
     repositories {
         mavenCentral()
-        maven{
+        maven {
             url getProperty("MAVEN_REPO")
             credentials {
                 username = getProperty("MAVEN_USER")
@@ -47,10 +47,10 @@ git {
     cleanTest true
     //url "git@gitlab.ds.gome.com.cn:mobile-android/GWorkspace.git", "master"
     //url "git@gitlab.ds.gome.com.cn:mobile-android-admin/GSafekeyboard.git", "master"
-    url "git@gitlab.ds.gome.com.cn:mobile-android-admin/GSecret.git", "master"
-    url "git@gitlab.ds.gome.com.cn:mobile-android-common/GBuildConfig.git", "master"
-    url "git@gitlab.ds.gome.com.cn:mobile-android-common/GPlugin.git", "master"
-    url "git@gitlab.ds.gome.com.cn:mobile-android-common/GPatch.git", "master"
+    //url "git@gitlab.ds.gome.com.cn:mobile-android-admin/GSecret.git", "master"
+    //url "git@gitlab.ds.gome.com.cn:mobile-android-common/GBuildConfig.git", "master"
+    //url "git@gitlab.ds.gome.com.cn:mobile-android-common/GPlugin.git", "master"
+    //url "git@gitlab.ds.gome.com.cn:mobile-android-common/GPatch.git", "master"
 
     url "git@gitlab.ds.gome.com.cn:mobile-android-common/GFrame.git", "master"
     url "git@gitlab.ds.gome.com.cn:mobile-android-business/GWidget.git", "master"
@@ -78,5 +78,5 @@ git {
     url "git@gitlab.ds.gome.com.cn:mobile-android-business/GZhibo.git", "master"
     url "git@gitlab.ds.gome.com.cn:mobile-android-common/GHotfix.git", "master"
     url "git@gitlab.ds.gome.com.cn:mobile-android-business/GZxingScan.git", "master"
-    url "git@gitlab.ds.gome.com.cn:mobile-android/GomePlus.git", "master",true
+    url "git@gitlab.ds.gome.com.cn:mobile-android/GomePlus.git", "master", true
 }
