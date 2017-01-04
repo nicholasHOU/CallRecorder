@@ -1,0 +1,48 @@
+def isAPP = project.ext.has("isAAP") && project.ext.getProperty("isAPP")
+if(isAPP){
+    apply plugin: 'com.android.application'
+}else {
+    apply plugin: 'com.android.library'
+}
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+    useLibrary 'org.apache.http.legacy'
+    defaultConfig {
+        if(project.ext.has("versionCode")){
+            versionCode project.ext.getProperty("versionCode") as Integer
+        }else {
+            versionCode 1
+        }
+        versionName project.ext.getProperty("version") as String
+
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        //----DefaultExtraPropertiesExtension----
+        if(project.ext.has("moduleName")){
+            ndk{
+                moduleName project.ext.getProperty("moduleName")
+                //abiFilters "armeabi", "armeabi-v7a", "x86"
+                setAbiFilters project.ext.has("abiFilters") ? project.ext.getProperty("abiFilters") : ["armeabi"]
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+
+}
+
+//apply plugin: 'com.gutils.apkfly.autogen'
+//autogen{
+//    coreProject project(':g_com:GBusiness')
+//}

@@ -1,0 +1,19 @@
+classpath 'com.gutils.apkload:apkplug:0.4.5'
+
+
+
+apply plugin: 'com.gutils.apkplug'
+
+soconfig {
+    baseAarPackage "com.gome.ecmall.core.business"
+    deps {
+        compile 'com.gome.ecmall:storesearch:'+getProperty('AAR_GSTORESEARCH_VERSION')+'@aar@0x38'
+    }
+    exeOpt {
+        aapt project.file("/Users/qiudongchao/soft/build.tool.R23/darwin-x86/bin/aapt")
+    }
+    repoOpt {
+        localRepoPath "/Users/qiudongchao/.m2/repository"
+        remoteRepoUrl (project.hasProperty('MAVEN_REPO') ? MAVEN_REPO : '')
+    }
+}

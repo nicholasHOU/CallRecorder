@@ -1,0 +1,77 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        maven{
+            url getProperty("MAVEN_REPO")
+            credentials {
+                username = getProperty("MAVEN_USER")
+                password = getProperty("MAVEN_PASS")
+            }
+        }
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:2.1.0'
+        classpath 'com.gutils.apkfly:plugin:1.1.0'
+    }
+}
+
+allprojects {
+    repositories {
+        mavenCentral()
+        maven{
+            url getProperty("MAVEN_REPO")
+            credentials {
+                username = getProperty("MAVEN_USER")
+                password = getProperty("MAVEN_PASS")
+            }
+        }
+    }
+    ext {
+        compileSdkVersion = getProperty("COMPILE_SDK_VERSION") as Integer
+        buildToolsVersion = getProperty("BUILD_TOOLS_VERSION")
+        targetSdkVersion = getProperty("TARGET_SDK_VERSION") as Integer
+        minSdkVersion = getProperty("MIN_SDK_VERSION") as Integer
+        proDeps = true //改false 时需要把xiaomi的几个工程注掉
+        isXiaoMi = false
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+apply plugin: 'com.gutils.apkfly.svn'
+
+svn {
+    order true
+    cleanTest true
+    user "用户名"
+    pass "密码"
+    url "https://repo.ds.gome.com.cn:8443/svn/dNetApp/GomeAndroid/trunk/GCommon/GFrame", "GFrame"
+    url "https://repo.ds.gome.com.cn:8443/svn/dNetApp/GomeAndroid/trunk/GBusiness/GomeWidgets", "GomeWidgets"
+    url "https://repo.ds.gome.com.cn:8443/svn/dNetApp/GomeAndroid/trunk/GCommon/GCore", "GCore"
+    url "https://repo.ds.gome.com.cn:8443/svn/dNetApp/GomeAndroid/trunk/GBusiness/GPush", "GPush"
+    url "https://repo.ds.gome.com.cn:8443/svn/dNetApp/GomeAndroid/trunk/GBusiness/GShare", "GShare"
+    url "https://repo.ds.gome.com.cn:8443/svn/dNetApp/GomeAndroid/trunk/GBusiness/GLogin", "GLogin"
+    url "https://repo.ds.gome.com.cn:8443/svn/dNetApp/GomeAndroid/trunk/GBusiness/GPullrefresh", "GPullrefresh"
+    url "https://repo.ds.gome.com.cn:8443/svn/dNetApp/GomeAndroid/trunk/GBusiness/GUpdate", "GUpdate"
+    url "https://repo.ds.gome.com.cn:8443/svn/dNetApp/GomeAndroid/trunk/GBusiness/GCmbPay", "GCmbPay"
+    url "https://repo.ds.gome.com.cn:8443/svn/dNetApp/GomeAndroid/trunk/GBusiness/GTongBaoSdk", "GTongBaoSdk"
+    url "https://repo.ds.gome.com.cn:8443/svn/dNetApp/GomeAndroid/trunk/GBusiness/GBusiness", "GBusiness"
+    url "https://repo.ds.gome.com.cn:8443/svn/dNetApp/GomeAndroid/trunk/GBusiness/GIm", "GIm"
+    url "https://repo.ds.gome.com.cn:8443/svn/dNetApp/GomeAndroid/trunk/GBusiness/GHybrid", "GHybrid"
+    url "https://repo.ds.gome.com.cn:8443/svn/dNetApp/GomeAndroid/trunk/GBusiness/GFinanceCommon", "GFinanceCommon"
+    url "https://repo.ds.gome.com.cn:8443/svn/dNetApp/GomeAndroid/trunk/GBusiness/GFinance", "GFinance"
+    url "https://repo.ds.gome.com.cn:8443/svn/dNetApp/GomeAndroid/trunk/GBusiness/GMeiyingbao", "GMeiyingbao"
+    url "https://repo.ds.gome.com.cn:8443/svn/dNetApp/GomeAndroid/trunk/GBusiness/GPhoneRecharge", "GPhoneRecharge"
+    url "https://repo.ds.gome.com.cn:8443/svn/dNetApp/GomeAndroid/trunk/GBusiness/GMovie", "GMovie"
+    url "https://repo.ds.gome.com.cn:8443/svn/dNetApp/GomeAndroid/trunk/GBusiness/GStoreSearch", "GStoreSearch"
+    url "https://repo.ds.gome.com.cn:8443/svn/dNetApp/GomeAndroid/trunk/GBusiness/GReturn", "GReturn"
+    url "https://repo.ds.gome.com.cn:8443/svn/dNetApp/GomeAndroid/trunk/GBusiness/GMaterialOrder", "GMaterialOrder"
+    url "https://repo.ds.gome.com.cn:8443/svn/dNetApp/GomeAndroid/trunk/GBusiness/GProductDetail", "GProductDetail"
+    url "https://repo.ds.gome.com.cn:8443/svn/dNetApp/GomeAndroid/trunk/GBusiness/GTQDetail", "GTQDetail"
+    url "https://repo.ds.gome.com.cn:8443/svn/dNetApp/GomeAndroid/trunk/GBusiness/GZhiBo", "GZhiBo"
+    url "https://repo.ds.gome.com.cn:8443/svn/dNetApp/GomeAndroid/trunk/GCommon/GHotfix", "GHotfix"
+    url "https://repo.ds.gome.com.cn:8443/svn/dNetApp/GomeAndroid/trunk/GBusiness/GZxingScan", "GZxingScan"
+    url "https://repo.ds.gome.com.cn:8443/svn/dNetApp/GomeAndroid/trunk/GApp/GomeEShop", "GomeEShop",true
+}
