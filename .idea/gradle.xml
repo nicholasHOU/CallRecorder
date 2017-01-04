@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/001-GFrame" />
+            <option value="$PROJECT_DIR$/002-GWidget" />
+            <option value="$PROJECT_DIR$/003-GCore" />
+            <option value="$PROJECT_DIR$/004-GPush" />
+            <option value="$PROJECT_DIR$/005-GShare" />
+            <option value="$PROJECT_DIR$/006-GLogin" />
+            <option value="$PROJECT_DIR$/007-GPullrefresh" />
+            <option value="$PROJECT_DIR$/008-GUpdate" />
+            <option value="$PROJECT_DIR$/009-GCmbPay" />
+            <option value="$PROJECT_DIR$/010-GTongBaoSdk" />
+            <option value="$PROJECT_DIR$/011-GBusiness" />
+            <option value="$PROJECT_DIR$/012-GIm" />
+            <option value="$PROJECT_DIR$/013-GHybrid" />
+            <option value="$PROJECT_DIR$/014-GFinanceCommon" />
+            <option value="$PROJECT_DIR$/015-GFinance" />
+            <option value="$PROJECT_DIR$/016-GMeiyingbao" />
+            <option value="$PROJECT_DIR$/017-GPhoneRecharge" />
+            <option value="$PROJECT_DIR$/018-GMovie" />
+            <option value="$PROJECT_DIR$/019-GStoreSearch" />
+            <option value="$PROJECT_DIR$/020-GReturn" />
+            <option value="$PROJECT_DIR$/021-GMaterialOrder" />
+            <option value="$PROJECT_DIR$/022-GProductDetail" />
+            <option value="$PROJECT_DIR$/023-GTQDetail" />
+            <option value="$PROJECT_DIR$/024-GZhibo" />
+            <option value="$PROJECT_DIR$/025-GHotfix" />
+            <option value="$PROJECT_DIR$/026-GZxingScan" />
+            <option value="$PROJECT_DIR$/027-GomePlus" />
+          </set>
+        </option>
+        <option name="resolveModulePerSourceSet" value="false" />
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>
