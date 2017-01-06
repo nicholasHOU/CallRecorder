@@ -1,6 +1,9 @@
 buildscript {
     repositories {
         mavenCentral()
+        jcenter {
+            url "http://10.69.213.71:8081/nexus/content/repositories/jcenter/"
+        }
         maven {
             url getProperty("MAVEN_REPO")
             credentials {
@@ -18,6 +21,19 @@ buildscript {
 allprojects {
     repositories {
         mavenCentral()
+        jcenter {
+            url "http://10.69.213.71:8081/nexus/content/repositories/jcenter/"
+        }
+        // 视频SDK开发地址
+        maven { url "http://10.69.213.76:8081/nexus/content/repositories/snapshots/" }
+
+        //视频SDK生产地址
+        maven { url "http://10.69.213.76:8081/nexus/content/repositories/releases/" }
+
+        maven { url "http://10.69.213.71:8081/nexus/content/repositories/gomeMaven/" }
+
+        maven { url "http://10.69.213.71:8081/nexus/content/repositories/MXCentral/" }
+
         maven {
             url getProperty("MAVEN_REPO")
             credentials {
@@ -45,7 +61,7 @@ apply plugin: 'com.gutils.apkfly.git'
 git {
     order true
     cleanTest true
-    //url "git@gitlab.ds.gome.com.cn:mobile-android/GWorkspace.git", "master"
+//url "git@gitlab.ds.gome.com.cn:mobile-android/GWorkspace.git", "master"
     //url "git@gitlab.ds.gome.com.cn:mobile-android-admin/GSafekeyboard.git", "master"
     //url "git@gitlab.ds.gome.com.cn:mobile-android-admin/GSecret.git", "master"
     //url "git@gitlab.ds.gome.com.cn:mobile-android-common/GBuildConfig.git", "master"
@@ -79,4 +95,21 @@ git {
     url "git@gitlab.ds.gome.com.cn:mobile-android-common/GHotfix.git", "mergeDev"
     url "git@gitlab.ds.gome.com.cn:mobile-android-business/GZxingScan.git", "mergeDev"
     url "git@gitlab.ds.gome.com.cn:mobile-android/GomePlus.git", "mergeDev", true
+    //--------
+    url "git@gitlab.ds.gome.com.cn:mobile-android-business/MWidget.git", "master"
+    url "git@gitlab.ds.gome.com.cn:mobile-android-business/MTongbao.git", "master"
+    url "git@gitlab.ds.gome.com.cn:mobile-android-business/MStatistics.git", "master"
+    url "git@gitlab.ds.gome.com.cn:mobile-android-business/MShare.git", "master"
+    url "git@gitlab.ds.gome.com.cn:mobile-android-business/MSelectPhoto.git", "master"
+    url "git@gitlab.ds.gome.com.cn:mobile-android-business/MRouter.git", "master"
+    url "git@gitlab.ds.gome.com.cn:mobile-android-business/MPulltorefresh.git", "master"
+    url "git@gitlab.ds.gome.com.cn:mobile-android-business/MPtrrecyclerView.git", "master"
+    url "git@gitlab.ds.gome.com.cn:mobile-android-business/MPtrlib.git", "master"
+    url "git@gitlab.ds.gome.com.cn:mobile-android-business/MMeixinplayer.git", "master"
+    url "git@gitlab.ds.gome.com.cn:mobile-android-business/MMeixinpay.git", "master"
+    url "git@gitlab.ds.gome.com.cn:mobile-android-business/MImlibrary.git", "master"
+    url "git@gitlab.ds.gome.com.cn:mobile-android-business/MFramework2.git", "master"
+    url "git@gitlab.ds.gome.com.cn:mobile-android-business/MCore.git", "master"
+    url "git@gitlab.ds.gome.com.cn:mobile-android-business/MCommon.git", "master"
+    url "git@gitlab.ds.gome.com.cn:mobile-android-business/MApp.git", "master", true
 }
