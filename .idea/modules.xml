@@ -2,62 +2,51 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/001-GFrame/001-GFrame.iml" filepath="$PROJECT_DIR$/.idea/modules/001-GFrame/001-GFrame.iml" />
       <module fileurl="file://$PROJECT_DIR$/001-GFrame/001-GFrame.iml" filepath="$PROJECT_DIR$/001-GFrame/001-GFrame.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/002-GWidget/002-GWidget.iml" filepath="$PROJECT_DIR$/.idea/modules/002-GWidget/002-GWidget.iml" />
       <module fileurl="file://$PROJECT_DIR$/002-GWidget/002-GWidget.iml" filepath="$PROJECT_DIR$/002-GWidget/002-GWidget.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/003-GCore/003-GCore.iml" filepath="$PROJECT_DIR$/.idea/modules/003-GCore/003-GCore.iml" />
       <module fileurl="file://$PROJECT_DIR$/003-GCore/003-GCore.iml" filepath="$PROJECT_DIR$/003-GCore/003-GCore.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/004-GPush/004-GPush.iml" filepath="$PROJECT_DIR$/.idea/modules/004-GPush/004-GPush.iml" />
       <module fileurl="file://$PROJECT_DIR$/004-GPush/004-GPush.iml" filepath="$PROJECT_DIR$/004-GPush/004-GPush.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/005-GShare/005-GShare.iml" filepath="$PROJECT_DIR$/.idea/modules/005-GShare/005-GShare.iml" />
       <module fileurl="file://$PROJECT_DIR$/005-GShare/005-GShare.iml" filepath="$PROJECT_DIR$/005-GShare/005-GShare.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/006-GLogin/006-GLogin.iml" filepath="$PROJECT_DIR$/.idea/modules/006-GLogin/006-GLogin.iml" />
       <module fileurl="file://$PROJECT_DIR$/006-GLogin/006-GLogin.iml" filepath="$PROJECT_DIR$/006-GLogin/006-GLogin.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/007-GPullrefresh/007-GPullrefresh.iml" filepath="$PROJECT_DIR$/.idea/modules/007-GPullrefresh/007-GPullrefresh.iml" />
       <module fileurl="file://$PROJECT_DIR$/007-GPullrefresh/007-GPullrefresh.iml" filepath="$PROJECT_DIR$/007-GPullrefresh/007-GPullrefresh.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/008-GUpdate/008-GUpdate.iml" filepath="$PROJECT_DIR$/.idea/modules/008-GUpdate/008-GUpdate.iml" />
       <module fileurl="file://$PROJECT_DIR$/008-GUpdate/008-GUpdate.iml" filepath="$PROJECT_DIR$/008-GUpdate/008-GUpdate.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/009-GCmbPay/009-GCmbPay.iml" filepath="$PROJECT_DIR$/.idea/modules/009-GCmbPay/009-GCmbPay.iml" />
       <module fileurl="file://$PROJECT_DIR$/009-GCmbPay/009-GCmbPay.iml" filepath="$PROJECT_DIR$/009-GCmbPay/009-GCmbPay.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/010-GTongBaoSdk/010-GTongBaoSdk.iml" filepath="$PROJECT_DIR$/.idea/modules/010-GTongBaoSdk/010-GTongBaoSdk.iml" />
       <module fileurl="file://$PROJECT_DIR$/010-GTongBaoSdk/010-GTongBaoSdk.iml" filepath="$PROJECT_DIR$/010-GTongBaoSdk/010-GTongBaoSdk.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/011-GBusiness/011-GBusiness.iml" filepath="$PROJECT_DIR$/.idea/modules/011-GBusiness/011-GBusiness.iml" />
       <module fileurl="file://$PROJECT_DIR$/011-GBusiness/011-GBusiness.iml" filepath="$PROJECT_DIR$/011-GBusiness/011-GBusiness.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/012-GIm/012-GIm.iml" filepath="$PROJECT_DIR$/.idea/modules/012-GIm/012-GIm.iml" />
       <module fileurl="file://$PROJECT_DIR$/012-GIm/012-GIm.iml" filepath="$PROJECT_DIR$/012-GIm/012-GIm.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/013-GHybrid/013-GHybrid.iml" filepath="$PROJECT_DIR$/.idea/modules/013-GHybrid/013-GHybrid.iml" />
       <module fileurl="file://$PROJECT_DIR$/013-GHybrid/013-GHybrid.iml" filepath="$PROJECT_DIR$/013-GHybrid/013-GHybrid.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/014-GFinanceCommon/014-GFinanceCommon.iml" filepath="$PROJECT_DIR$/.idea/modules/014-GFinanceCommon/014-GFinanceCommon.iml" />
       <module fileurl="file://$PROJECT_DIR$/014-GFinanceCommon/014-GFinanceCommon.iml" filepath="$PROJECT_DIR$/014-GFinanceCommon/014-GFinanceCommon.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/015-GFinance/015-GFinance.iml" filepath="$PROJECT_DIR$/.idea/modules/015-GFinance/015-GFinance.iml" />
       <module fileurl="file://$PROJECT_DIR$/015-GFinance/015-GFinance.iml" filepath="$PROJECT_DIR$/015-GFinance/015-GFinance.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/016-GMeiyingbao/016-GMeiyingbao.iml" filepath="$PROJECT_DIR$/.idea/modules/016-GMeiyingbao/016-GMeiyingbao.iml" />
       <module fileurl="file://$PROJECT_DIR$/016-GMeiyingbao/016-GMeiyingbao.iml" filepath="$PROJECT_DIR$/016-GMeiyingbao/016-GMeiyingbao.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/017-GPhoneRecharge/017-GPhoneRecharge.iml" filepath="$PROJECT_DIR$/.idea/modules/017-GPhoneRecharge/017-GPhoneRecharge.iml" />
       <module fileurl="file://$PROJECT_DIR$/017-GPhoneRecharge/017-GPhoneRecharge.iml" filepath="$PROJECT_DIR$/017-GPhoneRecharge/017-GPhoneRecharge.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/018-GMovie/018-GMovie.iml" filepath="$PROJECT_DIR$/.idea/modules/018-GMovie/018-GMovie.iml" />
       <module fileurl="file://$PROJECT_DIR$/018-GMovie/018-GMovie.iml" filepath="$PROJECT_DIR$/018-GMovie/018-GMovie.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/019-GStoreSearch/019-GStoreSearch.iml" filepath="$PROJECT_DIR$/.idea/modules/019-GStoreSearch/019-GStoreSearch.iml" />
       <module fileurl="file://$PROJECT_DIR$/019-GStoreSearch/019-GStoreSearch.iml" filepath="$PROJECT_DIR$/019-GStoreSearch/019-GStoreSearch.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/020-GReturn/020-GReturn.iml" filepath="$PROJECT_DIR$/.idea/modules/020-GReturn/020-GReturn.iml" />
       <module fileurl="file://$PROJECT_DIR$/020-GReturn/020-GReturn.iml" filepath="$PROJECT_DIR$/020-GReturn/020-GReturn.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/021-GMaterialOrder/021-GMaterialOrder.iml" filepath="$PROJECT_DIR$/.idea/modules/021-GMaterialOrder/021-GMaterialOrder.iml" />
       <module fileurl="file://$PROJECT_DIR$/021-GMaterialOrder/021-GMaterialOrder.iml" filepath="$PROJECT_DIR$/021-GMaterialOrder/021-GMaterialOrder.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/022-GProductDetail/022-GProductDetail.iml" filepath="$PROJECT_DIR$/.idea/modules/022-GProductDetail/022-GProductDetail.iml" />
       <module fileurl="file://$PROJECT_DIR$/022-GProductDetail/022-GProductDetail.iml" filepath="$PROJECT_DIR$/022-GProductDetail/022-GProductDetail.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/023-GTQDetail/023-GTQDetail.iml" filepath="$PROJECT_DIR$/.idea/modules/023-GTQDetail/023-GTQDetail.iml" />
       <module fileurl="file://$PROJECT_DIR$/023-GTQDetail/023-GTQDetail.iml" filepath="$PROJECT_DIR$/023-GTQDetail/023-GTQDetail.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/024-GZhibo/024-GZhibo.iml" filepath="$PROJECT_DIR$/.idea/modules/024-GZhibo/024-GZhibo.iml" />
       <module fileurl="file://$PROJECT_DIR$/024-GZhibo/024-GZhibo.iml" filepath="$PROJECT_DIR$/024-GZhibo/024-GZhibo.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/025-GHotfix/025-GHotfix.iml" filepath="$PROJECT_DIR$/.idea/modules/025-GHotfix/025-GHotfix.iml" />
       <module fileurl="file://$PROJECT_DIR$/025-GHotfix/025-GHotfix.iml" filepath="$PROJECT_DIR$/025-GHotfix/025-GHotfix.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/026-GZxingScan/026-GZxingScan.iml" filepath="$PROJECT_DIR$/.idea/modules/026-GZxingScan/026-GZxingScan.iml" />
       <module fileurl="file://$PROJECT_DIR$/026-GZxingScan/026-GZxingScan.iml" filepath="$PROJECT_DIR$/026-GZxingScan/026-GZxingScan.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/027-GomePlus/027-GomePlus.iml" filepath="$PROJECT_DIR$/.idea/modules/027-GomePlus/027-GomePlus.iml" />
       <module fileurl="file://$PROJECT_DIR$/027-GomePlus/027-GomePlus.iml" filepath="$PROJECT_DIR$/027-GomePlus/027-GomePlus.iml" />
       <module fileurl="file://$PROJECT_DIR$/GWorkspace.iml" filepath="$PROJECT_DIR$/GWorkspace.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/MWorkspace.iml" filepath="$PROJECT_DIR$/.idea/modules/MWorkspace.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MApp/MApp.iml" filepath="$PROJECT_DIR$/MApp/MApp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MCommon/MCommon.iml" filepath="$PROJECT_DIR$/MCommon/MCommon.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MCore/MCore.iml" filepath="$PROJECT_DIR$/MCore/MCore.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MFramework2/MFramework2.iml" filepath="$PROJECT_DIR$/MFramework2/MFramework2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MImlibrary/MImlibrary.iml" filepath="$PROJECT_DIR$/MImlibrary/MImlibrary.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MMeixinpay/MMeixinpay.iml" filepath="$PROJECT_DIR$/MMeixinpay/MMeixinpay.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MMeixinplayer/MMeixinplayer.iml" filepath="$PROJECT_DIR$/MMeixinplayer/MMeixinplayer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MPtrlib/MPtrlib.iml" filepath="$PROJECT_DIR$/MPtrlib/MPtrlib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MPtrrecyclerView/MPtrrecyclerView.iml" filepath="$PROJECT_DIR$/MPtrrecyclerView/MPtrrecyclerView.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MPulltorefresh/MPulltorefresh.iml" filepath="$PROJECT_DIR$/MPulltorefresh/MPulltorefresh.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MRouter/MRouter.iml" filepath="$PROJECT_DIR$/MRouter/MRouter.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MSelectPhoto/MSelectPhoto.iml" filepath="$PROJECT_DIR$/MSelectPhoto/MSelectPhoto.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MShare/MShare.iml" filepath="$PROJECT_DIR$/MShare/MShare.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MStatistics/MStatistics.iml" filepath="$PROJECT_DIR$/MStatistics/MStatistics.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MTongbao/MTongbao.iml" filepath="$PROJECT_DIR$/MTongbao/MTongbao.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MWidget/MWidget.iml" filepath="$PROJECT_DIR$/MWidget/MWidget.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MWorkspace.iml" filepath="$PROJECT_DIR$/MWorkspace.iml" />
     </modules>
   </component>
 </project>

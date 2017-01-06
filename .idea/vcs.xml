@@ -1,33 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="VcsDirectoryMappings">
-    <mapping directory="" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/001-GFrame" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/002-GWidget" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/003-GCore" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/004-GPush" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/005-GShare" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/006-GLogin" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/007-GPullrefresh" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/008-GUpdate" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/009-GCmbPay" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/010-GTongBaoSdk" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/011-GBusiness" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/012-GIm" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/013-GHybrid" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/014-GFinanceCommon" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/015-GFinance" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/016-GMeiyingbao" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/017-GPhoneRecharge" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/018-GMovie" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/019-GStoreSearch" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/020-GReturn" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/021-GMaterialOrder" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/022-GProductDetail" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/023-GTQDetail" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/024-GZhibo" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/025-GHotfix" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/026-GZxingScan" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/027-GomePlus" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/MApp" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/MCommon" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/MCore" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/MFramework2" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/MImlibrary" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/MMeixinpay" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/MMeixinplayer" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/MPtrlib" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/MPtrrecyclerView" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/MPulltorefresh" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/MRouter" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/MSelectPhoto" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/MShare" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/MStatistics" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/MTongbao" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/MWidget" vcs="Git" />
   </component>
 </project>
