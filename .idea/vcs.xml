@@ -29,5 +29,21 @@
     <mapping directory="$PROJECT_DIR$/GZhibo" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/GZxingScan" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/GomePlus" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/MApp" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/MCommon" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/MCore" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/MFramework2" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/MImlibrary" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/MMeixinpay" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/MMeixinplayer" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/MPtrlib" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/MPtrrecyclerView" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/MPulltorefresh" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/MRouter" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/MSelectPhoto" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/MShare" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/MStatistics" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/MTongbao" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/MWidget" vcs="Git" />
   </component>
 </project>
