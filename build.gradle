@@ -1,9 +1,5 @@
 buildscript {
     repositories {
-        mavenCentral()
-        jcenter {
-            url "http://10.69.213.71:8081/nexus/content/repositories/jcenter/"
-        }
         maven {
             url getProperty("MAVEN_REPO")
             credentials {
@@ -11,19 +7,33 @@ buildscript {
                 password = getProperty("MAVEN_PASS")
             }
         }
+        mavenCentral()
+        jcenter {
+            url "http://10.69.213.71:8081/nexus/content/repositories/jcenter/"
+        }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.2.3'
+        classpath 'com.android.tools.build:gradle:2.1.0'
         classpath 'com.gutils.apkfly:plugin:2.0.0'
     }
 }
 
 allprojects {
     repositories {
+
         mavenCentral()
         jcenter {
             url "http://10.69.213.71:8081/nexus/content/repositories/jcenter/"
         }
+
+        maven {
+            url getProperty("MAVEN_REPO")
+            credentials {
+                username = getProperty("MAVEN_USER")
+                password = getProperty("MAVEN_PASS")
+            }
+        }
+
         // 视频SDK开发地址
         maven { url "http://10.69.213.76:8081/nexus/content/repositories/snapshots/" }
 
@@ -34,13 +44,6 @@ allprojects {
 
         maven { url "http://10.69.213.71:8081/nexus/content/repositories/MXCentral/" }
 
-        maven {
-            url getProperty("MAVEN_REPO")
-            credentials {
-                username = getProperty("MAVEN_USER")
-                password = getProperty("MAVEN_PASS")
-            }
-        }
     }
     ext {
         compileSdkVersion = getProperty("COMPILE_SDK_VERSION") as Integer
@@ -68,33 +71,33 @@ git {
     //url "git@gitlab.ds.gome.com.cn:mobile-android-common/GPlugin.git", "master"
     //url "git@gitlab.ds.gome.com.cn:mobile-android-common/GPatch.git", "master"
 
-//    url "git@gitlab.ds.gome.com.cn:mobile-android-common/GFrame.git", "mergeDev"
-//    url "git@gitlab.ds.gome.com.cn:mobile-android-business/GWidget.git", "mergeDev"
-//    url "git@gitlab.ds.gome.com.cn:mobile-android-common/GCore.git", "mergeDev"
-//    url "git@gitlab.ds.gome.com.cn:mobile-android-common/GPush.git", "mergeDev"
-//    url "git@gitlab.ds.gome.com.cn:mobile-android-business/GShare.git", "mergeDev"
-//    url "git@gitlab.ds.gome.com.cn:mobile-android-business/GLogin.git", "mergeDev"
-//    url "git@gitlab.ds.gome.com.cn:mobile-android-business/GPullrefresh.git", "mergeDev"
-//    url "git@gitlab.ds.gome.com.cn:mobile-android-common/GUpdate.git", "mergeDev"
-//    url "git@gitlab.ds.gome.com.cn:mobile-android-business/GCmbPay.git", "mergeDev"
-//    url "git@gitlab.ds.gome.com.cn:mobile-android-common/GTongBaoSdk.git", "mergeDev"
-//    url "git@gitlab.ds.gome.com.cn:mobile-android-business/GBusiness.git", "mergeDev"
-//    url "git@gitlab.ds.gome.com.cn:mobile-android-business/GIm.git", "mergeDev"
-//    url "git@gitlab.ds.gome.com.cn:mobile-android-common/GHybrid.git", "mergeDev"
-//    url "git@gitlab.ds.gome.com.cn:mobile-android-business/GFinanceCommon.git", "mergeDev"
-//    url "git@gitlab.ds.gome.com.cn:mobile-android-business/GFinance.git", "mergeDev"
-//    url "git@gitlab.ds.gome.com.cn:mobile-android-business/GMeiyingbao.git", "mergeDev"
-//    url "git@gitlab.ds.gome.com.cn:mobile-android-business/GPhoneRecharge.git", "mergeDev"
-//    url "git@gitlab.ds.gome.com.cn:mobile-android-business/GMovie.git", "mergeDev"
-//    url "git@gitlab.ds.gome.com.cn:mobile-android-business/GStoreSearch.git", "mergeDev"
-//    url "git@gitlab.ds.gome.com.cn:mobile-android-business/GReturn.git", "mergeDev"
-//    url "git@gitlab.ds.gome.com.cn:mobile-android-business/GMaterialOrder.git", "mergeDev"
-//    url "git@gitlab.ds.gome.com.cn:mobile-android-business/GProductDetail.git", "mergeDev"
-//    url "git@gitlab.ds.gome.com.cn:mobile-android-business/GTQDetail.git", "mergeDev"
-//    url "git@gitlab.ds.gome.com.cn:mobile-android-business/GZhibo.git", "mergeDev"
-//    url "git@gitlab.ds.gome.com.cn:mobile-android-common/GHotfix.git", "mergeDev"
-//    url "git@gitlab.ds.gome.com.cn:mobile-android-business/GZxingScan.git", "mergeDev"
-//    url "git@gitlab.ds.gome.com.cn:mobile-android/GomePlus.git", "mergeDev", true
+    url "git@gitlab.ds.gome.com.cn:mobile-android-common/GFrame.git", "mergeDev"
+    url "git@gitlab.ds.gome.com.cn:mobile-android-business/GWidget.git", "mergeDev"
+    url "git@gitlab.ds.gome.com.cn:mobile-android-common/GCore.git", "mergeDev"
+    url "git@gitlab.ds.gome.com.cn:mobile-android-common/GPush.git", "mergeDev"
+    url "git@gitlab.ds.gome.com.cn:mobile-android-business/GShare.git", "mergeDev"
+    url "git@gitlab.ds.gome.com.cn:mobile-android-business/GLogin.git", "mergeDev"
+    url "git@gitlab.ds.gome.com.cn:mobile-android-business/GPullrefresh.git", "mergeDev"
+    url "git@gitlab.ds.gome.com.cn:mobile-android-common/GUpdate.git", "mergeDev"
+    url "git@gitlab.ds.gome.com.cn:mobile-android-business/GCmbPay.git", "mergeDev"
+    url "git@gitlab.ds.gome.com.cn:mobile-android-common/GTongBaoSdk.git", "mergeDev"
+    url "git@gitlab.ds.gome.com.cn:mobile-android-business/GBusiness.git", "mergeDev"
+    url "git@gitlab.ds.gome.com.cn:mobile-android-business/GIm.git", "mergeDev"
+    url "git@gitlab.ds.gome.com.cn:mobile-android-common/GHybrid.git", "mergeDev"
+    url "git@gitlab.ds.gome.com.cn:mobile-android-business/GFinanceCommon.git", "mergeDev"
+    url "git@gitlab.ds.gome.com.cn:mobile-android-business/GFinance.git", "mergeDev"
+    url "git@gitlab.ds.gome.com.cn:mobile-android-business/GMeiyingbao.git", "mergeDev"
+    url "git@gitlab.ds.gome.com.cn:mobile-android-business/GPhoneRecharge.git", "mergeDev"
+    url "git@gitlab.ds.gome.com.cn:mobile-android-business/GMovie.git", "mergeDev"
+    url "git@gitlab.ds.gome.com.cn:mobile-android-business/GStoreSearch.git", "mergeDev"
+    url "git@gitlab.ds.gome.com.cn:mobile-android-business/GReturn.git", "mergeDev"
+    url "git@gitlab.ds.gome.com.cn:mobile-android-business/GMaterialOrder.git", "mergeDev"
+    url "git@gitlab.ds.gome.com.cn:mobile-android-business/GProductDetail.git", "mergeDev"
+    url "git@gitlab.ds.gome.com.cn:mobile-android-business/GTQDetail.git", "mergeDev"
+    url "git@gitlab.ds.gome.com.cn:mobile-android-business/GZhibo.git", "mergeDev"
+    url "git@gitlab.ds.gome.com.cn:mobile-android-common/GHotfix.git", "mergeDev"
+    url "git@gitlab.ds.gome.com.cn:mobile-android-business/GZxingScan.git", "mergeDev"
+    url "git@gitlab.ds.gome.com.cn:mobile-android/GomePlus.git", "mergeDev", true
     //--------
     url "git@gitlab.ds.gome.com.cn:mobile-android-business/MWidget.git", "master"
     url "git@gitlab.ds.gome.com.cn:mobile-android-business/MTongbao.git", "master"

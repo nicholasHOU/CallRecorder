@@ -29,7 +29,34 @@
       <module fileurl="file://$PROJECT_DIR$/025-GHotfix/025-GHotfix.iml" filepath="$PROJECT_DIR$/025-GHotfix/025-GHotfix.iml" />
       <module fileurl="file://$PROJECT_DIR$/026-GZxingScan/026-GZxingScan.iml" filepath="$PROJECT_DIR$/026-GZxingScan/026-GZxingScan.iml" />
       <module fileurl="file://$PROJECT_DIR$/027-GomePlus/027-GomePlus.iml" filepath="$PROJECT_DIR$/027-GomePlus/027-GomePlus.iml" />
+      <module fileurl="file://$PROJECT_DIR$/GBusiness/GBusiness.iml" filepath="$PROJECT_DIR$/GBusiness/GBusiness.iml" />
+      <module fileurl="file://$PROJECT_DIR$/GCmbPay/GCmbPay.iml" filepath="$PROJECT_DIR$/GCmbPay/GCmbPay.iml" />
+      <module fileurl="file://$PROJECT_DIR$/GCore/GCore.iml" filepath="$PROJECT_DIR$/GCore/GCore.iml" />
+      <module fileurl="file://$PROJECT_DIR$/GFinance/GFinance.iml" filepath="$PROJECT_DIR$/GFinance/GFinance.iml" />
+      <module fileurl="file://$PROJECT_DIR$/GFinanceCommon/GFinanceCommon.iml" filepath="$PROJECT_DIR$/GFinanceCommon/GFinanceCommon.iml" />
+      <module fileurl="file://$PROJECT_DIR$/GFrame/GFrame.iml" filepath="$PROJECT_DIR$/GFrame/GFrame.iml" />
+      <module fileurl="file://$PROJECT_DIR$/GHotfix/GHotfix.iml" filepath="$PROJECT_DIR$/GHotfix/GHotfix.iml" />
+      <module fileurl="file://$PROJECT_DIR$/GHybrid/GHybrid.iml" filepath="$PROJECT_DIR$/GHybrid/GHybrid.iml" />
+      <module fileurl="file://$PROJECT_DIR$/GIm/GIm.iml" filepath="$PROJECT_DIR$/GIm/GIm.iml" />
+      <module fileurl="file://$PROJECT_DIR$/GLogin/GLogin.iml" filepath="$PROJECT_DIR$/GLogin/GLogin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/GMaterialOrder/GMaterialOrder.iml" filepath="$PROJECT_DIR$/GMaterialOrder/GMaterialOrder.iml" />
+      <module fileurl="file://$PROJECT_DIR$/GMeiyingbao/GMeiyingbao.iml" filepath="$PROJECT_DIR$/GMeiyingbao/GMeiyingbao.iml" />
+      <module fileurl="file://$PROJECT_DIR$/GMovie/GMovie.iml" filepath="$PROJECT_DIR$/GMovie/GMovie.iml" />
+      <module fileurl="file://$PROJECT_DIR$/GPhoneRecharge/GPhoneRecharge.iml" filepath="$PROJECT_DIR$/GPhoneRecharge/GPhoneRecharge.iml" />
+      <module fileurl="file://$PROJECT_DIR$/GProductDetail/GProductDetail.iml" filepath="$PROJECT_DIR$/GProductDetail/GProductDetail.iml" />
+      <module fileurl="file://$PROJECT_DIR$/GPullrefresh/GPullrefresh.iml" filepath="$PROJECT_DIR$/GPullrefresh/GPullrefresh.iml" />
+      <module fileurl="file://$PROJECT_DIR$/GPush/GPush.iml" filepath="$PROJECT_DIR$/GPush/GPush.iml" />
+      <module fileurl="file://$PROJECT_DIR$/GReturn/GReturn.iml" filepath="$PROJECT_DIR$/GReturn/GReturn.iml" />
+      <module fileurl="file://$PROJECT_DIR$/GShare/GShare.iml" filepath="$PROJECT_DIR$/GShare/GShare.iml" />
+      <module fileurl="file://$PROJECT_DIR$/GStoreSearch/GStoreSearch.iml" filepath="$PROJECT_DIR$/GStoreSearch/GStoreSearch.iml" />
+      <module fileurl="file://$PROJECT_DIR$/GTQDetail/GTQDetail.iml" filepath="$PROJECT_DIR$/GTQDetail/GTQDetail.iml" />
+      <module fileurl="file://$PROJECT_DIR$/GTongBaoSdk/GTongBaoSdk.iml" filepath="$PROJECT_DIR$/GTongBaoSdk/GTongBaoSdk.iml" />
+      <module fileurl="file://$PROJECT_DIR$/GUpdate/GUpdate.iml" filepath="$PROJECT_DIR$/GUpdate/GUpdate.iml" />
+      <module fileurl="file://$PROJECT_DIR$/GWidget/GWidget.iml" filepath="$PROJECT_DIR$/GWidget/GWidget.iml" />
       <module fileurl="file://$PROJECT_DIR$/GWorkspace.iml" filepath="$PROJECT_DIR$/GWorkspace.iml" />
+      <module fileurl="file://$PROJECT_DIR$/GZhibo/GZhibo.iml" filepath="$PROJECT_DIR$/GZhibo/GZhibo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/GZxingScan/GZxingScan.iml" filepath="$PROJECT_DIR$/GZxingScan/GZxingScan.iml" />
+      <module fileurl="file://$PROJECT_DIR$/GomePlus/GomePlus.iml" filepath="$PROJECT_DIR$/GomePlus/GomePlus.iml" />
       <module fileurl="file://$PROJECT_DIR$/MApp/MApp.iml" filepath="$PROJECT_DIR$/MApp/MApp.iml" />
       <module fileurl="file://$PROJECT_DIR$/MCommon/MCommon.iml" filepath="$PROJECT_DIR$/MCommon/MCommon.iml" />
       <module fileurl="file://$PROJECT_DIR$/MCore/MCore.iml" filepath="$PROJECT_DIR$/MCore/MCore.iml" />
