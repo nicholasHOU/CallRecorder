@@ -13,7 +13,7 @@ buildscript {
         }
     }
     dependencies {
-        classpath 'com.gutils.apkfly:plugin:2.1.1'
+        classpath 'com.gutils.apkfly:plugin:2.1.4'
     }
 }
 
@@ -49,7 +49,7 @@ allprojects {
         buildToolsVersion = getProperty("BUILD_TOOLS_VERSION")
         targetSdkVersion = getProperty("TARGET_SDK_VERSION") as Integer
         minSdkVersion = getProperty("MIN_SDK_VERSION") as Integer
-        proDeps = true //改false 时需要把xiaomi的几个工程注掉
+        proDeps = false //改false 时需要把xiaomi的几个工程注掉
         isXiaoMi = false
     }
 }
@@ -99,7 +99,7 @@ git {
     url "git@gitlab.ds.gome.com.cn:mobile-android/GomePlus.git", "mergeDev", true
     //--------
     url "git@gitlab.ds.gome.com.cn:mobile-android-business/MWidget.git", "master"
-    url "git@gitlab.ds.gome.com.cn:mobile-android-business/MTongbao.git", "master"
+//    url "git@gitlab.ds.gome.com.cn:mobile-android-business/MTongbao.git", "master"
     url "git@gitlab.ds.gome.com.cn:mobile-android-business/MStatistics.git", "master"
     url "git@gitlab.ds.gome.com.cn:mobile-android-business/MShare.git", "master"
     url "git@gitlab.ds.gome.com.cn:mobile-android-business/MSelectPhoto.git", "master"
