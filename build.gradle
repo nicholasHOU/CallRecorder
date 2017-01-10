@@ -61,9 +61,9 @@ task clean(type: Delete) {
 apply plugin: 'com.gutils.apkfly.git'
 
 git {
-    order false
+    order true
     cleanTest false
-//url "git@gitlab.ds.gome.com.cn:mobile-android/GWorkspace.git", "master"
+    //url "git@gitlab.ds.gome.com.cn:mobile-android/GWorkspace.git", "master"
     //url "git@gitlab.ds.gome.com.cn:mobile-android-admin/GSafekeyboard.git", "master"
     //url "git@gitlab.ds.gome.com.cn:mobile-android-admin/GSecret.git", "master"
     //url "git@gitlab.ds.gome.com.cn:mobile-android-common/GBuildConfig.git", "master"
@@ -96,22 +96,23 @@ git {
     url "git@gitlab.ds.gome.com.cn:mobile-android-business/GZhibo.git", "mergeDev"
     url "git@gitlab.ds.gome.com.cn:mobile-android-common/GHotfix.git", "mergeDev"
     url "git@gitlab.ds.gome.com.cn:mobile-android-business/GZxingScan.git", "mergeDev"
-    url "git@gitlab.ds.gome.com.cn:mobile-android/GomePlus.git", "mergeDev", true
     //--------
-    url "git@gitlab.ds.gome.com.cn:mobile-android-business/MWidget.git", "master"
-//    url "git@gitlab.ds.gome.com.cn:mobile-android-business/MTongbao.git", "master"
+    url "git@gitlab.ds.gome.com.cn:mobile-android-business/MPulltorefresh.git", "master"
+    url "git@gitlab.ds.gome.com.cn:mobile-android-business/MFramework2.git", "master"
+    url "git@gitlab.ds.gome.com.cn:mobile-android-business/MPtrlib.git", "master"
+    url "git@gitlab.ds.gome.com.cn:mobile-android-business/MPtrrecyclerView.git", "master"
     url "git@gitlab.ds.gome.com.cn:mobile-android-business/MStatistics.git", "master"
-    url "git@gitlab.ds.gome.com.cn:mobile-android-business/MShare.git", "master"
     url "git@gitlab.ds.gome.com.cn:mobile-android-business/MSelectPhoto.git", "master"
     url "git@gitlab.ds.gome.com.cn:mobile-android-business/MRouter.git", "master"
-    url "git@gitlab.ds.gome.com.cn:mobile-android-business/MPulltorefresh.git", "master"
-    url "git@gitlab.ds.gome.com.cn:mobile-android-business/MPtrrecyclerView.git", "master"
-    url "git@gitlab.ds.gome.com.cn:mobile-android-business/MPtrlib.git", "master"
-    url "git@gitlab.ds.gome.com.cn:mobile-android-business/MMeixinplayer.git", "master"
-    url "git@gitlab.ds.gome.com.cn:mobile-android-business/MMeixinpay.git", "master"
     url "git@gitlab.ds.gome.com.cn:mobile-android-business/MImlibrary.git", "master"
-    url "git@gitlab.ds.gome.com.cn:mobile-android-business/MFramework2.git", "master"
-    url "git@gitlab.ds.gome.com.cn:mobile-android-business/MCore.git", "master"
     url "git@gitlab.ds.gome.com.cn:mobile-android-business/MCommon.git", "master"
-    url "git@gitlab.ds.gome.com.cn:mobile-android-business/MApp.git", "master", true
+    url "git@gitlab.ds.gome.com.cn:mobile-android-business/MWidget.git", "master"
+    url "git@gitlab.ds.gome.com.cn:mobile-android-business/MShare.git", "master"
+    url "git@gitlab.ds.gome.com.cn:mobile-android-business/MMeixinpay.git", "master"
+    url "git@gitlab.ds.gome.com.cn:mobile-android-business/MMeixinplayer.git", "master"
+    url "git@gitlab.ds.gome.com.cn:mobile-android-business/MCore.git", "master"
+    //---------
+    url "git@gitlab.ds.gome.com.cn:mobile-android-business/MApp.git", "master"
+    //---------
+    url "git@gitlab.ds.gome.com.cn:mobile-android/GomePlus.git", "mergeDev", true
 }
