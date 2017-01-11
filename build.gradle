@@ -165,7 +165,7 @@ git {
 //    url "git@gitlab.ds.gome.com.cn:mobile-android-business/MMeixinplayer.git", "master"
 //    url "git@gitlab.ds.gome.com.cn:mobile-android-business/MCore.git", "master"
 //    //---------
-//    url "git@gitlab.ds.gome.com.cn:mobile-android-business/MApp.git", "master"
+    url "git@gitlab.ds.gome.com.cn:mobile-android-business/MApp.git", "master"
     //---------
     url "git@gitlab.ds.gome.com.cn:mobile-android/GomePlus.git", "mergeDev", true
 }
