@@ -14,9 +14,9 @@
 /0*
 /G*
 /M*
+/buildsrc
 
 /settings.gradle
-/build.gradle
 /maven.gradle
 /module.gradle
 /local.properties

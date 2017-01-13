@@ -116,6 +116,7 @@ apply plugin: 'com.gutils.apkfly.git'
 git {
     order false
     cleanTest false
+    //url "git@gitlab.ds.gome.com.cn:mobile-android-admin/buildsrc.git", "dev"
     //url "git@gitlab.ds.gome.com.cn:mobile-android/GWorkspace.git", "master"
     //url "git@gitlab.ds.gome.com.cn:mobile-android-admin/GSafekeyboard.git", "master"
     //url "git@gitlab.ds.gome.com.cn:mobile-android-admin/GSecret.git", "master"
