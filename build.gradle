@@ -168,5 +168,5 @@ git {
 //    //---------
     url "git@gitlab.ds.gome.com.cn:mobile-android-business/MApp.git", "mergeDev"
     //---------
-    url "git@gitlab.ds.gome.com.cn:mobile-android/GomePlus.git", "mergeDev", true
+    url "git@gitlab.ds.gome.com.cn:mobile-android/GomePlus.git", "mergeDev"
 }
