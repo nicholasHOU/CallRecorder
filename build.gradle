@@ -13,7 +13,7 @@ buildscript {
         }
     }
     dependencies {
-        classpath 'com.gutils.apkfly:plugin:2.1.4'
+        classpath 'com.gutils.apkfly:plugin:2.1.9'
     }
 }
 
@@ -59,54 +59,54 @@ task clean(type: Delete) {
 }
 
 ext.deps = [
-        GSafekeyboard: 'com.bangcle:safeKeyboard:0.0.3',
-        GSecret: 'com.gome.ecmall:secret:'+getProperty('AAR_GSECRET_VERSION')+'@aar',
-        GBuildConfig: 'com.gome.ecmall:buildconfig:'+getProperty('AAR_GCONFIG_VERSION'),
-        GPlugin: '',
-        GPatch: 'com.gome.ecmall:patch:'+getProperty('AAR_GPATCH_VERSION')+'@aar',
+        GSafekeyboard   : 'com.bangcle:safeKeyboard:0.0.3',
+        GSecret         : 'com.gome.ecmall:secret:' + getProperty('AAR_GSECRET_VERSION') + '@aar',
+        GBuildConfig    : 'com.gome.ecmall:buildconfig:' + getProperty('AAR_GCONFIG_VERSION'),
+        GPlugin         : '',
+        GPatch          : 'com.gome.ecmall:patch:' + getProperty('AAR_GPATCH_VERSION') + '@aar',
 
-        GFrame: 'com.gome.ecmall:frame:'+getProperty('AAR_GFRAME_VERSION')+'@aar',
-        GWidget: 'com.gome.ecmall:widget:'+getProperty('AAR_GWIDGET_VERSION')+'@aar',
-        GCore: 'com.gome.ecmall:core:'+getProperty('AAR_GCORE_VERSION')+'@aar',
-        GPush: 'com.gome.ecmall:push:'+getProperty('AAR_GPUSH_VERSION')+'@aar',
-        GShare: 'com.gome.ecmall:share:'+getProperty('AAR_GSHARE_VERSION')+'@aar',
-        GLogin: 'com.gome.ecmall:login:'+getProperty('AAR_GLOGIN_VERSION')+'@aar',
-        GPullrefresh: 'com.gome.ecmall:pullrefresh:'+getProperty('AAR_GPULLREFRESH_VERSION')+'@aar',
-        GUpdate: 'com.gome.ecmall:update:'+getProperty('AAR_GUPDATE_VERSION')+'@aar',
-        GCmbPay: 'com.gome.cmbpay:cmbpay:'+getProperty('AAR_CMBPAY_VERSION')+'@aar',
-        GTongBaoSdk: 'com.gome.ecmall:gomepay:'+getProperty('AAR_GOMEPAY_VERSION')+'@aar',
-        GBusiness: 'com.gome.ecmall:business:' + getProperty('AAR_GBUSINESS_VERSION') + '@aar',
-        GIm: 'com.gome.ecmall.home:im:' + getProperty('AAR_GIM_VERSION') + '@aar',
-        GHybrid: 'com.gome.ecmall:gh5:' + getProperty('AAR_GH5_VERSION') + '@aar',
-        GFinanceCommon: 'com.gome.ecmall:financecommon:'+getProperty('AAR_GFINANCE_COMMON_VERSION')+'@aar',
-        GFinance: 'com.gome.ecmall:finance:' + getProperty('AAR_GFINANCE_VERSION') + '@aar',
-        GMeiyingbao: 'com.gome.ecmall:meiyingbao:' + getProperty('AAR_GMEIYINGBAO_VERSION') + '@aar',
-        GPhoneRecharge: 'com.gome.ecmall:phonerecharge:' + getProperty('AAR_GPHONERECHARGE_VERSION') + '@aar',
-        GMovie: 'com.gome.ecmall:movie:' + getProperty('AAR_GMOVIE_VERSION') + '@aar',
-        GStoreSearch: 'com.gome.ecmall:storesearch:' + getProperty('AAR_GSTORESEARCH_VERSION') + '@aar',
-        GReturn: 'com.gome.ecmall:greturn:' + getProperty('AAR_GRETURN_VERSION') + '@aar',
-        GMaterialOrder: 'com.gome.ecmall:materialorder:' + getProperty('AAR_GMATERIAL_ORDER_VERSION') + '@aar',
-        GProductDetail: 'com.gome.ecmall:product:' + getProperty('AAR_GPRODUCT_VERSION') + '@aar',
-        GTQDetail: 'com.gome.ecmall:tqdetail:' + getProperty('AAR_GTQ_DETAIL_VERSION') + '@aar',
-        GZhibo: 'com.gome.ecmall:zhibo:' + getProperty('AAR_GZHIBO_VERSION') + '@aar',
-        GHotfix: 'com.gome.ecmall:hotfix:' + getProperty('AAR_HOTFIX_VERSION') + '@aar',
-        GZxingScan: 'com.gome.ecmall:gzxing:' + getProperty('AAR_GZING_VERSION') + '@aar',
+        GFrame          : 'com.gome.ecmall:frame:' + getProperty('AAR_GFRAME_VERSION') + '@aar',
+        GWidget         : 'com.gome.ecmall:widget:' + getProperty('AAR_GWIDGET_VERSION') + '@aar',
+        GCore           : 'com.gome.ecmall:core:' + getProperty('AAR_GCORE_VERSION') + '@aar',
+        GPush           : 'com.gome.ecmall:push:' + getProperty('AAR_GPUSH_VERSION') + '@aar',
+        GShare          : 'com.gome.ecmall:share:' + getProperty('AAR_GSHARE_VERSION') + '@aar',
+        GLogin          : 'com.gome.ecmall:login:' + getProperty('AAR_GLOGIN_VERSION') + '@aar',
+        GPullrefresh    : 'com.gome.ecmall:pullrefresh:' + getProperty('AAR_GPULLREFRESH_VERSION') + '@aar',
+        GUpdate         : 'com.gome.ecmall:update:' + getProperty('AAR_GUPDATE_VERSION') + '@aar',
+        GCmbPay         : 'com.gome.cmbpay:cmbpay:' + getProperty('AAR_CMBPAY_VERSION') + '@aar',
+        GTongBaoSdk     : 'com.gome.ecmall:gomepay:' + getProperty('AAR_GOMEPAY_VERSION') + '@aar',
+        GBusiness       : 'com.gome.ecmall:business:' + getProperty('AAR_GBUSINESS_VERSION') + '@aar',
+        GIm             : 'com.gome.ecmall.home:im:' + getProperty('AAR_GIM_VERSION') + '@aar',
+        GHybrid         : 'com.gome.ecmall:gh5:' + getProperty('AAR_GH5_VERSION') + '@aar',
+        GFinanceCommon  : 'com.gome.ecmall:financecommon:' + getProperty('AAR_GFINANCE_COMMON_VERSION') + '@aar',
+        GFinance        : 'com.gome.ecmall:finance:' + getProperty('AAR_GFINANCE_VERSION') + '@aar',
+        GMeiyingbao     : 'com.gome.ecmall:meiyingbao:' + getProperty('AAR_GMEIYINGBAO_VERSION') + '@aar',
+        GPhoneRecharge  : 'com.gome.ecmall:phonerecharge:' + getProperty('AAR_GPHONERECHARGE_VERSION') + '@aar',
+        GMovie          : 'com.gome.ecmall:movie:' + getProperty('AAR_GMOVIE_VERSION') + '@aar',
+        GStoreSearch    : 'com.gome.ecmall:storesearch:' + getProperty('AAR_GSTORESEARCH_VERSION') + '@aar',
+        GReturn         : 'com.gome.ecmall:greturn:' + getProperty('AAR_GRETURN_VERSION') + '@aar',
+        GMaterialOrder  : 'com.gome.ecmall:materialorder:' + getProperty('AAR_GMATERIAL_ORDER_VERSION') + '@aar',
+        GProductDetail  : 'com.gome.ecmall:product:' + getProperty('AAR_GPRODUCT_VERSION') + '@aar',
+        GTQDetail       : 'com.gome.ecmall:tqdetail:' + getProperty('AAR_GTQ_DETAIL_VERSION') + '@aar',
+        GZhibo          : 'com.gome.ecmall:zhibo:' + getProperty('AAR_GZHIBO_VERSION') + '@aar',
+        GHotfix         : 'com.gome.ecmall:hotfix:' + getProperty('AAR_HOTFIX_VERSION') + '@aar',
+        GZxingScan      : 'com.gome.ecmall:gzxing:' + getProperty('AAR_GZING_VERSION') + '@aar',
 
-        MPulltorefresh: 'com.gome.ecmall:mpulltorefresh:'+getProperty('AAR_MPULLTOREFRESH_VERSION')+'@aar',
-        MFramework2: 'com.gome.ecmall:mframe2:'+getProperty('AAR_MFRAME2_VERSION')+'@aar',
-        MPtrlib: 'com.gome.ecmall:mptrlib:'+getProperty('AAR_MPTRLIB_VERSION')+'@aar',
-        MPtrrecyclerView: 'com.gome.ecmall:mptrrecycler:'+getProperty('AAR_MPTR_RECYCLER_VIEW_VERSION')+'@aar',
-        MStatistics: 'com.gome.ecmall:mstatistics:'+getProperty('AAR_MSTATISTICS_VERSION')+'@aar',
-        MSelectPhoto: 'com.gome.ecmall:mselectphoto:'+getProperty('AAR_MSELECT_PHOTO_VERSION')+'@aar',
-        MRouter: 'com.gome.ecmall:mrouter:'+getProperty('AAR_MROUTER_VERSION')+'@aar',
-        MImlibrary: 'com.gome.ecmall:mim:'+getProperty('AAR_MIM_VERSION')+'@aar',
-        MCommon: 'com.gome.ecmall:mcommon:'+getProperty('AAR_MCOMMON_VERSION')+'@aar',
-        MWidget: 'com.gome.ecmall:mwidget:'+getProperty('AAR_MWIDGET_VERSION')+'@aar',
-        MShare: 'com.gome.ecmall:mshare:'+getProperty('AAR_MSHARE_VERSION')+'@aar',
-        MMeixinpay: 'com.gome.ecmall:mpay:'+getProperty('AAR_MPAY_VERSION')+'@aar',
-        MMeixinplayer: 'com.gome.ecmall:mplayer:'+getProperty('AAR_MPLAYER_VERSION')+'@aar',
-        MCore: 'com.gome.ecmall:mcore:'+getProperty('AAR_MCORE_VERSION')+'@aar',
-        MApp: 'com.gome.ecmall:mapp:' + getProperty('AAR_MAPP_VERSION') + '@aar'
+        MPulltorefresh  : 'com.gome.ecmall:mpulltorefresh:' + getProperty('AAR_MPULLTOREFRESH_VERSION') + '@aar',
+        MFramework2     : 'com.gome.ecmall:mframe2:' + getProperty('AAR_MFRAME2_VERSION') + '@aar',
+        MPtrlib         : 'com.gome.ecmall:mptrlib:' + getProperty('AAR_MPTRLIB_VERSION') + '@aar',
+        MPtrrecyclerView: 'com.gome.ecmall:mptrrecycler:' + getProperty('AAR_MPTR_RECYCLER_VIEW_VERSION') + '@aar',
+        MStatistics     : 'com.gome.ecmall:mstatistics:' + getProperty('AAR_MSTATISTICS_VERSION') + '@aar',
+        MSelectPhoto    : 'com.gome.ecmall:mselectphoto:' + getProperty('AAR_MSELECT_PHOTO_VERSION') + '@aar',
+        MRouter         : 'com.gome.ecmall:mrouter:' + getProperty('AAR_MROUTER_VERSION') + '@aar',
+        MImlibrary      : 'com.gome.ecmall:mim:' + getProperty('AAR_MIM_VERSION') + '@aar',
+        MCommon         : 'com.gome.ecmall:mcommon:' + getProperty('AAR_MCOMMON_VERSION') + '@aar',
+        MWidget         : 'com.gome.ecmall:mwidget:' + getProperty('AAR_MWIDGET_VERSION') + '@aar',
+        MShare          : 'com.gome.ecmall:mshare:' + getProperty('AAR_MSHARE_VERSION') + '@aar',
+        MMeixinpay      : 'com.gome.ecmall:mpay:' + getProperty('AAR_MPAY_VERSION') + '@aar',
+        MMeixinplayer   : 'com.gome.ecmall:mplayer:' + getProperty('AAR_MPLAYER_VERSION') + '@aar',
+        MCore           : 'com.gome.ecmall:mcore:' + getProperty('AAR_MCORE_VERSION') + '@aar',
+        MApp            : 'com.gome.ecmall:mapp:' + getProperty('AAR_MAPP_VERSION') + '@aar'
 ]
 
 
@@ -116,6 +116,7 @@ apply plugin: 'com.gutils.apkfly.git'
 git {
     order false
     cleanTest false
+    //url "git@gitlab.ds.gome.com.cn:mobile-android-admin/buildsrc.git", "dev"
     //url "git@gitlab.ds.gome.com.cn:mobile-android/GWorkspace.git", "master"
     //url "git@gitlab.ds.gome.com.cn:mobile-android-admin/GSafekeyboard.git", "master"
     //url "git@gitlab.ds.gome.com.cn:mobile-android-admin/GSecret.git", "master"
@@ -167,5 +168,5 @@ git {
 //    //---------
     url "git@gitlab.ds.gome.com.cn:mobile-android-business/MApp.git", "mergeDev"
     //---------
-    url "git@gitlab.ds.gome.com.cn:mobile-android/GomePlus.git", "mergeDev", true
+    url "git@gitlab.ds.gome.com.cn:mobile-android/GomePlus.git", "mergeDev"
 }
