@@ -145,6 +145,8 @@ if __name__ == '__main__':
             apk.setting()
         elif args[1] == "pull":
             apk.git_cmd("pull")
+        elif args[1] == "reset":
+            apk.git_cmd("reset --hard")
         else:
             apk.exec_sub_project(args[1])
     else:
