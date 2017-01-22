@@ -11,9 +11,12 @@ class apkfly(object):
     dir_current = os.path.abspath(".")
     file_settings = os.path.join(dir_current, "settings.gradle")
     file_build = os.path.join(dir_current, file_build_gradle)
+    dir_build = os.path.join(dir_current, "build")
+    file_temp = os.path.join(dir_build, "apkfly-temp.txt")
 
     def __init__(self):
-        pass
+        if not os.path.exists(self.dir_build):
+            os.mkdir(self.dir_build)
 
     # Verify that the current root project is legal
     def check_root_project(self):
@@ -35,12 +38,34 @@ class apkfly(object):
         else:
             return False
 
+    def read_temp(self):
+        temp_list = []
+        if os.path.exists(self.file_temp):
+            try:
+                temp_file = open(self.file_temp, "r")
+                temp_content = temp_file.read()
+                temp_list = temp_content.split(",")
+            finally:
+                temp_file.close()
+        return temp_list
+
+    def write_temp(self, temp_list):
+        try:
+            temp_file = open(self.file_temp, "w")
+            temp_file.write(','.join(temp_list))
+        finally:
+            temp_file.close()
+
     # execute sub project commands in batches
     def exec_sub_project(self, cmd):
         if self.check_root_project():
             print ">>>>>>start to running<<<<<<"
+            temp_list = self.read_temp()
+            run_flag = True
             sub_file_list = [x for x in os.listdir(self.dir_current) if self.check_sub_project(x)]
             for sub_file in sub_file_list:
+                if sub_file in temp_list:
+                    continue
                 setting = file(self.file_settings, "w")
                 print ">>>Running project:%s" % sub_file
                 try:
@@ -55,9 +80,16 @@ class apkfly(object):
                 print cmd_result
                 if cmd_result.find("BUILD SUCCESSFUL") != -1:
                     print ">>>Success project:%s" % sub_file
+                    temp_list.append(sub_file)
                 else:
                     print ">>>Error project:%s" % sub_file
+                    run_flag = False
                     break
+            if run_flag:
+                if os.path.exists(self.file_temp):
+                    os.remove(self.file_temp)
+            else:
+                self.write_temp(temp_list)
             print ">>>>>>running stop<<<<<<"
         else:
             print ">>>>>>check project error<<<<<<"
