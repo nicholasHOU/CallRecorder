@@ -124,7 +124,7 @@ class apkfly(object):
                 if os.path.exists(dir_git) and os.path.isdir(dir_git):
                     print ">>>>>>Run [git %s] at dir [%s]" % (cmd, sub_file)
                     os.chdir(os.path.join(self.dir_current, sub_file))
-                    print os.path.abspath(".")
+                    # print os.path.abspath(".")
                     git_cmd = os.popen("git %s" % cmd)
                     print git_cmd.read()
                 else:
