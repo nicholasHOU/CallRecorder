@@ -114,6 +114,25 @@ class apkfly(object):
         else:
             print ">>>>>>check project error<<<<<<"
 
+    def git_cmd(self, cmd):
+        if self.check_root_project():
+            print ">>>>>>start to running<<<<<<"
+            sub_file_list = [x for x in os.listdir(self.dir_current) if
+                             self.check_sub_project(x, False)]
+            for sub_file in sub_file_list:
+                dir_git = os.path.join(self.dir_current, sub_file, ".git")
+                if os.path.exists(dir_git) and os.path.isdir(dir_git):
+                    print ">>>>>>Run [git %s] at dir [%s]" % (cmd, sub_file)
+                    os.chdir(os.path.join(self.dir_current, sub_file))
+                    print os.path.abspath(".")
+                    git_cmd = os.popen("git %s" % cmd)
+                    print git_cmd.read()
+                else:
+                    print ">>>>>>%s is not git repo" % sub_file
+            print ">>>>>>running stop<<<<<<"
+        else:
+            print ">>>>>>check project error<<<<<<"
+
 
 # main
 if __name__ == '__main__':
@@ -124,6 +143,8 @@ if __name__ == '__main__':
             apk.exec_sub_project("uploadArchives")
         elif args[1] == "setting":
             apk.setting()
+        elif args[1] == "pull":
+            apk.git_cmd("pull")
         else:
             apk.exec_sub_project(args[1])
     else:
