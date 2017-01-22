@@ -20,17 +20,17 @@ buildscript {
 allprojects {
     repositories {
 
-        mavenCentral()
-        jcenter {
-            url "http://10.69.213.71:8081/nexus/content/repositories/jcenter/"
-        }
-
         maven {
             url getProperty("MAVEN_REPO")
             credentials {
                 username = getProperty("MAVEN_USER")
                 password = getProperty("MAVEN_PASS")
             }
+        }
+
+        mavenCentral()
+        jcenter {
+            url "http://10.69.213.71:8081/nexus/content/repositories/jcenter/"
         }
 
         // 视频SDK开发地址
