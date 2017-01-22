@@ -26,17 +26,13 @@ class apkfly(object):
 
     # Verify the sub project is legal
     def check_sub_project(self, sub_project):
+        check_result = False
         if os.path.isdir(sub_project):
             if os.path.exists(os.path.join(self.dir_current, sub_project, self.file_build_gradle)):
                 p = re.compile(r"^\d{3}-[A-Za-z0-9]+$")
                 if p.match(sub_project):
-                    return True
-                else:
-                    return False
-            else:
-                return False
-        else:
-            return False
+                    check_result = True
+        return check_result
 
     def read_temp(self):
         temp_list = []
