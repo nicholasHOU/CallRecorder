@@ -25,12 +25,15 @@ class apkfly(object):
         return file_exist and is_file
 
     # Verify the sub project is legal
-    def check_sub_project(self, sub_project):
+    def check_sub_project(self, sub_project, is_formate):
         check_result = False
         if os.path.isdir(sub_project):
             if os.path.exists(os.path.join(self.dir_current, sub_project, self.file_build_gradle)):
-                p = re.compile(r"^\d{3}-[A-Za-z0-9]+$")
-                if p.match(sub_project):
+                if is_formate:
+                    p = re.compile(r"^\d{3}-[A-Za-z0-9]+$")
+                    if p.match(sub_project):
+                        check_result = True
+                else:
                     check_result = True
         return check_result
 
@@ -58,7 +61,8 @@ class apkfly(object):
             print ">>>>>>start to running<<<<<<"
             temp_list = self.read_temp()
             run_flag = True
-            sub_file_list = [x for x in os.listdir(self.dir_current) if self.check_sub_project(x)]
+            sub_file_list = [x for x in os.listdir(self.dir_current) if
+                             self.check_sub_project(x, True)]
             for sub_file in sub_file_list:
                 if sub_file in temp_list:
                     continue
@@ -90,6 +94,26 @@ class apkfly(object):
         else:
             print ">>>>>>check project error<<<<<<"
 
+    def setting(self):
+        if self.check_root_project():
+            print ">>>>>>start to running<<<<<<"
+            sub_file_list = [x for x in os.listdir(self.dir_current) if
+                             self.check_sub_project(x, False)]
+            setting_content = ""
+            for sub_file in sub_file_list:
+                if setting_content == "":
+                    setting_content = "include \":%s\"" % sub_file
+                else:
+                    setting_content += "\ninclude \":%s\"" % sub_file
+            try:
+                setting = file(self.file_settings, "w")
+                setting.write(setting_content)
+            finally:
+                setting.close()
+            print ">>>>>>running stop<<<<<<"
+        else:
+            print ">>>>>>check project error<<<<<<"
+
 
 # main
 if __name__ == '__main__':
@@ -98,6 +122,8 @@ if __name__ == '__main__':
     if len(args) == 2:
         if args[1] == "upload":
             apk.exec_sub_project("uploadArchives")
+        elif args[1] == "setting":
+            apk.setting()
         else:
             apk.exec_sub_project(args[1])
     else:
