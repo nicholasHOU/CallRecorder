@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 """This script is used to execute project commands in batches"""
 
 import os
@@ -130,7 +128,7 @@ class apkfly(object):
                     print ">>>>>>Run [git %s] at dir [%s]" % (cmd, sub_file)
                     os.chdir(os.path.join(self.dir_current, sub_file))
                     # print os.path.abspath(".")
-                    git_cmd = os.popen("git %s" % cmd)
+                    git_cmd = os.popen(cmd)
                     print git_cmd.read()
                 else:
                     print ">>>>>>%s is not git repo" % sub_file
@@ -149,10 +147,10 @@ if __name__ == '__main__':
         elif args[1] == "setting":
             apk.setting()
         elif args[1] == "pull":
-            apk.git_cmd("pull")
+            apk.git_cmd("git pull")
         elif args[1] == "reset":
-            apk.git_cmd("reset --hard")
+            apk.git_cmd("git reset --hard")
         else:
-            apk.exec_sub_project(args[1])
+            print ">>>>>>cmd error<<<<<<"
     else:
         apk.exec_sub_project("aR")
