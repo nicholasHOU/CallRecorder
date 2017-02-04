@@ -1,11 +1,16 @@
+#!/usr/bin/env python
+
+"""This script is used to execute project commands in batches"""
+
 import os
 import re
 import sys
 
+__author__ = "qiudongchao"
+__version__ = "1.0.0"
 
-# This script is used to execute project commands in batches
+
 # ~ python apkfly.py [upload]
-# by qiudongchao
 class apkfly(object):
     file_build_gradle = "build.gradle"
     dir_current = os.path.abspath(".")
