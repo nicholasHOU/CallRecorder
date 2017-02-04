@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """This script is used to execute project commands in batches"""
 
 import os
