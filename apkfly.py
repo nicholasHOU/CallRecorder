@@ -141,6 +141,49 @@ class ApkUtils(object):
         else:
             print ">>>>>>check project error<<<<<<"
 
+    # 版本号批量增加
+    def version_add(self, first_prop, last_prop):
+        prop_file_path = os.path.join(self.dir_current, "gradle.properties")
+        if os.path.exists(prop_file_path) and os.path.isfile(prop_file_path):
+            print ">>>>>>start to version auto increment<<<<<<"
+            aar_list = []
+            is_aar = False
+            # 遍历所有内容，获取 需要版本号变更的条目
+            with open(prop_file_path, "r") as prop_file:
+                prop_file_list = prop_file.readlines()
+                for prop in prop_file_list:
+                    if prop.startswith(first_prop):
+                        is_aar = True
+                        aar_list.append(prop.strip())
+                    elif prop.startswith(last_prop):
+                        aar_list.append(prop.strip())
+                        is_aar = False
+                    else:
+                        if is_aar and prop.strip() != '' and not prop.startswith('#'):
+                            aar_list.append(prop.strip())
+            # 遍历所有内容,并版本号自增
+            with open(prop_file_path, "r") as prop_file_r:
+                # 获取文件内容
+                prop_file_content = prop_file_r.read()
+                # 遍历需要版本变更的条目，动态升级版本号
+                for aar in aar_list:
+                    third_num_list = re.findall(r"^[A-Za-z0-9_]+\s*=\s*\d+\.\d+\.(\d+)", aar)
+                    if len(third_num_list) == 1:
+                        third_num = third_num_list[0]
+                    else:
+                        raise ValueError("third num error for [" + aar + "]")
+                    third_num = int(third_num) + 1
+                    # 此处可对版本号格式进行修改，当前仅适配GomePlus
+                    new_aar = re.sub(r"\.\d+-", "." + str(third_num) + "-", aar)
+                    prop_file_content = prop_file_content.replace(aar, new_aar)
+                    print ">>>replace ", aar, " to ", new_aar
+            # 文件写入
+            with open(prop_file_path, "w") as prop_file_w:
+                prop_file_w.write(prop_file_content)
+            print ">>>>>>running stop<<<<<<"
+        else:
+            print ">>>>>>error: gradle.properties not exit <<<<<<"
+
 
 # 执行入口
 if __name__ == '__main__':
@@ -151,6 +194,9 @@ if __name__ == '__main__':
             apk.exec_sub_project("uploadArchives")
         elif args[1] == "setting":
             apk.setting()
+        elif args[1] == "version":
+            # 此处可配置AAR版本修改范围，第一个参数为起始位置，第二个参数为终止位置
+            apk.version_add("AAR_GFRAME_VERSION", "AAR_MAPP_VERSION")
         elif args[1] == "pull":
             apk.git_cmd("git pull")
         elif args[1] == "reset":
