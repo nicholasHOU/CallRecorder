@@ -69,6 +69,7 @@ class ApkUtils(object):
             run_flag = True
             sub_file_list = [x for x in os.listdir(self.dir_current) if
                              self.check_sub_project(x, True)]
+            sub_file_list.sort()
             for sub_file in sub_file_list:
                 if sub_file in temp_list:
                     continue
