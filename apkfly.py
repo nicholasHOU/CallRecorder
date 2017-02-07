@@ -10,7 +10,7 @@ __version__ = "1.0.0"
 
 
 # ~ python apkfly.py [upload]
-class apkfly(object):
+class ApkUtils(object):
     file_build_gradle = "build.gradle"
     dir_current = os.path.abspath(".")
     file_settings = os.path.join(dir_current, "settings.gradle")
@@ -22,13 +22,13 @@ class apkfly(object):
         if not os.path.exists(self.dir_build):
             os.mkdir(self.dir_build)
 
-    # Verify that the current root project is legal
+    # 校验当前工作空间是否合法
     def check_root_project(self):
         file_exist = os.path.exists(self.file_build) and os.path.exists(self.file_settings)
         is_file = os.path.isfile(self.file_settings) and os.path.isfile(self.file_build)
         return file_exist and is_file
 
-    # Verify the sub project is legal
+    # 校验子项目是否合法
     def check_sub_project(self, sub_project, is_formate):
         check_result = False
         if os.path.isdir(sub_project):
@@ -41,6 +41,7 @@ class apkfly(object):
                     check_result = True
         return check_result
 
+    # 读取临时文件
     def read_temp(self):
         temp_list = []
         if os.path.exists(self.file_temp):
@@ -52,6 +53,7 @@ class apkfly(object):
                 temp_file.close()
         return temp_list
 
+    # 写入临时文件
     def write_temp(self, temp_list):
         try:
             temp_file = open(self.file_temp, "w")
@@ -59,7 +61,7 @@ class apkfly(object):
         finally:
             temp_file.close()
 
-    # execute sub project commands in batches
+    # 批量执行子项目命令
     def exec_sub_project(self, cmd):
         if self.check_root_project():
             print ">>>>>>start to running<<<<<<"
@@ -98,6 +100,7 @@ class apkfly(object):
         else:
             print ">>>>>>check project error<<<<<<"
 
+    # 重建setting文件
     def setting(self):
         if self.check_root_project():
             print ">>>>>>start to running<<<<<<"
@@ -118,6 +121,7 @@ class apkfly(object):
         else:
             print ">>>>>>check project error<<<<<<"
 
+    # 批量执行子项目git命令
     def git_cmd(self, cmd):
         if self.check_root_project():
             print ">>>>>>start to running<<<<<<"
@@ -138,10 +142,10 @@ class apkfly(object):
             print ">>>>>>check project error<<<<<<"
 
 
-# main
+# 执行入口
 if __name__ == '__main__':
     args = sys.argv
-    apk = apkfly()
+    apk = ApkUtils()
     if len(args) == 2:
         if args[1] == "upload":
             apk.exec_sub_project("uploadArchives")
