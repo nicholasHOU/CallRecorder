@@ -168,14 +168,14 @@ class ApkUtils(object):
                 prop_file_content = prop_file_r.read()
                 # 遍历需要版本变更的条目，动态升级版本号
                 for aar in aar_list:
-                    third_num_list = re.findall(r"^[A-Za-z0-9_]+\s*=\s*\d+\.\d+\.(\d+)", aar)
+                    third_num_list = re.findall(r"^[A-Za-z0-9_]+\s*=\s*\d+\.(\d+)\.\d+", aar)
                     if len(third_num_list) == 1:
                         third_num = third_num_list[0]
                     else:
                         raise ValueError("third num error for [" + aar + "]")
                     third_num = int(third_num) + 1
                     # 此处可对版本号格式进行修改，当前仅适配GomePlus
-                    new_aar = re.sub(r"\.\d+-", "." + str(third_num) + "-", aar)
+                    new_aar = re.sub(r"\.\d+\.", "." + str(third_num) + ".", aar)
                     prop_file_content = prop_file_content.replace(aar, new_aar)
                     print ">>>replace ", aar, " to ", new_aar
             # 文件写入
