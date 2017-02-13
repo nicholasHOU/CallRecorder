@@ -147,8 +147,8 @@ def git_cmd(cmd):
 def _version_add(args):
     """版本号批量增加
     """
-    first_prop = "AAR_GFRAME_VERSION"
-    last_prop = "AAR_MAPP_VERSION"
+    first_prop = args.first
+    last_prop = args.last
     prop_file_path = os.path.join(dir_current, "gradle.properties")
     if os.path.exists(prop_file_path) and os.path.isfile(prop_file_path):
         print ">>>>>>start to version auto increment<<<<<<"
@@ -254,6 +254,8 @@ if __name__ == '__main__':
 
     parser_version = subparsers.add_parser("version", help="自增gradle.properties内的 aar 配置版本")
     parser_version.set_defaults(func=_version_add)
+    parser_version.add_argument('-f', "--first", type=str, default='AAR_GFRAME_VERSION', help='起始AAR版本')
+    parser_version.add_argument('-l', "--last", type=str, default='AAR_MAPP_VERSION', help='终止AAR版本')
 
     parser_pull = subparsers.add_parser("pull", help="更新 项目代码")
     parser_pull.set_defaults(func=_git_pull)
