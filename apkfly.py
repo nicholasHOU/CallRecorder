@@ -259,7 +259,7 @@ if __name__ == '__main__':
 
     parser_version = subparsers.add_parser("version", help="自增gradle.properties内的 aar 配置版本")
     parser_version.set_defaults(func=_version_add)
-    parser_version.add_argument('-s', "--start", type=str, default='AAR_GFRAME_VERSION', help='起始AAR版本')
+    parser_version.add_argument('-s', "--start", type=str, default='AAR_GFRAME_VERSION', help='起始AAR版本【例：AAR_MFRAME2_VERSION】')
     parser_version.add_argument('-e', "--end", type=str, default='AAR_MAPP_VERSION', help='终止AAR版本')
 
     parser_pull = subparsers.add_parser("pull", help="更新 项目代码")
@@ -270,11 +270,11 @@ if __name__ == '__main__':
 
     parser_ar = subparsers.add_parser("ar", help="依次 编译 所有module")
     parser_ar.set_defaults(func=_ar)
-    parser_ar.add_argument('-s', "--start", type=str, help='执行起始点【项目名或项目名前三位】')
+    parser_ar.add_argument('-s', "--start", type=str, help='执行起始点【项目名前三位，例：027】')
 
     parser_upload = subparsers.add_parser("upload", help="按module名称 数字排列顺序 依次 执行gradle uploadArchives")
     parser_upload.set_defaults(func=_upload)
-    parser_upload.add_argument('-s', "--start", type=str, help='执行起始点【项目名或项目名前三位】')
+    parser_upload.add_argument('-s', "--start", type=str, help='执行起始点【项目名前三位，例：027】')
     # 参数解析
     args = parser.parse_args()
     args.func(args)
