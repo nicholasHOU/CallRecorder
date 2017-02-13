@@ -7,8 +7,8 @@ import os
 import re
 import time
 
-__author__ = "qiudongchao"
-__version__ = "1.0.0"
+__author__ = "qiudongchao<1162584980@qq.com>"
+__version__ = "2.0.0"
 
 file_build_gradle = "build.gradle"
 dir_current = os.path.abspath(".")
@@ -156,6 +156,7 @@ def _version_add(args):
     """
     first_prop = args.start
     last_prop = args.end
+    index = args.index
     prop_file_path = os.path.join(dir_current, "gradle.properties")
     if os.path.exists(prop_file_path) and os.path.isfile(prop_file_path):
         print ">>>>>>start to version auto increment<<<<<<"
@@ -180,14 +181,24 @@ def _version_add(args):
             prop_file_content = prop_file_r.read()
             # 遍历需要版本变更的条目，动态升级版本号
             for aar in aar_list:
-                third_num_list = re.findall(r"^[A-Za-z0-9_]+\s*=\s*\d+\.(\d+)\.\d+", aar)
-                if len(third_num_list) == 1:
-                    third_num = third_num_list[0]
+                if index == 1:
+                    num_list = re.findall(r"^[A-Za-z0-9_]+\s*=\s*(\d+)\.\d+\.\d+", aar)
+                elif index == 2:
+                    num_list = re.findall(r"^[A-Za-z0-9_]+\s*=\s*\d+\.(\d+)\.\d+", aar)
+                else:
+                    num_list = re.findall(r"^[A-Za-z0-9_]+\s*=\s*\d+\.\d+\.(\d+)", aar)
+                if len(num_list) == 1:
+                    index_num = num_list[0]
                 else:
                     raise ValueError("third num error for [" + aar + "]")
-                third_num = int(third_num) + 1
+                index_num = int(index_num) + 1
                 # 此处可对版本号格式进行修改，当前仅适配GomePlus
-                new_aar = re.sub(r"\.\d+\.", "." + str(third_num) + ".", aar)
+                if index == 1:
+                    new_aar = re.sub(r"=\s*\d+", "=" + str(index_num), aar)
+                elif index == 2:
+                    new_aar = re.sub(r"\.\d+\.", "." + str(index_num) + ".", aar)
+                else:
+                    new_aar = re.sub(r"\.\d+-", "." + str(index_num) + "-", aar)
                 prop_file_content = prop_file_content.replace(aar, new_aar)
                 print ">>>replace ", aar, " to ", new_aar
         # 文件写入
@@ -259,8 +270,11 @@ if __name__ == '__main__':
 
     parser_version = subparsers.add_parser("version", help="自增gradle.properties内的 aar 配置版本")
     parser_version.set_defaults(func=_version_add)
-    parser_version.add_argument('-s', "--start", type=str, default='AAR_GFRAME_VERSION', help='起始AAR版本【例：AAR_MFRAME2_VERSION】')
+    parser_version.add_argument('-s', "--start", type=str, default='AAR_GFRAME_VERSION',
+                                help='起始AAR版本【例：AAR_MFRAME2_VERSION】')
     parser_version.add_argument('-e', "--end", type=str, default='AAR_MAPP_VERSION', help='终止AAR版本')
+    parser_version.add_argument('-i', "--index", type=int, default=2, choices=[1, 2, 3],
+                                help='自增版本索引【1大版本，2中间版本，3小版本】')
 
     parser_pull = subparsers.add_parser("pull", help="更新 项目代码")
     parser_pull.set_defaults(func=_git_pull)
