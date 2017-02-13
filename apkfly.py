@@ -59,11 +59,13 @@ def write_temp(temp_list):
         temp_file.write(','.join(temp_list))
 
 
-def exec_sub_project(cmd):
-    """批量执行子项目命令
+def exec_sub_project(cmd, args):
+    """批量执行子项目命令【gradle】
     """
     if check_root_project():
         print ">>>>>>start to running<<<<<<"
+        start_project = args.start
+        start_flag = False
         temp_list = read_temp()
         run_flag = True
         sub_file_list = [x for x in os.listdir(dir_current) if
@@ -71,7 +73,12 @@ def exec_sub_project(cmd):
         # 按文件名排序
         sub_file_list.sort()
         for sub_file in sub_file_list:
-            if sub_file in temp_list:
+            if start_project:
+                if sub_file.startswith(start_project):
+                    start_flag = True
+            else:
+                start_flag = True
+            if sub_file in temp_list or not start_flag:
                 continue
             print ">>>Running project:%s" % sub_file
             # 在settings.gradle 配置子项目
@@ -147,8 +154,8 @@ def git_cmd(cmd):
 def _version_add(args):
     """版本号批量增加
     """
-    first_prop = args.first
-    last_prop = args.last
+    first_prop = args.start
+    last_prop = args.end
     prop_file_path = os.path.join(dir_current, "gradle.properties")
     if os.path.exists(prop_file_path) and os.path.isfile(prop_file_path):
         print ">>>>>>start to version auto increment<<<<<<"
@@ -224,11 +231,11 @@ def _git_reset(args):
 
 
 def _upload(args):
-    exec_sub_project("uploadArchives")
+    exec_sub_project("uploadArchives", args)
 
 
 def _ar(args):
-    exec_sub_project("aR")
+    exec_sub_project("aR", args)
 
 
 if __name__ == '__main__':
@@ -241,8 +248,6 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(prog="apkfly", description="国美workspace帮助工具", epilog="make it easy!")
     subparsers = parser.add_subparsers(title="可用命令")
     # 添加子命令
-    parser_upload = subparsers.add_parser("upload", help="按module名称 数字排列顺序 依次 执行gradle uploadArchives")
-    parser_upload.set_defaults(func=_upload)
 
     parser_setting = subparsers.add_parser("setting", help="把workspace内所有的module配置到settings.gradle")
     parser_setting.set_defaults(func=_setting)
@@ -254,8 +259,8 @@ if __name__ == '__main__':
 
     parser_version = subparsers.add_parser("version", help="自增gradle.properties内的 aar 配置版本")
     parser_version.set_defaults(func=_version_add)
-    parser_version.add_argument('-f', "--first", type=str, default='AAR_GFRAME_VERSION', help='起始AAR版本')
-    parser_version.add_argument('-l', "--last", type=str, default='AAR_MAPP_VERSION', help='终止AAR版本')
+    parser_version.add_argument('-s', "--start", type=str, default='AAR_GFRAME_VERSION', help='起始AAR版本')
+    parser_version.add_argument('-e', "--end", type=str, default='AAR_MAPP_VERSION', help='终止AAR版本')
 
     parser_pull = subparsers.add_parser("pull", help="更新 项目代码")
     parser_pull.set_defaults(func=_git_pull)
@@ -265,6 +270,11 @@ if __name__ == '__main__':
 
     parser_ar = subparsers.add_parser("ar", help="依次 编译 所有module")
     parser_ar.set_defaults(func=_ar)
+    parser_ar.add_argument('-s', "--start", type=str, help='执行起始点【项目名或项目名前三位】')
+
+    parser_upload = subparsers.add_parser("upload", help="按module名称 数字排列顺序 依次 执行gradle uploadArchives")
+    parser_upload.set_defaults(func=_upload)
+    parser_upload.add_argument('-s', "--start", type=str, help='执行起始点【项目名或项目名前三位】')
     # 参数解析
     args = parser.parse_args()
     args.func(args)
