@@ -5,6 +5,7 @@
 import argparse
 import os
 import re
+import time
 
 __author__ = "qiudongchao"
 __version__ = "1.0.0"
@@ -100,7 +101,7 @@ def exec_sub_project(cmd):
         print ">>>>>>check project error<<<<<<"
 
 
-def setting():
+def _setting(args):
     """重建setting文件
     """
     if check_root_project():
@@ -143,9 +144,11 @@ def git_cmd(cmd):
         print ">>>>>>check project error<<<<<<"
 
 
-def version_add(first_prop, last_prop):
+def _version_add(args):
     """版本号批量增加
     """
+    first_prop = "AAR_GFRAME_VERSION"
+    last_prop = "AAR_MAPP_VERSION"
     prop_file_path = os.path.join(dir_current, "gradle.properties")
     if os.path.exists(prop_file_path) and os.path.isfile(prop_file_path):
         print ">>>>>>start to version auto increment<<<<<<"
@@ -185,30 +188,43 @@ def version_add(first_prop, last_prop):
             prop_file_w.write(prop_file_content)
         print ">>>>>>running stop<<<<<<"
     else:
-        print ">>>>>>error: gradle.properties not exit <<<<<<"  # sub-command fuction
+        print ">>>>>>error: gradle.properties not exit <<<<<<"
 
 
-###############################################
+def _push_prop(args):
+    """提交gradle.properties到git服务器
+    """
+    prop_file_path = os.path.join(dir_current, "gradle.properties")
+    if os.path.exists(prop_file_path) and os.path.isfile(prop_file_path):
+        message = "AAR批量打包:"
+        branch = args.b
+        if args.m:
+            message = message + args.m
+        else:
+            time_info = time.strftime(" %Y-%m-%d %H:%M:%S", time.localtime(time.time()))
+            message = message + time_info
+        add_cmd = os.popen("git add gradle.properties")
+        print add_cmd.read()
+        commit_cmd = os.popen("git commit -m '%s'" % message)
+        print commit_cmd.read()
+        push_cmd = os.popen("git push origin %s" % branch)
+        print push_cmd.read()
+    else:
+        print ">>>>>>error: gradle.properties not exit <<<<<<"
 
-def _upload(args):
-    exec_sub_project("uploadArchives")
 
+####################### function for sub-command ########################
 
-def _setting(args):
-    setting()
-
-
-def _version(args):
-    # 此处可配置AAR版本修改范围，第一个参数为起始位置，第二个参数为终止位置
-    version_add("AAR_GFRAME_VERSION", "AAR_MAPP_VERSION")
-
-
-def _pull(args):
+def _git_pull(args):
     git_cmd("git pull")
 
 
-def _reset(args):
+def _git_reset(args):
     git_cmd("git reset --hard")
+
+
+def _upload(args):
+    exec_sub_project("uploadArchives")
 
 
 def _ar(args):
@@ -231,14 +247,19 @@ if __name__ == '__main__':
     parser_setting = subparsers.add_parser("setting", help="把workspace内所有的module配置到settings.gradle")
     parser_setting.set_defaults(func=_setting)
 
+    parser_setting = subparsers.add_parser("pushprop", help="提交gradle.properties到git服务器")
+    parser_setting.set_defaults(func=_push_prop)
+    parser_setting.add_argument('-m', type=str, help='push评论信息')
+    parser_setting.add_argument('-b', type=str, default='mergeDev', help='push 分支')
+
     parser_version = subparsers.add_parser("version", help="自增gradle.properties内的 aar 配置版本")
-    parser_version.set_defaults(func=_version)
+    parser_version.set_defaults(func=_version_add)
 
     parser_pull = subparsers.add_parser("pull", help="更新 项目代码")
-    parser_pull.set_defaults(func=_pull)
+    parser_pull.set_defaults(func=_git_pull)
 
     parser_reset = subparsers.add_parser("reset", help="重置 项目代码")
-    parser_reset.set_defaults(func=_reset)
+    parser_reset.set_defaults(func=_git_reset)
 
     parser_ar = subparsers.add_parser("ar", help="依次 编译 所有module")
     parser_ar.set_defaults(func=_ar)
