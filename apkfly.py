@@ -1,16 +1,18 @@
+#!/usr/bin/python
 # -*- coding: utf-8 -*-
 """This script is used to execute project commands in batches"""
 
+import argparse
 import os
 import re
-import sys
 
 __author__ = "qiudongchao"
 __version__ = "1.0.0"
 
 
-# ~ python apkfly.py [upload]
 class ApkUtils(object):
+    """python apkfly.py [upload]
+    """
     file_build_gradle = "build.gradle"
     dir_current = os.path.abspath(".")
     file_settings = os.path.join(dir_current, "settings.gradle")
@@ -22,14 +24,16 @@ class ApkUtils(object):
         if not os.path.exists(self.dir_build):
             os.mkdir(self.dir_build)
 
-    # 校验当前工作空间是否合法
     def check_root_project(self):
+        """校验当前工作空间是否合法
+        """
         file_exist = os.path.exists(self.file_build) and os.path.exists(self.file_settings)
         is_file = os.path.isfile(self.file_settings) and os.path.isfile(self.file_build)
         return file_exist and is_file
 
-    # 校验子项目是否合法
     def check_sub_project(self, sub_project, is_formate):
+        """校验子项目是否合法
+        """
         check_result = False
         if os.path.isdir(sub_project):
             if os.path.exists(os.path.join(self.dir_current, sub_project, self.file_build_gradle)):
@@ -41,8 +45,9 @@ class ApkUtils(object):
                     check_result = True
         return check_result
 
-    # 读取临时文件
     def read_temp(self):
+        """读取临时文件
+        """
         temp_list = []
         if os.path.exists(self.file_temp):
             try:
@@ -53,16 +58,18 @@ class ApkUtils(object):
                 temp_file.close()
         return temp_list
 
-    # 写入临时文件
     def write_temp(self, temp_list):
+        """写入临时文件
+        """
         try:
             temp_file = open(self.file_temp, "w")
             temp_file.write(','.join(temp_list))
         finally:
             temp_file.close()
 
-    # 批量执行子项目命令
     def exec_sub_project(self, cmd):
+        """批量执行子项目命令
+        """
         if self.check_root_project():
             print ">>>>>>start to running<<<<<<"
             temp_list = self.read_temp()
@@ -101,8 +108,9 @@ class ApkUtils(object):
         else:
             print ">>>>>>check project error<<<<<<"
 
-    # 重建setting文件
     def setting(self):
+        """重建setting文件
+        """
         if self.check_root_project():
             print ">>>>>>start to running<<<<<<"
             sub_file_list = [x for x in os.listdir(self.dir_current) if
@@ -122,8 +130,9 @@ class ApkUtils(object):
         else:
             print ">>>>>>check project error<<<<<<"
 
-    # 批量执行子项目git命令
     def git_cmd(self, cmd):
+        """批量执行子项目git命令
+        """
         if self.check_root_project():
             print ">>>>>>start to running<<<<<<"
             sub_file_list = [x for x in os.listdir(self.dir_current) if
@@ -142,8 +151,9 @@ class ApkUtils(object):
         else:
             print ">>>>>>check project error<<<<<<"
 
-    # 版本号批量增加
     def version_add(self, first_prop, last_prop):
+        """版本号批量增加
+        """
         prop_file_path = os.path.join(self.dir_current, "gradle.properties")
         if os.path.exists(prop_file_path) and os.path.isfile(prop_file_path):
             print ">>>>>>start to version auto increment<<<<<<"
@@ -186,23 +196,62 @@ class ApkUtils(object):
             print ">>>>>>error: gradle.properties not exit <<<<<<"
 
 
-# 执行入口
-if __name__ == '__main__':
-    args = sys.argv
+# sub-command fuction
+def _upload(args):
     apk = ApkUtils()
-    if len(args) == 2:
-        if args[1] == "upload":
-            apk.exec_sub_project("uploadArchives")
-        elif args[1] == "setting":
-            apk.setting()
-        elif args[1] == "version":
-            # 此处可配置AAR版本修改范围，第一个参数为起始位置，第二个参数为终止位置
-            apk.version_add("AAR_GFRAME_VERSION", "AAR_MAPP_VERSION")
-        elif args[1] == "pull":
-            apk.git_cmd("git pull")
-        elif args[1] == "reset":
-            apk.git_cmd("git reset --hard")
-        else:
-            print ">>>>>>cmd error<<<<<<"
-    else:
-        apk.exec_sub_project("aR")
+    apk.exec_sub_project("uploadArchives")
+
+
+def _setting(args):
+    apk = ApkUtils()
+    apk.setting()
+
+
+def _version(args):
+    apk = ApkUtils()
+    # 此处可配置AAR版本修改范围，第一个参数为起始位置，第二个参数为终止位置
+    apk.version_add("AAR_GFRAME_VERSION", "AAR_MAPP_VERSION")
+
+
+def _pull(args):
+    apk = ApkUtils()
+    apk.git_cmd("git pull")
+
+
+def _reset(args):
+    apk = ApkUtils()
+    apk.git_cmd("git reset --hard")
+
+
+def _ar(args):
+    apk = ApkUtils()
+    apk.exec_sub_project("aR")
+
+
+if __name__ == '__main__':
+    """执行入口
+    """
+
+    parser = argparse.ArgumentParser(prog="apkfly", description="国美workspace帮助工具", epilog="make it easy!")
+    subparsers = parser.add_subparsers(title="可用命令")
+    # 添加子命令
+    parser_upload = subparsers.add_parser("upload", help="按module名称 数字排列顺序 依次 执行gradle uploadArchives")
+    parser_upload.set_defaults(func=_upload)
+
+    parser_setting = subparsers.add_parser("setting", help="把workspace内所有的module配置到settings.gradle")
+    parser_setting.set_defaults(func=_setting)
+
+    parser_version = subparsers.add_parser("version", help="自增gradle.properties内的 aar 配置版本")
+    parser_version.set_defaults(func=_version)
+
+    parser_pull = subparsers.add_parser("pull", help="更新 项目代码")
+    parser_pull.set_defaults(func=_pull)
+
+    parser_reset = subparsers.add_parser("reset", help="重置 项目代码")
+    parser_reset.set_defaults(func=_reset)
+
+    parser_ar = subparsers.add_parser("ar", help="依次 编译 所有module")
+    parser_ar.set_defaults(func=_ar)
+    # 参数解析
+    args = parser.parse_args()
+    args.func(args)
