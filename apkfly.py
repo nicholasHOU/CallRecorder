@@ -289,6 +289,7 @@ def _update_project(args):
                 if git_key == "branch":
                     git_branch = git_value
             if key and git_url and git_branch:
+                os.chdir(dir_current)
                 # 获取最新项目源码
                 if os.path.exists(os.path.join(dir_current, key)) and os.path.isdir(key):
                     print ">>>项目%s存在，更新代码..." % key
