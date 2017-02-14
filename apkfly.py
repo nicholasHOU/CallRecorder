@@ -265,12 +265,14 @@ APK_CONFIG = {
 
 def _git_clone(project_name, git_url, git_branch):
     os.chdir(dir_current)
-    os.system("git clone %s -b %s %s" % (git_url, git_branch, project_name))
+    clone_cmd = os.popen("git clone %s -b %s %s" % (git_url, git_branch, project_name))
+    print clone_cmd.read()
 
 
 def _git_pull(project_name, git_branch):
     os.chdir(os.path.join(dir_current, project_name))
-    os.system("git pull origin %s" % git_branch)
+    pull_cmd = os.popen("git pull origin %s" % git_branch)
+    print pull_cmd.read()
 
 
 def _update_project(args):
