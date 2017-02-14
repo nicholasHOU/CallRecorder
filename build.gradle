@@ -28,7 +28,6 @@ allprojects {
             }
         }
 
-        mavenCentral()
         jcenter {
             url "http://10.69.213.71:8081/nexus/content/repositories/jcenter/"
         }
@@ -42,6 +41,8 @@ allprojects {
         maven { url "http://10.69.213.71:8081/nexus/content/repositories/gomeMaven/" }
 
         maven { url "http://10.69.213.71:8081/nexus/content/repositories/MXCentral/" }
+
+        mavenCentral()
 
     }
     ext {
