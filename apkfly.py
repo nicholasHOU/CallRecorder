@@ -233,7 +233,7 @@ def _push_prop(args):
 
 ####################### function for sub-command ########################
 
-def _git_pull(args):
+def _git_pull_cmd(args):
     git_cmd("git pull")
 
 
@@ -341,7 +341,7 @@ if __name__ == '__main__':
                                 help='自增版本索引【1大版本，2中间版本，3小版本】')
 
     parser_pull = subparsers.add_parser("pull", help="更新 项目代码")
-    parser_pull.set_defaults(func=_git_pull)
+    parser_pull.set_defaults(func=_git_pull_cmd)
 
     parser_reset = subparsers.add_parser("reset", help="重置 项目代码")
     parser_reset.set_defaults(func=_git_reset)
