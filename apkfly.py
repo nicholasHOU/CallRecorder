@@ -7,8 +7,8 @@ import os
 import re
 import time
 
-__author__ = "qiudongchao"
-__version__ = "1.0.0"
+__author__ = "qiudongchao<1162584980@qq.com>"
+__version__ = "2.0.0"
 
 file_build_gradle = "build.gradle"
 dir_current = os.path.abspath(".")
@@ -156,6 +156,7 @@ def _version_add(args):
     """
     first_prop = args.start
     last_prop = args.end
+    index = args.index
     prop_file_path = os.path.join(dir_current, "gradle.properties")
     if os.path.exists(prop_file_path) and os.path.isfile(prop_file_path):
         print ">>>>>>start to version auto increment<<<<<<"
@@ -180,14 +181,24 @@ def _version_add(args):
             prop_file_content = prop_file_r.read()
             # 遍历需要版本变更的条目，动态升级版本号
             for aar in aar_list:
-                third_num_list = re.findall(r"^[A-Za-z0-9_]+\s*=\s*\d+\.(\d+)\.\d+", aar)
-                if len(third_num_list) == 1:
-                    third_num = third_num_list[0]
+                if index == 1:
+                    num_list = re.findall(r"^[A-Za-z0-9_]+\s*=\s*(\d+)\.\d+\.\d+", aar)
+                elif index == 2:
+                    num_list = re.findall(r"^[A-Za-z0-9_]+\s*=\s*\d+\.(\d+)\.\d+", aar)
+                else:
+                    num_list = re.findall(r"^[A-Za-z0-9_]+\s*=\s*\d+\.\d+\.(\d+)", aar)
+                if len(num_list) == 1:
+                    index_num = num_list[0]
                 else:
                     raise ValueError("third num error for [" + aar + "]")
-                third_num = int(third_num) + 1
+                index_num = int(index_num) + 1
                 # 此处可对版本号格式进行修改，当前仅适配GomePlus
-                new_aar = re.sub(r"\.\d+\.", "." + str(third_num) + ".", aar)
+                if index == 1:
+                    new_aar = re.sub(r"=\s*\d+", "=" + str(index_num), aar)
+                elif index == 2:
+                    new_aar = re.sub(r"\.\d+\.", "." + str(index_num) + ".", aar)
+                else:
+                    new_aar = re.sub(r"\.\d+-", "." + str(index_num) + "-", aar)
                 prop_file_content = prop_file_content.replace(aar, new_aar)
                 print ">>>replace ", aar, " to ", new_aar
         # 文件写入
@@ -222,7 +233,7 @@ def _push_prop(args):
 
 ####################### function for sub-command ########################
 
-def _git_pull(args):
+def _git_pull_cmd(args):
     git_cmd("git pull")
 
 
@@ -236,6 +247,70 @@ def _upload(args):
 
 def _ar(args):
     exec_sub_project("aR", args)
+
+
+####################### function for jenkins ########################
+# 打包配置项目
+APK_CONFIG = {
+    "GomePlus": {
+        "url": "git@gitlab.ds.gome.com.cn:mobile-android/GomePlus.git",
+        "branch": "mergeDev"
+    },
+    "MApp": {
+        "url": "git@gitlab.ds.gome.com.cn:mobile-android-business/MApp.git",
+        "branch": "mergeDev"
+    }
+}
+
+
+def _git_clone(project_name, git_url, git_branch):
+    os.chdir(dir_current)
+    clone_cmd = os.popen("git clone %s -b %s %s" % (git_url, git_branch, project_name))
+    print clone_cmd.read()
+
+
+def _git_pull(project_name, git_branch):
+    os.chdir(os.path.join(dir_current, project_name))
+    pull_cmd = os.popen("git pull origin %s" % git_branch)
+    print pull_cmd.read()
+
+
+def _update_project(args):
+    """更新源码for jenkins
+    """
+    if check_root_project():
+        # main_project = args.main # 暂不用
+        setting_content = ""
+        for (key, value) in APK_CONFIG.items():
+            # 获取 url,branch
+            for (git_key, git_value) in value.items():
+                if git_key == "url":
+                    git_url = git_value
+                if git_key == "branch":
+                    git_branch = git_value
+            if key and git_url and git_branch:
+                # 获取最新项目源码
+                if os.path.exists(os.path.join(dir_current, key)) and os.path.isdir(key):
+                    print ">>>项目%s存在，更新代码..." % key
+                    _git_pull(key, git_branch)
+                else:
+                    print ">>>项目%s不存在，克隆代码..." % key
+                    _git_clone(key, git_url, git_branch)
+                # 构建setting content
+                if setting_content == "":
+                    setting_content = "include \":%s\"" % key
+                else:
+                    setting_content += "\ninclude \":%s\"" % key
+            else:
+                raise Exception("APK_CONFIG 配置错误")
+        print ">>>子项目写入setting"
+        with open(file_settings, "w") as setting_file:
+            setting_file.write(setting_content)
+    else:
+        print ">>>>>>check project error<<<<<<"
+
+
+####################### function for jenkins ########################
 
 
 if __name__ == '__main__':
@@ -259,11 +334,14 @@ if __name__ == '__main__':
 
     parser_version = subparsers.add_parser("version", help="自增gradle.properties内的 aar 配置版本")
     parser_version.set_defaults(func=_version_add)
-    parser_version.add_argument('-s', "--start", type=str, default='AAR_GFRAME_VERSION', help='起始AAR版本【例：AAR_MFRAME2_VERSION】')
+    parser_version.add_argument('-s', "--start", type=str, default='AAR_GFRAME_VERSION',
+                                help='起始AAR版本【例：AAR_MFRAME2_VERSION】')
     parser_version.add_argument('-e', "--end", type=str, default='AAR_MAPP_VERSION', help='终止AAR版本')
+    parser_version.add_argument('-i', "--index", type=int, default=2, choices=[1, 2, 3],
+                                help='自增版本索引【1大版本，2中间版本，3小版本】')
 
     parser_pull = subparsers.add_parser("pull", help="更新 项目代码")
-    parser_pull.set_defaults(func=_git_pull)
+    parser_pull.set_defaults(func=_git_pull_cmd)
 
     parser_reset = subparsers.add_parser("reset", help="重置 项目代码")
     parser_reset.set_defaults(func=_git_reset)
@@ -275,6 +353,10 @@ if __name__ == '__main__':
     parser_upload = subparsers.add_parser("upload", help="按module名称 数字排列顺序 依次 执行gradle uploadArchives")
     parser_upload.set_defaults(func=_upload)
     parser_upload.add_argument('-s', "--start", type=str, help='执行起始点【项目名前三位，例：027】')
+    # 仅用于Jenkins更新构建源码
+    parser_apk = subparsers.add_parser("serv-update", help="打包for jenkins")
+    parser_apk.set_defaults(func=_update_project)
+    parser_apk.add_argument('-m', "--main", type=str, default='GomePlus', help='主工程')
     # 参数解析
     args = parser.parse_args()
     args.func(args)
