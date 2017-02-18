@@ -107,7 +107,8 @@ ext.deps = [
         MMeixinpay: rootProject.ext.proDeps ? project(':MMeixinpay') :'com.gome.ecmall:mpay:'+getProperty('AAR_MPAY_VERSION')+'@aar',
         MMeixinplayer:rootProject.ext.proDeps ? project(':MMeixinplayer') : 'com.gome.ecmall:mplayer:'+getProperty('AAR_MPLAYER_VERSION')+'@aar',
         MCore: rootProject.ext.proDeps ? project(':MCore') :'com.gome.ecmall:mcore:'+getProperty('AAR_MCORE_VERSION')+'@aar',
-        MApp:rootProject.ext.proDeps ? project(':MApp') : 'com.gome.ecmall:mapp:' + getProperty('AAR_MAPP_VERSION') + '@aar'
+//        MApp:rootProject.ext.proDeps ? project(':MApp') : 'com.gome.ecmall:mapp:' + getProperty('AAR_MAPP_VERSION') + '@aar'
+        MApp: project(':MApp')
 ]
 
 
