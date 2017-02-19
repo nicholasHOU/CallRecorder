@@ -65,6 +65,7 @@ ext.deps = [
         GBuildConfig: 'com.gome.ecmall:buildconfig:'+getProperty('AAR_GCONFIG_VERSION'),
         GPlugin: '',
         GPatch: 'com.gome.ecmall:patch:'+getProperty('AAR_GPATCH_VERSION')+'@aar',
+        GTheme: 'com.gome.ecmall:theme:'+getProperty('AAR_GTHEME_VERSION')+'@aar',
 
         GFrame: 'com.gome.ecmall:frame:'+getProperty('AAR_GFRAME_VERSION')+'@aar',
         GWidget: 'com.gome.ecmall:widget:'+getProperty('AAR_GWIDGET_VERSION')+'@aar',
