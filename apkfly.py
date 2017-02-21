@@ -323,6 +323,7 @@ if __name__ == '__main__':
     # 创建命令行解析器
     parser = argparse.ArgumentParser(prog="apkfly", description="国美workspace帮助工具", epilog="make it easy!")
     subparsers = parser.add_subparsers(title="可用命令")
+    subparsers.required = True
     # 添加子命令
 
     parser_setting = subparsers.add_parser("setting", help="把workspace内所有的module配置到settings.gradle")
