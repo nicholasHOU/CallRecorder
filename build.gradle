@@ -67,6 +67,7 @@ ext.deps = [
         GPlugin: '',
         GPatch: 'com.gome.ecmall:patch:'+getProperty('AAR_GPATCH_VERSION')+'@aar',
         GTheme: 'com.gome.ecmall:theme:'+getProperty('AAR_GTHEME_VERSION')+'@aar',
+        MImlibrary: 'com.gome.ecmall:mim:'+getProperty('AAR_MIM_VERSION')+'@aar',
 
         GFrame: 'com.gome.ecmall:frame:'+getProperty('AAR_GFRAME_VERSION')+'@aar',
         GWidget: 'com.gome.ecmall:widget:'+getProperty('AAR_GWIDGET_VERSION')+'@aar',
@@ -102,7 +103,6 @@ ext.deps = [
         MStatistics: rootProject.ext.proDeps ? project(':MStatistics') :'com.gome.ecmall:mstatistics:'+getProperty('AAR_MSTATISTICS_VERSION')+'@aar',
         MSelectPhoto: rootProject.ext.proDeps ? project(':MSelectPhoto') :'com.gome.ecmall:mselectphoto:'+getProperty('AAR_MSELECT_PHOTO_VERSION')+'@aar',
         MRouter:rootProject.ext.proDeps ? project(':MRouter') : 'com.gome.ecmall:mrouter:'+getProperty('AAR_MROUTER_VERSION')+'@aar',
-        MImlibrary: rootProject.ext.proDeps ? project(':MImlibrary') :'com.gome.ecmall:mim:'+getProperty('AAR_MIM_VERSION')+'@aar',
         MCommon: rootProject.ext.proDeps ? project(':MCommon') :'com.gome.ecmall:mcommon:'+getProperty('AAR_MCOMMON_VERSION')+'@aar',
         MWidget: rootProject.ext.proDeps ? project(':MWidget') :'com.gome.ecmall:mwidget:'+getProperty('AAR_MWIDGET_VERSION')+'@aar',
         MShare: rootProject.ext.proDeps ? project(':MShare') :'com.gome.ecmall:mshare:'+getProperty('AAR_MSHARE_VERSION')+'@aar',
@@ -127,6 +127,7 @@ git {
     //url "git@gitlab.ds.gome.com.cn:mobile-android-common/GPlugin.git", "master"
     //url "git@gitlab.ds.gome.com.cn:mobile-android-common/GPatch.git", "master"
     //url "git@gitlab.ds.gome.com.cn:mobile-android-common/GTheme.git", "mergeDev"
+    //url "git@gitlab.ds.gome.com.cn:mobile-android-business/MImlibrary.git", "mergeDev"
 
     url "git@gitlab.ds.gome.com.cn:mobile-android-common/GFrame.git", "mergeDev"
     url "git@gitlab.ds.gome.com.cn:mobile-android-business/GWidget.git", "mergeDev"
@@ -162,7 +163,6 @@ git {
     url "git@gitlab.ds.gome.com.cn:mobile-android-business/MStatistics.git", "mergeDev"
     url "git@gitlab.ds.gome.com.cn:mobile-android-business/MSelectPhoto.git", "mergeDev"
     url "git@gitlab.ds.gome.com.cn:mobile-android-business/MRouter.git", "mergeDev"
-    url "git@gitlab.ds.gome.com.cn:mobile-android-business/MImlibrary.git", "mergeDev"
     url "git@gitlab.ds.gome.com.cn:mobile-android-business/MCommon.git", "mergeDev"
     url "git@gitlab.ds.gome.com.cn:mobile-android-business/MWidget.git", "mergeDev"
     url "git@gitlab.ds.gome.com.cn:mobile-android-business/MShare.git", "mergeDev"
