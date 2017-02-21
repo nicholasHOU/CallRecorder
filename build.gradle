@@ -1,5 +1,6 @@
 buildscript {
     repositories {
+
         maven {
             url getProperty("MAVEN_REPO")
             credentials {
@@ -41,8 +42,8 @@ allprojects {
         maven { url "http://10.69.213.71:8081/nexus/content/repositories/gomeMaven/" }
 
         maven { url "http://10.69.213.71:8081/nexus/content/repositories/MXCentral/" }
-
         mavenCentral()
+
 
     }
     ext {
@@ -68,7 +69,6 @@ ext.deps = [
         GTheme: 'com.gome.ecmall:theme:'+getProperty('AAR_GTHEME_VERSION')+'@aar',
 
         GFrame: 'com.gome.ecmall:frame:'+getProperty('AAR_GFRAME_VERSION')+'@aar',
-        GTheme: 'com.gome.ecmall:theme:'+getProperty('AAR_GTHEME_VERSION')+'@aar',
         GWidget: 'com.gome.ecmall:widget:'+getProperty('AAR_GWIDGET_VERSION')+'@aar',
         GCore: 'com.gome.ecmall:core:'+getProperty('AAR_GCORE_VERSION')+'@aar',
         GPush: 'com.gome.ecmall:push:'+getProperty('AAR_GPUSH_VERSION')+'@aar',
