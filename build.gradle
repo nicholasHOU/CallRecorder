@@ -126,9 +126,9 @@ git {
     //url "git@gitlab.ds.gome.com.cn:mobile-android-common/GBuildConfig.git", "master"
     //url "git@gitlab.ds.gome.com.cn:mobile-android-common/GPlugin.git", "master"
     //url "git@gitlab.ds.gome.com.cn:mobile-android-common/GPatch.git", "master"
+    //url "git@gitlab.ds.gome.com.cn:mobile-android-common/GTheme.git", "mergeDev"
 
     url "git@gitlab.ds.gome.com.cn:mobile-android-common/GFrame.git", "mergeDev"
-    url "git@gitlab.ds.gome.com.cn:mobile-android-common/GTheme.git", "mergeDev"
     url "git@gitlab.ds.gome.com.cn:mobile-android-business/GWidget.git", "mergeDev"
     url "git@gitlab.ds.gome.com.cn:mobile-android-common/GCore.git", "mergeDev"
     url "git@gitlab.ds.gome.com.cn:mobile-android-common/GPush.git", "mergeDev"
