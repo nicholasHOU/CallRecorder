@@ -6,6 +6,7 @@ import argparse
 import os
 import re
 import time
+import sys
 
 __author__ = "qiudongchao<1162584980@qq.com>"
 __version__ = "2.0.0"
@@ -320,6 +321,9 @@ if __name__ == '__main__':
     # 创建build目录
     if not os.path.exists(dir_build):
         os.mkdir(dir_build)
+    # 默认打印帮助信息
+    if len(sys.argv) == 1:
+        sys.argv.append('--help')
     # 创建命令行解析器
     parser = argparse.ArgumentParser(prog="apkfly", description="国美workspace帮助工具", epilog="make it easy!")
     subparsers = parser.add_subparsers(title="可用命令")
