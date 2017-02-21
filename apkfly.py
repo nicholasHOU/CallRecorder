@@ -5,8 +5,8 @@
 import argparse
 import os
 import re
-import time
 import sys
+import time
 
 __author__ = "qiudongchao<1162584980@qq.com>"
 __version__ = "2.0.0"
@@ -232,6 +232,16 @@ def _push_prop(args):
         print ">>>>>>error: gradle.properties not exit <<<<<<"
 
 
+def _deps(args):
+    """分析依赖关系"""
+    project = args.project
+    if os.path.exists(os.path.join(dir_current, project)) and os.path.isdir(project):
+        deps_cmd = "gradle -q %s:dependencies --configuration compile" % project
+        os.system(deps_cmd)
+    else:
+        print ">>>>>>error: project %s not exit <<<<<<" % project
+
+
 ####################### function for sub-command ########################
 
 def _git_pull_cmd(args):
@@ -325,7 +335,8 @@ if __name__ == '__main__':
     if len(sys.argv) == 1:
         sys.argv.append('--help')
     # 创建命令行解析器
-    parser = argparse.ArgumentParser(prog="apkfly", description="国美workspace帮助工具", epilog="make it easy!")
+    parser = argparse.ArgumentParser(prog="apkfly", description="国美workspace帮助工具",
+                                     epilog="make it easy!")
     subparsers = parser.add_subparsers(title="可用命令")
     subparsers.required = True
     # 添加子命令
@@ -356,13 +367,18 @@ if __name__ == '__main__':
     parser_ar.set_defaults(func=_ar)
     parser_ar.add_argument('-s', "--start", type=str, help='执行起始点【项目名前三位，例：027】')
 
-    parser_upload = subparsers.add_parser("upload", help="按module名称 数字排列顺序 依次 执行gradle uploadArchives")
+    parser_upload = subparsers.add_parser("upload",
+                                          help="按module名称 数字排列顺序 依次 执行gradle uploadArchives")
     parser_upload.set_defaults(func=_upload)
     parser_upload.add_argument('-s', "--start", type=str, help='执行起始点【项目名前三位，例：027】')
     # 仅用于Jenkins更新构建源码
     parser_apk = subparsers.add_parser("serv-update", help="打包for jenkins")
     parser_apk.set_defaults(func=_update_project)
     parser_apk.add_argument('-m', "--main", type=str, default='GomePlus', help='主工程')
+    # 分析项目依赖关系
+    parser_deps = subparsers.add_parser("deps", help="项目依赖关系分析")
+    parser_deps.set_defaults(func=_deps)
+    parser_deps.add_argument("project", type=str, help='待分析依赖关系的项目名称')
     # 参数解析
     args = parser.parse_args()
     args.func(args)
