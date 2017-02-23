@@ -152,7 +152,7 @@ git {
     url "git@gitlab.ds.gome.com.cn:mobile-android-business/GMaterialOrder.git", "mergeDev"
     url "git@gitlab.ds.gome.com.cn:mobile-android-business/GProductDetail.git", "mergeDev"
     url "git@gitlab.ds.gome.com.cn:mobile-android-business/GTQDetail.git", "mergeDev"
-    url "git@gitlab.ds.gome.com.cn:mobile-android-business/GZhibo.git", "mergeDev"
+//    url "git@gitlab.ds.gome.com.cn:mobile-android-business/GZhibo.git", "mergeDev"
     url "git@gitlab.ds.gome.com.cn:mobile-android-common/GHotfix.git", "mergeDev"
     url "git@gitlab.ds.gome.com.cn:mobile-android-business/GZxingScan.git", "mergeDev"
 //    //--------
