@@ -7,6 +7,7 @@ import os
 import re
 import sys
 import time
+from collections import Counter
 
 __author__ = "qiudongchao<1162584980@qq.com>"
 __version__ = "2.0.0"
@@ -237,7 +238,29 @@ def _deps(args):
     project = args.project
     if os.path.exists(os.path.join(dir_current, project)) and os.path.isdir(project):
         deps_cmd = "gradle -q %s:dependencies --configuration compile" % project
-        os.system(deps_cmd)
+        deps_result = os.popen(deps_cmd)
+        content_list = deps_result.readlines()
+        dep_list = []
+        p = re.compile(r".*?(\S*:\S*:\S*)\s*$")
+        for content in content_list:
+            print content.rstrip()
+            mvn_list = p.findall(content)
+            if len(mvn_list) == 1:
+                dep_list.append(mvn_list[0])
+        # 去重-所有依赖内容
+        dep_list = list(set(dep_list))
+        dep_list.sort()
+        # dep截取list
+        dep_sub_list = [x[0: x.rfind(":")] for x in dep_list]
+        sub_counter = Counter(dep_sub_list)
+        dep_rep_list = [str(k) for k, v in dict(sub_counter).items() if v > 1]
+        index = 1
+        for rep in dep_rep_list:
+            print "------------------------------------------"
+            print index, "-", [x for x in dep_list if x.find(rep) != -1]
+            index += 1
+        if len(dep_rep_list) != 0:
+            print "------------------------------------------"
     else:
         print ">>>>>>error: project %s not exit <<<<<<" % project
 
