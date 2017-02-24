@@ -194,6 +194,8 @@ def _version_add(args):
                 else:
                     raise ValueError("third num error for [" + aar + "]")
                 index_num = int(index_num) + 1
+                if args.value:
+                    index_num = args.value
                 # 此处可对版本号格式进行修改，当前仅适配GomePlus
                 if index == 1:
                     new_aar = re.sub(r"=\s*\d+", "=" + str(index_num), aar)
@@ -379,6 +381,7 @@ if __name__ == '__main__':
     parser_version.add_argument('-e', "--end", type=str, default='AAR_MAPP_VERSION', help='终止AAR版本')
     parser_version.add_argument('-i', "--index", type=int, default=2, choices=[1, 2, 3],
                                 help='自增版本索引【1大版本，2中间版本，3小版本】')
+    parser_version.add_argument('-v', '--value', type=int, help='版本，默认值')
 
     parser_pull = subparsers.add_parser("pull", help="更新 项目代码")
     parser_pull.set_defaults(func=_git_pull_cmd)
