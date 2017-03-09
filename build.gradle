@@ -121,7 +121,7 @@ git {
     cleanTest false
     //url "git@gitlab.ds.gome.com.cn:mobile-android-admin/buildsrc.git", "dev"
     //url "git@gitlab.ds.gome.com.cn:mobile-android/GWorkspace.git", "master"
-    //url "git@gitlab.ds.gome.com.cn:mobile-android-admin/GSafekeyboard.git", "master"
+    //url "git@gitlab.ds.gome.com.cn:mobile-android-admin/GSafekeyboard.git", "mergeDev"
     //url "git@gitlab.ds.gome.com.cn:mobile-android-admin/GSecret.git", "master"
     //url "git@gitlab.ds.gome.com.cn:mobile-android-common/GBuildConfig.git", "master"
     //url "git@gitlab.ds.gome.com.cn:mobile-android-common/GPlugin.git", "master"
