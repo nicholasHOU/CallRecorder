@@ -61,7 +61,7 @@ task clean(type: Delete) {
 }
 
 ext.deps = [
-        GSafekeyboard: 'com.bangcle:safeKeyboard:0.0.3',
+        GSafekeyboard: 'com.bangcle:safeKeyboard:1.0.5',
         GSecret: 'com.gome.ecmall:secret:'+getProperty('AAR_GSECRET_VERSION')+'@aar',
         GBuildConfig: 'com.gome.ecmall:buildconfig:'+getProperty('AAR_GCONFIG_VERSION'),
         GPlugin: '',
@@ -121,7 +121,7 @@ git {
     cleanTest false
     //url "git@gitlab.ds.gome.com.cn:mobile-android-admin/buildsrc.git", "dev"
     //url "git@gitlab.ds.gome.com.cn:mobile-android/GWorkspace.git", "master"
-    //url "git@gitlab.ds.gome.com.cn:mobile-android-admin/GSafekeyboard.git", "master"
+    //url "git@gitlab.ds.gome.com.cn:mobile-android-admin/GSafekeyboard.git", "mergeDev"
     //url "git@gitlab.ds.gome.com.cn:mobile-android-admin/GSecret.git", "master"
     //url "git@gitlab.ds.gome.com.cn:mobile-android-common/GBuildConfig.git", "master"
     //url "git@gitlab.ds.gome.com.cn:mobile-android-common/GPlugin.git", "master"
