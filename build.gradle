@@ -95,6 +95,7 @@ ext.deps = [
         GZhibo: 'com.gome.ecmall:zhibo:' + getProperty('AAR_GZHIBO_VERSION') + '@aar',
         GHotfix: 'com.gome.ecmall:hotfix:' + getProperty('AAR_HOTFIX_VERSION') + '@aar',
         GZxingScan: 'com.gome.ecmall:gzxing:' + getProperty('AAR_GZING_VERSION') + '@aar',
+        GGomeCurrency: 'com.gome.ecmall:ggomecurrency:' + getProperty('AAR_GGOMECURRENCY_VERSION') + '@aar',
 
         MPulltorefresh: rootProject.ext.proDeps ? project(':MPulltorefresh') : 'com.gome.ecmall:mpulltorefresh:'+getProperty('AAR_MPULLTOREFRESH_VERSION')+'@aar',
         MFramework2: rootProject.ext.proDeps ? project(':MFramework2') :  'com.gome.ecmall:mframe2:'+getProperty('AAR_MFRAME2_VERSION')+'@aar',
@@ -140,6 +141,7 @@ git {
     url "git@gitlab.ds.gome.com.cn:mobile-android-business/GCmbPay.git", "mergeDev"
     url "git@gitlab.ds.gome.com.cn:mobile-android-common/GTongBaoSdk.git", "mergeDev"
     url "git@gitlab.ds.gome.com.cn:mobile-android-business/GBusiness.git", "mergeDev"
+    url "git@gitlab.ds.gome.com.cn:mobile-android-business/GGomeCurrency.git", "mergeDev"
     url "git@gitlab.ds.gome.com.cn:mobile-android-business/GIm.git", "mergeDev"
     url "git@gitlab.ds.gome.com.cn:mobile-android-common/GHybrid.git", "mergeDev"
     url "git@gitlab.ds.gome.com.cn:mobile-android-business/GFinanceCommon.git", "mergeDev"
