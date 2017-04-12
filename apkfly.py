@@ -5,12 +5,15 @@
 import argparse
 import os
 import re
+import subprocess
 import sys
 import time
+import xml
 from collections import Counter
+from xml.dom import minidom
 
 __author__ = "qiudongchao<1162584980@qq.com>"
-__version__ = "2.0.0"
+__version__ = "3.0.0"
 
 file_build_gradle = "build.gradle"
 dir_current = os.path.abspath(".")
@@ -20,6 +23,9 @@ dir_build = os.path.join(dir_current, "build")
 file_temp = os.path.join(dir_build, "apkfly-temp.txt")
 
 
+###################################################################
+### 工作空间  校验
+###################################################################
 def check_root_project():
     """校验当前工作空间是否合法
     """
@@ -43,7 +49,10 @@ def check_sub_project(sub_project, is_formate):
     return check_result
 
 
-def read_temp():
+###################################################################
+### 批量执行子项目命令
+###################################################################
+def _read_temp():
     """读取临时文件
     """
     temp_list = []
@@ -54,7 +63,7 @@ def read_temp():
     return temp_list
 
 
-def write_temp(temp_list):
+def _write_temp(temp_list):
     """写入临时文件
     """
     with open(file_temp, "w") as temp_file:
@@ -68,7 +77,7 @@ def exec_sub_project(cmd, args):
         print ">>>>>>start to running<<<<<<"
         start_project = args.start
         start_flag = False
-        temp_list = read_temp()
+        temp_list = _read_temp()
         run_flag = True
         sub_file_list = [x for x in os.listdir(dir_current) if
                          check_sub_project(x, True)]
@@ -104,33 +113,26 @@ def exec_sub_project(cmd, args):
             os.remove(file_temp)
         else:
             # 运行失败，将完成子项目写入临时文件
-            write_temp(temp_list)
+            _write_temp(temp_list)
         print ">>>>>>running stop<<<<<<"
     else:
         print ">>>>>>check project error<<<<<<"
 
 
-def _setting(args):
-    """重建setting文件
-    """
-    if check_root_project():
-        print ">>>>>>start to running<<<<<<"
-        sub_file_list = [x for x in os.listdir(dir_current) if
-                         check_sub_project(x, False)]
-        setting_content = ""
-        for sub_file in sub_file_list:
-            if setting_content == "":
-                setting_content = "include \":%s\"" % sub_file
-            else:
-                setting_content += "\ninclude \":%s\"" % sub_file
-        # 写入settings.gradle文件
-        with open(file_settings, "w") as setting:
-            setting.write(setting_content)
-        print ">>>>>>running stop<<<<<<"
-    else:
-        print ">>>>>>check project error<<<<<<"
+###################################################################
+### 自工程 批量  执行  命令
+###################################################################
+def _upload(args):
+    exec_sub_project("uploadArchives", args)
 
 
+def _ar(args):
+    exec_sub_project("aR", args)
+
+
+###################################################################
+### git 命令执行
+###################################################################
 def git_cmd(cmd):
     """批量执行子项目git命令
     """
@@ -153,6 +155,33 @@ def git_cmd(cmd):
         print ">>>>>>check project error<<<<<<"
 
 
+###################################################################
+### 将当前工作空间的项目部署到setting配置文件
+###################################################################
+def _setting(args):
+    """重建setting文件
+    """
+    if check_root_project():
+        print ">>>>>>start to running<<<<<<"
+        sub_file_list = [x for x in os.listdir(dir_current) if
+                         check_sub_project(x, False)]
+        setting_content = ""
+        for sub_file in sub_file_list:
+            if setting_content == "":
+                setting_content = "include \":%s\"" % sub_file
+            else:
+                setting_content += "\ninclude \":%s\"" % sub_file
+        # 写入settings.gradle文件
+        with open(file_settings, "w") as setting:
+            setting.write(setting_content)
+        print ">>>>>>running stop<<<<<<"
+    else:
+        print ">>>>>>check project error<<<<<<"
+
+
+###################################################################
+### 版本自增
+###################################################################
 def _version_add(args):
     """版本号批量增加
     """
@@ -213,6 +242,9 @@ def _version_add(args):
         print ">>>>>>error: gradle.properties not exit <<<<<<"
 
 
+###################################################################
+### 提交 gradle.properties 到服务器
+###################################################################
 def _push_prop(args):
     """提交gradle.properties到git服务器
     """
@@ -235,6 +267,9 @@ def _push_prop(args):
         print ">>>>>>error: gradle.properties not exit <<<<<<"
 
 
+###################################################################
+### 依赖分析
+###################################################################
 def _deps(args):
     """分析依赖关系"""
     project = args.project
@@ -267,25 +302,9 @@ def _deps(args):
         print ">>>>>>error: project %s not exit <<<<<<" % project
 
 
-####################### function for sub-command ########################
-
-def _git_pull_cmd(args):
-    git_cmd("git pull")
-
-
-def _git_reset(args):
-    git_cmd("git reset --hard")
-
-
-def _upload(args):
-    exec_sub_project("uploadArchives", args)
-
-
-def _ar(args):
-    exec_sub_project("aR", args)
-
-
-####################### function for jenkins ########################
+###################################################################
+### Jenkins 自动更新代码
+###################################################################
 # 打包配置项目
 APK_CONFIG = {
     "GomePlus": {
@@ -299,13 +318,13 @@ APK_CONFIG = {
 }
 
 
-def _git_clone(project_name, git_url, git_branch):
+def _git_clone_ser(project_name, git_url, git_branch):
     os.chdir(dir_current)
     clone_cmd = os.popen("git clone %s -b %s %s" % (git_url, git_branch, project_name))
     print clone_cmd.read()
 
 
-def _git_pull(project_name, git_branch):
+def _git_pull_ser(project_name, git_branch):
     os.chdir(os.path.join(dir_current, project_name))
     pull_cmd = os.popen("git pull origin %s" % git_branch)
     print pull_cmd.read()
@@ -329,10 +348,10 @@ def _update_project(args):
                 # 获取最新项目源码
                 if os.path.exists(os.path.join(dir_current, key)) and os.path.isdir(key):
                     print ">>>项目%s存在，更新代码..." % key
-                    _git_pull(key, git_branch)
+                    _git_pull_ser(key, git_branch)
                 else:
                     print ">>>项目%s不存在，克隆代码..." % key
-                    _git_clone(key, git_url, git_branch)
+                    _git_clone_ser(key, git_url, git_branch)
                 # 构建setting content
                 if setting_content == "":
                     setting_content = "include \":%s\"" % key
@@ -347,9 +366,155 @@ def _update_project(args):
         print ">>>>>>check project error<<<<<<"
 
 
-####################### function for jenkins ########################
+###################################################################
+### git 操作
+###################################################################
+class XmlProject(object):
+    """manifest and parser
+    """
+
+    def __init__(self, url, branch, path, app, groups):
+        if not url.endswith('.git'):
+            raise Exception("%s error" % url)
+        self.url = url
+        self.branch = branch
+        self.path = path
+        self.app = app
+        self.groups = groups
+
+    @staticmethod
+    def parser_manifest(manifest, by_group=[], by_project=[], allow_private=False, order=False, ignore_app=False):
+        """manifest.xml 解析
+        """
+        try:
+            root = minidom.parse(manifest)
+        except (OSError, xml.parsers.expat.ExpatError) as e:
+            raise Exception("error parsing manifest %s: %s" % (manifest, e))
+
+        if not root or not root.childNodes:
+            raise Exception("no root node in %s" % (manifest,))
+
+        for manifest in root.childNodes:
+            if manifest.nodeName == 'manifest':
+                break
+            else:
+                raise Exception("no <manifest> in %s" % (manifest,))
+
+        host = manifest.getAttribute("host")
+        if not host:
+            raise Exception("no host attr in %s" % (manifest,))
+
+        base_branch = manifest.getAttribute("branch")
+        if not base_branch:
+            raise Exception("no branch attr in %s" % (manifest,))
+
+        index = 1
+        projects = []
+        for node in manifest.childNodes:
+            if node.nodeName == 'project':
+                url = node.getAttribute("url")
+                if not url:
+                    raise Exception("no %s in <%s> within %s" %
+                                    ("url", "project", manifest))
+                if not url.startswith("http") and not url.startswith("git@"):
+                    url = host + url
+                branch = node.getAttribute("branch")
+                if not branch:
+                    branch = base_branch
+                path = node.getAttribute("path")
+                if not path:
+                    path = url.split('/')[-1].split('.')[0]
+                app = True if "true" == node.getAttribute("app") else False
+                groups = node.getAttribute("groups")
+
+                allow = False
+                if len(by_group) > 0:
+                    for group in by_group:
+                        if groups and group in groups:
+                            allow = True
+                            break
+                elif len(by_project) > 0:
+                    for pro in by_project:
+                        if path == pro:
+                            allow = True
+                            break
+                else:
+                    allow = True
+
+                # 过滤私有
+                if groups and "private" in groups and not allow_private:
+                    allow = False
+                # 过滤App
+                if ignore_app and app:
+                    allow = False
+
+                if allow:
+                    if order:
+                        path = "%s-%s" % (str(index).zfill(3), path)
+                    project = XmlProject(url, branch, path, app, groups)
+                    projects.append(project)
+                    index = index + 1
+        return projects
 
 
+def _git_clone(args):
+    """克隆子项目
+    """
+    is_order = args.order
+    allow_private = args.allow_private
+    groups = args.by_group
+    projects = args.by_project
+    ignore_app = args.ignore_app
+
+    groups_size = len(groups)
+    projects_size = len(projects)
+    if groups_size > 0 and projects_size > 0:
+        raise Exception("by_group 和 by_project 不能同时使用")
+
+    projects = XmlProject.parser_manifest("manifest.xml", by_group=groups, by_project=projects,
+                                          allow_private=allow_private, order=is_order, ignore_app=ignore_app)
+    for project in projects:
+        if not os.path.exists(os.path.join(dir_current, project.path)):
+            print u">>>克隆:%s  分支：%s..." % (project.path, project.branch)
+            cmd = "git clone %s -b %s %s" % (project.url, project.branch, project.path)
+            process = subprocess.Popen(cmd, stderr=subprocess.PIPE,
+                                       stdout=subprocess.PIPE, cwd=dir_current, shell=True)
+            stdout, stderr = process.communicate()
+            if process.returncode == 0:
+                print "成功 > " + stdout
+            else:
+                print "失败 > " + stderr
+
+
+def _git_branch(args):
+    """ TODO 创建分支
+    """
+    branch_name = args.name
+    is_push = args.push
+    print "{0}-{1}".format(branch_name, is_push)
+
+
+def _git_tag(args):
+    """ TODO 创建tag
+    """
+    tag_name = args.name
+    tag_message = args.message
+    if not tag_message:
+        tag_message = "tag at" + time.strftime(" %Y-%m-%d %H:%M:%S", time.localtime(time.time()))
+    print "{0}-{1}".format(tag_name, tag_message)
+
+
+def _git_pull(args):
+    git_cmd("git pull")
+
+
+def _git_reset(args):
+    git_cmd("git reset --hard")
+
+
+###################################################################
+### 主程序入口
+###################################################################
 if __name__ == '__main__':
     """执行入口
     """
@@ -364,16 +529,20 @@ if __name__ == '__main__':
                                      epilog="make it easy!")
     subparsers = parser.add_subparsers(title="可用命令")
     subparsers.required = True
+
     # 添加子命令
 
+    # 把workspace内所有的module配置到settings.gradle
     parser_setting = subparsers.add_parser("setting", help="把workspace内所有的module配置到settings.gradle")
     parser_setting.set_defaults(func=_setting)
 
+    # 提交gradle.properties到git服务器
     parser_setting = subparsers.add_parser("pushprop", help="提交gradle.properties到git服务器")
     parser_setting.set_defaults(func=_push_prop)
     parser_setting.add_argument('-m', type=str, help='push评论信息')
     parser_setting.add_argument('-b', type=str, default='mergeDev', help='push 分支')
 
+    # 版本自增
     parser_version = subparsers.add_parser("version", help="自增gradle.properties内的 aar 配置版本")
     parser_version.set_defaults(func=_version_add)
     parser_version.add_argument('-s', "--start", type=str, default='AAR_GFRAME_VERSION',
@@ -383,28 +552,56 @@ if __name__ == '__main__':
                                 help='自增版本索引【1大版本，2中间版本，3小版本】')
     parser_version.add_argument('-v', '--value', type=int, help='版本，默认值')
 
-    parser_pull = subparsers.add_parser("pull", help="更新 项目代码")
-    parser_pull.set_defaults(func=_git_pull_cmd)
-
-    parser_reset = subparsers.add_parser("reset", help="重置 项目代码")
-    parser_reset.set_defaults(func=_git_reset)
-
+    # 批量编译module
     parser_ar = subparsers.add_parser("ar", help="依次 编译 所有module")
     parser_ar.set_defaults(func=_ar)
     parser_ar.add_argument('-s', "--start", type=str, help='执行起始点【项目名前三位，例：027】')
 
+    # 批量生成aar并提交至maven私服
     parser_upload = subparsers.add_parser("upload",
                                           help="按module名称 数字排列顺序 依次 执行gradle uploadArchives")
     parser_upload.set_defaults(func=_upload)
     parser_upload.add_argument('-s', "--start", type=str, help='执行起始点【项目名前三位，例：027】')
-    # 仅用于Jenkins更新构建源码
-    parser_apk = subparsers.add_parser("serv-update", help="打包for jenkins")
-    parser_apk.set_defaults(func=_update_project)
-    parser_apk.add_argument('-m', "--main", type=str, default='GomePlus', help='主工程')
+
     # 分析项目依赖关系
     parser_deps = subparsers.add_parser("deps", help="项目依赖关系分析")
     parser_deps.set_defaults(func=_deps)
     parser_deps.add_argument("project", type=str, help='待分析依赖关系的项目名称')
+
+    # 更新代码
+    parser_pull = subparsers.add_parser("pull", help="更新 项目代码")
+    parser_pull.set_defaults(func=_git_pull)
+
+    # reset
+    parser_reset = subparsers.add_parser("reset", help="重置 项目代码")
+    parser_reset.set_defaults(func=_git_reset)
+
+    # 克隆
+    parser_clone = subparsers.add_parser("clone", help="克隆子工程")
+    parser_clone.set_defaults(func=_git_clone)
+    parser_clone.add_argument("-o", "--order", help='对子项目进行排序', action='store_true', default=False)
+    parser_clone.add_argument("-a", "--allow_private", help='包含私有项目', action='store_true', default=False)
+    parser_clone.add_argument("-g", "--by_group", help='根据组进行克隆', action='append', default=[])
+    parser_clone.add_argument("-p", "--by_project", help='根据项目名进行克隆', action='append', default=[])
+    parser_clone.add_argument("-i", "--ignore_app", help='忽略App', action='store_true', default=False)
+
+    # 创建branch
+    parser_clone = subparsers.add_parser("branch", help="创建分支")
+    parser_clone.set_defaults(func=_git_branch)
+    parser_clone.add_argument("name", help='分支名称', action='store')
+    parser_clone.add_argument("-p", "--push", help='是否推送到服务器', action='store_true', default=False)
+
+    # 创建tag
+    parser_clone = subparsers.add_parser("tag", help="打tag")
+    parser_clone.set_defaults(func=_git_tag)
+    parser_clone.add_argument("name", help='tag名称', action='store')
+    parser_clone.add_argument("-m", "--message", help='评论信息', action='store')
+
+    # 仅用于Jenkins更新构建源码
+    parser_apk = subparsers.add_parser("serv-update", help="打包for jenkins")
+    parser_apk.set_defaults(func=_update_project)
+    parser_apk.add_argument('-m', "--main", type=str, default='GomePlus', help='主工程')
+
     # 参数解析
     args = parser.parse_args()
     args.func(args)
