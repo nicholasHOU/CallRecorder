@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest host="git@gitlab.ds.gome.com.cn:" branch="mergeDev">
+    <!--私有工程-->
+    <project url="mobile-android-admin/buildsrc.git" branch="master" groups="private"/>
+    <project url="mobile-android/GWorkspace.git" groups="private"/>
+    <project url="mobile-android-admin/GSafekeyboard.git" groups="private"/>
+    <project url="mobile-android-admin/GSecret.git" branch="master" groups="private"/>
+    <project url="mobile-android-common/GBuildConfig.git" branch="master" groups="private"/>
+    <project url="mobile-android-common/GPlugin.git" branch="master" groups="private"/>
+    <project url="mobile-android-common/GPatch.git" branch="master" groups="private"/>
+    <project url="mobile-android-common/GTheme.git" groups="private"/>
+    <project url="mobile-android-business/MImlibrary.git" groups="private"/>
+    <!--G工程-->
+    <project url="mobile-android-common/GFrame.git"/>
+    <project url="mobile-android-business/GWidget.git"/>
+    <project url="mobile-android-common/GCore.git"/>
+    <project url="mobile-android-common/GPush.git"/>
+    <project url="mobile-android-business/GShare.git"/>
+    <project url="mobile-android-business/GLogin.git"/>
+    <project url="mobile-android-business/GPullrefresh.git"/>
+    <project url="mobile-android-common/GUpdate.git"/>
+    <project url="mobile-android-business/GCmbPay.git"/>
+    <project url="mobile-android-common/GTongBaoSdk.git"/>
+    <project url="mobile-android-business/GBusiness.git"/>
+    <project url="mobile-android-business/GGomeCurrency.git"/>
+    <project url="mobile-android-business/GIm.git"/>
+    <project url="mobile-android-common/GHybrid.git"/>
+    <project url="mobile-android-business/GFinanceCommon.git"/>
+    <project url="mobile-android-business/GFinance.git"/>
+    <project url="mobile-android-business/GMeiyingbao.git"/>
+    <project url="mobile-android-business/GPhoneRecharge.git"/>
+    <project url="mobile-android-business/GMovie.git"/>
+    <project url="mobile-android-business/GStoreSearch.git"/>
+    <project url="mobile-android-business/GReturn.git"/>
+    <project url="mobile-android-business/GMaterialOrder.git"/>
+    <project url="mobile-android-business/GProductDetail.git"/>
+    <project url="mobile-android-business/GTQDetail.git"/>
+    <project url="mobile-android-common/GHotfix.git"/>
+    <project url="mobile-android-business/GZxingScan.git"/>
+    <!--M工程-->
+    <project url="mobile-android-business/MPulltorefresh.git"/>
+    <project url="mobile-android-business/MFramework2.git"/>
+    <project url="mobile-android-business/MPtrlib.git"/>
+    <project url="mobile-android-business/MPtrrecyclerView.git"/>
+    <project url="mobile-android-business/MStatistics.git"/>
+    <project url="mobile-android-business/MSelectPhoto.git"/>
+    <project url="mobile-android-business/MRouter.git"/>
+    <project url="mobile-android-business/MCommon.git"/>
+    <project url="mobile-android-business/MWidget.git"/>
+    <project url="mobile-android-business/MShare.git"/>
+    <project url="mobile-android-business/MMeixinpay.git"/>
+    <project url="mobile-android-business/MMeixinplayer.git"/>
+    <project url="mobile-android-business/MCore.git"/>
+    <!--MApp工程-->
+    <project url="mobile-android-business/MApp.git" groups="app"/>
+    <!--主工程-->
+    <project url="mobile-android/GomePlus.git" path="GomeApp" app="true"
+             groups="app"/>
+</manifest>
