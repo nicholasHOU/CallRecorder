@@ -375,7 +375,8 @@ class XmlProject(object):
         self.groups = groups
 
     @staticmethod
-    def parser_manifest(manifest, by_group=[], by_project=[], allow_private=False, order=False, ignore_app=False):
+    def parser_manifest(manifest, by_group=[], by_project=[], allow_private=False, order=False,
+                        ignore_app=False):
         """projects.xml 解析
         """
         try:
@@ -464,7 +465,8 @@ def _git_clone(args):
         raise Exception("by_group 和 by_project 不能同时使用")
 
     projects = XmlProject.parser_manifest("projects.xml", by_group=groups, by_project=projects,
-                                          allow_private=allow_private, order=is_order, ignore_app=ignore_app)
+                                          allow_private=allow_private, order=is_order,
+                                          ignore_app=ignore_app)
     for project in projects:
         if not os.path.exists(os.path.join(dir_current, project.path)):
             print u">>>克隆:%s  分支：%s..." % (project.path, project.branch)
@@ -472,10 +474,7 @@ def _git_clone(args):
             process = subprocess.Popen(cmd, stderr=subprocess.PIPE,
                                        stdout=subprocess.PIPE, cwd=dir_current, shell=True)
             code = process.wait()
-            if code == 0:
-                print "成功 > " + process.stdout.read()
-            else:
-                print "失败 > " + process.stderr.read()
+            slogr(code == 0)
 
 
 def _git_projects():
@@ -505,7 +504,8 @@ def _git_check(branch_name, sub_projects, cmd_list):
     slog("子项目合法性校验", loading=True)
     result = []
     for sub_file in sub_projects:
-        process_status = subprocess.Popen(["git", "status"], stderr=subprocess.PIPE, stdout=subprocess.PIPE,
+        process_status = subprocess.Popen(["git", "status"], stderr=subprocess.PIPE,
+                                          stdout=subprocess.PIPE,
                                           cwd=os.path.join(dir_current, sub_file))
         code_status = process_status.wait()
         if code_status == 0:
@@ -551,7 +551,8 @@ def _git_create_push(branch_name, sub_projects, cmd_list, is_push):
             continue
 
         if is_push:
-            process_push = subprocess.Popen(["git", "push", "origin", branch_name], stderr=subprocess.PIPE,
+            process_push = subprocess.Popen(["git", "push", "origin", branch_name],
+                                            stderr=subprocess.PIPE,
                                             stdout=subprocess.PIPE,
                                             cwd=os.path.join(dir_current, sub_file))
             code_push = process_push.wait()
@@ -585,7 +586,8 @@ def _git_delete_push(branch_name, sub_projects, local_list, push_list, is_push):
         if code_check == 0:
             slog("%s 删除 %s 成功" % (sub_file, branch_name))
         else:
-            result_list.append("%s 删除 %s 失败\n%s" % (sub_file, branch_name, process_branch.stderr.read()))
+            result_list.append(
+                "%s 删除 %s 失败\n%s" % (sub_file, branch_name, process_branch.stderr.read()))
 
         if is_push:
             process_push = subprocess.Popen(push_list, stderr=subprocess.PIPE,
@@ -595,7 +597,8 @@ def _git_delete_push(branch_name, sub_projects, local_list, push_list, is_push):
             if code_push == 0:
                 slog("%s 删除远程 %s 成功" % (sub_file, branch_name))
             else:
-                result_list.append("%s 删除远程 %s 失败\n%s" % (sub_file, branch_name, process_push.stderr.read()))
+                result_list.append(
+                    "%s 删除远程 %s 失败\n%s" % (sub_file, branch_name, process_push.stderr.read()))
 
     if len(result_list) > 0:
         slog("-----------------")
@@ -653,7 +656,8 @@ def _git_tag(args):
 
         slog("批量创建Tag[%s]" % tag_name, loading=True)
 
-        _git_create_push(tag_name, sub_projects, ["git", "tag", "-a", tag_name, "-m", tag_message], True)
+        _git_create_push(tag_name, sub_projects, ["git", "tag", "-a", tag_name, "-m", tag_message],
+                         True)
 
 
 def _git_pull(args):
@@ -750,10 +754,12 @@ if __name__ == '__main__':
     parser_clone = subparsers.add_parser("clone", help="克隆子工程")
     parser_clone.set_defaults(func=_git_clone)
     parser_clone.add_argument("-o", "--order", help='对子项目进行排序', action='store_true', default=False)
-    parser_clone.add_argument("-a", "--allow_private", help='包含私有项目', action='store_true', default=False)
+    parser_clone.add_argument("-a", "--allow_private", help='包含私有项目', action='store_true',
+                              default=False)
     parser_clone.add_argument("-g", "--by_group", help='根据组进行克隆', action='append', default=[])
     parser_clone.add_argument("-p", "--by_project", help='根据项目名进行克隆', action='append', default=[])
-    parser_clone.add_argument("-i", "--ignore_app", help='忽略App', action='store_true', default=False)
+    parser_clone.add_argument("-i", "--ignore_app", help='忽略App', action='store_true',
+                              default=False)
 
     # 创建branch
     parser_branch = subparsers.add_parser("branch", help="创建分支")
