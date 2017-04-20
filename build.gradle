@@ -14,7 +14,7 @@ buildscript {
         }
     }
     dependencies {
-        classpath 'com.gutils.apkfly:plugin:2.1.11'
+        classpath 'com.gutils.apkfly:plugin:2.3.0.plus1'
     }
 }
 
@@ -51,7 +51,7 @@ allprojects {
         buildToolsVersion = getProperty("BUILD_TOOLS_VERSION")
         targetSdkVersion = getProperty("TARGET_SDK_VERSION") as Integer
         minSdkVersion = getProperty("MIN_SDK_VERSION") as Integer
-        proDeps = false //改false 时需要把xiaomi的几个工程注掉
+        proDeps = true //改false 时需要把xiaomi的几个工程注掉
         isXiaoMi = false
     }
 }
@@ -69,33 +69,33 @@ ext.deps = [
         GTheme: 'com.gome.ecmall:theme:'+getProperty('AAR_GTHEME_VERSION')+'@aar',
         MImlibrary: 'com.gome.ecmall:mim:'+getProperty('AAR_MIM_VERSION')+'@aar',
 
-        GFrame: 'com.gome.ecmall:frame:'+getProperty('AAR_GFRAME_VERSION')+'@aar',
-        GWidget: 'com.gome.ecmall:widget:'+getProperty('AAR_GWIDGET_VERSION')+'@aar',
-        GCore: 'com.gome.ecmall:core:'+getProperty('AAR_GCORE_VERSION')+'@aar',
-        GPush: 'com.gome.ecmall:push:'+getProperty('AAR_GPUSH_VERSION')+'@aar',
-        GShare: 'com.gome.ecmall:share:'+getProperty('AAR_GSHARE_VERSION')+'@aar',
-        GLogin: 'com.gome.ecmall:login:'+getProperty('AAR_GLOGIN_VERSION')+'@aar',
-        GPullrefresh: 'com.gome.ecmall:pullrefresh:'+getProperty('AAR_GPULLREFRESH_VERSION')+'@aar',
-        GUpdate: 'com.gome.ecmall:update:'+getProperty('AAR_GUPDATE_VERSION')+'@aar',
-        GCmbPay: 'com.gome.cmbpay:cmbpay:'+getProperty('AAR_CMBPAY_VERSION')+'@aar',
-        GTongBaoSdk: 'com.gome.ecmall:gomepay:'+getProperty('AAR_GOMEPAY_VERSION')+'@aar',
-        GBusiness: 'com.gome.ecmall:business:' + getProperty('AAR_GBUSINESS_VERSION') + '@aar',
-        GIm: 'com.gome.ecmall.home:im:' + getProperty('AAR_GIM_VERSION') + '@aar',
-        GHybrid: 'com.gome.ecmall:gh5:' + getProperty('AAR_GH5_VERSION') + '@aar',
-        GFinanceCommon: 'com.gome.ecmall:financecommon:'+getProperty('AAR_GFINANCE_COMMON_VERSION')+'@aar',
-        GFinance: 'com.gome.ecmall:finance:' + getProperty('AAR_GFINANCE_VERSION') + '@aar',
-        GMeiyingbao: 'com.gome.ecmall:meiyingbao:' + getProperty('AAR_GMEIYINGBAO_VERSION') + '@aar',
-        GPhoneRecharge: 'com.gome.ecmall:phonerecharge:' + getProperty('AAR_GPHONERECHARGE_VERSION') + '@aar',
-        GMovie: 'com.gome.ecmall:movie:' + getProperty('AAR_GMOVIE_VERSION') + '@aar',
-        GStoreSearch: 'com.gome.ecmall:storesearch:' + getProperty('AAR_GSTORESEARCH_VERSION') + '@aar',
-        GReturn: 'com.gome.ecmall:greturn:' + getProperty('AAR_GRETURN_VERSION') + '@aar',
-        GMaterialOrder: 'com.gome.ecmall:materialorder:' + getProperty('AAR_GMATERIAL_ORDER_VERSION') + '@aar',
-        GProductDetail: 'com.gome.ecmall:product:' + getProperty('AAR_GPRODUCT_VERSION') + '@aar',
-        GTQDetail: 'com.gome.ecmall:tqdetail:' + getProperty('AAR_GTQ_DETAIL_VERSION') + '@aar',
-        GZhibo: 'com.gome.ecmall:zhibo:' + getProperty('AAR_GZHIBO_VERSION') + '@aar',
-        GHotfix: 'com.gome.ecmall:hotfix:' + getProperty('AAR_HOTFIX_VERSION') + '@aar',
-        GZxingScan: 'com.gome.ecmall:gzxing:' + getProperty('AAR_GZING_VERSION') + '@aar',
-        GGomeCurrency: 'com.gome.ecmall:ggomecurrency:' + getProperty('AAR_GGOMECURRENCY_VERSION') + '@aar',
+        GFrame: rootProject.ext.proDeps ? project(':GFrame') :'com.gome.ecmall:frame:'+getProperty('AAR_GFRAME_VERSION')+'@aar',
+        GWidget: rootProject.ext.proDeps ? project(':GWidget'):'com.gome.ecmall:widget:'+getProperty('AAR_GWIDGET_VERSION')+'@aar',
+        GCore: rootProject.ext.proDeps ? project(':GCore'):'com.gome.ecmall:core:'+getProperty('AAR_GCORE_VERSION')+'@aar',
+        GPush: rootProject.ext.proDeps ? project(':GPush'):'com.gome.ecmall:push:'+getProperty('AAR_GPUSH_VERSION')+'@aar',
+        GShare: rootProject.ext.proDeps ? project(':GShare'):'com.gome.ecmall:share:'+getProperty('AAR_GSHARE_VERSION')+'@aar',
+        GLogin: rootProject.ext.proDeps ? project(':GLogin'):'com.gome.ecmall:login:'+getProperty('AAR_GLOGIN_VERSION')+'@aar',
+        GPullrefresh:rootProject.ext.proDeps ? project(':GPullrefresh'): 'com.gome.ecmall:pullrefresh:'+getProperty('AAR_GPULLREFRESH_VERSION')+'@aar',
+        GUpdate: rootProject.ext.proDeps ? project(':GUpdate'):'com.gome.ecmall:update:'+getProperty('AAR_GUPDATE_VERSION')+'@aar',
+        GCmbPay:rootProject.ext.proDeps ? project(':GCmbPay'): 'com.gome.cmbpay:cmbpay:'+getProperty('AAR_CMBPAY_VERSION')+'@aar',
+        GTongBaoSdk: rootProject.ext.proDeps ? project(':GTongBaoSdk'):'com.gome.ecmall:gomepay:'+getProperty('AAR_GOMEPAY_VERSION')+'@aar',
+        GBusiness: rootProject.ext.proDeps ? project(':GBusiness'):'com.gome.ecmall:business:' + getProperty('AAR_GBUSINESS_VERSION') + '@aar',
+        GIm:rootProject.ext.proDeps ? project(':GIm'): 'com.gome.ecmall.home:im:' + getProperty('AAR_GIM_VERSION') + '@aar',
+        GHybrid: rootProject.ext.proDeps ? project(':GHybrid'):'com.gome.ecmall:gh5:' + getProperty('AAR_GH5_VERSION') + '@aar',
+        GFinanceCommon: rootProject.ext.proDeps ? project(':GFinanceCommon'):'com.gome.ecmall:financecommon:'+getProperty('AAR_GFINANCE_COMMON_VERSION')+'@aar',
+        GFinance: rootProject.ext.proDeps ? project(':GFinance'):'com.gome.ecmall:finance:' + getProperty('AAR_GFINANCE_VERSION') + '@aar',
+        GMeiyingbao:rootProject.ext.proDeps ? project(':GMeiyingbao'): 'com.gome.ecmall:meiyingbao:' + getProperty('AAR_GMEIYINGBAO_VERSION') + '@aar',
+        GPhoneRecharge:rootProject.ext.proDeps ? project(':GPhoneRecharge'): 'com.gome.ecmall:phonerecharge:' + getProperty('AAR_GPHONERECHARGE_VERSION') + '@aar',
+        GMovie: rootProject.ext.proDeps ? project(':GMovie'):'com.gome.ecmall:movie:' + getProperty('AAR_GMOVIE_VERSION') + '@aar',
+        GStoreSearch:rootProject.ext.proDeps ? project(':GStoreSearch'): 'com.gome.ecmall:storesearch:' + getProperty('AAR_GSTORESEARCH_VERSION') + '@aar',
+        GReturn: rootProject.ext.proDeps ? project(':GReturn'):'com.gome.ecmall:greturn:' + getProperty('AAR_GRETURN_VERSION') + '@aar',
+        GMaterialOrder: rootProject.ext.proDeps ? project(':GMaterialOrder'):'com.gome.ecmall:materialorder:' + getProperty('AAR_GMATERIAL_ORDER_VERSION') + '@aar',
+        GProductDetail:rootProject.ext.proDeps ? project(':GProductDetail'): 'com.gome.ecmall:product:' + getProperty('AAR_GPRODUCT_VERSION') + '@aar',
+        GTQDetail:rootProject.ext.proDeps ? project(':GTQDetail'): 'com.gome.ecmall:tqdetail:' + getProperty('AAR_GTQ_DETAIL_VERSION') + '@aar',
+  //      GZhibo: rootProject.ext.proDeps ? project(':GZhibo'):'com.gome.ecmall:zhibo:' + getProperty('AAR_GZHIBO_VERSION') + '@aar',
+        GHotfix:rootProject.ext.proDeps ? project(':GHotfix'): 'com.gome.ecmall:hotfix:' + getProperty('AAR_HOTFIX_VERSION') + '@aar',
+        GZxingScan: rootProject.ext.proDeps ? project(':GZxingScan'):'com.gome.ecmall:gzxing:' + getProperty('AAR_GZING_VERSION') + '@aar',
+        GGomeCurrency:rootProject.ext.proDeps ? project(':GGomeCurrency'): 'com.gome.ecmall:ggomecurrency:' + getProperty('AAR_GGOMECURRENCY_VERSION') + '@aar',
 
         MPulltorefresh: rootProject.ext.proDeps ? project(':MPulltorefresh') : 'com.gome.ecmall:mpulltorefresh:'+getProperty('AAR_MPULLTOREFRESH_VERSION')+'@aar',
         MFramework2: rootProject.ext.proDeps ? project(':MFramework2') :  'com.gome.ecmall:mframe2:'+getProperty('AAR_MFRAME2_VERSION')+'@aar',
