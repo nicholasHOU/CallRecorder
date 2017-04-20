@@ -1,8 +1,8 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 """This script is used to execute project commands in batches"""
-
 import argparse
+import logging
 import os
 import re
 import subprocess
@@ -13,7 +13,11 @@ from collections import Counter
 from xml.dom import minidom
 
 __author__ = "qiudongchao<1162584980@qq.com>"
-__version__ = "3.0.0"
+__version__ = "4.0.0"
+
+# 解决win命令行乱码问题
+reload(sys)
+sys.setdefaultencoding('utf-8')
 
 file_build_gradle = "build.gradle"
 dir_current = os.path.abspath(".")
@@ -21,6 +25,26 @@ file_settings = os.path.join(dir_current, "settings.gradle")
 file_build = os.path.join(dir_current, file_build_gradle)
 dir_build = os.path.join(dir_current, "build")
 file_temp = os.path.join(dir_build, "apkfly-temp.txt")
+
+# , filename='sync.log', filemode='a'
+logging.basicConfig(level=logging.DEBUG,
+                    format='[%(asctime)s %(levelname)s] %(message)s',
+                    datefmt='%Y-%m-%d %H:%M:%S')
+
+
+def slog(message, loading=False, line=False):
+    """日志打印
+    """
+    temp = ">>> " + message
+    if loading:
+        temp = temp + "..."
+    if line:
+        temp = temp + "\n"
+    print temp
+
+
+def slogr(success):
+    slog(u"O(∩_∩)O哈哈~" if success else u"╮(╯▽╰)╭哎")
 
 
 ###################################################################
@@ -31,7 +55,9 @@ def check_root_project():
     """
     file_exist = os.path.exists(file_build) and os.path.exists(file_settings)
     is_file = os.path.isfile(file_settings) and os.path.isfile(file_build)
-    return file_exist and is_file
+    result = file_exist and is_file
+    if not result:
+        raise Exception(u"工作空间校验失败")
 
 
 def check_sub_project(sub_project, is_formate):
@@ -73,55 +99,51 @@ def _write_temp(temp_list):
 def exec_sub_project(cmd, args):
     """批量执行子项目命令【gradle】
     """
-    if check_root_project():
-        print ">>>>>>start to running<<<<<<"
-        start_project = args.start
-        start_flag = False
-        temp_list = _read_temp()
-        run_flag = True
-        sub_file_list = [x for x in os.listdir(dir_current) if
-                         check_sub_project(x, True)]
-        # 按文件名排序
-        sub_file_list.sort()
-        for sub_file in sub_file_list:
-            if start_project:
-                if sub_file.startswith(start_project):
-                    start_flag = True
-            else:
+    check_root_project()
+
+    print ">>>>>>start to running<<<<<<"
+    start_project = args.start
+    start_flag = False
+    temp_list = _read_temp()
+    run_flag = True
+    sub_file_list = [x for x in os.listdir(dir_current) if
+                     check_sub_project(x, True)]
+    # 按文件名排序
+    sub_file_list.sort()
+    for sub_file in sub_file_list:
+        if start_project:
+            if sub_file.startswith(start_project):
                 start_flag = True
-            if sub_file in temp_list or not start_flag:
-                continue
-            print ">>>Running project:%s" % sub_file
-            # 在settings.gradle 配置子项目
-            with open(file_settings, "w") as setting:
-                setting.write("include \":%s\"" % sub_file)
-            # exec gradle clean uploadArchives
-            clean_output = os.popen("gradle :%s:%s" % (sub_file, "clean"))
-            print clean_output.read()
-            cmd_output = os.popen("gradle :%s:%s" % (sub_file, cmd))
-            cmd_result = cmd_output.read()
-            print cmd_result
-            if cmd_result.find("BUILD SUCCESSFUL") != -1:
-                print ">>>Success project:%s" % sub_file
-                temp_list.append(sub_file)
-            else:
-                print ">>>Error project:%s" % sub_file
-                run_flag = False
-                break
-        # 运行成功，删除临时文件
-        if run_flag and os.path.exists(file_temp):
-            os.remove(file_temp)
         else:
-            # 运行失败，将完成子项目写入临时文件
-            _write_temp(temp_list)
-        print ">>>>>>running stop<<<<<<"
+            start_flag = True
+        if sub_file in temp_list or not start_flag:
+            continue
+        print ">>>Running project:%s" % sub_file
+        # 在settings.gradle 配置子项目
+        with open(file_settings, "w") as setting:
+            setting.write("include \":%s\"" % sub_file)
+        # exec gradle clean uploadArchives
+        clean_output = os.popen("gradle :%s:%s" % (sub_file, "clean"))
+        print clean_output.read()
+        cmd_output = os.popen("gradle :%s:%s" % (sub_file, cmd))
+        cmd_result = cmd_output.read()
+        print cmd_result
+        if cmd_result.find("BUILD SUCCESSFUL") != -1:
+            print ">>>Success project:%s" % sub_file
+            temp_list.append(sub_file)
+        else:
+            print ">>>Error project:%s" % sub_file
+            run_flag = False
+            break
+    # 运行成功，删除临时文件
+    if run_flag and os.path.exists(file_temp):
+        os.remove(file_temp)
     else:
-        print ">>>>>>check project error<<<<<<"
+        # 运行失败，将完成子项目写入临时文件
+        _write_temp(temp_list)
+    print ">>>>>>running stop<<<<<<"
 
 
-###################################################################
-### 自工程 批量  执行  命令
-###################################################################
 def _upload(args):
     exec_sub_project("uploadArchives", args)
 
@@ -131,52 +153,26 @@ def _ar(args):
 
 
 ###################################################################
-### git 命令执行
-###################################################################
-def git_cmd(cmd):
-    """批量执行子项目git命令
-    """
-    if check_root_project():
-        print ">>>>>>start to running<<<<<<"
-        sub_file_list = [x for x in os.listdir(dir_current) if
-                         check_sub_project(x, False)]
-        for sub_file in sub_file_list:
-            dir_git = os.path.join(dir_current, sub_file, ".git")
-            if os.path.exists(dir_git) and os.path.isdir(dir_git):
-                print ">>>>>>Run [git %s] at dir [%s]" % (cmd, sub_file)
-                os.chdir(os.path.join(dir_current, sub_file))
-                # print os.path.abspath(".")
-                git_cmd = os.popen(cmd)
-                print git_cmd.read()
-            else:
-                print ">>>>>>%s is not git repo" % sub_file
-        print ">>>>>>running stop<<<<<<"
-    else:
-        print ">>>>>>check project error<<<<<<"
-
-
-###################################################################
 ### 将当前工作空间的项目部署到setting配置文件
 ###################################################################
 def _setting(args):
     """重建setting文件
     """
-    if check_root_project():
-        print ">>>>>>start to running<<<<<<"
-        sub_file_list = [x for x in os.listdir(dir_current) if
-                         check_sub_project(x, False)]
-        setting_content = ""
-        for sub_file in sub_file_list:
-            if setting_content == "":
-                setting_content = "include \":%s\"" % sub_file
-            else:
-                setting_content += "\ninclude \":%s\"" % sub_file
-        # 写入settings.gradle文件
-        with open(file_settings, "w") as setting:
-            setting.write(setting_content)
-        print ">>>>>>running stop<<<<<<"
-    else:
-        print ">>>>>>check project error<<<<<<"
+    check_root_project()
+
+    print ">>>>>>start to running<<<<<<"
+    sub_file_list = [x for x in os.listdir(dir_current) if
+                     check_sub_project(x, False)]
+    setting_content = ""
+    for sub_file in sub_file_list:
+        if setting_content == "":
+            setting_content = "include \":%s\"" % sub_file
+        else:
+            setting_content += "\ninclude \":%s\"" % sub_file
+    # 写入settings.gradle文件
+    with open(file_settings, "w") as setting:
+        setting.write(setting_content)
+    print ">>>>>>running stop<<<<<<"
 
 
 ###################################################################
@@ -250,7 +246,7 @@ def _push_prop(args):
     """
     prop_file_path = os.path.join(dir_current, "gradle.properties")
     if os.path.exists(prop_file_path) and os.path.isfile(prop_file_path):
-        message = "AAR批量打包:"
+        message = u"AAR批量打包:"
         branch = args.b
         if args.m:
             message = message + args.m
@@ -333,42 +329,42 @@ def _git_pull_ser(project_name, git_branch):
 def _update_project(args):
     """更新源码for jenkins
     """
-    if check_root_project():
-        # main_project = args.main # 暂不用
-        setting_content = ""
-        for (key, value) in APK_CONFIG.items():
-            # 获取 url,branch
-            for (git_key, git_value) in value.items():
-                if git_key == "url":
-                    git_url = git_value
-                if git_key == "branch":
-                    git_branch = git_value
-            if key and git_url and git_branch:
-                os.chdir(dir_current)
-                # 获取最新项目源码
-                if os.path.exists(os.path.join(dir_current, key)) and os.path.isdir(key):
-                    print ">>>项目%s存在，更新代码..." % key
-                    _git_pull_ser(key, git_branch)
-                else:
-                    print ">>>项目%s不存在，克隆代码..." % key
-                    _git_clone_ser(key, git_url, git_branch)
-                # 构建setting content
-                if setting_content == "":
-                    setting_content = "include \":%s\"" % key
-                else:
-                    setting_content += "\ninclude \":%s\"" % key
+    check_root_project()
+
+    # main_project = args.main # 暂不用
+    setting_content = ""
+    for (key, value) in APK_CONFIG.items():
+        # 获取 url,branch
+        for (git_key, git_value) in value.items():
+            if git_key == "url":
+                git_url = git_value
+            if git_key == "branch":
+                git_branch = git_value
+        if key and git_url and git_branch:
+            os.chdir(dir_current)
+            # 获取最新项目源码
+            if os.path.exists(os.path.join(dir_current, key)) and os.path.isdir(key):
+                print u">>>项目%s存在，更新代码..." % key
+                _git_pull_ser(key, git_branch)
             else:
-                raise Exception("APK_CONFIG 配置错误")
-        print ">>>子项目写入setting"
-        with open(file_settings, "w") as setting_file:
-            setting_file.write(setting_content)
-    else:
-        print ">>>>>>check project error<<<<<<"
+                print u">>>项目%s不存在，克隆代码..." % key
+                _git_clone_ser(key, git_url, git_branch)
+            # 构建setting content
+            if setting_content == "":
+                setting_content = "include \":%s\"" % key
+            else:
+                setting_content += "\ninclude \":%s\"" % key
+        else:
+            raise Exception(u"APK_CONFIG 配置错误")
+    print u">>>子项目写入setting"
+    with open(file_settings, "w") as setting_file:
+        setting_file.write(setting_content)
 
 
 ###################################################################
 ### git 操作
 ###################################################################
+
 class XmlProject(object):
     """manifest and parser
     """
@@ -383,8 +379,9 @@ class XmlProject(object):
         self.groups = groups
 
     @staticmethod
-    def parser_manifest(manifest, by_group=[], by_project=[], allow_private=False, order=False, ignore_app=False):
-        """manifest.xml 解析
+    def parser_manifest(manifest, by_group=[], by_project=[], allow_private=False, order=False,
+                        ignore_app=False):
+        """projects.xml 解析
         """
         try:
             root = minidom.parse(manifest)
@@ -469,52 +466,233 @@ def _git_clone(args):
     groups_size = len(groups)
     projects_size = len(projects)
     if groups_size > 0 and projects_size > 0:
-        raise Exception("by_group 和 by_project 不能同时使用")
+        raise Exception(u"by_group 和 by_project 不能同时使用")
 
-    projects = XmlProject.parser_manifest("manifest.xml", by_group=groups, by_project=projects,
-                                          allow_private=allow_private, order=is_order, ignore_app=ignore_app)
+    projects = XmlProject.parser_manifest("projects.xml", by_group=groups, by_project=projects,
+                                          allow_private=allow_private, order=is_order,
+                                          ignore_app=ignore_app)
     for project in projects:
         if not os.path.exists(os.path.join(dir_current, project.path)):
             print u">>>克隆:%s  分支：%s..." % (project.path, project.branch)
             cmd = "git clone %s -b %s %s" % (project.url, project.branch, project.path)
             process = subprocess.Popen(cmd, stderr=subprocess.PIPE,
                                        stdout=subprocess.PIPE, cwd=dir_current, shell=True)
-            stdout, stderr = process.communicate()
-            if process.returncode == 0:
-                print "成功 > " + stdout
+            code = process.wait()
+            slogr(code == 0)
+
+
+def _git_projects():
+    """获取git子项目
+    """
+    check_root_project()
+
+    sub_projects = []
+    sub_file_list = [x for x in os.listdir(dir_current) if
+                     check_sub_project(x, False)]
+    for sub_file in sub_file_list:
+        dir_git = os.path.join(dir_current, sub_file, ".git")
+        if os.path.exists(dir_git) and os.path.isdir(dir_git):
+            sub_projects.append(sub_file)
+        else:
+            print ">>>>>>%s is not git repo" % sub_file
+    return sub_projects
+
+
+def _git_check(branch_name, sub_projects, cmd_list):
+    """校验git项目合法性
+    :param branch_name: 分支名称
+    :param sub_projects: 子项目列表list
+    :param cmd_list: 命令列表list
+    :return: 校验结果
+    """
+    slog(u"子项目合法性校验", loading=True)
+    result = []
+    for sub_file in sub_projects:
+        process_status = subprocess.Popen(["git", "status"], stderr=subprocess.PIPE,
+                                          stdout=subprocess.PIPE,
+                                          cwd=os.path.join(dir_current, sub_file))
+        code_status = process_status.wait()
+        if code_status == 0:
+            result_status = process_status.stdout.read()
+            if "working directory clean" not in result_status:
+                result.append(u"子项目[%s] not clean" % sub_file)
+                continue
+        else:
+            result.append(u"子项目[%s]运行[git status]异常" % sub_file)
+            continue
+
+        process_check = subprocess.Popen(cmd_list, stderr=subprocess.PIPE, stdout=subprocess.PIPE,
+                                         cwd=os.path.join(dir_current, sub_file))
+        code_check = process_check.wait()
+        if code_check == 0:
+            result_check = [x.rstrip() for x in process_check.stdout.readlines()]
+            for branch in result_check:
+                if branch.endswith(branch_name):
+                    result.append(u"子项目[%s] - [%s]存在" % (sub_file, branch_name))
+                    break
+        else:
+            result.append(u"子项目[%s]运行[git branch -a / git tag]异常" % sub_file)
+    return result
+
+
+def _git_create_push(branch_name, sub_projects, cmd_list, is_push):
+    """
+    创建分支 or Tag
+    :param branch_name:
+    :param sub_projects:
+    :return:
+    """
+    result_list = []
+    for sub_file in sub_projects:
+        process_branch = subprocess.Popen(cmd_list, stderr=subprocess.PIPE,
+                                          stdout=subprocess.PIPE,
+                                          cwd=os.path.join(dir_current, sub_file))
+        code_check = process_branch.wait()
+        if code_check == 0:
+            slog(u"%s 创建 %s 成功" % (sub_file, branch_name))
+        else:
+            result_list.append(u"%s 创建 %s 失败" % (sub_file, branch_name))
+            continue
+
+        if is_push:
+            process_push = subprocess.Popen(["git", "push", "origin", branch_name],
+                                            stderr=subprocess.PIPE,
+                                            stdout=subprocess.PIPE,
+                                            cwd=os.path.join(dir_current, sub_file))
+            code_push = process_push.wait()
+            if code_push == 0:
+                slog(u"%s push %s 成功" % (sub_file, branch_name))
             else:
-                print "失败 > " + stderr
+                result_list.append(u"%s push %s 失败" % (sub_file, branch_name))
+
+    if len(result_list) > 0:
+        slog("-----------------")
+        for result in result_list:
+            slog(result)
+        slogr(False)
+    else:
+        slogr(True)
+
+
+def _git_delete_push(branch_name, sub_projects, local_list, push_list, is_push):
+    """
+    创建分支 or Tag
+    :param branch_name:
+    :param sub_projects:
+    :return:
+    """
+    result_list = []
+    for sub_file in sub_projects:
+        process_branch = subprocess.Popen(local_list, stderr=subprocess.PIPE,
+                                          stdout=subprocess.PIPE,
+                                          cwd=os.path.join(dir_current, sub_file))
+        code_check = process_branch.wait()
+        if code_check == 0:
+            slog(u"%s 删除 %s 成功" % (sub_file, branch_name))
+        else:
+            result_list.append(
+                u"%s 删除 %s 失败\n%s" % (sub_file, branch_name, process_branch.stderr.read()))
+
+        if is_push:
+            process_push = subprocess.Popen(push_list, stderr=subprocess.PIPE,
+                                            stdout=subprocess.PIPE,
+                                            cwd=os.path.join(dir_current, sub_file))
+            code_push = process_push.wait()
+            if code_push == 0:
+                slog(u"%s 删除远程 %s 成功" % (sub_file, branch_name))
+            else:
+                result_list.append(
+                    u"%s 删除远程 %s 失败\n%s" % (sub_file, branch_name, process_push.stderr.read()))
+
+    if len(result_list) > 0:
+        slog("-----------------")
+        for result in result_list:
+            slog(result)
+        slogr(False)
+    else:
+        slogr(True)
 
 
 def _git_branch(args):
-    """ TODO 创建分支
+    """ 创建分支
     """
     branch_name = args.name
+    is_delete = args.delete
     is_push = args.push
-    print "{0}-{1}".format(branch_name, is_push)
+
+    sub_projects = _git_projects()
+    if is_delete:
+        _git_delete_push(branch_name, sub_projects, ["git", "branch", "-d", branch_name],
+                         ["git", "push", "origin", ":" + branch_name], is_push)
+    else:
+        result_list = _git_check(branch_name, sub_projects, ["git", "branch", "-a"])
+        if len(result_list) > 0:
+            for mess in result_list:
+                slog(mess)
+            slogr(False)
+            return
+
+        slog(u"批量创建分支[%s]" % branch_name, loading=True)
+
+        _git_create_push(branch_name, sub_projects, ["git", "checkout", "-b", branch_name], is_push)
 
 
 def _git_tag(args):
-    """ TODO 创建tag
+    """ 创建tag
     """
+    is_delete = args.delete
     tag_name = args.name
     tag_message = args.message
     if not tag_message:
         tag_message = "tag at" + time.strftime(" %Y-%m-%d %H:%M:%S", time.localtime(time.time()))
-    print "{0}-{1}".format(tag_name, tag_message)
+
+    sub_projects = _git_projects()
+    if is_delete:
+        _git_delete_push(tag_name, sub_projects, ["git", "tag", "-d", tag_name],
+                         ["git", "push", "origin", ":refs/tags/" + tag_name], True)
+    else:
+        result_list = _git_check(tag_name, sub_projects, ["git", "tag"])
+        if len(result_list) > 0:
+            for mess in result_list:
+                slog(mess)
+            slogr(False)
+            return
+
+        slog(u"批量创建Tag[%s]" % tag_name, loading=True)
+
+        _git_create_push(tag_name, sub_projects, ["git", "tag", "-a", tag_name, "-m", tag_message],
+                         True)
 
 
 def _git_pull(args):
-    git_cmd("git pull")
+    cmd = "git pull"
+    sub_projects = _git_projects()
+    print ">>>>>>start to running<<<<<<"
+    for sub_file in sub_projects:
+        print ">>>>>>Run [git %s] at dir [%s]" % (cmd, sub_file)
+        os.chdir(os.path.join(dir_current, sub_file))
+        git_cmd = os.popen(cmd)
+        print git_cmd.read()
+    print ">>>>>>running stop<<<<<<"
 
 
 def _git_reset(args):
-    git_cmd("git reset --hard")
+    cmd = "git reset --hard"
+    sub_projects = _git_projects()
+    print ">>>>>>start to running<<<<<<"
+    for sub_file in sub_projects:
+        print ">>>>>>Run [git %s] at dir [%s]" % (cmd, sub_file)
+        os.chdir(os.path.join(dir_current, sub_file))
+        git_cmd = os.popen(cmd)
+        print git_cmd.read()
+    print ">>>>>>running stop<<<<<<"
 
 
 ###################################################################
 ### 主程序入口
 ###################################################################
+
+
 if __name__ == '__main__':
     """执行入口
     """
@@ -525,82 +703,88 @@ if __name__ == '__main__':
     if len(sys.argv) == 1:
         sys.argv.append('--help')
     # 创建命令行解析器
-    parser = argparse.ArgumentParser(prog="apkfly", description="国美workspace帮助工具",
+    parser = argparse.ArgumentParser(prog="apkfly", description=u"国美workspace帮助工具",
                                      epilog="make it easy!")
-    subparsers = parser.add_subparsers(title="可用命令")
+    subparsers = parser.add_subparsers(title=u"可用命令")
     subparsers.required = True
 
     # 添加子命令
 
     # 把workspace内所有的module配置到settings.gradle
-    parser_setting = subparsers.add_parser("setting", help="把workspace内所有的module配置到settings.gradle")
+    parser_setting = subparsers.add_parser("setting",
+                                           help=u"把workspace内所有的module配置到settings.gradle")
     parser_setting.set_defaults(func=_setting)
 
     # 提交gradle.properties到git服务器
-    parser_setting = subparsers.add_parser("pushprop", help="提交gradle.properties到git服务器")
+    parser_setting = subparsers.add_parser("pushprop", help=u"提交gradle.properties到git服务器")
     parser_setting.set_defaults(func=_push_prop)
-    parser_setting.add_argument('-m', type=str, help='push评论信息')
-    parser_setting.add_argument('-b', type=str, default='mergeDev', help='push 分支')
+    parser_setting.add_argument('-m', type=str, help=u'push评论信息')
+    parser_setting.add_argument('-b', type=str, default='mergeDev', help=u'push 分支')
 
     # 版本自增
-    parser_version = subparsers.add_parser("version", help="自增gradle.properties内的 aar 配置版本")
+    parser_version = subparsers.add_parser("version", help=u"自增gradle.properties内的 aar 配置版本")
     parser_version.set_defaults(func=_version_add)
     parser_version.add_argument('-s', "--start", type=str, default='AAR_GFRAME_VERSION',
-                                help='起始AAR版本【例：AAR_MFRAME2_VERSION】')
-    parser_version.add_argument('-e', "--end", type=str, default='AAR_MAPP_VERSION', help='终止AAR版本')
+                                help=u'起始AAR版本【例：AAR_MFRAME2_VERSION】')
+    parser_version.add_argument('-e', "--end", type=str, default='AAR_MAPP_VERSION',
+                                help=u'终止AAR版本')
     parser_version.add_argument('-i', "--index", type=int, default=2, choices=[1, 2, 3],
-                                help='自增版本索引【1大版本，2中间版本，3小版本】')
-    parser_version.add_argument('-v', '--value', type=int, help='版本，默认值')
+                                help=u'自增版本索引【1大版本，2中间版本，3小版本】')
+    parser_version.add_argument('-v', '--value', type=int, help=u'版本，默认值')
 
     # 批量编译module
-    parser_ar = subparsers.add_parser("ar", help="依次 编译 所有module")
+    parser_ar = subparsers.add_parser("ar", help=u"依次 编译 所有module")
     parser_ar.set_defaults(func=_ar)
-    parser_ar.add_argument('-s', "--start", type=str, help='执行起始点【项目名前三位，例：027】')
+    parser_ar.add_argument('-s', "--start", type=str, help=u'执行起始点【项目名前三位，例：027】')
 
     # 批量生成aar并提交至maven私服
     parser_upload = subparsers.add_parser("upload",
-                                          help="按module名称 数字排列顺序 依次 执行gradle uploadArchives")
+                                          help=u"按module名称 数字排列顺序 依次 执行gradle uploadArchives")
     parser_upload.set_defaults(func=_upload)
-    parser_upload.add_argument('-s', "--start", type=str, help='执行起始点【项目名前三位，例：027】')
+    parser_upload.add_argument('-s', "--start", type=str, help=u'执行起始点【项目名前三位，例：027】')
 
     # 分析项目依赖关系
-    parser_deps = subparsers.add_parser("deps", help="项目依赖关系分析")
+    parser_deps = subparsers.add_parser("deps", help=u"项目依赖关系分析")
     parser_deps.set_defaults(func=_deps)
-    parser_deps.add_argument("project", type=str, help='待分析依赖关系的项目名称')
+    parser_deps.add_argument("project", type=str, help=u'待分析依赖关系的项目名称')
 
     # 更新代码
-    parser_pull = subparsers.add_parser("pull", help="更新 项目代码")
+    parser_pull = subparsers.add_parser("pull", help=u"更新 项目代码")
     parser_pull.set_defaults(func=_git_pull)
 
     # reset
-    parser_reset = subparsers.add_parser("reset", help="重置 项目代码")
+    parser_reset = subparsers.add_parser("reset", help=u"重置 项目代码")
     parser_reset.set_defaults(func=_git_reset)
 
     # 克隆
-    parser_clone = subparsers.add_parser("clone", help="克隆子工程")
+    parser_clone = subparsers.add_parser("clone", help=u"克隆子工程")
     parser_clone.set_defaults(func=_git_clone)
-    parser_clone.add_argument("-o", "--order", help='对子项目进行排序', action='store_true', default=False)
-    parser_clone.add_argument("-a", "--allow_private", help='包含私有项目', action='store_true', default=False)
-    parser_clone.add_argument("-g", "--by_group", help='根据组进行克隆', action='append', default=[])
-    parser_clone.add_argument("-p", "--by_project", help='根据项目名进行克隆', action='append', default=[])
-    parser_clone.add_argument("-i", "--ignore_app", help='忽略App', action='store_true', default=False)
+    parser_clone.add_argument("-o", "--order", help=u'对子项目进行排序', action='store_true', default=False)
+    parser_clone.add_argument("-a", "--allow_private", help=u'包含私有项目', action='store_true',
+                              default=False)
+    parser_clone.add_argument("-g", "--by_group", help=u'根据组进行克隆', action='append', default=[])
+    parser_clone.add_argument("-p", "--by_project", help=u'根据项目名进行克隆', action='append', default=[])
+    parser_clone.add_argument("-i", "--ignore_app", help=u'忽略App', action='store_true',
+                              default=False)
 
     # 创建branch
-    parser_clone = subparsers.add_parser("branch", help="创建分支")
-    parser_clone.set_defaults(func=_git_branch)
-    parser_clone.add_argument("name", help='分支名称', action='store')
-    parser_clone.add_argument("-p", "--push", help='是否推送到服务器', action='store_true', default=False)
+    parser_branch = subparsers.add_parser("branch", help=u"创建分支")
+    parser_branch.set_defaults(func=_git_branch)
+    parser_branch.add_argument("name", help=u'分支名称', action='store')
+    parser_branch.add_argument("-p", "--push", help=u'是否推送到服务器', action='store_true', default=False)
+    parser_branch.add_argument("-d", "--delete", help=u'删除分支', action='store_true', default=False)
 
     # 创建tag
-    parser_clone = subparsers.add_parser("tag", help="打tag")
-    parser_clone.set_defaults(func=_git_tag)
-    parser_clone.add_argument("name", help='tag名称', action='store')
-    parser_clone.add_argument("-m", "--message", help='评论信息', action='store')
+    parser_tag = subparsers.add_parser("tag", help=u"打tag")
+    parser_tag.set_defaults(func=_git_tag)
+    parser_tag.add_argument("name", help=u'tag名称', action='store')
+    parser_tag.add_argument("-m", "--message", help=u'评论信息', action='store')
+    parser_tag.add_argument("-d", "--delete", help=u'删除分支', action='store_true', default=False)
 
     # 仅用于Jenkins更新构建源码
-    parser_apk = subparsers.add_parser("serv-update", help="打包for jenkins")
+    parser_apk = subparsers.add_parser("serv-update", help=u"打包for jenkins")
     parser_apk.set_defaults(func=_update_project)
-    parser_apk.add_argument('-m', "--main", type=str, default='GomePlus', help='主工程')
+    parser_apk.add_argument('-m', "--main", type=str, default='GomePlus', help=u'主工程')
 
     # 参数解析
     args = parser.parse_args()
