@@ -61,6 +61,11 @@ task clean(type: Delete) {
 }
 
 ext.deps = [
+        SRecyclerview: 'com.android.support:recyclerview-v7:23.2.1',
+        SAppcompat: 'com.android.support:appcompat-v7:23.2.1',
+        SDesign: 'com.android.support:design:23.2.1',
+        SPercent: 'com.android.support:percent:23.0.1',
+
         GSafekeyboard: 'com.bangcle:safeKeyboard:1.0.5',
         GSecret: 'com.gome.ecmall:secret:'+getProperty('AAR_GSECRET_VERSION')+'@aar',
         GBuildConfig: 'com.gome.ecmall:buildconfig:'+getProperty('AAR_GCONFIG_VERSION'),
