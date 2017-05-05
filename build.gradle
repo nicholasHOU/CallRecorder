@@ -105,7 +105,7 @@ ext.deps = [
         MCommon: rootProject.ext.proDeps ? project(':MCommon') :'com.gome.ecmall:mcommon:'+getProperty('AAR_MCOMMON_VERSION')+'@aar',
         MWidget: rootProject.ext.proDeps ? project(':MWidget') :'com.gome.ecmall:mwidget:'+getProperty('AAR_MWIDGET_VERSION')+'@aar',
         MShare: rootProject.ext.proDeps ? project(':MShare') :'com.gome.ecmall:mshare:'+getProperty('AAR_MSHARE_VERSION')+'@aar',
-        MMeixinpay: rootProject.ext.proDeps ? project(':MMeixinpay') :'com.gome.ecmall:mpay:'+getProperty('AAR_MPAY_VERSION')+'@aar',
+//        MMeixinpay: rootProject.ext.proDeps ? project(':MMeixinpay') :'com.gome.ecmall:mpay:'+getProperty('AAR_MPAY_VERSION')+'@aar',
         MMeixinplayer:rootProject.ext.proDeps ? project(':MMeixinplayer') : 'com.gome.ecmall:mplayer:'+getProperty('AAR_MPLAYER_VERSION')+'@aar',
         MCore: rootProject.ext.proDeps ? project(':MCore') :'com.gome.ecmall:mcore:'+getProperty('AAR_MCORE_VERSION')+'@aar',
         MApp:rootProject.ext.proDeps ? project(':MApp') : 'com.gome.ecmall:mapp:' + getProperty('AAR_MAPP_VERSION') + '@aar'
@@ -164,7 +164,7 @@ git {
     url "git@gitlab.ds.gome.com.cn:mobile-android-business/MCommon.git", "mergeDev"
     url "git@gitlab.ds.gome.com.cn:mobile-android-business/MWidget.git", "mergeDev"
     url "git@gitlab.ds.gome.com.cn:mobile-android-business/MShare.git", "mergeDev"
-    url "git@gitlab.ds.gome.com.cn:mobile-android-business/MMeixinpay.git", "mergeDev"
+//    url "git@gitlab.ds.gome.com.cn:mobile-android-business/MMeixinpay.git", "mergeDev"
     url "git@gitlab.ds.gome.com.cn:mobile-android-business/MMeixinplayer.git", "mergeDev"
     url "git@gitlab.ds.gome.com.cn:mobile-android-business/MCore.git", "mergeDev"
 //    //---------
