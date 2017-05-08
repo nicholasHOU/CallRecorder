@@ -106,7 +106,7 @@ ext.deps = [
         MFramework2: rootProject.ext.proDeps ? project(':MFramework2') :  'com.gome.ecmall:mframe2:'+getProperty('AAR_MFRAME2_VERSION')+'@aar',
         MStatistics: rootProject.ext.proDeps ? project(':MStatistics') :'com.gome.ecmall:mstatistics:'+getProperty('AAR_MSTATISTICS_VERSION')+'@aar',
         MSelectPhoto: rootProject.ext.proDeps ? project(':MSelectPhoto') :'com.gome.ecmall:mselectphoto:'+getProperty('AAR_MSELECT_PHOTO_VERSION')+'@aar',
-        MRouter:rootProject.ext.proDeps ? project(':MRouter') : 'com.gome.ecmall:mrouter:'+getProperty('AAR_MROUTER_VERSION')+'@aar',
+//        MRouter:rootProject.ext.proDeps ? project(':MRouter') : 'com.gome.ecmall:mrouter:'+getProperty('AAR_MROUTER_VERSION')+'@aar',
         MCommon: rootProject.ext.proDeps ? project(':MCommon') :'com.gome.ecmall:mcommon:'+getProperty('AAR_MCOMMON_VERSION')+'@aar',
         MWidget: rootProject.ext.proDeps ? project(':MWidget') :'com.gome.ecmall:mwidget:'+getProperty('AAR_MWIDGET_VERSION')+'@aar',
         MShare: rootProject.ext.proDeps ? project(':MShare') :'com.gome.ecmall:mshare:'+getProperty('AAR_MSHARE_VERSION')+'@aar',
@@ -165,7 +165,7 @@ git {
     url "git@gitlab.ds.gome.com.cn:mobile-android-business/MFramework2.git", "mergeDev"
     url "git@gitlab.ds.gome.com.cn:mobile-android-business/MStatistics.git", "mergeDev"
     url "git@gitlab.ds.gome.com.cn:mobile-android-business/MSelectPhoto.git", "mergeDev"
-    url "git@gitlab.ds.gome.com.cn:mobile-android-business/MRouter.git", "mergeDev"
+//    url "git@gitlab.ds.gome.com.cn:mobile-android-business/MRouter.git", "mergeDev"
     url "git@gitlab.ds.gome.com.cn:mobile-android-business/MCommon.git", "mergeDev"
     url "git@gitlab.ds.gome.com.cn:mobile-android-business/MWidget.git", "mergeDev"
     url "git@gitlab.ds.gome.com.cn:mobile-android-business/MShare.git", "mergeDev"
