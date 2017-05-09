@@ -61,7 +61,12 @@ task clean(type: Delete) {
 }
 
 ext.deps = [
-        GSafekeyboard: 'com.bangcle:safeKeyboard:1.0.5',
+        SRecyclerview: 'com.android.support:recyclerview-v7:23.2.1',
+        SAppcompat: 'com.android.support:appcompat-v7:23.2.1',
+        SDesign: 'com.android.support:design:23.2.1',
+        SPercent: 'com.android.support:percent:23.0.1',
+
+        GSafekeyboard: 'com.bangcle:safeKeyboard:1.0.6',
         GSecret: 'com.gome.ecmall:secret:'+getProperty('AAR_GSECRET_VERSION')+'@aar',
         GBuildConfig: 'com.gome.ecmall:buildconfig:'+getProperty('AAR_GCONFIG_VERSION'),
         GPlugin: '',
@@ -73,7 +78,7 @@ ext.deps = [
         GWidget: rootProject.ext.proDeps ? project(':GWidget'):'com.gome.ecmall:widget:'+getProperty('AAR_GWIDGET_VERSION')+'@aar',
         GCore: rootProject.ext.proDeps ? project(':GCore'):'com.gome.ecmall:core:'+getProperty('AAR_GCORE_VERSION')+'@aar',
         GPush: rootProject.ext.proDeps ? project(':GPush'):'com.gome.ecmall:push:'+getProperty('AAR_GPUSH_VERSION')+'@aar',
-        GShare: rootProject.ext.proDeps ? project(':GShare'):'com.gome.ecmall:share:'+getProperty('AAR_GSHARE_VERSION')+'@aar',
+//        GShare: rootProject.ext.proDeps ? project(':GShare'):'com.gome.ecmall:share:'+getProperty('AAR_GSHARE_VERSION')+'@aar',
         GLogin: rootProject.ext.proDeps ? project(':GLogin'):'com.gome.ecmall:login:'+getProperty('AAR_GLOGIN_VERSION')+'@aar',
         GPullrefresh:rootProject.ext.proDeps ? project(':GPullrefresh'): 'com.gome.ecmall:pullrefresh:'+getProperty('AAR_GPULLREFRESH_VERSION')+'@aar',
         GUpdate: rootProject.ext.proDeps ? project(':GUpdate'):'com.gome.ecmall:update:'+getProperty('AAR_GUPDATE_VERSION')+'@aar',
@@ -97,19 +102,17 @@ ext.deps = [
         GZxingScan: rootProject.ext.proDeps ? project(':GZxingScan'):'com.gome.ecmall:gzxing:' + getProperty('AAR_GZING_VERSION') + '@aar',
         GGomeCurrency:rootProject.ext.proDeps ? project(':GGomeCurrency'): 'com.gome.ecmall:ggomecurrency:' + getProperty('AAR_GGOMECURRENCY_VERSION') + '@aar',
 
-        MPulltorefresh: rootProject.ext.proDeps ? project(':MPulltorefresh') : 'com.gome.ecmall:mpulltorefresh:'+getProperty('AAR_MPULLTOREFRESH_VERSION')+'@aar',
-        MFramework2: rootProject.ext.proDeps ? project(':MFramework2') :  'com.gome.ecmall:mframe2:'+getProperty('AAR_MFRAME2_VERSION')+'@aar',
-        MPtrlib: rootProject.ext.proDeps ? project(':MPtrlib') : 'com.gome.ecmall:mptrlib:'+getProperty('AAR_MPTRLIB_VERSION')+'@aar',
-        MPtrrecyclerView: rootProject.ext.proDeps ? project(':MPtrrecyclerView') : 'com.gome.ecmall:mptrrecycler:'+getProperty('AAR_MPTR_RECYCLER_VIEW_VERSION')+'@aar',
-        MStatistics: rootProject.ext.proDeps ? project(':MStatistics') :'com.gome.ecmall:mstatistics:'+getProperty('AAR_MSTATISTICS_VERSION')+'@aar',
+//        MPulltorefresh: rootProject.ext.proDeps ? project(':MPulltorefresh') : 'com.gome.ecmall:mpulltorefresh:'+getProperty('AAR_MPULLTOREFRESH_VERSION')+'@aar',
+//        MFramework2: rootProject.ext.proDeps ? project(':MFramework2') :  'com.gome.ecmall:mframe2:'+getProperty('AAR_MFRAME2_VERSION')+'@aar',
+//        MStatistics: rootProject.ext.proDeps ? project(':MStatistics') :'com.gome.ecmall:mstatistics:'+getProperty('AAR_MSTATISTICS_VERSION')+'@aar',
         MSelectPhoto: rootProject.ext.proDeps ? project(':MSelectPhoto') :'com.gome.ecmall:mselectphoto:'+getProperty('AAR_MSELECT_PHOTO_VERSION')+'@aar',
-        MRouter:rootProject.ext.proDeps ? project(':MRouter') : 'com.gome.ecmall:mrouter:'+getProperty('AAR_MROUTER_VERSION')+'@aar',
+//        MRouter:rootProject.ext.proDeps ? project(':MRouter') : 'com.gome.ecmall:mrouter:'+getProperty('AAR_MROUTER_VERSION')+'@aar',
         MCommon: rootProject.ext.proDeps ? project(':MCommon') :'com.gome.ecmall:mcommon:'+getProperty('AAR_MCOMMON_VERSION')+'@aar',
         MWidget: rootProject.ext.proDeps ? project(':MWidget') :'com.gome.ecmall:mwidget:'+getProperty('AAR_MWIDGET_VERSION')+'@aar',
         MShare: rootProject.ext.proDeps ? project(':MShare') :'com.gome.ecmall:mshare:'+getProperty('AAR_MSHARE_VERSION')+'@aar',
-        MMeixinpay: rootProject.ext.proDeps ? project(':MMeixinpay') :'com.gome.ecmall:mpay:'+getProperty('AAR_MPAY_VERSION')+'@aar',
+//        MMeixinpay: rootProject.ext.proDeps ? project(':MMeixinpay') :'com.gome.ecmall:mpay:'+getProperty('AAR_MPAY_VERSION')+'@aar',
         MMeixinplayer:rootProject.ext.proDeps ? project(':MMeixinplayer') : 'com.gome.ecmall:mplayer:'+getProperty('AAR_MPLAYER_VERSION')+'@aar',
-        MCore: rootProject.ext.proDeps ? project(':MCore') :'com.gome.ecmall:mcore:'+getProperty('AAR_MCORE_VERSION')+'@aar',
+//        MCore: rootProject.ext.proDeps ? project(':MCore') :'com.gome.ecmall:mcore:'+getProperty('AAR_MCORE_VERSION')+'@aar',
         MApp:rootProject.ext.proDeps ? project(':MApp') : 'com.gome.ecmall:mapp:' + getProperty('AAR_MAPP_VERSION') + '@aar'
 ]
 
@@ -129,12 +132,13 @@ git {
     //url "git@gitlab.ds.gome.com.cn:mobile-android-common/GPatch.git", "master"
     //url "git@gitlab.ds.gome.com.cn:mobile-android-common/GTheme.git", "mergeDev"
     //url "git@gitlab.ds.gome.com.cn:mobile-android-business/MImlibrary.git", "mergeDev"
+    //url "git@gitlab.ds.gome.com.cn:mobile-android-business/MSelectPhoto.git", "mergeDev"
 
     url "git@gitlab.ds.gome.com.cn:mobile-android-common/GFrame.git", "mergeDev"
     url "git@gitlab.ds.gome.com.cn:mobile-android-business/GWidget.git", "mergeDev"
     url "git@gitlab.ds.gome.com.cn:mobile-android-common/GCore.git", "mergeDev"
     url "git@gitlab.ds.gome.com.cn:mobile-android-common/GPush.git", "mergeDev"
-    url "git@gitlab.ds.gome.com.cn:mobile-android-business/GShare.git", "mergeDev"
+//    url "git@gitlab.ds.gome.com.cn:mobile-android-business/GShare.git", "mergeDev"
     url "git@gitlab.ds.gome.com.cn:mobile-android-business/GLogin.git", "mergeDev"
     url "git@gitlab.ds.gome.com.cn:mobile-android-business/GPullrefresh.git", "mergeDev"
     url "git@gitlab.ds.gome.com.cn:mobile-android-common/GUpdate.git", "mergeDev"
@@ -158,19 +162,16 @@ git {
     url "git@gitlab.ds.gome.com.cn:mobile-android-common/GHotfix.git", "mergeDev"
     url "git@gitlab.ds.gome.com.cn:mobile-android-business/GZxingScan.git", "mergeDev"
 //    //--------
-    url "git@gitlab.ds.gome.com.cn:mobile-android-business/MPulltorefresh.git", "mergeDev"
-    url "git@gitlab.ds.gome.com.cn:mobile-android-business/MFramework2.git", "mergeDev"
-    url "git@gitlab.ds.gome.com.cn:mobile-android-business/MPtrlib.git", "mergeDev"
-    url "git@gitlab.ds.gome.com.cn:mobile-android-business/MPtrrecyclerView.git", "mergeDev"
-    url "git@gitlab.ds.gome.com.cn:mobile-android-business/MStatistics.git", "mergeDev"
-    url "git@gitlab.ds.gome.com.cn:mobile-android-business/MSelectPhoto.git", "mergeDev"
-    url "git@gitlab.ds.gome.com.cn:mobile-android-business/MRouter.git", "mergeDev"
+//    url "git@gitlab.ds.gome.com.cn:mobile-android-business/MPulltorefresh.git", "mergeDev"
+//    url "git@gitlab.ds.gome.com.cn:mobile-android-business/MFramework2.git", "mergeDev"
+//    url "git@gitlab.ds.gome.com.cn:mobile-android-business/MStatistics.git", "mergeDev"
+//    url "git@gitlab.ds.gome.com.cn:mobile-android-business/MRouter.git", "mergeDev"
     url "git@gitlab.ds.gome.com.cn:mobile-android-business/MCommon.git", "mergeDev"
     url "git@gitlab.ds.gome.com.cn:mobile-android-business/MWidget.git", "mergeDev"
+//    url "git@gitlab.ds.gome.com.cn:mobile-android-business/MCore.git", "mergeDev"
     url "git@gitlab.ds.gome.com.cn:mobile-android-business/MShare.git", "mergeDev"
-    url "git@gitlab.ds.gome.com.cn:mobile-android-business/MMeixinpay.git", "mergeDev"
+//    url "git@gitlab.ds.gome.com.cn:mobile-android-business/MMeixinpay.git", "mergeDev"
     url "git@gitlab.ds.gome.com.cn:mobile-android-business/MMeixinplayer.git", "mergeDev"
-    url "git@gitlab.ds.gome.com.cn:mobile-android-business/MCore.git", "mergeDev"
 //    //---------
     url "git@gitlab.ds.gome.com.cn:mobile-android-business/MApp.git", "mergeDev"
     //---------
