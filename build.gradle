@@ -75,8 +75,8 @@ ext.deps = [
         MImlibrary: 'com.gome.ecmall:mim:'+getProperty('AAR_MIM_VERSION')+'@aar',
 
         GFrame: rootProject.ext.proDeps ? project(':GFrame') :'com.gome.ecmall:frame:'+getProperty('AAR_GFRAME_VERSION')+'@aar',
-        GWidget: rootProject.ext.proDeps ? project(':GWidget'):'com.gome.ecmall:widget:'+getProperty('AAR_GWIDGET_VERSION')+'@aar',
         GCore: rootProject.ext.proDeps ? project(':GCore'):'com.gome.ecmall:core:'+getProperty('AAR_GCORE_VERSION')+'@aar',
+        GWidget: rootProject.ext.proDeps ? project(':GWidget'):'com.gome.ecmall:widget:'+getProperty('AAR_GWIDGET_VERSION')+'@aar',
         GPush: rootProject.ext.proDeps ? project(':GPush'):'com.gome.ecmall:push:'+getProperty('AAR_GPUSH_VERSION')+'@aar',
 //        GShare: rootProject.ext.proDeps ? project(':GShare'):'com.gome.ecmall:share:'+getProperty('AAR_GSHARE_VERSION')+'@aar',
         GLogin: rootProject.ext.proDeps ? project(':GLogin'):'com.gome.ecmall:login:'+getProperty('AAR_GLOGIN_VERSION')+'@aar',
@@ -135,8 +135,8 @@ git {
     //url "git@gitlab.ds.gome.com.cn:mobile-android-business/MSelectPhoto.git", "mergeDev"
 
     url "git@gitlab.ds.gome.com.cn:mobile-android-common/GFrame.git", "mergeDev"
-    url "git@gitlab.ds.gome.com.cn:mobile-android-business/GWidget.git", "mergeDev"
     url "git@gitlab.ds.gome.com.cn:mobile-android-common/GCore.git", "mergeDev"
+    url "git@gitlab.ds.gome.com.cn:mobile-android-business/GWidget.git", "mergeDev"
     url "git@gitlab.ds.gome.com.cn:mobile-android-common/GPush.git", "mergeDev"
 //    url "git@gitlab.ds.gome.com.cn:mobile-android-business/GShare.git", "mergeDev"
     url "git@gitlab.ds.gome.com.cn:mobile-android-business/GLogin.git", "mergeDev"
