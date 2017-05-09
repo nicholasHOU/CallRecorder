@@ -132,6 +132,7 @@ git {
     //url "git@gitlab.ds.gome.com.cn:mobile-android-common/GPatch.git", "master"
     //url "git@gitlab.ds.gome.com.cn:mobile-android-common/GTheme.git", "mergeDev"
     //url "git@gitlab.ds.gome.com.cn:mobile-android-business/MImlibrary.git", "mergeDev"
+    //url "git@gitlab.ds.gome.com.cn:mobile-android-business/MSelectPhoto.git", "mergeDev"
 
     url "git@gitlab.ds.gome.com.cn:mobile-android-common/GFrame.git", "mergeDev"
     url "git@gitlab.ds.gome.com.cn:mobile-android-business/GWidget.git", "mergeDev"
@@ -164,7 +165,6 @@ git {
 //    url "git@gitlab.ds.gome.com.cn:mobile-android-business/MPulltorefresh.git", "mergeDev"
 //    url "git@gitlab.ds.gome.com.cn:mobile-android-business/MFramework2.git", "mergeDev"
 //    url "git@gitlab.ds.gome.com.cn:mobile-android-business/MStatistics.git", "mergeDev"
-    url "git@gitlab.ds.gome.com.cn:mobile-android-business/MSelectPhoto.git", "mergeDev"
 //    url "git@gitlab.ds.gome.com.cn:mobile-android-business/MRouter.git", "mergeDev"
     url "git@gitlab.ds.gome.com.cn:mobile-android-business/MCommon.git", "mergeDev"
     url "git@gitlab.ds.gome.com.cn:mobile-android-business/MWidget.git", "mergeDev"
