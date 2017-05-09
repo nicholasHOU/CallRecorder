@@ -102,7 +102,7 @@ ext.deps = [
         GZxingScan: rootProject.ext.proDeps ? project(':GZxingScan'):'com.gome.ecmall:gzxing:' + getProperty('AAR_GZING_VERSION') + '@aar',
         GGomeCurrency:rootProject.ext.proDeps ? project(':GGomeCurrency'): 'com.gome.ecmall:ggomecurrency:' + getProperty('AAR_GGOMECURRENCY_VERSION') + '@aar',
 
-        MPulltorefresh: rootProject.ext.proDeps ? project(':MPulltorefresh') : 'com.gome.ecmall:mpulltorefresh:'+getProperty('AAR_MPULLTOREFRESH_VERSION')+'@aar',
+//        MPulltorefresh: rootProject.ext.proDeps ? project(':MPulltorefresh') : 'com.gome.ecmall:mpulltorefresh:'+getProperty('AAR_MPULLTOREFRESH_VERSION')+'@aar',
 //        MFramework2: rootProject.ext.proDeps ? project(':MFramework2') :  'com.gome.ecmall:mframe2:'+getProperty('AAR_MFRAME2_VERSION')+'@aar',
 //        MStatistics: rootProject.ext.proDeps ? project(':MStatistics') :'com.gome.ecmall:mstatistics:'+getProperty('AAR_MSTATISTICS_VERSION')+'@aar',
         MSelectPhoto: rootProject.ext.proDeps ? project(':MSelectPhoto') :'com.gome.ecmall:mselectphoto:'+getProperty('AAR_MSELECT_PHOTO_VERSION')+'@aar',
@@ -161,7 +161,7 @@ git {
     url "git@gitlab.ds.gome.com.cn:mobile-android-common/GHotfix.git", "mergeDev"
     url "git@gitlab.ds.gome.com.cn:mobile-android-business/GZxingScan.git", "mergeDev"
 //    //--------
-    url "git@gitlab.ds.gome.com.cn:mobile-android-business/MPulltorefresh.git", "mergeDev"
+//    url "git@gitlab.ds.gome.com.cn:mobile-android-business/MPulltorefresh.git", "mergeDev"
 //    url "git@gitlab.ds.gome.com.cn:mobile-android-business/MFramework2.git", "mergeDev"
 //    url "git@gitlab.ds.gome.com.cn:mobile-android-business/MStatistics.git", "mergeDev"
     url "git@gitlab.ds.gome.com.cn:mobile-android-business/MSelectPhoto.git", "mergeDev"
