@@ -168,10 +168,10 @@ git {
 //    url "git@gitlab.ds.gome.com.cn:mobile-android-business/MRouter.git", "mergeDev"
     url "git@gitlab.ds.gome.com.cn:mobile-android-business/MCommon.git", "mergeDev"
     url "git@gitlab.ds.gome.com.cn:mobile-android-business/MWidget.git", "mergeDev"
+    url "git@gitlab.ds.gome.com.cn:mobile-android-business/MCore.git", "mergeDev"
     url "git@gitlab.ds.gome.com.cn:mobile-android-business/MShare.git", "mergeDev"
 //    url "git@gitlab.ds.gome.com.cn:mobile-android-business/MMeixinpay.git", "mergeDev"
     url "git@gitlab.ds.gome.com.cn:mobile-android-business/MMeixinplayer.git", "mergeDev"
-    url "git@gitlab.ds.gome.com.cn:mobile-android-business/MCore.git", "mergeDev"
 //    //---------
     url "git@gitlab.ds.gome.com.cn:mobile-android-business/MApp.git", "mergeDev"
     //---------
