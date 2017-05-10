@@ -121,7 +121,7 @@ ext.deps = [
 apply plugin: 'com.gutils.apkfly.git'
 
 git {
-    order false
+    order true
     cleanTest false
     //url "git@gitlab.ds.gome.com.cn:mobile-android-admin/buildsrc.git", "dev"
     //url "git@gitlab.ds.gome.com.cn:mobile-android/GWorkspace.git", "master"
