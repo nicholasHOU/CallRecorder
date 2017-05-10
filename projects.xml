@@ -10,12 +10,12 @@
     <project url="mobile-android-common/GPatch.git" branch="master" groups="private"/>
     <project url="mobile-android-common/GTheme.git" groups="private"/>
     <project url="mobile-android-business/MImlibrary.git" groups="private"/>
+    <project url="mobile-android-business/MSelectPhoto.git" groups="private"/>
     <!--G工程-->
     <project url="mobile-android-common/GFrame.git"/>
-    <project url="mobile-android-business/GWidget.git"/>
     <project url="mobile-android-common/GCore.git"/>
+    <project url="mobile-android-business/GWidget.git"/>
     <project url="mobile-android-common/GPush.git"/>
-    <project url="mobile-android-business/GShare.git"/>
     <project url="mobile-android-business/GLogin.git"/>
     <project url="mobile-android-business/GPullrefresh.git"/>
     <project url="mobile-android-common/GUpdate.git"/>
@@ -38,19 +38,10 @@
     <project url="mobile-android-common/GHotfix.git"/>
     <project url="mobile-android-business/GZxingScan.git"/>
     <!--M工程-->
-    <project url="mobile-android-business/MPulltorefresh.git"/>
-    <project url="mobile-android-business/MFramework2.git"/>
-    <project url="mobile-android-business/MPtrlib.git"/>
-    <project url="mobile-android-business/MPtrrecyclerView.git"/>
-    <project url="mobile-android-business/MStatistics.git"/>
-    <project url="mobile-android-business/MSelectPhoto.git"/>
-    <project url="mobile-android-business/MRouter.git"/>
     <project url="mobile-android-business/MCommon.git"/>
     <project url="mobile-android-business/MWidget.git"/>
     <project url="mobile-android-business/MShare.git"/>
-    <project url="mobile-android-business/MMeixinpay.git"/>
     <project url="mobile-android-business/MMeixinplayer.git"/>
-    <project url="mobile-android-business/MCore.git"/>
     <!--MApp工程-->
     <project url="mobile-android-business/MApp.git" groups="app"/>
     <!--主工程-->
