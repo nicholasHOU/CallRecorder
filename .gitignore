@@ -10,6 +10,7 @@
 /captures
 *.iml
 .gradle
+.idea
 
 /0*
 /G*
