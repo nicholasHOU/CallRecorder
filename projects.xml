@@ -1,50 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest host="git@gitlab.ds.gome.com.cn:" branch="mergeDev">
     <!--私有工程-->
-    <project url="mobile-android-admin/buildsrc.git" branch="master" groups="private"/>
-    <project url="mobile-android/GWorkspace.git" groups="private"/>
-    <project url="mobile-android-admin/GSafekeyboard.git" groups="private"/>
-    <project url="mobile-android-admin/GSecret.git" branch="master" groups="private"/>
-    <project url="mobile-android-common/GBuildConfig.git" branch="master" groups="private"/>
-    <project url="mobile-android-common/GPlugin.git" branch="master" groups="private"/>
-    <project url="mobile-android-common/GPatch.git" branch="master" groups="private"/>
-    <project url="mobile-android-common/GTheme.git" groups="private"/>
-    <project url="mobile-android-business/MImlibrary.git" groups="private"/>
-    <project url="mobile-android-business/MSelectPhoto.git" groups="private"/>
+    <project url="git@gitlab.ds.gome.com.cn:mobile-android-admin/buildsrc.git" branch="master" groups="private"/>
+    <project url="git@gitlab.ds.gome.com.cn:mobile-android/GWorkspace.git" groups="private"/>
+    <project url="git@gitlab.ds.gome.com.cn:mobile-android-admin/GSafekeyboard.git" groups="private"/>
+    <project url="git@gitlab.ds.gome.com.cn:mobile-android-admin/GSecret.git" branch="master" groups="private"/>
+    <project url="git@gitlab.ds.gome.com.cn:mobile-android-common/GBuildConfig.git" branch="master" groups="private"/>
+    <project url="git@gitlab.ds.gome.com.cn:mobile-android-common/GPlugin.git" branch="master" groups="private"/>
+    <project url="git@gitlab.ds.gome.com.cn:mobile-android-common/GPatch.git" branch="master" groups="private"/>
+    <project url="git@gitlab.ds.gome.com.cn:mobile-android-common/GTheme.git" groups="private"/>
+    <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/MImlibrary.git" groups="private"/>
+    <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/MSelectPhoto.git" groups="private"/>
     <!--G工程-->
-    <project url="mobile-android-common/GFrame.git"/>
-    <project url="mobile-android-common/GCore.git"/>
-    <project url="mobile-android-business/GWidget.git"/>
-    <project url="mobile-android-common/GPush.git"/>
-    <project url="mobile-android-business/GLogin.git"/>
-    <project url="mobile-android-business/GPullrefresh.git"/>
-    <project url="mobile-android-common/GUpdate.git"/>
-    <project url="mobile-android-business/GCmbPay.git"/>
-    <project url="mobile-android-common/GTongBaoSdk.git"/>
-    <project url="mobile-android-business/GBusiness.git"/>
-    <project url="mobile-android-business/GGomeCurrency.git"/>
-    <project url="mobile-android-business/GIm.git"/>
-    <project url="mobile-android-common/GHybrid.git"/>
-    <project url="mobile-android-business/GFinanceCommon.git"/>
-    <project url="mobile-android-business/GFinance.git"/>
-    <project url="mobile-android-business/GMeiyingbao.git"/>
-    <project url="mobile-android-business/GPhoneRecharge.git"/>
-    <project url="mobile-android-business/GMovie.git"/>
-    <project url="mobile-android-business/GStoreSearch.git"/>
-    <project url="mobile-android-business/GReturn.git"/>
-    <project url="mobile-android-business/GMaterialOrder.git"/>
-    <project url="mobile-android-business/GProductDetail.git"/>
-    <project url="mobile-android-business/GTQDetail.git"/>
-    <project url="mobile-android-common/GHotfix.git"/>
-    <project url="mobile-android-business/GZxingScan.git"/>
+    <project url="git@gitlab.ds.gome.com.cn:mobile-android-common/GFrame.git"/>
+    <project url="git@gitlab.ds.gome.com.cn:mobile-android-common/GCore.git"/>
+    <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/GWidget.git"/>
+    <project url="git@gitlab.ds.gome.com.cn:mobile-android-common/GPush.git"/>
+    <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/GLogin.git"/>
+    <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/GPullrefresh.git"/>
+    <project url="git@gitlab.ds.gome.com.cn:mobile-android-common/GUpdate.git"/>
+    <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/GCmbPay.git"/>
+    <project url="git@gitlab.ds.gome.com.cn:mobile-android-common/GTongBaoSdk.git"/>
+    <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/GBusiness.git"/>
+    <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/GGomeCurrency.git"/>
+    <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/GIm.git"/>
+    <project url="git@gitlab.ds.gome.com.cn:mobile-android-common/GHybrid.git"/>
+    <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/GFinanceCommon.git"/>
+    <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/GFinance.git"/>
+    <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/GMeiyingbao.git"/>
+    <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/GPhoneRecharge.git"/>
+    <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/GMovie.git"/>
+    <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/GStoreSearch.git"/>
+    <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/GReturn.git"/>
+    <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/GMaterialOrder.git"/>
+    <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/GProductDetail.git"/>
+    <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/GTQDetail.git"/>
+    <project url="git@gitlab.ds.gome.com.cn:mobile-android-common/GHotfix.git"/>
+    <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/GZxingScan.git"/>
     <!--M工程-->
-    <project url="mobile-android-business/MCommon.git"/>
-    <project url="mobile-android-business/MWidget.git"/>
-    <project url="mobile-android-business/MShare.git"/>
-    <project url="mobile-android-business/MMeixinplayer.git"/>
+    <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/MCommon.git"/>
+    <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/MWidget.git"/>
+    <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/MShare.git"/>
+    <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/MMeixinplayer.git"/>
     <!--MApp工程-->
-    <project url="mobile-android-business/MApp.git" groups="app"/>
+    <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/MApp.git" groups="app"/>
     <!--主工程-->
-    <project url="mobile-android/GomePlus.git" path="GomeApp" app="true"
+    <project url="git@gitlab.ds.gome.com.cn:mobile-android/GomePlus.git" path="GomeApp" app="true"
              groups="app"/>
 </manifest>
