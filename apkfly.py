@@ -24,7 +24,6 @@ dir_current = os.path.abspath(".")
 file_settings = os.path.join(dir_current, "settings.gradle")
 file_build = os.path.join(dir_current, file_build_gradle)
 dir_build = os.path.join(dir_current, "build")
-file_temp = os.path.join(dir_build, "apkfly-temp.txt")
 
 # , filename='sync.log', filemode='a'
 logging.basicConfig(level=logging.DEBUG,
@@ -78,24 +77,6 @@ def check_sub_project(sub_project, is_formate):
 ###################################################################
 ### 批量执行子项目命令
 ###################################################################
-def _read_temp():
-    """读取临时文件
-    """
-    temp_list = []
-    if os.path.exists(file_temp):
-        with open(file_temp, "r") as temp_file:
-            temp_content = temp_file.read()
-            temp_list = temp_content.split(",")
-    return temp_list
-
-
-def _write_temp(temp_list):
-    """写入临时文件
-    """
-    with open(file_temp, "w") as temp_file:
-        temp_file.write(','.join(temp_list))
-
-
 def exec_sub_project(cmd, args):
     """批量执行子项目命令【gradle】
     """
@@ -103,9 +84,8 @@ def exec_sub_project(cmd, args):
 
     print ">>>>>>start to running<<<<<<"
     start_project = args.start
+    only = args.only
     start_flag = False
-    temp_list = _read_temp()
-    run_flag = True
     sub_file_list = [x for x in os.listdir(dir_current) if
                      check_sub_project(x, True)]
     # 按文件名排序
@@ -116,8 +96,12 @@ def exec_sub_project(cmd, args):
                 start_flag = True
         else:
             start_flag = True
-        if sub_file in temp_list or not start_flag:
+        # 中断
+        if not start_flag:
             continue
+        # 是否只执行一个子项目
+        if only:
+            start_flag = False
         print ">>>Running project:%s" % sub_file
         # 在settings.gradle 配置子项目
         with open(file_settings, "w") as setting:
@@ -130,17 +114,9 @@ def exec_sub_project(cmd, args):
         print cmd_result
         if cmd_result.find("BUILD SUCCESSFUL") != -1:
             print ">>>Success project:%s" % sub_file
-            temp_list.append(sub_file)
         else:
             print ">>>Error project:%s" % sub_file
-            run_flag = False
             break
-    # 运行成功，删除临时文件
-    if run_flag and os.path.exists(file_temp):
-        os.remove(file_temp)
-    else:
-        # 运行失败，将完成子项目写入临时文件
-        _write_temp(temp_list)
     print ">>>>>>running stop<<<<<<"
 
 
@@ -736,12 +712,16 @@ if __name__ == '__main__':
     parser_ar = subparsers.add_parser("ar", help=u"依次 编译 所有module")
     parser_ar.set_defaults(func=_ar)
     parser_ar.add_argument('-s', "--start", type=str, help=u'执行起始点【项目名前三位，例：027】')
+    parser_ar.add_argument('-o', "--only", help=u'只执行一个', action='store_true',
+                               default=False)
 
     # 批量生成aar并提交至maven私服
     parser_upload = subparsers.add_parser("upload",
                                           help=u"按module名称 数字排列顺序 依次 执行gradle uploadArchives")
     parser_upload.set_defaults(func=_upload)
     parser_upload.add_argument('-s', "--start", type=str, help=u'执行起始点【项目名前三位，例：027】')
+    parser_upload.add_argument('-o', "--only", help=u'只执行一个', action='store_true',
+                               default=False)
 
     # 分析项目依赖关系
     parser_deps = subparsers.add_parser("deps", help=u"项目依赖关系分析")
