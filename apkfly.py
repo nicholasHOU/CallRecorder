@@ -451,10 +451,12 @@ def _git_clone(args):
         if not os.path.exists(os.path.join(dir_current, project.path)):
             print u">>>克隆:%s  分支：%s..." % (project.path, project.branch)
             cmd = "git clone %s -b %s %s" % (project.url, project.branch, project.path)
-            process = subprocess.Popen(cmd, stderr=subprocess.PIPE,
-                                       stdout=subprocess.PIPE, cwd=dir_current, shell=True)
-            code = process.wait()
-            slogr(code == 0)
+            # process = subprocess.Popen(cmd, stderr=subprocess.PIPE,
+            #                            stdout=subprocess.PIPE, cwd=dir_current, shell=True)
+            # code = process.wait()
+            # slogr(code == 0)
+            os.popen(cmd)
+            print "" # 换行
 
 
 def _git_projects():
