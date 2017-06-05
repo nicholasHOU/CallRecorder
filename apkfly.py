@@ -492,7 +492,7 @@ def _git_check(branch_name, sub_projects, cmd_list):
         code_status = process_status.wait()
         if code_status == 0:
             result_status = process_status.stdout.read()
-            if "working directory clean" not in result_status:
+            if ("working directory clean" not in result_status) and ("working tree clean" not in result_status):
                 result.append(u"子项目[%s] not clean" % sub_file)
                 continue
         else:
