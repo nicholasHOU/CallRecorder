@@ -10,7 +10,7 @@
     <project url="git@gitlab.ds.gome.com.cn:mobile-android-common/GPatch.git" branch="master" groups="private"/>
     <project url="git@gitlab.ds.gome.com.cn:mobile-android-common/GTheme.git" groups="private"/>
     <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/MImlibrary.git" groups="private"/>
-    <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/MSelectPhoto.git" groups="private"/>
+    <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/MSelectPhoto.git" />
     <!--G工程-->
     <project url="git@gitlab.ds.gome.com.cn:mobile-android-common/GFrame.git"/>
     <project url="git@gitlab.ds.gome.com.cn:mobile-android-common/GCore.git"/>
