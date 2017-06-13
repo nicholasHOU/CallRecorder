@@ -65,6 +65,11 @@ ext.deps = [
         SAppcompat: 'com.android.support:appcompat-v7:23.2.1',
         SDesign: 'com.android.support:design:23.2.1',
         SPercent: 'com.android.support:percent:23.0.1',
+        SFresco: 'com.facebook.fresco:fresco:1.1.0',
+        SAnimatedGif:'com.facebook.fresco:animated-gif:1.1.0',
+        SAnimatedWebp:'com.facebook.fresco:animated-webp:1.1.0',
+        SWebpsupport:'com.facebook.fresco:webpsupport:1.1.0',
+        SimagepipelineOkhttp3: 'com.facebook.fresco:imagepipeline-okhttp3:1.1.0',
 
         GSafekeyboard: 'com.bangcle:safeKeyboard:1.0.6',
         GSecret: 'com.gome.ecmall:secret:'+getProperty('AAR_GSECRET_VERSION')+'@aar',
