@@ -106,6 +106,7 @@ ext.deps = [
         GHotfix:rootProject.ext.proDeps ? project(':GHotfix'): 'com.gome.ecmall:hotfix:' + getProperty('AAR_HOTFIX_VERSION') + '@aar',
         GZxingScan: rootProject.ext.proDeps ? project(':GZxingScan'):'com.gome.ecmall:gzxing:' + getProperty('AAR_GZING_VERSION') + '@aar',
         GGomeCurrency:rootProject.ext.proDeps ? project(':GGomeCurrency'): 'com.gome.ecmall:ggomecurrency:' + getProperty('AAR_GGOMECURRENCY_VERSION') + '@aar',
+        GIMRedEnvelope:rootProject.ext.proDeps ? project(':GIMRedEnvelope'): 'com.gome.ecmall:imredenvelope:' + getProperty('AAR_IMREDENVELOPE_VERSION') + '@aar',
 
 //        MPulltorefresh: rootProject.ext.proDeps ? project(':MPulltorefresh') : 'com.gome.ecmall:mpulltorefresh:'+getProperty('AAR_MPULLTOREFRESH_VERSION')+'@aar',
 //        MFramework2: rootProject.ext.proDeps ? project(':MFramework2') :  'com.gome.ecmall:mframe2:'+getProperty('AAR_MFRAME2_VERSION')+'@aar',
