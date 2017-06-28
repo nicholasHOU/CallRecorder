@@ -113,7 +113,7 @@ ext.deps = [
         MSelectPhoto: 'com.gome.ecmall:mselectphoto:'+getProperty('AAR_MSELECT_PHOTO_VERSION')+'@aar',
 //        MRouter:rootProject.ext.proDeps ? project(':MRouter') : 'com.gome.ecmall:mrouter:'+getProperty('AAR_MROUTER_VERSION')+'@aar',
         MCommon: rootProject.ext.proDeps ? project(':MCommon') :'com.gome.ecmall:mcommon:'+getProperty('AAR_MCOMMON_VERSION')+'@aar',
-        MWidget: rootProject.ext.proDeps ? project(':MWidget') :'com.gome.ecmall:mwidget:'+getProperty('AAR_MWIDGET_VERSION')+'@aar',
+//        MWidget: rootProject.ext.proDeps ? project(':MWidget') :'com.gome.ecmall:mwidget:'+getProperty('AAR_MWIDGET_VERSION')+'@aar',
         MShare: rootProject.ext.proDeps ? project(':MShare') :'com.gome.ecmall:mshare:'+getProperty('AAR_MSHARE_VERSION')+'@aar',
 //        MMeixinpay: rootProject.ext.proDeps ? project(':MMeixinpay') :'com.gome.ecmall:mpay:'+getProperty('AAR_MPAY_VERSION')+'@aar',
         MMeixinplayer:rootProject.ext.proDeps ? project(':MMeixinplayer') : 'com.gome.ecmall:mplayer:'+getProperty('AAR_MPLAYER_VERSION')+'@aar',
