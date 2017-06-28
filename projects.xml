@@ -37,6 +37,7 @@
     <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/GTQDetail.git"/>
     <project url="git@gitlab.ds.gome.com.cn:mobile-android-common/GHotfix.git"/>
     <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/GZxingScan.git"/>
+    <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/GIMRedEnvelope.git"/>
     <!--M工程-->
     <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/MCommon.git"/>
     <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/MWidget.git"/>
