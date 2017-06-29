@@ -1,7 +1,1 @@
-include ':GAnalytics'
-include ":GomePlus"
-include ":MApp"
-include ":GProductDetail"
-include ":GBusiness"
-include ":GCore"
-include ":MCommon"
+include ":030-MApp"
