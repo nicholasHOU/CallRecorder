@@ -14,7 +14,7 @@ buildscript {
         }
     }
     dependencies {
-        classpath 'com.gutils.apkfly:plugin:2.3.0.plus1'
+        classpath 'com.gutils.apkfly:plugin:2.3.0.plus2'
     }
 }
 
