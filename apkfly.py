@@ -4,6 +4,7 @@
 import argparse
 import logging
 import os
+import platform
 import re
 import subprocess
 import sys
@@ -449,14 +450,16 @@ def _git_clone(args):
                                           ignore_app=ignore_app)
     for project in projects:
         if not os.path.exists(os.path.join(dir_current, project.path)):
-            print u">>>克隆:%s  分支：%s... url:%s" % (project.path, project.branch,project.url)
+            print u">>>克隆:%s  分支：%s... url:%s" % (project.path, project.branch, project.url)
             cmd = "git clone %s -b %s %s" % (project.url, project.branch, project.path)
-            # process = subprocess.Popen(cmd, stderr=subprocess.PIPE,
-            #                            stdout=subprocess.PIPE, cwd=dir_current, shell=True)
-            # code = process.wait()
-            # slogr(code == 0)
-            os.popen(cmd)
-            print "" # 换行
+            if platform.system() == "Linux":
+                process = subprocess.Popen(cmd, stderr=subprocess.PIPE,
+                                           stdout=subprocess.PIPE, cwd=dir_current, shell=True)
+                code = process.wait()
+                slogr(code == 0)
+            else:
+                os.popen(cmd)
+                print ""  # 换行
 
 
 def _git_projects():
@@ -715,7 +718,7 @@ if __name__ == '__main__':
     parser_ar.set_defaults(func=_ar)
     parser_ar.add_argument('-s', "--start", type=str, help=u'执行起始点【项目名前三位，例：027】')
     parser_ar.add_argument('-o', "--only", help=u'只执行一个', action='store_true',
-                               default=False)
+                           default=False)
 
     # 批量生成aar并提交至maven私服
     parser_upload = subparsers.add_parser("upload",
