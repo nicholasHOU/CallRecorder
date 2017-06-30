@@ -40,7 +40,6 @@
     <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/GIMRedEnvelope.git"/>
     <!--M工程-->
     <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/MCommon.git"/>
-    <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/MWidget.git"/>
     <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/MShare.git"/>
     <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/MMeixinplayer.git"/>
     <!--MApp工程-->
