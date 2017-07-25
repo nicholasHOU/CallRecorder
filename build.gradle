@@ -104,7 +104,7 @@ ext.deps = [
         GMaterialOrder: rootProject.ext.proDeps ? project(':GMaterialOrder'):'com.gome.ecmall:materialorder:' + getProperty('AAR_GMATERIAL_ORDER_VERSION') + '@aar',
         GProductDetail:rootProject.ext.proDeps ? project(':GProductDetail'): 'com.gome.ecmall:product:' + getProperty('AAR_GPRODUCT_VERSION') + '@aar',
         GTQDetail:rootProject.ext.proDeps ? project(':GTQDetail'): 'com.gome.ecmall:tqdetail:' + getProperty('AAR_GTQ_DETAIL_VERSION') + '@aar',
-  //      GZhibo: rootProject.ext.proDeps ? project(':GZhibo'):'com.gome.ecmall:zhibo:' + getProperty('AAR_GZHIBO_VERSION') + '@aar',
+        //      GZhibo: rootProject.ext.proDeps ? project(':GZhibo'):'com.gome.ecmall:zhibo:' + getProperty('AAR_GZHIBO_VERSION') + '@aar',
         GHotfix:rootProject.ext.proDeps ? project(':GHotfix'): 'com.gome.ecmall:hotfix:' + getProperty('AAR_HOTFIX_VERSION') + '@aar',
         GZxingScan: rootProject.ext.proDeps ? project(':GZxingScan'):'com.gome.ecmall:gzxing:' + getProperty('AAR_GZING_VERSION') + '@aar',
         GGomeCurrency:rootProject.ext.proDeps ? project(':GGomeCurrency'): 'com.gome.ecmall:ggomecurrency:' + getProperty('AAR_GGOMECURRENCY_VERSION') + '@aar',
