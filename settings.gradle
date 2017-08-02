@@ -1,3 +1,6 @@
+include ":GomePlus"
+include ":MApp"
+include ":GBusiness"
 include "GomePlus"
 include "MCommon"
 include "MApp"
