@@ -1,5 +1,1 @@
-include ":MApp"
-include ":GomePlus"
-include ":MSelectPhoto"
-include ":GWidget"
-include ":GBusiness"
+
