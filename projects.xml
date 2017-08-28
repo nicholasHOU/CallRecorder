@@ -9,7 +9,6 @@
     <project url="git@gitlab.ds.gome.com.cn:mobile-android-common/GPlugin.git" branch="master" groups="private"/>
 
     <project url="git@gitlab.ds.gome.com.cn:mobile-android-common/GTheme.git" groups="private"/>
-    <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/MImlibrary.git" groups="private"/>
     <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/MSelectPhoto.git" groups="private"/>
     <project url="git@gitlab.ds.gome.com.cn:mobile-android-common/GAnalytics.git" groups="private"/>
     <!--G工程-->
@@ -23,6 +22,7 @@
     <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/GCmbPay.git"/>
     <project url="git@gitlab.ds.gome.com.cn:mobile-android-common/GTongBaoSdk.git"/>
     <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/GBusiness.git"/>
+    <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/MImlibrary.git"/>
     <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/GGomeCurrency.git"/>
     <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/GIm.git"/>
     <project url="git@gitlab.ds.gome.com.cn:mobile-android-common/GHybrid.git"/>
