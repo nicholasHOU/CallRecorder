@@ -1,10 +1,9 @@
-def isAPP = project.ext.has("isAAP") && project.ext.getProperty("isAPP")
-if(isAPP){
-    apply plugin: 'com.android.application'
-}else {
-    apply plugin: 'com.android.library'
+apply plugin: 'com.gutils.gome.library'
+atlas {
+    bundleConfig {
+        awbBundle true
+    }
 }
-
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     buildToolsVersion "25.0.2"

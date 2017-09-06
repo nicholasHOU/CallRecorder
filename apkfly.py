@@ -128,7 +128,116 @@ def _upload(args):
 def _ar(args):
     exec_sub_project("aR", args)
 
+##### 关闭awb版本
+def close_awb(args):
+    modifyXMLNode("projects.xml","false")
+    updateVersion("awb","plus",args.all)
+#### 开启awb
+def open_awb(args):
+    modifyXMLNode("projects.xml","true")
+    updateVersion("plus","awb",args.all)
 
+def _uploadawb(args):
+    exec_awb_sub_project("uploadArchives")
+
+def modifyXMLNode(manifest,isbundleopen):
+    try:
+        root = minidom.parse(manifest)
+    except (OSError, xml.parsers.expat.ExpatError) as e:
+        raise Exception("error parsing manifest %s: %s" % (manifest, e))
+
+    if not root or not root.childNodes:
+        raise Exception("no root node in %s" % (manifest,))
+
+    for manifestnode in root.childNodes:
+        if manifestnode.nodeName == 'manifest':
+            manifestnode.attributes["bundleOpen"].value = isbundleopen
+            break
+        else:
+            raise Exception("no <manifest> in %s" % (manifestnode,))
+
+    # 文件写入
+    with open(manifest, "w") as manifestxml:
+        manifestxml.write(root.toxml())
+
+
+def updateVersion(fromv,tov,all):
+    first_prop = 'AAR_GFRAME_VERSION' if all else 'AAR_GFINANCE_VERSION'
+    last_prop = 'AAR_MAPP_VERSION' if all else 'AAR_GTQ_DETAIL_VERSION'
+    prop_file_path = os.path.join(dir_current, "gradle.properties")
+    if os.path.exists(prop_file_path) and os.path.isfile(prop_file_path):
+        print ">>>>>>start to version auto increment<<<<<<"
+        aar_list = []
+        is_aar = False
+        # 遍历所有内容，获取 需要版本号变更的条目
+        with open(prop_file_path, "r") as prop_file:
+            prop_file_list = prop_file.readlines()
+            for prop in prop_file_list:
+                if prop.startswith(first_prop):
+                    is_aar = True
+                    aar_list.append(prop.strip())
+                elif prop.startswith(last_prop):
+                    aar_list.append(prop.strip())
+                    is_aar = False
+                else:
+                    if is_aar and prop.strip() != '' and not prop.startswith('#'):
+                        aar_list.append(prop.strip())
+        # 遍历所有内容,并版本号自增
+        with open(prop_file_path, "r") as prop_file_r:
+            # 获取文件内容
+            prop_file_content = prop_file_r.read()
+            # 遍历需要版本变更的条目，动态升级版本号
+            for aar in aar_list:
+                # 此处可对版本号格式进行修改，当前仅适配GomePlus
+                new_aar = re.sub(fromv, tov, aar)
+                prop_file_content = prop_file_content.replace(aar, new_aar)
+                print ">>>replace ", aar, " to ", new_aar
+        # 文件写入
+        with open(prop_file_path, "w") as prop_file_w:
+            prop_file_w.write(prop_file_content)
+        print ">>>>>>running stop<<<<<<"
+    else:
+        print ">>>>>>error: gradle.properties not exit <<<<<<"
+
+
+def exec_awb_sub_project(cmd):
+    """批量执行子项目命令【gradle】
+    """
+    check_root_project()
+
+    print ">>>>>>start to running<<<<<<"
+    projects = XmlProject.parser_manifest("projects.xml")
+    sub_file_list = [x for x in os.listdir(dir_current) if
+                     check_sub_project(x, True)]
+    # 按文件名排序
+    sub_file_list.sort()
+    for sub_file in sub_file_list:
+        isbundle = is_bundle_project(sub_file,projects)
+        if(isbundle):
+            print ">>>Running project:%s" % sub_file
+            # 在settings.gradle 配置子项目
+            with open(file_settings, "w") as setting:
+                setting.write("include \":%s\"" % sub_file)
+            # exec gradle clean uploadArchives
+            clean_output = os.popen("gradle :%s:%s" % (sub_file, "clean"))
+            print clean_output.read()
+            cmd_output = os.popen("gradle :%s:%s" % (sub_file, cmd))
+            cmd_result = cmd_output.read()
+            print cmd_result
+            if cmd_result.find("BUILD SUCCESSFUL") != -1:
+                print ">>>Success project:%s" % sub_file
+            else:
+                print ">>>Error project:%s" % sub_file
+    print ">>>>>>running stop<<<<<<"
+
+def is_bundle_project(sub_file,projects):
+    checkbundle = False
+    for project in projects:
+        if sub_file.endswith(project.path) and project.bundleopen:
+            checkbundle = True
+            break
+
+    return checkbundle
 ###################################################################
 ### 将当前工作空间的项目部署到setting配置文件
 ###################################################################
@@ -346,7 +455,7 @@ class XmlProject(object):
     """manifest and parser
     """
 
-    def __init__(self, url, branch, path, app, groups):
+    def __init__(self, url, branch, path, app, groups,bundleopen):
         if not url.endswith('.git'):
             raise Exception("%s error" % url)
         self.url = url
@@ -354,7 +463,7 @@ class XmlProject(object):
         self.path = path
         self.app = app
         self.groups = groups
-
+        self.bundleopen = bundleopen
     @staticmethod
     def parser_manifest(manifest, by_group=[], by_project=[], allow_private=False, order=False,
                         ignore_app=False):
@@ -400,7 +509,7 @@ class XmlProject(object):
                     path = url.split('/')[-1].split('.')[0]
                 app = True if "true" == node.getAttribute("app") else False
                 groups = node.getAttribute("groups")
-
+                bundleopen = node.getAttribute("bundleOpen")
                 allow = False
                 if len(by_group) > 0:
                     for group in by_group:
@@ -425,7 +534,7 @@ class XmlProject(object):
                 if allow:
                     if order:
                         path = "%s-%s" % (str(index).zfill(3), path)
-                    project = XmlProject(url, branch, path, app, groups)
+                    project = XmlProject(url, branch, path, app, groups,bundleopen)
                     projects.append(project)
                     index = index + 1
         return projects
@@ -701,6 +810,14 @@ if __name__ == '__main__':
     parser_setting.set_defaults(func=_push_prop)
     parser_setting.add_argument('-m', type=str, help=u'push评论信息')
     parser_setting.add_argument('-b', type=str, default='mergeDev', help=u'push 分支')
+    # 关闭awb
+    parser_close_awb = subparsers.add_parser("closeawb", help=u"关闭awb开关")
+    parser_close_awb.set_defaults(func=close_awb)
+    parser_close_awb.add_argument('-a', "--all",help=u'所有版本为awb',default=True)
+    # 打开awb
+    parser_open_awb = subparsers.add_parser("openawb", help=u"打开awb开关")
+    parser_open_awb.set_defaults(func=open_awb)
+    parser_open_awb.add_argument('-a', "--all",help=u'所有版本为awb',default=True)
 
     # 版本自增
     parser_version = subparsers.add_parser("version", help=u"自增gradle.properties内的 aar 配置版本")
@@ -727,6 +844,10 @@ if __name__ == '__main__':
     parser_upload.add_argument('-s', "--start", type=str, help=u'执行起始点【项目名前三位，例：027】')
     parser_upload.add_argument('-o', "--only", help=u'只执行一个', action='store_true',
                                default=False)
+    # 批量生成awb并提交至maven私服
+    parserawb_upload = subparsers.add_parser("uploadawb",
+                                          help=u"按module名称 数字排列顺序 依次 执行gradle uploadArchives")
+    parserawb_upload.set_defaults(func=_uploadawb)
 
     # 分析项目依赖关系
     parser_deps = subparsers.add_parser("deps", help=u"项目依赖关系分析")
