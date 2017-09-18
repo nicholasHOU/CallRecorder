@@ -51,7 +51,7 @@ allprojects {
         buildToolsVersion = getProperty("BUILD_TOOLS_VERSION")
         targetSdkVersion = getProperty("TARGET_SDK_VERSION") as Integer
         minSdkVersion = getProperty("MIN_SDK_VERSION") as Integer
-        proDeps = true //改false 时需要把xiaomi的几个工程注掉
+        proDeps = false //改false 时需要把xiaomi的几个工程注掉
         isXiaoMi = false
     }
 }
