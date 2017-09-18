@@ -1,1 +1,11 @@
-
+include ":GomePlus"
+include ":MApp"
+include ":MSelectPhoto"
+include ":GWidget"
+include ":GIntensify"
+include ":MCommon"
+include ":MMeixinplayer"
+include ":GBusiness"
+//include ":GLogin"
+include ":MFriendCircle"
+include ":MCommon"
