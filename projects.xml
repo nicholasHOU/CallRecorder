@@ -38,11 +38,11 @@
     <project url="git@gitlab.ds.gome.com.cn:mobile-android-common/GHotfix.git"/>
     <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/GZxingScan.git"/>
     <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/GIMRedEnvelope.git"/>
-    <project artifactId="productsearch" bundleOpen="false" url="git@gitlab.ds.gome.com.cn:mobile-android-business/GProductSearch.git"/>
     <!--M工程-->
     <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/MCommon.git"/>
     <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/MShare.git"/>
     <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/MMeixinplayer.git"/>
+    <project artifactId="productsearch" bundleOpen="false" url="git@gitlab.ds.gome.com.cn:mobile-android-business/GProductSearch.git"/>
     <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/MFriendCircle.git"/>
     <!--MApp工程-->
     <project groups="app" url="git@gitlab.ds.gome.com.cn:mobile-android-business/MApp.git"/>
