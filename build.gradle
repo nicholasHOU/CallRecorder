@@ -115,8 +115,8 @@ ext.deps = [
         MCommon: rootProject.ext.proDeps ? project(':MCommon') :'com.gome.ecmall:mcommon:'+getProperty('AAR_MCOMMON_VERSION')+'@aar',
         MShare: rootProject.ext.proDeps ? project(':MShare') :'com.gome.ecmall:mshare:'+getProperty('AAR_MSHARE_VERSION')+'@aar',
         MMeixinplayer:rootProject.ext.proDeps ? project(':MMeixinplayer') : 'com.gome.ecmall:mplayer:'+getProperty('AAR_MPLAYER_VERSION')+'@aar',
-        MFriendCircle:rootProject.ext.proDeps ? project(':MFriendCircle') : 'com.gome.ecmall:mfriendcircle:' + getProperty('AAR_MFRIEND_CIRCLE_VERSION') + '@aar'
-        MApp:rootProject.ext.proDeps ? project(':MApp') : 'com.gome.ecmall:mapp:' + getProperty('AAR_MAPP_VERSION') + '@aar',
+        MFriendCircle:rootProject.ext.proDeps ? project(':MFriendCircle') : 'com.gome.ecmall:mfriendcircle:' + getProperty('AAR_MFRIEND_CIRCLE_VERSION') + '@aar',
+        MApp:rootProject.ext.proDeps ? project(':MApp') : 'com.gome.ecmall:mapp:' + getProperty('AAR_MAPP_VERSION') + '@aar'
 ]
 
 
