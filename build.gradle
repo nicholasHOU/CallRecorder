@@ -83,8 +83,7 @@ ext.deps = [
 
         GFrame: rootProject.ext.proDeps ? project(':GFrame') :'com.gome.ecmall:frame:'+getProperty('AAR_GFRAME_VERSION')+'@aar',
         GCore: rootProject.ext.proDeps ? project(':GCore'):'com.gome.ecmall:core:'+getProperty('AAR_GCORE_VERSION')+'@aar',
-//        GWidget: rootProject.ext.proDeps ? project(':GWidget'):'com.gome.ecmall:widget:'+getProperty('AAR_GWIDGET_VERSION')+'@aar',
-        GWidget: project(':GWidget'),
+        GWidget: rootProject.ext.proDeps ? project(':GWidget'):'com.gome.ecmall:widget:'+getProperty('AAR_GWIDGET_VERSION')+'@aar',
         GPush: rootProject.ext.proDeps ? project(':GPush'):'com.gome.ecmall:push:'+getProperty('AAR_GPUSH_VERSION')+'@aar',
 //        GShare: rootProject.ext.proDeps ? project(':GShare'):'com.gome.ecmall:share:'+getProperty('AAR_GSHARE_VERSION')+'@aar',
         GLogin: rootProject.ext.proDeps ? project(':GLogin'):'com.gome.ecmall:login:'+getProperty('AAR_GLOGIN_VERSION')+'@aar',
@@ -92,8 +91,7 @@ ext.deps = [
         GUpdate: rootProject.ext.proDeps ? project(':GUpdate'):'com.gome.ecmall:update:'+getProperty('AAR_GUPDATE_VERSION')+'@aar',
         GCmbPay:rootProject.ext.proDeps ? project(':GCmbPay'): 'com.gome.cmbpay:cmbpay:'+getProperty('AAR_CMBPAY_VERSION')+'@aar',
         GTongBaoSdk: rootProject.ext.proDeps ? project(':GTongBaoSdk'):'com.gome.ecmall:gomepay:'+getProperty('AAR_GOMEPAY_VERSION')+'@aar',
-//        GBusiness: rootProject.ext.proDeps ? project(':GBusiness'):'com.gome.ecmall:business:' + getProperty('AAR_GBUSINESS_VERSION') + '@aar',
-        GBusiness:project(':GBusiness'),
+        GBusiness: rootProject.ext.proDeps ? project(':GBusiness'):'com.gome.ecmall:business:' + getProperty('AAR_GBUSINESS_VERSION') + '@aar',
         GIm:rootProject.ext.proDeps ? project(':GIm'): 'com.gome.ecmall.home:im:' + getProperty('AAR_GIM_VERSION') + '@aar',
         GHybrid: rootProject.ext.proDeps ? project(':GHybrid'):'com.gome.ecmall:gh5:' + getProperty('AAR_GH5_VERSION') + '@aar',
         GFinanceCommon: rootProject.ext.proDeps ? project(':GFinanceCommon'):'com.gome.ecmall:financecommon:'+getProperty('AAR_GFINANCE_COMMON_VERSION')+'@aar',
@@ -113,23 +111,12 @@ ext.deps = [
         GIMRedEnvelope:rootProject.ext.proDeps ? project(':GIMRedEnvelope'): 'com.gome.ecmall:imredenvelope:' + getProperty('AAR_IMREDENVELOPE_VERSION') + '@aar',
         GProductSearch:rootProject.ext.proDeps ? project(':GProductSearch'): 'com.gome.ecmall:productsearch:' + getProperty('AAR_GPRODUCT_SEARCH_VERSION') + '@aar',
 
-//        MPulltorefresh: rootProject.ext.proDeps ? project(':MPulltorefresh') : 'com.gome.ecmall:mpulltorefresh:'+getProperty('AAR_MPULLTOREFRESH_VERSION')+'@aar',
-//        MFramework2: rootProject.ext.proDeps ? project(':MFramework2') :  'com.gome.ecmall:mframe2:'+getProperty('AAR_MFRAME2_VERSION')+'@aar',
-//        MStatistics: rootProject.ext.proDeps ? project(':MStatistics') :'com.gome.ecmall:mstatistics:'+getProperty('AAR_MSTATISTICS_VERSION')+'@aar',
         MSelectPhoto: 'com.gome.ecmall:mselectphoto:'+getProperty('AAR_MSELECT_PHOTO_VERSION')+'@aar',
-//        MRouter:rootProject.ext.proDeps ? project(':MRouter') : 'com.gome.ecmall:mrouter:'+getProperty('AAR_MROUTER_VERSION')+'@aar',
-//        MCommon: rootProject.ext.proDeps ? project(':MCommon') :'com.gome.ecmall:mcommon:'+getProperty('AAR_MCOMMON_VERSION')+'@aar',
-        MCommon: project(':MCommon'),
-//        MWidget: rootProject.ext.proDeps ? project(':MWidget') :'com.gome.ecmall:mwidget:'+getProperty('AAR_MWIDGET_VERSION')+'@aar',
+        MCommon: rootProject.ext.proDeps ? project(':MCommon') :'com.gome.ecmall:mcommon:'+getProperty('AAR_MCOMMON_VERSION')+'@aar',
         MShare: rootProject.ext.proDeps ? project(':MShare') :'com.gome.ecmall:mshare:'+getProperty('AAR_MSHARE_VERSION')+'@aar',
-//        MMeixinpay: rootProject.ext.proDeps ? project(':MMeixinpay') :'com.gome.ecmall:mpay:'+getProperty('AAR_MPAY_VERSION')+'@aar',
         MMeixinplayer:rootProject.ext.proDeps ? project(':MMeixinplayer') : 'com.gome.ecmall:mplayer:'+getProperty('AAR_MPLAYER_VERSION')+'@aar',
-//        MCore: rootProject.ext.proDeps ? project(':MCore') :'com.gome.ecmall:mcore:'+getProperty('AAR_MCORE_VERSION')+'@aar',
-//        MApp:rootProject.ext.proDeps ? project(':MApp') : 'com.gome.ecmall:mapp:' + getProperty('AAR_MAPP_VERSION') + '@aar',
-        MApp: project(':MApp'),
-//        MFriendCircle:rootProject.ext.proDeps ? project(':MFriendCircle') : 'com.gome.ecmall:mfriendcircle:' + getProperty('AAR_MFRIEND_CIRCLE_VERSION') + '@aar',
-        MFriendCircle: project(':MFriendCircle')
-
+        MFriendCircle:rootProject.ext.proDeps ? project(':MFriendCircle') : 'com.gome.ecmall:mfriendcircle:' + getProperty('AAR_MFRIEND_CIRCLE_VERSION') + '@aar',
+        MApp:rootProject.ext.proDeps ? project(':MApp') : 'com.gome.ecmall:mapp:' + getProperty('AAR_MAPP_VERSION') + '@aar'
 ]
 
 
