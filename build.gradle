@@ -185,5 +185,5 @@ ext.deps = [
 //    url "git@gitlab.ds.gome.com.cn:mobile-android/GomePlus.git", "mergeDev"
 //}
 
-version=1.4
+//version=1.4
 apply plugin: "org.sonarqube"
