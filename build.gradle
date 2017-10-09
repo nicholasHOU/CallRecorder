@@ -12,9 +12,13 @@ buildscript {
         jcenter {
             url "http://10.69.213.71:8081/nexus/content/repositories/jcenter/"
         }
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
     }
     dependencies {
         classpath 'com.gutils.apkfly:plugin:2.3.0.plus4'
+        classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.5"
     }
 }
 
@@ -180,3 +184,6 @@ ext.deps = [
 //    //---------
 //    url "git@gitlab.ds.gome.com.cn:mobile-android/GomePlus.git", "mergeDev"
 //}
+
+version=1.4
+apply plugin: "org.sonarqube"
