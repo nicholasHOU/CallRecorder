@@ -95,6 +95,7 @@ ext.deps = [
         GUpdate: rootProject.ext.proDeps ? project(':GUpdate'):'com.gome.ecmall:update:'+getProperty('AAR_GUPDATE_VERSION')+'@aar',
         GCmbPay:rootProject.ext.proDeps ? project(':GCmbPay'): 'com.gome.cmbpay:cmbpay:'+getProperty('AAR_CMBPAY_VERSION')+'@aar',
         GTongBaoSdk: rootProject.ext.proDeps ? project(':GTongBaoSdk'):'com.gome.ecmall:gomepay:'+getProperty('AAR_GOMEPAY_VERSION')+'@aar',
+        GBaiTiao: rootProject.ext.proDeps ? project(':GBaiTiao'):'com.gome.ecmall:baitiao:'+getProperty('AAR_GBAITIAO_VERSION')+'@aar',
         GBusiness: rootProject.ext.proDeps ? project(':GBusiness'):'com.gome.ecmall:business:' + getProperty('AAR_GBUSINESS_VERSION') + '@aar',
         GIm:rootProject.ext.proDeps ? project(':GIm'): 'com.gome.ecmall.home:im:' + getProperty('AAR_GIM_VERSION') + '@aar',
         GHybrid: rootProject.ext.proDeps ? project(':GHybrid'):'com.gome.ecmall:gh5:' + getProperty('AAR_GH5_VERSION') + '@aar',
