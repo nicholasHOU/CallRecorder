@@ -2,10 +2,16 @@ buildscript {
     repositories {
 
         maven {
-            url getProperty("MAVEN_REPO")
+            //fix 解决mac AS 因属性文件导致的无法运行，后期调整 by hyxf
+//            url getProperty("MAVEN_REPO")
+//            credentials {
+//                username = getProperty("MAVEN_USER")
+//                password = getProperty("MAVEN_PASS")
+//            }
+            url "http://10.115.3.135:8081/nexus/content/groups/public"
             credentials {
-                username = getProperty("MAVEN_USER")
-                password = getProperty("MAVEN_PASS")
+                username = "deployment"
+                password = "qiudongchao1988"
             }
         }
         mavenCentral()
@@ -26,10 +32,15 @@ allprojects {
     repositories {
 
         maven {
-            url getProperty("MAVEN_REPO")
+//            url getProperty("MAVEN_REPO")
+//            credentials {
+//                username = getProperty("MAVEN_USER")
+//                password = getProperty("MAVEN_PASS")
+//            }
+            url "http://10.115.3.135:8081/nexus/content/groups/public"
             credentials {
-                username = getProperty("MAVEN_USER")
-                password = getProperty("MAVEN_PASS")
+                username = "deployment"
+                password = "qiudongchao1988"
             }
         }
 
