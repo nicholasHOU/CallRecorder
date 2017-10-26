@@ -26,6 +26,7 @@
     <project artifactId="ggomecurrency" bundleOpen="true" url="git@gitlab.ds.gome.com.cn:mobile-android-business/GGomeCurrency.git"/>
     <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/GIm.git"/>
     <project url="git@gitlab.ds.gome.com.cn:mobile-android-common/GHybrid.git"/>
+    <project url="git@gitlab.ds.gome.com.cn:mobile-android-common/GWap.git"/>
     <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/GFinanceCommon.git"/>
     <project artifactId="finance" bundleOpen="true" url="git@gitlab.ds.gome.com.cn:mobile-android-business/GFinance.git"/>
     <project artifactId="meiyingbao" bundleOpen="true" url="git@gitlab.ds.gome.com.cn:mobile-android-business/GMeiyingbao.git"/>
