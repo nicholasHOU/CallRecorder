@@ -109,6 +109,7 @@ ext.deps = [
         GBaiTiao: rootProject.ext.proDeps ? project(':GBaiTiao'):'com.gome.ecmall:baitiao:'+getProperty('AAR_GBAITIAO_VERSION')+'@aar',
         GBusiness: rootProject.ext.proDeps ? project(':GBusiness'):'com.gome.ecmall:business:' + getProperty('AAR_GBUSINESS_VERSION') + '@aar',
         GIm:rootProject.ext.proDeps ? project(':GIm'): 'com.gome.ecmall.home:im:' + getProperty('AAR_GIM_VERSION') + '@aar',
+        GWap: rootProject.ext.proDeps ? project(':GWap'):'com.gome.ecmall:wap:' + getProperty('AAR_GWAP_VERSION') + '@aar',
         GHybrid: rootProject.ext.proDeps ? project(':GHybrid'):'com.gome.ecmall:gh5:' + getProperty('AAR_GH5_VERSION') + '@aar',
         GFinanceCommon: rootProject.ext.proDeps ? project(':GFinanceCommon'):'com.gome.ecmall:financecommon:'+getProperty('AAR_GFINANCE_COMMON_VERSION')+'@aar',
         GFinance: rootProject.ext.proDeps ? project(':GFinance'):'com.gome.ecmall:finance:' + getProperty('AAR_GFINANCE_VERSION') + '@aar',
