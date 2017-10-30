@@ -92,7 +92,6 @@ ext.deps = [
         GPlugin: '',
 
         GTheme: 'com.gome.ecmall:theme:'+getProperty('AAR_GTHEME_VERSION')+'@aar',
-        MImlibrary: 'com.gome.ecmall:mim:'+getProperty('AAR_MIM_VERSION')+'@aar',
 
         GAnalytics: 'com.gome.ecmall:analytics:'+ getProperty("AAR_GANALYTICS_VERSION") +'@aar',
 
@@ -107,6 +106,8 @@ ext.deps = [
         GCmbPay:rootProject.ext.proDeps ? project(':GCmbPay'): 'com.gome.cmbpay:cmbpay:'+getProperty('AAR_CMBPAY_VERSION')+'@aar',
         GTongBaoSdk: rootProject.ext.proDeps ? project(':GTongBaoSdk'):'com.gome.ecmall:gomepay:'+getProperty('AAR_GOMEPAY_VERSION')+'@aar',
         GBaiTiao: rootProject.ext.proDeps ? project(':GBaiTiao'):'com.gome.ecmall:baitiao:'+getProperty('AAR_GBAITIAO_VERSION')+'@aar',
+        MImlibrary:rootProject.ext.proDeps ? project(':MImlibrary'): 'com.gome.ecmall:mim:'+getProperty('AAR_MIM_VERSION')+'@aar',
+//        MImlibrary: project(':MImlibrary'),
         GBusiness: rootProject.ext.proDeps ? project(':GBusiness'):'com.gome.ecmall:business:' + getProperty('AAR_GBUSINESS_VERSION') + '@aar',
         GIm:rootProject.ext.proDeps ? project(':GIm'): 'com.gome.ecmall.home:im:' + getProperty('AAR_GIM_VERSION') + '@aar',
         GWap: rootProject.ext.proDeps ? project(':GWap'):'com.gome.ecmall:wap:' + getProperty('AAR_GWAP_VERSION') + '@aar',
