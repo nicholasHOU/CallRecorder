@@ -1,0 +1,11 @@
+include "GomePlus"
+include "MCommon"
+include "MApp"
+include "MFriendCircle"
+
+include "MShop"
+include "MSocial"
+include "MIm"
+
+include "MImlibrary"
+include "GBusiness"
