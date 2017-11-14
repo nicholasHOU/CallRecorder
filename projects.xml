@@ -37,17 +37,19 @@
     <project artifactId="materialorder" bundleOpen="true" url="git@gitlab.ds.gome.com.cn:mobile-android-business/GMaterialOrder.git"/>
     <project artifactId="tqdetail" bundleOpen="true" url="git@gitlab.ds.gome.com.cn:mobile-android-business/GTQDetail.git"/>
     <project url="git@gitlab.ds.gome.com.cn:mobile-android-common/GHotfix.git"/>
-    <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/GZxingScan.git"/>
+    <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/GZxingScan.git"/>f
     <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/GIMRedEnvelope.git"/>
     <!--M工程-->
     <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/MCommon.git"/>
     <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/MShare.git"/>
     <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/MMeixinplayer.git"/>
-    <project artifactId="product" bundleOpen="true" url="git@gitlab.ds.gome.com.cn:mobile-android-business/GProductDetail.git"/>
-    <project artifactId="productsearch" bundleOpen="false" url="git@gitlab.ds.gome.com.cn:mobile-android-business/GProductSearch.git"/>
     <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/MFriendCircle.git"/>
-    <!--MApp工程-->
-    <project groups="app" url="git@gitlab.ds.gome.com.cn:mobile-android-business/MApp.git"/>
+    <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/MSocial.git"/>
+    <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/MShop.git"/>
+    <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/MIm.git"/>
+    <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/MApp.git"/>
+    <!--工程-->
+    <project artifactId="productsearch" bundleOpen="false" url="git@gitlab.ds.gome.com.cn:mobile-android-business/GProductSearch.git"/>
     <!--主工程-->
     <project app="true" groups="app" path="GomeApp" url="git@gitlab.ds.gome.com.cn:mobile-android/GomePlus.git"/>
 </manifest>
