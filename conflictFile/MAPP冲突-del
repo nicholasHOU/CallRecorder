@@ -293,60 +293,7 @@
 
 
 
-/MApp/src/main/java/com/mx/circle/legacy/view/ui/activity/GroupSameCategoryActivity.java	Text	Modified	Deleted
-/MApp/src/main/java/com/mx/circle/legacy/view/adapter/GroupSameCategoryListViewHolder.java	Text	Modified	Deleted
-/MApp/src/main/java/com/mx/circle/legacy/view/ui/activity/SingleSearchActivity.java	Text	Modified	Deleted
-/MApp/src/main/java/com/mx/circle/viewmodel/QualityLifeChildItemViewModel.java	Text	Modified	Deleted
-/MApp/src/main/java/com/mx/circle/viewmodel/QualityLifeItemViewModel.java	Text	Modified	Deleted
-/MApp/src/main/java/com/mx/circle/legacy/view/ui/fragment/InviteFriendFragment.java	Text	Modified	Deleted
-/MApp/src/main/java/com/mx/circle/legacy/view/ui/fragment/IMSearchGroupFragment.java	Text	Modified	Deleted
-/MApp/src/main/java/com/mx/circle/legacy/view/holder/IMSearchGroupListViewHolder.java	Text	Modified	Deleted
-/MApp/src/main/java/com/mx/circle/viewmodel/HotTopicViewItemModel.java	Text	Modified	Deleted
-/MApp/src/main/java/com/mx/circle/viewmodel/DailyChildItemViewModel.java	Text	Modified	Deleted
-/MApp/src/main/java/com/mx/circle/legacy/view/adapter/DelGroupMemberAdapter.java	Text	Modified	Deleted
-/MApp/src/main/java/com/mx/circle/legacy/view/ui/activity/SearchGroupMemberActivity.java	Text	Modified	Deleted
-/MApp/src/main/java/com/mx/circle/legacy/view/adapter/SearchGroupMemberAdapter.java	Text	Modified	Deleted
-/MApp/src/main/java/com/mx/circle/legacy/view/adapter/GroupSplendidHotListViewHolder.java	Text	Modified	Deleted
-/MApp/src/main/java/com/mx/circle/legacy/view/ui/activity/GroupSquareActivity.java	Text	Modified	Deleted
-/MApp/src/main/java/com/mx/circle/legacy/view/holder/GroupTopicDetailReplyHolder.java	Text	Modified	Deleted
-/MApp/src/main/java/com/mx/circle/legacy/view/holder/GroupTopicSecondCommentHolder.java	Text	Modified	Deleted
-/MApp/src/main/java/com/mx/circle/legacy/view/ui/activity/GroupCategoryModifyActivity.java	Text	Modified	Deleted
-/MApp/src/main/java/com/mx/circle/legacy/view/ui/fragment/GroupCircleFragment.java	Text	Modified	Deleted
-/MApp/src/main/java/com/mx/circle/viewmodel/FeedTopicItemViewModel.java	Text	Modified	Deleted
-/MApp/src/main/java/com/mx/circle/legacy/view/ui/activity/GroupCircleHomePageActivity.java	Text	Modified	Deleted
-/MApp/src/main/java/com/mx/circle/legacy/view/adapter/GroupCircleListAdapter.java	Text	Modified	Deleted
-/MApp/src/main/java/com/mx/circle/legacy/view/holder/GroupCircleListHolder.java	Text	Modified	Deleted
-/MApp/src/main/java/com/mx/circle/legacy/view/holder/topiclist/TopicListMultipleImageViewHolder.java	Text	Modified	Deleted
-/MApp/src/main/java/com/mx/circle/legacy/view/ui/fragment/ModifyGroupNameFragment.java	Text	Modified	Deleted
-/MApp/src/main/java/com/mx/circle/legacy/view/ui/activity/MultipleSearchActivity.java	Text	Modified	Deleted
-/MApp/src/main/java/com/mx/circle/legacy/view/adapter/MultipleSearchAdapter.java	Text	Modified	Deleted
-/MApp/src/main/java/com/mx/circle/legacy/view/holder/multiplesearch/MultipleSearchCircleViewHolder.java	Text	Modified	Deleted
-/MApp/src/main/java/com/mx/circle/legacy/view/holder/multiplesearch/MultipleSearchUserViewHolder.java	Text	Modified	Deleted
-/MApp/src/main/java/com/mx/circle/legacy/view/ui/activity/MyGroupListActivity.java	Text	Modified	Deleted
-/MApp/src/main/java/com/mx/circle/legacy/view/adapter/MyGroupListAdapter.java	Text	Modified	Deleted
-/MApp/src/main/java/com/mx/circle/legacy/view/ui/fragment/MyGroupListFragment.java	Text	Modified	Deleted
-/MApp/src/main/java/com/mx/circle/legacy/view/holder/topiclist/TopicListMultipleStatusViewHolder.java	Text	Modified	Deleted
-/MApp/src/main/java/com/mx/circle/legacy/view/holder/topiclist/TopicListUserViewHolder.java	Text	Modified	Deleted
-/MApp/src/main/java/com/mx/circle/legacy/view/ui/activity/GroupCreateActivity.java	Text	Modified	Deleted
-/MApp/src/main/java/com/mx/circle/legacy/view/ui/activity/GroupCreateSuccessActivity.java	Text	Modified	Deleted
-/MApp/src/main/java/com/mx/circle/legacy/view/ui/activity/GroupDetailActivity.java	Text	Modified	Deleted
-/MApp/src/main/java/com/mx/circle/legacy/view/ui/activity/GroupDetailIntroModifyActivity.java	Text	Modified	Deleted
-/MApp/src/main/java/com/mx/circle/viewmodel/TranslateLoginInterestStrategy.java	Text	Modified	Deleted
-/MApp/src/main/java/com/mx/circle/viewmodel/TranslateLoginUninterestingStrategy.java	Text	Modified	Deleted
-/MApp/src/main/java/com/mx/circle/viewmodel/TranslateNotLoginStrategy.java	Text	Modified	Deleted
-/MApp/src/main/java/com/mx/circle/viewmodel/CircleHomeActionBarViewModel.java	Text	Modified	Deleted
-/MApp/src/main/java/com/mx/circle/viewmodel/CircleHomeAdBannerListViewModel.java	Text	Modified	Deleted
-/MApp/src/main/java/com/mx/circle/view/ui/CircleHomeFragment.java	Text	Modified	Deleted
-/MApp/src/main/java/com/mx/circle/viewmodel/CircleHomeGroupChildItemViewModel.java	Text	Modified	Deleted
-/MApp/src/main/java/com/mx/circle/viewmodel/CircleHomeHotTalentChildViewModel.java	Text	Modified	Deleted
-/MApp/src/main/java/com/mx/circle/viewmodel/CircleHomeTranslateStrategy.java	Text	Modified	Deleted
-/MApp/src/main/java/com/mx/circle/model/CircleHomeUseCase.java	Text	Modified	Deleted
-/MApp/src/main/java/com/mx/circle/viewmodel/CircleHomeViewModel.java	Text	Modified	Deleted
-/MApp/src/main/java/com/mx/circle/legacy/view/holder/CircleListLabelHolder.java	Text	Modified	Deleted
-/MApp/src/main/java/com/mx/circle/legacy/view/holder/GroupFavourListHolder.java	Text	Modified	Deleted
-/MApp/src/main/java/com/mx/circle/legacy/view/ui/activity/GroupInfoModifyActivity.java	Text	Modified	Deleted
-/MApp/src/main/java/com/mx/circle/legacy/view/ui/fragment/GroupMemberListFragment.java	Text	Modified	Deleted
-
+/MApp/src/main/java/com/mx/circle/legacy/view/ui/fragment/IMSearchGroupFragment.java	Text	Modified	Deleted xxx
 
 
 /MApp/src/main/java/com/mx/topic/legacy/viewmodel/TopicBottomBarViewModel.java	Text	Modified	Deleted
