@@ -296,47 +296,8 @@
 /MApp/src/main/java/com/mx/circle/legacy/view/ui/fragment/IMSearchGroupFragment.java	Text	Modified	Deleted xxx
 
 
-/MApp/src/main/java/com/mx/topic/legacy/viewmodel/TopicBottomBarViewModel.java	Text	Modified	Deleted
-/MApp/src/main/java/com/mx/topic/legacy/viewmodel/TopicCommentItemViewModel.java	Text	Modified	Deleted
-/MApp/src/main/java/com/mx/topic/legacy/viewmodel/TopicDetailActionBar.java	Text	Modified	Deleted
-/MApp/src/main/java/com/mx/topic/legacy/view/ui/activity/TopicDetailActivity.java	Text	Modified	Deleted
-/MApp/src/main/java/com/mx/topic/legacy/model/TopicDetailCase.java	Text	Modified	Deleted
-/MApp/src/main/java/com/mx/topic/legacy/viewmodel/TopicDetailCommentViewModel.java	Text	Modified	Deleted
-/MApp/src/main/java/com/mx/topic/legacy/view/ui/adapter/TopicDetailKeyBoardAdapter.java	Text	Modified	Deleted
-/MApp/src/main/java/com/mx/topic/legacy/view/ui/adapter/TopicDetailRecyclerAdapter.java	Text	Modified	Deleted
-/MApp/src/main/java/com/mx/topic/legacy/viewmodel/TopicDetailRecyclerViewModel.java	Text	Modified	Deleted
-/MApp/src/main/java/com/mx/topic/legacy/viewmodel/TopicFavoritesItemViewModel.java	Text	Modified	Deleted
-/MApp/src/main/java/com/mx/topic/legacy/view/ui/activity/TopicFavourListActivity.java	Text	Modified	Deleted
-/MApp/src/main/java/com/mx/topic/legacy/viewmodel/TopicGroupLinkItemViewModel.java	Text	Modified	Deleted
-/MApp/src/main/java/com/mx/topic/legacy/view/ui/fragment/TopicHistoryLabelFragment.java	Text	Modified	Deleted
-/MApp/src/main/java/com/mx/topic/legacy/viewmodel/TopicImageItemViewModel.java	Text	Modified	Deleted
-/MApp/src/main/java/com/mx/topic/legacy/view/ui/activity/SelectShopElementActivity.java	Text	Modified	Deleted
-/MApp/src/main/java/com/mx/topic/legacy/view/ui/activity/PublishTopicActivity.java	Text	Modified	Deleted
-/MApp/src/main/java/com/mx/topic/legacy/view/ui/adapter/PublishTopicAdapter.java	Text	Modified	Deleted
-/MApp/src/main/java/com/mx/topic/legacy/view/ui/holder/MineTopicListHolder.java	Text	Modified	Deleted
-/MApp/src/main/java/com/mx/topic/legacy/view/ui/GomeExitShareDialog.java	Text	Modified	Deleted
-/MApp/src/main/java/com/mx/topic/legacy/view/GomeVideoPlayer.java	Text	Modified	Deleted
-/MApp/src/main/java/com/mx/topic/legacy/model/GroupSubscriberWith400.java	Text	Modified	Deleted
-/MApp/src/main/java/com/mx/topic/legacy/view/ui/holder/ReplyTopicViewHolder.java	Text	Modified	Deleted
-/MApp/src/main/java/com/mx/topic/legacy/view/ui/activity/TopicLabelSearchActivity.java	Text	Modified	Deleted
-/MApp/src/main/java/com/mx/topic/legacy/view/ui/fragment/TopicLabelSearchListFragment.java	Text	Modified	Deleted
-/MApp/src/main/java/com/mx/topic/legacy/view/ui/activity/TopicListLabelActivity.java	Text	Modified	Deleted
-/MApp/src/main/java/com/mx/topic/legacy/view/ui/fragment/TopicMShopFragment.java	Text	Modified	Deleted
-/MApp/src/main/java/com/mx/topic/legacy/view/ui/fragment/TopicProductFragment.java	Text	Modified	Deleted
-/MApp/src/main/java/com/mx/topic/legacy/viewmodel/TopicProductItemViewModel.java	Text	Modified	Deleted
-/MApp/src/main/java/com/mx/topic/legacy/view/ui/activity/TopicReplyDetailActivity.java	Text	Modified	Deleted
-/MApp/src/main/java/com/mx/topic/legacy/view/ui/fragment/TopicSearchHistoryFragment.java	Text	Modified	Deleted
-/MApp/src/main/java/com/mx/topic/legacy/view/ui/activity/TopicSearchInGroupActivity.java	Text	Modified	Deleted
-/MApp/src/main/java/com/mx/topic/legacy/view/ui/fragment/TopicSearchProductFragment.java	Text	Modified	Deleted
-/MApp/src/main/java/com/mx/topic/legacy/view/ui/fragment/TopicSearchShopFragment.java	Text	Modified	Deleted
-/MApp/src/main/java/com/mx/topic/legacy/view/ui/adapter/TopicSelectElementRecyclerAdapter.java	Text	Modified	Deleted
-/MApp/src/main/java/com/mx/topic/legacy/view/ui/adapter/TopicSelectProductElementAdapter.java	Text	Modified	Deleted
-/MApp/src/main/java/com/mx/topic/legacy/view/ui/adapter/TopicSelectShopElementAdapter.java	Text	Modified	Deleted
-/MApp/src/main/java/com/mx/topic/legacy/view/ui/activity/TopicShopElementActivity.java	Text	Modified	Deleted
-/MApp/src/main/java/com/mx/topic/legacy/view/ui/fragment/TopicShopFragment.java	Text	Modified	Deleted
-/MApp/src/main/java/com/mx/topic/legacy/viewmodel/TopicShopItemViewModel.java	Text	Modified	Deleted
-/MApp/src/main/java/com/mx/topic/legacy/viewmodel/TopicTagViewModel.java	Text	Modified	Deleted
-/MApp/src/main/java/com/mx/topic/legacy/viewmodel/TopicUserInfoItemViewModel.java	Text	Modified	Deleted
+/MApp/src/main/java/com/mx/topic/legacy/view/ui/activity/TopicReplyDetailActivity.java	Text	Modified	Deleted  XXX
+/MApp/src/main/java/com/mx/topic/legacy/view/ui/fragment/TopicShopFragment.java	Text	Modified	Deleted  XXX
 
 
 /MApp/src/main/java/com/gome/ecmall/beauty/ui/activity/BeautyAfterSalesOrderDetailActivity.java	Text	Modified	Deleted
