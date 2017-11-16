@@ -33,7 +33,15 @@
 /MApp/src/main/java/com/gome/fxbim/ui/adapter/holder/DefaultGroupTabSliderView.java	Text	Modified	Deleted
 /MApp/src/main/java/com/gome/im/business/group/view/fragment/DelGroupMemberFragment.java	Text	Modified	Deleted
 /MApp/src/main/java/com/mx/im/history/helper/EmotionMsgHelper.java	Text	Modified	Deleted
-/MApp/src/main/java/com/mx/im/history/viewmodel/itemviewmodel/EmotionReceiveViewModel.java	Text	Modified	Deleted
+/MApp/src/main/java/com/mx/im/history/viewmodel/itemviewmodel/EmotionReceiveViewModel.java
+
+
+
+
+
+
+
+Text	Modified	Deleted
 /MApp/src/main/java/com/mx/im/history/viewmodel/itemviewmodel/EmotionSendViewModel.java	Text	Modified	Deleted
 /MApp/src/main/java/com/mx/im/history/view/widget/keyboardutils/EmotionsHelper.java	Text	Modified	Deleted
 /MApp/src/main/java/com/gome/fxbim/ui/adapter/FaceBannerPagerAdapter.java	Text	Modified	Deleted
@@ -244,8 +252,6 @@
 /MApp/src/main/java/com/mx/circle/legacy/view/ui/fragment/IMSearchGroupFragment.java	Text	Modified	Deleted xxx
 
 
-/MApp/src/main/java/com/mx/topic/legacy/view/ui/activity/TopicReplyDetailActivity.java	Text	Modified	Deleted  XXX
-/MApp/src/main/java/com/mx/topic/legacy/view/ui/fragment/TopicShopFragment.java	Text	Modified	Deleted  XXX
 
 
 /MApp/src/main/java/com/gome/ecmall/beauty/ui/activity/BeautyAfterSalesOrderDetailActivity.java	Text	Modified	Deleted
@@ -319,7 +325,6 @@
 /MApp/src/main/res/layout/custom_im_message_emotion_receive.xml	Text	Modified	Deleted
 /MApp/src/main/res/layout/custom_im_message_emotion_send.xml	Text	Modified	Deleted
 /MApp/src/main/res/layout/custom_im_message_file_receive.xml	Text	Modified	Deleted
-/MApp/src/main/res/layout/shop_detail_product_item.xml	Text	Modified	Deleted
 /MApp/src/main/res/layout/custom_im_message_file_send.xml	Text	Modified	Deleted
 /MApp/src/main/res/layout/custom_im_message_image_receive.xml	Text	Modified	Deleted
 /MApp/src/main/res/layout/custom_im_message_image_send.xml	Text	Modified	Deleted
@@ -329,14 +334,8 @@
 /MApp/src/main/res/layout/custom_im_message_text_send.xml	Text	Modified	Deleted
 /MApp/src/main/res/layout/custom_im_message_video_receive.xml	Text	Modified	Deleted
 /MApp/src/main/res/layout/custom_im_message_video_send.xml	Text	Modified	Deleted
-/MApp/src/main/res/layout/activity_chat_msg_forward.xml	Text	Modified	Deleted
-/MApp/src/main/res/layout/activity_chat_new_frame.xml	Text	Modified	Deleted
 /MApp/src/main/res/layout/fragment_image_preview.xml	Text	Modified	Deleted
-/MApp/src/main/res/layout/activity_describe_shop.xml	Text	Modified	Deleted
-/MApp/src/main/res/layout/activity_expert_shop_enter_and_set.xml	Text	Modified	Deleted
-/MApp/src/main/res/layout/activity_group_list.xml	Text	Modified	Deleted
 /MApp/src/main/res/layout/activity_im_mygroup_list.xml	Text	Modified	Deleted
-/MApp/src/main/res/layout/beauty_item_keyboard_show_photo.xml	Text	Modified	Deleted
 /MApp/src/main/res/layout/custom_im_message_voice_receive.xml	Text	Modified	Deleted
 /MApp/src/main/res/layout/custom_im_message_voice_send.xml	Text	Modified	Deleted
 /MApp/src/main/res/layout/custom_im_red_envelope_receive.xml	Text	Modified	Deleted
@@ -356,12 +355,24 @@
 /MApp/src/main/res/layout/im_templet_small_pic.xml	Text	Modified	Deleted
 /MApp/src/main/res/layout/im_title_left_layout.xml	Text	Modified	Deleted
 /MApp/src/main/res/layout/im_view_keyboard_xhs.xml	Text	Modified	Deleted
+/MApp/src/main/res/layout/layout_im_location_search_title_right.xml	Text	Modified	Deleted
+/MApp/src/main/res/layout/item_topic_image.xml	Text	Modified	Deleted
+
+
+/MApp/src/main/res/layout/layout_group_chat_footerview.xml	Text	Modified	Deleted
+/MApp/src/main/res/layout/activity_chat_msg_forward.xml	Text	Modified	Deleted
+/MApp/src/main/res/layout/activity_chat_new_frame.xml	Text	Modified	Deleted
+
+
+
 /MApp/src/main/res/layout/item_add_group.xml	Text	Modified	Deleted
 /MApp/src/main/res/layout/item_keyboard_show_photo.xml	Text	Modified	Deleted
 /MApp/src/main/res/layout/item_location_on_map.xml	Text	Modified	Deleted
 /MApp/src/main/res/layout/item_select_my_fav_product.xml	Text	Modified	Deleted
-/MApp/src/main/res/layout/item_topic_image.xml	Text	Modified	Deleted
-/MApp/src/main/res/layout/layout_group_chat_footerview.xml	Text	Modified	Deleted
-/MApp/src/main/res/layout/layout_im_location_search_title_right.xml	Text	Modified	Deleted
 /MApp/src/main/res/layout/ll_nomore_layout.xml	Text	Modified	Deleted
 /MApp/src/main/res/layout/managerorder_listitem_layout.xml	Text	Modified	Deleted
+/MApp/src/main/res/layout/activity_describe_shop.xml	Text	Modified	Deleted
+/MApp/src/main/res/layout/shop_detail_product_item.xml	Text	Modified	Deleted
+/MApp/src/main/res/layout/activity_expert_shop_enter_and_set.xml	Text	Modified	Deleted
+/MApp/src/main/res/layout/activity_group_list.xml	Text	Modified	Deleted
+/MApp/src/main/res/layout/beauty_item_keyboard_show_photo.xml	Text	Modified	Deleted
