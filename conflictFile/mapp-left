@@ -1,14 +1,12 @@
-	Line 3: 	Line 6:aaaaa /MApp/src/main/res/layout/activity_im_mygroup_list.xml	Text	Modified	Deleted
 	Line 51: 	Line 129:aaa /MApp/src/main/java/com/gome/fxbim/ui/adapter/holder/DefaultGroupTabSliderView.java	Text	Modified	Deleted
-	Line 94: 	Line 194: aaaa/MApp/src/main/java/com/mx/im/history/view/viewbean/GroupNotifyViewModel.java	Text	Modified	Deleted
 	Line 95: 	Line 204: aaa/MApp/src/main/java/com/mx/im/history/view/activity/GroupVerificationActivity.java	Text	Modified	Deleted
-	Line 137: 	Line 237: aaa/MApp/src/main/java/com/gome/fxbim/ui/activity/IMSearchActivity.java	Text	Modified	Deleted
+
+
+
 	Line 138: 	Line 237: aaa /MApp/src/main/java/com/gome/fxbim/ui/activity/IMSearchActivity.java	Text	Modified	Deleted
 	Line 139: 	Line 238: aaa/MApp/src/main/java/com/mx/circle/legacy/view/ui/fragment/IMSearchGroupFragment.java	Text	Modified	Deleted
-	Line 140: 	Line 239: aaa/MApp/src/main/java/com/mx/circle/legacy/view/holder/IMSearchGroupListViewHolder.java	Text	Modified	Deleted
 	Line 141: 	Line 240: aaa/MApp/src/main/java/com/gome/fxbim/ui/fragment/IMSearchTopicFragment.java	Text	Modified	Deleted
 	Line 142: 	Line 240: aaa/MApp/src/main/java/com/gome/fxbim/ui/fragment/IMSearchTopicFragment.java	Text	Modified	Deleted
-	Line 143: 	Line 241: aaa/MApp/src/main/java/com/gome/fxbim/ui/fragment/IMSearchUserFragment.java	Text	Modified	Deleted
 	Line 144: 	Line 241: aaa/MApp/src/main/java/com/gome/fxbim/ui/fragment/IMSearchUserFragment.java	Text	Modified	Deleted
 	Line 149: 	Line 244: aaa/MApp/src/main/java/com/mx/im/history/model/IMUseCase.java	Text	Modified	Deleted
 	Line 150: 	Line 244: aaa/MApp/src/main/java/com/mx/im/history/model/IMUseCase.java	Text	Modified	Deleted
