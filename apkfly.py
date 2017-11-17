@@ -392,10 +392,6 @@ APK_CONFIG = {
     "GomePlus": {
         "url": "git@gitlab.ds.gome.com.cn:mobile-android/GomePlus.git",
         "branch": "mergeDev"
-    },
-    "MApp": {
-        "url": "git@gitlab.ds.gome.com.cn:mobile-android-business/MApp.git",
-        "branch": "mergeDev"
     }
 }
 
