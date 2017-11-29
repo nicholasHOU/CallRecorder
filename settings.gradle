@@ -1,5 +1,1 @@
 include ":GomePlus"
-include ":MApp"
-include ":MShop"
-include ":MCommon"
-include ":GProductSearch"

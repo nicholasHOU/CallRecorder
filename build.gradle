@@ -118,23 +118,19 @@ ext.deps = [
         GZxingScan           : rootProject.ext.proDeps ? project(':GZxingScan') : 'com.gome.ecmall:gzxing:' + getProperty('AAR_GZING_VERSION') + '@aar',
         GGomeCurrency        : rootProject.ext.proDeps ? project(':GGomeCurrency') : 'com.gome.ecmall:ggomecurrency:' + getProperty('AAR_GGOMECURRENCY_VERSION') + '@aar',
         GIMRedEnvelope       : rootProject.ext.proDeps ? project(':GIMRedEnvelope') : 'com.gome.ecmall:imredenvelope:' + getProperty('AAR_IMREDENVELOPE_VERSION') + '@aar',
-//        GProductSearch       : rootProject.ext.proDeps ? project(':GProductSearch') : 'com.gome.ecmall:productsearch:' + getProperty('AAR_GPRODUCT_SEARCH_VERSION') + '@aar',
-        GProductSearch       : project(':GProductSearch'),
+        GProductSearch       : rootProject.ext.proDeps ? project(':GProductSearch') : 'com.gome.ecmall:productsearch:' + getProperty('AAR_GPRODUCT_SEARCH_VERSION') + '@aar',
 
         MSelectPhoto         : 'com.gome.ecmall:mselectphoto:' + getProperty('AAR_MSELECT_PHOTO_VERSION') + '@aar',
         MShare               : rootProject.ext.proDeps ? project(':MShare') : 'com.gome.ecmall:mshare:' + getProperty('AAR_MSHARE_VERSION') + '@aar',
         MMeixinplayer        : rootProject.ext.proDeps ? project(':MMeixinplayer') : 'com.gome.ecmall:mplayer:' + getProperty('AAR_MPLAYER_VERSION') + '@aar',
         GBusiness            : rootProject.ext.proDeps ? project(':GBusiness') : 'com.gome.ecmall:business:' + getProperty('AAR_GBUSINESS_VERSION') + '@aar',
         MImlibrary           : rootProject.ext.proDeps ? project(':MImlibrary') : 'com.gome.ecmall:mimlib:' + getProperty('AAR_MIM_LIB_VERSION') + '@aar',
-//        MCommon              : rootProject.ext.proDeps ? project(':MCommon') : 'com.gome.ecmall:mcommon:' + getProperty('AAR_MCOMMON_VERSION') + '@aar',
-        MCommon              : project(':MCommon'),
+        MCommon              : rootProject.ext.proDeps ? project(':MCommon') : 'com.gome.ecmall:mcommon:' + getProperty('AAR_MCOMMON_VERSION') + '@aar',
         MFriendCircle        : rootProject.ext.proDeps ? project(':MFriendCircle') : 'com.gome.ecmall:mfriendcircle:' + getProperty('AAR_MFRIEND_CIRCLE_VERSION') + '@aar',
         MIm                  : rootProject.ext.proDeps ? project(':MIm') : 'com.gome.ecmall:mim:' + getProperty('AAR_MIM_VERSION') + '@aar',
         MSocial              : rootProject.ext.proDeps ? project(':MSocial') : 'com.gome.ecmall:msocial:' + getProperty('AAR_MSOCIAL_VERSION') + '@aar',
-//            MShop                : rootProject.ext.proDeps ? project(':MShop') : 'com.gome.ecmall:mshop:' + getProperty('AAR_MSHOP_VERSION') + '@aar',
-        MShop                : project(':MShop'),
-//            MApp                 : rootProject.ext.proDeps ? project(':MApp') : 'com.gome.ecmall:mapp:' + getProperty('AAR_MAPP_VERSION') + '@aar'
-        MApp                 : project(':MApp')
+        MShop                : rootProject.ext.proDeps ? project(':MShop') : 'com.gome.ecmall:mshop:' + getProperty('AAR_MSHOP_VERSION') + '@aar',
+        MApp                 : rootProject.ext.proDeps ? project(':MApp') : 'com.gome.ecmall:mapp:' + getProperty('AAR_MAPP_VERSION') + '@aar'
 
 ]
 
