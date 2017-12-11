@@ -1,2 +1,9 @@
-
-
+//include ":MApp"
+//include ":GBusiness"
+include "GomePlus"
+include "MCommon"
+//include "MFriendCircle"
+//include "MShop"
+include "MSocial"
+//include "MIm"
+//include "MImlibrary"
