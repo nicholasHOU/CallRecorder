@@ -51,7 +51,8 @@
     <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/MSocial.git"/>
     <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/MShop.git"/>
     <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/MIm.git"/>
-    <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/MApp.git"/>
+    <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/MFriends.git"/>
+    <!--<project url="git@gitlab.ds.gome.com.cn:mobile-android-business/MApp.git"/>-->
     <!--主工程-->
     <project app="true" groups="app" path="GomeApp" url="git@gitlab.ds.gome.com.cn:mobile-android/GomePlus.git"/>
 </manifest>
