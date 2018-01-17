@@ -423,6 +423,69 @@ def cmd_dep(args):
         print ">>>>>>error: project %s not exit <<<<<<" % project
 
 
+###################################################################
+### Jenkins 自动更新代码
+###################################################################
+# 打包配置项目
+APK_CONFIG = {
+    "GomePlus": {
+        "url": "git@gitlab.ds.gome.com.cn:mobile-android/GomePlus.git",
+        "branch": "mergeDev"
+    }
+}
+
+
+def _git_clone_ser(project_name, git_url, git_branch):
+    os.chdir(dir_current)
+    clone_cmd = os.popen("git clone %s -b %s %s" % (git_url, git_branch, project_name))
+    print clone_cmd.read()
+
+
+def _git_pull_ser(project_name, git_branch):
+    os.chdir(os.path.join(dir_current, project_name))
+    pull_cmd = os.popen("git pull origin %s" % git_branch)
+    print pull_cmd.read()
+
+
+def _update_project(args):
+    """更新源码for jenkins
+    """
+    check_root_project()
+
+    # main_project = args.main # 暂不用
+    setting_content = ""
+    for (key, value) in APK_CONFIG.items():
+        # 获取 url,branch
+        for (git_key, git_value) in value.items():
+            if git_key == "url":
+                git_url = git_value
+            if git_key == "branch":
+                git_branch = git_value
+        if key and git_url and git_branch:
+            os.chdir(dir_current)
+            # 获取最新项目源码
+            if os.path.exists(os.path.join(dir_current, key)) and os.path.isdir(key):
+                print u">>>项目%s存在，更新代码..." % key
+                _git_pull_ser(key, git_branch)
+            else:
+                print u">>>项目%s不存在，克隆代码..." % key
+                _git_clone_ser(key, git_url, git_branch)
+            # 构建setting content
+            if setting_content == "":
+                setting_content = "include \":%s\"" % key
+            else:
+                setting_content += "\ninclude \":%s\"" % key
+        else:
+            raise Exception(u"APK_CONFIG 配置错误")
+    print u">>>子项目写入setting"
+    with open(file_settings, "w") as setting_file:
+        setting_file.write(setting_content)
+
+
+###################################################################
+### git 操作
+###################################################################
+
 class XmlProject(object):
     """
     manifest and parser
@@ -889,6 +952,11 @@ if __name__ == '__main__':
     parser_tag.add_argument("name", help=u'tag名称', action='store')
     parser_tag.add_argument("-m", "--message", help=u'评论信息', action='store')
     parser_tag.add_argument("-d", "--delete", help=u'删除分支', action='store_true', default=False)
+
+    # 仅用于Jenkins更新构建源码
+    parser_apk = subparsers.add_parser("serv-update", help=u"打包for jenkins")
+    parser_apk.set_defaults(func=_update_project)
+    parser_apk.add_argument('-m', "--main", type=str, default='GomePlus', help=u'主工程')
 
     # 参数解析
     args = parser.parse_args()
