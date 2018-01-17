@@ -602,7 +602,7 @@ def cmd_clone(args):
         projects_size = len(projects)
         if groups_size > 0 and projects_size > 0:
             raise Exception(u"by_group 和 by_project 不能同时使用")
-
+        os.chdir(dir_current)
         projects = XmlProject.parser_manifest("projects.xml", by_group=groups, by_project=projects,
                                               allow_private=allow_private, order=is_order,
                                               ignore_app=ignore_app)
