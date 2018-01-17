@@ -1,10 +1,8 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-"""This script is used to execute project commands in batches"""
+"""This script is used to manage android project"""
 import argparse
-import logging
 import os
-import platform
 import re
 import subprocess
 import sys
@@ -14,11 +12,12 @@ from collections import Counter
 from xml.dom import minidom
 
 __author__ = "qiudongchao<1162584980@qq.com>"
-__version__ = "4.0.0"
+__version__ = "5.0.0"
 
 # 解决win命令行乱码问题
 reload(sys)
 sys.setdefaultencoding('utf-8')
+##########################################
 
 file_build_gradle = "build.gradle"
 dir_current = os.path.abspath(".")
@@ -26,14 +25,18 @@ file_settings = os.path.join(dir_current, "settings.gradle")
 file_build = os.path.join(dir_current, file_build_gradle)
 dir_build = os.path.join(dir_current, "build")
 
-# , filename='sync.log', filemode='a'
-logging.basicConfig(level=logging.DEBUG,
-                    format='[%(asctime)s %(levelname)s] %(message)s',
-                    datefmt='%Y-%m-%d %H:%M:%S')
 
+###################################################################
+### 全局公共方法
+###################################################################
 
 def slog(message, loading=False, line=False):
-    """日志打印
+    """
+    打印日志
+    :param message: 日志信息
+    :param loading: 是否 显示进行中 状态
+    :param line: 是否 换行
+    :return:
     """
     temp = ">>> " + message
     if loading:
@@ -43,15 +46,28 @@ def slog(message, loading=False, line=False):
     print temp
 
 
+def sloge(message):
+    """
+    打印异常日志
+    :param message:
+    :return:
+    """
+    print "[Exception] %s" % message
+
+
 def slogr(success):
+    """
+    打印 任务执行结果
+    :param success: 是否 成功
+    :return:
+    """
     slog(u"O(∩_∩)O哈哈~" if success else u"╮(╯▽╰)╭哎")
 
 
-###################################################################
-### 工作空间  校验
-###################################################################
 def check_root_project():
-    """校验当前工作空间是否合法
+    """
+    校验当前工作空间是否合法
+    :return: True or False
     """
     file_exist = os.path.exists(file_build) and os.path.exists(file_settings)
     is_file = os.path.isfile(file_settings) and os.path.isfile(file_build)
@@ -61,7 +77,11 @@ def check_root_project():
 
 
 def check_sub_project(sub_project, is_formate):
-    """校验子项目是否合法
+    """
+    校验子项目是否合法
+    :param sub_project: 子项目
+    :param is_formate: 是否 校验 排序规则
+    :return: True or False
     """
     check_result = False
     if os.path.isdir(sub_project):
@@ -75,11 +95,12 @@ def check_sub_project(sub_project, is_formate):
     return check_result
 
 
-###################################################################
-### 批量执行子项目命令
-###################################################################
 def exec_sub_project(cmd, args):
-    """批量执行子项目命令【gradle】
+    """
+    批量执行子项目命令
+    :param cmd: 命令
+    :param args: 命令行参数
+    :return:
     """
     check_root_project()
 
@@ -121,26 +142,40 @@ def exec_sub_project(cmd, args):
     print ">>>>>>running stop<<<<<<"
 
 
-def _upload(args):
+def cmd_upload(args):
+    """
+    upload
+    :param args:
+    :return:
+    """
     exec_sub_project("uploadArchives", args)
 
 
-def _ar(args):
-    exec_sub_project("aR", args)
+def cmd_close_awb(args):
+    """
+    关闭awb版本
+    :param args:
+    :return:
+    """
+    modifyXMLNode("projects.xml", "false")
+    updateVersion("awb", "plus", args.all)
 
-##### 关闭awb版本
-def close_awb(args):
-    modifyXMLNode("projects.xml","false")
-    updateVersion("awb","plus",args.all)
-#### 开启awb
-def open_awb(args):
-    modifyXMLNode("projects.xml","true")
-    updateVersion("plus","awb",args.all)
 
-def _uploadawb(args):
+def cmd_open_awb(args):
+    """
+    开启awb
+    :param args:
+    :return:
+    """
+    modifyXMLNode("projects.xml", "true")
+    updateVersion("plus", "awb", args.all)
+
+
+def cmd_upload_awb(args):
     exec_awb_sub_project("uploadArchives")
 
-def modifyXMLNode(manifest,isbundleopen):
+
+def modifyXMLNode(manifest, isbundleopen):
     try:
         root = minidom.parse(manifest)
     except (OSError, xml.parsers.expat.ExpatError) as e:
@@ -161,7 +196,7 @@ def modifyXMLNode(manifest,isbundleopen):
         manifestxml.write(root.toxml())
 
 
-def updateVersion(fromv,tov,all):
+def updateVersion(fromv, tov, all):
     first_prop = 'AAR_GFRAME_VERSION' if all else 'AAR_GFINANCE_VERSION'
     last_prop = 'AAR_MAPP_VERSION' if all else 'AAR_GTQ_DETAIL_VERSION'
     prop_file_path = os.path.join(dir_current, "gradle.properties")
@@ -212,8 +247,8 @@ def exec_awb_sub_project(cmd):
     # 按文件名排序
     sub_file_list.sort()
     for sub_file in sub_file_list:
-        isbundle = is_bundle_project(sub_file,projects)
-        if(isbundle):
+        isbundle = is_bundle_project(sub_file, projects)
+        if (isbundle):
             print ">>>Running project:%s" % sub_file
             # 在settings.gradle 配置子项目
             with open(file_settings, "w") as setting:
@@ -230,7 +265,8 @@ def exec_awb_sub_project(cmd):
                 print ">>>Error project:%s" % sub_file
     print ">>>>>>running stop<<<<<<"
 
-def is_bundle_project(sub_file,projects):
+
+def is_bundle_project(sub_file, projects):
     checkbundle = False
     for project in projects:
         if sub_file.endswith(project.path) and project.bundleopen:
@@ -238,11 +274,13 @@ def is_bundle_project(sub_file,projects):
             break
 
     return checkbundle
-###################################################################
-### 将当前工作空间的项目部署到setting配置文件
-###################################################################
-def _setting(args):
-    """重建setting文件
+
+
+def cmd_setting(args):
+    """
+    将当前工作空间的项目部署到setting配置文件
+    :param args:
+    :return:
     """
     check_root_project()
 
@@ -261,11 +299,11 @@ def _setting(args):
     print ">>>>>>running stop<<<<<<"
 
 
-###################################################################
-### 版本自增
-###################################################################
-def _version_add(args):
-    """版本号批量增加
+def cmd_version_add(args):
+    """
+    版本号 批量增加
+    :param args:
+    :return:
     """
     first_prop = args.start
     last_prop = args.end
@@ -324,11 +362,11 @@ def _version_add(args):
         print ">>>>>>error: gradle.properties not exit <<<<<<"
 
 
-###################################################################
-### 提交 gradle.properties 到服务器
-###################################################################
-def _push_prop(args):
-    """提交gradle.properties到git服务器
+def cmd_prop(args):
+    """
+    提交gradle.properties到git服务器
+    :param args:
+    :return:
     """
     prop_file_path = os.path.join(dir_current, "gradle.properties")
     if os.path.exists(prop_file_path) and os.path.isfile(prop_file_path):
@@ -349,11 +387,12 @@ def _push_prop(args):
         print ">>>>>>error: gradle.properties not exit <<<<<<"
 
 
-###################################################################
-### 依赖分析
-###################################################################
-def _deps(args):
-    """分析依赖关系"""
+def cmd_dep(args):
+    """
+    分析依赖关系
+    :param args: 命令行参数
+    :return:
+    """
     project = args.project
     if os.path.exists(os.path.join(dir_current, project)) and os.path.isdir(project):
         deps_cmd = "gradle -q %s:dependencies --configuration compile" % project
@@ -384,74 +423,12 @@ def _deps(args):
         print ">>>>>>error: project %s not exit <<<<<<" % project
 
 
-###################################################################
-### Jenkins 自动更新代码
-###################################################################
-# 打包配置项目
-APK_CONFIG = {
-    "GomePlus": {
-        "url": "git@gitlab.ds.gome.com.cn:mobile-android/GomePlus.git",
-        "branch": "mergeDev"
-    }
-}
-
-
-def _git_clone_ser(project_name, git_url, git_branch):
-    os.chdir(dir_current)
-    clone_cmd = os.popen("git clone %s -b %s %s" % (git_url, git_branch, project_name))
-    print clone_cmd.read()
-
-
-def _git_pull_ser(project_name, git_branch):
-    os.chdir(os.path.join(dir_current, project_name))
-    pull_cmd = os.popen("git pull origin %s" % git_branch)
-    print pull_cmd.read()
-
-
-def _update_project(args):
-    """更新源码for jenkins
-    """
-    check_root_project()
-
-    # main_project = args.main # 暂不用
-    setting_content = ""
-    for (key, value) in APK_CONFIG.items():
-        # 获取 url,branch
-        for (git_key, git_value) in value.items():
-            if git_key == "url":
-                git_url = git_value
-            if git_key == "branch":
-                git_branch = git_value
-        if key and git_url and git_branch:
-            os.chdir(dir_current)
-            # 获取最新项目源码
-            if os.path.exists(os.path.join(dir_current, key)) and os.path.isdir(key):
-                print u">>>项目%s存在，更新代码..." % key
-                _git_pull_ser(key, git_branch)
-            else:
-                print u">>>项目%s不存在，克隆代码..." % key
-                _git_clone_ser(key, git_url, git_branch)
-            # 构建setting content
-            if setting_content == "":
-                setting_content = "include \":%s\"" % key
-            else:
-                setting_content += "\ninclude \":%s\"" % key
-        else:
-            raise Exception(u"APK_CONFIG 配置错误")
-    print u">>>子项目写入setting"
-    with open(file_settings, "w") as setting_file:
-        setting_file.write(setting_content)
-
-
-###################################################################
-### git 操作
-###################################################################
-
 class XmlProject(object):
-    """manifest and parser
+    """
+    manifest and parser
     """
 
-    def __init__(self, url, branch, path, app, groups,bundleopen):
+    def __init__(self, url, branch, path, app, groups, bundleopen):
         if not url.endswith('.git'):
             raise Exception("%s error" % url)
         self.url = url
@@ -460,10 +437,19 @@ class XmlProject(object):
         self.app = app
         self.groups = groups
         self.bundleopen = bundleopen
+
     @staticmethod
     def parser_manifest(manifest, by_group=[], by_project=[], allow_private=False, order=False,
                         ignore_app=False):
-        """projects.xml 解析
+        """
+        projects.xml 解析
+        :param manifest:
+        :param by_group:
+        :param by_project:
+        :param allow_private:
+        :param order:
+        :param ignore_app:
+        :return:
         """
         try:
             root = minidom.parse(manifest)
@@ -530,14 +516,17 @@ class XmlProject(object):
                 if allow:
                     if order:
                         path = "%s-%s" % (str(index).zfill(3), path)
-                    project = XmlProject(url, branch, path, app, groups,bundleopen)
+                    project = XmlProject(url, branch, path, app, groups, bundleopen)
                     projects.append(project)
                     index = index + 1
         return projects
 
 
-def _git_clone(args):
-    """克隆子项目
+def cmd_clone(args):
+    """
+    克隆子项目
+    :param args:
+    :return:
     """
     is_order = args.order
     allow_private = args.allow_private
@@ -545,30 +534,32 @@ def _git_clone(args):
     projects = args.by_project
     ignore_app = args.ignore_app
 
-    groups_size = len(groups)
-    projects_size = len(projects)
-    if groups_size > 0 and projects_size > 0:
-        raise Exception(u"by_group 和 by_project 不能同时使用")
+    try:
+        groups_size = len(groups)
+        projects_size = len(projects)
+        if groups_size > 0 and projects_size > 0:
+            raise Exception(u"by_group 和 by_project 不能同时使用")
 
-    projects = XmlProject.parser_manifest("projects.xml", by_group=groups, by_project=projects,
-                                          allow_private=allow_private, order=is_order,
-                                          ignore_app=ignore_app)
-    for project in projects:
-        if not os.path.exists(os.path.join(dir_current, project.path)):
-            print u">>>克隆:%s  分支：%s... url:%s" % (project.path, project.branch, project.url)
-            cmd = "git clone %s -b %s %s" % (project.url, project.branch, project.path)
-            # if platform.system() == "Linux":
-            #     process = subprocess.Popen(cmd, stderr=subprocess.PIPE,
-            #                                stdout=subprocess.PIPE, cwd=dir_current, shell=True)
-            #     code = process.wait()
-            #     slogr(code == 0)
-            # else:
-            os.popen(cmd).read().strip()
-            print ""  # 换行
+        projects = XmlProject.parser_manifest("projects.xml", by_group=groups, by_project=projects,
+                                              allow_private=allow_private, order=is_order,
+                                              ignore_app=ignore_app)
+        for project in projects:
+            if not os.path.exists(os.path.join(dir_current, project.path)):
+                slog(u"Module:%s  Branch：%s" % (project.path, project.branch))
+                slog("Url:%s" % project.url)
+                cmd = "git clone %s -b %s %s" % (project.url, project.branch, project.path)
+                os.popen(cmd)
+                print ""  # 换行
+            else:
+                slog("%s has already existed" % project.path)
+    except Exception, e:
+        sloge(e.message)
 
 
 def _git_projects():
-    """获取git子项目
+    """
+    获取git子项目
+    :return:
     """
     check_root_project()
 
@@ -585,7 +576,8 @@ def _git_projects():
 
 
 def _git_check(branch_name, sub_projects, cmd_list):
-    """校验git项目合法性
+    """
+    校验git项目合法性
     :param branch_name: 分支名称
     :param sub_projects: 子项目列表list
     :param cmd_list: 命令列表list
@@ -699,8 +691,11 @@ def _git_delete_push(branch_name, sub_projects, local_list, push_list, is_push):
         slogr(True)
 
 
-def _git_branch(args):
-    """ 创建分支
+def cmd_branch(args):
+    """
+    创建分支
+    :param args:
+    :return:
     """
     branch_name = args.name
     is_delete = args.delete
@@ -723,8 +718,11 @@ def _git_branch(args):
         _git_create_push(branch_name, sub_projects, ["git", "checkout", "-b", branch_name], is_push)
 
 
-def _git_tag(args):
-    """ 创建tag
+def cmd_tag(args):
+    """
+    创建tag
+    :param args:
+    :return:
     """
     is_delete = args.delete
     tag_name = args.name
@@ -750,19 +748,35 @@ def _git_tag(args):
                          True)
 
 
-def _git_pull(args):
+def cmd_pull(args):
+    """
+    git pull
+    :param args:
+    :return:
+    """
     cmd = "git pull"
-    sub_projects = _git_projects()
-    print ">>>>>>start to running<<<<<<"
-    for sub_file in sub_projects:
-        print ">>>>>>Run [git %s] at dir [%s]" % (cmd, sub_file)
-        os.chdir(os.path.join(dir_current, sub_file))
-        git_cmd = os.popen(cmd)
-        print git_cmd.read()
-    print ">>>>>>running stop<<<<<<"
+    try:
+        sub_projects = _git_projects()
+        for sub_file in sub_projects:
+            slog("git pull [%s]" % sub_file)
+            os.chdir(os.path.join(dir_current, sub_file))
+            result = os.popen(cmd).read().strip()
+            # print "--\n%s\n--" % result
+            if "Updating" in result:
+                raise Exception("[%s] maybe needs to merge" % sub_file)
+        slog("All projects have been updated\n")
+    except Exception, e:
+        sloge(e.message)
+    except KeyboardInterrupt:
+        sloge("Cancel")
 
 
-def _git_reset(args):
+def cmd_reset(args):
+    """
+    git reset
+    :param args:
+    :return:
+    """
     cmd = "git reset --hard"
     sub_projects = _git_projects()
     print ">>>>>>start to running<<<<<<"
@@ -777,8 +791,6 @@ def _git_reset(args):
 ###################################################################
 ### 主程序入口
 ###################################################################
-
-
 if __name__ == '__main__':
     """执行入口
     """
@@ -799,25 +811,27 @@ if __name__ == '__main__':
     # 把workspace内所有的module配置到settings.gradle
     parser_setting = subparsers.add_parser("setting",
                                            help=u"把workspace内所有的module配置到settings.gradle")
-    parser_setting.set_defaults(func=_setting)
+    parser_setting.set_defaults(func=cmd_setting)
 
     # 提交gradle.properties到git服务器
     parser_setting = subparsers.add_parser("pushprop", help=u"提交gradle.properties到git服务器")
-    parser_setting.set_defaults(func=_push_prop)
+    parser_setting.set_defaults(func=cmd_prop)
     parser_setting.add_argument('-m', type=str, help=u'push评论信息')
     parser_setting.add_argument('-b', type=str, default='mergeDev', help=u'push 分支')
+
     # 关闭awb
     parser_close_awb = subparsers.add_parser("closeawb", help=u"关闭awb开关")
-    parser_close_awb.set_defaults(func=close_awb)
-    parser_close_awb.add_argument('-a', "--all",help=u'所有版本为awb',default=True)
+    parser_close_awb.set_defaults(func=cmd_close_awb)
+    parser_close_awb.add_argument('-a', "--all", help=u'所有版本为awb', default=True)
+
     # 打开awb
     parser_open_awb = subparsers.add_parser("openawb", help=u"打开awb开关")
-    parser_open_awb.set_defaults(func=open_awb)
-    parser_open_awb.add_argument('-a', "--all",help=u'所有版本为awb',default=True)
+    parser_open_awb.set_defaults(func=cmd_open_awb)
+    parser_open_awb.add_argument('-a', "--all", help=u'所有版本为awb', default=True)
 
     # 版本自增
     parser_version = subparsers.add_parser("version", help=u"自增gradle.properties内的 aar 配置版本")
-    parser_version.set_defaults(func=_version_add)
+    parser_version.set_defaults(func=cmd_version_add)
     parser_version.add_argument('-s', "--start", type=str, default='AAR_GFRAME_VERSION',
                                 help=u'起始AAR版本【例：AAR_MFRAME2_VERSION】')
     parser_version.add_argument('-e', "--end", type=str, default='AAR_MAPP_VERSION',
@@ -826,41 +840,34 @@ if __name__ == '__main__':
                                 help=u'自增版本索引【1大版本，2中间版本，3小版本】')
     parser_version.add_argument('-v', '--value', type=int, help=u'版本，默认值')
 
-    # 批量编译module
-    parser_ar = subparsers.add_parser("ar", help=u"依次 编译 所有module")
-    parser_ar.set_defaults(func=_ar)
-    parser_ar.add_argument('-s', "--start", type=str, help=u'执行起始点【项目名前三位，例：027】')
-    parser_ar.add_argument('-o', "--only", help=u'只执行一个', action='store_true',
-                           default=False)
-
     # 批量生成aar并提交至maven私服
     parser_upload = subparsers.add_parser("upload",
                                           help=u"按module名称 数字排列顺序 依次 执行gradle uploadArchives")
-    parser_upload.set_defaults(func=_upload)
+    parser_upload.set_defaults(func=cmd_upload)
     parser_upload.add_argument('-s', "--start", type=str, help=u'执行起始点【项目名前三位，例：027】')
     parser_upload.add_argument('-o', "--only", help=u'只执行一个', action='store_true',
                                default=False)
     # 批量生成awb并提交至maven私服
     parserawb_upload = subparsers.add_parser("uploadawb",
-                                          help=u"按module名称 数字排列顺序 依次 执行gradle uploadArchives")
-    parserawb_upload.set_defaults(func=_uploadawb)
+                                             help=u"按module名称 数字排列顺序 依次 执行gradle uploadArchives")
+    parserawb_upload.set_defaults(func=cmd_upload_awb)
 
     # 分析项目依赖关系
     parser_deps = subparsers.add_parser("deps", help=u"项目依赖关系分析")
-    parser_deps.set_defaults(func=_deps)
+    parser_deps.set_defaults(func=cmd_dep)
     parser_deps.add_argument("project", type=str, help=u'待分析依赖关系的项目名称')
 
     # 更新代码
     parser_pull = subparsers.add_parser("pull", help=u"更新 项目代码")
-    parser_pull.set_defaults(func=_git_pull)
+    parser_pull.set_defaults(func=cmd_pull)
 
     # reset
     parser_reset = subparsers.add_parser("reset", help=u"重置 项目代码")
-    parser_reset.set_defaults(func=_git_reset)
+    parser_reset.set_defaults(func=cmd_reset)
 
     # 克隆
     parser_clone = subparsers.add_parser("clone", help=u"克隆子工程")
-    parser_clone.set_defaults(func=_git_clone)
+    parser_clone.set_defaults(func=cmd_clone)
     parser_clone.add_argument("-o", "--order", help=u'对子项目进行排序', action='store_true', default=False)
     parser_clone.add_argument("-a", "--allow_private", help=u'包含私有项目', action='store_true',
                               default=False)
@@ -871,22 +878,17 @@ if __name__ == '__main__':
 
     # 创建branch
     parser_branch = subparsers.add_parser("branch", help=u"创建分支")
-    parser_branch.set_defaults(func=_git_branch)
+    parser_branch.set_defaults(func=cmd_branch)
     parser_branch.add_argument("name", help=u'分支名称', action='store')
     parser_branch.add_argument("-p", "--push", help=u'是否推送到服务器', action='store_true', default=False)
     parser_branch.add_argument("-d", "--delete", help=u'删除分支', action='store_true', default=False)
 
     # 创建tag
     parser_tag = subparsers.add_parser("tag", help=u"打tag")
-    parser_tag.set_defaults(func=_git_tag)
+    parser_tag.set_defaults(func=cmd_tag)
     parser_tag.add_argument("name", help=u'tag名称', action='store')
     parser_tag.add_argument("-m", "--message", help=u'评论信息', action='store')
     parser_tag.add_argument("-d", "--delete", help=u'删除分支', action='store_true', default=False)
-
-    # 仅用于Jenkins更新构建源码
-    parser_apk = subparsers.add_parser("serv-update", help=u"打包for jenkins")
-    parser_apk.set_defaults(func=_update_project)
-    parser_apk.add_argument('-m', "--main", type=str, default='GomePlus', help=u'主工程')
 
     # 参数解析
     args = parser.parse_args()
