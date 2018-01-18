@@ -12,7 +12,7 @@ from collections import Counter
 from xml.dom import minidom
 
 __author__ = "qiudongchao<1162584980@qq.com>"
-__version__ = "5.1.0"
+__version__ = "5.1.2"
 
 # 解决win命令行乱码问题
 reload(sys)
@@ -23,7 +23,6 @@ file_build_gradle = "build.gradle"
 dir_current = os.path.abspath(".")
 file_settings = os.path.join(dir_current, "settings.gradle")
 file_build = os.path.join(dir_current, file_build_gradle)
-dir_build = os.path.join(dir_current, "build")
 
 
 ###################################################################
@@ -426,14 +425,6 @@ def cmd_dep(args):
 ###################################################################
 ### Jenkins 自动更新代码
 ###################################################################
-# 打包配置项目
-APK_CONFIG = {
-    "GomePlus": {
-        "url": "git@gitlab.ds.gome.com.cn:mobile-android/GomePlus.git",
-        "branch": "mergeDev"
-    }
-}
-
 
 def _git_clone_ser(project_name, git_url, git_branch):
     os.chdir(dir_current)
@@ -454,7 +445,7 @@ def cmd_update_project(args):
     :return:
     """
     check_root_project()
-
+    is_order = args.order
     allow_private = args.allow_private
     groups = args.by_group
     projects = args.by_project
@@ -467,7 +458,7 @@ def cmd_update_project(args):
             raise Exception(u"by_group 和 by_project 不能同时使用")
         os.chdir(dir_current)
         projects = XmlProject.parser_manifest("projects.xml", by_group=groups, by_project=projects,
-                                              allow_private=allow_private, order=False,
+                                              allow_private=allow_private, order=is_order,
                                               ignore_app=ignore_app)
         setting_content = ""
         for project in projects:
@@ -870,11 +861,8 @@ if __name__ == '__main__':
     """执行入口
     """
     # debug
-    #sys.argv.append("serv-update")
+    # sys.argv.append("serv-update")
 
-    # 创建build目录
-    if not os.path.exists(dir_build):
-        os.mkdir(dir_build)
     # 默认打印帮助信息
     if len(sys.argv) == 1:
         sys.argv.append('--help')
@@ -971,6 +959,7 @@ if __name__ == '__main__':
     # 仅用于Jenkins更新构建源码
     parser_apk = subparsers.add_parser("serv-update", help=u"打包for jenkins")
     parser_apk.set_defaults(func=cmd_update_project)
+    parser_apk.add_argument("-o", "--order", help=u'对子项目进行排序', action='store_true', default=False)
     parser_apk.add_argument("-a", "--allow_private", help=u'包含私有项目', action='store_true',
                             default=False)
     parser_apk.add_argument("-g", "--by_group", help=u'根据组进行克隆', action='append', default=[])
