@@ -12,7 +12,7 @@ from collections import Counter
 from xml.dom import minidom
 
 __author__ = "qiudongchao<1162584980@qq.com>"
-__version__ = "5.0.0"
+__version__ = "5.1.0"
 
 # 解决win命令行乱码问题
 reload(sys)
@@ -447,22 +447,34 @@ def _git_pull_ser(project_name, git_branch):
     print pull_cmd.read()
 
 
-def _update_project(args):
-    """更新源码for jenkins
+def cmd_update_project(args):
+    """
+    更新源码for jenkins
+    :param args:
+    :return:
     """
     check_root_project()
 
-    # main_project = args.main # 暂不用
-    setting_content = ""
-    for (key, value) in APK_CONFIG.items():
-        # 获取 url,branch
-        for (git_key, git_value) in value.items():
-            if git_key == "url":
-                git_url = git_value
-            if git_key == "branch":
-                git_branch = git_value
-        if key and git_url and git_branch:
+    allow_private = args.allow_private
+    groups = args.by_group
+    projects = args.by_project
+    ignore_app = args.ignore_app
+
+    try:
+        groups_size = len(groups)
+        projects_size = len(projects)
+        if groups_size > 0 and projects_size > 0:
+            raise Exception(u"by_group 和 by_project 不能同时使用")
+        os.chdir(dir_current)
+        projects = XmlProject.parser_manifest("projects.xml", by_group=groups, by_project=projects,
+                                              allow_private=allow_private, order=False,
+                                              ignore_app=ignore_app)
+        setting_content = ""
+        for project in projects:
             os.chdir(dir_current)
+            key = project.path
+            git_branch = project.branch
+            git_url = project.url
             # 获取最新项目源码
             if os.path.exists(os.path.join(dir_current, key)) and os.path.isdir(key):
                 print u">>>项目%s存在，更新代码..." % key
@@ -475,11 +487,11 @@ def _update_project(args):
                 setting_content = "include \":%s\"" % key
             else:
                 setting_content += "\ninclude \":%s\"" % key
-        else:
-            raise Exception(u"APK_CONFIG 配置错误")
-    print u">>>子项目写入setting"
-    with open(file_settings, "w") as setting_file:
-        setting_file.write(setting_content)
+        print u">>>子项目写入setting"
+        with open(file_settings, "w") as setting_file:
+            setting_file.write(setting_content)
+    except Exception, e:
+        sloge(e.message)
 
 
 ###################################################################
@@ -602,12 +614,12 @@ def cmd_clone(args):
         projects_size = len(projects)
         if groups_size > 0 and projects_size > 0:
             raise Exception(u"by_group 和 by_project 不能同时使用")
+        os.chdir(dir_current)
         projects = XmlProject.parser_manifest("projects.xml", by_group=groups, by_project=projects,
                                               allow_private=allow_private, order=is_order,
                                               ignore_app=ignore_app)
         for project in projects:
             if not os.path.exists(os.path.join(dir_current, project.path)):
-                os.chdir(dir_current)
                 slog(u"Module:%s  Branch：%s" % (project.path, project.branch))
                 slog("Url:%s" % project.url)
                 cmd = "git clone %s -b %s %s" % (project.url, project.branch, project.path)
@@ -857,6 +869,9 @@ def cmd_reset(args):
 if __name__ == '__main__':
     """执行入口
     """
+    # debug
+    #sys.argv.append("serv-update")
+
     # 创建build目录
     if not os.path.exists(dir_build):
         os.mkdir(dir_build)
@@ -955,8 +970,13 @@ if __name__ == '__main__':
 
     # 仅用于Jenkins更新构建源码
     parser_apk = subparsers.add_parser("serv-update", help=u"打包for jenkins")
-    parser_apk.set_defaults(func=_update_project)
-    parser_apk.add_argument('-m', "--main", type=str, default='GomePlus', help=u'主工程')
+    parser_apk.set_defaults(func=cmd_update_project)
+    parser_apk.add_argument("-a", "--allow_private", help=u'包含私有项目', action='store_true',
+                            default=False)
+    parser_apk.add_argument("-g", "--by_group", help=u'根据组进行克隆', action='append', default=[])
+    parser_apk.add_argument("-p", "--by_project", help=u'根据项目名进行克隆', action='append', default=[])
+    parser_apk.add_argument("-i", "--ignore_app", help=u'忽略App', action='store_true',
+                            default=False)
 
     # 参数解析
     args = parser.parse_args()
