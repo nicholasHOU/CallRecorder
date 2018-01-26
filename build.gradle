@@ -23,7 +23,7 @@ buildscript {
         }
     }
     dependencies {
-        classpath 'com.gutils.apkfly:plugin:2.3.0.plus10'
+        classpath 'com.gutils.apkfly:plugin:2.3.0.plus11'
         classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.5"
     }
 }
