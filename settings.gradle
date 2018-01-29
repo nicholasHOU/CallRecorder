@@ -1,1 +1,7 @@
-include ":037-MFriends"
+include ":GomePlus"
+include ":MShop"
+include ":GProductDetail"
+include ":MSocial"
+//include ":GBusiness"
+//include ":MCommon"
+include ":GProductSearch"
