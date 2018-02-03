@@ -9,12 +9,12 @@
 
     <project groups="private" url="git@gitlab.ds.gome.com.cn:mobile-android-common/GTheme.git"/>
     <project groups="private" url="git@gitlab.ds.gome.com.cn:mobile-android-business/MSelectPhoto.git"/>
-    <project groups="private" url="git@gitlab.ds.gome.com.cn:mobile-android-business/GSelectPhoto.git"/>
     <project groups="private" url="git@gitlab.ds.gome.com.cn:mobile-android-common/GAnalytics.git"/>
     <!--G工程-->
     <project url="git@gitlab.ds.gome.com.cn:mobile-android-common/GFrame.git"/>
     <project url="git@gitlab.ds.gome.com.cn:mobile-android-common/GCore.git"/>
     <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/GWidget.git"/>
+    <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/GSelectPhoto.git"/>
     <project artifactId="push" bundleOpen="false" url="git@gitlab.ds.gome.com.cn:mobile-android-common/GPush.git"/>
     <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/GLogin.git"/>
     <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/GPullrefresh.git"/>
