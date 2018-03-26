@@ -5,9 +5,8 @@ atlas {
     }
 }
 
-def version_code = 121
+def version_code = 115
 version = "${project.ext.getProperty("version")}"
-
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
