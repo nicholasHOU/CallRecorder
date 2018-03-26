@@ -94,6 +94,8 @@ ext.deps = [
 
         GSelectPhoto         : 'com.gome.ecmall:selectphoto:' + getProperty('AAR_GSELECT_PHOTO_VERSION') + '@aar',
 
+        GLogStatistics       : rootProject.ext.proDeps ? project(':GLogStatistics') : 'com.gome.ecmall:logstats:' + getProperty('AAR_GLOGSTATS_VERSION') + '@aar',
+
         GFrame               : rootProject.ext.proDeps ? project(':GFrame') : 'com.gome.ecmall:frame:' + getProperty('AAR_GFRAME_VERSION') + '@aar',
         GCore                : rootProject.ext.proDeps ? project(':GCore') : 'com.gome.ecmall:core:' + getProperty('AAR_GCORE_VERSION') + '@aar',
         GWidget              : rootProject.ext.proDeps ? project(':GWidget') : 'com.gome.ecmall:widget:' + getProperty('AAR_GWIDGET_VERSION') + '@aar',
