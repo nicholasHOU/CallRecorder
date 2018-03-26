@@ -38,7 +38,7 @@
     <project artifactId="materialorder" bundleOpen="true" url="git@gitlab.ds.gome.com.cn:mobile-android-business/GMaterialOrder.git"/>
     <project artifactId="tqdetail" bundleOpen="true" url="git@gitlab.ds.gome.com.cn:mobile-android-business/GTQDetail.git"/>
     <project url="git@gitlab.ds.gome.com.cn:mobile-android-common/GHotfix.git"/>
-    <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/GZxingScan.git"/>f
+    <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/GZxingScan.git"/>
     <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/GIMRedEnvelope.git"/>
     <!--M工程-->
     <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/MCommon.git"/>
