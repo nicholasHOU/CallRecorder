@@ -23,6 +23,7 @@ buildscript {
         }
     }
     dependencies {
+//          classpath 'com.gutils.apkfly:plugin:2.3.0.plus_plug14'
         classpath 'com.gutils.apkfly:plugin:2.3.0.plus11'
         classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.5"
     }
@@ -86,7 +87,7 @@ ext.deps = [
         GSafekeyboard        : 'com.bangcle:safeKeyboard:1.0.7',
         GSecret              : 'com.gome.ecmall:secret:' + getProperty('AAR_GSECRET_VERSION') + '@aar',
         GBuildConfig         : 'com.gome.ecmall:buildconfig:' + getProperty('AAR_GCONFIG_VERSION'),
-        GPlugin              : '',
+        GPlugin              : rootProject.ext.proDeps ? project(':GPlugin'):'com.gome.ecmall.core:plugin:1.0.25@aar',
 
         GTheme               : 'com.gome.ecmall:theme:' + getProperty('AAR_GTHEME_VERSION') + '@aar',
 

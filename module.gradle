@@ -4,6 +4,11 @@ atlas {
         awbBundle true
     }
 }
+
+def version_code = 121
+version = "${project.ext.getProperty("version")}"
+
+
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     buildToolsVersion "25.0.2"
@@ -12,7 +17,7 @@ android {
         if(project.ext.has("versionCode")){
             versionCode project.ext.getProperty("versionCode") as Integer
         }else {
-            versionCode 1
+            versionCode version_code
         }
         versionName project.ext.getProperty("version") as String
 
