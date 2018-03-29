@@ -20,6 +20,7 @@
     <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/GPullrefresh.git"/>
     <project url="git@gitlab.ds.gome.com.cn:mobile-android-common/GUpdate.git"/>
     <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/GCmbPay.git"/>
+    <project url="git@gitlab.ds.gome.com.cn:mobile-android-repo/Glivenesslib.git"/>
     <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/GBaiTiao.git"/>
     <project url="git@gitlab.ds.gome.com.cn:mobile-android-common/GTongBaoSdk.git"/>
     <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/GBusiness.git"/>
