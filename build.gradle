@@ -65,6 +65,8 @@ allprojects {
         buildToolsVersion = getProperty("BUILD_TOOLS_VERSION")
         targetSdkVersion = getProperty("TARGET_SDK_VERSION") as Integer
         minSdkVersion = getProperty("MIN_SDK_VERSION") as Integer
+        supportLibVersion = "25.3.1";
+        fastjsonLibVersion = "1.1.46.android"
         proDeps = false //改false 时需要把xiaomi的几个工程注掉
         isXiaoMi = false
     }
@@ -125,6 +127,10 @@ ext.deps = [
         GGomeCurrency        : rootProject.ext.proDeps ? project(':GGomeCurrency') : 'com.gome.ecmall:ggomecurrency:' + getProperty('AAR_GGOMECURRENCY_VERSION') + '@aar',
         GIMRedEnvelope       : rootProject.ext.proDeps ? project(':GIMRedEnvelope') : 'com.gome.ecmall:imredenvelope:' + getProperty('AAR_IMREDENVELOPE_VERSION') + '@aar',
         GProductSearch       : rootProject.ext.proDeps ? project(':GProductSearch') : 'com.gome.ecmall:productsearch:' + getProperty('AAR_GPRODUCT_SEARCH_VERSION') + '@aar',
+
+        GWeexCore            : rootProject.ext.proDeps ? project(':GWeexCore') : 'com.gome.mobile.weex:core:' + getProperty('AAR_GWEEXCORE_VERSION') + '@aar',
+        GWeexUpdate          : rootProject.ext.proDeps ? project(':GWeexUpdate') : 'com.gome.mobile.weex:update:' + getProperty('AAR_GWEEXUPDATE_VERSION') + '@aar',
+        GWeexLib             : rootProject.ext.proDeps ? project(':GWeexLib') : 'com.gome.mobile.weex:components:' + getProperty('AAR_GWEEXLIB_VERSION') + '@aar',
 
         MSelectPhoto         : 'com.gome.ecmall:mselectphoto:' + getProperty('AAR_MSELECT_PHOTO_VERSION') + '@aar',
         MShare               : rootProject.ext.proDeps ? project(':MShare') : 'com.gome.ecmall:mshare:' + getProperty('AAR_MSHARE_VERSION') + '@aar',

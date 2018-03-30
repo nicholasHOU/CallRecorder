@@ -1,4 +1,4 @@
-<?xml version="1.0" ?><manifest branch="mergeDev" bundleOpen="false" host="git@gitlab.ds.gome.com.cn:">
+<?xml version="1.0" ?><manifest branch="mergeDev" bundleOpen="true" host="git@gitlab.ds.gome.com.cn:">
     <!--私有工程-->
     <project branch="master" groups="private" url="git@gitlab.ds.gome.com.cn:mobile-android-admin/buildsrc.git"/>
     <project groups="private" url="git@gitlab.ds.gome.com.cn:mobile-android/GWorkspace.git"/>
