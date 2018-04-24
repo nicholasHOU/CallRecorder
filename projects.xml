@@ -15,6 +15,7 @@
     <project url="git@gitlab.ds.gome.com.cn:mobile-android-common/GCore.git"/>
     <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/GWidget.git"/>
     <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/GSelectPhoto.git"/>
+    <project url="git@gitlab.ds.gome.com.cn:mobile-android-repo/GLogStatistics.git"/>
     <project artifactId="push" bundleOpen="false" url="git@gitlab.ds.gome.com.cn:mobile-android-common/GPush.git"/>
     <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/GLogin.git"/>
     <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/GPullrefresh.git"/>
