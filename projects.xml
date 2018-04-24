@@ -15,7 +15,6 @@
     <project url="git@gitlab.ds.gome.com.cn:mobile-android-common/GCore.git"/>
     <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/GWidget.git"/>
     <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/GSelectPhoto.git"/>
-    <project url="git@gitlab.ds.gome.com.cn:mobile-android-repo/GLogStatistics.git"/>
     <project artifactId="push" bundleOpen="false" url="git@gitlab.ds.gome.com.cn:mobile-android-common/GPush.git"/>
     <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/GLogin.git"/>
     <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/GPullrefresh.git"/>
@@ -55,6 +54,7 @@
     <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/MShop.git"/>
     <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/MIm.git"/>
     <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/MFriends.git"/>
+    <project url="git@gitlab.ds.gome.com.cn:mobile-android-repo/GLogStatistics.git"/>
     <!--<project url="git@gitlab.ds.gome.com.cn:mobile-android-business/MApp.git"/>-->
     <!--主工程-->
     <project app="true" groups="app" path="GomeApp" url="git@gitlab.ds.gome.com.cn:mobile-android/GomePlus.git"/>
