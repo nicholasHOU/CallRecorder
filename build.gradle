@@ -116,7 +116,7 @@ ext.deps = [
         GFinanceCommon       : rootProject.ext.proDeps ? project(':GFinanceCommon') : 'com.gome.ecmall:financecommon:' + getProperty('AAR_GFINANCE_COMMON_VERSION') + '@aar',
         GFinance             : rootProject.ext.proDeps ? project(':GFinance') : 'com.gome.ecmall:finance:' + getProperty('AAR_GFINANCE_VERSION') + '@aar',
         GMeiyingbao          : rootProject.ext.proDeps ? project(':GMeiyingbao') : 'com.gome.ecmall:meiyingbao:' + getProperty('AAR_GMEIYINGBAO_VERSION') + '@aar',
-        GPhoneRecharge       : true ? project(':GPhoneRecharge') : 'com.gome.ecmall:phonerecharge:' + getProperty('AAR_GPHONERECHARGE_VERSION') + '@aar',
+        GPhoneRecharge       : rootProject.ext.proDeps  ? project(':GPhoneRecharge') : 'com.gome.ecmall:phonerecharge:' + getProperty('AAR_GPHONERECHARGE_VERSION') + '@aar',
         GStoreSearch         : rootProject.ext.proDeps ? project(':GStoreSearch') : 'com.gome.ecmall:storesearch:' + getProperty('AAR_GSTORESEARCH_VERSION') + '@aar',
         GReturn              : rootProject.ext.proDeps ? project(':GReturn') : 'com.gome.ecmall:greturn:' + getProperty('AAR_GRETURN_VERSION') + '@aar',
         GMaterialOrder       : rootProject.ext.proDeps ? project(':GMaterialOrder') : 'com.gome.ecmall:materialorder:' + getProperty('AAR_GMATERIAL_ORDER_VERSION') + '@aar',
