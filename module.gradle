@@ -1,5 +1,5 @@
 
-def version_code = 117
+def version_code = 116
 apply from: project.rootProject.uri('plugin_lib.gradle')
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
