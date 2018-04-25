@@ -1,13 +1,6 @@
-apply plugin: 'com.gutils.gome.library'
-atlas {
-    bundleConfig {
-        awbBundle true
-    }
-}
 
-def version_code = 115
-version = "${project.ext.getProperty("version")}"
-
+def version_code = 117
+apply from: project.rootProject.uri('plugin_lib.gradle')
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     buildToolsVersion "25.0.2"
