@@ -8,7 +8,7 @@ import subprocess
 import sys
 import time
 import xml
-# from collections import Counter
+from collections import Counter
 from xml.dom import minidom
 
 __author__ = "qiudongchao<1162584980@qq.com>"
