@@ -45,6 +45,9 @@
     <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/MCommon.git"/>
     <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/MShare.git"/>
     <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/MMeixinplayer.git"/>
+
+    <!--支持3D Wap-->
+    <project artifactId="gx5" bundleOpen="false" url="git@gitlab.ds.gome.com.cn:mobile-android-repo/GX5Lib.git"/>
     <!--工程-->
     <project artifactId="product" bundleOpen="false" url="git@gitlab.ds.gome.com.cn:mobile-android-business/GProductDetail.git"/>
     <project artifactId="productsearch" bundleOpen="false" url="git@gitlab.ds.gome.com.cn:mobile-android-business/GProductSearch.git"/>
