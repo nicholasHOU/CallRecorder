@@ -28,6 +28,7 @@
     <project artifactId="ggomecurrency" bundleOpen="false" url="git@gitlab.ds.gome.com.cn:mobile-android-business/GGomeCurrency.git"/>
     <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/GIm.git"/>
     <project url="git@gitlab.ds.gome.com.cn:mobile-android-common/GWap.git"/>
+    <project url="git@gitlab.ds.gome.com.cn:mobile-android-repo/GLogStatistics.git"/>
     <project url="git@gitlab.ds.gome.com.cn:mobile-android-common/GHybrid.git"/>
     <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/GFinanceCommon.git"/>
     <project artifactId="finance" bundleOpen="false" url="git@gitlab.ds.gome.com.cn:mobile-android-business/GFinance.git"/>
@@ -57,7 +58,6 @@
     <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/MShop.git"/>
     <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/MIm.git"/>
     <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/MFriends.git"/>
-    <project url="git@gitlab.ds.gome.com.cn:mobile-android-repo/GLogStatistics.git"/>
     <!--<project url="git@gitlab.ds.gome.com.cn:mobile-android-business/MApp.git"/>-->
     <!--主工程-->
     <project app="true" groups="app" path="GomeApp" url="git@gitlab.ds.gome.com.cn:mobile-android/GomePlus.git"/>
