@@ -1,0 +1,6 @@
+include ":GCore"
+include ":GCore-login"
+include ":GFrame"
+include ":GFrame-http"
+include ":GFrame-image"
+include ":GFrame-utils"
