@@ -71,8 +71,6 @@ allprojects {
         isXiaoMi = false
         //添加此段
         mcpPkg = getEnvValue("mcpPkg",false)
-
-        proDepsT = true
     }
 }
 
@@ -106,7 +104,7 @@ ext.deps = [
         SimagepipelineOkhttp3: 'com.facebook.fresco:imagepipeline-okhttp3:1.8.1',
 
         GSafekeyboard        : 'com.bangcle:safeKeyboard:1.0.7',
-        GSecret              : 'com.gome.ecmall:secret:' + getProperty('AAR_GSECRET_VERSION') + '@aar',
+        GSecret              : 'com.gome.mcp:sec-gome:' + getProperty('AAR_MCP_VERSION') + ':gomeRelease@aar',
         GBuildConfig         : 'com.gome.ecmall:buildconfig:' + getProperty('AAR_GCONFIG_VERSION'),
         GPlugin              : 'com.gome.ecmall.core:plugin:1.0.25@aar',
 
@@ -118,16 +116,13 @@ ext.deps = [
 
         GLogStatistics       : rootProject.ext.proDeps ? project(':GLogStatistics') : 'com.gome.ecmall:logstats:' + getProperty('AAR_GLOGSTATS_VERSION') + '@aar',
 
-        //GFrame               : rootProject.ext.proDeps ? project(':GFrame') : 'com.gome.ecmall:frame:' + getProperty('AAR_GFRAME_VERSION') + '@aar',
-        //GCore                : rootProject.ext.proDeps ? project(':GCore') : 'com.gome.ecmall:core:' + getProperty('AAR_GCORE_VERSION') + '@aar',
+        GFrameUtils          : rootProject.ext.proDeps ? project(':GFrame-utils') : 'com.gome.ecmall:frame-utils:' + getProperty('AAR_GFRAME_UTILS_VERSION') + '@aar',
+        GFrameHttp           : rootProject.ext.proDeps ? project(':GFrame-http') : 'com.gome.ecmall:frame-http:' + getProperty('AAR_GFRAME_HTTP_VERSION') + '@aar',
+        GFrameImage          : rootProject.ext.proDeps ? project(':GFrame-image') : 'com.gome.ecmall:frame-image:' + getProperty('AAR_GFRAME_IMAGE_VERSION') + '@aar',
+        GFrame               : rootProject.ext.proDeps ? project(':GFrame') : 'com.gome.ecmall:frame:' + getProperty('AAR_GFRAME_VERSION') + '@aar',
 
-        GFrameUtils          : rootProject.ext.proDepsT ? project(':GFrame-utils') : 'com.gome.ecmall:frame-utils:' + getProperty('AAR_GFRAME_UTILS_VERSION') + '@aar',
-        GFrameHttp           : rootProject.ext.proDepsT ? project(':GFrame-http') : 'com.gome.ecmall:frame-http:' + getProperty('AAR_GFRAME_HTTP_VERSION') + '@aar',
-        GFrameImage          : rootProject.ext.proDepsT ? project(':GFrame-image') : 'com.gome.ecmall:frame-image:' + getProperty('AAR_GFRAME_IMAGE_VERSION') + '@aar',
-        GFrame               : rootProject.ext.proDepsT ? project(':GFrame') : 'com.gome.ecmall:frame-common:' + getProperty('AAR_GFRAME_COMMON_VERSION') + '@aar',
-
-        GCoreLogin           : rootProject.ext.proDepsT ? project(':GCore-login') : 'com.gome.ecmall:core-login:' + getProperty('AAR_GCORE_LOGIN_VERSION') + '@aar',
-        GCore                : rootProject.ext.proDepsT ? project(':GCore') : 'com.gome.ecmall:core-common:' + getProperty('AAR_GCORE_COMMON_VERSION') + '@aar',
+        GCoreLogin           : rootProject.ext.proDeps ? project(':GCore-login') : 'com.gome.ecmall:core-login:' + getProperty('AAR_GCORE_LOGIN_VERSION') + '@aar',
+        GCore                : rootProject.ext.proDeps ? project(':GCore') : 'com.gome.ecmall:core:' + getProperty('AAR_GCORE_VERSION') + '@aar',
 
         GWidget              : rootProject.ext.proDeps ? project(':GWidget') : 'com.gome.ecmall:widget:' + getProperty('AAR_GWIDGET_VERSION') + '@aar',
         GPush                : rootProject.ext.proDeps ? project(':GPush') : 'com.gome.ecmall:push:' + getProperty('AAR_GPUSH_VERSION') + '@aar',
