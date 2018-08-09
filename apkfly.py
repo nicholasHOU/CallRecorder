@@ -86,7 +86,7 @@ def check_sub_project(sub_project, is_formate):
     if os.path.isdir(sub_project):
         if os.path.exists(os.path.join(dir_current, sub_project, file_build_gradle)):
             if is_formate:
-                p = re.compile(r"^\d{3}-[A-Za-z0-9]+$")
+                p = re.compile(r"^\d{3}")
                 if p.match(sub_project):
                     check_result = True
             else:
@@ -196,7 +196,7 @@ def modifyXMLNode(manifest, isbundleopen):
 
 
 def updateVersion(fromv, tov, all):
-    first_prop = 'AAR_GFRAME_VERSION' if all else 'AAR_GFINANCE_VERSION'
+    first_prop = 'AAR_GFRAME_UTILS_VERSION' if all else 'AAR_GFINANCE_VERSION'
     last_prop = 'AAR_MAPP_VERSION' if all else 'AAR_GTQ_DETAIL_VERSION'
     prop_file_path = os.path.join(dir_current, "gradle.properties")
     if os.path.exists(prop_file_path) and os.path.isfile(prop_file_path):
@@ -898,7 +898,7 @@ if __name__ == '__main__':
     # 版本自增
     parser_version = subparsers.add_parser("version", help=u"自增gradle.properties内的 aar 配置版本")
     parser_version.set_defaults(func=cmd_version_add)
-    parser_version.add_argument('-s', "--start", type=str, default='AAR_GFRAME_VERSION',
+    parser_version.add_argument('-s', "--start", type=str, default='AAR_GFRAME_UTILS_VERSION',
                                 help=u'起始AAR版本【例：AAR_MFRAME2_VERSION】')
     parser_version.add_argument('-e', "--end", type=str, default='AAR_MAPP_VERSION',
                                 help=u'终止AAR版本')
