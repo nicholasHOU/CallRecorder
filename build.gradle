@@ -155,7 +155,7 @@ ext.deps = [
         GIMRedEnvelope       : rootProject.ext.proDeps ? project(':GIMRedEnvelope') : 'com.gome.ecmall:imredenvelope:' + getProperty('AAR_IMREDENVELOPE_VERSION') + '@aar',
         GProductSearch       : rootProject.ext.proDeps ? project(':GProductSearch') : 'com.gome.ecmall:productsearch:' + getProperty('AAR_GPRODUCT_SEARCH_VERSION') + '@aar',
         GShop                : rootProject.ext.proDeps ? project(':GShop') : 'com.gome.ecmall:gshop:' + getProperty('AAR_GSHOP_VERSION') + '@aar',
-        GPromotion           : rootProject.ext.proDeps ? project(':GPromotion') : 'com.gome.ecmall:promotion:' + getProperty('AAR_PROMOTION_VERSION') + '@aar',
+        GPromotion           : rootProject.ext.proDeps ? project(':GPromotion') : 'com.gome.ecmall:promotion:' + getProperty('AAR_GPROMOTION_VERSION') + '@aar',
 
         GPushGome            : rootProject.ext.proDeps ? project(':GPushGome') : 'com.gome.ecmall:pushgome:' + getProperty('AAR_GPUSH_GOME_VERSION') + '@aar',
         GPushHuaWei          : rootProject.ext.proDeps ? project(':GPushHuaWei') : 'com.gome.ecmall:pushhuawei:' + getProperty('AAR_GPUSH_HUAWEI_VERSION') + '@aar',
