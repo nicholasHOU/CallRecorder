@@ -31,7 +31,7 @@ buildscript {
 
 allprojects {
     repositories {
-
+        maven { url 'http://developer.huawei.com/repo' }
         maven {
 //            url getProperty("MAVEN_REPO")
 //            credentials {
@@ -44,7 +44,7 @@ allprojects {
                 password = "qiudongchao1988"
             }
         }
-
+        jcenter { url "http://jcenter.bintray.com" }
         jcenter {
             url "http://10.69.213.71:8081/nexus/content/repositories/jcenter/"
         }
@@ -93,6 +93,9 @@ task clean(type: Delete) {
 
 
 ext.deps = [
+        GHttp            : depMcpAar('http'),
+        GUtils           : depMcpAar('utils'),
+
         SRecyclerview        : 'com.android.support:recyclerview-v7:23.2.1',
         SAppcompat           : 'com.android.support:appcompat-v7:23.2.1',
         SDesign              : 'com.android.support:design:23.2.1',
@@ -125,7 +128,7 @@ ext.deps = [
         GCore                : rootProject.ext.proDeps ? project(':GCore') : 'com.gome.ecmall:core:' + getProperty('AAR_GCORE_VERSION') + '@aar',
 
         GWidget              : rootProject.ext.proDeps ? project(':GWidget') : 'com.gome.ecmall:widget:' + getProperty('AAR_GWIDGET_VERSION') + '@aar',
-        GPush                : rootProject.ext.proDeps ? project(':GPush') : 'com.gome.ecmall:push:' + getProperty('AAR_GPUSH_VERSION') + '@aar',
+        GPushCore            : rootProject.ext.proDeps ? project(':GPushCore') : 'com.gome.ecmall:pushcore:' + getProperty('AAR_GPUSH_CORE_VERSION') + '@aar',
         GLogin               : rootProject.ext.proDeps ? project(':GLogin') : 'com.gome.ecmall:login:' + getProperty('AAR_GLOGIN_VERSION') + '@aar',
         GPullrefresh         : rootProject.ext.proDeps ? project(':GPullrefresh') : 'com.gome.ecmall:pullrefresh:' + getProperty('AAR_GPULLREFRESH_VERSION') + '@aar',
         GUpdate              : rootProject.ext.proDeps ? project(':GUpdate') : 'com.gome.ecmall:update:' + getProperty('AAR_GUPDATE_VERSION') + '@aar',
@@ -151,6 +154,14 @@ ext.deps = [
         GGomeCurrency        : rootProject.ext.proDeps ? project(':GGomeCurrency') : 'com.gome.ecmall:ggomecurrency:' + getProperty('AAR_GGOMECURRENCY_VERSION') + '@aar',
         GIMRedEnvelope       : rootProject.ext.proDeps ? project(':GIMRedEnvelope') : 'com.gome.ecmall:imredenvelope:' + getProperty('AAR_IMREDENVELOPE_VERSION') + '@aar',
         GProductSearch       : rootProject.ext.proDeps ? project(':GProductSearch') : 'com.gome.ecmall:productsearch:' + getProperty('AAR_GPRODUCT_SEARCH_VERSION') + '@aar',
+        GShop                : rootProject.ext.proDeps ? project(':GShop') : 'com.gome.ecmall:gshop:' + getProperty('AAR_GSHOP_VERSION') + '@aar',
+        GPromotion           : rootProject.ext.proDeps ? project(':GPromotion') : 'com.gome.ecmall:promotion:' + getProperty('AAR_PROMOTION_VERSION') + '@aar',
+
+        GPushGome            : rootProject.ext.proDeps ? project(':GPushGome') : 'com.gome.ecmall:pushgome:' + getProperty('AAR_GPUSH_GOME_VERSION') + '@aar',
+        GPushHuaWei          : rootProject.ext.proDeps ? project(':GPushHuaWei') : 'com.gome.ecmall:pushhuawei:' + getProperty('AAR_GPUSH_HUAWEI_VERSION') + '@aar',
+        GPushMeiZu           : rootProject.ext.proDeps ? project(':GPushMeiZu') : 'com.gome.ecmall:pushmeizu:' + getProperty('AAR_GPUSH_MEIZU_VERSION') + '@aar',
+        GPushXiaoMi          : rootProject.ext.proDeps ? project(':GPushXiaoMi') : 'com.gome.ecmall:pushxiaomi:' + getProperty('AAR_GPUSH_XIAOMI_VERSION') + '@aar',
+//        GPushOppo            : rootProject.ext.proDeps ? project(':GPushOppo') : 'com.gome.ecmall:pushoppo:' + getProperty('AAR_GPUSH_OPPO_VERSION') + '@aar',  后续支持，先配置上
 
 //        GWeexCore            : rootProject.ext.proDeps ? project(':GWeexCore') : 'com.gome.mobile.weex:core:' + getProperty('AAR_GWEEXCORE_VERSION') + '@aar',
 //        GWeexUpdate          : rootProject.ext.proDeps ? project(':GWeexUpdate') : 'com.gome.mobile.weex:update:' + getProperty('AAR_GWEEXUPDATE_VERSION') + '@aar',
@@ -169,5 +180,21 @@ ext.deps = [
         MShop                : rootProject.ext.proDeps ? project(':MShop') : 'com.gome.ecmall:mshop:' + getProperty('AAR_MSHOP_VERSION') + '@aar'
 
 ]
+/**
+ * depMcp dep aar, default exclude transitive dependencies
+ * @param artifactId
+ * @return
+ */
+def depMcpAar(artifactId) {
+    return "${depMcp(artifactId)}@aar"
+}
 
+/**
+ * depMcp dep
+ * @param artifactId
+ * @return
+ */
+def depMcp(artifactId) {
+    return "com.gome.mcp:$artifactId:${getProperty('AAR_MCP_VERSION')}"
+}
 apply plugin: "org.sonarqube"
