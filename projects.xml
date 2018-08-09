@@ -11,6 +11,7 @@
     <project groups="private" url="git@gitlab.ds.gome.com.cn:mobile-android-business/MSelectPhoto.git"/>
     <project groups="private" url="git@gitlab.ds.gome.com.cn:mobile-android-common/GAnalytics.git"/>
 
+    <project url="git@gitlab.ds.gome.com.cn:mobile-android-common/GPushCore.git"/>
     <project url="git@gitlab.ds.gome.com.cn:mobile-android-common/GPushGome.git"/>
     <project url="git@gitlab.ds.gome.com.cn:mobile-android-common/GPushHuaWei.git"/>
     <project url="git@gitlab.ds.gome.com.cn:mobile-android-common/GPushMeiZu.git"/>
@@ -29,7 +30,6 @@
 
     <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/GWidget.git"/>
     <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/GSelectPhoto.git"/>
-    <project url="git@gitlab.ds.gome.com.cn:mobile-android-common/GPushCore.git"/>
     <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/GLogin.git"/>
     <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/GPullrefresh.git"/>
     <project url="git@gitlab.ds.gome.com.cn:mobile-android-common/GUpdate.git"/>
