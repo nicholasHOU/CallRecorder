@@ -10,7 +10,13 @@
     <project groups="private" url="git@gitlab.ds.gome.com.cn:mobile-android-common/GTheme.git"/>
     <project groups="private" url="git@gitlab.ds.gome.com.cn:mobile-android-business/MSelectPhoto.git"/>
     <project groups="private" url="git@gitlab.ds.gome.com.cn:mobile-android-common/GAnalytics.git"/>
-    
+
+    <project url="git@gitlab.ds.gome.com.cn:mobile-android-common/GPushGome.git"/>
+    <project url="git@gitlab.ds.gome.com.cn:mobile-android-common/GPushHuaWei.git"/>
+    <project url="git@gitlab.ds.gome.com.cn:mobile-android-common/GPushMeiZu.git"/>
+    <project url="git@gitlab.ds.gome.com.cn:mobile-android-common/GPushXiaoMi.git"/>
+    <!--<project url="git@gitlab.ds.gome.com.cn:mobile-android-common/GPushOppo.git"/> 后续支持，先配置上-->
+
     <!--G工程-->
     <!--GFrame-->
     <project groups="frame" url="git@gitlab.ds.gome.com.cn:mobile-android-common/GFrame-http.git"/>
@@ -53,11 +59,6 @@
     <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/GShop.git"/>
     <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/GPromotion.git"/>
 
-    <project url="git@gitlab.ds.gome.com.cn:mobile-android-common/GPushGome.git"/>
-    <project url="git@gitlab.ds.gome.com.cn:mobile-android-common/GPushHuaWei.git"/>
-    <project url="git@gitlab.ds.gome.com.cn:mobile-android-common/GPushMeiZu.git"/>
-    <project url="git@gitlab.ds.gome.com.cn:mobile-android-common/GPushXiaoMi.git"/>
-    <!--<project url="git@gitlab.ds.gome.com.cn:mobile-android-common/GPushOppo.git"/> 后续支持，先配置上-->
     <!--M工程-->
     <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/MCommon.git"/>
     <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/MShare.git"/>
@@ -74,7 +75,6 @@
     <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/MShop.git"/>
     <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/MIm.git"/>
     <project url="git@gitlab.ds.gome.com.cn:mobile-android-business/MFriends.git"/>
-    <!--<project url="git@gitlab.ds.gome.com.cn:mobile-android-business/MApp.git"/>-->
     <!--主工程-->
     <project app="true" groups="app" path="GomeApp" url="git@gitlab.ds.gome.com.cn:mobile-android/GomePlus.git"/>
 </manifest>
