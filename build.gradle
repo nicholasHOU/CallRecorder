@@ -96,6 +96,8 @@ ext.deps = [
         GHttp            : depMcpAar('http'),
         GUtils           : depMcpAar('utils'),
 
+        SRxjava          : 'io.reactivex.rxjava2:rxjava:2.1.9',
+
         SRecyclerview        : 'com.android.support:recyclerview-v7:23.2.1',
         SAppcompat           : 'com.android.support:appcompat-v7:23.2.1',
         SDesign              : 'com.android.support:design:23.2.1',
