@@ -26,6 +26,8 @@ buildscript {
         classpath 'com.gutils.apkfly:plugin:2.3.0.plus_plug18'
 //        classpath 'com.gutils.apkfly:plugin:2.3.0.plus11'
         classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.5"
+
+        classpath 'com.gutils.report:report:' + getProperty("AAR_REPORT_VERSION")
     }
 }
 
