@@ -67,8 +67,8 @@ allprojects {
         buildToolsVersion = getProperty("BUILD_TOOLS_VERSION")
         targetSdkVersion = getProperty("TARGET_SDK_VERSION") as Integer
         minSdkVersion = getProperty("MIN_SDK_VERSION") as Integer
-//        supportLibVersion = "25.3.1";
-//        fastjsonLibVersion = "1.1.46.android"
+        supportLibVersion = "25.3.1";
+        fastjsonLibVersion = "1.1.46.android"
         proDeps = false //改false 时需要把xiaomi的几个工程注掉
         isXiaoMi = false
         //添加此段
