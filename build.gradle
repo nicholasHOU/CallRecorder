@@ -145,6 +145,7 @@ ext.deps = [
         GMaterialOrder       : rootProject.ext.proDeps ? project(':GMaterialOrder') : 'com.gome.ecmall:materialorder:' + getProperty('AAR_GMATERIAL_ORDER_VERSION') + '@aar',
         GX5Lib               : rootProject.ext.proDeps ? project(':GX5Lib') : 'com.gome.mcp:gx5:' + getProperty('AAR_GX5_VERSION') + '@aar',
         GProductDetail       : rootProject.ext.proDeps ? project(':GProductDetail') : 'com.gome.ecmall:product:' + getProperty('AAR_GPRODUCT_VERSION') + '@aar',
+        ProductVideoGuide       : rootProject.ext.proDeps ? project(':ProductVideoGuide') : 'com.gome.ecmall:videoguide:' + getProperty('AAR_GPRODUCT_VIDEO_GUIDE_VERSION') + '@aar',
         GTQDetail            : rootProject.ext.proDeps ? project(':GTQDetail') : 'com.gome.ecmall:tqdetail:' + getProperty('AAR_GTQ_DETAIL_VERSION') + '@aar',
         GHotfix              : rootProject.ext.proDeps ? project(':GHotfix') : 'com.gome.ecmall:hotfix:' + getProperty('AAR_HOTFIX_VERSION') + '@aar',
         GZxingScan           : rootProject.ext.proDeps ? project(':GZxingScan') : 'com.gome.ecmall:gzxing:' + getProperty('AAR_GZING_VERSION') + '@aar',
