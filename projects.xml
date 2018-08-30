@@ -41,9 +41,9 @@
     <project url="git@code.ds.gome.com.cn:mobile-android-business/MImlibrary.git"/>
     <project artifactId="ggomecurrency" bundleOpen="false" url="git@code.ds.gome.com.cn:mobile-android-business/GGomeCurrency.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GIm.git"/>
-    <project url="git@code.ds.gome.com.cn:mobile-android-common/GWap.git"/>
+    <project url="git@code.ds.gome.com.cn:mobile-android-common/GWap.git" groups="wap"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-repo/GLogStatistics.git"/>
-    <project url="git@code.ds.gome.com.cn:mobile-android-common/GHybrid.git"/>
+    <project url="git@code.ds.gome.com.cn:mobile-android-common/GHybrid.git" groups="wap"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GFinanceCommon.git"/>
     <project artifactId="finance" bundleOpen="false" url="git@code.ds.gome.com.cn:mobile-android-business/GFinance.git"/>
     <project artifactId="meiyingbao" bundleOpen="false" url="git@code.ds.gome.com.cn:mobile-android-business/GMeiyingbao.git"/>
