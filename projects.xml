@@ -67,6 +67,7 @@
     <!--支持3D Wap-->
     <project artifactId="gx5" bundleOpen="false" url="git@code.ds.gome.com.cn:mobile-android-repo/GX5Lib.git"/>
     <!--工程-->
+    <project artifactId="videoguide" bundleOpen="false" url="git@code.ds.gome.com.cn:mobile-android-business/GProductVideoGuide.git"/>
     <project artifactId="product" bundleOpen="false" url="git@code.ds.gome.com.cn:mobile-android-business/GProductDetail.git"/>
     <project artifactId="productsearch" bundleOpen="false" url="git@code.ds.gome.com.cn:mobile-android-business/GProductSearch.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/MFriendCircle.git"/>
