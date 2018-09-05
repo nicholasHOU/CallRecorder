@@ -1,0 +1,7 @@
+include ':MImageEditor'
+
+include ":GomePlus"
+include ":MFriends"
+include ":MIm"
+include ":MImlibrary"
+include ":MCommon"
