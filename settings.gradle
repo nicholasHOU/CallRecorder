@@ -1,5 +1,5 @@
 include ':MImageEditor'
-
+include ":GSelectPhoto"
 include ":GomePlus"
 include ":MFriends"
 include ":MIm"
