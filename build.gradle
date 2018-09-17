@@ -15,9 +15,6 @@ buildscript {
             }
         }
         mavenCentral()
-        jcenter {
-            url "http://10.69.213.71:8081/nexus/content/repositories/jcenter/"
-        }
         maven {
             url "https://plugins.gradle.org/m2/"
         }
@@ -47,19 +44,11 @@ allprojects {
             }
         }
         jcenter { url "http://jcenter.bintray.com" }
-        jcenter {
-            url "http://10.69.213.71:8081/nexus/content/repositories/jcenter/"
-        }
-
         // 视频SDK开发地址
         maven { url "http://10.69.213.76:8081/nexus/content/repositories/snapshots/" }
 
         //视频SDK生产地址
         maven { url "http://10.69.213.76:8081/nexus/content/repositories/releases/" }
-
-        maven { url "http://10.69.213.71:8081/nexus/content/repositories/gomeMaven/" }
-
-        maven { url "http://10.69.213.71:8081/nexus/content/repositories/MXCentral/" }
         mavenCentral()
     }
     ext {
