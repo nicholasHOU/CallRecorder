@@ -1,7 +1,7 @@
-include ':MImageEditor'
-include ":GSelectPhoto"
+//include ':MImageEditor'
+//include ":GSelectPhoto"
 include ":GomePlus"
-include ":MFriends"
+//include ":MFriends"
 include ":MIm"
 include ":MImlibrary"
-include ":MCommon"
+//include ":MCommon"

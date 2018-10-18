@@ -61,6 +61,9 @@ allprojects {
 
         maven { url "http://10.69.213.71:8081/nexus/content/repositories/MXCentral/" }
         mavenCentral()
+        flatDir {
+            dirs 'libs'
+        }
     }
     ext {
         compileSdkVersion = getProperty("COMPILE_SDK_VERSION") as Integer
@@ -171,8 +174,6 @@ ext.deps = [
         GWeexUpdate          : rootProject.ext.proDeps ? project(':GWeexUpdate') : 'com.gome.mobile.weex:update:' + getProperty('AAR_GWEEXUPDATE_VERSION') + '@aar',
         GWeexLib             : rootProject.ext.proDeps ? project(':GWeexLib') : 'com.gome.mobile.weex:components:' + getProperty('AAR_GWEEXLIB_VERSION') + '@aar',
 
-        //MSelectPhoto         : 'com.gome.ecmall:mselectphoto:' + getProperty('AAR_MSELECT_PHOTO_VERSION') + '@aar',
-        GSelectPhoto         : project(':GSelectPhoto'),
         MShare               : rootProject.ext.proDeps ? project(':MShare') : 'com.gome.ecmall:mshare:' + getProperty('AAR_MSHARE_VERSION') + '@aar',
         MMeixinplayer        : rootProject.ext.proDeps ? project(':MMeixinplayer') : 'com.gome.ecmall:mplayer:' + getProperty('AAR_MPLAYER_VERSION') + '@aar',
         GBusiness            : rootProject.ext.proDeps ? project(':GBusiness') : 'com.gome.ecmall:business:' + getProperty('AAR_GBUSINESS_VERSION') + '@aar',
@@ -182,11 +183,9 @@ ext.deps = [
         //MIm                  : rootProject.ext.proDeps ? project(':MIm') : 'com.gome.ecmall:mim:' + getProperty('AAR_MIM_VERSION') + '@aar',
         MFriends             : rootProject.ext.proDeps ? project(':MFriends') : 'com.gome.ecmall:mfriends:' + getProperty('AAR_MFRIENDS_VERSION') + '@aar',
         MImlibrary           : project(':MImlibrary') ,
-        //MCommon              : project(':MCommon') ,
         MIm                  : project(':MIm') ,
 
-        MImageEditor           : project(':MImageEditor'),
-        //MFriends             : project(':MFriends') ,
+        MImageEditor         : rootProject.ext.proDeps ? project(':MImageEditor') : 'com.gome.ecmall:imageedit:' + getProperty('AAR_IMAGEEDIT_VERSION') + '@aar',
         MSocial              : rootProject.ext.proDeps ? project(':MSocial') : 'com.gome.ecmall:msocial:' + getProperty('AAR_MSOCIAL_VERSION') + '@aar',
         MShop                : rootProject.ext.proDeps ? project(':MShop') : 'com.gome.ecmall:mshop:' + getProperty('AAR_MSHOP_VERSION') + '@aar'
 
