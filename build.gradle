@@ -18,6 +18,11 @@ buildscript {
         maven {
             url "https://plugins.gradle.org/m2/"
         }
+        //神策埋码开发地址
+        maven {
+//            url uri('repo')
+            url 'https://dl.bintray.com/zouyuhan/maven'
+        }
     }
     dependencies {
         classpath 'com.gutils.apkfly:plugin:2.3.0.plus_plug18'
@@ -51,6 +56,11 @@ allprojects {
 
         //视频SDK生产地址
         maven { url "http://10.69.213.76:8081/nexus/content/repositories/releases/" }
+        //神策埋码开发地址
+        maven {
+//            url uri('repo')
+            url 'https://dl.bintray.com/zouyuhan/maven'
+        }
         mavenCentral()
     }
     ext {
