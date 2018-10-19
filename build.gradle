@@ -25,6 +25,8 @@ buildscript {
         classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.5"
 
         classpath 'com.gutils.report:report:' + getProperty("AAR_REPORT_VERSION")
+        //神策gradle依赖
+        classpath 'com.sensorsdata.analytics.android:android-gradle-plugin2:2.0.7'
     }
 }
 
