@@ -30,6 +30,7 @@
 
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GWidget.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GSelectPhoto.git"/>
+    <project url="git@code.ds.gome.com.cn:mobile-android-business/GEmbedAnalysis.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GLogin.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GPullrefresh.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-common/GUpdate.git"/>
@@ -37,7 +38,6 @@
     <project url="git@code.ds.gome.com.cn:mobile-android-repo/Glivenesslib.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GBaiTiao.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-common/GTongBaoSdk.git"/>
-    <project url="git@code.ds.gome.com.cn:mobile-android-business/GEmbedAnalysis.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GBusiness.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/MImlibrary.git"/>
     <project artifactId="ggomecurrency" bundleOpen="false" url="git@code.ds.gome.com.cn:mobile-android-business/GGomeCurrency.git"/>
