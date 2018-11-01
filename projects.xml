@@ -8,7 +8,6 @@
     <project branch="master" groups="private" url="git@code.ds.gome.com.cn:mobile-android-common/GPlugin.git"/>
 
     <project groups="private" url="git@code.ds.gome.com.cn:mobile-android-common/GTheme.git"/>
-    <project groups="private" url="git@code.ds.gome.com.cn:mobile-android-business/MSelectPhoto.git"/>
     <project groups="private" url="git@code.ds.gome.com.cn:mobile-android-common/GAnalytics.git"/>
 
     <project url="git@code.ds.gome.com.cn:mobile-android-common/GPushCore.git"/>
@@ -29,6 +28,7 @@
     <project groups="core" path="GCore"  url="git@code.ds.gome.com.cn:mobile-android-common/GCore-common.git"/>
 
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GWidget.git"/>
+    <project url="git@code.ds.gome.com.cn:mobile-android-business/MImageEditor.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GSelectPhoto.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GEmbedAnalysis.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GLogin.git"/>
