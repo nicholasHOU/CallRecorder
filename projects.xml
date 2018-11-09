@@ -1,4 +1,4 @@
-<?xml version="1.0" ?><manifest branch="mergeDev" bundleOpen="true" host="git@code.ds.gome.com.cn:">
+<?xml version="1.0" ?><manifest branch="spliteShopcar1230" bundleOpen="true" host="git@code.ds.gome.com.cn:">
     <!--私有工程-->
     <project branch="master" groups="private" url="git@code.ds.gome.com.cn:mobile-android-admin/buildsrc.git"/>
     <project groups="private" url="git@code.ds.gome.com.cn:mobile-android/GWorkspace.git"/>
@@ -38,7 +38,7 @@
     <project url="git@code.ds.gome.com.cn:mobile-android-repo/Glivenesslib.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GBaiTiao.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-common/GTongBaoSdk.git"/>
-    <project url="git@code.ds.gome.com.cn:mobile-android-business/GBusiness.git"/>
+    <project groups="app" url="git@code.ds.gome.com.cn:mobile-android-business/GBusiness.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/MImlibrary.git"/>
     <project artifactId="ggomecurrency" bundleOpen="false" url="git@code.ds.gome.com.cn:mobile-android-business/GGomeCurrency.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GIm.git"/>
@@ -59,6 +59,7 @@
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GIMRedEnvelope.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GShop.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GPromotion.git"/>
+    <project url="git@code.ds.gome.com.cn:mobile-android-business/GShopCart.git"/>
 
     <!--M工程-->
     <project url="git@code.ds.gome.com.cn:mobile-android-business/MCommon.git"/>

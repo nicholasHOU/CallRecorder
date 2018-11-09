@@ -164,6 +164,7 @@ ext.deps = [
         GProductSearch       : rootProject.ext.proDeps ? project(':GProductSearch') : 'com.gome.ecmall:productsearch:' + getProperty('AAR_GPRODUCT_SEARCH_VERSION') + '@aar',
         GShop                : rootProject.ext.proDeps ? project(':GShop') : 'com.gome.ecmall:gshop:' + getProperty('AAR_GSHOP_VERSION') + '@aar',
         GPromotion           : rootProject.ext.proDeps ? project(':GPromotion') : 'com.gome.ecmall:promotion:' + getProperty('AAR_GPROMOTION_VERSION') + '@aar',
+        GShopCart           : true ? project(':GShopCart') : 'com.gome.ecmall:shopcar:' + getProperty('AAR_GSHOPCAR_VERSION') + '@aar',
 
         GPushGome            : rootProject.ext.proDeps ? project(':GPushGome') : 'com.gome.ecmall:pushgome:' + getProperty('AAR_GPUSH_GOME_VERSION') + '@aar',
         GPushHuaWei          : rootProject.ext.proDeps ? project(':GPushHuaWei') : 'com.gome.ecmall:pushhuawei:' + getProperty('AAR_GPUSH_HUAWEI_VERSION') + '@aar',
@@ -178,7 +179,7 @@ ext.deps = [
         MSelectPhoto         : 'com.gome.ecmall:mselectphoto:' + getProperty('AAR_MSELECT_PHOTO_VERSION') + '@aar',
         MShare               : rootProject.ext.proDeps ? project(':MShare') : 'com.gome.ecmall:mshare:' + getProperty('AAR_MSHARE_VERSION') + '@aar',
         MMeixinplayer        : rootProject.ext.proDeps ? project(':MMeixinplayer') : 'com.gome.ecmall:mplayer:' + getProperty('AAR_MPLAYER_VERSION') + '@aar',
-        GBusiness            : rootProject.ext.proDeps ? project(':GBusiness') : 'com.gome.ecmall:business:' + getProperty('AAR_GBUSINESS_VERSION') + '@aar',
+        GBusiness            : true ? project(':GBusiness') : 'com.gome.ecmall:business:' + getProperty('AAR_GBUSINESS_VERSION') + '@aar',
         MImlibrary           : rootProject.ext.proDeps ? project(':MImlibrary') : 'com.gome.ecmall:mimlib:' + getProperty('AAR_MIM_LIB_VERSION') + '@aar',
         MCommon              : rootProject.ext.proDeps ? project(':MCommon') : 'com.gome.ecmall:mcommon:' + getProperty('AAR_MCOMMON_VERSION') + '@aar',
         MFriendCircle        : rootProject.ext.proDeps ? project(':MFriendCircle') : 'com.gome.ecmall:mfriendcircle:' + getProperty('AAR_MFRIEND_CIRCLE_VERSION') + '@aar',
