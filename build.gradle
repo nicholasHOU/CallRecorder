@@ -113,6 +113,7 @@ ext.deps = [
         Gomeanimated         : 'com.gome.fresco:animated-gif:1.10.0',
 
         GSafekeyboard        : 'com.bangcle:safeKeyboard:1.0.7',
+        GCrash               : 'com.gome.mcp:crash:2.8.6@aar',
         GSecret              : 'com.gome.mcp:sec-gome:' + getProperty('AAR_MCP_VERSION') + ':gomeRelease@aar',
         GBuildConfig         : 'com.gome.ecmall:buildconfig:' + getProperty('AAR_GCONFIG_VERSION'),
         GPlugin              : 'com.gome.ecmall.core:plugin:1.0.36@aar',
