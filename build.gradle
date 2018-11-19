@@ -137,7 +137,6 @@ ext.deps = [
         GWidget              : rootProject.ext.proDeps ? project(':GWidget') : 'com.gome.ecmall:widget:' + getProperty('AAR_GWIDGET_VERSION') + '@aar',
         MImageEditor         : rootProject.ext.proDeps ? project(':MImageEditor') : 'com.gome.ecmall:imageedit:' + getProperty('AAR_IMAGEEDIT_VERSION') + '@aar',
         GSelectPhoto         : rootProject.ext.proDeps ? project(':GSelectPhoto') : 'com.gome.ecmall:selectphoto:' + getProperty('AAR_GSELECT_PHOTO_VERSION') + '@aar',
-        GHomeMalls            : rootProject.ext.proDeps ? project(':GHomeMalls') : 'com.gome.ecmall:homemall:' + getProperty('AAR_HOMEMALL_VERSION') + '@aar',
         GPushCore            : rootProject.ext.proDeps ? project(':GPushCore') : 'com.gome.ecmall:pushcore:' + getProperty('AAR_GPUSH_CORE_VERSION') + '@aar',
         GEmbedAnalysis       : rootProject.ext.proDeps ? project(':GEmbedAnalysis') : 'com.gome.ecmall:ganalysis:' + getProperty('AAR_GEMBED_ANALYSIS_VERSION') + '@aar',
         GLogin               : rootProject.ext.proDeps ? project(':GLogin') : 'com.gome.ecmall:login:' + getProperty('AAR_GLOGIN_VERSION') + '@aar',
