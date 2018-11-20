@@ -60,6 +60,8 @@
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GPromotion.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GPanicBuy.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GGroupBuy.git"/>
+    <project url="git@code.ds.gome.com.cn:mobile-android-business/GAppraise.git"/>
+    <project url="git@code.ds.gome.com.cn:mobile-android-business/GCollection.git"/>
 
     <!--M工程-->
     <project url="git@code.ds.gome.com.cn:mobile-android-business/MCommon.git"/>
