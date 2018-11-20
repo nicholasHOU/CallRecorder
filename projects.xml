@@ -61,7 +61,6 @@
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GPanicBuy.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GGroupBuy.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GAppraise.git"/>
-    <project url="git@code.ds.gome.com.cn:mobile-android-business/GCollection.git"/>
 
     <!--M工程-->
     <project url="git@code.ds.gome.com.cn:mobile-android-business/MCommon.git"/>
@@ -80,6 +79,7 @@
     <project artifactId="videoguide" bundleOpen="false" url="git@code.ds.gome.com.cn:mobile-android-business/GProductVideoGuide.git"/>
     <project artifactId="product" bundleOpen="false" url="git@code.ds.gome.com.cn:mobile-android-business/GProductDetail.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GHomeMalls.git"/>
+    <project url="git@code.ds.gome.com.cn:mobile-android-business/GCollection.git"/>
 
     <project url="git@code.ds.gome.com.cn:mobile-android-business/MFriends.git"/>
 
