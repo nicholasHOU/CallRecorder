@@ -1,4 +1,4 @@
-<?xml version="1.0" ?><manifest branch="mergeDev" bundleOpen="true" host="git@code.ds.gome.com.cn:">
+<?xml version="1.0" ?><manifest branch="mainsplit" bundleOpen="true" host="git@code.ds.gome.com.cn:">
     <!--私有工程-->
     <project branch="master" groups="private" url="git@code.ds.gome.com.cn:mobile-android-admin/buildsrc.git"/>
     <project groups="private" url="git@code.ds.gome.com.cn:mobile-android/GWorkspace.git"/>
@@ -38,7 +38,7 @@
     <project url="git@code.ds.gome.com.cn:mobile-android-repo/Glivenesslib.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GBaiTiao.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-common/GTongBaoSdk.git"/>
-    <project branch="mainsplit" url="git@code.ds.gome.com.cn:mobile-android-business/GBusiness.git"/>
+    <project groups="app" branch="mainsplit" url="git@code.ds.gome.com.cn:mobile-android-business/GBusiness.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/MImlibrary.git"/>
     <project branch="mainsplit" artifactId="ggomecurrency" bundleOpen="false" url="git@code.ds.gome.com.cn:mobile-android-business/GGomeCurrency.git"/>
     <project branch="mainsplit" url="git@code.ds.gome.com.cn:mobile-android-business/GIm.git"/>
@@ -61,6 +61,7 @@
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GPanicBuy.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GGroupBuy.git"/>
     <project branch="mainsplit" url="git@code.ds.gome.com.cn:mobile-android-business/GAppraise.git"/>
+    <project branch="mainsplit" url="git@code.ds.gome.com.cn:mobile-android-business/GShopCart.git"/>
 
     <!--M工程-->
     <project branch="mainsplit" url="git@code.ds.gome.com.cn:mobile-android-business/MCommon.git"/>
@@ -80,7 +81,7 @@
     <project branch="mainsplit" artifactId="product" bundleOpen="false" url="git@code.ds.gome.com.cn:mobile-android-business/GProductDetail.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GHomeMalls.git"/>
     <project branch="mainsplit" url="git@code.ds.gome.com.cn:mobile-android-business/GCollection.git"/>
-    <project branch="mainsplit" url="git@code.ds.gome.com.cn:mobile-android-business/GOnlinememberCard.git"/>
+    <project groups="app" branch="mainsplit" url="git@code.ds.gome.com.cn:mobile-android-business/GOnlinememberCard.git"/>
 
     <project branch="mainsplit" url="git@code.ds.gome.com.cn:mobile-android-business/MFriends.git"/>
 

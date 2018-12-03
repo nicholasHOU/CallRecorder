@@ -172,6 +172,7 @@ ext.deps = [
         GAppraise            : rootProject.ext.proDeps ? project(':GAppraise') : 'com.gome.ecmall:appraise:' + getProperty('AAR_GAPPRAISE_VERSION') + '@aar',
         GCollection          : rootProject.ext.proDeps ? project(':GCollection') : 'com.gome.ecmall:collection:' + getProperty('AAR_GCOLLECTION_VERSION') + '@aar',
         GOnlinememberCard    : true ? project(':GOnlinememberCard') : 'com.gome.ecmall:GOnlinememberCard:' + getProperty('AAR_GONLINEMEMBERCARD_VERSION') + '@aar',
+        GShopCart           :  true ? project(':GShopCart') : 'com.gome.ecmall:shopcar:' + getProperty('AAR_GSHOPCAR_VERSION') + '@aar',
 
 
         GPushGome            : rootProject.ext.proDeps ? project(':GPushGome') : 'com.gome.ecmall:pushgome:' + getProperty('AAR_GPUSH_GOME_VERSION') + '@aar',
