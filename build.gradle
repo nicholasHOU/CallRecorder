@@ -114,6 +114,7 @@ ext.deps = [
 
         GSafekeyboard        : 'com.bangcle:safeKeyboard:1.0.7',
         GWap                 : 'com.gome.mcp:wap:' + getProperty('AAR_MCP_WAP_VERSION') + '@aar',
+        STitlebar            : 'cn.gome.staff.ui:titlebar:' + getProperty('AAR_STITLEBAR_VERSION') + '@aar',
         GCrash               : 'com.gome.mcp:crash:' + getProperty('AAR_MCP_CRASH_VERSION') + '@aar',
         GSecret              : 'com.gome.mcp:sec-gome:' + getProperty('AAR_MCP_VERSION') + ':gomeRelease@aar',
         GBuildConfig         : 'com.gome.ecmall:buildconfig:' + getProperty('AAR_GCONFIG_VERSION'),
