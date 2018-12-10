@@ -171,8 +171,8 @@ ext.deps = [
         GPanicBuy            : rootProject.ext.proDeps ? project(':GPanicBuy') : 'com.gome.ecmall:panicbuy:' + getProperty('AAR_GPANICBUY_VERSION') + '@aar',
         GAppraise            : rootProject.ext.proDeps ? project(':GAppraise') : 'com.gome.ecmall:appraise:' + getProperty('AAR_GAPPRAISE_VERSION') + '@aar',
         GCollection          : rootProject.ext.proDeps ? project(':GCollection') : 'com.gome.ecmall:collection:' + getProperty('AAR_GCOLLECTION_VERSION') + '@aar',
-        GOnlinememberCard    : true ? project(':GOnlinememberCard') : 'com.gome.ecmall:GOnlinememberCard:' + getProperty('AAR_GONLINEMEMBERCARD_VERSION') + '@aar',
-        GShopCart           :  true ? project(':GShopCart') : 'com.gome.ecmall:shopcar:' + getProperty('AAR_GSHOPCAR_VERSION') + '@aar',
+        GOnlinememberCard    : rootProject.ext.proDeps ? project(':GOnlinememberCard') : 'com.gome.ecmall:GOnlinememberCard:' + getProperty('AAR_GONLINEMEMBERCARD_VERSION') + '@aar',
+        GShopCart           :  rootProject.ext.proDeps ? project(':GShopCart') : 'com.gome.ecmall:shopcar:' + getProperty('AAR_GSHOPCAR_VERSION') + '@aar',
 
 
         GPushGome            : rootProject.ext.proDeps ? project(':GPushGome') : 'com.gome.ecmall:pushgome:' + getProperty('AAR_GPUSH_GOME_VERSION') + '@aar',
@@ -187,7 +187,7 @@ ext.deps = [
 
         MShare               : rootProject.ext.proDeps ? project(':MShare') : 'com.gome.ecmall:mshare:' + getProperty('AAR_MSHARE_VERSION') + '@aar',
         MMeixinplayer        : rootProject.ext.proDeps ? project(':MMeixinplayer') : 'com.gome.ecmall:mplayer:' + getProperty('AAR_MPLAYER_VERSION') + '@aar',
-        GBusiness            : true ? project(':GBusiness') : 'com.gome.ecmall:business:' + getProperty('AAR_GBUSINESS_VERSION') + '@aar',
+        GBusiness            : rootProject.ext.proDeps ? project(':GBusiness') : 'com.gome.ecmall:business:' + getProperty('AAR_GBUSINESS_VERSION') + '@aar',
         MImlibrary           : rootProject.ext.proDeps ? project(':MImlibrary') : 'com.gome.ecmall:mimlib:' + getProperty('AAR_MIM_LIB_VERSION') + '@aar',
         MCommon              : rootProject.ext.proDeps ? project(':MCommon') : 'com.gome.ecmall:mcommon:' + getProperty('AAR_MCOMMON_VERSION') + '@aar',
         MFriendCircle        : rootProject.ext.proDeps ? project(':MFriendCircle') : 'com.gome.ecmall:mfriendcircle:' + getProperty('AAR_MFRIEND_CIRCLE_VERSION') + '@aar',
