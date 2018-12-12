@@ -1,4 +1,0 @@
-include ':GBusiness'
-include ':GomeApp'
-include ':GOnlinememberCard'
-include ':GShopCart'
