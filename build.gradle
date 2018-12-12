@@ -67,7 +67,7 @@ allprojects {
         buildToolsVersion = getProperty("BUILD_TOOLS_VERSION")
         targetSdkVersion = getProperty("TARGET_SDK_VERSION") as Integer
         minSdkVersion = getProperty("MIN_SDK_VERSION") as Integer
-        supportLibVersion = getProperty("SUPPORT_LIBRARY_VERSION")
+        supportLibVersion = "25.3.1";
         fastjsonLibVersion = "1.1.46.android"
         proDeps = false //改false 时需要把xiaomi的几个工程注掉
         isXiaoMi = false
@@ -100,10 +100,10 @@ ext.deps = [
 
         SRxjava          : 'io.reactivex.rxjava2:rxjava:2.1.9',
 
-        SRecyclerview        : 'com.android.support:recyclerview-v7:' + getProperty('SUPPORT_LIBRARY_VERSION'),
-        SAppcompat           : 'com.android.support:appcompat-v7:' + getProperty('SUPPORT_LIBRARY_VERSION'),
-        SDesign              : 'com.android.support:design:' + getProperty('SUPPORT_LIBRARY_VERSION'),
-        SPercent             : 'com.android.support:percent:' + getProperty('SUPPORT_LIBRARY_VERSION'),
+        SRecyclerview        : 'com.android.support:recyclerview-v7:23.2.1',
+        SAppcompat           : 'com.android.support:appcompat-v7:23.2.1',
+        SDesign              : 'com.android.support:design:23.2.1',
+        SPercent             : 'com.android.support:percent:23.0.1',
         SFresco              : 'com.facebook.fresco:fresco:1.10.0',
         SAnimatedGif         : 'com.facebook.fresco:animated-gif:1.10.0',
         SAnimatedWebp        : 'com.facebook.fresco:animated-webp:1.10.0',
