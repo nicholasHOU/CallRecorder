@@ -103,6 +103,7 @@ ext.deps = [
         SRecyclerview        : 'com.android.support:recyclerview-v7:23.2.1',
         SAppcompat           : 'com.android.support:appcompat-v7:23.2.1',
         SDesign              : 'com.android.support:design:23.2.1',
+        SCardview            : 'com.android.support:cardview-v7:23.2.1',
         SPercent             : 'com.android.support:percent:23.0.1',
         SFresco              : 'com.facebook.fresco:fresco:1.10.0',
         SAnimatedGif         : 'com.facebook.fresco:animated-gif:1.10.0',
