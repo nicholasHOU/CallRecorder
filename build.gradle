@@ -103,6 +103,7 @@ ext.deps = [
         SRecyclerview        : 'com.android.support:recyclerview-v7:23.2.1',
         SAppcompat           : 'com.android.support:appcompat-v7:23.2.1',
         SDesign              : 'com.android.support:design:23.2.1',
+        SCardview            : 'com.android.support:cardview-v7:23.2.1',
         SPercent             : 'com.android.support:percent:23.0.1',
         SFresco              : 'com.facebook.fresco:fresco:1.10.0',
         SAnimatedGif         : 'com.facebook.fresco:animated-gif:1.10.0',
@@ -172,6 +173,9 @@ ext.deps = [
         GPanicBuy            : rootProject.ext.proDeps ? project(':GPanicBuy') : 'com.gome.ecmall:panicbuy:' + getProperty('AAR_GPANICBUY_VERSION') + '@aar',
         GAppraise            : rootProject.ext.proDeps ? project(':GAppraise') : 'com.gome.ecmall:appraise:' + getProperty('AAR_GAPPRAISE_VERSION') + '@aar',
         GCollection          : rootProject.ext.proDeps ? project(':GCollection') : 'com.gome.ecmall:collection:' + getProperty('AAR_GCOLLECTION_VERSION') + '@aar',
+        GOnlinememberCard    : rootProject.ext.proDeps ? project(':GOnlinememberCard') : 'com.gome.ecmall:GOnlinememberCard:' + getProperty('AAR_GONLINEMEMBERCARD_VERSION') + '@aar',
+        GShopCart            : rootProject.ext.proDeps ? project(':GShopCart') : 'com.gome.ecmall:shopcar:' + getProperty('AAR_GSHOPCAR_VERSION') + '@aar',
+
 
         GPushGome            : rootProject.ext.proDeps ? project(':GPushGome') : 'com.gome.ecmall:pushgome:' + getProperty('AAR_GPUSH_GOME_VERSION') + '@aar',
         GPushHuaWei          : rootProject.ext.proDeps ? project(':GPushHuaWei') : 'com.gome.ecmall:pushhuawei:' + getProperty('AAR_GPUSH_HUAWEI_VERSION') + '@aar',
