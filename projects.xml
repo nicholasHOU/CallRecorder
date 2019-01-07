@@ -40,6 +40,7 @@
     <project url="git@code.ds.gome.com.cn:mobile-android-common/GTongBaoSdk.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GBusiness.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/MImlibrary.git"/>
+    <project url="git@code.ds.gome.com.cn:mobile-android-common/GWatchImage.git"/>
     <project artifactId="ggomecurrency" bundleOpen="false" url="git@code.ds.gome.com.cn:mobile-android-business/GGomeCurrency.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GIm.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-repo/GLogStatistics.git"/>
