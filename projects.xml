@@ -42,7 +42,6 @@
     <project url="git@code.ds.gome.com.cn:mobile-android-business/MImlibrary.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-common/GWatchImage.git"/>
     <project artifactId="ggomecurrency" bundleOpen="false" url="git@code.ds.gome.com.cn:mobile-android-business/GGomeCurrency.git"/>
-    <project url="git@code.ds.gome.com.cn:mobile-android-business/GIm.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-repo/GLogStatistics.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-common/GHybrid.git" groups="wap"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GFinanceCommon.git"/>
