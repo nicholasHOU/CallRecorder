@@ -122,6 +122,7 @@ ext.deps = [
         GPlugin              : 'com.gome.ecmall.core:plugin:1.0.36@aar',
 
         GTheme               : 'com.gome.ecmall:theme:' + getProperty('AAR_GTHEME_VERSION') + '@aar',
+        GPermission          : 'com.gome.ecmall:permission:' + getProperty('AAR_GPERMISSION_VERSION') + '@aar',
 
         SensorAnalytics       : 'com.gome.ecmall:analytics:' + getProperty("AAR_SENSOR_ANALYTICS_VERSION") + '@aar',
 
