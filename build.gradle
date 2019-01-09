@@ -123,6 +123,7 @@ ext.deps = [
 
         GTheme               : 'com.gome.ecmall:theme:' + getProperty('AAR_GTHEME_VERSION') + '@aar',
         GPermission          : 'com.gome.ecmall:permission:' + getProperty('AAR_GPERMISSION_VERSION') + '@aar',
+        GUpdate              : 'com.gome.mcp:update:2.8.7.gome.updator',
 
         SensorAnalytics       : 'com.gome.ecmall:analytics:' + getProperty("AAR_SENSOR_ANALYTICS_VERSION") + '@aar',
 
@@ -144,7 +145,6 @@ ext.deps = [
         GEmbedAnalysis       : rootProject.ext.proDeps ? project(':GEmbedAnalysis') : 'com.gome.ecmall:ganalysis:' + getProperty('AAR_GEMBED_ANALYSIS_VERSION') + '@aar',
         GLogin               : rootProject.ext.proDeps ? project(':GLogin') : 'com.gome.ecmall:login:' + getProperty('AAR_GLOGIN_VERSION') + '@aar',
         GPullrefresh         : rootProject.ext.proDeps ? project(':GPullrefresh') : 'com.gome.ecmall:pullrefresh:' + getProperty('AAR_GPULLREFRESH_VERSION') + '@aar',
-        GUpdate              : rootProject.ext.proDeps ? project(':GUpdate') : 'com.gome.ecmall:update:' + getProperty('AAR_GUPDATE_VERSION') + '@aar',
         GCmbPay              : rootProject.ext.proDeps ? project(':GCmbPay') : 'com.gome.cmbpay:cmbpay:' + getProperty('AAR_CMBPAY_VERSION') + '@aar',
         Glivenesslib         : rootProject.ext.proDeps ? project(':Glivenesslib') : 'com.gome.ecmall:liveness:' + getProperty('AAR_LIVENESS_VERSION') + '@aar',
         GTongBaoSdk          : rootProject.ext.proDeps ? project(':GTongBaoSdk') : 'com.gome.ecmall:gomepay:' + getProperty('AAR_GOMEPAY_VERSION') + '@aar',
