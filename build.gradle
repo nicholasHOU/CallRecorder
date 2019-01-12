@@ -100,11 +100,11 @@ ext.deps = [
 
         SRxjava          : 'io.reactivex.rxjava2:rxjava:2.1.9',
 
-        SRecyclerview        : 'com.android.support:recyclerview-v7:23.2.1',
-        SAppcompat           : 'com.android.support:appcompat-v7:23.2.1',
-        SDesign              : 'com.android.support:design:23.2.1',
-        SCardview            : 'com.android.support:cardview-v7:23.2.1',
-        SPercent             : 'com.android.support:percent:23.0.1',
+        SRecyclerview        : 'com.android.support:recyclerview-v7:26.0.1',
+        SAppcompat           : 'com.android.support:appcompat-v7:26.0.1',
+        SCardview            : 'com.android.support:cardview-v7:26.0.1',
+        SDesign              : 'com.android.support:design:26.0.1',
+        SPercent             : 'com.android.support:percent:26.0.1',
         SFresco              : 'com.facebook.fresco:fresco:1.10.0',
         SAnimatedGif         : 'com.facebook.fresco:animated-gif:1.10.0',
         SAnimatedWebp        : 'com.facebook.fresco:animated-webp:1.10.0',
@@ -122,8 +122,8 @@ ext.deps = [
         GPlugin              : 'com.gome.ecmall.core:plugin:1.0.36@aar',
 
         GTheme               : 'com.gome.ecmall:theme:' + getProperty('AAR_GTHEME_VERSION') + '@aar',
-        GPermission          : 'com.gome.ecmall:permission:' + getProperty('AAR_GPERMISSION_VERSION') + '@aar',
-        GUpdate              : 'com.gome.mcp:update:2.8.7.gome.updator',
+        GPermission          : rootProject.ext.proDeps ? project(':GPermission') : 'com.gome.ecmall:permission:' + getProperty('AAR_GPERMISSION_VERSION') + '@aar',
+        GUpdate              : 'com.gome.mcp:update:2.8.7.gome.updator-1',
 
         SensorAnalytics       : 'com.gome.ecmall:analytics:' + getProperty("AAR_SENSOR_ANALYTICS_VERSION") + '@aar',
 
