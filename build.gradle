@@ -67,7 +67,7 @@ allprojects {
         buildToolsVersion = getProperty("BUILD_TOOLS_VERSION")
         targetSdkVersion = getProperty("TARGET_SDK_VERSION") as Integer
         minSdkVersion = getProperty("MIN_SDK_VERSION") as Integer
-        supportLibVersion = "25.3.1";
+        supportLibVersion = "26.0.1";
         fastjsonLibVersion = "1.1.46.android"
         proDeps = false //改false 时需要把xiaomi的几个工程注掉
         isXiaoMi = false
@@ -127,6 +127,8 @@ ext.deps = [
         GMVP                 : 'com.gome.mcp:mvp:'+getProperty('AAR_MCP_VERSION')+'@aar',
 
         SensorAnalytics       : 'com.gome.ecmall:analytics:' + getProperty("AAR_SENSOR_ANALYTICS_VERSION") + '@aar',
+        GDialog              :  'cn.gome.staff.ui:dialog:' + getProperty('AAR_UI_DIALOG_VERSION') + '@aar',
+        GWatchImage          :  'com.gome.ecmall:watchimage:' + getProperty('AAR_GWATCH_IMAGE_VERSION') + '@aar',
 
         GLogStatistics       : rootProject.ext.proDeps ? project(':GLogStatistics') : 'com.gome.ecmall:logstats:' + getProperty('AAR_GLOGSTATS_VERSION') + '@aar',
 
@@ -138,7 +140,6 @@ ext.deps = [
         GCoreLogin           : rootProject.ext.proDeps ? project(':GCore-login') : 'com.gome.ecmall:core-login:' + getProperty('AAR_GCORE_LOGIN_VERSION') + '@aar',
         GCore                : rootProject.ext.proDeps ? project(':GCore') : 'com.gome.ecmall:core:' + getProperty('AAR_GCORE_VERSION') + '@aar',
 
-        GDialog              : rootProject.ext.proDeps ? project(':GDialog') : 'cn.gome.staff.ui:dialog:' + getProperty('AAR_UI_DIALOG_VERSION') + '@aar',
         GWidget              : rootProject.ext.proDeps ? project(':GWidget') : 'com.gome.ecmall:widget:' + getProperty('AAR_GWIDGET_VERSION') + '@aar',
         MImageEditor         : rootProject.ext.proDeps ? project(':MImageEditor') : 'com.gome.ecmall:imageedit:' + getProperty('AAR_IMAGEEDIT_VERSION') + '@aar',
         GSelectPhoto         : rootProject.ext.proDeps ? project(':GSelectPhoto') : 'com.gome.ecmall:selectphoto:' + getProperty('AAR_GSELECT_PHOTO_VERSION') + '@aar',
@@ -191,8 +192,7 @@ ext.deps = [
         MMeixinplayer        : rootProject.ext.proDeps ? project(':MMeixinplayer') : 'com.gome.ecmall:mplayer:' + getProperty('AAR_MPLAYER_VERSION') + '@aar',
         GBusiness            : rootProject.ext.proDeps ? project(':GBusiness') : 'com.gome.ecmall:business:' + getProperty('AAR_GBUSINESS_VERSION') + '@aar',
         MImlibrary           : rootProject.ext.proDeps ? project(':MImlibrary') : 'com.gome.ecmall:mimlib:' + getProperty('AAR_MIM_LIB_VERSION') + '@aar',
-        GWatchImage          : rootProject.ext.proDeps ? project(':GWatchImage') : 'com.gome.ecmall:watchimage:' + getProperty('AAR_GWATCH_IMAGE_VERSION') + '@aar',
-	MCommon              : rootProject.ext.proDeps ? project(':MCommon') : 'com.gome.ecmall:mcommon:' + getProperty('AAR_MCOMMON_VERSION') + '@aar',
+	    MCommon              : rootProject.ext.proDeps ? project(':MCommon') : 'com.gome.ecmall:mcommon:' + getProperty('AAR_MCOMMON_VERSION') + '@aar',
         MFriendCircle        : rootProject.ext.proDeps ? project(':MFriendCircle') : 'com.gome.ecmall:mfriendcircle:' + getProperty('AAR_MFRIEND_CIRCLE_VERSION') + '@aar',
         MIm                  : rootProject.ext.proDeps ? project(':MIm') : 'com.gome.ecmall:mim:' + getProperty('AAR_MIM_VERSION') + '@aar',
         MFriends             : rootProject.ext.proDeps ? project(':MFriends') : 'com.gome.ecmall:mfriends:' + getProperty('AAR_MFRIENDS_VERSION') + '@aar',
