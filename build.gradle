@@ -106,8 +106,7 @@ ext.deps = [
         SFastJson         : 'com.alibaba:fastjson:1.1.54.android',
         SRxjava           : 'io.reactivex:rxjava:1.1.6',
         SRxjava2          : 'io.reactivex.rxjava2:rxjava:2.1.9',
-        SEventBus         : 'de.greenrobot:eventbus:2.4.1',
-        SEventBus3        : 'org.greenrobot:eventbus:3.0.0',
+        SEventBus         : 'org.greenrobot:eventbus:3.0.0',
         SGson             : 'com.google.code.gson:gson:2.6.2',
         SAlipay           : 'com.thirdparty:alipaySDK:20160909',
         SWechatSdk        : 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:5.1.6',
@@ -149,6 +148,7 @@ ext.deps = [
         Gomeanimated         : 'com.gome.fresco:animated-gif:1.10.0',
 
         GSafekeyboard        : 'com.bangcle:safeKeyboard:1.0.7',
+        GUpdate              : 'com.gome.mcp:update:2.8.7.gome.updator-3',
         GWap                 : 'com.gome.mcp:wap:' + getProperty('AAR_MCP_WAP_VERSION') + '@aar',
         STitlebar            : 'cn.gome.staff.ui:titlebar:' + getProperty('AAR_STITLEBAR_VERSION') + '@aar',
         GCrash               : 'com.gome.mcp:crash:' + getProperty('AAR_MCP_CRASH_VERSION') + '@aar',
@@ -158,7 +158,6 @@ ext.deps = [
 
         GTheme               : 'com.gome.ecmall:theme:' + getProperty('AAR_GTHEME_VERSION') + '@aar',
         GPermission          : rootProject.ext.proDeps ? project(':GPermission') : 'com.gome.ecmall:permission:' + getProperty('AAR_GPERMISSION_VERSION') + '@aar',
-        GUpdate              : 'com.gome.mcp:update:2.8.7.gome.updator-1',
         GMVP                 : 'com.gome.mcp:mvp:'+getProperty('AAR_MCP_VERSION')+'@aar',
         GIntensify           : 'com.gome.ecmall:gintensify:' + getProperty('AAR_GINTENSIFY_VERSION') + '@aar',
 
