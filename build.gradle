@@ -164,6 +164,9 @@ ext.deps = [
         SensorAnalytics       : 'com.gome.ecmall:analytics:' + getProperty("AAR_SENSOR_ANALYTICS_VERSION") + '@aar',
         GDialog              :  'cn.gome.staff.ui:dialog:' + getProperty('AAR_UI_DIALOG_VERSION') + '@aar',
         GWatchImage          :  'com.gome.ecmall:watchimage:' + getProperty('AAR_GWATCH_IMAGE_VERSION') + '@aar',
+        MImageEditor         : 'com.gome.ecmall:imageedit:' + getProperty('AAR_IMAGEEDIT_VERSION') + '@aar',
+        GEmbedAnalysis       : 'com.gome.ecmall:ganalysis:' + getProperty('AAR_GEMBED_ANALYSIS_VERSION') + '@aar',
+        Glivenesslib         : 'com.gome.ecmall:liveness:' + getProperty('AAR_LIVENESS_VERSION') + '@aar',
 
         GLogStatistics       : rootProject.ext.proDeps ? project(':GLogStatistics') : 'com.gome.ecmall:logstats:' + getProperty('AAR_GLOGSTATS_VERSION') + '@aar',
 
@@ -176,14 +179,11 @@ ext.deps = [
         GCore                : rootProject.ext.proDeps ? project(':GCore') : 'com.gome.ecmall:core:' + getProperty('AAR_GCORE_VERSION') + '@aar',
 
         GWidget              : rootProject.ext.proDeps ? project(':GWidget') : 'com.gome.ecmall:widget:' + getProperty('AAR_GWIDGET_VERSION') + '@aar',
-        MImageEditor         : rootProject.ext.proDeps ? project(':MImageEditor') : 'com.gome.ecmall:imageedit:' + getProperty('AAR_IMAGEEDIT_VERSION') + '@aar',
         GSelectPhoto         : rootProject.ext.proDeps ? project(':GSelectPhoto') : 'com.gome.ecmall:selectphoto:' + getProperty('AAR_GSELECT_PHOTO_VERSION') + '@aar',
         GPushCore            : rootProject.ext.proDeps ? project(':GPushCore') : 'com.gome.ecmall:pushcore:' + getProperty('AAR_GPUSH_CORE_VERSION') + '@aar',
-        GEmbedAnalysis       : rootProject.ext.proDeps ? project(':GEmbedAnalysis') : 'com.gome.ecmall:ganalysis:' + getProperty('AAR_GEMBED_ANALYSIS_VERSION') + '@aar',
         GLogin               : rootProject.ext.proDeps ? project(':GLogin') : 'com.gome.ecmall:login:' + getProperty('AAR_GLOGIN_VERSION') + '@aar',
         GPullrefresh         : rootProject.ext.proDeps ? project(':GPullrefresh') : 'com.gome.ecmall:pullrefresh:' + getProperty('AAR_GPULLREFRESH_VERSION') + '@aar',
         GCmbPay              : rootProject.ext.proDeps ? project(':GCmbPay') : 'com.gome.cmbpay:cmbpay:' + getProperty('AAR_CMBPAY_VERSION') + '@aar',
-        Glivenesslib         : rootProject.ext.proDeps ? project(':Glivenesslib') : 'com.gome.ecmall:liveness:' + getProperty('AAR_LIVENESS_VERSION') + '@aar',
         GTongBaoSdk          : rootProject.ext.proDeps ? project(':GTongBaoSdk') : 'com.gome.ecmall:gomepay:' + getProperty('AAR_GOMEPAY_VERSION') + '@aar',
         GBaiTiao             : rootProject.ext.proDeps ? project(':GBaiTiao') : 'com.gome.ecmall:baitiao:' + getProperty('AAR_GBAITIAO_VERSION') + '@aar',
         GHybrid              : rootProject.ext.proDeps ? project(':GHybrid') : 'com.gome.ecmall:gh5:' + getProperty('AAR_GH5_VERSION') + '@aar',
