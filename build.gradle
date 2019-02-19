@@ -148,7 +148,7 @@ ext.deps = [
         Gomeanimated         : 'com.gome.fresco:animated-gif:1.10.0',
 
         GSafekeyboard        : 'com.bangcle:safeKeyboard:1.0.7',
-        GUpdate              : 'com.gome.mcp:update:2.8.7.gome.updator-4',
+        GUpdate              : 'com.gome.mcp:update:2.8.7.gome.updator-5',
         GWap                 : 'com.gome.mcp:wap:' + getProperty('AAR_MCP_WAP_VERSION') + '@aar',
         STitlebar            : 'cn.gome.staff.ui:titlebar:' + getProperty('AAR_STITLEBAR_VERSION') + '@aar',
         GCrash               : 'com.gome.mcp:crash:' + getProperty('AAR_MCP_CRASH_VERSION') + '@aar',
