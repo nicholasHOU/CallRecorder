@@ -8,7 +8,8 @@ buildscript {
 //                username = getProperty("MAVEN_USER")
 //                password = getProperty("MAVEN_PASS")
 //            }
-            url "http://10.115.3.135:8081/nexus/content/groups/public"
+            url "http://m-maven.ds.gome.com.cn/nexus/content/groups/public"
+            //url "http://10.115.3.135:8081/nexus/content/groups/public"
             credentials {
                 username = "deployment"
                 password = "qiudongchao1988"
@@ -43,7 +44,8 @@ allprojects {
 //                username = getProperty("MAVEN_USER")
 //                password = getProperty("MAVEN_PASS")
 //            }
-            url "http://10.115.3.135:8081/nexus/content/groups/public"
+            url "http://m-maven.ds.gome.com.cn/nexus/content/groups/public"
+            //url "http://10.115.3.135:8081/nexus/content/groups/public"
             credentials {
                 username = "deployment"
                 password = "qiudongchao1988"
