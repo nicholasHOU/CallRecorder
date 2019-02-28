@@ -3,7 +3,7 @@ def version_code = 116
 apply from: project.rootProject.uri('plugin_lib.gradle')
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
-    buildToolsVersion "25.0.2"
+    buildToolsVersion rootProject.ext.buildToolsVersion
     useLibrary 'org.apache.http.legacy'
     defaultConfig {
         if(project.ext.has("versionCode")){
