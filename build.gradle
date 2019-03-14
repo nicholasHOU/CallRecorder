@@ -215,6 +215,8 @@ ext.deps = [
         GOnlinememberCard    : rootProject.ext.proDeps ? project(':GOnlinememberCard') : 'com.gome.ecmall:GOnlinememberCard:' + getProperty('AAR_GONLINEMEMBERCARD_VERSION') + '@aar',
         GShopCart            : rootProject.ext.proDeps ? project(':GShopCart') : 'com.gome.ecmall:shopcar:' + getProperty('AAR_GSHOPCAR_VERSION') + '@aar',
         GSetting            : rootProject.ext.proDeps ? project(':GSetting') : 'com.gome.ecmall:setting:' + getProperty('AAR_GSETTING_VERSION') + '@aar',
+        GMemHome            : rootProject.ext.proDeps ? project(':GMemHome') : 'com.gome.ecmall:memhome:' + getProperty('AAR_GMEM_HOME_VERSION') + '@aar',
+        GMemService            : rootProject.ext.proDeps ? project(':GMemService') : 'com.gome.ecmall:memservice:' + getProperty('AAR_GMEM_SERVICE_VERSION') + '@aar',
 
         GPushGome            : rootProject.ext.proDeps ? project(':GPushGome') : 'com.gome.ecmall:pushgome:' + getProperty('AAR_GPUSH_GOME_VERSION') + '@aar',
         GPushHuaWei          : rootProject.ext.proDeps ? project(':GPushHuaWei') : 'com.gome.ecmall:pushhuawei:' + getProperty('AAR_GPUSH_HUAWEI_VERSION') + '@aar',

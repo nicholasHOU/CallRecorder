@@ -88,6 +88,8 @@
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GShopCart.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GOnlinememberCard.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GSetting.git"/>
+    <project url="git@code.ds.gome.com.cn:mobile-android-business/GMemHome.git"/>
+    <project url="git@code.ds.gome.com.cn:mobile-android-business/GMemService.git"/>
 
     <!-- WEEX模块 -->
     <project url="git@code.ds.gome.com.cn:mobile-android-repo/GWeexCore.git"/>
