@@ -156,7 +156,7 @@ ext.deps = [
         GCrash               : 'com.gome.mcp:crash:' + getProperty('AAR_MCP_CRASH_VERSION') + '@aar',
         GSecret              : 'com.gome.mcp:sec-gome:' + getProperty('AAR_MCP_VERSION') + ':gomeRelease@aar',
         GBuildConfig         : 'com.gome.ecmall:buildconfig:' + getProperty('AAR_GCONFIG_VERSION'),
-        GPlugin              : 'com.gome.ecmall.core:plugin:1.0.37@aar',
+        GPlugin              : 'com.gome.ecmall.core:plugin:1.0.38@aar',
 
         GTheme               : 'com.gome.ecmall:theme:' + getProperty('AAR_GTHEME_VERSION') + '@aar',
         GPermission          : rootProject.ext.proDeps ? project(':GPermission') : 'com.gome.ecmall:permission:' + getProperty('AAR_GPERMISSION_VERSION') + '@aar',
