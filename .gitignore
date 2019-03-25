@@ -3,6 +3,8 @@
 /.idea/modules.xml
 /.idea/gradle.xml
 /.idea/vcs.xml
+.idea/*
+!/.idea/scopes
 
 /.DS_Store
 /.svn
@@ -10,7 +12,6 @@
 /captures
 *.iml
 .gradle
-.idea
 
 /0*
 /G*

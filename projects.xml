@@ -43,55 +43,54 @@
     <project url="git@code.ds.gome.com.cn:mobile-android-common/GHotfix.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-repo/GLogStatistics.git"/>
     <!--支持3D Wap-->
-    <project artifactId="gx5" bundleOpen="false" url="git@code.ds.gome.com.cn:mobile-android-repo/GX5Lib.git"/>
+    <project url="git@code.ds.gome.com.cn:mobile-android-repo/GX5Lib.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GBusiness.git"/>
+    <!-- WEEX模块 -->
+    <project url="git@code.ds.gome.com.cn:mobile-android-repo/GWeexCore.git"/>
+    <project url="git@code.ds.gome.com.cn:mobile-android-repo/GWeexUpdate.git"/>
+    <project url="git@code.ds.gome.com.cn:mobile-android-repo/GWeexLib.git"/>
+
     <project url="git@code.ds.gome.com.cn:mobile-android-business/MImlibrary.git"/>
-    <project artifactId="ggomecurrency" bundleOpen="false" url="git@code.ds.gome.com.cn:mobile-android-business/GGomeCurrency.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-common/GHybrid.git" groups="wap"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GFinanceCommon.git"/>
+    <!-- 业务模块 -->
     <project artifactId="finance" bundleOpen="false" url="git@code.ds.gome.com.cn:mobile-android-business/GFinance.git"/>
     <project artifactId="meiyingbao" bundleOpen="false" url="git@code.ds.gome.com.cn:mobile-android-business/GMeiyingbao.git"/>
     <project artifactId="phonerecharge" bundleOpen="true" url="git@code.ds.gome.com.cn:mobile-android-business/GPhoneRecharge.git"/>
-    <!--<project artifactId="movie" bundleOpen="true" url="git@code.ds.gome.com.cn:mobile-android-business/GMovie.git"/>-->
     <project artifactId="storesearch" bundleOpen="true" url="git@code.ds.gome.com.cn:mobile-android-business/GStoreSearch.git"/>
     <project artifactId="greturn" bundleOpen="true" url="git@code.ds.gome.com.cn:mobile-android-business/GReturn.git"/>
     <project artifactId="materialorder" bundleOpen="false" url="git@code.ds.gome.com.cn:mobile-android-business/GMaterialOrder.git"/>
     <project artifactId="tqdetail" bundleOpen="false" url="git@code.ds.gome.com.cn:mobile-android-business/GTQDetail.git"/>
-    <project url="git@code.ds.gome.com.cn:mobile-android-business/GZxingScan.git"/>
-    <project url="git@code.ds.gome.com.cn:mobile-android-business/GIMRedEnvelope.git"/>
+    <project artifactId="ggomecurrency" bundleOpen="false" url="git@code.ds.gome.com.cn:mobile-android-business/GGomeCurrency.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GShop.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GPromotion.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GPanicBuy.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GGroupBuy.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GAppraise.git"/>
+    <project url="git@code.ds.gome.com.cn:mobile-android-business/GOnlinememberCard.git"/>
 
-    <!--M工程-->
+    <project url="git@code.ds.gome.com.cn:mobile-android-business/GZxingScan.git"/>
+    <project url="git@code.ds.gome.com.cn:mobile-android-business/GIMRedEnvelope.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/MCommon.git"/>
+
     <project url="git@code.ds.gome.com.cn:mobile-android-business/MShare.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/MMeixinplayer.git"/>
-
-    <!--工程-->
-    <project artifactId="productsearch" bundleOpen="false" url="git@code.ds.gome.com.cn:mobile-android-business/GProductSearch.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/MFriendCircle.git"/>
-
     <project url="git@code.ds.gome.com.cn:mobile-android-business/MSocial.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/MShop.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/MIm.git"/>
-    <project artifactId="videoguide" bundleOpen="false" url="git@code.ds.gome.com.cn:mobile-android-business/GProductVideoGuide.git"/>
-    <project artifactId="product" bundleOpen="false" url="git@code.ds.gome.com.cn:mobile-android-business/GProductDetail.git"/>
+    <project url="git@code.ds.gome.com.cn:mobile-android-business/MFriends.git"/>
+    <project url="git@code.ds.gome.com.cn:mobile-android-business/GVAuction.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GHomeMalls.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GCollection.git"/>
 
-    <project url="git@code.ds.gome.com.cn:mobile-android-business/MFriends.git"/>
-    <project url="git@code.ds.gome.com.cn:mobile-android-business/GVAuction.git"/>
-
+    <project artifactId="productsearch" bundleOpen="false" url="git@code.ds.gome.com.cn:mobile-android-business/GProductSearch.git"/>
+    <project artifactId="videoguide" bundleOpen="false" url="git@code.ds.gome.com.cn:mobile-android-business/GProductVideoGuide.git"/>
+    <project artifactId="product" bundleOpen="false" url="git@code.ds.gome.com.cn:mobile-android-business/GProductDetail.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GShopCart.git"/>
-    <project url="git@code.ds.gome.com.cn:mobile-android-business/GOnlinememberCard.git"/>
-
-    <!-- WEEX模块 -->
-    <project url="git@code.ds.gome.com.cn:mobile-android-repo/GWeexCore.git"/>
-    <project url="git@code.ds.gome.com.cn:mobile-android-repo/GWeexUpdate.git"/>
-    <project url="git@code.ds.gome.com.cn:mobile-android-repo/GWeexLib.git"/>
+    <project url="git@code.ds.gome.com.cn:mobile-android-business/GSetting.git"/>
+    <project url="git@code.ds.gome.com.cn:mobile-android-business/GMemHome.git"/>
+    <project url="git@code.ds.gome.com.cn:mobile-android-business/GMemService.git"/>
 
     <!--主工程-->
     <project app="true" groups="app" path="GomeApp" url="git@code.ds.gome.com.cn:mobile-android/GomePlus.git"/>
