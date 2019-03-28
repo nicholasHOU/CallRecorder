@@ -131,7 +131,7 @@ ext.deps = [
         GPlayer           : 'cn.com.gomeplus.player:gomeplus-player:1.0.30',
         GDanmu            : 'cn.com.gomeplus.danmu:gomeplus-danmu:1.0.0@aar',
         GMsc              : 'com.gome.ecmall:msc:1.0.2@aar',
-        GAVSdk            : 'com.gome:avsdk:1.1.16',
+        GAVSdk            : 'com.gome:avsdk:1.1.17',
 
         SMultidex         : 'com.android.support:multidex:1.0.1',
         SMultidexInstr    : 'com.android.support:multidex-instrumentation:1.0.1',
@@ -144,10 +144,10 @@ ext.deps = [
         SFresco              : 'com.facebook.fresco:fresco:1.10.0',
         SAnimatedGif         : 'com.facebook.fresco:animated-gif:1.10.0',
         SAnimatedWebp        : 'com.facebook.fresco:animated-webp:1.10.0',
-        SWebpsupport         : 'com.facebook.fresco:webpsupport:1.10.0',
         SimagepipelineOkhttp3: 'com.facebook.fresco:imagepipeline-okhttp3:1.10.0',
         Gomeimagepipeline    : 'com.gome.fresco:imagepipeline:1.10.0',
         Gomeanimated         : 'com.gome.fresco:animated-gif:1.10.0',
+        GomeWebpsupport      : 'com.gome.fresco:webpsupport:1.10.0@aar',
 
         GSafekeyboard        : 'com.bangcle:safeKeyboard:1.0.7',
         GUpdate              : 'com.gome.mcp:update:2.8.7.gome.updator-8',
