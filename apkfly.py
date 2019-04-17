@@ -699,7 +699,7 @@ def _git_create_push(branch_name, sub_projects, cmd_list, is_push):
             continue
 
         if is_push:
-            process_push = subprocess.Popen(["git", "push", "origin", branch_name],
+            process_push = subprocess.Popen(["git", "push", "-u", "origin", branch_name],
                                             stderr=subprocess.PIPE,
                                             stdout=subprocess.PIPE,
                                             cwd=os.path.join(dir_current, sub_file))
