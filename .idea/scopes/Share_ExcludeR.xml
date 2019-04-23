@@ -1,0 +1,3 @@
+<component name="DependencyValidationManager">
+  <scope name="Share_ExcludeR" pattern="!file:*R.java&amp;&amp;!file:*R.txt&amp;&amp;!file:*values.xml&amp;&amp;!file:*R.txt&amp;&amp;!file:*merger.xml" />
+</component>
