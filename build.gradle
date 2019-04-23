@@ -219,7 +219,8 @@ ext.deps = [
         GPushHuaWei          : rootProject.ext.proDeps ? project(':GPushHuaWei') : 'com.gome.ecmall:pushhuawei:' + getProperty('AAR_GPUSH_HUAWEI_VERSION') + '@aar',
         GPushMeiZu           : rootProject.ext.proDeps ? project(':GPushMeiZu') : 'com.gome.ecmall:pushmeizu:' + getProperty('AAR_GPUSH_MEIZU_VERSION') + '@aar',
         GPushXiaoMi          : rootProject.ext.proDeps ? project(':GPushXiaoMi') : 'com.gome.ecmall:pushxiaomi:' + getProperty('AAR_GPUSH_XIAOMI_VERSION') + '@aar',
-//        GPushOppo            : rootProject.ext.proDeps ? project(':GPushOppo') : 'com.gome.ecmall:pushoppo:' + getProperty('AAR_GPUSH_OPPO_VERSION') + '@aar',  后续支持，先配置上
+        GPushOppo            : rootProject.ext.proDeps ? project(':GPushOppo') : 'com.gome.ecmall:pushoppo:' + getProperty('AAR_GPUSH_OPPO_VERSION') + '@aar',
+        GPushViVo            : rootProject.ext.proDeps ? project(':GPushViVo') : 'com.gome.ecmall:pushvivo:' + getProperty('AAR_GPUSH_VIVO_VERSION') + '@aar',
 
         GWeexCore            : rootProject.ext.proDeps ? project(':GWeexCore') : 'com.gome.mobile.weex:core:' + getProperty('AAR_GWEEXCORE_VERSION') + '@aar',
         GWeexUpdate          : rootProject.ext.proDeps ? project(':GWeexUpdate') : 'com.gome.mobile.weex:update:' + getProperty('AAR_GWEEXUPDATE_VERSION') + '@aar',

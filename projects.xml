@@ -21,7 +21,8 @@
     <project url="git@code.ds.gome.com.cn:mobile-android-common/GPushHuaWei.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-common/GPushMeiZu.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-common/GPushXiaoMi.git"/>
-    <!--<project url="git@code.ds.gome.com.cn:mobile-android-common/GPushOppo.git"/> 后续支持，先配置上-->
+    <project url="git@code.ds.gome.com.cn:mobile-android-common/GPushOppo.git"/>
+    <project url="git@code.ds.gome.com.cn:mobile-android-common/GPushViVo.git"/>
 
     <!--G工程-->
     <!--GFrame-->
