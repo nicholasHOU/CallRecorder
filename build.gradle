@@ -231,6 +231,7 @@ ext.deps = [
 
         MShare               : rootProject.ext.proDeps ? project(':MShare') : 'com.gome.ecmall:mshare:' + getProperty('AAR_MSHARE_VERSION') + '@aar',
         GBusiness            : rootProject.ext.proDeps ? project(':GBusiness') : 'com.gome.ecmall:business:' + getProperty('AAR_GBUSINESS_VERSION') + '@aar',
+        GScheme              : rootProject.ext.proDeps ? project(':GScheme') : 'com.gome.ecmall:scheme:' + getProperty('AAR_GSCHEME_VERSION') + '@aar',
         MImlibrary           : rootProject.ext.proDeps ? project(':MImlibrary') : 'com.gome.ecmall:mimlib:' + getProperty('AAR_MIM_LIB_VERSION') + '@aar',
 	    MCommon              : rootProject.ext.proDeps ? project(':MCommon') : 'com.gome.ecmall:mcommon:' + getProperty('AAR_MCOMMON_VERSION') + '@aar',
         MFriendCircle        : rootProject.ext.proDeps ? project(':MFriendCircle') : 'com.gome.ecmall:mfriendcircle:' + getProperty('AAR_MFRIEND_CIRCLE_VERSION') + '@aar',
