@@ -82,6 +82,8 @@
     <project url="git@code.ds.gome.com.cn:mobile-android-business/MFriends.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GVAuction.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GHomeMalls.git"/>
+    <project url="git@code.ds.gome.com.cn:mobile-android-business/GHomepage.git"/>
+
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GCollection.git"/>
 
     <project artifactId="productsearch" bundleOpen="false" url="git@code.ds.gome.com.cn:mobile-android-business/GProductSearch.git"/>
@@ -91,6 +93,11 @@
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GSetting.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GMemHome.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GMemService.git"/>
+    <project url="git@code.ds.gome.com.cn:mobile-android-common/GSmartRefreshLayout.git"/>
+
+
+
+
 
     <!--主工程-->
     <project app="true" groups="app" path="GomeApp" url="git@code.ds.gome.com.cn:mobile-android/GomePlus.git"/>
