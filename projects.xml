@@ -31,6 +31,7 @@
     <project groups="frame" url="git@code.ds.gome.com.cn:mobile-android-common/GFrame-image.git"/>
     <project groups="frame" path="GFrame" url="git@code.ds.gome.com.cn:mobile-android-common/GFrame-common.git"/>
     <!--GCore-->
+    <project url="git@code.ds.gome.com.cn:mobile-android-common/GSmartRefreshLayout.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GWidget.git"/>
     <project groups="core" url="git@code.ds.gome.com.cn:mobile-android-common/GCore-login.git"/>
     <project groups="core" path="GCore"  url="git@code.ds.gome.com.cn:mobile-android-common/GCore-common.git"/>
@@ -94,11 +95,6 @@
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GSetting.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GMemHome.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GMemService.git"/>
-    <project url="git@code.ds.gome.com.cn:mobile-android-common/GSmartRefreshLayout.git"/>
-
-
-
-
 
     <!--主工程-->
     <project app="true" groups="app" path="GomeApp" url="git@code.ds.gome.com.cn:mobile-android/GomePlus.git"/>
