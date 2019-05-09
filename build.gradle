@@ -157,6 +157,7 @@ ext.deps = [
         GSecret              : 'com.gome.mcp:sec-gome:2.7.1:gomeRelease@aar',
         GBuildConfig         : 'com.gome.ecmall:buildconfig:' + getProperty('AAR_GCONFIG_VERSION'),
         GPlugin              : 'com.gome.ecmall.core:plugin:1.0.38@aar',
+        ABTest               : 'com.gome.mcp:abtestlib:1.0.4',
 
         GTheme               : 'com.gome.ecmall:theme:' + getProperty('AAR_GTHEME_VERSION') + '@aar',
         GPermission          : 'com.gome.ecmall:permission:' + getProperty('AAR_GPERMISSION_VERSION') + '@aar',
@@ -181,6 +182,7 @@ ext.deps = [
         GCore                : rootProject.ext.proDeps ? project(':GCore') : 'com.gome.ecmall:core:' + getProperty('AAR_GCORE_VERSION') + '@aar',
 
         GWidget              : rootProject.ext.proDeps ? project(':GWidget') : 'com.gome.ecmall:widget:' + getProperty('AAR_GWIDGET_VERSION') + '@aar',
+        GSmartRefreshLayout: rootProject.ext.proDeps ? project(':GSmartRefreshLayout') : 'com.gome.ecmall:refreshsmt:' + getProperty('AAR_REFRESH_SMT_VERSION') + '@aar',
         GSelectPhoto         : rootProject.ext.proDeps ? project(':GSelectPhoto') : 'com.gome.ecmall:selectphoto:' + getProperty('AAR_GSELECT_PHOTO_VERSION') + '@aar',
         GPushCore            : rootProject.ext.proDeps ? project(':GPushCore') : 'com.gome.ecmall:pushcore:' + getProperty('AAR_GPUSH_CORE_VERSION') + '@aar',
         GLogin               : rootProject.ext.proDeps ? project(':GLogin') : 'com.gome.ecmall:login:' + getProperty('AAR_GLOGIN_VERSION') + '@aar',
@@ -208,6 +210,7 @@ ext.deps = [
         GShop                : rootProject.ext.proDeps ? project(':GShop') : 'com.gome.ecmall:gshop:' + getProperty('AAR_GSHOP_VERSION') + '@aar',
         GPromotion           : rootProject.ext.proDeps ? project(':GPromotion') : 'com.gome.ecmall:promotion:' + getProperty('AAR_GPROMOTION_VERSION') + '@aar',
         GHomeMalls           : rootProject.ext.proDeps ? project(':GHomeMalls') : 'com.gome.ecmall:homemall:' + getProperty('AAR_HOMEMALL_VERSION') + '@aar',
+        GHomepage           : rootProject.ext.proDeps ? project(':GHomepage') : 'com.gome.ecmall:hmallpage:' + getProperty('AAR_HMALL_PAGE_VERSION') + '@aar',
         GGroupBuy            : rootProject.ext.proDeps ? project(':GGroupBuy') : 'com.gome.ecmall:groupbuy:' + getProperty('AAR_GGROUPBUY_VERSION') + '@aar',
         GPanicBuy            : rootProject.ext.proDeps ? project(':GPanicBuy') : 'com.gome.ecmall:panicbuy:' + getProperty('AAR_GPANICBUY_VERSION') + '@aar',
         GAppraise            : rootProject.ext.proDeps ? project(':GAppraise') : 'com.gome.ecmall:appraise:' + getProperty('AAR_GAPPRAISE_VERSION') + '@aar',
