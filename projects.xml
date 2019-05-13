@@ -21,7 +21,8 @@
     <project url="git@code.ds.gome.com.cn:mobile-android-common/GPushHuaWei.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-common/GPushMeiZu.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-common/GPushXiaoMi.git"/>
-    <!--<project url="git@code.ds.gome.com.cn:mobile-android-common/GPushOppo.git"/> 后续支持，先配置上-->
+    <project url="git@code.ds.gome.com.cn:mobile-android-common/GPushOppo.git"/>
+    <project url="git@code.ds.gome.com.cn:mobile-android-common/GPushViVo.git"/>
 
     <!--G工程-->
     <!--GFrame-->
@@ -30,10 +31,11 @@
     <project groups="frame" url="git@code.ds.gome.com.cn:mobile-android-common/GFrame-image.git"/>
     <project groups="frame" path="GFrame" url="git@code.ds.gome.com.cn:mobile-android-common/GFrame-common.git"/>
     <!--GCore-->
+    <project url="git@code.ds.gome.com.cn:mobile-android-common/GSmartRefreshLayout.git"/>
+    <project url="git@code.ds.gome.com.cn:mobile-android-business/GWidget.git"/>
     <project groups="core" url="git@code.ds.gome.com.cn:mobile-android-common/GCore-login.git"/>
     <project groups="core" path="GCore"  url="git@code.ds.gome.com.cn:mobile-android-common/GCore-common.git"/>
 
-    <project url="git@code.ds.gome.com.cn:mobile-android-business/GWidget.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GSelectPhoto.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GLogin.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GPullrefresh.git"/>
@@ -44,6 +46,7 @@
     <project url="git@code.ds.gome.com.cn:mobile-android-repo/GLogStatistics.git"/>
     <!--支持3D Wap-->
     <project url="git@code.ds.gome.com.cn:mobile-android-repo/GX5Lib.git"/>
+    <project url="git@code.ds.gome.com.cn:mobile-android-business/GScheme.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GBusiness.git"/>
     <!-- WEEX模块 -->
     <project url="git@code.ds.gome.com.cn:mobile-android-repo/GWeexCore.git"/>
@@ -74,7 +77,6 @@
     <project url="git@code.ds.gome.com.cn:mobile-android-business/MCommon.git"/>
 
     <project url="git@code.ds.gome.com.cn:mobile-android-business/MShare.git"/>
-    <project url="git@code.ds.gome.com.cn:mobile-android-business/MMeixinplayer.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/MFriendCircle.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/MSocial.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/MShop.git"/>
@@ -82,6 +84,8 @@
     <project url="git@code.ds.gome.com.cn:mobile-android-business/MFriends.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GVAuction.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GHomeMalls.git"/>
+    <project url="git@code.ds.gome.com.cn:mobile-android-business/GHomepage.git"/>
+
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GCollection.git"/>
 
     <project artifactId="productsearch" bundleOpen="false" url="git@code.ds.gome.com.cn:mobile-android-business/GProductSearch.git"/>
