@@ -110,7 +110,7 @@ ext.deps = [
         SRxjava2          : 'io.reactivex.rxjava2:rxjava:2.1.9',
         SEventBus         : 'org.greenrobot:eventbus:3.0.0',
         SGson             : 'com.google.code.gson:gson:2.6.2',
-        SAlipay           : 'com.thirdparty:alipaySDK:20160909',
+        SAlipay           : 'com.gome.ecmall.third:alipaySdk:15.6.0-20190226104053@aar',
         SWechatSdk        : 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:5.1.6',
         STencentSdk       : 'com.thirdparty:tencent:open_sdk_r6019_lite',
         SSinaWeibo        : 'com.thirdparty.sina:weibo:4.3.6',
