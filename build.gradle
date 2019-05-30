@@ -128,7 +128,7 @@ ext.deps = [
         GMeifubao         : 'com.gome.ecmall.third:meifubao:2.0.0@aar',
         GZxing            : 'com.thirdparty:zxing:3.3.0',
         GAd               : 'cn.com.gomeplus.ad:gomeplus-ad-SDK:2.3.1',
-        GPlayer           : 'cn.com.gomeplus.player:gomeplus-player:1.0.30',
+        GPlayer           : 'cn.com.gomeplus.player:gomeplus-player:1.0.31',
         GDanmu            : 'cn.com.gomeplus.danmu:gomeplus-danmu:1.0.0@aar',
         GMsc              : 'com.gome.ecmall:msc:1.0.2@aar',
         GAVSdk            : 'com.gome:avsdk:1.1.17',
@@ -157,7 +157,7 @@ ext.deps = [
         GSecret              : 'com.gome.mcp:sec-gome:2.7.1:gomeRelease@aar',
         GBuildConfig         : 'com.gome.ecmall:buildconfig:' + getProperty('AAR_GCONFIG_VERSION'),
         GPlugin              : 'com.gome.ecmall.core:plugin:1.0.38@aar',
-        ABTest               : 'com.gome.mcp:abtestlib:1.0.4',
+        ABTest               : 'com.gome.mcp:abtestlib:1.0.5',
 
         GTheme               : 'com.gome.ecmall:theme:' + getProperty('AAR_GTHEME_VERSION') + '@aar',
         GPermission          : 'com.gome.ecmall:permission:' + getProperty('AAR_GPERMISSION_VERSION') + '@aar',
