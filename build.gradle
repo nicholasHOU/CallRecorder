@@ -230,8 +230,8 @@ ext.deps = [
         GPushOppo            : rootProject.ext.proDeps ? project(':GPushOppo') : 'com.gome.ecmall:pushoppo:' + getProperty('AAR_GPUSH_OPPO_VERSION') + '@aar',
         GPushViVo            : rootProject.ext.proDeps ? project(':GPushViVo') : 'com.gome.ecmall:pushvivo:' + getProperty('AAR_GPUSH_VIVO_VERSION') + '@aar',
 
-        GWeexCore            : rootProject.ext.proDeps ? project(':GWeexCore') : 'com.gome.mcp:weex-core:' + getProperty('AAR_GWEEXCORE_VERSION') + '@aar',
-        GWeexUpdate          : rootProject.ext.proDeps ? project(':GWeexUpdate') : 'com.gome.mcp:weex-update:' + getProperty('AAR_GWEEXUPDATE_VERSION') + ':gome@aar',
+        GWeexCore            : false ? project(':GWeexCore') : 'com.gome.mcp:weex-core:' + getProperty('AAR_GWEEXCORE_VERSION') + '@aar',
+        GWeexUpdate          : false ? project(':GWeexUpdate') : 'com.gome.mcp:weex-update:' + getProperty('AAR_GWEEXUPDATE_VERSION') + ':gome@aar',
         GWeexLib             : rootProject.ext.proDeps ? project(':GWeexLib') : 'com.gome.mobile.weex:components:' + getProperty('AAR_GWEEXLIB_VERSION') + '@aar',
 
         MShare               : rootProject.ext.proDeps ? project(':MShare') : 'com.gome.ecmall:mshare:' + getProperty('AAR_MSHARE_VERSION') + '@aar',
