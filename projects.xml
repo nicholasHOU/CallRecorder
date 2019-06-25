@@ -49,8 +49,8 @@
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GScheme.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GBusiness.git"/>
     <!-- WEEX模块 -->
-    <project url="git@code.ds.gome.com.cn:mobile-android-repo/GWeexCore.git"/>
-    <project url="git@code.ds.gome.com.cn:mobile-android-repo/GWeexUpdate.git"/>
+    <project groups="private" url="git@code.ds.gome.com.cn:mobile-android-repo/GWeexCore.git"/>
+    <project groups="private" url="git@code.ds.gome.com.cn:mobile-android-repo/GWeexUpdate.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-repo/GWeexLib.git"/>
 
     <project url="git@code.ds.gome.com.cn:mobile-android-business/MImlibrary.git"/>
