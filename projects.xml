@@ -16,13 +16,13 @@
     <project groups="private" url="git@code.ds.gome.com.cn:mobile-android-business/GEmbedAnalysis.git"/>
     <project groups="private" url="git@code.ds.gome.com.cn:mobile-android-repo/Glivenesslib.git"/>
 
-    <project url="git@code.ds.gome.com.cn:mobile-android-common/GPushCore.git"/>
-    <project url="git@code.ds.gome.com.cn:mobile-android-common/GPushGome.git"/>
-    <project url="git@code.ds.gome.com.cn:mobile-android-common/GPushHuaWei.git"/>
-    <project url="git@code.ds.gome.com.cn:mobile-android-common/GPushMeiZu.git"/>
-    <project url="git@code.ds.gome.com.cn:mobile-android-common/GPushXiaoMi.git"/>
-    <project url="git@code.ds.gome.com.cn:mobile-android-common/GPushOppo.git"/>
-    <project url="git@code.ds.gome.com.cn:mobile-android-common/GPushViVo.git"/>
+    <project groups="private" url="git@code.ds.gome.com.cn:mobile-android-common/GPushCore.git"/>
+    <project groups="private" url="git@code.ds.gome.com.cn:mobile-android-common/GPushGome.git"/>
+    <project groups="private" url="git@code.ds.gome.com.cn:mobile-android-common/GPushHuaWei.git"/>
+    <project groups="private" url="git@code.ds.gome.com.cn:mobile-android-common/GPushMeiZu.git"/>
+    <project groups="private" url="git@code.ds.gome.com.cn:mobile-android-common/GPushXiaoMi.git"/>
+    <project groups="private" url="git@code.ds.gome.com.cn:mobile-android-common/GPushOppo.git"/>
+    <project groups="private" url="git@code.ds.gome.com.cn:mobile-android-common/GPushViVo.git"/>
 
     <!--G工程-->
     <!--GFrame-->
@@ -43,14 +43,14 @@
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GBaiTiao.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-common/GTongBaoSdk.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-common/GHotfix.git"/>
-    <project url="git@code.ds.gome.com.cn:mobile-android-repo/GLogStatistics.git"/>
+    <project groups="private" url="git@code.ds.gome.com.cn:mobile-android-repo/GLogStatistics.git"/>
     <!--支持3D Wap-->
     <project url="git@code.ds.gome.com.cn:mobile-android-repo/GX5Lib.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GScheme.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GBusiness.git"/>
     <!-- WEEX模块 -->
-    <project url="git@code.ds.gome.com.cn:mobile-android-repo/GWeexCore.git"/>
-    <project url="git@code.ds.gome.com.cn:mobile-android-repo/GWeexUpdate.git"/>
+    <project groups="private" url="git@code.ds.gome.com.cn:mobile-android-repo/GWeexCore.git"/>
+    <project groups="private" url="git@code.ds.gome.com.cn:mobile-android-repo/GWeexUpdate.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-repo/GWeexLib.git"/>
 
     <project url="git@code.ds.gome.com.cn:mobile-android-business/MImlibrary.git"/>
