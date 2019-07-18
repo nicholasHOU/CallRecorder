@@ -33,6 +33,7 @@
     <!--GCore-->
     <project url="git@code.ds.gome.com.cn:mobile-android-common/GSmartRefreshLayout.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GWidget.git"/>
+    <project url="git@code.ds.gome.com.cn:mobile-android-mcp/GDXRisk.git"/>
     <project groups="core" url="git@code.ds.gome.com.cn:mobile-android-common/GCore-login.git"/>
     <project groups="core" path="GCore"  url="git@code.ds.gome.com.cn:mobile-android-common/GCore-common.git"/>
 
