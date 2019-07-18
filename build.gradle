@@ -161,6 +161,7 @@ ext.deps = [
         GBuildConfig         : 'com.gome.ecmall:buildconfig:' + getProperty('AAR_GCONFIG_VERSION'),
         GPlugin              : 'com.gome.ecmall.core:plugin:1.0.38@aar',
         ABTest               : 'com.gome.mcp:abtestlib:1.0.5',
+        DXCaptcha               : 'com.gome.third:dxcaptcha:1.5.1@aar',
 
         GTheme               : 'com.gome.ecmall:theme:' + getProperty('AAR_GTHEME_VERSION') + '@aar',
         GPermission          : 'com.gome.ecmall:permission:' + getProperty('AAR_GPERMISSION_VERSION') + '@aar',
@@ -197,6 +198,7 @@ ext.deps = [
         GWidget              : rootProject.ext.proDeps ? project(':GWidget') : 'com.gome.ecmall:widget:' + getProperty('AAR_GWIDGET_VERSION') + '@aar',
         GSmartRefreshLayout: rootProject.ext.proDeps ? project(':GSmartRefreshLayout') : 'com.gome.ecmall:refreshsmt:' + getProperty('AAR_REFRESH_SMT_VERSION') + '@aar',
         GSelectPhoto         : rootProject.ext.proDeps ? project(':GSelectPhoto') : 'com.gome.ecmall:selectphoto:' + getProperty('AAR_GSELECT_PHOTO_VERSION') + '@aar',
+        GDXRisk               : rootProject.ext.proDeps ? project(':GDXRisk') : 'com.gome.mcp:dxrisk:' + getProperty('AAR_GDXRISK_VERSION') + '@aar',
         GLogin               : rootProject.ext.proDeps ? project(':GLogin') : 'com.gome.ecmall:login:' + getProperty('AAR_GLOGIN_VERSION') + '@aar',
         GPullrefresh         : rootProject.ext.proDeps ? project(':GPullrefresh') : 'com.gome.ecmall:pullrefresh:' + getProperty('AAR_GPULLREFRESH_VERSION') + '@aar',
         GCmbPay              : rootProject.ext.proDeps ? project(':GCmbPay') : 'com.gome.cmbpay:cmbpay:' + getProperty('AAR_CMBPAY_VERSION') + '@aar',
