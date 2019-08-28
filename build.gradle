@@ -200,6 +200,7 @@ ext.deps = [
         GSelectPhoto         : rootProject.ext.proDeps ? project(':GSelectPhoto') : 'com.gome.ecmall:selectphoto:' + getProperty('AAR_GSELECT_PHOTO_VERSION') + '@aar',
         GDXRisk               : rootProject.ext.proDeps ? project(':GDXRisk') : 'com.gome.mcp:dxrisk:' + getProperty('AAR_GDXRISK_VERSION') + '@aar',
         GLogin               : rootProject.ext.proDeps ? project(':GLogin') : 'com.gome.ecmall:login:' + getProperty('AAR_GLOGIN_VERSION') + '@aar',
+        GLoginBusiness       : rootProject.ext.proDeps ? project(':GLoginBusiness') : 'com.gome.ecmall:loginbusiness:' + getProperty('AAR_GLOGIN_BUSINESS_VERSION') + '@aar',
         GPullrefresh         : rootProject.ext.proDeps ? project(':GPullrefresh') : 'com.gome.ecmall:pullrefresh:' + getProperty('AAR_GPULLREFRESH_VERSION') + '@aar',
         GCmbPay              : rootProject.ext.proDeps ? project(':GCmbPay') : 'com.gome.cmbpay:cmbpay:' + getProperty('AAR_CMBPAY_VERSION') + '@aar',
         GTongBaoSdk          : rootProject.ext.proDeps ? project(':GTongBaoSdk') : 'com.gome.ecmall:gomepay:' + getProperty('AAR_GOMEPAY_VERSION') + '@aar',

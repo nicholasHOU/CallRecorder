@@ -40,6 +40,7 @@
 
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GSelectPhoto.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GLogin.git"/>
+    <project url="git@code.ds.gome.com.cn:mobile-android-business/GLoginBusiness.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GPullrefresh.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GCmbPay.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GBaiTiao.git"/>
