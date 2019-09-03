@@ -161,7 +161,7 @@ ext.deps = [
         GBuildConfig         : 'com.gome.ecmall:buildconfig:' + getProperty('AAR_GCONFIG_VERSION'),
         GPlugin              : 'com.gome.ecmall.core:plugin:1.0.38@aar',
         ABTest               : 'com.gome.mcp:abtestlib:1.0.8',
-        DXCaptcha            : 'com.gome.third:dx-captcha:1.5.1@aar',
+        DXCaptcha            : 'com.gome.third:dx-captcha:1.5.4@aar',
 
         GTheme               : 'com.gome.ecmall:theme:' + getProperty('AAR_GTHEME_VERSION') + '@aar',
         GPermission          : 'com.gome.ecmall:permission:' + getProperty('AAR_GPERMISSION_VERSION') + '@aar',
