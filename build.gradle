@@ -1,28 +1,11 @@
 buildscript {
     repositories {
-
         maven {
-            //fix 解决mac AS 因属性文件导致的无法运行，后期调整 by hyxf
-//            url getProperty("MAVEN_REPO")
-//            credentials {
-//                username = getProperty("MAVEN_USER")
-//                password = getProperty("MAVEN_PASS")
-//            }
-            url "http://m-maven.ds.gome.com.cn/nexus/content/groups/public"
-            //url "http://10.115.3.135:8081/nexus/content/groups/public"
+            url "http://m-maven.ds.gome.com.cn/nexus/content/groups/plugin"
             credentials {
                 username = "deployment"
                 password = "qiudongchao1988"
             }
-        }
-        mavenCentral()
-        maven {
-            url "https://plugins.gradle.org/m2/"
-        }
-        //神策埋码开发地址
-        maven {
-//            url uri('repo')
-            url 'https://dl.bintray.com/zouyuhan/maven'
         }
     }
     dependencies {
@@ -31,45 +14,29 @@ buildscript {
         classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.5"
 
         //神策gradle依赖
-        classpath 'com.sensorsdata.analytics.android:android-gradle-plugin2:2.0.7'
+        classpath 'com.sensorsdata.analytics.android:android-gradle-plugin2:2.1.0'
     }
 }
 
 allprojects {
     repositories {
-        maven { url 'http://developer.huawei.com/repo' }
         maven {
-//            url getProperty("MAVEN_REPO")
-//            credentials {
-//                username = getProperty("MAVEN_USER")
-//                password = getProperty("MAVEN_PASS")
-//            }
             url "http://m-maven.ds.gome.com.cn/nexus/content/groups/public"
-            //url "http://10.115.3.135:8081/nexus/content/groups/public"
             credentials {
                 username = "deployment"
                 password = "qiudongchao1988"
             }
         }
-        jcenter { url "http://jcenter.bintray.com" }
-        // 视频SDK开发地址
-        maven { url "http://10.69.213.76:8081/nexus/content/repositories/snapshots/" }
-
-        //视频SDK生产地址
-        maven { url "http://10.69.213.76:8081/nexus/content/repositories/releases/" }
-        //神策埋码开发地址
         maven {
-//            url uri('repo')
-            url 'https://dl.bintray.com/zouyuhan/maven'
+            url 'http://developer.huawei.com/repo'
         }
-        mavenCentral()
     }
     ext {
         compileSdkVersion = getProperty("COMPILE_SDK_VERSION") as Integer
         buildToolsVersion = getProperty("BUILD_TOOLS_VERSION")
         targetSdkVersion = getProperty("TARGET_SDK_VERSION") as Integer
         minSdkVersion = getProperty("MIN_SDK_VERSION") as Integer
-        supportLibVersion = "26.0.1";
+        supportLibVersion = "26.0.1"
         proDeps = false //改false 时需要把xiaomi的几个工程注掉
         isXiaoMi = false
         //添加此段
