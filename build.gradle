@@ -152,7 +152,7 @@ ext.deps = [
 
         GLogStatistics       : false ? project(':GLogStatistics') : 'com.gome.ecmall:logstats:' + getProperty('AAR_GLOGSTATS_VERSION') + '@aar',
         GWeexCore            : false ? project(':GWeexCore') : 'com.gome.mcp:weex-core:' + getProperty('AAR_GWEEXCORE_VERSION') + '@aar',
-        GWeexUpdate          : false ? project(':GWeexUpdate') : 'com.gome.mcp:weex-update:' + getProperty('AAR_GWEEXUPDATE_VERSION') + ':gome@aar',
+        GWeexUpdate          : false ? project(':GWeexUpdate') : 'com.gome.mcp:weex-update:' + getProperty('AAR_GWEEXUPDATE_VERSION') + '-gome@aar',
 
         GFrameUtils          : rootProject.ext.proDeps ? project(':GFrame-utils') : 'com.gome.ecmall:frame-utils:' + getProperty('AAR_GFRAME_UTILS_VERSION') + '@aar',
         GFrameHttp           : rootProject.ext.proDeps ? project(':GFrame-http') : 'com.gome.ecmall:frame-http:' + getProperty('AAR_GFRAME_HTTP_VERSION') + '@aar',
