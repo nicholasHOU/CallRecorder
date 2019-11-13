@@ -1,4 +1,4 @@
-<?xml version="1.0" ?><manifest branch="mergeDev" bundleOpen="true" host="git@code.ds.gome.com.cn:">
+<?xml version="1.0" ?><manifest branch="minimalism" bundleOpen="true" host="git@code.ds.gome.com.cn:">
     <!--私有工程-->
     <project branch="master" groups="private" url="git@code.ds.gome.com.cn:mobile-android-admin/buildsrc.git"/>
     <project groups="private" url="git@code.ds.gome.com.cn:mobile-android/GWorkspace.git"/>
@@ -49,6 +49,10 @@
     <!--支持3D Wap-->
     <project url="git@code.ds.gome.com.cn:mobile-android-repo/GX5Lib.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GScheme.git"/>
+    <project url="git@code.ds.gome.com.cn:mobile-android-business/GAddress.git"/>
+    <project url="git@code.ds.gome.com.cn:mobile-android-business/GBigPhoto.git"/>
+    <project url="git@code.ds.gome.com.cn:mobile-android-business/GAlbum.git"/>
+    <project url="git@code.ds.gome.com.cn:mobile-android-business/GBusinessDeps.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GBusiness.git"/>
     <!-- WEEX模块 -->
     <project groups="private" url="git@code.ds.gome.com.cn:mobile-android-repo/GWeexCore.git"/>
