@@ -191,7 +191,6 @@ ext.deps = [
         GProductSearch       : rootProject.ext.proDeps ? project(':GProductSearch') : 'com.gome.ecmall:productsearch:' + getProperty('AAR_GPRODUCT_SEARCH_VERSION') + '@aar',
         GShop                : rootProject.ext.proDeps ? project(':GShop') : 'com.gome.ecmall:gshop:' + getProperty('AAR_GSHOP_VERSION') + '@aar',
         GPromotion           : rootProject.ext.proDeps ? project(':GPromotion') : 'com.gome.ecmall:promotion:' + getProperty('AAR_GPROMOTION_VERSION') + '@aar',
-        GHomeMalls           : rootProject.ext.proDeps ? project(':GHomeMalls') : 'com.gome.ecmall:homemall:' + getProperty('AAR_HOMEMALL_VERSION') + '@aar',
         GHomepage           : rootProject.ext.proDeps ? project(':GHomepage') : 'com.gome.ecmall:hmallpage:' + getProperty('AAR_HMALL_PAGE_VERSION') + '@aar',
         GGroupBuy            : rootProject.ext.proDeps ? project(':GGroupBuy') : 'com.gome.ecmall:groupbuy:' + getProperty('AAR_GGROUPBUY_VERSION') + '@aar',
         GPanicBuy            : rootProject.ext.proDeps ? project(':GPanicBuy') : 'com.gome.ecmall:panicbuy:' + getProperty('AAR_GPANICBUY_VERSION') + '@aar',
