@@ -203,7 +203,7 @@ ext.deps = [
         GMemService            : rootProject.ext.proDeps ? project(':GMemService') : 'com.gome.ecmall:memservice:' + getProperty('AAR_GMEM_SERVICE_VERSION') + '@aar',
 
         GWeexLib             : rootProject.ext.proDeps ? project(':GWeexLib') : 'com.gome.mobile.weex:components:' + getProperty('AAR_GWEEXLIB_VERSION') + '@aar',
-
+        GShopCarBus         : rootProject.ext.proDeps ? project(':GShopCarBus') : 'com.gome.ecmall.business:cashierdesk:' + getProperty('AAR_GBUSINESS_CASHIERDESK_VERSION') + '@aar',
         MShare               : rootProject.ext.proDeps ? project(':MShare') : 'com.gome.ecmall:mshare:' + getProperty('AAR_MSHARE_VERSION') + '@aar',
         GBusiness            : true ? project(':GBusiness') : 'com.gome.ecmall:business:' + getProperty('AAR_GBUSINESS_VERSION') + '@aar',
         GScheme              : true ? project(':GScheme') : 'com.gome.ecmall:scheme:' + getProperty('AAR_GSCHEME_VERSION') + '@aar',
