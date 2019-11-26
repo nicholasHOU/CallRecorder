@@ -17,6 +17,7 @@ buildscript {
         classpath 'com.sensorsdata.analytics.android:android-gradle-plugin2:3.1.3'
 
         classpath 'com.gutils.router:build:0.0.5-2.3.0'
+        classpath 'com.gutils:apker:0.0.11'
     }
 }
 
