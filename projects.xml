@@ -48,6 +48,7 @@
     <project groups="private" url="git@code.ds.gome.com.cn:mobile-android-repo/GLogStatistics.git"/>
     <!--支持3D Wap-->
     <project url="git@code.ds.gome.com.cn:mobile-android-repo/GX5Lib.git"/>
+    <project url="git@code.ds.gome.com.cn:mobile-android-business/GRouterInterface.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GBusinessDeps.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GBShare.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GScheme.git"/>
@@ -59,8 +60,8 @@
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GBSearch.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GBShop.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GCashierdesk.git"/>
-    <project url="git@code.ds.gome.com.cn:mobile-android-business/GShopCarBus.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GBProduct.git"/>
+    <project url="git@code.ds.gome.com.cn:mobile-android-business/GShopCarBus.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GBusiness.git"/>
     <!-- WEEX模块 -->
     <project groups="private" url="git@code.ds.gome.com.cn:mobile-android-repo/GWeexCore.git"/>

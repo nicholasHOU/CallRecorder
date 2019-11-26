@@ -9,7 +9,7 @@ buildscript {
         }
     }
     dependencies {
-        classpath 'com.gutils.apkfly:plugin:2.3.0.plus_plug19'
+        classpath 'com.android.tools.build:gradle:2.3.0'
 //        classpath 'com.gutils.apkfly:plugin:2.3.0.plus11'
         classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.5"
 
@@ -17,6 +17,7 @@ buildscript {
         classpath 'com.sensorsdata.analytics.android:android-gradle-plugin2:3.1.3'
 
         classpath 'com.gutils.router:build:0.0.5-2.3.0'
+        classpath 'com.gutils:apker:0.0.11'
     }
 }
 
@@ -145,6 +146,7 @@ ext.deps = [
         GEmbedAnalysis       : 'com.gome.ecmall:ganalysis:' + getProperty('AAR_GEMBED_ANALYSIS_VERSION') + '@aar',
         Glivenesslib         : 'com.gome.ecmall:liveness:' + getProperty('AAR_LIVENESS_VERSION') + '@aar',
 
+        GPushService         : 'com.gome.ecmall:pushservice:0.0.1@aar',
         GPushCore            : false ? project(':GPushCore') : 'com.gome.ecmall:pushcore:' + getProperty('AAR_GPUSH_CORE_VERSION') + '@aar',
         GPushGome            : false ? project(':GPushGome') : 'com.gome.ecmall:pushgome:' + getProperty('AAR_GPUSH_GOME_VERSION') + '@aar',
         GPushHuaWei          : false ? project(':GPushHuaWei') : 'com.gome.ecmall:pushhuawei:' + getProperty('AAR_GPUSH_HUAWEI_VERSION') + '@aar',
@@ -213,6 +215,7 @@ ext.deps = [
         GAddress             : rootProject.ext.proDeps ? project(':GAddress') : 'com.gome.ecmall.business:address:' + getProperty('AAR_GBUSINESS_ADRESS_VERSION') + '@aar',
         GBigPhoto            : rootProject.ext.proDeps ? project(':GBigPhoto') : 'com.gome.ecmall.business:bigphoto:' + getProperty('AAR_GBUSINESS_BIGPHOTO_VERSION') + '@aar',
         GAlbum               : rootProject.ext.proDeps ? project(':GAlbum') : 'com.gome.ecmall.business:album:' + getProperty('AAR_GBUSINESS_ALBUM_VERSION') + '@aar',
+        GRouterInterface     :  rootProject.ext.proDeps? project(':GRouterInterface') : 'com.gome.ecmall.business:router:' + getProperty('AAR_GINTERFACE_VERSION') + '@aar',
         GBusinessDeps        :  rootProject.ext.proDeps ? project(':GBusinessDeps') : 'com.gome.ecmall.business:deps:' + getProperty('AAR_GBUSINESS_DEPS_VERSION') + '@aar',
         GBShare              : rootProject.ext.proDeps ? project(':GBShare') : 'com.gome.ecmall.business:bshare:' + getProperty('AAR_GBUSINESS_BSAHRE_VERSION') + '@aar',
         GYYTPassWord         : rootProject.ext.proDeps ? project(':GYYTPassWord') : 'com.gome.ecmall.business:yytpassword:' + getProperty('AAR_GBUSINESS_YYTPASSWORD_VERSION') + '@aar',
