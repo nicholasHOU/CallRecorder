@@ -227,7 +227,7 @@ ext.deps = [
         GDao                 :  rootProject.ext.proDeps ? project(':GDao') : 'com.gome.ecmall.business:dao:' + getProperty('AAR_GBUSINESS_GDAO_VERSION') + '@aar',
         GBSearch             :  rootProject.ext.proDeps ? project(':GBSearch') : 'com.gome.ecmall.business:search:' + getProperty('AAR_GBUSINESS_GSEARCH_VERSION') + '@aar',
         GBShop               :  rootProject.ext.proDeps ? project(':GBShop') : 'com.gome.ecmall.business:shop:' + getProperty('AAR_GBUSINESS_GSHOP_VERSION') + '@aar',
-        GBCms                :  rootProject.ext.proDeps ? project(':GBCms') : 'com.gome.ecmall.business:shop:' + getProperty('AAR_GBUSINESS_GSHOP_VERSION') + '@aar',
+        GBCms                :  rootProject.ext.proDeps ? project(':GBCms') : 'com.gome.ecmall.business:cms:' + getProperty('AAR_GBUSINESS_GCMS_VERSION') + '@aar',
         MImlibrary           : rootProject.ext.proDeps ? project(':MImlibrary') : 'com.gome.ecmall:mimlib:' + getProperty('AAR_MIM_LIB_VERSION') + '@aar',
 	    MCommon              : rootProject.ext.proDeps ? project(':MCommon') : 'com.gome.ecmall:mcommon:' + getProperty('AAR_MCOMMON_VERSION') + '@aar',
         MFriendCircle        : rootProject.ext.proDeps ? project(':MFriendCircle') : 'com.gome.ecmall:mfriendcircle:' + getProperty('AAR_MFRIEND_CIRCLE_VERSION') + '@aar',
