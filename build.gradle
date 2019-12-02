@@ -68,7 +68,7 @@ task clean(type: Delete) {
 
 
 ext.deps = [
-        GHttp            : depMcpAar('http'),
+        GHttp            : 'com.gome.mcp:http:2.8.8_v1@aar',
         GUtils           : depMcpAar('utils'),
 
         SProtobuf         : 'com.google.protobuf:protobuf-java:2.6.1',
