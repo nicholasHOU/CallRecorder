@@ -72,13 +72,13 @@
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GPanicBuy.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GGroupBuy.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GAppraise.git"/>
-    <project url="git@code.ds.gome.com.cn:mobile-android-business/GOnlinememberCard.git"/>
 
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GZxingScan.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GIMRedEnvelope.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/MCommon.git"/>
 
     <project url="git@code.ds.gome.com.cn:mobile-android-business/MShare.git"/>
+    <project url="git@code.ds.gome.com.cn:mobile-android-business/GOnlinememberCard.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/MFriendCircle.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/MSocial.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/MShop.git"/>
