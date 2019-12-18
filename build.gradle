@@ -69,7 +69,7 @@ ext.deps = [
         GUtils           : depMcpAar('utils'),
 
         SProtobuf         : 'com.google.protobuf:protobuf-java:2.6.1',
-        SOkHttp           : 'com.squareup.okhttp3:okhttp:3.9.1',
+        SOkHttp           : 'com.squareup.okhttp3:okhttp:3.10.0',
         SOkHttpLog        : 'com.squareup.okhttp3:logging-interceptor:3.4.1',
         SRetrofitAdapter  : 'com.squareup.retrofit2:adapter-rxjava:2.1.0',
         SRetrofitConverter: 'com.squareup.retrofit2:converter-gson:2.1.0',
