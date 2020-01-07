@@ -1,0 +1,38 @@
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tl="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#eeeeee"
+    android:scrollbars="none">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.gome.ecmall.tablayout.widget.SlidingTabLayout
+            android:id="@+id/tl_2"
+            android:layout_width="match_parent"
+            android:layout_height="51dp"
+            android:background="#FFFFFF"
+            tl:tl_indicator_color="#00000000"
+            tl:tl_indicator_height="0dp"
+            tl:tl_indicator_width_equal_title="true"
+            tl:tl_subTitleTextSelectColor="#88F20C59"
+            tl:tl_subTitleTextUnselectColor="#88262C32"
+            tl:tl_subTitleTextsize="11dp"
+            tl:tl_tab_padding="16dp"
+            tl:tl_tab_space_equal="true"
+            tl:tl_textSelectColor="#F20C59"
+            tl:tl_textUnselectColor="#262C32"
+            tl:tl_textsize="17dp"/>
+
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/vp"
+            android:layout_width="match_parent"
+            android:layout_height="84dp"/>
+
+    </LinearLayout>
+</ScrollView>
