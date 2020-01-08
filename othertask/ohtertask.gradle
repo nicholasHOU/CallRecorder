@@ -9,7 +9,10 @@ task apkChecker(type: JavaExec){
     args('--config',"${projectDir}/othertask/apk-checker-config.json")
 }
 
-
+/**
+ * 处理miniapk渠道打包
+ * add by yangbo-ds3
+ */
 task apkChannel(type: JavaExec){
     def fromApk = "GomePlus-armeabi-debug.apk"
     main = 'com.meituan.android.walle.Main'
