@@ -19,18 +19,21 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <!--<activity-->
+            <!--android:name="com.flyco.tablayoutsamples.ui.CommonTabActivity"-->
+            <!--android:screenOrientation="portrait"/>-->
+        <!--<activity-->
+            <!--android:name="com.flyco.tablayoutsamples.ui.SlidingTabActivity"-->
+            <!--android:screenOrientation="portrait"/>-->
+        <!--<activity-->
+            <!--android:name="com.flyco.tablayoutsamples.ui.SegmentTabActivity"-->
+            <!--android:screenOrientation="portrait"/>-->
         <activity
-            android:name="com.flyco.tablayoutsamples.ui.CommonTabActivity"
+            android:name="com.flyco.tablayoutsamples.demo.RushBuyTitleSlidingTabActivity"
             android:screenOrientation="portrait"/>
-        <activity
-            android:name="com.flyco.tablayoutsamples.ui.SlidingTabActivity"
-            android:screenOrientation="portrait"/>
-        <activity
-            android:name="com.flyco.tablayoutsamples.ui.SegmentTabActivity"
-            android:screenOrientation="portrait"/>
-        <activity
-            android:name="com.flyco.tablayoutsamples.ui.RushBuyTitleSlidingTabActivity"
-            android:screenOrientation="portrait"/>
+        <!--<activity-->
+            <!--android:name="com.flyco.tablayoutsamples.ui.TabLayoutActivity2"-->
+            <!--android:screenOrientation="portrait"/>-->
 
     </application>
 

@@ -10,12 +10,15 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.flyco.tablayoutsamples.adapter.SimpleHomeAdapter;
+import com.flyco.tablayoutsamples.demo.RushBuyTitleSlidingTabActivity;
 
 public class SimpleHomeActivity extends AppCompatActivity {
     private Context mContext = this;
-    private final String[] mItems = {"SlidingTabLayout", "CommonTabLayout", "SegmentTabLayout","抢购","分类"};
-    private final Class<?>[] mClasses = {SlidingTabActivity.class, CommonTabActivity.class,
-            SegmentTabActivity.class, RushBuyTitleSlidingTabActivity.class, RushBuyTitleSlidingTabActivity.class};
+//    private final String[] mItems = {"SlidingTabLayout", "CommonTabLayout", "SegmentTabLayout","抢购","样式二","样式二"};
+//    private final Class<?>[] mClasses = {SlidingTabActivity.class, CommonTabActivity.class,
+//            SegmentTabActivity.class, RushBuyTitleSlidingTabActivity.class, TabLayoutActivity2.class, TagSlidingTabActivity.class};
+ private final String[] mItems = {"抢购","样式二"};
+    private final Class<?>[] mClasses = { RushBuyTitleSlidingTabActivity.class, RushBuyTitleSlidingTabActivity.class};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
