@@ -15,7 +15,7 @@ task apkChecker(type: JavaExec){
  */
 task apkChannel(type: JavaExec){
     def fromApk = "GomePlus-armeabi-debug.apk"
-    main = 'com.meituan.android.walle.Main'
+    main = 'com.gome.android.walle.Main'
     classpath = files("${projectDir}/othertask/apk-channel-pkg.jar")
     args('batch','-f',"${projectDir}/othertask/apk-channel-mini","${projectDir}/GomePlus/build/outputs/apk/${fromApk}","${projectDir}/GomePlus/build/outputs/apk/channel/")
 }
