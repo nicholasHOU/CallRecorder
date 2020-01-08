@@ -1,0 +1,87 @@
+{
+  "--apk":"./GomePlus/build/outputs/apk/GomePlus-release.apk",
+  "--mappingTxt":"./GomePlus/build/outputs/mapping/release/mapping.txt",
+  "--resMappingTxt":"",
+  "--output":"./GomePlus/build/outputs/checkoutput/check-result",
+  "--format":"mm.html",
+  "--formatConfig":
+  [
+    {
+      "name":"-countMethod",
+      "group":
+      [
+        {
+          "name":"Android System",
+          "package":"android"
+        },
+        {
+          "name":"java system",
+          "package":"java"
+        },
+        {
+          "name":"com.tencent.test.$",
+          "package":"com.tencent.test.$"
+        }
+      ]
+    }
+  ],
+  "options": [
+    {
+      "name":"-manifest"
+    },
+    {
+      "name":"-fileSize",
+      "--min":"10",
+      "--order":"desc",
+      "--suffix":"png, jpg, jpeg, gif, arsc"
+    },
+    {
+      "name":"-countMethod",
+      "--group":"package"
+    },
+    {
+      "name":"-checkResProguard"
+    },
+    {
+      "name":"-findNonAlphaPng",
+      "--min":"10"
+    },
+    {
+      "name":"-checkMultiLibrary"
+    },
+    {
+      "name":"-uncompressedFile",
+      "--suffix":"png, jpg, jpeg, gif, arsc"
+    },
+    {
+      "name":"-countR"
+    },
+    {
+      "name":"-duplicatedFile"
+    },
+    {
+      "name":"-checkMultiSTL",
+      "--toolnm":"/Users/wangshang/Library/Android/sdk/ndk-bundle/toolchains/arm-linux-androideabi-4.9/prebuilt/darwin-x86_64/bin/arm-linux-androideabi-nm"
+    },
+    {
+      "name":"-unusedResources",
+      "--rTxt":"./GomePlus/build/intermediates/symbols/release/R.txt",
+      "--ignoreResources"
+      :["R.raw.*",
+        "R.style.*",
+        "R.styleable.*",
+        "R.attr.*",
+        "R.id.*",
+        "R.string.ignore_*"
+      ]
+    },
+    {
+      "name":"-unusedAssets",
+      "--ignoreAssets":["*.so" ]
+    },
+    {
+      "name":"-unstrippedSo",
+      "--toolnm":"/Users/wangshang/Library/Android/sdk/ndk-bundle/toolchains/arm-linux-androideabi-4.9/prebuilt/darwin-x86_64/bin/arm-linux-androideabi-nm"
+    }
+  ]
+}
