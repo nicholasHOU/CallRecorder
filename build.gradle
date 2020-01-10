@@ -18,6 +18,10 @@ buildscript {
 
         classpath 'com.gutils.router:build:' + getProperty('LIB_ROUTER_VERSION')
         classpath 'com.gutils:apker:0.0.16-2.3.0'
+        /**
+         * add by yangbo
+         * 处理多渠道
+         */
         classpath 'com.android.gome.cary:plugin:0.0.5'
     }
 }
