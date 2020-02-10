@@ -1,6 +1,6 @@
 
 def version_code = 116
-apply from: project.rootProject.uri('plugin_lib.gradle')
+apply plugin: 'com.android.library'
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
