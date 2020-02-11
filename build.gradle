@@ -73,7 +73,7 @@ task clean(type: Delete) {
 
 
 ext.deps = [
-        GHttp            : 'com.gome.mcp:http:2.8.8_v1@aar',
+        GHttp            : 'com.gome.mcp:http:2.8.8_v4@aar',
         GUtils           : depMcpAar('utils'),
 
         SProtobuf         : 'com.google.protobuf:protobuf-java:2.6.1',
@@ -133,7 +133,7 @@ ext.deps = [
         GWap                 : 'com.gome.mcp:wap:' + getProperty('AAR_MCP_WAP_VERSION') + '@aar',
         STitlebar            : 'cn.gome.staff.ui:titlebar:' + getProperty('AAR_STITLEBAR_VERSION') + '@aar',
         GCrash               : 'com.gome.mcp:crash:' + getProperty('AAR_MCP_VERSION') + '@aar',
-        GSecret              : 'com.gome.mcp:sec-gome:2.7.1:gomeRelease@aar',
+        GSecret              : 'com.gome.mcp:sec-gome:2.8.8-v5:gomeRelease@aar',
         GBuildConfig         : 'com.gome.mcp:buildconfig:2.8.8-config.v2',
         GPlugin              : 'com.gome.ecmall.core:plugin:1.0.39@aar',
         ABTest               : 'com.gome.mcp:abtestlib:1.0.8',
@@ -155,7 +155,7 @@ ext.deps = [
         GEmbedAnalysis       : 'com.gome.ecmall:ganalysis:' + getProperty('AAR_GEMBED_ANALYSIS_VERSION') + '@aar',
         Glivenesslib         : 'com.gome.ecmall:liveness:' + getProperty('AAR_LIVENESS_VERSION') + '@aar',
 
-        GPushService         : 'com.gome.ecmall:pushservice:0.0.1@aar',
+        GPushService         : 'com.gome.ecmall:pushservice:' + getProperty('AAR_GPUSH_CORE_VERSION') + '@aar',
         GPushCore            : false ? project(':GPushCore') : 'com.gome.ecmall:pushcore:' + getProperty('AAR_GPUSH_CORE_VERSION') + '@aar',
         GPushGome            : false ? project(':GPushGome') : 'com.gome.ecmall:pushgome:' + getProperty('AAR_GPUSH_GOME_VERSION') + '@aar',
         GPushHuaWei          : false ? project(':GPushHuaWei') : 'com.gome.ecmall:pushhuawei:' + getProperty('AAR_GPUSH_HUAWEI_VERSION') + '@aar',
