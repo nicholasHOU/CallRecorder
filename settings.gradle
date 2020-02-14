@@ -1,1 +1,6 @@
-include ":057-GMemService"
+include ":GomePlus"
+include ":GBusiness"
+include ":GHomepage"
+include ":GShelvesWidget"
+include ":GMallPage"
+include ":GTabLayout"
