@@ -9,12 +9,20 @@ buildscript {
         }
     }
     dependencies {
-        classpath 'com.gutils.apkfly:plugin:2.3.0.plus_plug19'
+        classpath 'com.android.tools.build:gradle:2.3.0'
 //        classpath 'com.gutils.apkfly:plugin:2.3.0.plus11'
         classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.5"
 
         //神策gradle依赖
         classpath 'com.sensorsdata.analytics.android:android-gradle-plugin2:3.1.3'
+
+        classpath 'com.gutils.router:build:' + getProperty('LIB_ROUTER_VERSION')
+        classpath 'com.gutils:apker:0.0.17-2.3.0'
+        /**
+         * add by yangbo
+         * 处理多渠道
+         */
+        classpath 'com.android.gome.cary:plugin:0.0.5'
     }
 }
 
@@ -65,7 +73,7 @@ task clean(type: Delete) {
 
 
 ext.deps = [
-        GHttp            : depMcpAar('http'),
+        GHttp            : 'com.gome.mcp:http:2.8.8_v4@aar',
         GUtils           : depMcpAar('utils'),
 
         SProtobuf         : 'com.google.protobuf:protobuf-java:2.6.1',
@@ -117,18 +125,23 @@ ext.deps = [
         Gomeimagepipeline    : 'com.gome.fresco:imagepipeline:1.10.0',
         Gomeanimated         : 'com.gome.fresco:animated-gif:1.10.0',
         GomeWebpsupport      : 'com.gome.fresco:webpsupport:1.10.0@aar',
+        GRouter              : 'com.gutils.router:router:' + getProperty('LIB_ROUTER_VERSION') + '@aar',
 
         GSafekeyboard        : 'com.bangcle:safeKeyboard:1.0.7',
-        GUpdate              : 'com.gome.mcp:update:2.8.7.gome.updator-8',
+        GUpdate              : 'com.gome.mcp:update:2.8.8.gome.updator-2',
         GYunNengTimeWidget   : 'com.gome.ecmall:yunnengtimewidget:1.1.8@aar',
         GWap                 : 'com.gome.mcp:wap:' + getProperty('AAR_MCP_WAP_VERSION') + '@aar',
         STitlebar            : 'cn.gome.staff.ui:titlebar:' + getProperty('AAR_STITLEBAR_VERSION') + '@aar',
         GCrash               : 'com.gome.mcp:crash:' + getProperty('AAR_MCP_VERSION') + '@aar',
-        GSecret              : 'com.gome.mcp:sec-gome:2.7.1:gomeRelease@aar',
-        GBuildConfig         : 'com.gome.ecmall:buildconfig:' + getProperty('AAR_GCONFIG_VERSION'),
+        GSecret              : 'com.gome.mcp:sec-gome:2.8.8-v5:gomeRelease@aar',
+        GBuildConfig         : 'com.gome.mcp:buildconfig:2.8.8-config.v2',
         GPlugin              : 'com.gome.ecmall.core:plugin:1.0.39@aar',
         ABTest               : 'com.gome.mcp:abtestlib:1.0.8',
         DXCaptcha            : 'com.gome.third:dx-captcha:1.5.4@aar',
+        AMapLocation         : 'com.gome.ecmall.third:amap-location:4.4.0_20181122',
+        AMap2DMap            : 'com.gome.ecmall.third:amap-2dmap:5.2.0_20170627',
+        AMapSearch           : 'com.gome.ecmall.third:amap-search:6.5.0_20180930',
+        GUpPay               : 'com.gome.ecmall.third:uppay:' + getProperty('AAR_UPPAY_PAY_VERSION') + '@aar',
 
         GTheme               : 'com.gome.ecmall:theme:' + getProperty('AAR_GTHEME_VERSION') + '@aar',
         GPermission          : 'com.gome.ecmall:permission:' + getProperty('AAR_GPERMISSION_VERSION') + '@aar',
@@ -142,6 +155,7 @@ ext.deps = [
         GEmbedAnalysis       : 'com.gome.ecmall:ganalysis:' + getProperty('AAR_GEMBED_ANALYSIS_VERSION') + '@aar',
         Glivenesslib         : 'com.gome.ecmall:liveness:' + getProperty('AAR_LIVENESS_VERSION') + '@aar',
 
+        GPushService         : 'com.gome.ecmall:pushservice:' + getProperty('AAR_GPUSH_CORE_VERSION') + '@aar',
         GPushCore            : false ? project(':GPushCore') : 'com.gome.ecmall:pushcore:' + getProperty('AAR_GPUSH_CORE_VERSION') + '@aar',
         GPushGome            : false ? project(':GPushGome') : 'com.gome.ecmall:pushgome:' + getProperty('AAR_GPUSH_GOME_VERSION') + '@aar',
         GPushHuaWei          : false ? project(':GPushHuaWei') : 'com.gome.ecmall:pushhuawei:' + getProperty('AAR_GPUSH_HUAWEI_VERSION') + '@aar',
@@ -198,15 +212,29 @@ ext.deps = [
         GCollection          : rootProject.ext.proDeps ? project(':GCollection') : 'com.gome.ecmall:collection:' + getProperty('AAR_GCOLLECTION_VERSION') + '@aar',
         GOnlinememberCard    : rootProject.ext.proDeps ? project(':GOnlinememberCard') : 'com.gome.ecmall:GOnlinememberCard:' + getProperty('AAR_GONLINEMEMBERCARD_VERSION') + '@aar',
         GShopCart            : rootProject.ext.proDeps ? project(':GShopCart') : 'com.gome.ecmall:shopcar:' + getProperty('AAR_GSHOPCAR_VERSION') + '@aar',
-        GSetting            : rootProject.ext.proDeps ? project(':GSetting') : 'com.gome.ecmall:setting:' + getProperty('AAR_GSETTING_VERSION') + '@aar',
-        GMemHome            : rootProject.ext.proDeps ? project(':GMemHome') : 'com.gome.ecmall:memhome:' + getProperty('AAR_GMEM_HOME_VERSION') + '@aar',
-        GMemService            : rootProject.ext.proDeps ? project(':GMemService') : 'com.gome.ecmall:memservice:' + getProperty('AAR_GMEM_SERVICE_VERSION') + '@aar',
+        GSetting             : rootProject.ext.proDeps ? project(':GSetting') : 'com.gome.ecmall:setting:' + getProperty('AAR_GSETTING_VERSION') + '@aar',
+        GMemHome             : rootProject.ext.proDeps ? project(':GMemHome') : 'com.gome.ecmall:memhome:' + getProperty('AAR_GMEM_HOME_VERSION') + '@aar',
+        GMemService          : rootProject.ext.proDeps ? project(':GMemService') : 'com.gome.ecmall:memservice:' + getProperty('AAR_GMEM_SERVICE_VERSION') + '@aar',
+        GSimilar             : rootProject.ext.proDeps ? project(':GSimilar') : 'com.gome.ecmall:similar:' + getProperty('AAR_GSIMILAR_VERSION') + '@aar',
 
         GWeexLib             : rootProject.ext.proDeps ? project(':GWeexLib') : 'com.gome.mobile.weex:components:' + getProperty('AAR_GWEEXLIB_VERSION') + '@aar',
-
+        GShopCarBus          : rootProject.ext.proDeps ? project(':GShopCarBus') : 'com.gome.ecmall.business:gshopcartbus:' + getProperty('AAR_GBUSINESS_GSHOPCARTBUS_VERSION') + '@aar',
         MShare               : rootProject.ext.proDeps ? project(':MShare') : 'com.gome.ecmall:mshare:' + getProperty('AAR_MSHARE_VERSION') + '@aar',
-        GBusiness            : rootProject.ext.proDeps ? project(':GBusiness') : 'com.gome.ecmall:business:' + getProperty('AAR_GBUSINESS_VERSION') + '@aar',
-        GScheme              : rootProject.ext.proDeps ? project(':GScheme') : 'com.gome.ecmall:scheme:' + getProperty('AAR_GSCHEME_VERSION') + '@aar',
+        GBusiness            :  rootProject.ext.proDeps ? project(':GBusiness') : 'com.gome.ecmall:business:' + getProperty('AAR_GBUSINESS_VERSION') + '@aar',
+        GScheme              :  rootProject.ext.proDeps ? project(':GScheme') : 'com.gome.ecmall:scheme:' + getProperty('AAR_GSCHEME_VERSION') + '@aar',
+        GAddress             : rootProject.ext.proDeps ? project(':GAddress') : 'com.gome.ecmall.business:address:' + getProperty('AAR_GBUSINESS_ADRESS_VERSION') + '@aar',
+        GBigPhoto            : rootProject.ext.proDeps ? project(':GBigPhoto') : 'com.gome.ecmall.business:bigphoto:' + getProperty('AAR_GBUSINESS_BIGPHOTO_VERSION') + '@aar',
+        GAlbum               : rootProject.ext.proDeps ? project(':GAlbum') : 'com.gome.ecmall.business:album:' + getProperty('AAR_GBUSINESS_ALBUM_VERSION') + '@aar',
+        GRouterInterface     :  rootProject.ext.proDeps? project(':GRouterInterface') : 'com.gome.ecmall.business:router:' + getProperty('AAR_GINTERFACE_VERSION') + '@aar',
+        GBusinessDeps        :  rootProject.ext.proDeps ? project(':GBusinessDeps') : 'com.gome.ecmall.business:deps:' + getProperty('AAR_GBUSINESS_DEPS_VERSION') + '@aar',
+        GBShare              : rootProject.ext.proDeps ? project(':GBShare') : 'com.gome.ecmall.business:bshare:' + getProperty('AAR_GBUSINESS_BSAHRE_VERSION') + '@aar',
+        GYYTPassWord         : rootProject.ext.proDeps ? project(':GYYTPassWord') : 'com.gome.ecmall.business:yytpassword:' + getProperty('AAR_GBUSINESS_YYTPASSWORD_VERSION') + '@aar',
+        GCashierdesk         : rootProject.ext.proDeps ? project(':GCashierdesk') : 'com.gome.ecmall.business:cashierdesk:' + getProperty('AAR_GBUSINESS_CASHIERDESK_VERSION') + '@aar',
+        GBProduct            :  rootProject.ext.proDeps ? project(':GBProduct') : 'com.gome.ecmall.business:product:' + getProperty('AAR_GBUSINESS_GPRODUCT_VERSION') + '@aar',
+        GDao                 :  rootProject.ext.proDeps ? project(':GDao') : 'com.gome.ecmall.business:dao:' + getProperty('AAR_GBUSINESS_GDAO_VERSION') + '@aar',
+        GBSearch             :  rootProject.ext.proDeps ? project(':GBSearch') : 'com.gome.ecmall.business:search:' + getProperty('AAR_GBUSINESS_GSEARCH_VERSION') + '@aar',
+        GBShop               :  rootProject.ext.proDeps ? project(':GBShop') : 'com.gome.ecmall.business:shop:' + getProperty('AAR_GBUSINESS_GSHOP_VERSION') + '@aar',
+        GBCms                :  rootProject.ext.proDeps ? project(':GBCms') : 'com.gome.ecmall.business:cms:' + getProperty('AAR_GBUSINESS_GCMS_VERSION') + '@aar',
         MImlibrary           : rootProject.ext.proDeps ? project(':MImlibrary') : 'com.gome.ecmall:mimlib:' + getProperty('AAR_MIM_LIB_VERSION') + '@aar',
 	    MCommon              : rootProject.ext.proDeps ? project(':MCommon') : 'com.gome.ecmall:mcommon:' + getProperty('AAR_MCOMMON_VERSION') + '@aar',
         MFriendCircle        : rootProject.ext.proDeps ? project(':MFriendCircle') : 'com.gome.ecmall:mfriendcircle:' + getProperty('AAR_MFRIEND_CIRCLE_VERSION') + '@aar',
