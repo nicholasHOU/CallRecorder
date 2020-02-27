@@ -116,5 +116,5 @@
     <project branch="yidianyiye0331" url="git@code.ds.gome.com.cn:mobile-android-business/GSimilar.git"/>
 
     <!--主工程-->
-    <project app="true" groups="app" path="GomeApp" url="git@code.ds.gome.com.cn:mobile-android/GomePlus.git"/>
+    <project branch="yidianyiye0331" app="true" groups="app" path="GomeApp" url="git@code.ds.gome.com.cn:mobile-android/GomePlus.git"/>
 </manifest>
