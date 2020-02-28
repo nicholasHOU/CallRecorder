@@ -102,7 +102,7 @@
     <project branch="yidianyiye0331" url="git@code.ds.gome.com.cn:mobile-android-business/MFriends.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GVAuction.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GHomeMalls.git"/>
-    <project url="git@code.ds.gome.com.cn:mobile-android-business/GHomepage.git"/>
+    <!--<project url="git@code.ds.gome.com.cn:mobile-android-business/GHomepage.git"/>-->
 
     <project branch="yidianyiye0331" url="git@code.ds.gome.com.cn:mobile-android-business/GCollection.git"/>
 <!--    <project url="git@code.ds.gome.com.cn:mobile-android-business/GStoreChannel.git"/>-->
