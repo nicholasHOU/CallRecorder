@@ -45,7 +45,7 @@ allprojects {
         targetSdkVersion = getProperty("TARGET_SDK_VERSION") as Integer
         minSdkVersion = getProperty("MIN_SDK_VERSION") as Integer
         supportLibVersion = "26.0.1"
-        proDeps = false //改false 时需要把xiaomi的几个工程注掉
+        proDeps = true //改false 时需要把xiaomi的几个工程注掉
         isXiaoMi = false
         //添加此段
         mcpPkg = getEnvValue("mcpPkg",false)
@@ -73,11 +73,11 @@ task clean(type: Delete) {
 
 
 ext.deps = [
-        GHttp            : 'com.gome.mcp:http:2.8.8_v4@aar',
+        GHttp            : 'com.gome.mcp:http:2.8.8_v5@aar',
         GUtils           : depMcpAar('utils'),
 
         SProtobuf         : 'com.google.protobuf:protobuf-java:2.6.1',
-        SOkHttp           : 'com.squareup.okhttp3:okhttp:3.10.0',
+        SOkHttp           : 'com.squareup.okhttp3:okhttp:3.11.0',
         SOkHttpLog        : 'com.squareup.okhttp3:logging-interceptor:3.4.1',
         SRetrofitAdapter  : 'com.squareup.retrofit2:adapter-rxjava:2.1.0',
         SRetrofitConverter: 'com.squareup.retrofit2:converter-gson:2.1.0',
@@ -154,6 +154,7 @@ ext.deps = [
         MImageEditor         : 'com.gome.ecmall:imageedit:' + getProperty('AAR_IMAGEEDIT_VERSION') + '@aar',
         GEmbedAnalysis       : 'com.gome.ecmall:ganalysis:' + getProperty('AAR_GEMBED_ANALYSIS_VERSION') + '@aar',
         Glivenesslib         : 'com.gome.ecmall:liveness:' + getProperty('AAR_LIVENESS_VERSION') + '@aar',
+        GTabLayout           :  'com.gome.ecmall:tablayout:' + getProperty('AAR_GTABLAYOUT_VERSION') + '@aar',
 
         GPushService         : 'com.gome.ecmall:pushservice:' + getProperty('AAR_GPUSH_CORE_VERSION') + '@aar',
         GPushCore            : false ? project(':GPushCore') : 'com.gome.ecmall:pushcore:' + getProperty('AAR_GPUSH_CORE_VERSION') + '@aar',
@@ -177,7 +178,7 @@ ext.deps = [
         GCore                : rootProject.ext.proDeps ? project(':GCore') : 'com.gome.ecmall:core:' + getProperty('AAR_GCORE_VERSION') + '@aar',
 
         GWidget              : rootProject.ext.proDeps ? project(':GWidget') : 'com.gome.ecmall:widget:' + getProperty('AAR_GWIDGET_VERSION') + '@aar',
-        GSmartRefreshLayout: rootProject.ext.proDeps ? project(':GSmartRefreshLayout') : 'com.gome.ecmall:refreshsmt:' + getProperty('AAR_REFRESH_SMT_VERSION') + '@aar',
+        GSmartRefreshLayout  : rootProject.ext.proDeps ? project(':GSmartRefreshLayout') : 'com.gome.ecmall:refreshsmt:' + getProperty('AAR_REFRESH_SMT_VERSION') + '@aar',
         GSelectPhoto         : rootProject.ext.proDeps ? project(':GSelectPhoto') : 'com.gome.ecmall:selectphoto:' + getProperty('AAR_GSELECT_PHOTO_VERSION') + '@aar',
         GDXRisk               : rootProject.ext.proDeps ? project(':GDXRisk') : 'com.gome.mcp:dxrisk:' + getProperty('AAR_GDXRISK_VERSION') + '@aar',
         GLogin               : rootProject.ext.proDeps ? project(':GLogin') : 'com.gome.ecmall:login:' + getProperty('AAR_GLOGIN_VERSION') + '@aar',
@@ -206,6 +207,8 @@ ext.deps = [
         GShop                : rootProject.ext.proDeps ? project(':GShop') : 'com.gome.ecmall:gshop:' + getProperty('AAR_GSHOP_VERSION') + '@aar',
         GPromotion           : rootProject.ext.proDeps ? project(':GPromotion') : 'com.gome.ecmall:promotion:' + getProperty('AAR_GPROMOTION_VERSION') + '@aar',
         GHomepage           : rootProject.ext.proDeps ? project(':GHomepage') : 'com.gome.ecmall:hmallpage:' + getProperty('AAR_HMALL_PAGE_VERSION') + '@aar',
+        GMallPage           : rootProject.ext.proDeps ? project(':GMallPage') : 'com.gome.ecmall:gmallpage:' + getProperty('AAR_GMALL_PAGE_VERSION') + '@aar',
+        GShelvesWidget      : rootProject.ext.proDeps ? project(':GShelvesWidget') : 'com.gome.ecmall:shelveswidget:' + getProperty('AAR_GSHELVES_WIDGET_VERSION') + '@aar',
         GGroupBuy            : rootProject.ext.proDeps ? project(':GGroupBuy') : 'com.gome.ecmall:groupbuy:' + getProperty('AAR_GGROUPBUY_VERSION') + '@aar',
         GPanicBuy            : rootProject.ext.proDeps ? project(':GPanicBuy') : 'com.gome.ecmall:panicbuy:' + getProperty('AAR_GPANICBUY_VERSION') + '@aar',
         GAppraise            : rootProject.ext.proDeps ? project(':GAppraise') : 'com.gome.ecmall:appraise:' + getProperty('AAR_GAPPRAISE_VERSION') + '@aar',

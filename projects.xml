@@ -17,6 +17,7 @@
     <project groups="private" url="git@code.ds.gome.com.cn:mobile-android-business/MImageEditor.git"/>
     <project groups="private" url="git@code.ds.gome.com.cn:mobile-android-business/GEmbedAnalysis.git"/>
     <project groups="private" url="git@code.ds.gome.com.cn:mobile-android-repo/Glivenesslib.git"/>
+    <project groups="private" branch="master" url="git@code.ds.gome.com.cn:mobile-android-business/GTabLayout.git"/>
 
     <project groups="private" url="git@code.ds.gome.com.cn:mobile-android-common/GPushCore.git"/>
     <project groups="private" url="git@code.ds.gome.com.cn:mobile-android-common/GPushGome.git"/>
@@ -88,7 +89,7 @@
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GGroupBuy.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GAppraise.git"/>
 
-    <project url="git@code.ds.gome.com.cn:mobile-android-business/GZxingScan.git"/>
+    <project branch="JNI_mergeDev_backup" url="git@code.ds.gome.com.cn:mobile-android-business/GZxingScan.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GIMRedEnvelope.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/MCommon.git"/>
 
@@ -101,8 +102,9 @@
     <project branch="yidianyiye0331" url="git@code.ds.gome.com.cn:mobile-android-business/MIm.git"/>
     <project branch="yidianyiye0331" url="git@code.ds.gome.com.cn:mobile-android-business/MFriends.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GVAuction.git"/>
-    <!--<project url="git@code.ds.gome.com.cn:mobile-android-business/GHomeMalls.git"/>-->
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GHomepage.git"/>
+    <project branch="master" url="git@code.ds.gome.com.cn:mobile-android-common/GShelvesWidget.git"/>
+    <project branch="master" url="git@code.ds.gome.com.cn:mobile-android-business/GMallPage.git"/>
 
     <project branch="yidianyiye0331" url="git@code.ds.gome.com.cn:mobile-android-business/GCollection.git"/>
 <!--    <project url="git@code.ds.gome.com.cn:mobile-android-business/GStoreChannel.git"/>-->
