@@ -107,7 +107,6 @@
     <project branch="master" url="git@code.ds.gome.com.cn:mobile-android-business/GMallPage.git"/>
 
     <project branch="yidianyiye0331" url="git@code.ds.gome.com.cn:mobile-android-business/GCollection.git"/>
-<!--    <project url="git@code.ds.gome.com.cn:mobile-android-business/GStoreChannel.git"/>-->
 
     <project branch="yidianyiye0331" artifactId="productsearch" bundleOpen="false" url="git@code.ds.gome.com.cn:mobile-android-business/GProductSearch.git"/>
     <project branch="yidianyiye0331" artifactId="product" bundleOpen="false" url="git@code.ds.gome.com.cn:mobile-android-business/GProductDetail.git"/>
@@ -116,6 +115,7 @@
     <project branch="yidianyiye0331" url="git@code.ds.gome.com.cn:mobile-android-business/GMemHome.git"/>
     <project branch="yidianyiye0331" url="git@code.ds.gome.com.cn:mobile-android-business/GMemService.git"/>
     <project branch="yidianyiye0331" url="git@code.ds.gome.com.cn:mobile-android-business/GSimilar.git"/>
+    <project branch="yidianyiye0331"  url="git@code.ds.gome.com.cn:mobile-android-business/GStoreChannel.git"/>
 
     <!--主工程-->
     <project branch="yidianyiye0331" app="true" groups="app" path="GomeApp" url="git@code.ds.gome.com.cn:mobile-android/GomePlus.git"/>
