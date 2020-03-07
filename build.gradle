@@ -88,7 +88,7 @@ ext.deps = [
         SEventBus         : 'org.greenrobot:eventbus:3.0.0',
         SGson             : 'com.google.code.gson:gson:2.6.2',
         SAlipay           : 'com.gome.ecmall.third:alipaySdk:15.6.0-20190226104053@aar',
-        SWechatSdk        : 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:5.1.6',
+        SWechatSdk        : 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:5.4.0',
         STencentSdk       : 'com.thirdparty:tencent:open_sdk_r6019_lite',
         SSinaWeibo        : 'com.thirdparty.sina:weibo:4.3.6',
         SSafeJs           : 'com.thirdparty:safe_android_js_webview:1',
