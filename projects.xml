@@ -111,7 +111,7 @@
     <project branch="yidianyiye0331" artifactId="productsearch" bundleOpen="false" url="git@code.ds.gome.com.cn:mobile-android-business/GProductSearch.git"/>
     <project branch="yidianyiye0331" artifactId="product" bundleOpen="false" url="git@code.ds.gome.com.cn:mobile-android-business/GProductDetail.git"/>
     <project branch="yidianyiye0331" url="git@code.ds.gome.com.cn:mobile-android-business/GShopCart.git"/>
-    <project url="git@code.ds.gome.com.cn:mobile-android-business/GSetting.git"/>
+    <project branch="yidianyiye0331" url="git@code.ds.gome.com.cn:mobile-android-business/GSetting.git"/>
     <project branch="yidianyiye0331" url="git@code.ds.gome.com.cn:mobile-android-business/GMemHome.git"/>
     <project branch="yidianyiye0331" url="git@code.ds.gome.com.cn:mobile-android-business/GMemService.git"/>
     <project branch="yidianyiye0331" url="git@code.ds.gome.com.cn:mobile-android-business/GSimilar.git"/>
