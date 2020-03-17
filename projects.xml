@@ -89,8 +89,8 @@
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GGroupBuy.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GAppraise.git"/>
 
-<!--    <project branch="JNI_mergeDev_backup" url="git@code.ds.gome.com.cn:mobile-android-business/GZxingScan.git"/>-->
-    <project url="git@code.ds.gome.com.cn:mobile-android-business/GZxingScan.git"/>
+    <project branch="masterJni" url="git@code.ds.gome.com.cn:mobile-android-business/GZxingScan.git"/>
+<!--    <project url="git@code.ds.gome.com.cn:mobile-android-business/GZxingScan.git"/>-->
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GIMRedEnvelope.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/MCommon.git"/>
 
