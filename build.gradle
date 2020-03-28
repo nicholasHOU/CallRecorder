@@ -88,7 +88,7 @@ ext.deps = [
         SEventBus         : 'org.greenrobot:eventbus:3.0.0',
         SGson             : 'com.google.code.gson:gson:2.6.2',
         SAlipay           : 'com.gome.ecmall.third:alipaySdk:15.6.0-20190226104053@aar',
-        SWechatSdk        : 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:5.1.6',
+        SWechatSdk        : 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:5.4.0',
         STencentSdk       : 'com.thirdparty:tencent:open_sdk_r6019_lite',
         SSinaWeibo        : 'com.thirdparty.sina:weibo:4.3.6',
         SSafeJs           : 'com.thirdparty:safe_android_js_webview:1',
@@ -129,7 +129,7 @@ ext.deps = [
 
         GSafekeyboard        : 'com.bangcle:safeKeyboard:1.0.7',
         GUpdate              : 'com.gome.mcp:update:2.8.8.gome.updator-2',
-        GYunNengTimeWidget   : 'com.gome.ecmall:yunnengtimewidget:1.1.8@aar',
+        GYunNengTimeWidget   : 'com.gome.ecmall:yunnengtimewidget:2.0.0@aar',
         GWap                 : 'com.gome.mcp:wap:' + getProperty('AAR_MCP_WAP_VERSION') + '@aar',
         STitlebar            : 'cn.gome.staff.ui:titlebar:' + getProperty('AAR_STITLEBAR_VERSION') + '@aar',
         GCrash               : 'com.gome.mcp:crash:' + getProperty('AAR_MCP_VERSION') + '@aar',
@@ -245,7 +245,8 @@ ext.deps = [
         MFriends             : rootProject.ext.proDeps ? project(':MFriends') : 'com.gome.ecmall:mfriends:' + getProperty('AAR_MFRIENDS_VERSION') + '@aar',
         MSocial              : rootProject.ext.proDeps ? project(':MSocial') : 'com.gome.ecmall:msocial:' + getProperty('AAR_MSOCIAL_VERSION') + '@aar',
         MShop                : rootProject.ext.proDeps ? project(':MShop') : 'com.gome.ecmall:mshop:' + getProperty('AAR_MSHOP_VERSION') + '@aar',
-        GVAuction            : rootProject.ext.proDeps ? project(':GVAuction') : 'com.gome.ecmall:gvauction:' + getProperty('AAR_GVAUCTION_VERSION') + '@aar'
+        GVAuction            : rootProject.ext.proDeps ? project(':GVAuction') : 'com.gome.ecmall:gvauction:' + getProperty('AAR_GVAUCTION_VERSION') + '@aar',
+        GStoreChannel        : rootProject.ext.proDeps ? project(':GStoreChannel') : 'com.gome.ecmall.business:storechannel:' + getProperty('AAR_GBUSINESS_GSTORECHANNEL_VERSION') + '@aar'
 
 ]
 /**
