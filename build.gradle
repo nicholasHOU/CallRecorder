@@ -88,7 +88,7 @@ ext.deps = [
         SEventBus         : 'org.greenrobot:eventbus:3.0.0',
         SGson             : 'com.google.code.gson:gson:2.6.2',
         SAlipay           : 'com.gome.ecmall.third:alipaySdk:15.6.0-20190226104053@aar',
-        SWechatSdk        : 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:5.1.6',
+        SWechatSdk        : 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:5.4.0',
         STencentSdk       : 'com.thirdparty:tencent:open_sdk_r6019_lite',
         SSinaWeibo        : 'com.thirdparty.sina:weibo:4.3.6',
         SSafeJs           : 'com.thirdparty:safe_android_js_webview:1',
@@ -129,7 +129,7 @@ ext.deps = [
 
         GSafekeyboard        : 'com.bangcle:safeKeyboard:1.0.7',
         GUpdate              : 'com.gome.mcp:update:2.8.8.gome.updator-2',
-        GYunNengTimeWidget   : 'com.gome.ecmall:yunnengtimewidget:1.1.8@aar',
+        GYunNengTimeWidget   : 'com.gome.ecmall:yunnengtimewidget:2.0.0@aar',
         GWap                 : 'com.gome.mcp:wap:' + getProperty('AAR_MCP_WAP_VERSION') + '@aar',
         STitlebar            : 'cn.gome.staff.ui:titlebar:' + getProperty('AAR_STITLEBAR_VERSION') + '@aar',
         GCrash               : 'com.gome.mcp:crash:' + getProperty('AAR_MCP_VERSION') + '@aar',
@@ -154,6 +154,7 @@ ext.deps = [
         MImageEditor         : 'com.gome.ecmall:imageedit:' + getProperty('AAR_IMAGEEDIT_VERSION') + '@aar',
         GEmbedAnalysis       : 'com.gome.ecmall:ganalysis:' + getProperty('AAR_GEMBED_ANALYSIS_VERSION') + '@aar',
         Glivenesslib         : 'com.gome.ecmall:liveness:' + getProperty('AAR_LIVENESS_VERSION') + '@aar',
+        GTabLayout           :  'com.gome.ecmall:tablayout:' + getProperty('AAR_GTABLAYOUT_VERSION') + '@aar',
 
         GPushService         : 'com.gome.ecmall:pushservice:' + getProperty('AAR_GPUSH_CORE_VERSION') + '@aar',
         GPushCore            : false ? project(':GPushCore') : 'com.gome.ecmall:pushcore:' + getProperty('AAR_GPUSH_CORE_VERSION') + '@aar',
@@ -177,7 +178,7 @@ ext.deps = [
         GCore                : rootProject.ext.proDeps ? project(':GCore') : 'com.gome.ecmall:core:' + getProperty('AAR_GCORE_VERSION') + '@aar',
 
         GWidget              : rootProject.ext.proDeps ? project(':GWidget') : 'com.gome.ecmall:widget:' + getProperty('AAR_GWIDGET_VERSION') + '@aar',
-        GSmartRefreshLayout: rootProject.ext.proDeps ? project(':GSmartRefreshLayout') : 'com.gome.ecmall:refreshsmt:' + getProperty('AAR_REFRESH_SMT_VERSION') + '@aar',
+        GSmartRefreshLayout  : rootProject.ext.proDeps ? project(':GSmartRefreshLayout') : 'com.gome.ecmall:refreshsmt:' + getProperty('AAR_REFRESH_SMT_VERSION') + '@aar',
         GSelectPhoto         : rootProject.ext.proDeps ? project(':GSelectPhoto') : 'com.gome.ecmall:selectphoto:' + getProperty('AAR_GSELECT_PHOTO_VERSION') + '@aar',
         GDXRisk               : rootProject.ext.proDeps ? project(':GDXRisk') : 'com.gome.mcp:dxrisk:' + getProperty('AAR_GDXRISK_VERSION') + '@aar',
         GLogin               : rootProject.ext.proDeps ? project(':GLogin') : 'com.gome.ecmall:login:' + getProperty('AAR_GLOGIN_VERSION') + '@aar',
@@ -206,6 +207,8 @@ ext.deps = [
         GShop                : rootProject.ext.proDeps ? project(':GShop') : 'com.gome.ecmall:gshop:' + getProperty('AAR_GSHOP_VERSION') + '@aar',
         GPromotion           : rootProject.ext.proDeps ? project(':GPromotion') : 'com.gome.ecmall:promotion:' + getProperty('AAR_GPROMOTION_VERSION') + '@aar',
         GHomepage           : rootProject.ext.proDeps ? project(':GHomepage') : 'com.gome.ecmall:hmallpage:' + getProperty('AAR_HMALL_PAGE_VERSION') + '@aar',
+        GMallPage           : rootProject.ext.proDeps ? project(':GMallPage') : 'com.gome.ecmall:gmallpage:' + getProperty('AAR_GMALL_PAGE_VERSION') + '@aar',
+        GShelvesWidget      : rootProject.ext.proDeps ? project(':GShelvesWidget') : 'com.gome.ecmall:shelveswidget:' + getProperty('AAR_GSHELVES_WIDGET_VERSION') + '@aar',
         GGroupBuy            : rootProject.ext.proDeps ? project(':GGroupBuy') : 'com.gome.ecmall:groupbuy:' + getProperty('AAR_GGROUPBUY_VERSION') + '@aar',
         GPanicBuy            : rootProject.ext.proDeps ? project(':GPanicBuy') : 'com.gome.ecmall:panicbuy:' + getProperty('AAR_GPANICBUY_VERSION') + '@aar',
         GAppraise            : rootProject.ext.proDeps ? project(':GAppraise') : 'com.gome.ecmall:appraise:' + getProperty('AAR_GAPPRAISE_VERSION') + '@aar',
@@ -242,7 +245,8 @@ ext.deps = [
         MFriends             : rootProject.ext.proDeps ? project(':MFriends') : 'com.gome.ecmall:mfriends:' + getProperty('AAR_MFRIENDS_VERSION') + '@aar',
         MSocial              : rootProject.ext.proDeps ? project(':MSocial') : 'com.gome.ecmall:msocial:' + getProperty('AAR_MSOCIAL_VERSION') + '@aar',
         MShop                : rootProject.ext.proDeps ? project(':MShop') : 'com.gome.ecmall:mshop:' + getProperty('AAR_MSHOP_VERSION') + '@aar',
-        GVAuction            : rootProject.ext.proDeps ? project(':GVAuction') : 'com.gome.ecmall:gvauction:' + getProperty('AAR_GVAUCTION_VERSION') + '@aar'
+        GVAuction            : rootProject.ext.proDeps ? project(':GVAuction') : 'com.gome.ecmall:gvauction:' + getProperty('AAR_GVAUCTION_VERSION') + '@aar',
+        GStoreChannel        : rootProject.ext.proDeps ? project(':GStoreChannel') : 'com.gome.ecmall.business:storechannel:' + getProperty('AAR_GBUSINESS_GSTORECHANNEL_VERSION') + '@aar'
 
 ]
 /**
