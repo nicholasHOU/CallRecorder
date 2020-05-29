@@ -217,6 +217,7 @@ ext.deps = [
         GShopCart            : rootProject.ext.proDeps ? project(':GShopCart') : 'com.gome.ecmall:shopcar:' + getProperty('AAR_GSHOPCAR_VERSION') + '@aar',
         GSetting             : rootProject.ext.proDeps ? project(':GSetting') : 'com.gome.ecmall:setting:' + getProperty('AAR_GSETTING_VERSION') + '@aar',
         GMemHome             : rootProject.ext.proDeps ? project(':GMemHome') : 'com.gome.ecmall:memhome:' + getProperty('AAR_GMEM_HOME_VERSION') + '@aar',
+        AMemHome             : rootProject.ext.proDeps ? project(':AMemHome') : 'com.gome.ecmall:memhome:' + getProperty('AAR_AMEM_HOME_VERSION') + '@aar',
         GMemService          : rootProject.ext.proDeps ? project(':GMemService') : 'com.gome.ecmall:memservice:' + getProperty('AAR_GMEM_SERVICE_VERSION') + '@aar',
         GSimilar             : rootProject.ext.proDeps ? project(':GSimilar') : 'com.gome.ecmall:similar:' + getProperty('AAR_GSIMILAR_VERSION') + '@aar',
 
