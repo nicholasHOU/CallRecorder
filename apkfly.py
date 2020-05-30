@@ -10,7 +10,6 @@ import time
 import xml
 from collections import Counter
 from xml.dom import minidom
-import requests
 import platform
 
 __author__ = "qiudongchao<1162584980@qq.com>"
@@ -976,6 +975,11 @@ def cmd_apk(args):
         return
 
     if upload:
+        try:
+            import requests
+        except ImportError:
+            print "Please install python requests lib !"
+            return
         apkPath = findApkPath()
         if os.path.exists(apkPath):
             print '1.Successful find apk, start upload it: ' + apkPath
