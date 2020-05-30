@@ -910,15 +910,22 @@ def generateQRCode(text):
     except ImportError:
         # print "Please install python qrcode lib, can generate QR code !"
         pass
-    response = requests.get(QRCODE_API + text)
-    if response.status_code == 200:
-        # 保存二维码
-        with open(QR_CODE_IMG_CACHE_PAHT,'wb')as img:
-            img.write(response.content)
-        # 显示二维码
-        showFile(QR_CODE_IMG_CACHE_PAHT)
-        return 2
-    else:
+
+
+    try:
+        import requests
+        response = requests.get(QRCODE_API + text)
+        if response.status_code == 200:
+            # 保存二维码
+            with open(QR_CODE_IMG_CACHE_PAHT,'wb')as img:
+                img.write(response.content)
+            # 显示二维码
+            showFile(QR_CODE_IMG_CACHE_PAHT)
+            return 2
+        else:
+            return 0
+    except ImportError:
+        print "Please install python requests lib !"
         return 0
 
 # 上传apk
@@ -931,11 +938,19 @@ def uploadApk(apkPath):
         'job': (None, JOB_NAME),
         'platform': (None, 'android'),
     }
-    response = requests.post(UPLOAD_URL, files=files, auth=(UPLOAD_ACCOUNT, UPLOAD_PW))
-    if response.status_code == 200:
-        return response.text
-    else:
+
+    try:
+        import requests
+        response = requests.post(UPLOAD_URL, files=files, auth=(UPLOAD_ACCOUNT, UPLOAD_PW))
+        if response.status_code == 200:
+            return response.text
+        else:
+            return ''
+    except ImportError:
+        print "Please install python requests lib !"
         return ''
+
+
 
 # 找到要操作的apk
 def findApkPath():
@@ -975,11 +990,6 @@ def cmd_apk(args):
         return
 
     if upload:
-        try:
-            import requests
-        except ImportError:
-            print "Please install python requests lib !"
-            return
         apkPath = findApkPath()
         if os.path.exists(apkPath):
             print '1.Successful find apk, start upload it: ' + apkPath
