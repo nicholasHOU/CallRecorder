@@ -114,6 +114,7 @@
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GShopCart.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GSetting.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GMemHome.git"/>
+    <project url="git@code.ds.gome.com.cn:mobile-android-business/AMemHome.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GMemService.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GSimilar.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GStoreChannel.git"/>

@@ -17,7 +17,7 @@ buildscript {
         classpath 'com.sensorsdata.analytics.android:android-gradle-plugin2:3.1.3'
 
         classpath 'com.gutils.router:build:' + getProperty('LIB_ROUTER_VERSION')
-        classpath 'com.gutils:apker:0.0.17-2.3.0'
+        classpath 'com.gutils:apker:0.0.21-2.3.0'
         /**
          * add by yangbo
          * 处理多渠道
@@ -128,13 +128,13 @@ ext.deps = [
         GRouter              : 'com.gutils.router:router:' + getProperty('LIB_ROUTER_VERSION') + '@aar',
 
         GSafekeyboard        : 'com.bangcle:safeKeyboard:1.0.7',
-        GUpdate              : 'com.gome.mcp:update:2.8.8.gome.updator-2',
+        GUpdate              : 'com.gome.mcp:update:2.8.9',
         GYunNengTimeWidget   : 'com.gome.ecmall:yunnengtimewidget:2.0.0@aar',
         GWap                 : 'com.gome.mcp:wap:' + getProperty('AAR_MCP_WAP_VERSION') + '@aar',
         STitlebar            : 'cn.gome.staff.ui:titlebar:' + getProperty('AAR_STITLEBAR_VERSION') + '@aar',
         GCrash               : 'com.gome.mcp:crash:' + getProperty('AAR_MCP_VERSION') + '@aar',
-        GSecret              : 'com.gome.mcp:sec-gome:2.8.8-v5:gomeRelease@aar',
-        GBuildConfig         : 'com.gome.mcp:buildconfig:2.8.8-config.v2',
+        GSecret              : 'com.gome.mcp:sec-gome:2.8.8-v6:gomeRelease@aar',
+        GBuildConfig         : 'com.gome.mcp:buildconfig:2.8.8-config.v3',
         GPlugin              : 'com.gome.ecmall.core:plugin:1.0.39@aar',
         ABTest               : 'com.gome.mcp:abtestlib:1.0.8',
         DXCaptcha            : 'com.gome.third:dx-captcha:1.5.4@aar',
@@ -217,6 +217,7 @@ ext.deps = [
         GShopCart            : rootProject.ext.proDeps ? project(':GShopCart') : 'com.gome.ecmall:shopcar:' + getProperty('AAR_GSHOPCAR_VERSION') + '@aar',
         GSetting             : rootProject.ext.proDeps ? project(':GSetting') : 'com.gome.ecmall:setting:' + getProperty('AAR_GSETTING_VERSION') + '@aar',
         GMemHome             : rootProject.ext.proDeps ? project(':GMemHome') : 'com.gome.ecmall:memhome:' + getProperty('AAR_GMEM_HOME_VERSION') + '@aar',
+        AMemHome             : rootProject.ext.proDeps ? project(':AMemHome') : 'com.gome.ecmall:amemhome:' + getProperty('AAR_AMEM_HOME_VERSION') + '@aar',
         GMemService          : rootProject.ext.proDeps ? project(':GMemService') : 'com.gome.ecmall:memservice:' + getProperty('AAR_GMEM_SERVICE_VERSION') + '@aar',
         GSimilar             : rootProject.ext.proDeps ? project(':GSimilar') : 'com.gome.ecmall:similar:' + getProperty('AAR_GSIMILAR_VERSION') + '@aar',
 
