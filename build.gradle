@@ -156,7 +156,7 @@ ext.deps = [
         Glivenesslib         : 'com.gome.ecmall:liveness:' + getProperty('AAR_LIVENESS_VERSION') + '@aar',
         GTabLayout           :  'com.gome.ecmall:tablayout:' + getProperty('AAR_GTABLAYOUT_VERSION') + '@aar',
 
-        GPushService         : 'com.gome.ecmall:pushservice:' + getProperty('AAR_GPUSH_CORE_VERSION') + '@aar',
+        GPushService         : 'com.gome.ecmall:pushservice:' + getProperty('AAR_GPUSH_SERVICE_VERSION') + '@aar',
         GPushCore            : false ? project(':GPushCore') : 'com.gome.ecmall:pushcore:' + getProperty('AAR_GPUSH_CORE_VERSION') + '@aar',
         GPushGome            : false ? project(':GPushGome') : 'com.gome.ecmall:pushgome:' + getProperty('AAR_GPUSH_GOME_VERSION') + '@aar',
         GPushHuaWei          : false ? project(':GPushHuaWei') : 'com.gome.ecmall:pushhuawei:' + getProperty('AAR_GPUSH_HUAWEI_VERSION') + '@aar',

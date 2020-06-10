@@ -950,7 +950,15 @@ def uploadApk(apkPath):
         print "Please install python requests lib !"
         return ''
 
-
+# 寻找apkDir目录下的所有apk文件
+def findApkPathByDir(apkDir, apkList):
+    dir = os.listdir(apkDir)
+    for p in dir:
+        absP = os.path.join(apkDir, p)
+        if os.path.isdir(absP):
+            findApkPathByDir(absP, apkList)
+        elif absP.endswith('.apk'):
+            apkList.append(absP)
 
 # 找到要操作的apk
 def findApkPath():
@@ -962,12 +970,14 @@ def findApkPath():
             hasApkPath = True
             break
     if hasApkPath:
-        apks = os.listdir(apkDir)
+        apks = []
+        findApkPathByDir(apkDir, apks)
         apkNum = len(apks)
         if apkNum == 0:
             print 'Not find apk in path: ' + apkDir
+            return ''
         elif apkNum == 1:
-            return os.path.join(apkDir, apks[0])
+            return apks[0]
         else:
             print 'Apk num > 1, please choose one:'
             print '------------------------------'
@@ -975,7 +985,7 @@ def findApkPath():
                 print '%s. %s' % (i + 1, apks[i])
             print '------------------------------'
             num = getNum(apkNum)
-            return os.path.join(apkDir, apks[num - 1])
+            return apks[num - 1]
     else:
         return ''
 
@@ -1015,6 +1025,8 @@ def cmd_apk(args):
             print 'start install apk: ' + apkPath
             install_output = os.popen("adb install -r %s" % (apkPath))
             print install_output.read()
+        else:
+            print 'Not find apk, check the exec cmd directory is in WorkSpace --- Chinglish !!!'
 
 ###################################################################
 ### 主程序入口
