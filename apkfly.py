@@ -911,11 +911,13 @@ def generateQRCode(text):
         # print "Please install python qrcode lib, can generate QR code !"
         pass
 
-
     try:
         import requests
         response = requests.get(QRCODE_API + text)
         if response.status_code == 200:
+            # 先判断缓存目录是否存在
+            if not os.path.exists(os.path.dirname(QR_CODE_IMG_CACHE_PAHT)):
+                os.mkdir(os.path.dirname(QR_CODE_IMG_CACHE_PAHT))
             # 保存二维码
             with open(QR_CODE_IMG_CACHE_PAHT,'wb')as img:
                 img.write(response.content)
@@ -1004,18 +1006,19 @@ def cmd_apk(args):
         if os.path.exists(apkPath):
             print '1.Successful find apk, start upload it: ' + apkPath
             downloadUrl = uploadApk(apkPath)
-            if len(downloadUrl) > 1:
+            if len(downloadUrl) > 1 and downloadUrl.startswith('http'):
                 print '2.Upload apk succeeded, download url:'
-                print '                    %s' % downloadUrl
+                print '  %s' % downloadUrl
                 result = generateQRCode(downloadUrl)
                 if result == 1:
                     print "3.QR code generate succeeded, from 'python qrcode lib'"
                 elif result == 2:
                     print "3.QR code generate succeeded, from 'online api'"
+                    print '  QR code path: %s' % QR_CODE_IMG_CACHE_PAHT
                 else:
                     print '3.QR code generate failed'
             else:
-                print 'Upload apk failed !'
+                print '2.Upload apk failed, %s!' % downloadUrl
         else:
             print 'Not find apk, check the exec cmd directory is in WorkSpace --- Chinglish !!!'
 
