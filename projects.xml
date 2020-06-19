@@ -84,7 +84,6 @@
     <project artifactId="tqdetail" bundleOpen="false" url="git@code.ds.gome.com.cn:mobile-android-business/GTQDetail.git"/>
     <project artifactId="ggomecurrency" bundleOpen="false" url="git@code.ds.gome.com.cn:mobile-android-business/GGomeCurrency.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GShop.git"/>
-    <project url="git@code.ds.gome.com.cn:mobile-android-business/GPromotion.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GPanicBuy.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GGroupBuy.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GAppraise.git"/>
@@ -98,7 +97,6 @@
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GOnlinememberCard.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/MFriendCircle.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/MSocial.git"/>
-    <project url="git@code.ds.gome.com.cn:mobile-android-business/MShop.git"/>
    <project artifactId="videoguide" bundleOpen="false" url="git@code.ds.gome.com.cn:mobile-android-business/GProductVideoGuide.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/MIm.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/MFriends.git"/>
