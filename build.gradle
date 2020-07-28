@@ -92,7 +92,7 @@ ext.deps = [
         STencentSdk       : 'com.thirdparty:tencent:open_sdk_r6019_lite',
         SSinaWeibo        : 'com.thirdparty.sina:weibo:4.3.6',
         SSafeJs           : 'com.thirdparty:safe_android_js_webview:1',
-        GMBank            : 'com.thirdparty:gomepay_mbank_sdk:1.0.3',
+        GMBank            : 'com.thirdparty:gomepay_mbank_sdk:1.0.2',
         SNineOldAndroid   : 'com.nineoldandroids:library:2.4.0',
         SGreenDao         : 'org.greenrobot:greendao:3.2.2',
         SRealm            : 'com.gome.third:realm-android:0.87.1-6@aar',
