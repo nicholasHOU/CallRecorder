@@ -64,6 +64,7 @@
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GBProduct.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GBCms.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GShopCarBus.git"/>
+    <project url="git@code.ds.gome.com.cn:mobile-android-business/GGomeShareBus.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GCashierdesk.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GBusiness.git"/>
     <!-- WEEX模块 -->
