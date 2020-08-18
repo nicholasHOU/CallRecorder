@@ -52,7 +52,6 @@
     <project url="git@code.ds.gome.com.cn:mobile-android-repo/GX5Lib.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GRouterInterface.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GBusinessDeps.git"/>
-    <project url="git@code.ds.gome.com.cn:mobile-android-business/GBShare.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GScheme.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GAddress.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GBigPhoto.git"/>
@@ -94,7 +93,6 @@
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GIMRedEnvelope.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/MCommon.git"/>
 
-    <project url="git@code.ds.gome.com.cn:mobile-android-business/MShare.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GOnlinememberCard.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/MFriendCircle.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/MSocial.git"/>
