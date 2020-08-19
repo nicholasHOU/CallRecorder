@@ -1029,10 +1029,12 @@ def cmd_apk(args):
             install_output = os.popen("adb install -r %s" % (apkPath))
             print install_output.read()
 
-            if len(install) > 0:
-                if install[0] == 'gome':
-                    start_output = os.popen("adb shell am start -n com.gome.eshopnew/com.gome.ecmall.home.LaunchActivity")
-                    print start_output.read()
+            if install[0] == 'gome':
+                start_output = os.popen("adb shell am start -n com.gome.eshopnew/com.gome.ecmall.home.LaunchActivity")
+                print start_output.read()
+            elif install[0] == 'bang':
+                start_output = os.popen("adb shell am start -n cn.gome.bangbang/com.gome.ecmall.home.LaunchActivity")
+                print start_output.read()
 
         else:
             print 'Not find apk, check the exec cmd directory is in WorkSpace --- Chinglish !!!'
