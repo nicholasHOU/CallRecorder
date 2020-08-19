@@ -1028,6 +1028,14 @@ def cmd_apk(args):
             print 'start install apk: ' + apkPath
             install_output = os.popen("adb install -r %s" % (apkPath))
             print install_output.read()
+
+            if install[0] == 'gome':
+                start_output = os.popen("adb shell am start -n com.gome.eshopnew/com.gome.ecmall.home.LaunchActivity")
+                print start_output.read()
+            elif install[0] == 'bang':
+                start_output = os.popen("adb shell am start -n cn.gome.bangbang/com.gome.ecmall.home.LaunchActivity")
+                print start_output.read()
+
         else:
             print 'Not find apk, check the exec cmd directory is in WorkSpace --- Chinglish !!!'
 
@@ -1148,10 +1156,10 @@ if __name__ == '__main__':
     parser_apk_ = subparsers.add_parser("apk", help=u"操作apk文件")
     parser_apk_.set_defaults(func=cmd_apk)
     parser_apk_.add_argument("-u", "--upload", help=u'上传apk到finder', action='store_true', default=False)
-    parser_apk_.add_argument("-i", "--install", help=u'安装apk到手机', action='store_true', default=False)
+    parser_apk_.add_argument("-i", "--install", help=u'安装apk到手机', action='append', default=[])
     # parser_apk_.add_argument("-di", "--debugInstall", help=u'构建Debug包，并安装到手机', action='store_true', default=False)
     # parser_apk_.add_argument("-ri", "--releaseInstall", help=u'构建Release包，并安装到手机', action='store_true', default=False)
 
-# 参数解析
+    # 参数解析
     args = parser.parse_args()
     args.func(args)

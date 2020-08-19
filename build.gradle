@@ -92,7 +92,7 @@ ext.deps = [
         STencentSdk       : 'com.thirdparty:tencent:open_sdk_r6019_lite',
         SSinaWeibo        : 'com.thirdparty.sina:weibo:4.3.6',
         SSafeJs           : 'com.thirdparty:safe_android_js_webview:1',
-        GMBank            : 'com.thirdparty:gomepay_mbank_sdk:1.0.2',
+        GMBank            : 'com.thirdparty:gomepay_mbank_sdk:1.0.2', // 1.0.3版本正在测试中
         SNineOldAndroid   : 'com.nineoldandroids:library:2.4.0',
         SGreenDao         : 'org.greenrobot:greendao:3.2.2',
         SRealm            : 'com.gome.third:realm-android:0.87.1-6@aar',
@@ -159,6 +159,9 @@ ext.deps = [
         GTabLayout           :  'com.gome.ecmall:tablayout:' + getProperty('AAR_GTABLAYOUT_VERSION') + '@aar',
         GHtmlSpanner         :  'com.gome.ecmall:htmlspanner:' + getProperty('AAR_HTMLSPANNER_VERSION') + '@aar',
 
+        GShare               :  'com.gome.mcp:share:' + getProperty('AAR_MCP_GSHARE_VERSION') + '@aar',
+        GShareBus            :  'com.gome.ecmall:sharebus:' + getProperty('AAR_GSHAREBUS_VERSION') + '@aar',
+
         GPushService         : 'com.gome.ecmall:pushservice:' + getProperty('AAR_GPUSH_SERVICE_VERSION') + '@aar',
         GPushCore            : false ? project(':GPushCore') : 'com.gome.ecmall:pushcore:' + getProperty('AAR_GPUSH_CORE_VERSION') + '@aar',
         GPushGome            : false ? project(':GPushGome') : 'com.gome.ecmall:pushgome:' + getProperty('AAR_GPUSH_GOME_VERSION') + '@aar',
@@ -202,7 +205,6 @@ ext.deps = [
         GProductDetail       : rootProject.ext.proDeps ? project(':GProductDetail') : 'com.gome.ecmall:product:' + getProperty('AAR_GPRODUCT_VERSION') + '@aar',
         GProductVideoGuide       : rootProject.ext.proDeps ? project(':GProductVideoGuide') : 'com.gome.ecmall:videoguide:' + getProperty('AAR_GPRODUCT_VIDEO_GUIDE_VERSION') + '@aar',
         GTQDetail            : rootProject.ext.proDeps ? project(':GTQDetail') : 'com.gome.ecmall:tqdetail:' + getProperty('AAR_GTQ_DETAIL_VERSION') + '@aar',
-//        GHotfix              : rootProject.ext.proDeps ? project(':GHotfix') : 'com.gome.ecmall:hotfix:' + getProperty('AAR_HOTFIX_VERSION') + '@aar',
         GZxingScan           : rootProject.ext.proDeps ? project(':GZxingScan') : 'com.gome.ecmall:gzxing:' + getProperty('AAR_GZING_VERSION') + '@aar',
         GGomeCurrency        : rootProject.ext.proDeps ? project(':GGomeCurrency') : 'com.gome.ecmall:ggomecurrency:' + getProperty('AAR_GGOMECURRENCY_VERSION') + '@aar',
         GIMRedEnvelope       : rootProject.ext.proDeps ? project(':GIMRedEnvelope') : 'com.gome.ecmall:imredenvelope:' + getProperty('AAR_IMREDENVELOPE_VERSION') + '@aar',
@@ -225,7 +227,7 @@ ext.deps = [
 
         GWeexLib             : rootProject.ext.proDeps ? project(':GWeexLib') : 'com.gome.mobile.weex:components:' + getProperty('AAR_GWEEXLIB_VERSION') + '@aar',
         GShopCarBus          : rootProject.ext.proDeps ? project(':GShopCarBus') : 'com.gome.ecmall.business:gshopcartbus:' + getProperty('AAR_GBUSINESS_GSHOPCARTBUS_VERSION') + '@aar',
-        MShare               : rootProject.ext.proDeps ? project(':MShare') : 'com.gome.ecmall:mshare:' + getProperty('AAR_MSHARE_VERSION') + '@aar',
+        GGomeShareBus        : rootProject.ext.proDeps ? project(':GGomeShareBus') : 'com.gome.ecmall:gomesharebus:' + getProperty('AAR_GGOMESHAREBUS_VERSION') + '@aar',
         GBusiness            :  rootProject.ext.proDeps ? project(':GBusiness') : 'com.gome.ecmall:business:' + getProperty('AAR_GBUSINESS_VERSION') + '@aar',
         GScheme              :  rootProject.ext.proDeps ? project(':GScheme') : 'com.gome.ecmall:scheme:' + getProperty('AAR_GSCHEME_VERSION') + '@aar',
         GAddress             : rootProject.ext.proDeps ? project(':GAddress') : 'com.gome.ecmall.business:address:' + getProperty('AAR_GBUSINESS_ADRESS_VERSION') + '@aar',
@@ -233,7 +235,6 @@ ext.deps = [
         GAlbum               : rootProject.ext.proDeps ? project(':GAlbum') : 'com.gome.ecmall.business:album:' + getProperty('AAR_GBUSINESS_ALBUM_VERSION') + '@aar',
         GRouterInterface     :  rootProject.ext.proDeps? project(':GRouterInterface') : 'com.gome.ecmall.business:router:' + getProperty('AAR_GINTERFACE_VERSION') + '@aar',
         GBusinessDeps        :  rootProject.ext.proDeps ? project(':GBusinessDeps') : 'com.gome.ecmall.business:deps:' + getProperty('AAR_GBUSINESS_DEPS_VERSION') + '@aar',
-        GBShare              : rootProject.ext.proDeps ? project(':GBShare') : 'com.gome.ecmall.business:bshare:' + getProperty('AAR_GBUSINESS_BSAHRE_VERSION') + '@aar',
         GYYTPassWord         : rootProject.ext.proDeps ? project(':GYYTPassWord') : 'com.gome.ecmall.business:yytpassword:' + getProperty('AAR_GBUSINESS_YYTPASSWORD_VERSION') + '@aar',
         GCashierdesk         : rootProject.ext.proDeps ? project(':GCashierdesk') : 'com.gome.ecmall.business:cashierdesk:' + getProperty('AAR_GBUSINESS_CASHIERDESK_VERSION') + '@aar',
         GBProduct            :  rootProject.ext.proDeps ? project(':GBProduct') : 'com.gome.ecmall.business:product:' + getProperty('AAR_GBUSINESS_GPRODUCT_VERSION') + '@aar',
