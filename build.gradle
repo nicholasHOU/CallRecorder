@@ -160,7 +160,7 @@ ext.deps = [
         GHtmlSpanner         :  'com.gome.ecmall:htmlspanner:' + getProperty('AAR_HTMLSPANNER_VERSION') + '@aar',
 
         GShare               :  false ? project(':GShare') : 'com.gome.mcp:share:' + getProperty('AAR_MCP_GSHARE_VERSION') + '@aar',
-        GShareBus            :  false ? project(':GShareBus') : 'com.gome.ecmall:sharebus:' + getProperty('AAR_GSHAREBUS_VERSION') + '@aar',
+        GShareBus            :  false ? project(':GShareBus') : 'com.gome.ecmall:sharebus:' + getProperty('AAR_GSHARE_BUS_VERSION') + '@aar',
 
         GPushService         : 'com.gome.ecmall:pushservice:' + getProperty('AAR_GPUSH_SERVICE_VERSION') + '@aar',
         GPushCore            : false ? project(':GPushCore') : 'com.gome.ecmall:pushcore:' + getProperty('AAR_GPUSH_CORE_VERSION') + '@aar',
