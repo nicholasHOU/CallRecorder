@@ -110,6 +110,8 @@ ext.deps = [
         GDanmu            : 'cn.com.gomeplus.danmu:gomeplus-danmu:1.0.0@aar',
         GMsc              : 'com.gome.ecmall:msc:1.0.2@aar',
         GAVSdk            : 'com.gome:avsdk:1.1.17',
+        SLiteAVSDK        : 'com.gome.zhibo:LiteAVSDK_Enterprise:7.5.9318',
+        GImage            : 'com.gome.mcp:image:2.8.8',
 
         SMultidex         : 'com.android.support:multidex:1.0.1',
         SMultidexInstr    : 'com.android.support:multidex-instrumentation:1.0.1',
@@ -249,7 +251,12 @@ ext.deps = [
         MFriends             : rootProject.ext.proDeps ? project(':MFriends') : 'com.gome.ecmall:mfriends:' + getProperty('AAR_MFRIENDS_VERSION') + '@aar',
         MSocial              : rootProject.ext.proDeps ? project(':MSocial') : 'com.gome.ecmall:msocial:' + getProperty('AAR_MSOCIAL_VERSION') + '@aar',
         GVAuction            : rootProject.ext.proDeps ? project(':GVAuction') : 'com.gome.ecmall:gvauction:' + getProperty('AAR_GVAUCTION_VERSION') + '@aar',
-        GStoreChannel        : rootProject.ext.proDeps ? project(':GStoreChannel') : 'com.gome.ecmall.business:storechannel:' + getProperty('AAR_GBUSINESS_GSTORECHANNEL_VERSION') + '@aar'
+        GStoreChannel        : rootProject.ext.proDeps ? project(':GStoreChannel') : 'com.gome.ecmall.business:storechannel:' + getProperty('AAR_GBUSINESS_GSTORECHANNEL_VERSION') + '@aar',
+
+        GZhiBoBeautysettingkit      : true ? project(':GZhiBoBeautysettingkit') : 'com.gome.ecmall:gzhibo_beautysettingkit:' + getProperty('AAR_GZHIBO_BEAUTY_VERSION') + '@aar',
+        GZhiBoAudioeffectsettingkit : true ? project(':GZhiBoAudioeffectsettingkit') : 'com.gome.ecmall:gzhibo_audioeffectsettingkit:' + getProperty('AAR_GZHIBO_AUDIO_VERSION') + '@aar',
+        GSZhiBo                     : true ? project(':GSZhiBo') : 'com.gome.ecmall:gzhibo:' + getProperty('AAR_GZHIBO_VERSION') + '@aar'
+
 
 ]
 /**
