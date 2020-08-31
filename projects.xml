@@ -65,6 +65,7 @@
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GShopCarBus.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GGomeShareBus.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GCashierdesk.git"/>
+    <project url="git@code.ds.gome.com.cn:mobile-android-common/GShelvesWidget.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GBusiness.git"/>
     <!-- WEEX模块 -->
     <project groups="private" url="git@code.ds.gome.com.cn:mobile-android-repo/GWeexCore.git"/>
@@ -100,7 +101,6 @@
     <project url="git@code.ds.gome.com.cn:mobile-android-business/MIm.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/MFriends.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GVAuction.git"/>
-    <project url="git@code.ds.gome.com.cn:mobile-android-common/GShelvesWidget.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GMoreService.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GMallPage.git"/>
 
