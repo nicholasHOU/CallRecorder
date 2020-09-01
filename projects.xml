@@ -117,6 +117,7 @@
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GStoreChannel.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GZhiBoAudioeffectsettingkit.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GZhiBoBeautysettingkit.git"/>
+    <project url="git@code.ds.gome.com.cn:mobile-android-business/GZhiboBus.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GSZhiBo.git"/>
 
     <!--主工程-->

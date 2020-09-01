@@ -255,6 +255,7 @@ ext.deps = [
 
         GZhiBoBeautysettingkit      : true ? project(':GZhiBoBeautysettingkit') : 'com.gome.ecmall:gzhibo_beautysettingkit:' + getProperty('AAR_GZHIBO_BEAUTY_VERSION') + '@aar',
         GZhiBoAudioeffectsettingkit : true ? project(':GZhiBoAudioeffectsettingkit') : 'com.gome.ecmall:gzhibo_audioeffectsettingkit:' + getProperty('AAR_GZHIBO_AUDIO_VERSION') + '@aar',
+        GZhiboBus                   : true ? project(':GZhiboBus') : 'com.gome.ecmall:zhibobus:' + getProperty('AAR_GZHIBO_BUS_VERSION') + '@aar',
         GSZhiBo                     : true ? project(':GSZhiBo') : 'com.gome.ecmall:gzhibo:' + getProperty('AAR_GZHIBO_VERSION') + '@aar'
 
 
