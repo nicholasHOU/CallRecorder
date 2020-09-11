@@ -10,7 +10,9 @@ buildscript {
         maven{url 'http://maven.aliyun.com/nexus/content/groups/public/'}
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.2.1'
+        classpath 'com.android.tools.build:gradle:2.3.0
+//        classpath 'com.android.tools.build:gradle:3.2.1'
+
 //        classpath 'com.gutils.apkfly:plugin:2.3.0.plus11'
         classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.5"
 
@@ -18,8 +20,8 @@ buildscript {
 //        classpath 'com.sensorsdata.analytics.android:android-gradle-plugin2:3.1.3'
         classpath 'com.sensorsdata.analytics.android:android-gradle-plugin2:3.2.9'
         classpath 'com.gutils.router:build:' + getProperty('LIB_ROUTER_VERSION')
-        //classpath 'com.gutils:apker:0.0.22-2.3.0'
-        classpath 'com.gutils:apker:0.0.20-3.2.1'
+        classpath 'com.gutils:apker:0.0.22-2.3.0'
+//        classpath 'com.gutils:apker:0.0.20-3.2.1'
         /**
          * add by yangbo
          * 处理多渠道
@@ -114,16 +116,27 @@ ext.deps = [
         GMsc              : 'com.gome.ecmall:msc:1.0.2@aar',
         GAVSdk            : 'com.gome:avsdk:1.1.17',
 
-        SMultidex         : 'com.android.support:multidex:1.0.3',
-        SMultidexInstr    : 'com.android.support:multidex-instrumentation:1.0.3',
+        SMultidex         : 'com.android.support:multidex:1.0.1',
+        SMultidexInstr    : 'com.android.support:multidex-instrumentation:1.0.1',
 
-        SRecyclerview        : 'com.android.support:recyclerview-v7:28.0.0',
-        SAppcompat           : 'com.android.support:appcompat-v7:28.0.0',
-        SV4                  : 'com.android.support:support-v4:28.0.0',
-        SCardview            : 'com.android.support:cardview-v7:28.0.0',
-        SDesign              : 'com.android.support:design:28.0.0',
-        SPercent             : 'com.android.support:percent:28.0.0',
-        SConstraint          : 'com.android.support.constraint:constraint-layout:1.1.3',
+        SRecyclerview        : 'com.android.support:recyclerview-v7:26.0.1',
+        SAppcompat           : 'com.android.support:appcompat-v7:26.0.1',
+//        SV4                  : 'com.android.support:support-v4:26.0.1',
+        SCardview            : 'com.android.support:cardview-v7:26.0.1',
+        SDesign              : 'com.android.support:design:26.0.1',
+        SPercent             : 'com.android.support:percent:26.0.1',
+        SConstraint          : 'com.android.support.constraint:constraint-layout:1.0.2',
+
+//        SMultidex         : 'com.android.support:multidex:1.0.3',
+//        SMultidexInstr    : 'com.android.support:multidex-instrumentation:1.0.3',
+//
+//        SRecyclerview        : 'com.android.support:recyclerview-v7:28.0.0',
+//        SAppcompat           : 'com.android.support:appcompat-v7:28.0.0',
+//        SV4                  : 'com.android.support:support-v4:28.0.0',
+//        SCardview            : 'com.android.support:cardview-v7:28.0.0',
+//        SDesign              : 'com.android.support:design:28.0.0',
+//        SPercent             : 'com.android.support:percent:28.0.0',
+//        SConstraint          : 'com.android.support.constraint:constraint-layout:1.1.3',
 
         SFresco              : 'com.facebook.fresco:fresco:1.10.0',
         SAnimatedGif         : 'com.facebook.fresco:animated-gif:1.10.0',
