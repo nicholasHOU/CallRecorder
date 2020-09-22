@@ -112,6 +112,7 @@ ext.deps = [
         GAVSdk            : 'com.gome:avsdk:1.1.17',
         SLiteAVSDK        : 'com.gome.zhibo:LiteAVSDK_Enterprise:7.5.9318',
         GImage            : 'com.gome.mcp:image:2.8.8',
+        GCACHE            : 'com.gome.mcp:cache:' + getProperty('AAR_MCP_VERSION') + '@aar',
 
         SMultidex         : 'com.android.support:multidex:1.0.1',
         SMultidexInstr    : 'com.android.support:multidex-instrumentation:1.0.1',
@@ -163,7 +164,7 @@ ext.deps = [
 
         GShare               :  false ? project(':GShare') : 'com.gome.mcp:share:' + getProperty('AAR_MCP_GSHARE_VERSION') + '@aar',
         GShareBus            :  false ? project(':GShareBus') : 'com.gome.ecmall:sharebus:' + getProperty('AAR_GSHARE_BUS_VERSION') + '@aar',
-
+        GView                : false ? project(':GView') : 'cn.gome.staff.ui:view:' + getProperty('AAR_UI_VIEW_VERSION') + '@aar',
         GPushService         : 'com.gome.ecmall:pushservice:' + getProperty('AAR_GPUSH_SERVICE_VERSION') + '@aar',
         GPushCore            : false ? project(':GPushCore') : 'com.gome.ecmall:pushcore:' + getProperty('AAR_GPUSH_CORE_VERSION') + '@aar',
         GPushGome            : false ? project(':GPushGome') : 'com.gome.ecmall:pushgome:' + getProperty('AAR_GPUSH_GOME_VERSION') + '@aar',
