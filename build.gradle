@@ -7,17 +7,21 @@ buildscript {
                 password = "qiudongchao1988"
             }
         }
+        maven{url 'http://maven.aliyun.com/nexus/content/groups/public/'}
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:2.3.0'
+//        classpath 'com.android.tools.build:gradle:3.2.1'
+
 //        classpath 'com.gutils.apkfly:plugin:2.3.0.plus11'
         classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.5"
 
         //神策gradle依赖
-        classpath 'com.sensorsdata.analytics.android:android-gradle-plugin2:3.1.3'
-
+//        classpath 'com.sensorsdata.analytics.android:android-gradle-plugin2:3.1.3'
+        classpath 'com.sensorsdata.analytics.android:android-gradle-plugin2:3.2.9'
         classpath 'com.gutils.router:build:' + getProperty('LIB_ROUTER_VERSION')
         classpath 'com.gutils:apker:0.0.22-2.3.0'
+//        classpath 'com.gutils:apker:0.0.20-3.2.1'
         /**
          * add by yangbo
          * 处理多渠道
@@ -38,6 +42,7 @@ allprojects {
         maven {
             url 'http://developer.huawei.com/repo'
         }
+        maven{url 'http://maven.aliyun.com/nexus/content/groups/public/'}
     }
     ext {
         compileSdkVersion = getProperty("COMPILE_SDK_VERSION") as Integer
@@ -90,9 +95,10 @@ ext.deps = [
         SAlipay           : 'com.gome.ecmall.third:alipaySdk:15.6.0-20190226104053@aar',
         SWechatSdk        : 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:5.4.0',
         STencentSdk       : 'com.thirdparty:tencent:open_sdk_r6019_lite',
+        SWeWorkSdk        : 'com.tencent.wework:wwork:1.0.0',
         SSinaWeibo        : 'com.thirdparty.sina:weibo:4.3.6',
         SSafeJs           : 'com.thirdparty:safe_android_js_webview:1',
-        GMBank            : 'com.thirdparty:gomepay_mbank_sdk:1.0.2', // 1.0.3版本正在测试中
+        GMBank            : 'com.thirdparty:gomepay_mbank_sdk:1.4-202008261040', // 1.0.3版本正在测试中
         SNineOldAndroid   : 'com.nineoldandroids:library:2.4.0',
         SGreenDao         : 'org.greenrobot:greendao:3.2.2',
         SRealm            : 'com.gome.third:realm-android:0.87.1-6@aar',
@@ -100,7 +106,7 @@ ext.deps = [
         SEmoji            : 'com.github.w446108264:AndroidEmoji:1.3-withsource',
 //        SGlide            : 'com.github.bumptech.glide:glide:3.6.0',
 
-        GRetrofit         : 'com.gome.mobile:retrofit:2.1.0-g6',
+        GRetrofit         : 'com.gome.mobile:retrofit:2.1.0-g7',
         GChannel          : 'com.gome.ecmall:channel:0.0.1',
         GPassguard        : 'com.gome.ecmall.third:passguard:0.0.2@aar',
         GMeifubao         : 'com.gome.ecmall.third:meifubao:2.1.1@aar',
@@ -119,10 +125,23 @@ ext.deps = [
 
         SRecyclerview        : 'com.android.support:recyclerview-v7:26.0.1',
         SAppcompat           : 'com.android.support:appcompat-v7:26.0.1',
+//        SV4                  : 'com.android.support:support-v4:26.0.1',
         SCardview            : 'com.android.support:cardview-v7:26.0.1',
         SDesign              : 'com.android.support:design:26.0.1',
         SPercent             : 'com.android.support:percent:26.0.1',
         SConstraint          : 'com.android.support.constraint:constraint-layout:1.0.2',
+
+//        SMultidex         : 'com.android.support:multidex:1.0.3',
+//        SMultidexInstr    : 'com.android.support:multidex-instrumentation:1.0.3',
+//
+//        SRecyclerview        : 'com.android.support:recyclerview-v7:28.0.0',
+//        SAppcompat           : 'com.android.support:appcompat-v7:28.0.0',
+//        SV4                  : 'com.android.support:support-v4:28.0.0',
+//        SCardview            : 'com.android.support:cardview-v7:28.0.0',
+//        SDesign              : 'com.android.support:design:28.0.0',
+//        SPercent             : 'com.android.support:percent:28.0.0',
+//        SConstraint          : 'com.android.support.constraint:constraint-layout:1.1.3',
+
         SFresco              : 'com.facebook.fresco:fresco:1.10.0',
         SAnimatedGif         : 'com.facebook.fresco:animated-gif:1.10.0',
         SAnimatedWebp        : 'com.facebook.fresco:animated-webp:1.10.0',

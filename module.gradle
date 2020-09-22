@@ -38,6 +38,9 @@ android {
 
 }
 
+//modify by Seven ； fix Gradle Upgrade
+//android.defaultConfig.javaCompileOptions.annotationProcessorOptions.includeCompileClasspath=true
+
 //apply plugin: 'com.gutils.apkfly.autogen'
 //autogen{
 //    coreProject project(':g_com:GBusiness')
