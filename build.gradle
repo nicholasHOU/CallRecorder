@@ -10,18 +10,16 @@ buildscript {
         maven{url 'http://maven.aliyun.com/nexus/content/groups/public/'}
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.3.0'
-//        classpath 'com.android.tools.build:gradle:3.2.1'
 
-//        classpath 'com.gutils.apkfly:plugin:2.3.0.plus11'
-        classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.5"
+        classpath 'com.android.tools.build:gradle:3.2.1'
+        classpath 'com.gutils:apker:0.0.20-3.2.1'
+
+        //classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.5"
 
         //神策gradle依赖
-//        classpath 'com.sensorsdata.analytics.android:android-gradle-plugin2:3.1.3'
         classpath 'com.sensorsdata.analytics.android:android-gradle-plugin2:3.2.9'
         classpath 'com.gutils.router:build:' + getProperty('LIB_ROUTER_VERSION')
-        classpath 'com.gutils:apker:0.0.22-2.3.0'
-//        classpath 'com.gutils:apker:0.0.20-3.2.1'
+
         /**
          * add by yangbo
          * 处理多渠道
@@ -115,29 +113,29 @@ ext.deps = [
         GPlayer           : 'cn.com.gomeplus.player:gomeplus-player:1.0.31',
         GDanmu            : 'cn.com.gomeplus.danmu:gomeplus-danmu:1.0.0@aar',
         GMsc              : 'com.gome.ecmall:msc:1.0.2@aar',
-        GAVSdk            : 'com.gome:avsdk:1.1.17',
+        GAVSdk            : 'com.gome:avsdk:1.1.19',
 
-        SMultidex         : 'com.android.support:multidex:1.0.1',
-        SMultidexInstr    : 'com.android.support:multidex-instrumentation:1.0.1',
-
-        SRecyclerview        : 'com.android.support:recyclerview-v7:26.0.1',
-        SAppcompat           : 'com.android.support:appcompat-v7:26.0.1',
-//        SV4                  : 'com.android.support:support-v4:26.0.1',
-        SCardview            : 'com.android.support:cardview-v7:26.0.1',
-        SDesign              : 'com.android.support:design:26.0.1',
-        SPercent             : 'com.android.support:percent:26.0.1',
-        SConstraint          : 'com.android.support.constraint:constraint-layout:1.0.2',
-
-//        SMultidex         : 'com.android.support:multidex:1.0.3',
-//        SMultidexInstr    : 'com.android.support:multidex-instrumentation:1.0.3',
+//        SMultidex         : 'com.android.support:multidex:1.0.1',
+//        SMultidexInstr    : 'com.android.support:multidex-instrumentation:1.0.1',
 //
-//        SRecyclerview        : 'com.android.support:recyclerview-v7:28.0.0',
-//        SAppcompat           : 'com.android.support:appcompat-v7:28.0.0',
-//        SV4                  : 'com.android.support:support-v4:28.0.0',
-//        SCardview            : 'com.android.support:cardview-v7:28.0.0',
-//        SDesign              : 'com.android.support:design:28.0.0',
-//        SPercent             : 'com.android.support:percent:28.0.0',
-//        SConstraint          : 'com.android.support.constraint:constraint-layout:1.1.3',
+//        SRecyclerview        : 'com.android.support:recyclerview-v7:26.0.1',
+//        SAppcompat           : 'com.android.support:appcompat-v7:26.0.1',
+////        SV4                  : 'com.android.support:support-v4:26.0.1',
+//        SCardview            : 'com.android.support:cardview-v7:26.0.1',
+//        SDesign              : 'com.android.support:design:26.0.1',
+//        SPercent             : 'com.android.support:percent:26.0.1',
+//        SConstraint          : 'com.android.support.constraint:constraint-layout:1.0.2',
+
+        SMultidex         : 'com.android.support:multidex:1.0.3',
+        SMultidexInstr    : 'com.android.support:multidex-instrumentation:1.0.3',
+
+        SRecyclerview        : 'com.android.support:recyclerview-v7:28.0.0',
+        SAppcompat           : 'com.android.support:appcompat-v7:28.0.0',
+        SV4                  : 'com.android.support:support-v4:28.0.0',
+        SCardview            : 'com.android.support:cardview-v7:28.0.0',
+        SDesign              : 'com.android.support:design:28.0.0',
+        SPercent             : 'com.android.support:percent:28.0.0',
+        SConstraint          : 'com.android.support.constraint:constraint-layout:1.1.3',
 
         SFresco              : 'com.facebook.fresco:fresco:1.10.0',
         SAnimatedGif         : 'com.facebook.fresco:animated-gif:1.10.0',
@@ -163,6 +161,8 @@ ext.deps = [
         AMap2DMap            : 'com.gome.ecmall.third:amap-2dmap:5.2.0_20170627',
         AMapSearch           : 'com.gome.ecmall.third:amap-search:6.5.0_20180930',
         GUpPay               : 'com.gome.ecmall.third:uppay:' + getProperty('AAR_UPPAY_PAY_VERSION') + '@aar',
+        GFace                : 'com.gome.face:liveness:3.6.1-20200930@aar',
+        GFaceCommon          : 'com.gome.face:common-motion:1.0.6-202010151830@aar',
 
         GTheme               : 'com.gome.ecmall:theme:' + getProperty('AAR_GTHEME_VERSION') + '@aar',
         GPermission          : 'com.gome.ecmall:permission:' + getProperty('AAR_GPERMISSION_VERSION') + '@aar',
@@ -212,6 +212,7 @@ ext.deps = [
         GCmbPay              : rootProject.ext.proDeps ? project(':GCmbPay') : 'com.gome.cmbpay:cmbpay:' + getProperty('AAR_CMBPAY_VERSION') + '@aar',
         GTongBaoSdk          : rootProject.ext.proDeps ? project(':GTongBaoSdk') : 'com.gome.ecmall:gomepay:' + getProperty('AAR_GOMEPAY_VERSION') + '@aar',
         GBaiTiao             : rootProject.ext.proDeps ? project(':GBaiTiao') : 'com.gome.ecmall:baitiao:' + getProperty('AAR_GBAITIAO_VERSION') + '@aar',
+        GFaceRecognition     : rootProject.ext.proDeps ? project(':GFaceRecognition') : 'com.gome.ecmall:facerecognition:' + getProperty('AAR_FACERECOGNITION_VERSION') + '@aar',
         GHybrid              : rootProject.ext.proDeps ? project(':GHybrid') : 'com.gome.ecmall:gh5:' + getProperty('AAR_GH5_VERSION') + '@aar',
         GFinanceCommon       : rootProject.ext.proDeps ? project(':GFinanceCommon') : 'com.gome.ecmall:financecommon:' + getProperty('AAR_GFINANCE_COMMON_VERSION') + '@aar',
         GFinance             : rootProject.ext.proDeps ? project(':GFinance') : 'com.gome.ecmall:finance:' + getProperty('AAR_GFINANCE_VERSION') + '@aar',
@@ -288,4 +289,4 @@ def depMcpAar(artifactId) {
 def depMcp(artifactId) {
     return "com.gome.mcp:$artifactId:${getProperty('AAR_MCP_VERSION')}"
 }
-apply plugin: "org.sonarqube"
+//apply plugin: "org.sonarqube"

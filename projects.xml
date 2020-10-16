@@ -53,6 +53,7 @@
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GRouterInterface.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GBusinessDeps.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GScheme.git"/>
+    <project url="git@code.ds.gome.com.cn:mobile-android-business/GFaceRecognition.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GAddress.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GBigPhoto.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GAlbum.git"/>
