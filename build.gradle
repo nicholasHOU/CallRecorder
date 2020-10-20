@@ -117,7 +117,8 @@ ext.deps = [
         SLiteAVSDK        : 'com.tencent.liteav:LiteAVSDK_Professional:7.5.9318', //专业版
         GImage            : 'com.gome.mcp:image:2.8.8',
         GCACHE            : 'com.gome.mcp:cache:' + getProperty('AAR_MCP_VERSION') + '@aar',
-
+        //异形屏适配工具
+        SpecialScreenTools  :'com.gome.ecmall:yixinscreen:0.0.1',
 //        SMultidex         : 'com.android.support:multidex:1.0.1',
 //        SMultidexInstr    : 'com.android.support:multidex-instrumentation:1.0.1',
 //
