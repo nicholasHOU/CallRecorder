@@ -8,6 +8,9 @@
     <project branch="master" groups="private" url="git@code.ds.gome.com.cn:mobile-android-common/GPlugin.git"/>
     <project groups="private" url="git@code.ds.gome.com.cn:mobile-android-common/GHotfix.git"/>
     <project groups="private" url="git@code.ds.gome.com.cn:mobile-android-common/GUpPay.git"/>
+    <project groups="private" url="git@code.ds.gome.com.cn:mobile-android-business/GZhiBoAudioeffectsettingkit.git"/>
+    <project groups="private" url="git@code.ds.gome.com.cn:mobile-android-business/GZhiBoBeautysettingkit.git"/>
+    <project groups="private" url="git@code.ds.gome.com.cn:mobile-android-business/GSZhiBo.git"/>
 
     <project groups="private" url="git@code.ds.gome.com.cn:mobile-android-common/GTheme.git"/>
     <project groups="private" url="git@code.ds.gome.com.cn:mobile-android-common/GAnalytics.git"/>
@@ -116,6 +119,7 @@
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GMemService.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GSimilar.git"/>
     <project url="git@code.ds.gome.com.cn:mobile-android-business/GStoreChannel.git"/>
+    <project branch="master" url="git@code.ds.gome.com.cn:mobile-android-business/GZhiboBus.git"/>
 
     <!--主工程-->
     <project app="true" groups="app" path="GomeApp" url="git@code.ds.gome.com.cn:mobile-android/GomePlus.git"/>

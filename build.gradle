@@ -102,7 +102,7 @@ ext.deps = [
         SRealm            : 'com.gome.third:realm-android:0.87.1-6@aar',
         SXhsKeyboard      : 'com.github.w446108264:XhsEmoticonsKeyboard:2.0.3',
         SEmoji            : 'com.github.w446108264:AndroidEmoji:1.3-withsource',
-        SGlide            : 'com.github.bumptech.glide:glide:3.6.0',
+//        SGlide            : 'com.github.bumptech.glide:glide:3.6.0',
 
         GRetrofit         : 'com.gome.mobile:retrofit:2.1.0-g7',
         GChannel          : 'com.gome.ecmall:channel:0.0.1',
@@ -114,7 +114,11 @@ ext.deps = [
         GDanmu            : 'cn.com.gomeplus.danmu:gomeplus-danmu:1.0.0@aar',
         GMsc              : 'com.gome.ecmall:msc:1.0.2@aar',
         GAVSdk            : 'com.gome:avsdk:1.1.19',
-
+        SLiteAVSDK        : 'com.tencent.liteav:LiteAVSDK_Professional:7.5.9318', //专业版
+        GImage            : 'com.gome.mcp:image:2.8.8',
+        GCACHE            : 'com.gome.mcp:cache:' + getProperty('AAR_MCP_VERSION') + '@aar',
+        //异形屏适配工具
+        SpecialScreenTools  :'com.gome.ecmall:yixinscreen:0.0.1',
 //        SMultidex         : 'com.android.support:multidex:1.0.1',
 //        SMultidexInstr    : 'com.android.support:multidex-instrumentation:1.0.1',
 //
@@ -178,9 +182,9 @@ ext.deps = [
         GTabLayout           :  'com.gome.ecmall:tablayout:' + getProperty('AAR_GTABLAYOUT_VERSION') + '@aar',
         GHtmlSpanner         :  'com.gome.ecmall:htmlspanner:' + getProperty('AAR_HTMLSPANNER_VERSION') + '@aar',
 
-        GShare               :  false ? project(':GShare') : 'com.gome.mcp:share:' + getProperty('AAR_MCP_GSHARE_VERSION') + '@aar',
-        GShareBus            :  false ? project(':GShareBus') : 'com.gome.ecmall:sharebus:' + getProperty('AAR_GSHARE_BUS_VERSION') + '@aar',
-
+        GShare               : false ? project(':GShare') : 'com.gome.mcp:share:' + getProperty('AAR_MCP_GSHARE_VERSION') + '@aar',
+        GShareBus            : false ? project(':GShareBus') : 'com.gome.ecmall:sharebus:' + getProperty('AAR_GSHARE_BUS_VERSION') + '@aar',
+        GView                : false ? project(':GView') : 'cn.gome.staff.ui:view:' + getProperty('AAR_UI_VIEW_VERSION') + '@aar',
         GPushService         : 'com.gome.ecmall:pushservice:' + getProperty('AAR_GPUSH_SERVICE_VERSION') + '@aar',
         GPushCore            : false ? project(':GPushCore') : 'com.gome.ecmall:pushcore:' + getProperty('AAR_GPUSH_CORE_VERSION') + '@aar',
         GPushGome            : false ? project(':GPushGome') : 'com.gome.ecmall:pushgome:' + getProperty('AAR_GPUSH_GOME_VERSION') + '@aar',
@@ -223,7 +227,7 @@ ext.deps = [
         GMaterialOrder       : rootProject.ext.proDeps ? project(':GMaterialOrder') : 'com.gome.ecmall:materialorder:' + getProperty('AAR_GMATERIAL_ORDER_VERSION') + '@aar',
         GX5Lib               : rootProject.ext.proDeps ? project(':GX5Lib') : 'com.gome.mcp:gx5:' + getProperty('AAR_GX5_VERSION') + '@aar',
         GProductDetail       : rootProject.ext.proDeps ? project(':GProductDetail') : 'com.gome.ecmall:product:' + getProperty('AAR_GPRODUCT_VERSION') + '@aar',
-        GProductVideoGuide       : rootProject.ext.proDeps ? project(':GProductVideoGuide') : 'com.gome.ecmall:videoguide:' + getProperty('AAR_GPRODUCT_VIDEO_GUIDE_VERSION') + '@aar',
+        GProductVideoGuide   : rootProject.ext.proDeps ? project(':GProductVideoGuide') : 'com.gome.ecmall:videoguide:' + getProperty('AAR_GPRODUCT_VIDEO_GUIDE_VERSION') + '@aar',
         GTQDetail            : rootProject.ext.proDeps ? project(':GTQDetail') : 'com.gome.ecmall:tqdetail:' + getProperty('AAR_GTQ_DETAIL_VERSION') + '@aar',
         GZxingScan           : rootProject.ext.proDeps ? project(':GZxingScan') : 'com.gome.ecmall:gzxing:' + getProperty('AAR_GZING_VERSION') + '@aar',
         GGomeCurrency        : rootProject.ext.proDeps ? project(':GGomeCurrency') : 'com.gome.ecmall:ggomecurrency:' + getProperty('AAR_GGOMECURRENCY_VERSION') + '@aar',
@@ -269,7 +273,9 @@ ext.deps = [
         MFriends             : rootProject.ext.proDeps ? project(':MFriends') : 'com.gome.ecmall:mfriends:' + getProperty('AAR_MFRIENDS_VERSION') + '@aar',
         MSocial              : rootProject.ext.proDeps ? project(':MSocial') : 'com.gome.ecmall:msocial:' + getProperty('AAR_MSOCIAL_VERSION') + '@aar',
         GVAuction            : rootProject.ext.proDeps ? project(':GVAuction') : 'com.gome.ecmall:gvauction:' + getProperty('AAR_GVAUCTION_VERSION') + '@aar',
-        GStoreChannel        : rootProject.ext.proDeps ? project(':GStoreChannel') : 'com.gome.ecmall.business:storechannel:' + getProperty('AAR_GBUSINESS_GSTORECHANNEL_VERSION') + '@aar'
+        GStoreChannel        : rootProject.ext.proDeps ? project(':GStoreChannel') : 'com.gome.ecmall.business:storechannel:' + getProperty('AAR_GBUSINESS_GSTORECHANNEL_VERSION') + '@aar',
+
+        GZhiboBus            : rootProject.ext.proDeps ? project(':GZhiboBus') : 'com.gome.ecmall:zhibobus:' + getProperty('AAR_GZHIBO_BUS_VERSION') + '@aar'
 
 ]
 /**
