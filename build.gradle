@@ -274,10 +274,10 @@ ext.deps = [
         GVAuction            : rootProject.ext.proDeps ? project(':GVAuction') : 'com.gome.ecmall:gvauction:' + getProperty('AAR_GVAUCTION_VERSION') + '@aar',
         GStoreChannel        : rootProject.ext.proDeps ? project(':GStoreChannel') : 'com.gome.ecmall.business:storechannel:' + getProperty('AAR_GBUSINESS_GSTORECHANNEL_VERSION') + '@aar',
 
-        GZhiBoBeautysettingkit      : true ? project(':GZhiBoBeautysettingkit') : 'com.gome.ecmall:gzhibo_beautysettingkit:0.0.1',
-        GZhiBoAudioeffectsettingkit : true ? project(':GZhiBoAudioeffectsettingkit') : 'com.gome.ecmall:gzhibo_audioeffectsettingkit:0.0.1',
-        GZhiboBus                   : true ? project(':GZhiboBus') : 'com.gome.ecmall:zhibobus:' + getProperty('AAR_GZHIBO_BUS_VERSION') + '@aar',
-        GSZhiBo                     : true ? project(':GSZhiBo') : 'com.gome.ecmall:gzhibo:' + getProperty('AAR_GZHIBO_VERSION') + '@aar'
+        GZhiBoBeautysettingkit      : rootProject.ext.proDeps ? project(':GZhiBoBeautysettingkit') : 'com.gome.ecmall:gzhibo_beautysettingkit:0.0.1',
+        GZhiBoAudioeffectsettingkit : rootProject.ext.proDeps ? project(':GZhiBoAudioeffectsettingkit') : 'com.gome.ecmall:gzhibo_audioeffectsettingkit:0.0.1',
+        GZhiboBus                   : rootProject.ext.proDeps ? project(':GZhiboBus') : 'com.gome.ecmall:zhibobus:' + getProperty('AAR_GZHIBO_BUS_VERSION') + '@aar',
+        GSZhiBo                     : rootProject.ext.proDeps ? project(':GSZhiBo') : 'com.gome.ecmall:gzhibo:' + getProperty('AAR_GZHIBO_VERSION') + '@aar'
 
 
 ]
