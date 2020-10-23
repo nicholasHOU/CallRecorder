@@ -110,8 +110,7 @@ ext.deps = [
         GMeifubao         : 'com.gome.ecmall.third:meifubao:2.1.1@aar',
         GZxing            : 'com.thirdparty:zxing:3.3.0',
         GAd               : 'cn.com.gomeplus.ad:gomeplus-ad-SDK:2.3.1',
-        GPlayer           : 'cn.com.gomeplus.player:gomeplus-player:1.0.31',
-        GDanmu            : 'cn.com.gomeplus.danmu:gomeplus-danmu:1.0.0@aar',
+        GPlayer           : 'cn.com.gomeplus.player:gomeplus-player:1.0.32',
         GMsc              : 'com.gome.ecmall:msc:1.0.2@aar',
         GAVSdk            : 'com.gome:avsdk:1.1.19',
         SLiteAVSDK        : 'com.tencent.liteav:LiteAVSDK_Professional:7.5.9318', //专业版
@@ -274,7 +273,6 @@ ext.deps = [
         MIm                  : rootProject.ext.proDeps ? project(':MIm') : 'com.gome.ecmall:mim:' + getProperty('AAR_MIM_VERSION') + '@aar',
         MFriends             : rootProject.ext.proDeps ? project(':MFriends') : 'com.gome.ecmall:mfriends:' + getProperty('AAR_MFRIENDS_VERSION') + '@aar',
         MSocial              : rootProject.ext.proDeps ? project(':MSocial') : 'com.gome.ecmall:msocial:' + getProperty('AAR_MSOCIAL_VERSION') + '@aar',
-        GVAuction            : rootProject.ext.proDeps ? project(':GVAuction') : 'com.gome.ecmall:gvauction:' + getProperty('AAR_GVAUCTION_VERSION') + '@aar',
         GStoreChannel        : rootProject.ext.proDeps ? project(':GStoreChannel') : 'com.gome.ecmall.business:storechannel:' + getProperty('AAR_GBUSINESS_GSTORECHANNEL_VERSION') + '@aar',
 
         GZhiboBus            : rootProject.ext.proDeps ? project(':GZhiboBus') : 'com.gome.ecmall:zhibobus:' + getProperty('AAR_GZHIBO_BUS_VERSION') + '@aar'
