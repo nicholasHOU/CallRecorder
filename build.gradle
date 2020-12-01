@@ -118,7 +118,7 @@ ext.deps = [
         GRetrofit         : 'com.gome.mobile:retrofit:2.1.0-g7',
         GChannel          : 'com.gome.ecmall:channel:0.0.1',
         GPassguard        : 'com.gome.ecmall.third:passguard:0.0.2@aar',
-        GMeifubao         : 'com.gome.ecmall.third:meifubao:2.1.7@aar',
+        GMeifubao         : 'com.gome.ecmall.third:meifubao:2.1.8@aar',
         GZxing            : 'com.thirdparty:zxing:3.3.0',
         GAd               : 'cn.com.gomeplus.ad:gomeplus-ad-SDK:2.3.1',
         GPlayer           : 'cn.com.gomeplus.player:gomeplus-player:1.0.32',
