@@ -7,6 +7,9 @@ buildscript {
                 password = "qiudongchao1988"
             }
         }
+        maven {
+            url 'https://developer.huawei.com/repo'
+        }
         maven{url 'http://maven.aliyun.com/nexus/content/groups/public/'}
     }
     dependencies {
@@ -25,6 +28,7 @@ buildscript {
          * 处理多渠道
          */
         classpath 'com.android.gome.cary:plugin:0.0.5'
+        classpath 'com.huawei.agconnect:agcp:1.4.1.300'
     }
 }
 
@@ -38,7 +42,7 @@ allprojects {
             }
         }
         maven {
-            url 'http://developer.huawei.com/repo'
+            url 'https://developer.huawei.com/repo'
         }
         maven{url 'http://maven.aliyun.com/nexus/content/groups/public/'}
     }
