@@ -211,6 +211,13 @@ ext.deps = [
         GWeexCore            : false ? project(':GWeexCore') : 'com.gome.mcp:weex-core:' + getProperty('AAR_GWEEXCORE_VERSION') + '@aar',
         GWeexUpdate          : false ? project(':GWeexUpdate') : 'com.gome.mcp:weex-update:' + getProperty('AAR_GWEEXUPDATE_VERSION') + '-gome@aar',
 
+        // Flutter模块
+        GFlutterPluginSdk    : false ? project(":GFlutterPluginSDK") : 'com.gome.mcp:flutter-plugin-sdk:' + getProperty('AAR_FLUTTER_PLUGIN_SDK_VERSION') + '@aar',
+        GFlutterModule       : false ? project(":flutter") : 'com.gome.ecmall.flutter:gm_bang_flutter:' + getProperty('AAR_FLUTTER_MODULE_VERSION') + '@aar' ,
+        GFlutterBoost        : false ? project(":flutter_boost") : 'com.gome.ecmall.flutter:flutter_boost:' + getProperty('AAR_FLUTTER_MODULE_VERSION') + '@aar',
+        //GdownLoad
+        GDownload            : false ? project(":GDownload") : 'com.gome.ecmall:gdownload:' + getProperty('AAR_GDOWNLOAD_VERSION') + '@aar',
+
         GFrameUtils          : rootProject.ext.proDeps ? project(':GFrame-utils') : 'com.gome.ecmall:frame-utils:' + getProperty('AAR_GFRAME_UTILS_VERSION') + '@aar',
         GFrameHttp           : rootProject.ext.proDeps ? project(':GFrame-http') : 'com.gome.ecmall:frame-http:' + getProperty('AAR_GFRAME_HTTP_VERSION') + '@aar',
         GFrameImage          : rootProject.ext.proDeps ? project(':GFrame-image') : 'com.gome.ecmall:frame-image:' + getProperty('AAR_GFRAME_IMAGE_VERSION') + '@aar',
