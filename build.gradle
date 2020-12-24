@@ -164,7 +164,7 @@ ext.deps = [
 
         GSafekeyboard        : 'com.bangcle:safeKeyboard:1.0.7',
         GUpdate              : 'com.gome.mcp:update:2.8.9',
-        GYunNengTimeWidget   : 'com.gome.ecmall:yunnengtimewidget:2.0.0@aar',
+        GYunNengTimeWidget   : 'com.gome.ecmall:yunnengtimewidget:2.1.0@aar',
         GWap                 : 'com.gome.mcp:wap:' + getProperty('AAR_MCP_WAP_VERSION') + '@aar',
         STitlebar            : 'cn.gome.staff.ui:titlebar:' + getProperty('AAR_STITLEBAR_VERSION') + '@aar',
         GCrash               : 'com.gome.mcp:crash:' + getProperty('AAR_MCP_VERSION') + '@aar',
