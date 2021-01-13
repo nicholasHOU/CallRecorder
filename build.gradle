@@ -124,7 +124,7 @@ ext.deps = [
         GPlayer           : 'cn.com.gomeplus.player:gomeplus-player:1.0.32',
         GMsc              : 'com.gome.ecmall:msc:1.0.2@aar',
         GAVSdk            : 'com.gome:avsdk:1.1.022',
-        SLiteAVSDK        : 'com.tencent.liteav:LiteAVSDK_Professional:7.5.9318', //专业版
+        SLiteAVSDK        : 'com.tencent.liteav:LiteAVSDK_Professional:8.2.9809', //专业版
         //SLiteAVSDK        : 'com.tencent.liteavsdk:LiteAVSDK_Smart:latest.release', //普通版
         //SLiteAVSDK        : 'com.gome.zhibo:LiteAVSDK_Enterprise:7.5.9318', //企业版
         GImage            : 'com.gome.mcp:image:2.8.8',
