@@ -165,7 +165,6 @@ ext.deps = [
         Gomeanimated         : 'com.gome.fresco:animated-gif:1.10.0',
         GomeWebpsupport      : 'com.gome.fresco:webpsupport:1.10.0@aar',
         GRouter              : 'com.gutils.router:router:' + getProperty('LIB_ROUTER_VERSION') + '@aar',
-        GGVGSdk              : 'com.gome.rtc:gome_video_guide_sdk:1.1.5.23',
 
         GSafekeyboard        : 'com.bangcle:safeKeyboard:1.0.7',
         GUpdate              : 'com.gome.mcp:update:2.8.9',
