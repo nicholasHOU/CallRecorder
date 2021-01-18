@@ -1039,6 +1039,42 @@ def cmd_apk(args):
         else:
             print 'Not find apk, check the exec cmd directory is in WorkSpace --- Chinglish !!!'
 
+
+def swRemoteHost(host, moduleDir):
+    if os.path.isdir(moduleDir) and ".git" in os.listdir(moduleDir):
+        print moduleDir
+
+        # 查看远程地址
+        remoteV = os.popen("cd %s && git remote -v" % (moduleDir)).read()
+
+        # 分割，找到具体url
+        gitOldUrl = remoteV.split("\n")[0].split()[1]
+        print u"原git地址: %s" % gitOldUrl
+
+        # 切换远程地址
+        gitOldHost = gitOldUrl.split(":")
+        # print u"原git host地址: %s" % gitOldHost[0]
+        gitNewUrl = gitOldUrl.replace(gitOldHost[0], host)
+        print u"新git地址: %s" % gitNewUrl
+        cmdSet = "git remote set-url origin %s" % gitNewUrl
+        cmdSet = "cd %s && %s" % (moduleDir, cmdSet)
+        # print cmdSet
+        os.popen(cmdSet).read()
+        print u"%s 切换远程地址执行完成 ！\n" % moduleDir
+
+def set_remote(args):
+    set = args.set
+    if set:
+        newHostUrl = set[0]
+
+        rootDir = os.listdir('.')
+        for childDir in rootDir:
+            swRemoteHost(newHostUrl, childDir)
+
+        swRemoteHost(newHostUrl, os.path.abspath('.'))
+
+        print u" ~~~全部执行完毕 ！！！"
+
 ###################################################################
 ### 主程序入口
 ###################################################################
@@ -1159,6 +1195,12 @@ if __name__ == '__main__':
     parser_apk_.add_argument("-i", "--install", help=u'安装apk到手机', action='append', default=[])
     # parser_apk_.add_argument("-di", "--debugInstall", help=u'构建Debug包，并安装到手机', action='store_true', default=False)
     # parser_apk_.add_argument("-ri", "--releaseInstall", help=u'构建Release包，并安装到手机', action='store_true', default=False)
+
+
+    # 切换远程地址
+    parser_remote = subparsers.add_parser("remote", help=u"远程地址")
+    parser_remote.set_defaults(func=set_remote)
+    parser_remote.add_argument("-s", "--set", help=u'切换远程地址', action='append', default=[])
 
     # 参数解析
     args = parser.parse_args()
