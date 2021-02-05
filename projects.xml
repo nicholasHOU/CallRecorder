@@ -56,7 +56,6 @@
     <project url="git@code.gome.inc:mobile-android-business/GRouterInterface.git"/>
     <project url="git@code.gome.inc:mobile-android-business/GBusinessDeps.git"/>
     <project url="git@code.gome.inc:mobile-android-business/GScheme.git"/>
-    <project url="git@code.gome.inc:mobile-android-business/GFaceRecognition.git"/>
     <project url="git@code.gome.inc:mobile-android-business/GAddress.git"/>
     <project url="git@code.gome.inc:mobile-android-business/GBigPhoto.git"/>
     <project url="git@code.gome.inc:mobile-android-business/GAlbum.git"/>
