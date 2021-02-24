@@ -166,7 +166,7 @@ ext.deps = [
         GomeWebpsupport      : 'com.gome.fresco:webpsupport:1.10.0@aar',
         GRouter              : 'com.gutils.router:router:' + getProperty('LIB_ROUTER_VERSION') + '@aar',
 
-        GSafekeyboard        : 'com.bangcle:safeKeyboard:1.0.7',
+        GSafekeyboard        : 'com.gome.mcp:safeKeyboard:2.8.8-v7a',
         GUpdate              : 'com.gome.mcp:update:2.8.9',
         GYunNengTimeWidget   : 'com.gome.ecmall:yunnengtimewidget:2.1.0@aar',
         GWap                 : 'com.gome.mcp:wap:' + getProperty('AAR_MCP_WAP_VERSION') + '@aar',
