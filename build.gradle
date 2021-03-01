@@ -81,7 +81,7 @@ task clean(type: Delete) {
 
 ext.deps = [
         GHttp            : 'com.gome.mcp:http:2.8.8_v5@aar',
-        GUtils           : depMcpAar('utils'),
+        GUtils            : 'com.gome.mcp:utils:2.8.8_v2@aar',
 
         SProtobuf         : 'com.google.protobuf:protobuf-java:2.6.1',
         SOkHttp           : 'com.squareup.okhttp3:okhttp:3.12.12',
@@ -166,7 +166,7 @@ ext.deps = [
         GomeWebpsupport      : 'com.gome.fresco:webpsupport:1.10.0@aar',
         GRouter              : 'com.gutils.router:router:' + getProperty('LIB_ROUTER_VERSION') + '@aar',
 
-        GSafekeyboard        : 'com.bangcle:safeKeyboard:1.0.7',
+        GSafekeyboard        : 'com.gome.mcp:safeKeyboard:2.8.8-v7a',
         GUpdate              : 'com.gome.mcp:update:2.8.9',
         GYunNengTimeWidget   : 'com.gome.ecmall:yunnengtimewidget:2.1.0@aar',
         GWap                 : 'com.gome.mcp:wap:' + getProperty('AAR_MCP_WAP_VERSION') + '@aar',
@@ -183,6 +183,7 @@ ext.deps = [
         GUpPay               : 'com.gome.ecmall.third:uppay:' + getProperty('AAR_UPPAY_PAY_VERSION') + '@aar',
         GFace                : 'com.gome.face:liveness:3.6.1-20200930@aar',
         GFaceCommon          : 'com.gome.face:common-motion:1.0.9-202010191740@aar',
+        GOaid                : 'com.gome.third.oaid:oaid:1.0.25@aar',
 
         SConstraintSolver    : 'com.android.support.constraint:constraint-layout-solver:1.1.3',
 
@@ -235,7 +236,8 @@ ext.deps = [
         GWidget              : rootProject.ext.proDeps ? project(':GWidget') : 'com.gome.ecmall:widget:' + getProperty('AAR_GWIDGET_VERSION') + '@aar',
         GSmartRefreshLayout  : rootProject.ext.proDeps ? project(':GSmartRefreshLayout') : 'com.gome.ecmall:refreshsmt:' + getProperty('AAR_REFRESH_SMT_VERSION') + '@aar',
         GSelectPhoto         : rootProject.ext.proDeps ? project(':GSelectPhoto') : 'com.gome.ecmall:selectphoto:' + getProperty('AAR_GSELECT_PHOTO_VERSION') + '@aar',
-        GDXRisk               : rootProject.ext.proDeps ? project(':GDXRisk') : 'com.gome.mcp:dxrisk:' + getProperty('AAR_GDXRISK_VERSION') + '@aar',
+        GDXRisk              : rootProject.ext.proDeps ? project(':GDXRisk') : 'com.gome.mcp:dxrisk:' + getProperty('AAR_GDXRISK_VERSION') + '@aar',
+        GFaceLive            : rootProject.ext.proDeps ? project(':GFaceLive') : 'com.gome.mobile.common:facelive:' + getProperty('AAR_GFACELIVE_VERSION') + '@aar',
         GLogin               : rootProject.ext.proDeps ? project(':GLogin') : 'com.gome.ecmall:login:' + getProperty('AAR_GLOGIN_VERSION') + '@aar',
         GLoginBusiness       : rootProject.ext.proDeps ? project(':GLoginBusiness') : 'com.gome.ecmall:loginbusiness:' + getProperty('AAR_GLOGIN_BUSINESS_VERSION') + '@aar',
         GPullrefresh         : rootProject.ext.proDeps ? project(':GPullrefresh') : 'com.gome.ecmall:pullrefresh:' + getProperty('AAR_GPULLREFRESH_VERSION') + '@aar',
