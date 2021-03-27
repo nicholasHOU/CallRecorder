@@ -202,6 +202,11 @@ ext.deps = [
         GTabLayout           :  'com.gome.ecmall:tablayout:' + getProperty('AAR_GTABLAYOUT_VERSION') + '@aar',
         GHtmlSpanner         :  'com.gome.ecmall:htmlspanner:' + getProperty('AAR_HTMLSPANNER_VERSION') + '@aar',
 
+//        SBuss                : 'cn.gome.staff:buss:' + getProperty('AAR_SBUSS_VERSION') + '@aar',
+//        SScheme              : 'cn.gome.staff:scheme:' + getProperty('AAR_SSCHEME_VERSION') + '@aar',
+        SBuss                : 'cn.gome.staff:buss:42.48.1@aar',
+        SScheme              : 'cn.gome.staff:scheme:42.49.2@aar',
+
         Gsuperplayerkit      : false ? project(':Gsuperplayerkit') : 'com.gome.ecmall:shortvideo:' + getProperty('AAR_SHORT_VIDEO_BUS_VERSION') + '@aar',
         GShare               : false ? project(':GShare') : 'com.gome.mcp:share:' + getProperty('AAR_MCP_GSHARE_VERSION') + '@aar',
         GShareBus            : false ? project(':GShareBus') : 'com.gome.ecmall:sharebus:' + getProperty('AAR_GSHARE_BUS_VERSION') + '@aar',
