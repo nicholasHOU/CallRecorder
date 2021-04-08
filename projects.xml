@@ -111,6 +111,7 @@
 
     <project artifactId="productsearch" bundleOpen="false" url="git@code.gome.inc:mobile-android-business/GProductSearch.git"/>
      <project artifactId="product" bundleOpen="false" url="git@code.gome.inc:mobile-android-business/GProductDetail.git"/>
+    <project url="git@code.gome.inc:mobile-android-business/GShoppingCart.git"/>
     <project url="git@code.gome.inc:mobile-android-business/GShopCart.git"/>
     <project url="git@code.gome.inc:mobile-android-business/GSetting.git"/>
     <project url="git@code.gome.inc:mobile-android-business/GMemHome.git"/>
