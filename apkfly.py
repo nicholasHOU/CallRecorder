@@ -84,8 +84,10 @@ def check_root_project():
     校验当前工作空间是否合法
     :return: True or False
     """
-    file_exist = os.path.exists(file_build) and os.path.exists(file_settings)
-    is_file = os.path.isfile(file_settings) and os.path.isfile(file_build)
+    # file_exist = os.path.exists(file_build) and os.path.exists(file_settings)
+    # is_file = os.path.isfile(file_settings) and os.path.isfile(file_build)
+    file_exist = os.path.exists(file_build)
+    is_file = os.path.isfile(file_build)
     result = file_exist and is_file
     if not result:
         raise Exception(u"工作空间校验失败")
