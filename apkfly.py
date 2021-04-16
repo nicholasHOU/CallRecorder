@@ -1030,17 +1030,42 @@ def cmd_apk(args):
             print 'start install apk: ' + apkPath
             install_output = os.popen("adb install -r %s" % (apkPath))
             print install_output.read()
-
-            if install[0] == 'gome':
-                start_output = os.popen("adb shell am start -n com.gome.eshopnew/com.gome.ecmall.home.LaunchActivity")
-                print start_output.read()
-            elif install[0] == 'bang':
-                start_output = os.popen("adb shell am start -n cn.gome.bangbang/com.gome.ecmall.home.LaunchActivity")
-                print start_output.read()
-
+            startApp(apkPath)
         else:
             print 'Not find apk, check the exec cmd directory is in WorkSpace --- Chinglish !!!'
 
+# 启动app
+def startApp(apkPath):
+    # 1、先找到aapt命令
+    # 2、通过aapt命令查询包名和launch页信息
+    dump_output = os.popen("%s dump badging %s" % ("aapt", apkPath))
+    dump_output_lines = dump_output.readlines()
+    package = ""
+    launch = ""
+    for line in dump_output_lines:
+        if line.startswith("package:"):
+            print line # package: name='cn.gome.bangbang' versionCode='206' versionName='8.0.6'
+            d = splitKV(line)
+            package = d['name']
+            print package
+        if line.startswith("launchable-activity:"):
+            print line # launchable-activity: name='com.gome.ecmall.home.LaunchActivity'
+            d = splitKV(line)
+            launch = d['name']
+            print launch
+    #/3、再通过adb命令启动app
+    start_output = os.popen("adb shell am start -n %s/%s" % (package, launch))
+    print start_output.read()
+
+# 分解aapt查找出的信息，组装成字典
+def splitKV(line):
+    d = {}
+    kvs = line.split(' ')
+    for kvStr in kvs:
+        if '=' in kvStr:
+            kv = kvStr.split('=')
+            d[kv[0]] = kv[1].replace('\'', '')
+    return d
 
 def swRemoteHost(host, moduleDir):
     if os.path.isdir(moduleDir) and ".git" in os.listdir(moduleDir):
@@ -1194,7 +1219,7 @@ if __name__ == '__main__':
     parser_apk_ = subparsers.add_parser("apk", help=u"操作apk文件")
     parser_apk_.set_defaults(func=cmd_apk)
     parser_apk_.add_argument("-u", "--upload", help=u'上传apk到finder', action='store_true', default=False)
-    parser_apk_.add_argument("-i", "--install", help=u'安装apk到手机', action='append', default=[])
+    parser_apk_.add_argument("-i", "--install", help=u'安装apk到手机', action='store_true', default=False)
     # parser_apk_.add_argument("-di", "--debugInstall", help=u'构建Debug包，并安装到手机', action='store_true', default=False)
     # parser_apk_.add_argument("-ri", "--releaseInstall", help=u'构建Release包，并安装到手机', action='store_true', default=False)
 
