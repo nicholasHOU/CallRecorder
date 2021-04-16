@@ -998,10 +998,7 @@ def cmd_apk(args):
     # 命令
     upload = args.upload
     install = args.install
-
-    if upload and install:
-        print 'Error, upload and install, Only one command can be executed at a time'
-        return
+    deps = args.deps
 
     if upload:
         apkPath = findApkPath()
@@ -1023,8 +1020,7 @@ def cmd_apk(args):
                 print '2.Upload apk failed, %s!' % downloadUrl
         else:
             print 'Not find apk, check the exec cmd directory is in WorkSpace --- Chinglish !!!'
-
-    if install:
+    elif install:
         apkPath = findApkPath()
         if os.path.exists(apkPath):
             print '1. Start install apk: ' + apkPath
@@ -1036,6 +1032,54 @@ def cmd_apk(args):
                 print 'install fail'
         else:
             print 'Not find apk, check the exec cmd directory is in WorkSpace --- Chinglish !!!'
+    elif deps:
+        print u'开始部署依赖'
+        # 读取setting中的include 项目
+        # 找到项目对应的maven id
+        # 修改主项目中deps.gradle中的配置（根据gradle.properties中变量判断是哪个app, gome, bang, mini）
+            # 添加configurations排除依赖
+            # 添加项目compile依赖
+        # 关闭debug下的混淆开关
+        includeMoudles = []
+        for line in open(file_settings):
+            line = line.strip()
+            if not (line.startswith('//') or line.startswith('/') or line.startswith('*')):
+                ls = line.split('\"')
+                moduleName = ls[1].replace(':', '')
+                includeMoudles.append(moduleName)
+
+        modules = []
+        start = False
+        for line in open(file_build):
+            line = line.strip()
+            if not (line == "" or line.startswith('//') or line.startswith('/') or line.startswith('*')):
+                if line.startswith('ext.deps'):
+                    start = True
+                    continue
+                elif line.startswith(']') and start:
+                    start = False
+                # 开始解析 ext.deps[ ] 中的配置
+                if  start:
+                    lines = line.split(' ', 1)
+                    moduleName = lines[0]
+                    if moduleName in includeMoudles:
+                        matchObj = re.match(u".*'((com|cn)\.gome\.[^']*)'", lines[1], re.M|re.I)
+                        if matchObj:
+                            ga = matchObj.group(1)
+                            gas = ga.split(':')
+                            module = ModuleInfo(moduleName, gas[0], gas[1])
+                            modules.append(module)
+        for m in modules:
+            print m
+
+# module 的信息（名字、groupId、artifactId）
+class ModuleInfo(object):
+    def __init__(self, name, groupId, artifactId):
+        self.name = name
+        self.groupId = groupId
+        self.artifactId = artifactId
+    def __str__(self):
+        return 'name:%s  groupId:%s  artifactId:%s' %(self.name,self.groupId,self.artifactId)
 
 # 启动app
 def startApp(apkPath):
@@ -1228,18 +1272,19 @@ if __name__ == '__main__':
                             default=False)
 
     # 操作apk文件
-    parser_apk_ = subparsers.add_parser("apk", help=u"操作apk文件")
+    parser_apk_ = subparsers.add_parser("deploy", help=u"开发部署工具")
     parser_apk_.set_defaults(func=cmd_apk)
     parser_apk_.add_argument("-u", "--upload", help=u'上传apk到finder', action='store_true', default=False)
-    parser_apk_.add_argument("-i", "--install", help=u'安装apk到手机', action='store_true', default=False)
+    parser_apk_.add_argument("-i", "--install", help=u'自动寻找apk，并安装到手机', action='store_true', default=False)
     # parser_apk_.add_argument("-di", "--debugInstall", help=u'构建Debug包，并安装到手机', action='store_true', default=False)
     # parser_apk_.add_argument("-ri", "--releaseInstall", help=u'构建Release包，并安装到手机', action='store_true', default=False)
+    parser_apk_.add_argument("-d", "--deps", help=u'根据setting中的配置的项目，部署依赖配置', action='store_true', default=False)
 
 
     # 切换远程地址
     parser_remote = subparsers.add_parser("remote", help=u"远程地址")
     parser_remote.set_defaults(func=set_remote)
-    parser_remote.add_argument("-s", "--set", help=u'切换远程地址', action='append', default=[])
+    parser_remote.add_argument("-s", "--set", help=u'切换远程地址Host, apkfly.py remote -s git@code.gome.inc', action='append', default=[])
 
     # 参数解析
     args = parser.parse_args()
