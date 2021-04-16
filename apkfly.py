@@ -1027,10 +1027,13 @@ def cmd_apk(args):
     if install:
         apkPath = findApkPath()
         if os.path.exists(apkPath):
-            print 'start install apk: ' + apkPath
-            install_output = os.popen("adb install -r %s" % (apkPath))
-            print install_output.read()
-            startApp(apkPath)
+            print '1. Start install apk: ' + apkPath
+            install_output = os.popen("adb install -r %s" % (apkPath)).read()
+            print install_output
+            if 'Success' in install_output:
+                startApp(apkPath)
+            else:
+                print 'install fail'
         else:
             print 'Not find apk, check the exec cmd directory is in WorkSpace --- Chinglish !!!'
 
@@ -1038,22 +1041,31 @@ def cmd_apk(args):
 def startApp(apkPath):
     # 1、先找到aapt命令
     # 2、通过aapt命令查询包名和launch页信息
+    print '2. Use aapt cmd, find app package and launch'
     dump_output = os.popen("%s dump badging %s" % ("aapt", apkPath))
     dump_output_lines = dump_output.readlines()
     package = ""
     launch = ""
     for line in dump_output_lines:
         if line.startswith("package:"):
-            print line # package: name='cn.gome.bangbang' versionCode='206' versionName='8.0.6'
+            # print line # package: name='cn.gome.bangbang' versionCode='206' versionName='8.0.6'
             d = splitKV(line)
-            package = d['name']
-            print package
+            try:
+                package = d['name']
+            except KeyError:
+                print 'package find fail'
         if line.startswith("launchable-activity:"):
-            print line # launchable-activity: name='com.gome.ecmall.home.LaunchActivity'
+            # print line # launchable-activity: name='com.gome.ecmall.home.LaunchActivity'
             d = splitKV(line)
-            launch = d['name']
-            print launch
+            try:
+                launch = d['name']
+            except KeyError:
+                print 'launchable-activity find fail'
+    if package == "" or launch == "":
+        print 'find app info fail'
+        return
     #/3、再通过adb命令启动app
+    print '3. Start open app...'
     start_output = os.popen("adb shell am start -n %s/%s" % (package, launch))
     print start_output.read()
 
