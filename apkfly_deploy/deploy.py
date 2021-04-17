@@ -61,7 +61,7 @@ def getIncludeModule():
     includeModules = []
     for line in open(file_settings):
         line = line.strip()
-        if not (line.startswith('//') or line.startswith('/') or line.startswith('*')):
+        if not (line == '' or line.startswith('//') or line.startswith('/') or line.startswith('*')):
             ls = line.split('\"')
             moduleName = ls[1].replace(':', '')
             includeModules.append(moduleName)
@@ -137,8 +137,9 @@ def writeDepExcludesToBuildGradle(moule, moduleInfos):
                 print u"        写入exclude完毕"
     new_file.close()
     # 把目前的build文件备份，新生成的build文件替换原文件
-    if os.path.exists(moduleBuildGradle_bak): os.remove(moduleBuildGradle_bak)
-    os.rename(moduleBuildGradle, moduleBuildGradle_bak)
+    # if os.path.exists(moduleBuildGradle_bak): os.remove(moduleBuildGradle_bak)
+    # os.rename(moduleBuildGradle, moduleBuildGradle_bak)
+    if os.path.exists(moduleBuildGradle): os.remove(moduleBuildGradle)
     os.rename(moduleBuildGradle_new, moduleBuildGradle)
 
 def writeConfigurationsExcludesAndCompileToBuildGradle(moule, moduleInfos):
@@ -167,8 +168,9 @@ def writeConfigurationsExcludesAndCompileToBuildGradle(moule, moduleInfos):
                 print u"    写入compile完毕"
     new_file.close()
     # 把目前的build文件备份，新生成的build文件替换原文件
-    if os.path.exists(moduleBuildGradle_bak): os.remove(moduleBuildGradle_bak)
-    os.rename(moduleBuildGradle, moduleBuildGradle_bak)
+    # if os.path.exists(moduleBuildGradle_bak): os.remove(moduleBuildGradle_bak)
+    # os.rename(moduleBuildGradle, moduleBuildGradle_bak)
+    if os.path.exists(moduleBuildGradle): os.remove(moduleBuildGradle)
     os.rename(moduleBuildGradle_new, moduleBuildGradle)
 
 def writeExcludesToBuildGradle(new_file, curModule, moduleInfos):
