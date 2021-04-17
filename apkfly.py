@@ -11,6 +11,8 @@ import xml
 from collections import Counter
 from xml.dom import minidom
 import platform
+sys.path.append(r'apkfly_deploy')
+import deploy
 
 __author__ = "qiudongchao<1162584980@qq.com>"
 __version__ = "5.1.2"
@@ -993,94 +995,6 @@ def findApkPath():
     else:
         return ''
 
-def cmd_apk(args):
-
-    # 命令
-    upload = args.upload
-    install = args.install
-    deps = args.deps
-
-    if upload:
-        apkPath = findApkPath()
-        if os.path.exists(apkPath):
-            print '1.Successful find apk, start upload it: ' + apkPath
-            downloadUrl = uploadApk(apkPath)
-            if len(downloadUrl) > 1 and downloadUrl.startswith('http'):
-                print '2.Upload apk succeeded, download url:'
-                print '  %s' % downloadUrl
-                result = generateQRCode(downloadUrl)
-                if result == 1:
-                    print "3.QR code generate succeeded, from 'python qrcode lib'"
-                elif result == 2:
-                    print "3.QR code generate succeeded, from 'online api'"
-                    print '  QR code path: %s' % QR_CODE_IMG_CACHE_PAHT
-                else:
-                    print '3.QR code generate failed'
-            else:
-                print '2.Upload apk failed, %s!' % downloadUrl
-        else:
-            print 'Not find apk, check the exec cmd directory is in WorkSpace --- Chinglish !!!'
-    elif install:
-        apkPath = findApkPath()
-        if os.path.exists(apkPath):
-            print '1. Start install apk: ' + apkPath
-            install_output = os.popen("adb install -r %s" % (apkPath)).read()
-            print install_output
-            if 'Success' in install_output:
-                startApp(apkPath)
-            else:
-                print 'install fail'
-        else:
-            print 'Not find apk, check the exec cmd directory is in WorkSpace --- Chinglish !!!'
-    elif deps:
-        print u'开始部署依赖'
-        # 读取setting中的include 项目
-        # 找到项目对应的maven id
-        # 修改主项目中deps.gradle中的配置（根据gradle.properties中变量判断是哪个app, gome, bang, mini）
-            # 添加configurations排除依赖
-            # 添加项目compile依赖
-        # 关闭debug下的混淆开关
-        includeMoudles = []
-        for line in open(file_settings):
-            line = line.strip()
-            if not (line.startswith('//') or line.startswith('/') or line.startswith('*')):
-                ls = line.split('\"')
-                moduleName = ls[1].replace(':', '')
-                includeMoudles.append(moduleName)
-
-        modules = []
-        start = False
-        for line in open(file_build):
-            line = line.strip()
-            if not (line == "" or line.startswith('//') or line.startswith('/') or line.startswith('*')):
-                if line.startswith('ext.deps'):
-                    start = True
-                    continue
-                elif line.startswith(']') and start:
-                    start = False
-                # 开始解析 ext.deps[ ] 中的配置
-                if  start:
-                    lines = line.split(' ', 1)
-                    moduleName = lines[0]
-                    if moduleName in includeMoudles:
-                        matchObj = re.match(u".*'((com|cn)\.gome\.[^']*)'", lines[1], re.M|re.I)
-                        if matchObj:
-                            ga = matchObj.group(1)
-                            gas = ga.split(':')
-                            module = ModuleInfo(moduleName, gas[0], gas[1])
-                            modules.append(module)
-        for m in modules:
-            print m
-
-# module 的信息（名字、groupId、artifactId）
-class ModuleInfo(object):
-    def __init__(self, name, groupId, artifactId):
-        self.name = name
-        self.groupId = groupId
-        self.artifactId = artifactId
-    def __str__(self):
-        return 'name:%s  groupId:%s  artifactId:%s' %(self.name,self.groupId,self.artifactId)
-
 # 启动app
 def startApp(apkPath):
     # 1、先找到aapt命令
@@ -1123,6 +1037,61 @@ def splitKV(line):
             d[kv[0]] = kv[1].replace('\'', '')
     return d
 
+def cmd_deploy(args):
+
+    # 命令
+    upload = args.upload
+    install = args.install
+    deps = args.deps
+
+    if upload:
+        apkPath = findApkPath()
+        if os.path.exists(apkPath):
+            print '1.Successful find apk, start upload it: ' + apkPath
+            downloadUrl = uploadApk(apkPath)
+            if len(downloadUrl) > 1 and downloadUrl.startswith('http'):
+                print '2.Upload apk succeeded, download url:'
+                print '  %s' % downloadUrl
+                result = generateQRCode(downloadUrl)
+                if result == 1:
+                    print "3.QR code generate succeeded, from 'python qrcode lib'"
+                elif result == 2:
+                    print "3.QR code generate succeeded, from 'online api'"
+                    print '  QR code path: %s' % QR_CODE_IMG_CACHE_PAHT
+                else:
+                    print '3.QR code generate failed'
+            else:
+                print '2.Upload apk failed, %s!' % downloadUrl
+        else:
+            print 'Not find apk, check the exec cmd directory is in WorkSpace --- Chinglish !!!'
+    elif install:
+        apkPath = findApkPath()
+        if os.path.exists(apkPath):
+            print '1. Start install apk: ' + apkPath
+            install_output = os.popen("adb install -r %s" % (apkPath)).read()
+            print install_output
+            if 'Success' in install_output:
+                startApp(apkPath)
+            else:
+                print 'install fail'
+        else:
+            print 'Not find apk, check the exec cmd directory is in WorkSpace --- Chinglish !!!'
+    elif deps:
+        deploy.deployDeps()
+
+def cmd_remote(args):
+    set = args.set
+    if set:
+        newHostUrl = set[0]
+
+        rootDir = os.listdir('.')
+        for childDir in rootDir:
+            swRemoteHost(newHostUrl, childDir)
+
+        swRemoteHost(newHostUrl, os.path.abspath('.'))
+
+        print u" ~~~全部执行完毕 ！！！"
+
 def swRemoteHost(host, moduleDir):
     if os.path.isdir(moduleDir) and ".git" in os.listdir(moduleDir):
         print moduleDir
@@ -1144,20 +1113,6 @@ def swRemoteHost(host, moduleDir):
         # print cmdSet
         os.popen(cmdSet).read()
         print u"%s 切换远程地址执行完成 ！\n" % moduleDir
-
-def set_remote(args):
-    set = args.set
-    if set:
-        newHostUrl = set[0]
-
-        rootDir = os.listdir('.')
-        for childDir in rootDir:
-            swRemoteHost(newHostUrl, childDir)
-
-        swRemoteHost(newHostUrl, os.path.abspath('.'))
-
-        print u" ~~~全部执行完毕 ！！！"
-
 ###################################################################
 ### 主程序入口
 ###################################################################
@@ -1273,7 +1228,7 @@ if __name__ == '__main__':
 
     # 操作apk文件
     parser_apk_ = subparsers.add_parser("deploy", help=u"开发部署工具")
-    parser_apk_.set_defaults(func=cmd_apk)
+    parser_apk_.set_defaults(func=cmd_deploy)
     parser_apk_.add_argument("-u", "--upload", help=u'上传apk到finder', action='store_true', default=False)
     parser_apk_.add_argument("-i", "--install", help=u'自动寻找apk，并安装到手机', action='store_true', default=False)
     # parser_apk_.add_argument("-di", "--debugInstall", help=u'构建Debug包，并安装到手机', action='store_true', default=False)
@@ -1283,7 +1238,7 @@ if __name__ == '__main__':
 
     # 切换远程地址
     parser_remote = subparsers.add_parser("remote", help=u"远程地址")
-    parser_remote.set_defaults(func=set_remote)
+    parser_remote.set_defaults(func=cmd_remote)
     parser_remote.add_argument("-s", "--set", help=u'切换远程地址Host, apkfly.py remote -s git@code.gome.inc', action='append', default=[])
 
     # 参数解析
