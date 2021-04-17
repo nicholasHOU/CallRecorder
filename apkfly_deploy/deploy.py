@@ -224,3 +224,219 @@ class ModuleInfo(object):
 
     def __str__(self):
         return 'name:%s  groupId:%s  artifactId:%s  \ndeps:\n%s  \nexclude:\n%s' % (self.name, self.groupId, self.artifactId, self.deps, self.exclude)
+
+#-----------------------------------------------------------------install apk----------------------------------------------------------------------------------------------------------------
+
+# 寻找apk的特殊路径标示
+APK_SPECIAL_PATH = os.path.join('build', 'outputs', 'apk')
+
+def installApk():
+    apkPath = findApkPath()
+    if os.path.exists(apkPath):
+        print '1. Start install apk: ' + apkPath
+        install_output = os.popen("adb install -r %s" % (apkPath)).read()
+        print install_output
+        if 'Success' in install_output:
+            startApp(apkPath)
+        else:
+            print 'install fail'
+    else:
+        print 'Not find apk, check the exec cmd directory is in WorkSpace --- Chinglish !!!'
+
+# 找到要操作的apk
+def findApkPath():
+    hasApkPath = False
+    rootDir = os.listdir('.')
+    for childDir in rootDir:
+        if os.path.exists(os.path.join(childDir, APK_SPECIAL_PATH)):
+            apkDir = os.path.join(childDir, APK_SPECIAL_PATH)
+            hasApkPath = True
+            break
+    if hasApkPath:
+        apks = []
+        findApkPathByDir(apkDir, apks)
+        apkNum = len(apks)
+        if apkNum == 0:
+            print 'Not find apk in path: ' + apkDir
+            return ''
+        elif apkNum == 1:
+            return apks[0]
+        else:
+            print 'Apk num > 1, please choose one:'
+            print '------------------------------'
+            for i in range(apkNum):
+                print '%s. %s' % (i + 1, apks[i])
+            print '------------------------------'
+            num = getNum(apkNum)
+            return apks[num - 1]
+    else:
+        return ''
+
+
+# 提示用户选择一个数字
+def getNum(numRang):
+    try:
+        inputNum = int(raw_input('please input num: '))
+    except NameError and ValueError:
+        print 'input err, num rang: (1 - %s)' % numRang
+        return getNum(numRang)
+    else:
+        if inputNum not in range(1, numRang + 1):
+            print 'input err, num rang: (1 - %s)' % numRang
+            return getNum(numRang)
+        else:
+            return inputNum
+
+# 寻找apkDir目录下的所有apk文件
+def findApkPathByDir(apkDir, apkList):
+    dir = os.listdir(apkDir)
+    for p in dir:
+        absP = os.path.join(apkDir, p)
+        if os.path.isdir(absP):
+            findApkPathByDir(absP, apkList)
+        elif absP.endswith('.apk'):
+            apkList.append(absP)
+
+
+# 启动app
+def startApp(apkPath):
+    # 1、先找到aapt命令
+    # 2、通过aapt命令查询包名和launch页信息
+    print '2. Use aapt cmd, find app package and launch'
+    dump_output = os.popen("%s dump badging %s" % ("aapt", apkPath))
+    dump_output_lines = dump_output.readlines()
+    package = ""
+    launch = ""
+    for line in dump_output_lines:
+        if line.startswith("package:"):
+            # print line # package: name='cn.gome.bangbang' versionCode='206' versionName='8.0.6'
+            d = splitKV(line)
+            try:
+                package = d['name']
+            except KeyError:
+                print 'package find fail'
+        if line.startswith("launchable-activity:"):
+            # print line # launchable-activity: name='com.gome.ecmall.home.LaunchActivity'
+            d = splitKV(line)
+            try:
+                launch = d['name']
+            except KeyError:
+                print 'launchable-activity find fail'
+    if package == "" or launch == "":
+        print 'find app info fail'
+        return
+    #/3、再通过adb命令启动app
+    print u'3. Start open app...'
+    start_output = os.popen("adb shell am start -n %s/%s" % (package, launch))
+    print start_output.read()
+    print u'如未启动app，请检查手机设置，允许app后台允许'
+
+# 分解aapt查找出的信息，组装成字典
+def splitKV(line):
+    d = {}
+    kvs = line.split(' ')
+    for kvStr in kvs:
+        if '=' in kvStr:
+            kv = kvStr.split('=')
+            d[kv[0]] = kv[1].replace('\'', '')
+    return d
+
+#----------------------------------------------------------upload apk-----------------------------------------------------------------------
+
+# 上传finder配置
+UPLOAD_ACCOUNT = 'gome'
+UPLOAD_PW = 'jdkfjkd'
+UPLOAD_URL = 'http://10.115.3.134:8085/upload'
+
+# apk上传到finder的这个目录中 ------  可修改  ------
+JOB_NAME = 'Location-App-Script'
+
+# 在线生成二维码api
+QRCODE_API = 'http://qr.topscan.com/api.php?text='
+# 二维码缓存目录
+QR_CODE_IMG_CACHE_PAHT = os.path.join('.idea', 'caches', 'qr.png')
+
+def uploadApk():
+    apkPath = findApkPath()
+    if os.path.exists(apkPath):
+        print '1.Successful find apk, start upload it: ' + apkPath
+        downloadUrl = uploadApk(apkPath)
+        if len(downloadUrl) > 1 and downloadUrl.startswith('http'):
+            print '2.Upload apk succeeded, download url:'
+            print '  %s' % downloadUrl
+            result = generateQRCode(downloadUrl)
+            if result == 1:
+                print "3.QR code generate succeeded, from 'python qrcode lib'"
+            elif result == 2:
+                print "3.QR code generate succeeded, from 'online api'"
+                print '  QR code path: %s' % QR_CODE_IMG_CACHE_PAHT
+            else:
+                print '3.QR code generate failed'
+        else:
+            print '2.Upload apk failed, %s!' % downloadUrl
+    else:
+        print 'Not find apk, check the exec cmd directory is in WorkSpace --- Chinglish !!!'
+
+
+# 系统打开文件
+def showFile(path):
+    userPlatform = platform.system()					# 获取操作系统
+    if userPlatform == 'Darwin':						# Mac
+        subprocess.call(['open', path])
+    elif userPlatform == 'Linux':						# Linux
+        subprocess.call(['xdg-open', path])
+    else:												# Windows
+        os.startfile(path)
+
+# 生成二维码
+def generateQRCode(text):
+    try:
+        import qrcode
+        img = qrcode.make(data=text) # 生成二维码
+        img.show() # 直接显示二维码
+        # img.save("baidu.jpg") # 保存二维码为文件
+        return 1
+    except ImportError:
+        # print "Please install python qrcode lib, can generate QR code !"
+        pass
+
+    try:
+        import requests
+        response = requests.get(QRCODE_API + text)
+        if response.status_code == 200:
+            # 先判断缓存目录是否存在
+            if not os.path.exists(os.path.dirname(QR_CODE_IMG_CACHE_PAHT)):
+                os.mkdir(os.path.dirname(QR_CODE_IMG_CACHE_PAHT))
+            # 保存二维码
+            with open(QR_CODE_IMG_CACHE_PAHT,'wb')as img:
+                img.write(response.content)
+            # 显示二维码
+            showFile(QR_CODE_IMG_CACHE_PAHT)
+            return 2
+        else:
+            return 0
+    except ImportError:
+        print "Please install python requests lib !"
+        return 0
+
+# 上传apk
+def uploadApk(apkPath):
+    # 上传到Finder中后的名字，如：20200521-10:25:00.apk
+    apkFile = open(apkPath, 'rb')
+    upApkName = os.path.basename(apkFile.name).replace('.apk', '%s%s.apk' % ('-', time.strftime("%Y-%m-%d-%H:%M:%S", time.localtime())))
+    files = {
+        'file': (upApkName, apkFile),
+        'job': (None, JOB_NAME),
+        'platform': (None, 'android'),
+    }
+
+    try:
+        import requests
+        response = requests.post(UPLOAD_URL, files=files, auth=(UPLOAD_ACCOUNT, UPLOAD_PW))
+        if response.status_code == 200:
+            return response.text
+        else:
+            return ''
+    except ImportError:
+        print "Please install python requests lib !"
+        return ''
