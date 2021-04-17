@@ -34,13 +34,14 @@ def deployDeps():
 
     # 3、主工程build.gradle加入部署依赖
     mainModuleName = getMainModule(includeModules, moduleInfos)
+    print u"3、开始为主工程 %s build.gradle加入部署依赖" % mainModuleName
     writeConfigurationsExcludesAndCompileToBuildGradle(ModuleInfo(mainModuleName, '', ''), moduleInfos)
-    print u"3、主工程 %s build.gradle加入部署依赖" % mainModuleName
 
     # 4、往所有子module中的每一个dep都写入所有排除
+    print u"4、开始为子工程加入Dep Excludes"
     for m in moduleInfos:
+        print u"    子工程 %s build.gradle加入Dep Excludes" % m.name
         writeDepExcludesToBuildGradle(m, moduleInfos)
-        print u"4、子工程 %s build.gradle加入DepExcludes" % m.name
 
     print u"部署完毕"
 
@@ -118,7 +119,7 @@ def writeDepExcludesToBuildGradle(moule, moduleInfos):
     """
     pass
     moduleBuildGradle = moule.getBuildFile()
-    print u"    找到build.gradle文件: %s" % moduleBuildGradle
+    print u"        找到build.gradle文件: %s" % moduleBuildGradle
     moduleBuildGradle_bak = moduleBuildGradle + '.bak'
     moduleBuildGradle_new = moduleBuildGradle + '.new'
 
@@ -133,7 +134,7 @@ def writeDepExcludesToBuildGradle(moule, moduleInfos):
                     if moule.name != m.name:# 排除自己的maven配置
                         configurations.append(m.exclude)
                 new_file.writelines([configuration + '\n' for configuration in configurations])
-                print u"    写入compile完毕"
+                print u"        写入exclude完毕"
     new_file.close()
     # 把目前的build文件备份，新生成的build文件替换原文件
     if os.path.exists(moduleBuildGradle_bak): os.remove(moduleBuildGradle_bak)
