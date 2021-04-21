@@ -79,7 +79,8 @@ def getModuleMavenInfo(includeModules):
 
             #1、把依赖本地module开关打开
             for includeModule in includeModules:
-                if includeModule in line:
+                line_ = line.replace(' ', '')
+                if includeModule + ":" in line_:# 这里不能直接用line包含includeModule，应为module有MIm、MImlibrary这样的，如果只include MIm，MImlibrary也会被修改
                     line = line.replace('rootProject.ext.proDeps', 'true')
                     break
             file_bak.write(line)
