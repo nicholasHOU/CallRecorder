@@ -32,15 +32,15 @@
 
     <!--G工程-->
     <!--GFrame-->
-    <project groups="frame" url="git@code.gome.inc:mobile-android-common/GFrame-http.git"/>
-    <project groups="frame" url="git@code.gome.inc:mobile-android-common/GFrame-utils.git"/>
-    <project groups="frame" url="git@code.gome.inc:mobile-android-common/GFrame-image.git"/>
+    <project groups="frame" path="GFrameHttp" url="git@code.gome.inc:mobile-android-common/GFrame-http.git"/>
+    <project groups="frame" path="GFrameUtils" url="git@code.gome.inc:mobile-android-common/GFrame-utils.git"/>
+    <project groups="frame" path="GFrameImage" url="git@code.gome.inc:mobile-android-common/GFrame-image.git"/>
     <project groups="frame" path="GFrame" url="git@code.gome.inc:mobile-android-common/GFrame-common.git"/>
     <!--GCore-->
     <project url="git@code.gome.inc:mobile-android-common/GSmartRefreshLayout.git"/>
     <project url="git@code.gome.inc:mobile-android-business/GWidget.git"/>
     <project url="git@code.gome.inc:mobile-android-mcp/GDXRisk.git"/>
-    <project groups="core" url="git@code.gome.inc:mobile-android-common/GCore-login.git"/>
+    <project groups="core" path="GCoreLogin" url="git@code.gome.inc:mobile-android-common/GCore-login.git"/>
     <project groups="core" path="GCore"  url="git@code.gome.inc:mobile-android-common/GCore-common.git"/>
 
     <project url="git@code.gome.inc:mobile-android-business/GSelectPhoto.git"/>

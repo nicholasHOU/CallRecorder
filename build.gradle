@@ -168,7 +168,7 @@ ext.deps = [
 
         GSafekeyboard        : 'com.gome.mcp:safeKeyboard:2.8.8-v7a',
         GUpdate              : 'com.gome.mcp:update:2.8.9',
-        GYunNengTimeWidget   : 'com.gome.ecmall:yunnengtimewidget:2.1.0@aar',
+        GYunNengTimeWidget   : 'com.gome.ecmall:yunnengtimewidget:3.1.0@aar',
         GWap                 : 'com.gome.mcp:wap:' + getProperty('AAR_MCP_WAP_VERSION') + '@aar',
         STitlebar            : 'cn.gome.staff.ui:titlebar:' + getProperty('AAR_STITLEBAR_VERSION') + '@aar',
         GCrash               : 'com.gome.mcp:crash:' + getProperty('AAR_MCP_VERSION') + '@aar',
@@ -231,12 +231,12 @@ ext.deps = [
         //GdownLoad
         GDownload            : false ? project(":GDownload") : 'com.gome.ecmall:gdownload:' + getProperty('AAR_GDOWNLOAD_VERSION') + '@aar',
 
-        GFrameUtils          : rootProject.ext.proDeps ? project(':GFrame-utils') : 'com.gome.ecmall:frame-utils:' + getProperty('AAR_GFRAME_UTILS_VERSION') + '@aar',
-        GFrameHttp           : rootProject.ext.proDeps ? project(':GFrame-http') : 'com.gome.ecmall:frame-http:' + getProperty('AAR_GFRAME_HTTP_VERSION') + '@aar',
-        GFrameImage          : rootProject.ext.proDeps ? project(':GFrame-image') : 'com.gome.ecmall:frame-image:' + getProperty('AAR_GFRAME_IMAGE_VERSION') + '@aar',
+        GFrameUtils          : rootProject.ext.proDeps ? project(':GFrameUtils') : 'com.gome.ecmall:frame-utils:' + getProperty('AAR_GFRAME_UTILS_VERSION') + '@aar',
+        GFrameHttp           : rootProject.ext.proDeps ? project(':GFrameHttp') : 'com.gome.ecmall:frame-http:' + getProperty('AAR_GFRAME_HTTP_VERSION') + '@aar',
+        GFrameImage          : rootProject.ext.proDeps ? project(':GFrameImage') : 'com.gome.ecmall:frame-image:' + getProperty('AAR_GFRAME_IMAGE_VERSION') + '@aar',
         GFrame               : rootProject.ext.proDeps ? project(':GFrame') : 'com.gome.ecmall:frame:' + getProperty('AAR_GFRAME_VERSION') + '@aar',
 
-        GCoreLogin           : rootProject.ext.proDeps ? project(':GCore-login') : 'com.gome.ecmall:core-login:' + getProperty('AAR_GCORE_LOGIN_VERSION') + '@aar',
+        GCoreLogin           : rootProject.ext.proDeps ? project(':GCoreLogin') : 'com.gome.ecmall:core-login:' + getProperty('AAR_GCORE_LOGIN_VERSION') + '@aar',
         GCore                : rootProject.ext.proDeps ? project(':GCore') : 'com.gome.ecmall:core:' + getProperty('AAR_GCORE_VERSION') + '@aar',
 
         GWidget              : rootProject.ext.proDeps ? project(':GWidget') : 'com.gome.ecmall:widget:' + getProperty('AAR_GWIDGET_VERSION') + '@aar',
