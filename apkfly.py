@@ -11,6 +11,8 @@ import xml
 from collections import Counter
 from xml.dom import minidom
 import platform
+sys.path.append(r'apkfly_deploy')
+import deploy
 
 __author__ = "qiudongchao<1162584980@qq.com>"
 __version__ = "5.1.2"
@@ -24,22 +26,6 @@ file_build_gradle = "build.gradle"
 dir_current = os.path.abspath(".")
 file_settings = os.path.join(dir_current, "settings.gradle")
 file_build = os.path.join(dir_current, file_build_gradle)
-
-# 上传finder配置
-UPLOAD_ACCOUNT = 'gome'
-UPLOAD_PW = 'jdkfjkd'
-UPLOAD_URL = 'http://10.115.3.134:8085/upload'
-
-# apk上传到finder的这个目录中 ------  可修改  ------
-JOB_NAME = 'Location-App-Script'
-
-# 寻找apk的特殊路径标示
-APK_SPECIAL_PATH = os.path.join('build', 'outputs', 'apk')
-
-# 在线生成二维码api
-QRCODE_API = 'http://qr.topscan.com/api.php?text='
-# 二维码缓存目录
-QR_CODE_IMG_CACHE_PAHT = os.path.join('.idea', 'caches', 'qr.png')
 
 ###################################################################
 ### 全局公共方法
@@ -84,8 +70,10 @@ def check_root_project():
     校验当前工作空间是否合法
     :return: True or False
     """
-    file_exist = os.path.exists(file_build) and os.path.exists(file_settings)
-    is_file = os.path.isfile(file_settings) and os.path.isfile(file_build)
+    # file_exist = os.path.exists(file_build) and os.path.exists(file_settings)
+    # is_file = os.path.isfile(file_settings) and os.path.isfile(file_build)
+    file_exist = os.path.exists(file_build)
+    is_file = os.path.isfile(file_build)
     result = file_exist and is_file
     if not result:
         raise Exception(u"工作空间校验失败")
@@ -874,171 +862,32 @@ def cmd_reset(args):
 ### apk操作：安装、上传等
 ###################################################################
 
-# 提示用户选择一个数字
-def getNum(numRang):
-    try:
-        inputNum = int(raw_input('please input num: '))
-    except NameError and ValueError:
-        print 'input err, num rang: (1 - %s)' % numRang
-        return getNum(numRang)
-    else:
-        if inputNum not in range(1, numRang + 1):
-            print 'input err, num rang: (1 - %s)' % numRang
-            return getNum(numRang)
-        else:
-            return inputNum
-
-
-# 系统打开文件
-def showFile(path):
-    userPlatform = platform.system()					# 获取操作系统
-    if userPlatform == 'Darwin':						# Mac
-        subprocess.call(['open', path])
-    elif userPlatform == 'Linux':						# Linux
-        subprocess.call(['xdg-open', path])
-    else:												# Windows
-        os.startfile(path)
-
-# 生成二维码
-def generateQRCode(text):
-    try:
-        import qrcode
-        img = qrcode.make(data=text) # 生成二维码
-        img.show() # 直接显示二维码
-        # img.save("baidu.jpg") # 保存二维码为文件
-        return 1
-    except ImportError:
-        # print "Please install python qrcode lib, can generate QR code !"
-        pass
-
-    try:
-        import requests
-        response = requests.get(QRCODE_API + text)
-        if response.status_code == 200:
-            # 先判断缓存目录是否存在
-            if not os.path.exists(os.path.dirname(QR_CODE_IMG_CACHE_PAHT)):
-                os.mkdir(os.path.dirname(QR_CODE_IMG_CACHE_PAHT))
-            # 保存二维码
-            with open(QR_CODE_IMG_CACHE_PAHT,'wb')as img:
-                img.write(response.content)
-            # 显示二维码
-            showFile(QR_CODE_IMG_CACHE_PAHT)
-            return 2
-        else:
-            return 0
-    except ImportError:
-        print "Please install python requests lib !"
-        return 0
-
-# 上传apk
-def uploadApk(apkPath):
-    # 上传到Finder中后的名字，如：20200521-10:25:00.apk
-    apkFile = open(apkPath, 'rb')
-    upApkName = os.path.basename(apkFile.name).replace('.apk', '%s%s.apk' % ('-', time.strftime("%Y-%m-%d-%H:%M:%S", time.localtime())))
-    files = {
-        'file': (upApkName, apkFile),
-        'job': (None, JOB_NAME),
-        'platform': (None, 'android'),
-    }
-
-    try:
-        import requests
-        response = requests.post(UPLOAD_URL, files=files, auth=(UPLOAD_ACCOUNT, UPLOAD_PW))
-        if response.status_code == 200:
-            return response.text
-        else:
-            return ''
-    except ImportError:
-        print "Please install python requests lib !"
-        return ''
-
-# 寻找apkDir目录下的所有apk文件
-def findApkPathByDir(apkDir, apkList):
-    dir = os.listdir(apkDir)
-    for p in dir:
-        absP = os.path.join(apkDir, p)
-        if os.path.isdir(absP):
-            findApkPathByDir(absP, apkList)
-        elif absP.endswith('.apk'):
-            apkList.append(absP)
-
-# 找到要操作的apk
-def findApkPath():
-    hasApkPath = False
-    rootDir = os.listdir('.')
-    for childDir in rootDir:
-        if os.path.exists(os.path.join(childDir, APK_SPECIAL_PATH)):
-            apkDir = os.path.join(childDir, APK_SPECIAL_PATH)
-            hasApkPath = True
-            break
-    if hasApkPath:
-        apks = []
-        findApkPathByDir(apkDir, apks)
-        apkNum = len(apks)
-        if apkNum == 0:
-            print 'Not find apk in path: ' + apkDir
-            return ''
-        elif apkNum == 1:
-            return apks[0]
-        else:
-            print 'Apk num > 1, please choose one:'
-            print '------------------------------'
-            for i in range(apkNum):
-                print '%s. %s' % (i + 1, apks[i])
-            print '------------------------------'
-            num = getNum(apkNum)
-            return apks[num - 1]
-    else:
-        return ''
-
-def cmd_apk(args):
+def cmd_deploy(args):
 
     # 命令
     upload = args.upload
     install = args.install
-
-    if upload and install:
-        print 'Error, upload and install, Only one command can be executed at a time'
-        return
+    deps = args.deps
 
     if upload:
-        apkPath = findApkPath()
-        if os.path.exists(apkPath):
-            print '1.Successful find apk, start upload it: ' + apkPath
-            downloadUrl = uploadApk(apkPath)
-            if len(downloadUrl) > 1 and downloadUrl.startswith('http'):
-                print '2.Upload apk succeeded, download url:'
-                print '  %s' % downloadUrl
-                result = generateQRCode(downloadUrl)
-                if result == 1:
-                    print "3.QR code generate succeeded, from 'python qrcode lib'"
-                elif result == 2:
-                    print "3.QR code generate succeeded, from 'online api'"
-                    print '  QR code path: %s' % QR_CODE_IMG_CACHE_PAHT
-                else:
-                    print '3.QR code generate failed'
-            else:
-                print '2.Upload apk failed, %s!' % downloadUrl
-        else:
-            print 'Not find apk, check the exec cmd directory is in WorkSpace --- Chinglish !!!'
+       deploy.uploadApk()
+    elif install:
+        deploy.installApk()
+    elif deps:
+        deploy.deployDeps()
 
-    if install:
-        apkPath = findApkPath()
-        if os.path.exists(apkPath):
-            print 'start install apk: ' + apkPath
-            install_output = os.popen("adb install -r %s" % (apkPath))
-            print install_output.read()
+def cmd_remote(args):
+    set = args.set
+    if set:
+        newHostUrl = set[0]
 
-            if install[0] == 'gome':
-                start_output = os.popen("adb shell am start -n com.gome.eshopnew/com.gome.ecmall.home.LaunchActivity")
-                print start_output.read()
-            elif install[0] == 'bang':
-                start_output = os.popen("adb shell am start -n cn.gome.bangbang/com.gome.ecmall.home.LaunchActivity")
-                print start_output.read()
+        rootDir = os.listdir('.')
+        for childDir in rootDir:
+            swRemoteHost(newHostUrl, childDir)
 
-        else:
-            print 'Not find apk, check the exec cmd directory is in WorkSpace --- Chinglish !!!'
+        swRemoteHost(newHostUrl, os.path.abspath('.'))
 
+        print u" ~~~全部执行完毕 ！！！"
 
 def swRemoteHost(host, moduleDir):
     if os.path.isdir(moduleDir) and ".git" in os.listdir(moduleDir):
@@ -1061,20 +910,6 @@ def swRemoteHost(host, moduleDir):
         # print cmdSet
         os.popen(cmdSet).read()
         print u"%s 切换远程地址执行完成 ！\n" % moduleDir
-
-def set_remote(args):
-    set = args.set
-    if set:
-        newHostUrl = set[0]
-
-        rootDir = os.listdir('.')
-        for childDir in rootDir:
-            swRemoteHost(newHostUrl, childDir)
-
-        swRemoteHost(newHostUrl, os.path.abspath('.'))
-
-        print u" ~~~全部执行完毕 ！！！"
-
 ###################################################################
 ### 主程序入口
 ###################################################################
@@ -1189,18 +1024,19 @@ if __name__ == '__main__':
                             default=False)
 
     # 操作apk文件
-    parser_apk_ = subparsers.add_parser("apk", help=u"操作apk文件")
-    parser_apk_.set_defaults(func=cmd_apk)
+    parser_apk_ = subparsers.add_parser("deploy", help=u"开发部署工具")
+    parser_apk_.set_defaults(func=cmd_deploy)
     parser_apk_.add_argument("-u", "--upload", help=u'上传apk到finder', action='store_true', default=False)
-    parser_apk_.add_argument("-i", "--install", help=u'安装apk到手机', action='append', default=[])
+    parser_apk_.add_argument("-i", "--install", help=u'自动寻找apk，并安装到手机', action='store_true', default=False)
     # parser_apk_.add_argument("-di", "--debugInstall", help=u'构建Debug包，并安装到手机', action='store_true', default=False)
     # parser_apk_.add_argument("-ri", "--releaseInstall", help=u'构建Release包，并安装到手机', action='store_true', default=False)
+    parser_apk_.add_argument("-d", "--deps", help=u'根据setting中的配置的项目，部署依赖配置', action='store_true', default=False)
 
 
     # 切换远程地址
     parser_remote = subparsers.add_parser("remote", help=u"远程地址")
-    parser_remote.set_defaults(func=set_remote)
-    parser_remote.add_argument("-s", "--set", help=u'切换远程地址', action='append', default=[])
+    parser_remote.set_defaults(func=cmd_remote)
+    parser_remote.add_argument("-s", "--set", help=u'切换远程地址Host, apkfly.py remote -s git@code.gome.inc', action='append', default=[])
 
     # 参数解析
     args = parser.parse_args()
