@@ -1,4 +1,5 @@
 buildscript {
+    ext.kotlin_version = '1.2.51'
     repositories {
         maven {
             url "http://m-maven.ds.gome.com.cn/nexus/content/groups/plugin"
@@ -29,6 +30,9 @@ buildscript {
          */
         classpath 'com.android.gome.cary:plugin:0.0.5'
         classpath 'com.huawei.agconnect:agcp:1.4.1.300'
+
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "org.jetbrains.kotlin:kotlin-android-extensions:$kotlin_version"
     }
 }
 
@@ -80,6 +84,8 @@ task clean(type: Delete) {
 
 
 ext.deps = [
+        //kotlin support
+        SKotlin          : "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version",
         GHttp            : 'com.gome.mcp:http:2.8.8_v5@aar',
         GUtils            : 'com.gome.mcp:utils:2.8.8_v4@aar',
 
@@ -130,7 +136,7 @@ ext.deps = [
         SLiteAVSDK        : 'com.tencent.liteav:LiteAVSDK_Professional:8.2.9809', //专业版
         //SLiteAVSDK        : 'com.tencent.liteavsdk:LiteAVSDK_Smart:latest.release', //普通版
         //SLiteAVSDK        : 'com.gome.zhibo:LiteAVSDK_Enterprise:7.5.9318', //企业版
-        GSuperplayerSDK   : 'com.gome.ecmall:superplayer:1.0.4',//播放器
+        GSuperplayerSDK   : 'com.gome.ecmall:superplayer:1.0.7',//播放器
         GImage            : 'com.gome.mcp:image:2.8.8',
         GCACHE            : 'com.gome.mcp:cache:' + getProperty('AAR_MCP_VERSION') + '@aar',
         //异形屏适配工具

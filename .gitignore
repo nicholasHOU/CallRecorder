@@ -19,6 +19,8 @@
 /M*
 /buildsrc
 
+/apkfly_deploy/*.pyc
+
 /settings.gradle
 /maven.gradle
 /module.gradle
