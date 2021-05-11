@@ -71,6 +71,7 @@
     <project url="git@code.gome.inc:mobile-android-business/GCashierdesk.git"/>
     <project url="git@code.gome.inc:mobile-android-common/GShelvesWidget.git"/>
     <project groups="app" url="git@code.gome.inc:mobile-android-business/GBusiness.git"/>
+    <project url="git@code.gome.inc:mobile-android-business/GSocialService.git"/>
     <!-- WEEX模块 -->
     <project groups="private" url="git@code.gome.inc:mobile-android-repo/GWeexCore.git"/>
     <project groups="private" url="git@code.gome.inc:mobile-android-repo/GWeexUpdate.git"/>
