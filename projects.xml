@@ -30,6 +30,9 @@
     <project groups="private" url="git@code.gome.inc:mobile-android-common/GPushOppo.git"/>
     <project groups="private" url="git@code.gome.inc:mobile-android-common/GPushViVo.git"/>
 
+    <project groups="private" branch="master" url="git@code.gome.inc:mobile-android-mcp/GShare.git"/>
+    <project groups="private" branch="master" url="git@code.gome.inc:mobile-android-business/GShareBus.git"/>
+
     <!--G工程-->
     <!--GFrame-->
     <project groups="frame" url="git@code.gome.inc:mobile-android-common/GFrame-http.git"/>
@@ -67,7 +70,7 @@
     <project url="git@code.gome.inc:mobile-android-business/GBProduct.git"/>
     <project url="git@code.gome.inc:mobile-android-business/GBCms.git"/>
     <project url="git@code.gome.inc:mobile-android-business/GShopCarBus.git"/>
-    <project url="git@code.gome.inc:mobile-android-business/GGomeShareBus.git"/>
+    <project groups="share" url="git@code.gome.inc:mobile-android-business/GGomeShareBus.git"/>
     <project url="git@code.gome.inc:mobile-android-business/GCashierdesk.git"/>
     <project url="git@code.gome.inc:mobile-android-common/GShelvesWidget.git"/>
     <project url="git@code.gome.inc:mobile-android-business/GBusiness.git"/>
