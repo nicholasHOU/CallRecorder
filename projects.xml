@@ -42,7 +42,6 @@
     <!--GCore-->
     <project url="git@code.gome.inc:mobile-android-common/GSmartRefreshLayout.git"/>
     <project url="git@code.gome.inc:mobile-android-business/GWidget.git"/>
-    <project url="git@code.gome.inc:mobile-android-common/GShelvesWidget.git"/>
     <project url="git@code.gome.inc:mobile-android-mcp/GDXRisk.git"/>
     <project groups="core" path="GCoreLogin" url="git@code.gome.inc:mobile-android-common/GCore-login.git"/>
     <project groups="core" path="GCore"  url="git@code.gome.inc:mobile-android-common/GCore-common.git"/>
@@ -73,6 +72,7 @@
     <project url="git@code.gome.inc:mobile-android-business/GShopCarBus.git"/>
     <project groups="share" url="git@code.gome.inc:mobile-android-business/GGomeShareBus.git"/>
     <project url="git@code.gome.inc:mobile-android-business/GCashierdesk.git"/>
+    <project url="git@code.gome.inc:mobile-android-common/GShelvesWidget.git"/>
     <project branch="master" url="git@code.gome.inc:mobile-android-business/GSocialService.git"/>
     <project url="git@code.gome.inc:mobile-android-business/GBusiness.git"/>
     <!-- WEEX模块 -->
