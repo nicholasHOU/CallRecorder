@@ -45,3 +45,12 @@ android.defaultConfig.javaCompileOptions.annotationProcessorOptions.includeCompi
 //autogen{
 //    coreProject project(':g_com:GBusiness')
 //}
+
+if (project.ext.has("kotlin") && (project.ext.getProperty("kotlin") as boolean)) {
+    apply plugin: 'kotlin-android'
+    apply plugin: 'kotlin-android-extensions'
+
+    dependencies {
+        compile deps.SKotlin
+    }
+}
