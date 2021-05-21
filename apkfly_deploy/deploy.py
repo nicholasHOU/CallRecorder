@@ -126,19 +126,27 @@ def writeDepExcludesToBuildGradle(moule, moduleInfos, projects):
 
     with open(moduleBuildGradle_new, "w") as new_file:
         curDepsName = ''
+        configurations = []
         for line in open(moduleBuildGradle):
             # 先把本行数据写入
-            new_file.write(line)
+            if line.strip().startswith('exclude'):
+                for configuration in configurations:
+                    print configuration
+                if not checkHasExclue(line, configurations):
+                    new_file.write(line)
+            else:
+                new_file.write(line)
 
             # 当前是给哪个依赖添加排除，compile(deps.GXXX)
             if 'deps.' in line:
                 ls = line.split('deps.')
                 ls = ls[1].split(')')
                 curDepsName = ls[0].strip()
-
-            if line.strip().startswith('transitive'):
+            elif line.strip().startswith('transitive'):
                 # 写入局部exclude
-                configurations = []
+                # configurations.clear()
+                del configurations[:]
+
                 print u'            %s 添加exclude配置' % curDepsName
                 for m in moduleInfos:
                     if moule.name != m.name and checkOrder(curDepsName, m.name, projects):# 排除自己的maven配置、排除打包顺序上层的maven配置
@@ -147,6 +155,7 @@ def writeDepExcludesToBuildGradle(moule, moduleInfos, projects):
                         print u'            %s 排除maven配置' % m.name
                 new_file.writelines([configuration + '\n' for configuration in configurations])
                 print u"            写入exclude完毕\n"
+
     new_file.close()
     # 把目前的build文件备份，新生成的build文件替换原文件
     # if os.path.exists(moduleBuildGradle_bak): os.remove(moduleBuildGradle_bak)
@@ -154,6 +163,16 @@ def writeDepExcludesToBuildGradle(moule, moduleInfos, projects):
     if os.path.exists(moduleBuildGradle): os.remove(moduleBuildGradle)
     os.rename(moduleBuildGradle_new, moduleBuildGradle)
 
+# 已添加的排除，就不需要添加了
+def checkHasExclue(exc, configurations):
+    exc = exc.replace(' ', '').replace('\n', '')
+    for config in configurations:
+        config = config.replace(' ', '')
+        if exc == config:
+            return True
+    return False
+
+# 在本module打包顺序后面的就不需要添加排除
 def checkOrder(curModuleName, checkModuleName, projects):
     for project in projects:
         if curModuleName == project.path:
