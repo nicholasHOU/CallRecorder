@@ -15,7 +15,7 @@ dir_current = os.path.abspath(".")
 file_settings = os.path.join(dir_current, "settings.gradle")
 file_build = os.path.join(dir_current, file_build_gradle)
 
-def deployDeps():
+def deployDeps(projects):
     print u'开始部署依赖'
     # 读取setting中的include 项目
     # 找到项目对应的maven id
@@ -41,7 +41,7 @@ def deployDeps():
     print u"4、开始为子工程加入Dep Excludes"
     for m in moduleInfos:
         print u"    子工程 %s build.gradle加入Dep Excludes" % m.name
-        writeDepExcludesToBuildGradle(m, moduleInfos)
+        writeDepExcludesToBuildGradle(m, moduleInfos, projects)
 
     print u"部署完毕"
 
@@ -112,7 +112,7 @@ def getModuleMavenInfo(includeModules):
         os.rename("%s.bak" % file_build, file_build)
     return moduleInfos
 
-def writeDepExcludesToBuildGradle(moule, moduleInfos):
+def writeDepExcludesToBuildGradle(moule, moduleInfos, projects):
     """部署配置(局部exclude)到build.gradle
     :param moule: 配置此module中的依赖
     :param moduleInfos: 本工程include的module信息
@@ -125,23 +125,41 @@ def writeDepExcludesToBuildGradle(moule, moduleInfos):
     moduleBuildGradle_new = moduleBuildGradle + '.new'
 
     with open(moduleBuildGradle_new, "w") as new_file:
+        curDepsName = ''
         for line in open(moduleBuildGradle):
             # 先把本行数据写入
             new_file.write(line)
+
+            # 当前是给哪个依赖添加排除，compile(deps.GXXX)
+            if 'deps.' in line:
+                ls = line.split('deps.')
+                ls = ls[1].split(')')
+                curDepsName = ls[0].strip()
+
             if line.strip().startswith('transitive'):
                 # 写入局部exclude
                 configurations = []
+                print u'            %s 添加exclude配置' % curDepsName
                 for m in moduleInfos:
-                    if moule.name != m.name:# 排除自己的maven配置
+                    if moule.name != m.name and checkOrder(curDepsName, m.name, projects):# 排除自己的maven配置、排除打包顺序上层的maven配置
                         configurations.append(m.exclude)
+                    else:
+                        print u'            %s 排除maven配置' % m.name
                 new_file.writelines([configuration + '\n' for configuration in configurations])
-                print u"        写入exclude完毕"
+                print u"            写入exclude完毕\n"
     new_file.close()
     # 把目前的build文件备份，新生成的build文件替换原文件
     # if os.path.exists(moduleBuildGradle_bak): os.remove(moduleBuildGradle_bak)
     # os.rename(moduleBuildGradle, moduleBuildGradle_bak)
     if os.path.exists(moduleBuildGradle): os.remove(moduleBuildGradle)
     os.rename(moduleBuildGradle_new, moduleBuildGradle)
+
+def checkOrder(curModuleName, checkModuleName, projects):
+    for project in projects:
+        if curModuleName == project.path:
+            return False
+        if checkModuleName == project.path:
+            return True
 
 def writeConfigurationsExcludesAndCompileToBuildGradle(moule, moduleInfos):
     """部署配置(ConfigurationsExcludes、Compile)到build.gradle

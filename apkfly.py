@@ -874,7 +874,7 @@ def cmd_deploy(args):
     elif install:
         deploy.installApk()
     elif deps:
-        deploy.deployDeps()
+        deploy.deployDeps(XmlProject.parser_manifest("projects.xml", allow_private=True))
 
 def cmd_remote(args):
     set = args.set
