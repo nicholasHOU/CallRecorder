@@ -355,6 +355,8 @@ def cmd_version_add(args):
                     new_aar = re.sub(r"\.\d+\.", "." + str(index_num) + ".", aar)
                 else:
                     new_aar = re.sub(r"\.\d+-", "." + str(index_num) + "-", aar)
+                    if new_aar == aar:#部分版本后缀删除了 -plus，所以上面的匹配失败
+                        new_aar = re.sub(r"\.\d+$", "." + str(index_num), aar)
                 prop_file_content = prop_file_content.replace(aar, new_aar)
                 print ">>>replace ", aar, " to ", new_aar
         # 文件写入
@@ -868,13 +870,19 @@ def cmd_deploy(args):
     upload = args.upload
     install = args.install
     deps = args.deps
+    exclude_aar_dep_source = args.exclude_aar_dep_source
 
     if upload:
        deploy.uploadApk()
     elif install:
         deploy.installApk()
     elif deps:
-        deploy.deployDeps()
+        deploy.deployDeps(XmlProject.parser_manifest("projects.xml", allow_private=True))
+    elif exclude_aar_dep_source:
+        if len(exclude_aar_dep_source) == 2:
+            deploy.exclude_aar_dep_source(exclude_aar_dep_source, XmlProject.parser_manifest("projects.xml", allow_private=True))
+        else:
+            print u'请正确书写参数，deploy -e GHybrid GCore(GHybrid依赖GCore源码)'
 
 def cmd_remote(args):
     set = args.set
@@ -1031,7 +1039,7 @@ if __name__ == '__main__':
     # parser_apk_.add_argument("-di", "--debugInstall", help=u'构建Debug包，并安装到手机', action='store_true', default=False)
     # parser_apk_.add_argument("-ri", "--releaseInstall", help=u'构建Release包，并安装到手机', action='store_true', default=False)
     parser_apk_.add_argument("-d", "--deps", help=u'根据setting中的配置的项目，部署依赖配置', action='store_true', default=False)
-
+    parser_apk_.add_argument("-e", "--exclude_aar_dep_source", help=u'源码依赖，例GHybrid依赖GCore源码(deploy -e GHybrid GCore)', nargs='+')
 
     # 切换远程地址
     parser_remote = subparsers.add_parser("remote", help=u"远程地址")
