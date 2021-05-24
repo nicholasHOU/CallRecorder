@@ -355,6 +355,8 @@ def cmd_version_add(args):
                     new_aar = re.sub(r"\.\d+\.", "." + str(index_num) + ".", aar)
                 else:
                     new_aar = re.sub(r"\.\d+-", "." + str(index_num) + "-", aar)
+                    if new_aar == aar:#部分版本后缀删除了 -plus，所以上面的匹配失败
+                        new_aar = re.sub(r"\.\d+$", "." + str(index_num), aar)
                 prop_file_content = prop_file_content.replace(aar, new_aar)
                 print ">>>replace ", aar, " to ", new_aar
         # 文件写入
