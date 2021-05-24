@@ -15,7 +15,39 @@ dir_current = os.path.abspath(".")
 file_settings = os.path.join(dir_current, "settings.gradle")
 file_build = os.path.join(dir_current, file_build_gradle)
 
-def deployDeps(projects):
+def exclude_aar_dep_source(moduleNames):
+    print u'开始部署依赖，排除%s中的%s AAR依赖，直接依赖其源码' % (moduleNames[0], moduleNames[1])
+    # 先检测一下，module是否在setting文件中
+
+    # 1、settings.gradle中include的所有module
+    includeModules = getIncludeModule()
+    print u"1、include的所有module配置读取完毕"
+
+    if len(includeModules) < 2:
+        print u'部署err 1'
+        return
+
+    # 2、module的maven信息，并include的module在ext.deps[ ]中打开依赖
+    moduleInfos = getModuleMavenInfo(includeModules)
+    print u"2、includeModule的maven信息读取完毕，并在ext.deps[ ]中打开依赖"
+
+    # 3、排除aar,依赖源码
+    print u"3、开始为子工程加入Dep Excludes"
+    mainModuleInfo = None
+    sourceModuleInfo = None
+    for m in moduleInfos:
+        if m.name == moduleNames[0]:
+            mainModuleInfo = m
+        elif m.name == moduleNames[1]:
+            sourceModuleInfo = m
+    if mainModuleInfo and sourceModuleInfo:
+        writeConfigurationsExcludesAndCompileToBuildGradle(mainModuleInfo, sourceModuleInfo)
+    else:
+        print u'部署err 2'
+
+    print u'部署完毕'
+
+def deployDeps():
     print u'开始部署依赖'
     # 读取setting中的include 项目
     # 找到项目对应的maven id
@@ -36,12 +68,6 @@ def deployDeps(projects):
     mainModuleName = getMainModule(includeModules, moduleInfos)
     print u"3、开始为主工程 %s build.gradle加入部署依赖" % mainModuleName
     writeConfigurationsExcludesAndCompileToBuildGradle(ModuleInfo(mainModuleName, '', ''), moduleInfos)
-
-    # 4、往所有子module中的每一个dep都写入所有排除
-    print u"4、开始为子工程加入Dep Excludes"
-    for m in moduleInfos:
-        print u"    子工程 %s build.gradle加入Dep Excludes" % m.name
-        writeDepExcludesToBuildGradle(m, moduleInfos, projects)
 
     print u"部署完毕"
 
@@ -112,75 +138,7 @@ def getModuleMavenInfo(includeModules):
         os.rename("%s.bak" % file_build, file_build)
     return moduleInfos
 
-def writeDepExcludesToBuildGradle(moule, moduleInfos, projects):
-    """部署配置(局部exclude)到build.gradle
-    :param moule: 配置此module中的依赖
-    :param moduleInfos: 本工程include的module信息
-    :return:
-    """
-    pass
-    moduleBuildGradle = moule.getBuildFile()
-    print u"        找到build.gradle文件: %s" % moduleBuildGradle
-    moduleBuildGradle_bak = moduleBuildGradle + '.bak'
-    moduleBuildGradle_new = moduleBuildGradle + '.new'
-
-    with open(moduleBuildGradle_new, "w") as new_file:
-        curDepsName = ''
-        configurations = []
-        for line in open(moduleBuildGradle):
-            # 先把本行数据写入
-            if line.strip().startswith('exclude'):
-                for configuration in configurations:
-                    print configuration
-                if not checkHasExclue(line, configurations):
-                    new_file.write(line)
-            else:
-                new_file.write(line)
-
-            # 当前是给哪个依赖添加排除，compile(deps.GXXX)
-            if 'deps.' in line:
-                ls = line.split('deps.')
-                ls = ls[1].split(')')
-                curDepsName = ls[0].strip()
-            elif line.strip().startswith('transitive'):
-                # 写入局部exclude
-                # configurations.clear()
-                del configurations[:]
-
-                print u'            %s 添加exclude配置' % curDepsName
-                for m in moduleInfos:
-                    if moule.name != m.name and checkOrder(curDepsName, m.name, projects):# 排除自己的maven配置、排除打包顺序上层的maven配置
-                        configurations.append(m.exclude)
-                    else:
-                        print u'            %s 排除maven配置' % m.name
-                new_file.writelines([configuration + '\n' for configuration in configurations])
-                print u"            写入exclude完毕\n"
-
-    new_file.close()
-    # 把目前的build文件备份，新生成的build文件替换原文件
-    # if os.path.exists(moduleBuildGradle_bak): os.remove(moduleBuildGradle_bak)
-    # os.rename(moduleBuildGradle, moduleBuildGradle_bak)
-    if os.path.exists(moduleBuildGradle): os.remove(moduleBuildGradle)
-    os.rename(moduleBuildGradle_new, moduleBuildGradle)
-
-# 已添加的排除，就不需要添加了
-def checkHasExclue(exc, configurations):
-    exc = exc.replace(' ', '').replace('\n', '')
-    for config in configurations:
-        config = config.replace(' ', '')
-        if exc == config:
-            return True
-    return False
-
-# 在本module打包顺序后面的就不需要添加排除
-def checkOrder(curModuleName, checkModuleName, projects):
-    for project in projects:
-        if curModuleName == project.path:
-            return False
-        if checkModuleName == project.path:
-            return True
-
-def writeConfigurationsExcludesAndCompileToBuildGradle(moule, moduleInfos):
+def writeConfigurationsExcludesAndCompileToBuildGradle(moule, *moduleInfos):
     """部署配置(ConfigurationsExcludes、Compile)到build.gradle
     :param moule: 配置此module中的依赖
     :param moduleInfos: 本工程include的module信息
@@ -229,7 +187,6 @@ def writeExcludesToBuildGradle(new_file, curModule, moduleInfos):
     configurations.append('}')
     new_file.writelines([configuration + '\n' for configuration in configurations])
 
-#
 def writeCompileToBuildGradle(new_file, curModule, moduleInfos):
     """往build.gradle中写入配置
     compile(deps.xxx){
