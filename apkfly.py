@@ -880,8 +880,6 @@ def cmd_deploy(args):
     install = args.install
     deps = args.deps
     exclude_aar_dep_source = args.exclude_aar_dep_source
-    modules_aar = args.modules_aar
-    version_index = args.version_index
 
     if upload:
        deploy.uploadApk()
@@ -894,7 +892,12 @@ def cmd_deploy(args):
             deploy.exclude_aar_dep_source(exclude_aar_dep_source)
         else:
             print u'请正确书写参数，deploy -e GHybrid GCore(GHybrid依赖GCore源码)'
-    elif modules_aar:
+
+def cmd_compile_aar(args):
+    modules_aar = args.modules
+    version_index = args.version_index
+
+    if modules_aar:
         print u'开始打包aar'
 
         # 注意点： clone代码时用apkfly，确保项目名和projects.xml中的path相同
@@ -921,25 +924,31 @@ def cmd_deploy(args):
 
         print u'2、根据projects.xml对modules打包排序完成: '
         print modules_aar_new
+        if len(modules_aar) != len(modules_aar_new):
+            print u'请检查输入的moduleNames与projects.xml中的path是否相同'
+            return
 
-        # 轮询执行下面逻辑
-        for module in modules_aar:
-            versionTag = get_module_version_tag(module)
-            if versionTag != '':
-                # 版本AAR_XXX_YYY +1
-                exec_version_add(versionTag, versionTag, version_index, None)
-                # 打aar
-                cmd_result = exec_one_project("uploadArchives", module)
-                if cmd_result.find("BUILD SUCCESSFUL") != -1:
-                    print ">>>Success project:%s" % module
-                else:
-                    print ">>>Error project:%s" % module
-                    break
-            else:
-                print u'>>>Error project:%s，版本字段名未找到' % module
-                break
+        # 轮询批量aar
+        exec_compile_aar(modules_aar_new, version_index)
 
         print u'3、打包结束'
+
+def exec_compile_aar(modules_aar, version_index):
+    for module in modules_aar:
+        versionTag = get_module_version_tag(module)
+        if versionTag != '':
+            # 版本AAR_XXX_YYY +1
+            exec_version_add(versionTag, versionTag, version_index, None)
+            # 打aar
+            cmd_result = exec_one_project("uploadArchives", module)
+            if cmd_result.find("BUILD SUCCESSFUL") != -1:
+                print ">>>Success project:%s\n\n>>>NEXT COMPILE AAR\n" % module
+            else:
+                print ">>>Error project:%s" % module
+                break
+        else:
+            print u'>>>Error project:%s，版本字段名未找到' % module
+            break
 
 def get_module_version_tag(moduleName):
     """获取module的版本字段名
@@ -1115,8 +1124,12 @@ if __name__ == '__main__':
     # parser_apk_.add_argument("-ri", "--releaseInstall", help=u'构建Release包，并安装到手机', action='store_true', default=False)
     parser_apk_.add_argument("-d", "--deps", help=u'根据setting中的配置的项目，部署依赖配置', action='store_true', default=False)
     parser_apk_.add_argument("-e", "--exclude_aar_dep_source", help=u'源码依赖，例GHybrid依赖GCore源码(deploy -e GHybrid GCore)', nargs='+')
-    parser_apk_.add_argument("-m", "--modules_aar", help=u'打包aar(upload -m GHybrid GCore)', nargs='+')
-    parser_apk_.add_argument('-v', "--version_index", type=int, default=3, choices=[1, 2, 3], help=u'自增版本索引【1大版本，2中间版本，3小版本】')
+
+    parser_aar = subparsers.add_parser("aar", help=u"批量aar")
+    parser_aar.set_defaults(func=cmd_compile_aar)
+    parser_aar.add_argument("-m", "--modules", help=u'多个module打包aar(upload -m GHybrid GCore)', nargs='+')
+    #parser_aar.add_argument("-s", "--start_projects_xml", type=str, default='GFrameHttp', help=u'从某个module开始打包（根据projects.xml中的顺序）')
+    parser_aar.add_argument('-v', "--version_index", type=int, default=3, choices=[1, 2, 3], help=u'自增版本索引【1大版本，2中间版本，3小版本】')
 
     # 切换远程地址
     parser_remote = subparsers.add_parser("remote", help=u"远程地址")
