@@ -924,17 +924,8 @@ def cmd_deploy(args):
 
         # 轮询执行下面逻辑
         for module in modules_aar:
-            moduleBuildFile = os.path.join(dir_current, module, file_build_gradle)
-            if os.path.exists(moduleBuildFile):
-                # 找到module找到对应的version版本AAR_XXX_YYY
-                versionTag = ''
-                with open(moduleBuildFile, "r") as file:
-                    for line in file:
-                        if 'AAR_' in line:
-                            versionTags = re.findall(r"\"(\w+)\"", line.strip())
-                            if len(versionTags) > 0:
-                                versionTag = versionTags[0]
-                            break
+            versionTag = get_module_version_tag(module)
+            if versionTag != '':
                 # 版本AAR_XXX_YYY +1
                 exec_version_add(versionTag, versionTag, version_index, None)
                 # 打aar
@@ -944,8 +935,29 @@ def cmd_deploy(args):
                 else:
                     print ">>>Error project:%s" % module
                     break
+            else:
+                print u'>>>Error project:%s，版本字段名未找到' % module
+                break
 
         print u'3、打包结束'
+
+def get_module_version_tag(moduleName):
+    """获取module的版本字段名
+    :param moduleName:
+    :return:
+    """
+    moduleBuildFile = os.path.join(dir_current, moduleName, file_build_gradle)
+    versionTag = ''
+    if os.path.exists(moduleBuildFile):
+        # 找到module找到对应的version版本AAR_XXX_YYY
+        with open(moduleBuildFile, "r") as file:
+            for line in file:
+                if 'AAR_' in line:
+                    versionTags = re.findall(r"\"(\w+)\"", line.strip())
+                    if len(versionTags) > 0:
+                        versionTag = versionTags[0]
+                    break
+    return versionTag
 
 def cmd_remote(args):
     set = args.set
