@@ -315,15 +315,6 @@ def cmd_version_add(args):
     last_prop = args.end
     index = args.index
     value = args.value
-
-    if args.start_module:
-        # 兼容自增gradle.properties内的 aar 配置版本时，以module名作为参数
-        # 优先级大于args.start
-        first_prop = get_module_version_tag(args.start_module)
-        if first_prop == '':
-            print u'>>>Error project:%s，版本字段名未找到' % args.start_module
-            return
-
     exec_version_add(first_prop, last_prop, index, value)
 
 def exec_version_add(first_prop, last_prop, index, value):
@@ -1048,7 +1039,6 @@ if __name__ == '__main__':
     parser_version.set_defaults(func=cmd_version_add)
     parser_version.add_argument('-s', "--start", type=str, default='AAR_GFRAME_HTTP_VERSION',
                                 help=u'起始AAR版本【例：AAR_MFRAME2_VERSION】')
-    parser_version.add_argument('-sm', "--start_module", type=str, help=u'起始Module的AAR版本【例：GFrameHttp】,本参数级别大于-s')
     parser_version.add_argument('-e', "--end", type=str, default='AAR_MAPP_VERSION',
                                 help=u'终止AAR版本')
     parser_version.add_argument('-i', "--index", type=int, default=2, choices=[1, 2, 3],
