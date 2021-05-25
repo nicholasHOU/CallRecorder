@@ -896,6 +896,8 @@ def cmd_deploy(args):
     elif modules_aar:
         print u'开始打包aar'
 
+        # 注意点： clone代码时用apkfly，确保项目名和projects.xml中的path相同
+
         # 1、把build.gradle中deps的true全部改为false
         with open(file_build, "r") as file, open("%s.bak" % file_build, "w") as file_bak:
             for line in file:
