@@ -315,6 +315,15 @@ def cmd_version_add(args):
     last_prop = args.end
     index = args.index
     value = args.value
+
+    if args.start_module:
+        # 兼容自增gradle.properties内的 aar 配置版本时，以module名作为参数
+        # 优先级大于args.start
+        first_prop = get_module_version_tag(args.start_module)
+        if first_prop == '':
+            print u'>>>Error project:%s，版本字段名未找到' % args.start_module
+            return
+
     exec_version_add(first_prop, last_prop, index, value)
 
 def exec_version_add(first_prop, last_prop, index, value):
@@ -924,17 +933,8 @@ def cmd_deploy(args):
 
         # 轮询执行下面逻辑
         for module in modules_aar:
-            moduleBuildFile = os.path.join(dir_current, module, file_build_gradle)
-            if os.path.exists(moduleBuildFile):
-                # 找到module找到对应的version版本AAR_XXX_YYY
-                versionTag = ''
-                with open(moduleBuildFile, "r") as file:
-                    for line in file:
-                        if 'AAR_' in line:
-                            versionTags = re.findall(r"\"(\w+)\"", line.strip())
-                            if len(versionTags) > 0:
-                                versionTag = versionTags[0]
-                            break
+            versionTag = get_module_version_tag(module)
+            if versionTag != '':
                 # 版本AAR_XXX_YYY +1
                 exec_version_add(versionTag, versionTag, version_index, None)
                 # 打aar
@@ -944,8 +944,29 @@ def cmd_deploy(args):
                 else:
                     print ">>>Error project:%s" % module
                     break
+            else:
+                print u'>>>Error project:%s，版本字段名未找到' % module
+                break
 
         print u'3、打包结束'
+
+def get_module_version_tag(moduleName):
+    """获取module的版本字段名
+    :param moduleName:
+    :return:
+    """
+    moduleBuildFile = os.path.join(dir_current, moduleName, file_build_gradle)
+    versionTag = ''
+    if os.path.exists(moduleBuildFile):
+        # 找到module找到对应的version版本AAR_XXX_YYY
+        with open(moduleBuildFile, "r") as file:
+            for line in file:
+                if 'AAR_' in line:
+                    versionTags = re.findall(r"\"(\w+)\"", line.strip())
+                    if len(versionTags) > 0:
+                        versionTag = versionTags[0]
+                    break
+    return versionTag
 
 def cmd_remote(args):
     set = args.set
@@ -1027,6 +1048,7 @@ if __name__ == '__main__':
     parser_version.set_defaults(func=cmd_version_add)
     parser_version.add_argument('-s', "--start", type=str, default='AAR_GFRAME_HTTP_VERSION',
                                 help=u'起始AAR版本【例：AAR_MFRAME2_VERSION】')
+    parser_version.add_argument('-sm', "--start_module", type=str, help=u'起始Module的AAR版本【例：GFrameHttp】,本参数级别大于-s')
     parser_version.add_argument('-e', "--end", type=str, default='AAR_MAPP_VERSION',
                                 help=u'终止AAR版本')
     parser_version.add_argument('-i', "--index", type=int, default=2, choices=[1, 2, 3],
