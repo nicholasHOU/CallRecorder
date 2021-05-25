@@ -881,6 +881,7 @@ def cmd_deploy(args):
     deps = args.deps
     exclude_aar_dep_source = args.exclude_aar_dep_source
     modules_aar = args.modules_aar
+    version_index = args.version_index
 
     if upload:
        deploy.uploadApk()
@@ -926,16 +927,16 @@ def cmd_deploy(args):
             moduleBuildFile = os.path.join(dir_current, module, file_build_gradle)
             if os.path.exists(moduleBuildFile):
                 # 找到module找到对应的version版本AAR_XXX_YYY
-                version = ''
+                versionTag = ''
                 with open(moduleBuildFile, "r") as file:
                     for line in file:
                         if 'AAR_' in line:
-                            versions = re.findall(r"\"(\w+)\"", line.strip())
-                            if len(versions) > 0:
-                                version = versions[0]
+                            versionTags = re.findall(r"\"(\w+)\"", line.strip())
+                            if len(versionTags) > 0:
+                                versionTag = versionTags[0]
                             break
                 # 版本AAR_XXX_YYY +1
-                exec_version_add(version, version, '3', None)
+                exec_version_add(versionTag, versionTag, version_index, None)
                 # 打aar
                 cmd_result = exec_one_project("uploadArchives", module)
                 if cmd_result.find("BUILD SUCCESSFUL") != -1:
@@ -1103,6 +1104,7 @@ if __name__ == '__main__':
     parser_apk_.add_argument("-d", "--deps", help=u'根据setting中的配置的项目，部署依赖配置', action='store_true', default=False)
     parser_apk_.add_argument("-e", "--exclude_aar_dep_source", help=u'源码依赖，例GHybrid依赖GCore源码(deploy -e GHybrid GCore)', nargs='+')
     parser_apk_.add_argument("-m", "--modules_aar", help=u'打包aar(upload -m GHybrid GCore)', nargs='+')
+    parser_apk_.add_argument('-v', "--version_index", type=int, default=3, choices=[1, 2, 3], help=u'自增版本索引【1大版本，2中间版本，3小版本】')
 
     # 切换远程地址
     parser_remote = subparsers.add_parser("remote", help=u"远程地址")
