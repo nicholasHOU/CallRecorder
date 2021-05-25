@@ -127,7 +127,6 @@ def exec_sub_project(cmd, args):
         # 是否只执行一个子项目
         if only:
             start_flag = False
-        print ">>>Running project:%s" % sub_file
         cmd_result = exec_one_project(cmd, sub_file)
         if cmd_result.find("BUILD SUCCESSFUL") != -1:
             print ">>>Success project:%s" % sub_file
@@ -137,6 +136,7 @@ def exec_sub_project(cmd, args):
     print ">>>>>>running stop<<<<<<"
 
 def exec_one_project(cmd, sub_file):
+    print ">>>Running project:%s" % sub_file
     # 在settings.gradle 配置子项目
     with open(file_settings, "w") as setting:
         setting.write("include \":%s\"" % sub_file)
@@ -881,6 +881,7 @@ def cmd_deploy(args):
     deps = args.deps
     exclude_aar_dep_source = args.exclude_aar_dep_source
     modules_aar = args.modules_aar
+    version_index = args.version_index
 
     if upload:
        deploy.uploadApk()
@@ -895,26 +896,38 @@ def cmd_deploy(args):
             print u'请正确书写参数，deploy -e GHybrid GCore(GHybrid依赖GCore源码)'
     elif modules_aar:
         print u'开始打包aar'
-        # XmlProject.parser_manifest("projects.xml", allow_private=True)
 
-        # 把build.gradle中deps的true全部改为false
-        # 根据projects.xml对modules打包排序
+        # 注意点： clone代码时用apkfly，确保项目名和projects.xml中的path相同
+
+        # 1、把build.gradle中deps的true全部改为false
+        with open(file_build, "r") as file, open("%s.bak" % file_build, "w") as file_bak:
+            for line in file:
+                line = re.sub(r":\s*(true)\s*\?", ": false ?", line)
+                file_bak.write(line)
+            file.close()
+            file_bak.close()
+            # 把新文件覆盖现文件
+            os.remove(file_build)
+            os.rename("%s.bak" % file_build, file_build)
+        print u'1、把build.gradle中deps的true全部改为false'
+
+        # 2、根据projects.xml对modules打包排序
+        modules_aar_new = []
+        projects = XmlProject.parser_manifest("projects.xml", allow_private=True)
+        for project in projects:
+            for m in modules_aar:
+                if m == project.path:
+                    modules_aar_new.append(m)
+
+        print u'2、根据projects.xml对modules打包排序完成: '
+        print modules_aar_new
+
         # 轮询执行下面逻辑
-
         for module in modules_aar:
-            moduleBuildFile = os.path.join(dir_current, module, file_build_gradle)
-            if os.path.exists(moduleBuildFile):
-                # 找到module找到对应的version版本AAR_XXX_YYY
-                version = ''
-                with open(moduleBuildFile, "r") as file:
-                    for line in file:
-                        if 'AAR_' in line:
-                            versions = re.findall(r"\"(\w+)\"", line.strip())
-                            if len(versions) > 0:
-                                version = versions[0]
-                            break
+            versionTag = get_module_version_tag(module)
+            if versionTag != '':
                 # 版本AAR_XXX_YYY +1
-                exec_version_add(version, version, '3', None)
+                exec_version_add(versionTag, versionTag, version_index, None)
                 # 打aar
                 cmd_result = exec_one_project("uploadArchives", module)
                 if cmd_result.find("BUILD SUCCESSFUL") != -1:
@@ -922,6 +935,29 @@ def cmd_deploy(args):
                 else:
                     print ">>>Error project:%s" % module
                     break
+            else:
+                print u'>>>Error project:%s，版本字段名未找到' % module
+                break
+
+        print u'3、打包结束'
+
+def get_module_version_tag(moduleName):
+    """获取module的版本字段名
+    :param moduleName:
+    :return:
+    """
+    moduleBuildFile = os.path.join(dir_current, moduleName, file_build_gradle)
+    versionTag = ''
+    if os.path.exists(moduleBuildFile):
+        # 找到module找到对应的version版本AAR_XXX_YYY
+        with open(moduleBuildFile, "r") as file:
+            for line in file:
+                if 'AAR_' in line:
+                    versionTags = re.findall(r"\"(\w+)\"", line.strip())
+                    if len(versionTags) > 0:
+                        versionTag = versionTags[0]
+                    break
+    return versionTag
 
 def cmd_remote(args):
     set = args.set
@@ -1080,6 +1116,7 @@ if __name__ == '__main__':
     parser_apk_.add_argument("-d", "--deps", help=u'根据setting中的配置的项目，部署依赖配置', action='store_true', default=False)
     parser_apk_.add_argument("-e", "--exclude_aar_dep_source", help=u'源码依赖，例GHybrid依赖GCore源码(deploy -e GHybrid GCore)', nargs='+')
     parser_apk_.add_argument("-m", "--modules_aar", help=u'打包aar(upload -m GHybrid GCore)', nargs='+')
+    parser_apk_.add_argument('-v', "--version_index", type=int, default=3, choices=[1, 2, 3], help=u'自增版本索引【1大版本，2中间版本，3小版本】')
 
     # 切换远程地址
     parser_remote = subparsers.add_parser("remote", help=u"远程地址")
