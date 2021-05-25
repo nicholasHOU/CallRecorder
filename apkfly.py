@@ -924,6 +924,9 @@ def cmd_compile_aar(args):
 
         print u'2、根据projects.xml对modules打包排序完成: '
         print modules_aar_new
+        if len(modules_aar) != len(modules_aar_new):
+            print u'请检查输入的moduleNames与projects.xml中的path是否相同'
+            return
 
         # 轮询批量aar
         exec_compile_aar(modules_aar_new, version_index)
@@ -939,7 +942,7 @@ def exec_compile_aar(modules_aar, version_index):
             # 打aar
             cmd_result = exec_one_project("uploadArchives", module)
             if cmd_result.find("BUILD SUCCESSFUL") != -1:
-                print ">>>Success project:%s" % module
+                print ">>>Success project:%s\n\n>>>NEXT COMPILE AAR\n" % module
             else:
                 print ">>>Error project:%s" % module
                 break
