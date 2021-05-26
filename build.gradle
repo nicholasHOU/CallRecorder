@@ -170,7 +170,7 @@ ext.deps = [
         Gomeimagepipeline    : 'com.gome.fresco:imagepipeline:1.10.0',
         Gomeanimated         : 'com.gome.fresco:animated-gif:1.10.0',
         GomeWebpsupport      : 'com.gome.fresco:webpsupport:1.10.0@aar',
-        GRouter              : true ? project(':GRouter/router'): 'com.gutils.router:router:' + getProperty('LIB_ROUTER_VERSION') + '@aar',
+        GRouter              : false ? project(':GRouter/router'): 'com.gutils.router:router:' + getProperty('LIB_ROUTER_VERSION') + '@aar',
 
         GSafekeyboard        : 'com.gome.mcp:safeKeyboard:2.8.8-v7a',
         GUpdate              : 'com.gome.mcp:update:2.8.9',
@@ -258,7 +258,7 @@ ext.deps = [
         GTongBaoSdk          : rootProject.ext.proDeps ? project(':GTongBaoSdk') : 'com.gome.ecmall:gomepay:' + getProperty('AAR_GOMEPAY_VERSION') + '@aar',
         GBaiTiao             : rootProject.ext.proDeps ? project(':GBaiTiao') : 'com.gome.ecmall:baitiao:' + getProperty('AAR_GBAITIAO_VERSION') + '@aar',
         GFaceRecognition     : rootProject.ext.proDeps ? project(':GFaceRecognition') : 'com.gome.ecmall:facerecognition:' + getProperty('AAR_FACERECOGNITION_VERSION') + '@aar',
-        GHybrid              : rootProject.ext.proDeps ? project(':GHybrid') : 'com.gome.ecmall:gh5:' + getProperty('AAR_GH5_VERSION') + '@aar',
+        GHybrid              : true ? project(':GHybrid') : 'com.gome.ecmall:gh5:' + getProperty('AAR_GH5_VERSION') + '@aar',
         GFinanceCommon       : rootProject.ext.proDeps ? project(':GFinanceCommon') : 'com.gome.ecmall:financecommon:' + getProperty('AAR_GFINANCE_COMMON_VERSION') + '@aar',
         GFinance             : rootProject.ext.proDeps ? project(':GFinance') : 'com.gome.ecmall:finance:' + getProperty('AAR_GFINANCE_VERSION') + '@aar',
         GMeiyingbao          : rootProject.ext.proDeps ? project(':GMeiyingbao') : 'com.gome.ecmall:meiyingbao:' + getProperty('AAR_GMEIYINGBAO_VERSION') + '@aar',
