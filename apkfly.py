@@ -127,16 +127,7 @@ def exec_sub_project(cmd, args):
         # 是否只执行一个子项目
         if only:
             start_flag = False
-        print ">>>Running project:%s" % sub_file
-        # 在settings.gradle 配置子项目
-        with open(file_settings, "w") as setting:
-            setting.write("include \":%s\"" % sub_file)
-        # exec gradle clean uploadArchives
-        clean_output = os.popen("gradle :%s:%s" % (sub_file, "clean"))
-        print clean_output.read()
-        cmd_output = os.popen("gradle :%s:%s" % (sub_file, cmd))
-        cmd_result = cmd_output.read()
-        print cmd_result
+        cmd_result = exec_one_project(cmd, sub_file)
         if cmd_result.find("BUILD SUCCESSFUL") != -1:
             print ">>>Success project:%s" % sub_file
         else:
@@ -144,6 +135,18 @@ def exec_sub_project(cmd, args):
             break
     print ">>>>>>running stop<<<<<<"
 
+def exec_one_project(cmd, sub_file):
+    print ">>>Running project:%s" % sub_file
+    # 在settings.gradle 配置子项目
+    with open(file_settings, "w") as setting:
+        setting.write("include \":%s\"" % sub_file)
+    # exec gradle clean uploadArchives
+    clean_output = os.popen("gradle :%s:%s" % (sub_file, "clean"))
+    print clean_output.read()
+    cmd_output = os.popen("gradle :%s:%s" % (sub_file, cmd))
+    cmd_result = cmd_output.read()
+    print cmd_result
+    return cmd_result
 
 def cmd_upload(args):
     """
@@ -311,6 +314,10 @@ def cmd_version_add(args):
     first_prop = args.start
     last_prop = args.end
     index = args.index
+    value = args.value
+    exec_version_add(first_prop, last_prop, index, value)
+
+def exec_version_add(first_prop, last_prop, index, value):
     prop_file_path = os.path.join(dir_current, "gradle.properties")
     if os.path.exists(prop_file_path) and os.path.isfile(prop_file_path):
         print ">>>>>>start to version auto increment<<<<<<"
@@ -323,6 +330,8 @@ def cmd_version_add(args):
                 if prop.startswith(first_prop):
                     is_aar = True
                     aar_list.append(prop.strip())
+                    if prop.startswith(last_prop):#此时开始和结束为同一个module
+                        is_aar = False
                 elif prop.startswith(last_prop):
                     aar_list.append(prop.strip())
                     is_aar = False
@@ -346,8 +355,8 @@ def cmd_version_add(args):
                 else:
                     raise ValueError("third num error for [" + aar + "]")
                 index_num = int(index_num) + 1
-                if args.value:
-                    index_num = args.value
+                if value:
+                    index_num = value
                 # 此处可对版本号格式进行修改，当前仅适配GomePlus
                 if index == 1:
                     new_aar = re.sub(r"=\s*\d+", "=" + str(index_num), aar)
@@ -355,6 +364,8 @@ def cmd_version_add(args):
                     new_aar = re.sub(r"\.\d+\.", "." + str(index_num) + ".", aar)
                 else:
                     new_aar = re.sub(r"\.\d+-", "." + str(index_num) + "-", aar)
+                    if new_aar == aar:#部分版本后缀删除了 -plus，所以上面的匹配失败
+                        new_aar = re.sub(r"\.\d+$", "." + str(index_num), aar)
                 prop_file_content = prop_file_content.replace(aar, new_aar)
                 print ">>>replace ", aar, " to ", new_aar
         # 文件写入
@@ -868,6 +879,7 @@ def cmd_deploy(args):
     upload = args.upload
     install = args.install
     deps = args.deps
+    exclude_aar_dep_source = args.exclude_aar_dep_source
 
     if upload:
        deploy.uploadApk()
@@ -875,6 +887,86 @@ def cmd_deploy(args):
         deploy.installApk()
     elif deps:
         deploy.deployDeps()
+    elif exclude_aar_dep_source:
+        if len(exclude_aar_dep_source) == 2:
+            deploy.exclude_aar_dep_source(exclude_aar_dep_source)
+        else:
+            print u'请正确书写参数，deploy -e GHybrid GCore(GHybrid依赖GCore源码)'
+
+def cmd_compile_aar(args):
+    modules_aar = args.modules
+    version_index = args.version_index
+
+    if modules_aar:
+        print u'开始打包aar'
+
+        # 注意点： clone代码时用apkfly，确保项目名和projects.xml中的path相同
+
+        # 1、把build.gradle中deps的true全部改为false
+        with open(file_build, "r") as file, open("%s.bak" % file_build, "w") as file_bak:
+            for line in file:
+                line = re.sub(r":\s*(true)\s*\?", ": false ?", line)
+                file_bak.write(line)
+            file.close()
+            file_bak.close()
+            # 把新文件覆盖现文件
+            os.remove(file_build)
+            os.rename("%s.bak" % file_build, file_build)
+        print u'1、把build.gradle中deps的true全部改为false'
+
+        # 2、根据projects.xml对modules打包排序
+        modules_aar_new = []
+        projects = XmlProject.parser_manifest("projects.xml", allow_private=True)
+        for project in projects:
+            for m in modules_aar:
+                if m == project.path:
+                    modules_aar_new.append(m)
+
+        print u'2、根据projects.xml对modules打包排序完成: '
+        print modules_aar_new
+        if len(modules_aar) != len(modules_aar_new):
+            print u'请检查输入的moduleNames与projects.xml中的path是否相同'
+            return
+
+        # 轮询批量aar
+        exec_compile_aar(modules_aar_new, version_index)
+
+        print u'3、打包结束'
+
+def exec_compile_aar(modules_aar, version_index):
+    for module in modules_aar:
+        versionTag = get_module_version_tag(module)
+        if versionTag != '':
+            # 版本AAR_XXX_YYY +1
+            exec_version_add(versionTag, versionTag, version_index, None)
+            # 打aar
+            cmd_result = exec_one_project("uploadArchives", module)
+            if cmd_result.find("BUILD SUCCESSFUL") != -1:
+                print ">>>Success project:%s\n\n>>>NEXT COMPILE AAR\n" % module
+            else:
+                print ">>>Error project:%s" % module
+                break
+        else:
+            print u'>>>Error project:%s，版本字段名未找到' % module
+            break
+
+def get_module_version_tag(moduleName):
+    """获取module的版本字段名
+    :param moduleName:
+    :return:
+    """
+    moduleBuildFile = os.path.join(dir_current, moduleName, file_build_gradle)
+    versionTag = ''
+    if os.path.exists(moduleBuildFile):
+        # 找到module找到对应的version版本AAR_XXX_YYY
+        with open(moduleBuildFile, "r") as file:
+            for line in file:
+                if 'AAR_' in line:
+                    versionTags = re.findall(r"\"(\w+)\"", line.strip())
+                    if len(versionTags) > 0:
+                        versionTag = versionTags[0]
+                    break
+    return versionTag
 
 def cmd_remote(args):
     set = args.set
@@ -1031,7 +1123,13 @@ if __name__ == '__main__':
     # parser_apk_.add_argument("-di", "--debugInstall", help=u'构建Debug包，并安装到手机', action='store_true', default=False)
     # parser_apk_.add_argument("-ri", "--releaseInstall", help=u'构建Release包，并安装到手机', action='store_true', default=False)
     parser_apk_.add_argument("-d", "--deps", help=u'根据setting中的配置的项目，部署依赖配置', action='store_true', default=False)
+    parser_apk_.add_argument("-e", "--exclude_aar_dep_source", help=u'源码依赖，例GHybrid依赖GCore源码(deploy -e GHybrid GCore)', nargs='+')
 
+    parser_aar = subparsers.add_parser("aar", help=u"批量aar")
+    parser_aar.set_defaults(func=cmd_compile_aar)
+    parser_aar.add_argument("-m", "--modules", help=u'多个module打包aar(upload -m GHybrid GCore)', nargs='+')
+    #parser_aar.add_argument("-s", "--start_projects_xml", type=str, default='GFrameHttp', help=u'从某个module开始打包（根据projects.xml中的顺序）')
+    parser_aar.add_argument('-v', "--version_index", type=int, default=3, choices=[1, 2, 3], help=u'自增版本索引【1大版本，2中间版本，3小版本】')
 
     # 切换远程地址
     parser_remote = subparsers.add_parser("remote", help=u"远程地址")

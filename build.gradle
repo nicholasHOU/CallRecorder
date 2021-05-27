@@ -89,6 +89,9 @@ ext.deps = [
         GHttp            : 'com.gome.mcp:http:2.8.8_v5@aar',
         GUtils            : 'com.gome.mcp:utils:2.8.8_v4@aar',
 
+        LeakcanaryDebug   : "com.squareup.leakcanary:leakcanary-android:1.6.3",
+        LeakcanaryRelease : "com.squareup.leakcanary:leakcanary-android-no-op:1.6.3",
+
         SProtobuf         : 'com.google.protobuf:protobuf-java:2.6.1',
         SOkHttp           : 'com.squareup.okhttp3:okhttp:3.12.12',
         SOkHttpLog        : 'com.squareup.okhttp3:logging-interceptor:3.12.12',
@@ -251,6 +254,7 @@ ext.deps = [
         GDXRisk              : rootProject.ext.proDeps ? project(':GDXRisk') : 'com.gome.mcp:dxrisk:' + getProperty('AAR_GDXRISK_VERSION') + '@aar',
         GFaceLive            : rootProject.ext.proDeps ? project(':GFaceLive') : 'com.gome.mobile.common:facelive:' + getProperty('AAR_GFACELIVE_VERSION') + '@aar',
         GLogin               : true ? project(':GLogin') : 'com.gome.ecmall:login:' + getProperty('AAR_GLOGIN_VERSION') + '@aar',
+
         GLoginAuth           : 'com.gome.ecmall:login-auth:Release-V1.0.0@aar',
         GLoginBusiness       : rootProject.ext.proDeps ? project(':GLoginBusiness') : 'com.gome.ecmall:loginbusiness:' + getProperty('AAR_GLOGIN_BUSINESS_VERSION') + '@aar',
         GPullrefresh         : rootProject.ext.proDeps ? project(':GPullrefresh') : 'com.gome.ecmall:pullrefresh:' + getProperty('AAR_GPULLREFRESH_VERSION') + '@aar',
