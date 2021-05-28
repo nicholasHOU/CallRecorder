@@ -313,7 +313,7 @@ def startApp(apkPath):
                 package = d['name']
             except KeyError:
                 print 'package find fail'
-        if line.startswith("launchable-activity:"):
+        if line.startswith("launchable-activity:") and launch == "":
             # print line # launchable-activity: name='com.gome.ecmall.home.LaunchActivity'
             d = splitKV(line)
             try:
