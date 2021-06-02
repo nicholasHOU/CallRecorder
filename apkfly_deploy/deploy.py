@@ -15,8 +15,8 @@ dir_current = os.path.abspath(".")
 file_settings = os.path.join(dir_current, "settings.gradle")
 file_build = os.path.join(dir_current, file_build_gradle)
 
-def exclude_aar_dep_source(moduleNames):
-    print u'开始部署依赖，排除%s中的%s AAR依赖，直接依赖其源码' % (moduleNames[0], moduleNames[1])
+def exclude_aar_dep_source(tModule, dModule):
+    print u'开始部署依赖，排除%s中的%s AAR依赖，直接依赖其源码' % (tModule, dModule)
     # 先检测一下，module是否在setting文件中
 
     # 1、settings.gradle中include的所有module
@@ -24,7 +24,11 @@ def exclude_aar_dep_source(moduleNames):
     print u"1、include的所有module配置读取完毕"
 
     if len(includeModules) < 2:
-        print u'部署err 1'
+        print u'出错警告： setting.gradle 配置超过2个module再来哦'
+        return
+
+    if tModule not in includeModules or dModule not in includeModules:
+        print u'出错警告： 请确保%s %s 已配置在setting.gradle' % (tModule, dModule)
         return
 
     # 2、module的maven信息，并include的module在ext.deps[ ]中打开依赖
@@ -36,18 +40,18 @@ def exclude_aar_dep_source(moduleNames):
     mainModuleInfo = None
     sourceModuleInfo = None
     for m in moduleInfos:
-        if m.name == moduleNames[0]:
+        if m.name == tModule:
             mainModuleInfo = m
-        elif m.name == moduleNames[1]:
+        elif m.name == dModule:
             sourceModuleInfo = m
     if mainModuleInfo and sourceModuleInfo:
-        writeConfigurationsExcludesAndCompileToBuildGradle(mainModuleInfo, sourceModuleInfo)
+        writeConfigurationsExcludesAndCompileToBuildGradle(mainModuleInfo, [sourceModuleInfo])
     else:
-        print u'部署err 2'
+        print u'部署err'
 
     print u'部署完毕'
 
-def deployDeps():
+def deployMainAppDeps():
     print u'开始部署依赖'
     # 读取setting中的include 项目
     # 找到项目对应的maven id
@@ -59,6 +63,9 @@ def deployDeps():
     # 1、settings.gradle中include的所有module
     includeModules = getIncludeModule()
     print u"1、include的所有module配置读取完毕"
+    if len(includeModules) < 2:
+        print u'出错警告： setting.gradle 配置超过2个module再来哦'
+        return
 
     # 2、module的maven信息，并include的module在ext.deps[ ]中打开依赖
     moduleInfos = getModuleMavenInfo(includeModules)
@@ -138,7 +145,7 @@ def getModuleMavenInfo(includeModules):
         os.rename("%s.bak" % file_build, file_build)
     return moduleInfos
 
-def writeConfigurationsExcludesAndCompileToBuildGradle(moule, *moduleInfos):
+def writeConfigurationsExcludesAndCompileToBuildGradle(moule, moduleInfos):
     """部署配置(ConfigurationsExcludes、Compile)到build.gradle
     :param moule: 配置此module中的依赖
     :param moduleInfos: 本工程include的module信息
@@ -215,8 +222,8 @@ class ModuleInfo(object):
 
     def getBuildFile(self):
         if self.groupId == '':
-            # 本modulInfo对象为主工程
-            return os.path.join(dir_current, self.name, 'deps', 'gomedeps.gradle')
+            # 本modulInfo对象为主工程 - 真快乐、帮帮、极简都依赖了coredeps.gradle
+            return os.path.join(dir_current, self.name, 'deps', 'coredeps.gradle')
         else:
             return os.path.join(dir_current, self.name, file_build_gradle)
 

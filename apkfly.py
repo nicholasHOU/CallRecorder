@@ -878,20 +878,41 @@ def cmd_deploy(args):
     # 命令
     upload = args.upload
     install = args.install
-    deps = args.deps
-    exclude_aar_dep_source = args.exclude_aar_dep_source
+    target_module = args.target_module
+    deps_module = args.deps_module
 
     if upload:
        deploy.uploadApk()
     elif install:
         deploy.installApk()
-    elif deps:
-        deploy.deployDeps()
-    elif exclude_aar_dep_source:
-        if len(exclude_aar_dep_source) == 2:
-            deploy.exclude_aar_dep_source(exclude_aar_dep_source)
+    elif target_module != None:
+        if 0 == len(target_module):
+            # 对主工程进行部署依赖
+            deploy.deployMainAppDeps()
+        elif deps_module:
+            # 检验module都是合法的
+            if check_modules(target_module, deps_module):
+                return
+            # 开始部署依赖
+            for m in target_module:
+                print ''
+                deploy.exclude_aar_dep_source(m, deps_module)
+                print u'-------------------------------------------------'
         else:
-            print u'请正确书写参数，deploy -e GHybrid GCore(GHybrid依赖GCore源码)'
+            print u'请输入正确命令1'
+    else:
+            print u'请输入正确命令2'
+
+def check_modules(target_module, deps_module):
+    err = False
+    for m in target_module:
+        if not check_sub_project(m, False):
+            print u'%s 不合法' % m
+            err = True
+    if not check_sub_project(deps_module, False):
+        print u'%s 不合法' % deps_module
+        err = True
+    return err
 
 def cmd_compile_aar(args):
     modules_aar = args.modules
@@ -1122,14 +1143,14 @@ if __name__ == '__main__':
     parser_apk_.add_argument("-i", "--install", help=u'自动寻找apk，并安装到手机', action='store_true', default=False)
     # parser_apk_.add_argument("-di", "--debugInstall", help=u'构建Debug包，并安装到手机', action='store_true', default=False)
     # parser_apk_.add_argument("-ri", "--releaseInstall", help=u'构建Release包，并安装到手机', action='store_true', default=False)
-    parser_apk_.add_argument("-d", "--deps", help=u'根据setting中的配置的项目，部署依赖配置', action='store_true', default=False)
-    parser_apk_.add_argument("-e", "--exclude_aar_dep_source", help=u'源码依赖，例GHybrid依赖GCore源码(deploy -e GHybrid GCore)', nargs='+')
+    parser_apk_.add_argument("-t", "--target_module", help=u'对某module部署依赖', nargs='*')
+    parser_apk_.add_argument("-d", "--deps_module", type=str, help=u'依赖源码')
 
     parser_aar = subparsers.add_parser("aar", help=u"批量aar")
     parser_aar.set_defaults(func=cmd_compile_aar)
     parser_aar.add_argument("-m", "--modules", help=u'多个module打包aar(upload -m GHybrid GCore)', nargs='+')
-    #parser_aar.add_argument("-s", "--start_projects_xml", type=str, default='GFrameHttp', help=u'从某个module开始打包（根据projects.xml中的顺序）')
     parser_aar.add_argument('-v', "--version_index", type=int, default=3, choices=[1, 2, 3], help=u'自增版本索引【1大版本，2中间版本，3小版本】')
+    #parser_aar.add_argument("-s", "--start_projects_xml", type=str, default='GFrameHttp', help=u'从某个module开始打包（根据projects.xml中的顺序）')
 
     # 切换远程地址
     parser_remote = subparsers.add_parser("remote", help=u"远程地址")
