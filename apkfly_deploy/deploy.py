@@ -15,8 +15,8 @@ dir_current = os.path.abspath(".")
 file_settings = os.path.join(dir_current, "settings.gradle")
 file_build = os.path.join(dir_current, file_build_gradle)
 
-def exclude_aar_dep_source(tModule, dModule):
-    print u'开始部署依赖，排除%s中的%s AAR依赖，直接依赖其源码' % (tModule, dModule)
+def exclude_aar_dep_source(tModule, dModules):
+    print u'开始部署依赖，排除%s中的%s AAR依赖，直接依赖其源码' % (tModule, ",".join(dModules))
     # 先检测一下，module是否在setting文件中
 
     # 1、settings.gradle中include的所有module
@@ -27,9 +27,14 @@ def exclude_aar_dep_source(tModule, dModule):
         print u'出错警告： setting.gradle 配置超过2个module再来哦'
         return
 
-    if tModule not in includeModules or dModule not in includeModules:
-        print u'出错警告： 请确保%s %s 已配置在setting.gradle' % (tModule, dModule)
+    if tModule not in includeModules:
+        print u'出错警告： 请确保%s 已配置在setting.gradle' % (tModule)
         return
+
+    for dm in dModules:
+        if dm not in includeModules:
+            print u'出错警告： 请确保%s 已配置在setting.gradle' % ( ",".join(dModules))
+            return
 
     # 2、module的maven信息，并include的module在ext.deps[ ]中打开依赖
     moduleInfos = getModuleMavenInfo(includeModules)
@@ -38,14 +43,14 @@ def exclude_aar_dep_source(tModule, dModule):
     # 3、排除aar,依赖源码
     print u"3、开始为子工程加入Dep Excludes"
     mainModuleInfo = None
-    sourceModuleInfo = None
+    sourceModuleInfos = []
     for m in moduleInfos:
         if m.name == tModule:
             mainModuleInfo = m
-        elif m.name == dModule:
-            sourceModuleInfo = m
-    if mainModuleInfo and sourceModuleInfo:
-        writeConfigurationsExcludesAndCompileToBuildGradle(mainModuleInfo, [sourceModuleInfo])
+        elif m.name in dModules:
+            sourceModuleInfos.append(m)
+    if mainModuleInfo and len(sourceModuleInfos) == len(dModules):
+        writeConfigurationsExcludesAndCompileToBuildGradle(mainModuleInfo, sourceModuleInfos)
     else:
         print u'部署err'
 

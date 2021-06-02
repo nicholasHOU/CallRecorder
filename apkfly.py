@@ -878,40 +878,39 @@ def cmd_deploy(args):
     # 命令
     upload = args.upload
     install = args.install
-    target_module = args.target_module
-    deps_module = args.deps_module
+    app = args.app_deps_settings_module
+    target_modules = args.target_modules
+    deps_modules = args.deps_modules
 
     if upload:
        deploy.uploadApk()
     elif install:
         deploy.installApk()
-    elif target_module != None:
-        if 0 == len(target_module):
-            # 对主工程进行部署依赖
-            deploy.deployMainAppDeps()
-        elif deps_module:
-            # 检验module都是合法的
-            if check_modules(target_module, deps_module):
-                return
-            # 开始部署依赖
-            for m in target_module:
-                print ''
-                deploy.exclude_aar_dep_source(m, deps_module)
-                print u'-------------------------------------------------'
-        else:
-            print u'请输入正确命令1'
+    elif app:
+        # 对主工程进行部署依赖
+        deploy.deployMainAppDeps()
+    elif target_modules and deps_modules:
+        # 检验module都是合法的
+        if check_modules(target_modules, deps_modules):
+            return
+        # 开始部署依赖
+        for m in target_modules:
+            print ''
+            deploy.exclude_aar_dep_source(m, deps_modules)
+            print u'-------------------------------------------------'
     else:
-            print u'请输入正确命令2'
+            print u'请输入正确命令, 比如：deploy -t ... -d ...'
 
-def check_modules(target_module, deps_module):
+def check_modules(target_modules, deps_modules):
     err = False
-    for m in target_module:
+    for m in target_modules:
         if not check_sub_project(m, False):
             print u'%s 不合法' % m
             err = True
-    if not check_sub_project(deps_module, False):
-        print u'%s 不合法' % deps_module
-        err = True
+    for m in deps_modules:
+        if not check_sub_project(m, False):
+            print u'%s 不合法' % m
+            err = True
     return err
 
 def cmd_compile_aar(args):
@@ -1143,8 +1142,9 @@ if __name__ == '__main__':
     parser_apk_.add_argument("-i", "--install", help=u'自动寻找apk，并安装到手机', action='store_true', default=False)
     # parser_apk_.add_argument("-di", "--debugInstall", help=u'构建Debug包，并安装到手机', action='store_true', default=False)
     # parser_apk_.add_argument("-ri", "--releaseInstall", help=u'构建Release包，并安装到手机', action='store_true', default=False)
-    parser_apk_.add_argument("-t", "--target_module", help=u'对某module部署依赖', nargs='*')
-    parser_apk_.add_argument("-d", "--deps_module", type=str, help=u'依赖源码')
+    parser_apk_.add_argument("-app", "--app_deps_settings_module", help=u'根据setting中的配置的项目，对App部署依赖', action='store_true', default=False)
+    parser_apk_.add_argument("-t", "--target_modules", help=u'对某些module部署依赖', nargs='*')
+    parser_apk_.add_argument("-d", "--deps_modules", type=str, help=u'依赖某些module的源码', nargs='*')
 
     parser_aar = subparsers.add_parser("aar", help=u"批量aar")
     parser_aar.set_defaults(func=cmd_compile_aar)
