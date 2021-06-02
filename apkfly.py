@@ -1148,7 +1148,7 @@ if __name__ == '__main__':
 
     parser_aar = subparsers.add_parser("aar", help=u"批量aar")
     parser_aar.set_defaults(func=cmd_compile_aar)
-    parser_aar.add_argument("-m", "--modules", help=u'多个module打包aar(upload -m GHybrid GCore)', nargs='+')
+    parser_aar.add_argument("-m", "--modules", help=u'多个module打包aar', nargs='+')
     parser_aar.add_argument('-v', "--version_index", type=int, default=3, choices=[1, 2, 3], help=u'自增版本索引【1大版本，2中间版本，3小版本】')
     #parser_aar.add_argument("-s", "--start_projects_xml", type=str, default='GFrameHttp', help=u'从某个module开始打包（根据projects.xml中的顺序）')
 
