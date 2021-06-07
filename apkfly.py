@@ -962,7 +962,7 @@ def exec_compile_aar(modules_aar, version_index):
             # 打aar
             cmd_result = exec_one_project("uploadArchives", module)
             if cmd_result.find("BUILD SUCCESSFUL") != -1:
-                print ">>>Success project:%s\n\n>>>NEXT COMPILE AAR\n" % module
+                print ">>>Success project:%s\n\n>>>-------------------------------------NEXT COMPILE AAR-------------------------------------\n" % module
             else:
                 print ">>>Error project:%s" % module
                 break
