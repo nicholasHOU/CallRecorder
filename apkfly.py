@@ -11,6 +11,8 @@ import xml
 from collections import Counter
 from xml.dom import minidom
 import platform
+sys.path.append(r'apkfly_deploy')
+import deploy
 
 __author__ = "qiudongchao<1162584980@qq.com>"
 __version__ = "5.1.2"
@@ -24,22 +26,6 @@ file_build_gradle = "build.gradle"
 dir_current = os.path.abspath(".")
 file_settings = os.path.join(dir_current, "settings.gradle")
 file_build = os.path.join(dir_current, file_build_gradle)
-
-# 上传finder配置
-UPLOAD_ACCOUNT = 'gome'
-UPLOAD_PW = 'jdkfjkd'
-UPLOAD_URL = 'http://10.115.3.134:8085/upload'
-
-# apk上传到finder的这个目录中 ------  可修改  ------
-JOB_NAME = 'Location-App-Script'
-
-# 寻找apk的特殊路径标示
-APK_SPECIAL_PATH = os.path.join('build', 'outputs', 'apk')
-
-# 在线生成二维码api
-QRCODE_API = 'http://qr.topscan.com/api.php?text='
-# 二维码缓存目录
-QR_CODE_IMG_CACHE_PAHT = os.path.join('.idea', 'caches', 'qr.png')
 
 ###################################################################
 ### 全局公共方法
@@ -84,8 +70,10 @@ def check_root_project():
     校验当前工作空间是否合法
     :return: True or False
     """
-    file_exist = os.path.exists(file_build) and os.path.exists(file_settings)
-    is_file = os.path.isfile(file_settings) and os.path.isfile(file_build)
+    # file_exist = os.path.exists(file_build) and os.path.exists(file_settings)
+    # is_file = os.path.isfile(file_settings) and os.path.isfile(file_build)
+    file_exist = os.path.exists(file_build)
+    is_file = os.path.isfile(file_build)
     result = file_exist and is_file
     if not result:
         raise Exception(u"工作空间校验失败")
@@ -139,16 +127,7 @@ def exec_sub_project(cmd, args):
         # 是否只执行一个子项目
         if only:
             start_flag = False
-        print ">>>Running project:%s" % sub_file
-        # 在settings.gradle 配置子项目
-        with open(file_settings, "w") as setting:
-            setting.write("include \":%s\"" % sub_file)
-        # exec gradle clean uploadArchives
-        clean_output = os.popen("gradle :%s:%s" % (sub_file, "clean"))
-        print clean_output.read()
-        cmd_output = os.popen("gradle :%s:%s" % (sub_file, cmd))
-        cmd_result = cmd_output.read()
-        print cmd_result
+        cmd_result = exec_one_project(cmd, sub_file)
         if cmd_result.find("BUILD SUCCESSFUL") != -1:
             print ">>>Success project:%s" % sub_file
         else:
@@ -156,6 +135,18 @@ def exec_sub_project(cmd, args):
             break
     print ">>>>>>running stop<<<<<<"
 
+def exec_one_project(cmd, sub_file):
+    print ">>>Running project:%s" % sub_file
+    # 在settings.gradle 配置子项目
+    with open(file_settings, "w") as setting:
+        setting.write("include \":%s\"" % sub_file)
+    # exec gradle clean uploadArchives
+    clean_output = os.popen("gradle :%s:%s" % (sub_file, "clean"))
+    print clean_output.read()
+    cmd_output = os.popen("gradle :%s:%s" % (sub_file, cmd))
+    cmd_result = cmd_output.read()
+    print cmd_result
+    return cmd_result
 
 def cmd_upload(args):
     """
@@ -323,6 +314,10 @@ def cmd_version_add(args):
     first_prop = args.start
     last_prop = args.end
     index = args.index
+    value = args.value
+    exec_version_add(first_prop, last_prop, index, value)
+
+def exec_version_add(first_prop, last_prop, index, value):
     prop_file_path = os.path.join(dir_current, "gradle.properties")
     if os.path.exists(prop_file_path) and os.path.isfile(prop_file_path):
         print ">>>>>>start to version auto increment<<<<<<"
@@ -335,6 +330,8 @@ def cmd_version_add(args):
                 if prop.startswith(first_prop):
                     is_aar = True
                     aar_list.append(prop.strip())
+                    if prop.startswith(last_prop):#此时开始和结束为同一个module
+                        is_aar = False
                 elif prop.startswith(last_prop):
                     aar_list.append(prop.strip())
                     is_aar = False
@@ -358,8 +355,8 @@ def cmd_version_add(args):
                 else:
                     raise ValueError("third num error for [" + aar + "]")
                 index_num = int(index_num) + 1
-                if args.value:
-                    index_num = args.value
+                if value:
+                    index_num = value
                 # 此处可对版本号格式进行修改，当前仅适配GomePlus
                 if index == 1:
                     new_aar = re.sub(r"=\s*\d+", "=" + str(index_num), aar)
@@ -367,6 +364,8 @@ def cmd_version_add(args):
                     new_aar = re.sub(r"\.\d+\.", "." + str(index_num) + ".", aar)
                 else:
                     new_aar = re.sub(r"\.\d+-", "." + str(index_num) + "-", aar)
+                    if new_aar == aar:#部分版本后缀删除了 -plus，所以上面的匹配失败
+                        new_aar = re.sub(r"\.\d+$", "." + str(index_num), aar)
                 prop_file_content = prop_file_content.replace(aar, new_aar)
                 print ">>>replace ", aar, " to ", new_aar
         # 文件写入
@@ -874,171 +873,133 @@ def cmd_reset(args):
 ### apk操作：安装、上传等
 ###################################################################
 
-# 提示用户选择一个数字
-def getNum(numRang):
-    try:
-        inputNum = int(raw_input('please input num: '))
-    except NameError and ValueError:
-        print 'input err, num rang: (1 - %s)' % numRang
-        return getNum(numRang)
-    else:
-        if inputNum not in range(1, numRang + 1):
-            print 'input err, num rang: (1 - %s)' % numRang
-            return getNum(numRang)
-        else:
-            return inputNum
-
-
-# 系统打开文件
-def showFile(path):
-    userPlatform = platform.system()					# 获取操作系统
-    if userPlatform == 'Darwin':						# Mac
-        subprocess.call(['open', path])
-    elif userPlatform == 'Linux':						# Linux
-        subprocess.call(['xdg-open', path])
-    else:												# Windows
-        os.startfile(path)
-
-# 生成二维码
-def generateQRCode(text):
-    try:
-        import qrcode
-        img = qrcode.make(data=text) # 生成二维码
-        img.show() # 直接显示二维码
-        # img.save("baidu.jpg") # 保存二维码为文件
-        return 1
-    except ImportError:
-        # print "Please install python qrcode lib, can generate QR code !"
-        pass
-
-    try:
-        import requests
-        response = requests.get(QRCODE_API + text)
-        if response.status_code == 200:
-            # 先判断缓存目录是否存在
-            if not os.path.exists(os.path.dirname(QR_CODE_IMG_CACHE_PAHT)):
-                os.mkdir(os.path.dirname(QR_CODE_IMG_CACHE_PAHT))
-            # 保存二维码
-            with open(QR_CODE_IMG_CACHE_PAHT,'wb')as img:
-                img.write(response.content)
-            # 显示二维码
-            showFile(QR_CODE_IMG_CACHE_PAHT)
-            return 2
-        else:
-            return 0
-    except ImportError:
-        print "Please install python requests lib !"
-        return 0
-
-# 上传apk
-def uploadApk(apkPath):
-    # 上传到Finder中后的名字，如：20200521-10:25:00.apk
-    apkFile = open(apkPath, 'rb')
-    upApkName = os.path.basename(apkFile.name).replace('.apk', '%s%s.apk' % ('-', time.strftime("%Y-%m-%d-%H:%M:%S", time.localtime())))
-    files = {
-        'file': (upApkName, apkFile),
-        'job': (None, JOB_NAME),
-        'platform': (None, 'android'),
-    }
-
-    try:
-        import requests
-        response = requests.post(UPLOAD_URL, files=files, auth=(UPLOAD_ACCOUNT, UPLOAD_PW))
-        if response.status_code == 200:
-            return response.text
-        else:
-            return ''
-    except ImportError:
-        print "Please install python requests lib !"
-        return ''
-
-# 寻找apkDir目录下的所有apk文件
-def findApkPathByDir(apkDir, apkList):
-    dir = os.listdir(apkDir)
-    for p in dir:
-        absP = os.path.join(apkDir, p)
-        if os.path.isdir(absP):
-            findApkPathByDir(absP, apkList)
-        elif absP.endswith('.apk'):
-            apkList.append(absP)
-
-# 找到要操作的apk
-def findApkPath():
-    hasApkPath = False
-    rootDir = os.listdir('.')
-    for childDir in rootDir:
-        if os.path.exists(os.path.join(childDir, APK_SPECIAL_PATH)):
-            apkDir = os.path.join(childDir, APK_SPECIAL_PATH)
-            hasApkPath = True
-            break
-    if hasApkPath:
-        apks = []
-        findApkPathByDir(apkDir, apks)
-        apkNum = len(apks)
-        if apkNum == 0:
-            print 'Not find apk in path: ' + apkDir
-            return ''
-        elif apkNum == 1:
-            return apks[0]
-        else:
-            print 'Apk num > 1, please choose one:'
-            print '------------------------------'
-            for i in range(apkNum):
-                print '%s. %s' % (i + 1, apks[i])
-            print '------------------------------'
-            num = getNum(apkNum)
-            return apks[num - 1]
-    else:
-        return ''
-
-def cmd_apk(args):
+def cmd_deploy(args):
 
     # 命令
     upload = args.upload
     install = args.install
-
-    if upload and install:
-        print 'Error, upload and install, Only one command can be executed at a time'
-        return
+    app = args.app_deps_settings_module
+    target_modules = args.target_modules
+    deps_modules = args.deps_modules
 
     if upload:
-        apkPath = findApkPath()
-        if os.path.exists(apkPath):
-            print '1.Successful find apk, start upload it: ' + apkPath
-            downloadUrl = uploadApk(apkPath)
-            if len(downloadUrl) > 1 and downloadUrl.startswith('http'):
-                print '2.Upload apk succeeded, download url:'
-                print '  %s' % downloadUrl
-                result = generateQRCode(downloadUrl)
-                if result == 1:
-                    print "3.QR code generate succeeded, from 'python qrcode lib'"
-                elif result == 2:
-                    print "3.QR code generate succeeded, from 'online api'"
-                    print '  QR code path: %s' % QR_CODE_IMG_CACHE_PAHT
-                else:
-                    print '3.QR code generate failed'
+       deploy.uploadApk()
+    elif install:
+        deploy.installApk()
+    elif app:
+        # 对主工程进行部署依赖
+        deploy.deployMainAppDeps()
+    elif target_modules and deps_modules:
+        # 检验module都是合法的
+        if check_modules(target_modules, deps_modules):
+            return
+        # 开始部署依赖
+        for m in target_modules:
+            print ''
+            deploy.exclude_aar_dep_source(m, deps_modules)
+            print u'-------------------------------------------------'
+    else:
+            print u'请输入正确命令, 比如：deploy -t ... -d ...'
+
+def check_modules(target_modules, deps_modules):
+    err = False
+    for m in target_modules:
+        if not check_sub_project(m, False):
+            print u'%s 不合法' % m
+            err = True
+    for m in deps_modules:
+        if not check_sub_project(m, False):
+            print u'%s 不合法' % m
+            err = True
+    return err
+
+def cmd_compile_aar(args):
+    modules_aar = args.modules
+    version_index = args.version_index
+
+    if modules_aar:
+        print u'开始打包aar'
+
+        # 注意点： clone代码时用apkfly，确保项目名和projects.xml中的path相同
+
+        # 1、把build.gradle中deps的true全部改为false
+        with open(file_build, "r") as file, open("%s.bak" % file_build, "w") as file_bak:
+            for line in file:
+                line = re.sub(r":\s*(true)\s*\?", ": false ?", line)
+                file_bak.write(line)
+            file.close()
+            file_bak.close()
+            # 把新文件覆盖现文件
+            os.remove(file_build)
+            os.rename("%s.bak" % file_build, file_build)
+        print u'1、把build.gradle中deps的true全部改为false'
+
+        # 2、根据projects.xml对modules打包排序
+        modules_aar_new = []
+        projects = XmlProject.parser_manifest("projects.xml", allow_private=True)
+        for project in projects:
+            for m in modules_aar:
+                if m == project.path:
+                    modules_aar_new.append(m)
+
+        print u'2、根据projects.xml对modules打包排序完成: '
+        print modules_aar_new
+        if len(modules_aar) != len(modules_aar_new):
+            print u'请检查输入的moduleNames与projects.xml中的path是否相同'
+            return
+
+        # 轮询批量aar
+        exec_compile_aar(modules_aar_new, version_index)
+
+        print u'3、打包结束'
+
+def exec_compile_aar(modules_aar, version_index):
+    for module in modules_aar:
+        versionTag = get_module_version_tag(module)
+        if versionTag != '':
+            # 版本AAR_XXX_YYY +1
+            exec_version_add(versionTag, versionTag, version_index, None)
+            # 打aar
+            cmd_result = exec_one_project("uploadArchives", module)
+            if cmd_result.find("BUILD SUCCESSFUL") != -1:
+                print ">>>Success project:%s\n\n>>>-------------------------------------NEXT COMPILE AAR-------------------------------------\n" % module
             else:
-                print '2.Upload apk failed, %s!' % downloadUrl
+                print ">>>Error project:%s" % module
+                break
         else:
-            print 'Not find apk, check the exec cmd directory is in WorkSpace --- Chinglish !!!'
+            print u'>>>Error project:%s，版本字段名未找到' % module
+            break
 
-    if install:
-        apkPath = findApkPath()
-        if os.path.exists(apkPath):
-            print 'start install apk: ' + apkPath
-            install_output = os.popen("adb install -r %s" % (apkPath))
-            print install_output.read()
+def get_module_version_tag(moduleName):
+    """获取module的版本字段名
+    :param moduleName:
+    :return:
+    """
+    moduleBuildFile = os.path.join(dir_current, moduleName, file_build_gradle)
+    versionTag = ''
+    if os.path.exists(moduleBuildFile):
+        # 找到module找到对应的version版本AAR_XXX_YYY
+        with open(moduleBuildFile, "r") as file:
+            for line in file:
+                if 'AAR_' in line:
+                    versionTags = re.findall(r"\"(\w+)\"", line.strip())
+                    if len(versionTags) > 0:
+                        versionTag = versionTags[0]
+                    break
+    return versionTag
 
-            if install[0] == 'gome':
-                start_output = os.popen("adb shell am start -n com.gome.eshopnew/com.gome.ecmall.home.LaunchActivity")
-                print start_output.read()
-            elif install[0] == 'bang':
-                start_output = os.popen("adb shell am start -n cn.gome.bangbang/com.gome.ecmall.home.LaunchActivity")
-                print start_output.read()
+def cmd_remote(args):
+    set = args.set
+    if set:
+        newHostUrl = set[0]
 
-        else:
-            print 'Not find apk, check the exec cmd directory is in WorkSpace --- Chinglish !!!'
+        rootDir = os.listdir('.')
+        for childDir in rootDir:
+            swRemoteHost(newHostUrl, childDir)
 
+        swRemoteHost(newHostUrl, os.path.abspath('.'))
+
+        print u" ~~~全部执行完毕 ！！！"
 
 def swRemoteHost(host, moduleDir):
     if os.path.isdir(moduleDir) and ".git" in os.listdir(moduleDir):
@@ -1061,20 +1022,6 @@ def swRemoteHost(host, moduleDir):
         # print cmdSet
         os.popen(cmdSet).read()
         print u"%s 切换远程地址执行完成 ！\n" % moduleDir
-
-def set_remote(args):
-    set = args.set
-    if set:
-        newHostUrl = set[0]
-
-        rootDir = os.listdir('.')
-        for childDir in rootDir:
-            swRemoteHost(newHostUrl, childDir)
-
-        swRemoteHost(newHostUrl, os.path.abspath('.'))
-
-        print u" ~~~全部执行完毕 ！！！"
-
 ###################################################################
 ### 主程序入口
 ###################################################################
@@ -1189,18 +1136,26 @@ if __name__ == '__main__':
                             default=False)
 
     # 操作apk文件
-    parser_apk_ = subparsers.add_parser("apk", help=u"操作apk文件")
-    parser_apk_.set_defaults(func=cmd_apk)
+    parser_apk_ = subparsers.add_parser("deploy", help=u"开发部署工具")
+    parser_apk_.set_defaults(func=cmd_deploy)
     parser_apk_.add_argument("-u", "--upload", help=u'上传apk到finder', action='store_true', default=False)
-    parser_apk_.add_argument("-i", "--install", help=u'安装apk到手机', action='append', default=[])
+    parser_apk_.add_argument("-i", "--install", help=u'自动寻找apk，并安装到手机', action='store_true', default=False)
     # parser_apk_.add_argument("-di", "--debugInstall", help=u'构建Debug包，并安装到手机', action='store_true', default=False)
     # parser_apk_.add_argument("-ri", "--releaseInstall", help=u'构建Release包，并安装到手机', action='store_true', default=False)
+    parser_apk_.add_argument("-app", "--app_deps_settings_module", help=u'根据setting中的配置的项目，对App部署依赖', action='store_true', default=False)
+    parser_apk_.add_argument("-t", "--target_modules", help=u'对某些module部署依赖', nargs='*')
+    parser_apk_.add_argument("-d", "--deps_modules", type=str, help=u'依赖某些module的源码', nargs='*')
 
+    parser_aar = subparsers.add_parser("aar", help=u"批量aar")
+    parser_aar.set_defaults(func=cmd_compile_aar)
+    parser_aar.add_argument("-m", "--modules", help=u'多个module打包aar', nargs='+')
+    parser_aar.add_argument('-v', "--version_index", type=int, default=3, choices=[1, 2, 3], help=u'自增版本索引【1大版本，2中间版本，3小版本】')
+    #parser_aar.add_argument("-s", "--start_projects_xml", type=str, default='GFrameHttp', help=u'从某个module开始打包（根据projects.xml中的顺序）')
 
     # 切换远程地址
     parser_remote = subparsers.add_parser("remote", help=u"远程地址")
-    parser_remote.set_defaults(func=set_remote)
-    parser_remote.add_argument("-s", "--set", help=u'切换远程地址', action='append', default=[])
+    parser_remote.set_defaults(func=cmd_remote)
+    parser_remote.add_argument("-s", "--set", help=u'切换远程地址Host, apkfly.py remote -s git@code.gome.inc', action='append', default=[])
 
     # 参数解析
     args = parser.parse_args()

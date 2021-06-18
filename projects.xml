@@ -30,11 +30,15 @@
     <project groups="private" url="git@code.gome.inc:mobile-android-common/GPushOppo.git"/>
     <project groups="private" url="git@code.gome.inc:mobile-android-common/GPushViVo.git"/>
 
+    <project groups="private" branch="master" url="git@code.gome.inc:mobile-android-mcp/GShare.git"/>
+    <project groups="private" branch="master" url="git@code.gome.inc:mobile-android-business/GShareBus.git"/>
+    <project groups="private" url="git@code.gome.inc:mobile-android-common/GFaceLive.git"/>
+
     <!--G工程-->
     <!--GFrame-->
-    <project groups="frame" url="git@code.gome.inc:mobile-android-common/GFrame-http.git"/>
-    <project groups="frame" url="git@code.gome.inc:mobile-android-common/GFrame-utils.git"/>
-    <project groups="frame" url="git@code.gome.inc:mobile-android-common/GFrame-image.git"/>
+    <project groups="frame" path="GFrameHttp" url="git@code.gome.inc:mobile-android-common/GFrame-http.git"/>
+    <project groups="frame" path="GFrameUtils" url="git@code.gome.inc:mobile-android-common/GFrame-utils.git"/>
+    <project groups="frame" path="GFrameImage" url="git@code.gome.inc:mobile-android-common/GFrame-image.git"/>
     <project groups="frame" path="GFrame" url="git@code.gome.inc:mobile-android-common/GFrame-common.git"/>
     <!--GCore-->
     <project url="git@code.gome.inc:mobile-android-common/GSmartRefreshLayout.git"/>
@@ -44,7 +48,6 @@
     <project groups="core" path="GCore"  url="git@code.gome.inc:mobile-android-common/GCore-common.git"/>
 
     <project url="git@code.gome.inc:mobile-android-business/GSelectPhoto.git"/>
-    <project url="git@code.gome.inc:mobile-android-common/GFaceLive.git"/>
     <project url="git@code.gome.inc:mobile-android-business/GLogin.git"/>
     <project url="git@code.gome.inc:mobile-android-business/GLoginBusiness.git"/>
     <project url="git@code.gome.inc:mobile-android-business/GPullrefresh.git"/>
@@ -67,9 +70,10 @@
     <project url="git@code.gome.inc:mobile-android-business/GBProduct.git"/>
     <project url="git@code.gome.inc:mobile-android-business/GBCms.git"/>
     <project url="git@code.gome.inc:mobile-android-business/GShopCarBus.git"/>
-    <project url="git@code.gome.inc:mobile-android-business/GGomeShareBus.git"/>
+    <project groups="share" url="git@code.gome.inc:mobile-android-business/GGomeShareBus.git"/>
     <project url="git@code.gome.inc:mobile-android-business/GCashierdesk.git"/>
     <project url="git@code.gome.inc:mobile-android-common/GShelvesWidget.git"/>
+    <project branch="master" url="git@code.gome.inc:mobile-android-business/GSocialService.git"/>
     <project url="git@code.gome.inc:mobile-android-business/GBusiness.git"/>
     <!-- WEEX模块 -->
     <project groups="private" url="git@code.gome.inc:mobile-android-repo/GWeexCore.git"/>
