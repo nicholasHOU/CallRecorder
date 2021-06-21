@@ -34,6 +34,17 @@
     <project groups="private" branch="master" url="git@code.gome.inc:mobile-android-business/GShareBus.git"/>
     <project groups="private" url="git@code.gome.inc:mobile-android-common/GFaceLive.git"/>
 
+    <project groups="private" url="git@code.gome.inc:mobile-android-repo/GLogStatistics.git"/>
+
+    <!-- WEEX模块 -->
+    <project groups="private" url="git@code.gome.inc:mobile-android-repo/GWeexCore.git"/>
+    <project groups="private" url="git@code.gome.inc:mobile-android-repo/GWeexUpdate.git"/>
+    <project groups="private" url="git@code.gome.inc:mobile-android-repo/GWeexLib.git"/>
+
+    <!--  这个module未使用，待确认  -->
+    <project url="git@code.gome.inc:mobile-android-business/GFaceRecognition.git"/>
+
+
     <!--G工程-->
     <!--GFrame-->
     <project groups="frame" path="GFrameHttp" url="git@code.gome.inc:mobile-android-common/GFrame-http.git"/>
@@ -54,7 +65,7 @@
     <project url="git@code.gome.inc:mobile-android-business/GCmbPay.git"/>
     <project url="git@code.gome.inc:mobile-android-business/GBaiTiao.git"/>
     <project url="git@code.gome.inc:mobile-android-common/GTongBaoSdk.git"/>
-    <project groups="private" url="git@code.gome.inc:mobile-android-repo/GLogStatistics.git"/>
+
     <!--支持3D Wap-->
     <project url="git@code.gome.inc:mobile-android-repo/GX5Lib.git"/>
     <project url="git@code.gome.inc:mobile-android-business/GRouterInterface.git"/>
@@ -75,10 +86,6 @@
     <project url="git@code.gome.inc:mobile-android-common/GShelvesWidget.git"/>
     <project branch="master" url="git@code.gome.inc:mobile-android-business/GSocialService.git"/>
     <project url="git@code.gome.inc:mobile-android-business/GBusiness.git"/>
-    <!-- WEEX模块 -->
-    <project groups="private" url="git@code.gome.inc:mobile-android-repo/GWeexCore.git"/>
-    <project groups="private" url="git@code.gome.inc:mobile-android-repo/GWeexUpdate.git"/>
-    <project url="git@code.gome.inc:mobile-android-repo/GWeexLib.git"/>
 
     <project groups="im" url="git@code.gome.inc:mobile-android-business/MImlibrary.git"/>
     <project url="git@code.gome.inc:mobile-android-common/GHybrid.git" groups="wap"/>
