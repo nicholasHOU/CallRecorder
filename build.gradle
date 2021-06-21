@@ -217,7 +217,6 @@ ext.deps = [
         SScheme              : 'cn.gome.staff:scheme:42.49.2@aar',
 
         GWeexLib             : false ? project(':GWeexLib') : 'com.gome.mobile.weex:components:' + getProperty('AAR_GWEEXLIB_VERSION') + '@aar',
-        GFaceRecognition     : false ? project(':GFaceRecognition') : 'com.gome.ecmall:facerecognition:' + getProperty('AAR_FACERECOGNITION_VERSION') + '@aar',
         GFaceLive            : false ? project(':GFaceLive') : 'com.gome.mobile.common:facelive:' + getProperty('AAR_GFACELIVE_VERSION') + '@aar',
         GShare               : false ? project(':GShare') : 'com.gome.mcp:share:' + getProperty('AAR_MCP_GSHARE_VERSION') + '@aar',
         GShareBus            : false ? project(':GShareBus') : 'com.gome.ecmall:sharebus:' + getProperty('AAR_GSHARE_BUS_VERSION') + '@aar',
