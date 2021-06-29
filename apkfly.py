@@ -13,6 +13,7 @@ from xml.dom import minidom
 import platform
 sys.path.append(r'apkfly_deploy')
 import deploy
+import tempfile
 
 __author__ = "qiudongchao<1162584980@qq.com>"
 __version__ = "5.1.2"
@@ -680,17 +681,24 @@ def _git_check(branch_name, sub_projects, cmd_list):
             result.append(u"子项目[%s]运行[git status]异常" % sub_file)
             continue
 
-        process_check = subprocess.Popen(cmd_list, stderr=subprocess.PIPE, stdout=subprocess.PIPE,
+        out_temp = tempfile.SpooledTemporaryFile(bufsize=10*1000)
+        fileno = out_temp.fileno()
+        # subprocess.PIPE 本身可容纳的量比较小，所以程序会卡死
+        process_check = subprocess.Popen(cmd_list, stderr=fileno, stdout=fileno,
                                          cwd=os.path.join(dir_current, sub_file))
         code_check = process_check.wait()
         if code_check == 0:
-            result_check = [x.rstrip() for x in process_check.stdout.readlines()]
+            out_temp.seek(0)
+            result_check = [x.rstrip() for x in out_temp.readlines()]
             for branch in result_check:
                 if branch.endswith(branch_name):
                     result.append(u"子项目[%s] - [%s]存在" % (sub_file, branch_name))
                     break
         else:
             result.append(u"子项目[%s]运行[git branch -a / git tag]异常" % sub_file)
+
+        if out_temp:
+            out_temp.close()
     return result
 
 
