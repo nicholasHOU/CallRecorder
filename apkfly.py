@@ -13,6 +13,7 @@ from xml.dom import minidom
 import platform
 sys.path.append(r'apkfly_deploy')
 import deploy
+import tempfile
 
 __author__ = "qiudongchao<1162584980@qq.com>"
 __version__ = "5.1.2"
@@ -680,17 +681,24 @@ def _git_check(branch_name, sub_projects, cmd_list):
             result.append(u"子项目[%s]运行[git status]异常" % sub_file)
             continue
 
-        process_check = subprocess.Popen(cmd_list, stderr=subprocess.PIPE, stdout=subprocess.PIPE,
+        out_temp = tempfile.SpooledTemporaryFile(bufsize=10*1000)
+        fileno = out_temp.fileno()
+        # subprocess.PIPE 本身可容纳的量比较小，所以程序会卡死
+        process_check = subprocess.Popen(cmd_list, stderr=fileno, stdout=fileno,
                                          cwd=os.path.join(dir_current, sub_file))
         code_check = process_check.wait()
         if code_check == 0:
-            result_check = [x.rstrip() for x in process_check.stdout.readlines()]
+            out_temp.seek(0)
+            result_check = [x.rstrip() for x in out_temp.readlines()]
             for branch in result_check:
                 if branch.endswith(branch_name):
                     result.append(u"子项目[%s] - [%s]存在" % (sub_file, branch_name))
                     break
         else:
             result.append(u"子项目[%s]运行[git branch -a / git tag]异常" % sub_file)
+
+        if out_temp:
+            out_temp.close()
     return result
 
 
@@ -781,6 +789,7 @@ def cmd_branch(args):
     branch_name = args.name
     is_delete = args.delete
     is_push = args.push
+    is_continue_branch = args.continue_branch
 
     sub_projects = _git_projects()
     if is_delete:
@@ -789,15 +798,43 @@ def cmd_branch(args):
     else:
         result_list = _git_check(branch_name, sub_projects, ["git", "branch", "-a"])
         if len(result_list) > 0:
+            # 所有子项目，都是因为-已有分支-的错误
+            all_project_is_branch_err = True
             for mess in result_list:
+                if branch_name not in mess:
+                    all_project_is_branch_err = False
                 slog(mess)
-            slogr(False)
-            return
 
-        slog(u"批量创建分支[%s]" % branch_name, loading=True)
+            if is_continue_branch:
+                # 手动，跳过已有分支的项目
+                if all_project_is_branch_err:
+                    # 判断_git_check的结果，所有错误都是因为-已有分支-才跳过
+                    slog(u"下面过滤-已有分支-的子项目，然后再批量创建分支", loading=True)
+                    # 过滤掉已有分支的子项目
+                    filter_project(sub_projects, result_list)
+                else:
+                    slog(u"请检查以上错误中不是-已有分支-的错误", loading=False)
+                    return
+            else:
+                slogr(False)
+                return
 
+        slog(u"开始批量创建分支[%s]" % branch_name, loading=True)
         _git_create_push(branch_name, sub_projects, ["git", "checkout", "-b", branch_name], is_push)
 
+
+def filter_project(sub_projects, result_list):
+    for num in range(len(sub_projects)-1, -1, -1):
+        isFilter = False
+        cur_sub_project = sub_projects[num]
+        filter_sub_project_name = "[%s]" % cur_sub_project
+        for filter_sub_project_err_msg in result_list:
+            if filter_sub_project_name in filter_sub_project_err_msg:
+                isFilter = True
+                break
+        if isFilter:
+            del sub_projects[num]
+            slog(u"过滤掉%s" % cur_sub_project)
 
 def cmd_tag(args):
     """
@@ -1116,6 +1153,7 @@ if __name__ == '__main__':
     parser_branch.add_argument("name", help=u'分支名称', action='store')
     parser_branch.add_argument("-p", "--push", help=u'是否推送到服务器', action='store_true', default=False)
     parser_branch.add_argument("-d", "--delete", help=u'删除分支', action='store_true', default=False)
+    parser_branch.add_argument("-c", "--continue_branch", help=u'创建分支时如某项目已有该分支直接跳过，如不加此命令会打印错误日志不继续创建分支', action='store_true', default=False)
 
     # 创建tag
     parser_tag = subparsers.add_parser("tag", help=u"打tag")
