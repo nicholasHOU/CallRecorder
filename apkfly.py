@@ -702,31 +702,15 @@ def _git_check(branch_name, sub_projects, cmd_list):
     return result
 
 
-def _git_create_push(branch_name, sub_projects, cmd_list, is_push, continue_sub_projects=None):
+def _git_create_push(branch_name, sub_projects, cmd_list, is_push):
     """
     创建分支 or Tag
     :param branch_name:
     :param sub_projects:
-    :param continue_sub_projects: 过滤掉这些子项目
     :return:
     """
     result_list = []
     for sub_file in sub_projects:
-
-        isContinue = False
-        if continue_sub_projects:
-            for continue_sub_project in continue_sub_projects:
-                sub_file_name = "[%s]" % sub_file
-                if sub_file_name in continue_sub_project:
-                    isContinue = True
-                    slog(u"%s  -   跳过此子项目，继续下一个" % continue_sub_project)
-                    break
-        if isContinue:
-            continue;
-
-        slog(u"%s 创建 %s" % (sub_file, branch_name))
-
-
         process_branch = subprocess.Popen(cmd_list, stderr=subprocess.PIPE,
                                           stdout=subprocess.PIPE,
                                           cwd=os.path.join(dir_current, sub_file))
@@ -824,8 +808,10 @@ def cmd_branch(args):
             if is_continue_branch:
                 # 手动，跳过已有分支的项目
                 if all_project_is_branch_err:
-                    # 判断_git_check的结果，所有错误都是已有分支才跳过
-                    slog(u"继续批量创建分支", loading=False)
+                    # 判断_git_check的结果，所有错误都是因为-已有分支-才跳过
+                    slog(u"下面过滤-已有分支-的子项目，然后再批量创建分支", loading=True)
+                    # 过滤掉已有分支的子项目
+                    filter_project(sub_projects, result_list)
                 else:
                     slog(u"请检查以上错误中不是-已有分支-的错误", loading=False)
                     return
@@ -833,10 +819,22 @@ def cmd_branch(args):
                 slogr(False)
                 return
 
-        slog(u"批量创建分支[%s]" % branch_name, loading=True)
+        slog(u"开始批量创建分支[%s]" % branch_name, loading=True)
+        _git_create_push(branch_name, sub_projects, ["git", "checkout", "-b", branch_name], is_push)
 
-        _git_create_push(branch_name, sub_projects, ["git", "checkout", "-b", branch_name], is_push, result_list)
 
+def filter_project(sub_projects, result_list):
+    for num in range(len(sub_projects)-1, -1, -1):
+        isFilter = False
+        cur_sub_project = sub_projects[num]
+        filter_sub_project_name = "[%s]" % cur_sub_project
+        for filter_sub_project_err_msg in result_list:
+            if filter_sub_project_name in filter_sub_project_err_msg:
+                isFilter = True
+                break
+        if isFilter:
+            del sub_projects[num]
+            slog(u"过滤掉%s" % cur_sub_project)
 
 def cmd_tag(args):
     """
