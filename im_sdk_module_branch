@@ -10,20 +10,22 @@ MFriendCircle	    [friends0413]   [mergeDev] *
 MCommon			    [friends0413]   [mergeDev] *
 GWidget			    [friends0413]   [mergeDev] *
 GSocialService	    [friends0413]   [master]   *
-GShopCarBus		    [friends0413]   [mergeDev]
 GRouterInterface    [friends0413]   [mergeDev] *
+GIMRedEnvelope	    [friends0413]   [mergeDev] *
+GomeApp			    [friends0413]   [mergeDev] *
+GBProduct		    [friends0413]   [mergeDev] *
+GScheme             [Friends0413]   [mergeDev] *
+
+GShopCarBus		    [friends0413]   [mergeDev]
 GProductVideoGuide  [friends0413]   [mergeDev]
 GProductDetail	    [friends0413]   [mergeDev]
-GomeApp			    [friends0413]   [mergeDev] *
+GBusinessDeps	    [friends0413]   [mergeDev]
+GBSearch		    [friends0413]   [mergeDev]
+
 GLogin			    [friends0413]   [mergeDev]
-GIMRedEnvelope	    [friends0413]   [mergeDev] *
 GFrame			    [friends0413]   [mergeDev]
 GCoreLogin		    [friends0413]   [mergeDev]
 GCore			    [friends0413]   [mergeDev]
-GBusinessDeps	    [friends0413]   [mergeDev]
-GBSearch		    [friends0413]   [mergeDev]
-GBProduct		    [friends0413]   [mergeDev] *
-GScheme             [Friends0413]   [mergeDev] *
 
 SIm                 [friends0413]   [master - 帮客] *
 SSelectPhoto	    [picuni0630]    [master - 帮客]
