@@ -315,7 +315,7 @@ ext.deps = [
         MIm                  : false ? project(':MIm') : 'com.gome.ecmall:mim:' + getProperty('AAR_MIM_VERSION') + '@aar',
         MFriends             : false ? project(':MFriends') : 'com.gome.ecmall:mfriends:' + getProperty('AAR_MFRIENDS_VERSION') + '@aar',
         MSocial              : false ? project(':MSocial') : 'com.gome.ecmall:msocial:' + getProperty('AAR_MSOCIAL_VERSION') + '@aar',
-        SIm                  : project(':SIm'),
+//        SIm                  : project(':SIm'),
         SBuss                : 'cn.gome.staff:buss:42.69.2@aar',
         GPullToRefresh       : 'cn.gome.staff.ui:pulltorefresh:42.48.0@aar',
         SWapBus              : rootProject.ext.proDeps ? project(':SWapBus') : 'cn.gome.staff:wapbuss:' + getProperty('AAR_WAPSBUSS_VERSION') + '@aar',
