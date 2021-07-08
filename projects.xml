@@ -41,10 +41,6 @@
     <project groups="private" url="git@code.gome.inc:mobile-android-repo/GWeexUpdate.git"/>
     <project groups="private" url="git@code.gome.inc:mobile-android-repo/GWeexLib.git"/>
 
-    <!--  这个module未使用，待确认  -->
-    <project url="git@code.gome.inc:mobile-android-business/GFaceRecognition.git"/>
-
-
     <!--G工程-->
     <!--GFrame-->
     <project groups="frame" path="GFrameHttp" url="git@code.gome.inc:mobile-android-common/GFrame-http.git"/>
