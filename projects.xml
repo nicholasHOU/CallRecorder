@@ -44,7 +44,7 @@
     <!--G工程-->
     <!--GFrame-->
     <project groups="frame" path="GFrameHttp" url="git@code.gome.inc:mobile-android-common/GFrame-http.git"/>
-    <project groups="frame" path="GFrameUtils" url="git@code.gome.inc:mobile-android-common/GFrame-utils.git"/>
+<!--    <project groups="frame" path="GFrameUtils" url="git@code.gome.inc:mobile-android-common/GFrame-utils.git"/>-->
     <project groups="frame" path="GFrameImage" url="git@code.gome.inc:mobile-android-common/GFrame-image.git"/>
     <project groups="frame" path="GFrame" url="git@code.gome.inc:mobile-android-common/GFrame-common.git"/>
     <!--GCore-->
