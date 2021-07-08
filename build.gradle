@@ -211,8 +211,6 @@ ext.deps = [
         GTabLayout           : 'com.gome.ecmall:tablayout:' + getProperty('AAR_GTABLAYOUT_VERSION') + '@aar',
         GHtmlSpanner         : 'com.gome.ecmall:htmlspanner:' + getProperty('AAR_HTMLSPANNER_VERSION') + '@aar',
 
-        SScheme              : 'cn.gome.staff:scheme:42.49.2@aar',
-
         GWeexLib             : false ? project(':GWeexLib') : 'com.gome.mobile.weex:components:' + getProperty('AAR_GWEEXLIB_VERSION') + '@aar',
         GFaceLive            : false ? project(':GFaceLive') : 'com.gome.mobile.common:facelive:' + getProperty('AAR_GFACELIVE_VERSION') + '@aar',
         GShare               : false ? project(':GShare') : 'com.gome.mcp:share:' + getProperty('AAR_MCP_GSHARE_VERSION') + '@aar',
@@ -316,6 +314,7 @@ ext.deps = [
         MSocial              : rootProject.ext.proDeps ? project(':MSocial') : 'com.gome.ecmall:msocial:' + getProperty('AAR_MSOCIAL_VERSION') + '@aar',
         MSocial              : rootProject.ext.proDeps ? project(':MSocial') : 'com.gome.ecmall:msocial:' + getProperty('AAR_MSOCIAL_VERSION') + '@aar',
         SWapBus              : false ? project(':SWapBus') : 'cn.gome.staff:wapbuss:' + getProperty('AAR_WAPSBUSS_VERSION') + '@aar',
+        SScheme              : 'cn.gome.staff:scheme:42.68.0@aar',
         SBuss                : 'cn.gome.staff:buss:42.76.2@aar',
         GPullToRefresh       : 'cn.gome.staff.ui:pulltorefresh:42.48.0@aar',
         GStoreChannel        : rootProject.ext.proDeps ? project(':GStoreChannel') : 'com.gome.ecmall.business:storechannel:' + getProperty('AAR_GBUSINESS_GSTORECHANNEL_VERSION') + '@aar',
