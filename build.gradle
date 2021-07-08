@@ -247,7 +247,7 @@ ext.deps = [
 
         GWidget              : rootProject.ext.proDeps ? project(':GWidget') : 'com.gome.ecmall:widget:' + getProperty('AAR_GWIDGET_VERSION') + '@aar',
         GSmartRefreshLayout  : false ? project(':GSmartRefreshLayout') : 'com.gome.ecmall:refreshsmt:' + getProperty('AAR_REFRESH_SMT_VERSION') + '@aar',
-        GSelectPhoto         : false ? project(':SSelectPhoto') : 'com.gome.ecmall:selectphoto:' + getProperty('AAR_GSELECT_PHOTO_VERSION') + '@aar',
+        GSelectPhoto         : false ? project(':SSelectPhoto') : 'com.gome.ecmall:selectphoto:' + getProperty('AAR_SSELECT_PHOTO_VERSION') + '@aar',
         GDXRisk              : false ? project(':GDXRisk') : 'com.gome.mcp:dxrisk:' + getProperty('AAR_GDXRISK_VERSION') + '@aar',
         GLogin               : false ? project(':GLogin') : 'com.gome.ecmall:login:' + getProperty('AAR_GLOGIN_VERSION') + '@aar',
         GLoginAuth           : 'com.gome.ecmall:login-auth:Release-V1.0.0@aar',
