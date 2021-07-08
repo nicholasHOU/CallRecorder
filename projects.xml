@@ -80,6 +80,7 @@
     <project groups="share" url="git@code.gome.inc:mobile-android-business/GGomeShareBus.git"/>
     <project url="git@code.gome.inc:mobile-android-business/GCashierdesk.git"/>
     <project url="git@code.gome.inc:mobile-android-common/GShelvesWidget.git"/>
+    <project url="git@code.gome.inc:mobile-android-business/GMallService.git"/>
     <project branch="master" url="git@code.gome.inc:mobile-android-business/GSocialService.git"/>
     <project url="git@code.gome.inc:mobile-android-business/GBusiness.git"/>
 
