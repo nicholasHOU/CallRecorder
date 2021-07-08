@@ -195,6 +195,7 @@ ext.deps = [
         GOaid                : 'com.gome.third.oaid:oaid:1.0.25@aar',
         GAdSDK               :'cn.com.gomeplus.ad:gomeplus-ad-SDK:1.3.1@aar',
         SConstraintSolver    : 'com.android.support.constraint:constraint-layout-solver:1.1.3',
+        SExif            : 'com.android.support:exifinterface:28.0.0',
 
         GTheme               : 'com.gome.ecmall:theme:' + getProperty('AAR_GTHEME_VERSION') + '@aar',
         GPermission          : 'com.gome.ecmall:permission:' + getProperty('AAR_GPERMISSION_VERSION') + '@aar',
