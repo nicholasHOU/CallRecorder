@@ -13,6 +13,7 @@ from xml.dom import minidom
 import platform
 sys.path.append(r'apkfly_deploy')
 import deploy
+import tempfile
 
 __author__ = "qiudongchao<1162584980@qq.com>"
 __version__ = "5.1.2"
@@ -680,17 +681,24 @@ def _git_check(branch_name, sub_projects, cmd_list):
             result.append(u"子项目[%s]运行[git status]异常" % sub_file)
             continue
 
-        process_check = subprocess.Popen(cmd_list, stderr=subprocess.PIPE, stdout=subprocess.PIPE,
+        out_temp = tempfile.SpooledTemporaryFile(bufsize=10*1000)
+        fileno = out_temp.fileno()
+        # subprocess.PIPE 本身可容纳的量比较小，所以程序会卡死
+        process_check = subprocess.Popen(cmd_list, stderr=fileno, stdout=fileno,
                                          cwd=os.path.join(dir_current, sub_file))
         code_check = process_check.wait()
         if code_check == 0:
-            result_check = [x.rstrip() for x in process_check.stdout.readlines()]
+            out_temp.seek(0)
+            result_check = [x.rstrip() for x in out_temp.readlines()]
             for branch in result_check:
                 if branch.endswith(branch_name):
                     result.append(u"子项目[%s] - [%s]存在" % (sub_file, branch_name))
                     break
         else:
             result.append(u"子项目[%s]运行[git branch -a / git tag]异常" % sub_file)
+
+        if out_temp:
+            out_temp.close()
     return result
 
 
@@ -781,6 +789,7 @@ def cmd_branch(args):
     branch_name = args.name
     is_delete = args.delete
     is_push = args.push
+    is_continue_branch = args.continue_branch
 
     sub_projects = _git_projects()
     if is_delete:
@@ -789,15 +798,43 @@ def cmd_branch(args):
     else:
         result_list = _git_check(branch_name, sub_projects, ["git", "branch", "-a"])
         if len(result_list) > 0:
+            # 所有子项目，都是因为-已有分支-的错误
+            all_project_is_branch_err = True
             for mess in result_list:
+                if branch_name not in mess:
+                    all_project_is_branch_err = False
                 slog(mess)
-            slogr(False)
-            return
 
-        slog(u"批量创建分支[%s]" % branch_name, loading=True)
+            if is_continue_branch:
+                # 手动，跳过已有分支的项目
+                if all_project_is_branch_err:
+                    # 判断_git_check的结果，所有错误都是因为-已有分支-才跳过
+                    slog(u"下面过滤-已有分支-的子项目，然后再批量创建分支", loading=True)
+                    # 过滤掉已有分支的子项目
+                    filter_project(sub_projects, result_list)
+                else:
+                    slog(u"请检查以上错误中不是-已有分支-的错误", loading=False)
+                    return
+            else:
+                slogr(False)
+                return
 
+        slog(u"开始批量创建分支[%s]" % branch_name, loading=True)
         _git_create_push(branch_name, sub_projects, ["git", "checkout", "-b", branch_name], is_push)
 
+
+def filter_project(sub_projects, result_list):
+    for num in range(len(sub_projects)-1, -1, -1):
+        isFilter = False
+        cur_sub_project = sub_projects[num]
+        filter_sub_project_name = "[%s]" % cur_sub_project
+        for filter_sub_project_err_msg in result_list:
+            if filter_sub_project_name in filter_sub_project_err_msg:
+                isFilter = True
+                break
+        if isFilter:
+            del sub_projects[num]
+            slog(u"过滤掉%s" % cur_sub_project)
 
 def cmd_tag(args):
     """
@@ -878,20 +915,40 @@ def cmd_deploy(args):
     # 命令
     upload = args.upload
     install = args.install
-    deps = args.deps
-    exclude_aar_dep_source = args.exclude_aar_dep_source
+    app = args.app_deps_settings_module
+    target_modules = args.target_modules
+    deps_modules = args.deps_modules
 
     if upload:
        deploy.uploadApk()
     elif install:
         deploy.installApk()
-    elif deps:
-        deploy.deployDeps()
-    elif exclude_aar_dep_source:
-        if len(exclude_aar_dep_source) == 2:
-            deploy.exclude_aar_dep_source(exclude_aar_dep_source)
-        else:
-            print u'请正确书写参数，deploy -e GHybrid GCore(GHybrid依赖GCore源码)'
+    elif app:
+        # 对主工程进行部署依赖
+        deploy.deployMainAppDeps()
+    elif target_modules and deps_modules:
+        # 检验module都是合法的
+        if check_modules(target_modules, deps_modules):
+            return
+        # 开始部署依赖
+        for m in target_modules:
+            print ''
+            deploy.exclude_aar_dep_source(m, deps_modules)
+            print u'-------------------------------------------------'
+    else:
+            print u'请输入正确命令, 比如：deploy -t ... -d ...'
+
+def check_modules(target_modules, deps_modules):
+    err = False
+    for m in target_modules:
+        if not check_sub_project(m, False):
+            print u'%s 不合法' % m
+            err = True
+    for m in deps_modules:
+        if not check_sub_project(m, False):
+            print u'%s 不合法' % m
+            err = True
+    return err
 
 def cmd_compile_aar(args):
     modules_aar = args.modules
@@ -942,7 +999,7 @@ def exec_compile_aar(modules_aar, version_index):
             # 打aar
             cmd_result = exec_one_project("uploadArchives", module)
             if cmd_result.find("BUILD SUCCESSFUL") != -1:
-                print ">>>Success project:%s\n\n>>>NEXT COMPILE AAR\n" % module
+                print ">>>Success project:%s\n\n>>>-------------------------------------NEXT COMPILE AAR-------------------------------------\n" % module
             else:
                 print ">>>Error project:%s" % module
                 break
@@ -1096,6 +1153,7 @@ if __name__ == '__main__':
     parser_branch.add_argument("name", help=u'分支名称', action='store')
     parser_branch.add_argument("-p", "--push", help=u'是否推送到服务器', action='store_true', default=False)
     parser_branch.add_argument("-d", "--delete", help=u'删除分支', action='store_true', default=False)
+    parser_branch.add_argument("-c", "--continue_branch", help=u'创建分支时如某项目已有该分支直接跳过，如不加此命令会打印错误日志不继续创建分支', action='store_true', default=False)
 
     # 创建tag
     parser_tag = subparsers.add_parser("tag", help=u"打tag")
@@ -1122,14 +1180,15 @@ if __name__ == '__main__':
     parser_apk_.add_argument("-i", "--install", help=u'自动寻找apk，并安装到手机', action='store_true', default=False)
     # parser_apk_.add_argument("-di", "--debugInstall", help=u'构建Debug包，并安装到手机', action='store_true', default=False)
     # parser_apk_.add_argument("-ri", "--releaseInstall", help=u'构建Release包，并安装到手机', action='store_true', default=False)
-    parser_apk_.add_argument("-d", "--deps", help=u'根据setting中的配置的项目，部署依赖配置', action='store_true', default=False)
-    parser_apk_.add_argument("-e", "--exclude_aar_dep_source", help=u'源码依赖，例GHybrid依赖GCore源码(deploy -e GHybrid GCore)', nargs='+')
+    parser_apk_.add_argument("-app", "--app_deps_settings_module", help=u'根据setting中的配置的项目，对App部署依赖', action='store_true', default=False)
+    parser_apk_.add_argument("-t", "--target_modules", help=u'对某些module部署依赖', nargs='*')
+    parser_apk_.add_argument("-d", "--deps_modules", type=str, help=u'依赖某些module的源码', nargs='*')
 
     parser_aar = subparsers.add_parser("aar", help=u"批量aar")
     parser_aar.set_defaults(func=cmd_compile_aar)
-    parser_aar.add_argument("-m", "--modules", help=u'多个module打包aar(upload -m GHybrid GCore)', nargs='+')
-    #parser_aar.add_argument("-s", "--start_projects_xml", type=str, default='GFrameHttp', help=u'从某个module开始打包（根据projects.xml中的顺序）')
+    parser_aar.add_argument("-m", "--modules", help=u'多个module打包aar', nargs='+')
     parser_aar.add_argument('-v', "--version_index", type=int, default=3, choices=[1, 2, 3], help=u'自增版本索引【1大版本，2中间版本，3小版本】')
+    #parser_aar.add_argument("-s", "--start_projects_xml", type=str, default='GFrameHttp', help=u'从某个module开始打包（根据projects.xml中的顺序）')
 
     # 切换远程地址
     parser_remote = subparsers.add_parser("remote", help=u"远程地址")
