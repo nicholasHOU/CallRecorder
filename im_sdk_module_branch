@@ -9,6 +9,7 @@ MFriends		    [friends0413]   [mergeDev] *
 MFriendCircle	    [friends0413]   [mergeDev] *
 MCommon			    [friends0413]   [mergeDev] *
 GWidget			    [friends0413]   [mergeDev] *
+GMallService	    [friends0413]   [master]   *
 GSocialService	    [friends0413]   [master]   *
 GRouterInterface    [friends0413]   [mergeDev] *
 GIMRedEnvelope	    [friends0413]   [mergeDev] *
