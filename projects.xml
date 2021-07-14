@@ -99,6 +99,7 @@
     <project url="git@code.gome.inc:mobile-android-business/GGroupBuy.git"/>
     <project url="git@code.gome.inc:mobile-android-business/GAppraise.git"/>
 
+    <project artifactId="productsearch" bundleOpen="false" url="git@code.gome.inc:mobile-android-business/GProductSearch.git"/>
     <project branch="masterJni" url="git@code.gome.inc:mobile-android-business/GZxingScan.git"/>
 <!--    <project url="git@code.gome.inc:mobile-android-business/GZxingScan.git"/>-->
     <project groups="im" url="git@code.gome.inc:mobile-android-business/GIMRedEnvelope.git"/>
@@ -116,7 +117,6 @@
 
     <project url="git@code.gome.inc:mobile-android-business/GCollection.git"/>
 
-    <project artifactId="productsearch" bundleOpen="false" url="git@code.gome.inc:mobile-android-business/GProductSearch.git"/>
      <project artifactId="product" bundleOpen="false" url="git@code.gome.inc:mobile-android-business/GProductDetail.git"/>
     <project url="git@code.gome.inc:mobile-android-business/GShoppingCart.git"/>
     <project url="git@code.gome.inc:mobile-android-business/GShopCart.git"/>
