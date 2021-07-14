@@ -64,9 +64,9 @@
 
     <!--支持3D Wap-->
     <project url="git@code.gome.inc:mobile-android-repo/GX5Lib.git"/>
-    <project groups="im" url="git@code.gome.inc:mobile-android-business/GRouterInterface.git"/>
+    <project url="git@code.gome.inc:mobile-android-business/GRouterInterface.git"/>
     <project url="git@code.gome.inc:mobile-android-business/GBusinessDeps.git"/>
-    <project groups="im" url="git@code.gome.inc:mobile-android-business/GScheme.git"/>
+    <project url="git@code.gome.inc:mobile-android-business/GScheme.git"/>
     <project url="git@code.gome.inc:mobile-android-business/GAddress.git"/>
     <project url="git@code.gome.inc:mobile-android-business/GBigPhoto.git"/>
     <project url="git@code.gome.inc:mobile-android-business/GAlbum.git"/>
@@ -130,5 +130,5 @@
     <project branch="master" url="git@code.gome.inc:mobile-android-business/Gsuperplayerkit.git"/>
 
     <!--主工程-->
-    <project app="true" groups="im" path="GomeApp" url="git@code.gome.inc:mobile-android/GomePlus.git"/>
+    <project app="true" groups="app" path="GomeApp" url="git@code.gome.inc:mobile-android/GomePlus.git"/>
 </manifest>
