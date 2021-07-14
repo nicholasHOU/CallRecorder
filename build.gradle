@@ -132,7 +132,7 @@ ext.deps = [
         GChannel             : 'com.gome.ecmall:channel:0.0.1',
         GPassguard           : 'com.gome.ecmall.third:passguard:0.0.2@aar',
         GMeifubao            : 'com.gome.ecmall.third:meifubao:2.1.9@aar',
-        GZxing               : 'com.thirdparty:zxing:3.3.0',
+        GZxing               : 'com.google.zxing:core:3.3.0',
         GPlayer              : 'cn.com.gomeplus.player:gomeplus-player:1.0.32',
         GMsc                 : 'com.gome.ecmall:msc:1.0.2@aar',
         GMscStaff            : 'com.gome.staff:msc:21.7.9@aar',
