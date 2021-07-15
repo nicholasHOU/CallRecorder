@@ -135,6 +135,7 @@ ext.deps = [
         GZxing               : 'com.thirdparty:zxing:3.3.0',
         GPlayer              : 'cn.com.gomeplus.player:gomeplus-player:1.0.32',
         GMsc                 : 'com.gome.ecmall:msc:1.0.2@aar',
+        GMscStaff         : 'com.gome.staff:msc:21.7.9@aar',
         GAVSdk               : 'com.gome:avsdk:1.1.022',
         SLiteAVSDK           : 'com.tencent.liteav:LiteAVSDK_Professional:8.2.9809', //专业版
         //SLiteAVSDK        : 'com.tencent.liteavsdk:LiteAVSDK_Smart:latest.release', //普通版
@@ -245,8 +246,8 @@ ext.deps = [
         GFrameImage          : false ? project(':GFrameImage') : 'com.gome.ecmall:frame-image:' + getProperty('AAR_GFRAME_IMAGE_VERSION') + '@aar',
         GFrame               : false ? project(':GFrame') : 'com.gome.ecmall:frame:' + getProperty('AAR_GFRAME_VERSION') + '@aar',
 
-        GCoreLogin           : false ? project(':GCore-login') : 'com.gome.ecmall:core-login:' + getProperty('AAR_GCORE_LOGIN_VERSION') + '@aar',
-        GCore                : false ? project(':GCore') : 'com.gome.ecmall:core:' + getProperty('AAR_GCORE_VERSION') + '@aar',
+        GCoreLogin           : true ? project(':GCoreLogin') : 'com.gome.ecmall:core-login:' + getProperty('AAR_GCORE_LOGIN_VERSION') + '@aar',
+        GCore                : true ? project(':GCore') : 'com.gome.ecmall:core:' + getProperty('AAR_GCORE_VERSION') + '@aar',
 
         GWidget              : rootProject.ext.proDeps ? project(':GWidget') : 'com.gome.ecmall:widget:' + getProperty('AAR_GWIDGET_VERSION') + '@aar',
         GSmartRefreshLayout  : false ? project(':GSmartRefreshLayout') : 'com.gome.ecmall:refreshsmt:' + getProperty('AAR_REFRESH_SMT_VERSION') + '@aar',
