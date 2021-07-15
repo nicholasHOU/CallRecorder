@@ -1,0 +1,24 @@
+apply plugin: 'maven'
+
+def getValueByKey(String key) {
+    String value = System.getenv()[key]
+    if (value != null && value != "") {
+        return value
+    } else {
+        return hasProperty(key) ? getProperty(key) : ""
+    }
+}
+
+uploadArchives {
+    repositories.mavenDeployer {
+        name = 'AARDeployer'
+        repository(url: getValueByKey('MAVEN_URL')) {
+            authentication(userName: getValueByKey('MAVEN_USER'), password: getValueByKey('MAVEN_PASS'))
+        }
+        pom.version = project.ext.version
+        pom.artifactId = project.ext.artifactId
+        pom.groupId = project.ext.groupId
+        pom.name = project.ext.artifactId
+        pom.packaging = project.ext.packaging
+    }
+}
