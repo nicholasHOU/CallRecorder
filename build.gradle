@@ -135,7 +135,7 @@ ext.deps = [
         GZxing               : 'com.google.zxing:core:3.3.0',
         GPlayer              : 'cn.com.gomeplus.player:gomeplus-player:1.0.32',
         GMsc                 : 'com.gome.ecmall:msc:1.0.2@aar',
-        GMscStaff            : 'com.gome.staff:msc:21.7.9@aar',
+        GMscStaff            : 'com.gome.staff:msc:21.7.16@aar',
         GAVSdk               : 'com.gome:avsdk:1.1.022',
         SLiteAVSDK           : 'com.tencent.liteav:LiteAVSDK_Professional:8.2.9809', //专业版
         //SLiteAVSDK        : 'com.tencent.liteavsdk:LiteAVSDK_Smart:latest.release', //普通版
@@ -238,7 +238,6 @@ ext.deps = [
         //GdownLoad
         GDownload            : false ? project(":GDownload") : 'com.gome.ecmall:gdownload:' + getProperty('AAR_GDOWNLOAD_VERSION') + '@aar',
 
-//        GFrameUtils          : true ? project(':GFrameUtils') : 'com.gome.ecmall:frame-utils:' + getProperty('AAR_GFRAME_UTILS_VERSION') + '@aar',
         GFrameUtils          : rootProject.ext.proDeps ? project(':GUtils') : 'com.gome.mcp:utils:'+getProperty('AAR_GUTILS_VERSION')+'@aar',
         GFrameHttp           : rootProject.ext.proDeps ? project(':GFrameHttp') : 'com.gome.ecmall:frame-http:' + getProperty('AAR_GFRAME_HTTP_VERSION') + '@aar',
         GFrameImage          : rootProject.ext.proDeps ? project(':GFrameImage') : 'com.gome.ecmall:frame-image:' + getProperty('AAR_GFRAME_IMAGE_VERSION') + '@aar',
@@ -318,8 +317,8 @@ ext.deps = [
         MSocial              : rootProject.ext.proDeps ? project(':MSocial') : 'com.gome.ecmall:msocial:' + getProperty('AAR_MSOCIAL_VERSION') + '@aar',
         MSocial              : rootProject.ext.proDeps ? project(':MSocial') : 'com.gome.ecmall:msocial:' + getProperty('AAR_MSOCIAL_VERSION') + '@aar',
         SWapBus              : false ? project(':SWapBus') : 'cn.gome.staff:wapbuss:' + getProperty('AAR_WAPSBUSS_VERSION') + '@aar',
-        SScheme              : 'cn.gome.staff:scheme:42.68.0@aar',
-        SBuss                : 'cn.gome.staff:buss:42.76.2@aar',
+        SScheme              : 'cn.gome.staff:scheme:' + getProperty('AAR_SSCHEME_VERSION') + '@aar',
+        SBuss                : 'cn.gome.staff:buss:' + getProperty('AAR_SBUSS_VERSION') + '@aar',
         GPullToRefresh       : 'cn.gome.staff.ui:pulltorefresh:42.48.0@aar',
         GStoreChannel        : rootProject.ext.proDeps ? project(':GStoreChannel') : 'com.gome.ecmall.business:storechannel:' + getProperty('AAR_GBUSINESS_GSTORECHANNEL_VERSION') + '@aar',
 
