@@ -183,7 +183,7 @@ ext.deps = [
         STitlebar            : 'cn.gome.staff.ui:titlebar:' + getProperty('AAR_STITLEBAR_VERSION') + '@aar',
         GCrash               : 'com.gome.mcp:crash:' + getProperty('AAR_MCP_VERSION') + '@aar',
         GSecret              : 'com.gome.mcp:sec-gome:2.8.8-v15:gomeRelease@aar',
-        GBuildConfig         : 'com.gome.mcp:buildconfig:2.8.8-config.v4',
+        GBuildConfig         : 'com.gome.mcp:buildconfig:2.8.8.5',
         GPlugin              : 'com.gome.ecmall.core:plugin:1.0.39@aar',
         ABTest               : 'com.gome.mcp:abtestlib:1.0.8',
         DXCaptcha            : 'com.gome.third:dx-captcha:1.5.4@aar',
