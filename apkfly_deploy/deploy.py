@@ -4,6 +4,7 @@
 import os
 import re
 import sys
+import time
 
 # 解决win命令行乱码问题
 reload(sys)
@@ -370,7 +371,7 @@ def uploadApk():
     apkPath = findApkPath()
     if os.path.exists(apkPath):
         print '1.Successful find apk, start upload it: ' + apkPath
-        downloadUrl = uploadApk(apkPath)
+        downloadUrl = uploadApkByPath(apkPath)
         if len(downloadUrl) > 1 and downloadUrl.startswith('http'):
             print '2.Upload apk succeeded, download url:'
             print '  %s' % downloadUrl
@@ -430,7 +431,7 @@ def generateQRCode(text):
         return 0
 
 # 上传apk
-def uploadApk(apkPath):
+def uploadApkByPath(apkPath):
     # 上传到Finder中后的名字，如：20200521-10:25:00.apk
     apkFile = open(apkPath, 'rb')
     upApkName = os.path.basename(apkFile.name).replace('.apk', '%s%s.apk' % ('-', time.strftime("%Y-%m-%d-%H:%M:%S", time.localtime())))
