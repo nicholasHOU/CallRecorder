@@ -135,7 +135,7 @@ ext.deps = [
         GZxing               : 'com.thirdparty:zxing:3.3.0',
         GPlayer              : 'cn.com.gomeplus.player:gomeplus-player:1.0.32',
         GMsc                 : 'com.gome.ecmall:msc:1.0.2@aar',
-        GMscStaff         : 'com.gome.staff:msc:21.7.9@aar',
+        GMscStaff         : 'com.gome.staff:msc:21.7.16@aar',
         GAVSdk               : 'com.gome:avsdk:1.1.022',
         SLiteAVSDK           : 'com.tencent.liteav:LiteAVSDK_Professional:8.2.9809', //专业版
         //SLiteAVSDK        : 'com.tencent.liteavsdk:LiteAVSDK_Smart:latest.release', //普通版
@@ -322,6 +322,7 @@ ext.deps = [
         MFriends             : rootProject.ext.proDeps ? project(':MFriends') : 'com.gome.ecmall:mfriends:' + getProperty('AAR_MFRIENDS_VERSION') + '@aar',
         MSocial              : rootProject.ext.proDeps ? project(':MSocial') : 'com.gome.ecmall:msocial:' + getProperty('AAR_MSOCIAL_VERSION') + '@aar',
         SIm                  : project(':SIm'),
+        IMKit                : project(':IMKit'),
         SBuss                : 'cn.gome.staff:buss:42.69.2@aar',
         GPullToRefresh       : 'cn.gome.staff.ui:pulltorefresh:42.48.0@aar',
         SWapBus              : false ? project(':SWapBus') : 'cn.gome.staff:wapbuss:' + getProperty('AAR_WAPSBUSS_VERSION') + '@aar',
