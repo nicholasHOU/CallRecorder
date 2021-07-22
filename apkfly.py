@@ -634,6 +634,8 @@ def cmd_clone(args):
                 print ""  # 换行
             else:
                 slog("%s has already existed" % project.path)
+
+
     except Exception, e:
         sloge(e.message)
 
