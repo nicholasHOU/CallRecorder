@@ -134,6 +134,8 @@
     <project groups="private" url="git@code.gome.inc:mobile-android-business/SIm.git"/>
     <project groups="private" url="git@code.gome.inc:mobile-android-mcp/IMPlugins.git"/>
 
+    <project groups="private" url="git@code.gome.inc:mobile-android-mcp/GBase.git"/>
+
     <!--主工程-->
     <project app="true" groups="app" path="GomeApp" url="git@code.gome.inc:mobile-android/GomePlus.git"/>
 </manifest>
