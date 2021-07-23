@@ -84,3 +84,6 @@ GX5Lib              [friends0413]   [mergeDev]
 GYYTPassWord        [friends0413]   [mergeDev]
 GZhiboBus           [friends0413]   [master]
 GZxingScan          [friends0413]   [masterJni]
+
+
+IMPlugins           [master]        [master]
