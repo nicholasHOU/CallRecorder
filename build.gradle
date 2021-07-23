@@ -326,6 +326,13 @@ ext.deps = [
         GZhiboBus            : rootProject.ext.proDeps ? project(':GZhiboBus') : 'com.gome.ecmall:zhibobus:' + getProperty('AAR_GZHIBO_BUS_VERSION') + '@aar',
         Gsuperplayerkit      : rootProject.ext.proDeps ? project(':Gsuperplayerkit') : 'com.gome.ecmall:shortvideo:' + getProperty('AAR_SHORT_VIDEO_BUS_VERSION') + '@aar',
 
+        //im plugins
+        IMPluginCommon        : project(":im-plugin-common"),
+        IMPluginLocation      : project(":im-plugin-location"),
+        IMPluginQr            : project(":im-plugin-qr"),
+        IMPluginRedenvelope   : project(":im-plugin-redenvelope"),
+        IMPluginVoicetotext   : project(':im-plugin-voicetotext'),
+
 
 ]
 /**
