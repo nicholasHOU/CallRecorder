@@ -18,6 +18,7 @@
 /G*
 /M*
 /S*
+/IM*
 /buildsrc
 
 /apkfly_deploy/*.pyc
