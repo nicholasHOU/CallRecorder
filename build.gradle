@@ -334,6 +334,7 @@ ext.deps = [
         IMPluginQr            : project(":im-plugin-qr"),
         IMPluginRedenvelope   : project(":im-plugin-redenvelope"),
         IMPluginVoicetotext   : project(':im-plugin-voicetotext'),
+        IMPluginVideoChat     : project(':im-plugin-videochat'),
 
 
 ]
