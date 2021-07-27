@@ -87,3 +87,9 @@ GZxingScan          [friends0413]   [masterJni]
 
 
 IMPlugins           [master]        [master]
+
+MSocial - GZxingScan 依赖
+com.gome.social.topic.model.bean.MyFavoriteProductBean
+com.gome.social.topic.view.ui.fragment.TopicSearchProductFragment
+
+MFriendCircle - 地图 依赖 一大堆
