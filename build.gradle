@@ -330,7 +330,7 @@ ext.deps = [
 
         //im plugins
         IMPluginCommon        : project(":im-plugin-common"),
-        IMPluginLocation      : project(":im-plugin-location"),
+        IMPluginMap           : project(":im-plugin-map"),
         IMPluginQr            : project(":im-plugin-qr"),
         IMPluginRedenvelope   : project(":im-plugin-redenvelope"),
         IMPluginVoicetotext   : project(':im-plugin-voicetotext'),
