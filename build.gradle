@@ -329,12 +329,12 @@ ext.deps = [
         GBase                : rootProject.ext.proDeps ? project(':GBase') : 'com.gome.ecmall:gbase:' + getProperty('AAR_GBASE_VERSION') + '@aar',
 
         //im plugins
-        IMPluginCommon        : project(":im-plugin-common"),
-        IMPluginMap           : project(":im-plugin-map"),
-        IMPluginQr            : project(":im-plugin-qr"),
-        IMPluginRedenvelope   : project(":im-plugin-redenvelope"),
-        IMPluginVoicetotext   : project(':im-plugin-voicetotext'),
-        IMPluginVideoChat     : project(':im-plugin-videochat'),
+        IMPluginCommon        : rootProject.ext.proDeps ? project(":im-plugin-common") : 'com.gome.ecmall.implugin:common' + getProperty('AAR_IM_PLUGIN_COMMON_VERSION') + '@aar',
+        IMPluginMap           : rootProject.ext.proDeps ? project(":im-plugin-map") : 'com.gome.ecmall.implugin:map' + getProperty('AAR_IM_PLUGIN_MAP_VERSION') + '@aar',
+        IMPluginQr            : rootProject.ext.proDeps ? project(":im-plugin-qr") : 'com.gome.ecmall.implugin:qr' + getProperty('AAR_IM_PLUGIN_QR_VERSION') + '@aar',
+        IMPluginRedenvelope   : rootProject.ext.proDeps ? project(":im-plugin-redenvelope") : 'com.gome.ecmall.implugin:redenvelope' + getProperty('AAR_IM_PLUGIN_RED_ENVELOPE_VERSION') + '@aar',
+        IMPluginVoicetotext   : rootProject.ext.proDeps ? project(':im-plugin-voicetotext') : 'com.gome.ecmall.implugin:voicetotext' + getProperty('AAR_IM_PLUGIN_VOICE_TO_TEXT_VERSION') + '@aar',
+        IMPluginVideoChat     : rootProject.ext.proDeps ? project(':im-plugin-videochat') : 'com.gome.ecmall.implugin:videochat' + getProperty('AAR_IM_PLUGIN_VIDEO_CHAT_VERSION') + '@aar',
 
 
 ]
