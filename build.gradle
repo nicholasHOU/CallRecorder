@@ -245,6 +245,7 @@ ext.deps = [
         GFrameHttp           : false ? project(':GFrameHttp') : 'com.gome.ecmall:frame-http:' + getProperty('AAR_GFRAME_HTTP_VERSION') + '@aar',
         GFrameImage          : false ? project(':GFrameImage') : 'com.gome.ecmall:frame-image:' + getProperty('AAR_GFRAME_IMAGE_VERSION') + '@aar',
         GFrame               : false ? project(':GFrame') : 'com.gome.ecmall:frame:' + getProperty('AAR_GFRAME_VERSION') + '@aar',
+        GBase                : false ? project(':GBase') : 'com.gome.ecmall:gbase:' + getProperty('AAR_GBASE_VERSION') + '@aar',
 
         GCoreLogin           : rootProject.ext.proDeps ? project(':GCoreLogin') : 'com.gome.ecmall:core-login:' + getProperty('AAR_GCORE_LOGIN_VERSION') + '@aar',
         GCore                : rootProject.ext.proDeps ? project(':GCore') : 'com.gome.ecmall:core:' + getProperty('AAR_GCORE_VERSION') + '@aar',
@@ -318,7 +319,7 @@ ext.deps = [
         MFriends             : rootProject.ext.proDeps ? project(':MFriends') : 'com.gome.ecmall:mfriends:' + getProperty('AAR_MFRIENDS_VERSION') + '@aar',
         MSocial              : rootProject.ext.proDeps ? project(':MSocial') : 'com.gome.ecmall:msocial:' + getProperty('AAR_MSOCIAL_VERSION') + '@aar',
         SIm                  : project(':SIm'),
-        IMKit                : project(':IMKit'),
+        IMKit                : rootProject.ext.proDeps ? project(':IMKit') : 'com.gome.mcp:imkit:' + getProperty('AAR_IMKIT_VERSION') + '@aar',
         SBuss                : 'cn.gome.staff:buss:42.85.1@aar',
         GPullToRefresh       : 'cn.gome.staff.ui:pulltorefresh:42.48.0@aar',
         SWapBus              : false ? project(':SWapBus') : 'cn.gome.staff:wapbuss:' + getProperty('AAR_WAPSBUSS_VERSION') + '@aar',
@@ -326,7 +327,7 @@ ext.deps = [
 
         GZhiboBus            : rootProject.ext.proDeps ? project(':GZhiboBus') : 'com.gome.ecmall:zhibobus:' + getProperty('AAR_GZHIBO_BUS_VERSION') + '@aar',
         Gsuperplayerkit      : rootProject.ext.proDeps ? project(':Gsuperplayerkit') : 'com.gome.ecmall:shortvideo:' + getProperty('AAR_SHORT_VIDEO_BUS_VERSION') + '@aar',
-        GBase                : rootProject.ext.proDeps ? project(':GBase') : 'com.gome.ecmall:gbase:' + getProperty('AAR_GBASE_VERSION') + '@aar',
+
 
         //im plugins
         IMPluginCommon        : rootProject.ext.proDeps ? project(":im-plugin-common") : 'com.gome.ecmall.implugin:common' + getProperty('AAR_IM_PLUGIN_COMMON_VERSION') + '@aar',

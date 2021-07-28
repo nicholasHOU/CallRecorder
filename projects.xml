@@ -30,6 +30,9 @@
     <project groups="private" url="git@code.gome.inc:mobile-android-common/GPushOppo.git"/>
     <project groups="private" url="git@code.gome.inc:mobile-android-common/GPushViVo.git"/>
 
+    <project groups="private" url="git@code.gome.inc:mobile-android-mcp/GBase.git"/>
+    <project groups="private" url="git@code.gome.inc:mobile-android-mcp/GUtils.git"/>
+
     <project groups="private" branch="master" url="git@code.gome.inc:mobile-android-mcp/GShare.git"/>
     <project groups="private" branch="master" url="git@code.gome.inc:mobile-android-business/GShareBus.git"/>
     <project groups="private" url="git@code.gome.inc:mobile-android-common/GFaceLive.git"/>
@@ -107,11 +110,15 @@
     <project groups="im" url="git@code.gome.inc:mobile-android-business/MCommon.git"/>
 
     <project url="git@code.gome.inc:mobile-android-business/GOnlinememberCard.git"/>
+
+    <project groups="private" url="git@code.gome.inc:mobile-android-mcp/IMPlugins.git"/>
     <project groups="im" url="git@code.gome.inc:mobile-android-business/MFriendCircle.git"/>
     <project groups="im" url="git@code.gome.inc:mobile-android-business/MSocial.git"/>
     <project artifactId="videoguide" bundleOpen="false" url="git@code.gome.inc:mobile-android-business/GProductVideoGuide.git"/>
+    <project groups="im" url="git@code.gome.inc:mobile-android-business/SIm.git"/>
     <project groups="im" url="git@code.gome.inc:mobile-android-business/MIm.git"/>
     <project groups="im" url="git@code.gome.inc:mobile-android-business/MFriends.git"/>
+    <project branch="master" url="git@code.gome.inc:mobile-android-mcp/IMKit.git"/>
     <project url="git@code.gome.inc:mobile-android-business/GMoreService.git"/>
     <project url="git@code.gome.inc:mobile-android-business/GMallPage.git"/>
 
@@ -129,13 +136,6 @@
     <project url="git@code.gome.inc:mobile-android-business/GStoreChannel.git"/>
     <project branch="master" url="git@code.gome.inc:mobile-android-business/GZhiboBus.git"/>
     <project branch="master" url="git@code.gome.inc:mobile-android-business/Gsuperplayerkit.git"/>
-
-    <project groups="private" branch="master" url="git@code.gome.inc:mobile-android-mcp/IMKit.git"/>
-    <project groups="private" url="git@code.gome.inc:mobile-android-business/SIm.git"/>
-    <project groups="private" url="git@code.gome.inc:mobile-android-mcp/IMPlugins.git"/>
-
-    <project groups="private" url="git@code.gome.inc:mobile-android-mcp/GBase.git"/>
-    <project groups="private" url="git@code.gome.inc:mobile-android-mcp/GUtils.git"/>
 
     <!--主工程-->
     <project app="true" groups="app" path="GomeApp" url="git@code.gome.inc:mobile-android/GomePlus.git"/>
