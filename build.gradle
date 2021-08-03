@@ -56,7 +56,7 @@ allprojects {
         targetSdkVersion = getProperty("TARGET_SDK_VERSION") as Integer
         minSdkVersion = getProperty("MIN_SDK_VERSION") as Integer
         supportLibVersion = "26.0.1"
-        proDeps = true //改false 时需要把xiaomi的几个工程注掉
+        proDeps = false //改false 时需要把xiaomi的几个工程注掉
         isXiaoMi = false
         //添加此段
         mcpPkg = getEnvValue("mcpPkg",false)
@@ -88,7 +88,7 @@ ext.deps = [
         SConstraintLayout    : 'com.android.support.constraint:constraint-layout:1.1.3',
         SKotlin              : "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version",
         GHttp                : 'com.gome.mcp:http:2.8.8_v5@aar',
-        GUtils               : true ? project(':GUtils') : 'com.gome.mcp:utils:'+getProperty('AAR_GUTILS_VERSION')+'@aar',
+        GUtils               : false ? project(':GUtils') : 'com.gome.mcp:utils:'+getProperty('AAR_GUTILS_VERSION')+'@aar',
 
         LeakcanaryDebug      : "com.squareup.leakcanary:leakcanary-android:1.6.3",
         LeakcanaryRelease    : "com.squareup.leakcanary:leakcanary-android-no-op:1.6.3",
@@ -212,10 +212,6 @@ ext.deps = [
         GTabLayout           : 'com.gome.ecmall:tablayout:' + getProperty('AAR_GTABLAYOUT_VERSION') + '@aar',
         GHtmlSpanner         : 'com.gome.ecmall:htmlspanner:' + getProperty('AAR_HTMLSPANNER_VERSION') + '@aar',
 
-//        SBuss                : 'cn.gome.staff:buss:' + getProperty('AAR_SBUSS_VERSION') + '@aar',
-//        SScheme              : 'cn.gome.staff:scheme:' + getProperty('AAR_SSCHEME_VERSION') + '@aar',
-        SScheme              : 'cn.gome.staff:scheme:42.84.0@aar',
-
         GWeexLib             : false ? project(':GWeexLib') : 'com.gome.mobile.weex:components:' + getProperty('AAR_GWEEXLIB_VERSION') + '@aar',
         GFaceLive            : false ? project(':GFaceLive') : 'com.gome.mobile.common:facelive:' + getProperty('AAR_GFACELIVE_VERSION') + '@aar',
         GShare               : false ? project(':GShare') : 'com.gome.mcp:share:' + getProperty('AAR_MCP_GSHARE_VERSION') + '@aar',
@@ -241,7 +237,6 @@ ext.deps = [
         //GdownLoad
         GDownload            : false ? project(":GDownload") : 'com.gome.ecmall:gdownload:' + getProperty('AAR_GDOWNLOAD_VERSION') + '@aar',
 
-        GFrameUtils          : false ? project(':GFrameUtils') : 'com.gome.ecmall:frame-utils:' + getProperty('AAR_GFRAME_UTILS_VERSION') + '@aar',
         GFrameHttp           : false ? project(':GFrameHttp') : 'com.gome.ecmall:frame-http:' + getProperty('AAR_GFRAME_HTTP_VERSION') + '@aar',
         GFrameImage          : false ? project(':GFrameImage') : 'com.gome.ecmall:frame-image:' + getProperty('AAR_GFRAME_IMAGE_VERSION') + '@aar',
         GFrame               : false ? project(':GFrame') : 'com.gome.ecmall:frame:' + getProperty('AAR_GFRAME_VERSION') + '@aar',
@@ -318,16 +313,20 @@ ext.deps = [
         MIm                  : rootProject.ext.proDeps ? project(':MIm') : 'com.gome.ecmall:mim:' + getProperty('AAR_MIM_VERSION') + '@aar',
         MFriends             : rootProject.ext.proDeps ? project(':MFriends') : 'com.gome.ecmall:mfriends:' + getProperty('AAR_MFRIENDS_VERSION') + '@aar',
         MSocial              : rootProject.ext.proDeps ? project(':MSocial') : 'com.gome.ecmall:msocial:' + getProperty('AAR_MSOCIAL_VERSION') + '@aar',
-        SIm                  : project(':SIm'),
+        MFriends             : rootProject.ext.proDeps ? project(':MFriends') : 'com.gome.ecmall:mfriends:' + getProperty('AAR_MFRIENDS_VERSION') + '@aar',
+        MSocial              : rootProject.ext.proDeps ? project(':MSocial') : 'com.gome.ecmall:msocial:' + getProperty('AAR_MSOCIAL_VERSION') + '@aar',
+        SIm                  : rootProject.ext.proDeps ? project(':SIm') : 'cn.gome.staff:im:' + getProperty('AAR_SIM_VERSION') + '@aar',
         IMKit                : rootProject.ext.proDeps ? project(':IMKit') : 'com.gome.mcp:imkit:' + getProperty('AAR_IMKIT_VERSION') + '@aar',
-        SBuss                : 'cn.gome.staff:buss:42.85.1@aar',
-        GPullToRefresh       : 'cn.gome.staff.ui:pulltorefresh:42.48.0@aar',
+
         SWapBus              : false ? project(':SWapBus') : 'cn.gome.staff:wapbuss:' + getProperty('AAR_WAPSBUSS_VERSION') + '@aar',
+        SScheme              : 'cn.gome.staff:scheme:' + getProperty('AAR_SSCHEME_VERSION') + '@aar',
+        SBuss                : 'cn.gome.staff:buss:' + getProperty('AAR_SBUSS_VERSION') + '@aar',
+
+        GPullToRefresh       : 'cn.gome.staff.ui:pulltorefresh:42.48.0@aar',
         GStoreChannel        : rootProject.ext.proDeps ? project(':GStoreChannel') : 'com.gome.ecmall.business:storechannel:' + getProperty('AAR_GBUSINESS_GSTORECHANNEL_VERSION') + '@aar',
 
         GZhiboBus            : rootProject.ext.proDeps ? project(':GZhiboBus') : 'com.gome.ecmall:zhibobus:' + getProperty('AAR_GZHIBO_BUS_VERSION') + '@aar',
         Gsuperplayerkit      : rootProject.ext.proDeps ? project(':Gsuperplayerkit') : 'com.gome.ecmall:shortvideo:' + getProperty('AAR_SHORT_VIDEO_BUS_VERSION') + '@aar',
-
 
         //im plugins
         IMPluginCommon        : rootProject.ext.proDeps ? project(":im-plugin-common") : 'com.gome.ecmall.implugin:common' + getProperty('AAR_IM_PLUGIN_COMMON_VERSION') + '@aar',
