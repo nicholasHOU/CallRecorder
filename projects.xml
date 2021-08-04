@@ -104,6 +104,7 @@
     <project url="git@code.gome.inc:mobile-android-business/GGroupBuy.git"/>
     <project url="git@code.gome.inc:mobile-android-business/GAppraise.git"/>
 
+    <project branch="master" url="git@code.gome.inc:mobile-android-mcp/GQrScan.git"/>
     <project branch="masterJni" url="git@code.gome.inc:mobile-android-business/GZxingScan.git"/>
 <!--    <project url="git@code.gome.inc:mobile-android-business/GZxingScan.git"/>-->
     <project url="git@code.gome.inc:mobile-android-business/GIMRedEnvelope.git"/>

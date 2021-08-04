@@ -83,8 +83,10 @@ GTQDetail           [friends0413]   [mergeDev]
 GX5Lib              [friends0413]   [mergeDev]
 GYYTPassWord        [friends0413]   [mergeDev]
 GZhiboBus           [friends0413]   [master]
+
 GZxingScan          [friends0413]   [masterJni]
-GZxingScan          [friends0413_]  masterJni->friends0413=friends0413_
+GZxingScan          [friends0413_]    masterJni->friends0413=friends0413_
+GZxingScan          [friends0413_b]   friends0413备份(未合并主干的)
 
 
 IMPlugins           [master]        [master]

@@ -274,6 +274,7 @@ ext.deps = [
         GProductVideoGuide   : rootProject.ext.proDeps ? project(':GProductVideoGuide') : 'com.gome.ecmall:videoguide:' + getProperty('AAR_GPRODUCT_VIDEO_GUIDE_VERSION') + '@aar',
         GTQDetail            : rootProject.ext.proDeps ? project(':GTQDetail') : 'com.gome.ecmall:tqdetail:' + getProperty('AAR_GTQ_DETAIL_VERSION') + '@aar',
         GZxingScan           : rootProject.ext.proDeps ? project(':GZxingScan') : 'com.gome.ecmall:gzxing:' + getProperty('AAR_GZING_VERSION') + '@aar',
+        GQrScan              : rootProject.ext.proDeps ? project(':GQrScan') : 'com.gome.ecmall:qrscan:' + getProperty('AAR_QR_SCAN_VERSION') + '@aar',
         GGomeCurrency        : rootProject.ext.proDeps ? project(':GGomeCurrency') : 'com.gome.ecmall:ggomecurrency:' + getProperty('AAR_GGOMECURRENCY_VERSION') + '@aar',
         GProductSearch       : rootProject.ext.proDeps ? project(':GProductSearch') : 'com.gome.ecmall:productsearch:' + getProperty('AAR_GPRODUCT_SEARCH_VERSION') + '@aar',
         GShop                : rootProject.ext.proDeps ? project(':GShop') : 'com.gome.ecmall:gshop:' + getProperty('AAR_GSHOP_VERSION') + '@aar',
