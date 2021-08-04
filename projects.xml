@@ -47,7 +47,6 @@
     <!--G工程-->
     <!--GFrame-->
     <project groups="frame" path="GFrameHttp" url="git@code.gome.inc:mobile-android-common/GFrame-http.git"/>
-    <project groups="frame" path="GFrameUtils" url="git@code.gome.inc:mobile-android-common/GFrame-utils.git"/>
     <project groups="frame" path="GFrameImage" url="git@code.gome.inc:mobile-android-common/GFrame-image.git"/>
     <project groups="frame" path="GFrame" url="git@code.gome.inc:mobile-android-common/GFrame-common.git"/>
     <!--GCore-->
@@ -77,18 +76,18 @@
     <project url="git@code.gome.inc:mobile-android-business/GDao.git"/>
     <project url="git@code.gome.inc:mobile-android-business/GBSearch.git"/>
     <project url="git@code.gome.inc:mobile-android-business/GBShop.git"/>
+    <project url="git@code.gome.inc:mobile-android-business/GMallService.git"/>
     <project url="git@code.gome.inc:mobile-android-business/GBProduct.git"/>
     <project url="git@code.gome.inc:mobile-android-business/GBCms.git"/>
     <project url="git@code.gome.inc:mobile-android-business/GShopCarBus.git"/>
     <project groups="share" url="git@code.gome.inc:mobile-android-business/GGomeShareBus.git"/>
+    <project branch="master" url="git@code.gome.inc:mobile-android-business/GSocialService.git"/>
+    <project url="git@code.gome.inc:mobile-android-common/GHybrid.git" groups="wap"/>
     <project url="git@code.gome.inc:mobile-android-business/GCashierdesk.git"/>
     <project url="git@code.gome.inc:mobile-android-common/GShelvesWidget.git"/>
-    <project url="git@code.gome.inc:mobile-android-business/GMallService.git"/>
-    <project branch="master" url="git@code.gome.inc:mobile-android-business/GSocialService.git"/>
     <project url="git@code.gome.inc:mobile-android-business/GBusiness.git"/>
 
     <project groups="im" url="git@code.gome.inc:mobile-android-business/MImlibrary.git"/>
-    <project url="git@code.gome.inc:mobile-android-common/GHybrid.git" groups="wap"/>
     <project url="git@code.gome.inc:mobile-android-business/GFinanceCommon.git"/>
     <!-- 业务模块 -->
     <project artifactId="finance" bundleOpen="false" url="git@code.gome.inc:mobile-android-business/GFinance.git"/>
