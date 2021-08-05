@@ -56,7 +56,7 @@
     <project groups="core" path="GCoreLogin" url="git@code.gome.inc:mobile-android-common/GCore-login.git"/>
     <project groups="core" path="GCore"  url="git@code.gome.inc:mobile-android-common/GCore-common.git"/>
 
-    <project url="git@code.gome.inc:mobile-android-business/GSelectPhoto.git"/>
+    <project url="git@code.gome.inc:mobile-android-business/SSelectPhoto.git"/>
     <project url="git@code.gome.inc:mobile-android-business/GLogin.git"/>
     <project url="git@code.gome.inc:mobile-android-business/GLoginBusiness.git"/>
     <project url="git@code.gome.inc:mobile-android-business/GPullrefresh.git"/>
@@ -114,7 +114,6 @@
     <project groups="private" url="git@code.gome.inc:mobile-android-mcp/IMPlugins.git"/>
     <project groups="im" url="git@code.gome.inc:mobile-android-business/MFriendCircle.git"/>
     <project groups="im" url="git@code.gome.inc:mobile-android-business/MSocial.git"/>
-    <project artifactId="videoguide" bundleOpen="false" url="git@code.gome.inc:mobile-android-business/GProductVideoGuide.git"/>
     <project groups="im" url="git@code.gome.inc:mobile-android-business/SIm.git"/>
     <project groups="im" url="git@code.gome.inc:mobile-android-business/MIm.git"/>
     <project groups="im" url="git@code.gome.inc:mobile-android-business/MFriends.git"/>
