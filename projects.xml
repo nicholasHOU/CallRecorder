@@ -114,7 +114,6 @@
     <project groups="private" url="git@code.gome.inc:mobile-android-mcp/IMPlugins.git"/>
     <project groups="im" url="git@code.gome.inc:mobile-android-business/MFriendCircle.git"/>
     <project groups="im" url="git@code.gome.inc:mobile-android-business/MSocial.git"/>
-    <project artifactId="videoguide" bundleOpen="false" url="git@code.gome.inc:mobile-android-business/GProductVideoGuide.git"/>
     <project groups="im" url="git@code.gome.inc:mobile-android-business/SIm.git"/>
     <project groups="im" url="git@code.gome.inc:mobile-android-business/MIm.git"/>
     <project groups="im" url="git@code.gome.inc:mobile-android-business/MFriends.git"/>
