@@ -194,7 +194,7 @@ ext.deps = [
         GFace                : 'com.gome.face:liveness:3.6.1-20200930@aar',
         GFaceCommon          : 'com.gome.face:common-motion:1.0.9-202010191740@aar',
         GOaid                : 'com.gome.third.oaid:oaid:1.0.25@aar',
-        GAdSDK               :'cn.com.gomeplus.ad:gomeplus-ad-SDK:1.3.9@aar',
+        GAdSDK               :'cn.com.gomeplus.ad:gomeplus-ad-SDK:1.4.1@aar',
         SConstraintSolver    : 'com.android.support.constraint:constraint-layout-solver:1.1.3',
         SExif            : 'com.android.support:exifinterface:28.0.0',
 
