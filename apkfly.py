@@ -1002,6 +1002,10 @@ def exec_compile_aar(modules_aar, version_index):
                 print ">>>Success project:%s\n\n>>>-------------------------------------NEXT COMPILE AAR-------------------------------------\n" % module
             else:
                 print ">>>Error project:%s" % module
+                if cmd_result.find("uploadArchives FAILED") != -1:
+                    print ">>>Error AAR 版本号应该有问题，请检查后再打包"
+                elif cmd_result.find("compileReleaseJavaWithJavac FAILED") != -1:
+                    print ">>>Error 项目编译应该有问题，请检查后再打包"
                 break
         else:
             print u'>>>Error project:%s，版本字段名未找到' % module
