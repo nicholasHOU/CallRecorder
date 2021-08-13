@@ -308,7 +308,7 @@ ext.deps = [
         GBCms                : rootProject.ext.proDeps ? project(':GBCms') : 'com.gome.ecmall.business:cms:' + getProperty('AAR_GBUSINESS_GCMS_VERSION') + '@aar',
         GIMRedEnvelope       : rootProject.ext.proDeps ? project(':GIMRedEnvelope') : 'com.gome.ecmall:imredenvelope:' + getProperty('AAR_IMREDENVELOPE_VERSION') + '@aar',
         MImlibrary           : rootProject.ext.proDeps ? project(':MImlibrary') : 'com.gome.ecmall:mimlib:' + getProperty('AAR_MIM_LIB_VERSION') + '@aar',
-        MCommon              : true ? project(':MCommon') : 'com.gome.ecmall:mcommon:' + getProperty('AAR_MCOMMON_VERSION') + '@aar',
+        MCommon              : rootProject.ext.proDeps ? project(':MCommon') : 'com.gome.ecmall:mcommon:' + getProperty('AAR_MCOMMON_VERSION') + '@aar',
         MFriendCircle        : rootProject.ext.proDeps ? project(':MFriendCircle') : 'com.gome.ecmall:mfriendcircle:' + getProperty('AAR_MFRIEND_CIRCLE_VERSION') + '@aar',
         MIm                  : rootProject.ext.proDeps ? project(':MIm') : 'com.gome.ecmall:mim:' + getProperty('AAR_MIM_VERSION') + '@aar',
         MFriends             : rootProject.ext.proDeps ? project(':MFriends') : 'com.gome.ecmall:mfriends:' + getProperty('AAR_MFRIENDS_VERSION') + '@aar',
