@@ -5,6 +5,8 @@ import os
 import re
 import sys
 import time
+import platform
+import subprocess
 
 # 解决win命令行乱码问题
 reload(sys)
@@ -363,7 +365,7 @@ UPLOAD_URL = 'http://10.115.3.134:8085/upload'
 JOB_NAME = 'Location-App-Script'
 
 # 在线生成二维码api
-QRCODE_API = 'http://qr.topscan.com/api.php?text='
+QRCODE_API = 'https://api.qrserver.com/v1/create-qr-code/?data='
 # 二维码缓存目录
 QR_CODE_IMG_CACHE_PAHT = os.path.join('.idea', 'caches', 'qr.png')
 
@@ -408,7 +410,7 @@ def generateQRCode(text):
         # img.save("baidu.jpg") # 保存二维码为文件
         return 1
     except ImportError:
-        # print "Please install python qrcode lib, can generate QR code !"
+        print "Please install python qrcode lib, can generate QR code !"
         pass
 
     try:
