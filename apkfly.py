@@ -10,7 +10,6 @@ import time
 import xml
 from collections import Counter
 from xml.dom import minidom
-import platform
 sys.path.append(r'apkfly_deploy')
 import deploy
 import tempfile
