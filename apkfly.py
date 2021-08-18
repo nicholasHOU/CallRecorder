@@ -1050,7 +1050,7 @@ def cmd_compile_merge(args):
                     mergeReustLog.write(merge_result)
 
                     if 'Already up to date' in merge_result:
-                        print u'主分支没有修改'
+                        print u'%s分支没有任何修改' % branch
                     elif 'CONFLICT' in merge_result:
                         sloge(u'我屮艸芔茻，有冲突，记得去解决 err')
                     else:
