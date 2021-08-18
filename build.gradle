@@ -174,7 +174,7 @@ ext.deps = [
         Gomeimagepipeline    : 'com.gome.fresco:imagepipeline:1.10.0',
         Gomeanimated         : 'com.gome.fresco:animated-gif:1.10.0',
         GomeWebpsupport      : 'com.gome.fresco:webpsupport:1.10.0@aar',
-        GRouter              : false ? project(':GRouter/router'): 'com.gutils.router:router:' + getProperty('LIB_ROUTER_VERSION') + '@aar',
+        GRouter              : 'com.gutils.router:router:' + getProperty('LIB_ROUTER_VERSION') + '@aar',
 
         GSafekeyboard        : 'com.gome.mcp:safeKeyboard:2.8.8-v7a',
         GUpdate              : 'com.gome.mcp:update:2.8.9',
@@ -237,29 +237,26 @@ ext.deps = [
         GFlutterBoost        : false ? project(":flutter_boost") : 'com.gome.ecmall.flutter:flutter_boost:' + getProperty('AAR_FLUTTER_MODULE_VERSION') + '@aar',
         //GdownLoad
         GDownload            : false ? project(":GDownload") : 'com.gome.ecmall:gdownload:' + getProperty('AAR_GDOWNLOAD_VERSION') + '@aar',
+        GBase                : false ? project(':GBase') : 'com.gome.ecmall:gbase:' + getProperty('AAR_GBASE_VERSION') + '@aar',
 
-        GFrameUtils          : rootProject.ext.proDeps ? project(':GUtils') : 'com.gome.mcp:utils:'+getProperty('AAR_GUTILS_VERSION')+'@aar',
         GFrameHttp           : rootProject.ext.proDeps ? project(':GFrameHttp') : 'com.gome.ecmall:frame-http:' + getProperty('AAR_GFRAME_HTTP_VERSION') + '@aar',
         GFrameImage          : rootProject.ext.proDeps ? project(':GFrameImage') : 'com.gome.ecmall:frame-image:' + getProperty('AAR_GFRAME_IMAGE_VERSION') + '@aar',
         GFrame               : rootProject.ext.proDeps ? project(':GFrame') : 'com.gome.ecmall:frame:' + getProperty('AAR_GFRAME_VERSION') + '@aar',
-        GBase                : false ? project(':GBase') : 'com.gome.ecmall:gbase:' + getProperty('AAR_GBASE_VERSION') + '@aar',
 
-        GCoreLogin           : false ? project(':GCore-login') : 'com.gome.ecmall:core-login:' + getProperty('AAR_GCORE_LOGIN_VERSION') + '@aar',
-        GCore                : false ? project(':GCore') : 'com.gome.ecmall:core:' + getProperty('AAR_GCORE_VERSION') + '@aar',
+        GCoreLogin           : rootProject.ext.proDeps ? project(':GCoreLogin') : 'com.gome.ecmall:core-login:' + getProperty('AAR_GCORE_LOGIN_VERSION') + '@aar',
+        GCore                : rootProject.ext.proDeps ? project(':GCore') : 'com.gome.ecmall:core:' + getProperty('AAR_GCORE_VERSION') + '@aar',
 
         GWidget              : rootProject.ext.proDeps ? project(':GWidget') : 'com.gome.ecmall:widget:' + getProperty('AAR_GWIDGET_VERSION') + '@aar',
-
-        GSmartRefreshLayout  : false ? project(':GSmartRefreshLayout') : 'com.gome.ecmall:refreshsmt:' + getProperty('AAR_REFRESH_SMT_VERSION') + '@aar',
-        GSelectPhoto         : false ? project(':SSelectPhoto') : 'com.gome.ecmall:selectphoto:' + getProperty('AAR_SSELECT_PHOTO_VERSION') + '@aar',
+        GSmartRefreshLayout  : rootProject.ext.proDeps ? project(':GSmartRefreshLayout') : 'com.gome.ecmall:refreshsmt:' + getProperty('AAR_REFRESH_SMT_VERSION') + '@aar',
+        GSelectPhoto         : rootProject.ext.proDeps ? project(':SSelectPhoto') : 'com.gome.ecmall:selectphoto:' + getProperty('AAR_GSELECT_PHOTO_VERSION') + '@aar',
         GDXRisk              : false ? project(':GDXRisk') : 'com.gome.mcp:dxrisk:' + getProperty('AAR_GDXRISK_VERSION') + '@aar',
-        GLogin               : false ? project(':GLogin') : 'com.gome.ecmall:login:' + getProperty('AAR_GLOGIN_VERSION') + '@aar',
+        GLogin               : rootProject.ext.proDeps ? project(':GLogin') : 'com.gome.ecmall:login:' + getProperty('AAR_GLOGIN_VERSION') + '@aar',
         GLoginAuth           : 'com.gome.ecmall:login-auth:Release-V1.0.0@aar',
         GLoginBusiness       : rootProject.ext.proDeps ? project(':GLoginBusiness') : 'com.gome.ecmall:loginbusiness:' + getProperty('AAR_GLOGIN_BUSINESS_VERSION') + '@aar',
         GPullrefresh         : rootProject.ext.proDeps ? project(':GPullrefresh') : 'com.gome.ecmall:pullrefresh:' + getProperty('AAR_GPULLREFRESH_VERSION') + '@aar',
         GCmbPay              : rootProject.ext.proDeps ? project(':GCmbPay') : 'com.gome.cmbpay:cmbpay:' + getProperty('AAR_CMBPAY_VERSION') + '@aar',
         GTongBaoSdk          : rootProject.ext.proDeps ? project(':GTongBaoSdk') : 'com.gome.ecmall:gomepay:' + getProperty('AAR_GOMEPAY_VERSION') + '@aar',
         GBaiTiao             : rootProject.ext.proDeps ? project(':GBaiTiao') : 'com.gome.ecmall:baitiao:' + getProperty('AAR_GBAITIAO_VERSION') + '@aar',
-
         GHybrid              : rootProject.ext.proDeps ? project(':GHybrid') : 'com.gome.ecmall:gh5:' + getProperty('AAR_GH5_VERSION') + '@aar',
         GFinanceCommon       : rootProject.ext.proDeps ? project(':GFinanceCommon') : 'com.gome.ecmall:financecommon:' + getProperty('AAR_GFINANCE_COMMON_VERSION') + '@aar',
         GFinance             : rootProject.ext.proDeps ? project(':GFinance') : 'com.gome.ecmall:finance:' + getProperty('AAR_GFINANCE_VERSION') + '@aar',
@@ -270,8 +267,9 @@ ext.deps = [
         GMaterialOrder       : rootProject.ext.proDeps ? project(':GMaterialOrder') : 'com.gome.ecmall:materialorder:' + getProperty('AAR_GMATERIAL_ORDER_VERSION') + '@aar',
         GX5Lib               : false ? project(':GX5Lib') : 'com.gome.mcp:gx5:' + getProperty('AAR_GX5_VERSION') + '@aar',
         GProductDetail       : rootProject.ext.proDeps ? project(':GProductDetail') : 'com.gome.ecmall:product:' + getProperty('AAR_GPRODUCT_VERSION') + '@aar',
-        GProductVideoGuide   : rootProject.ext.proDeps ? project(':GProductVideoGuide') : 'com.gome.ecmall:videoguide:' + getProperty('AAR_GPRODUCT_VIDEO_GUIDE_VERSION') + '@aar',
+        GTQDetail            : rootProject.ext.proDeps ? project(':GTQDetail') : 'com.gome.ecmall:tqdetail:' + getProperty('AAR_GTQ_DETAIL_VERSION') + '@aar',
         GZxingScan           : rootProject.ext.proDeps ? project(':GZxingScan') : 'com.gome.ecmall:gzxing:' + getProperty('AAR_GZING_VERSION') + '@aar',
+        GQrScan              : rootProject.ext.proDeps ? project(':GQrScan') : 'com.gome.ecmall:qrscan:' + getProperty('AAR_QR_SCAN_VERSION') + '@aar',
         GGomeCurrency        : rootProject.ext.proDeps ? project(':GGomeCurrency') : 'com.gome.ecmall:ggomecurrency:' + getProperty('AAR_GGOMECURRENCY_VERSION') + '@aar',
         GProductSearch       : rootProject.ext.proDeps ? project(':GProductSearch') : 'com.gome.ecmall:productsearch:' + getProperty('AAR_GPRODUCT_SEARCH_VERSION') + '@aar',
         GShop                : rootProject.ext.proDeps ? project(':GShop') : 'com.gome.ecmall:gshop:' + getProperty('AAR_GSHOP_VERSION') + '@aar',
@@ -295,6 +293,7 @@ ext.deps = [
         GGomeShareBus        : rootProject.ext.proDeps ? project(':GGomeShareBus') : 'com.gome.ecmall:gomesharebus:' + getProperty('AAR_GGOMESHAREBUS_VERSION') + '@aar',
         GBusiness            : rootProject.ext.proDeps ? project(':GBusiness') : 'com.gome.ecmall:business:' + getProperty('AAR_GBUSINESS_VERSION') + '@aar',
         GScheme              : rootProject.ext.proDeps ? project(':GScheme') : 'com.gome.ecmall:scheme:' + getProperty('AAR_GSCHEME_VERSION') + '@aar',
+        GMallService         : rootProject.ext.proDeps ? project(':GMallService') : 'com.gome.ecmall:mallservice:' + getProperty('AAR_GMALL_SERVICE_VERSION') + '@aar',
         GSocialService       : rootProject.ext.proDeps ? project(':GSocialService') : 'com.gome.ecmall:socialservice:' + getProperty('AAR_GSOCIAL_SERVICE_VERSION') + '@aar',
         GAddress             : rootProject.ext.proDeps ? project(':GAddress') : 'com.gome.ecmall.business:address:' + getProperty('AAR_GBUSINESS_ADRESS_VERSION') + '@aar',
         GBigPhoto            : rootProject.ext.proDeps ? project(':GBigPhoto') : 'com.gome.ecmall.business:bigphoto:' + getProperty('AAR_GBUSINESS_BIGPHOTO_VERSION') + '@aar',
@@ -316,15 +315,25 @@ ext.deps = [
         MIm                  : rootProject.ext.proDeps ? project(':MIm') : 'com.gome.ecmall:mim:' + getProperty('AAR_MIM_VERSION') + '@aar',
         MFriends             : rootProject.ext.proDeps ? project(':MFriends') : 'com.gome.ecmall:mfriends:' + getProperty('AAR_MFRIENDS_VERSION') + '@aar',
         MSocial              : rootProject.ext.proDeps ? project(':MSocial') : 'com.gome.ecmall:msocial:' + getProperty('AAR_MSOCIAL_VERSION') + '@aar',
-        MSocial              : rootProject.ext.proDeps ? project(':MSocial') : 'com.gome.ecmall:msocial:' + getProperty('AAR_MSOCIAL_VERSION') + '@aar',
+        IMKit                : rootProject.ext.proDeps ? project(':IMKit') : 'com.gome.mcp:imkit:' + getProperty('AAR_IMKIT_VERSION') + '@aar',
+
         SWapBus              : false ? project(':SWapBus') : 'cn.gome.staff:wapbuss:' + getProperty('AAR_WAPSBUSS_VERSION') + '@aar',
         SScheme              : 'cn.gome.staff:scheme:' + getProperty('AAR_SSCHEME_VERSION') + '@aar',
         SBuss                : 'cn.gome.staff:buss:' + getProperty('AAR_SBUSS_VERSION') + '@aar',
+
         GPullToRefresh       : 'cn.gome.staff.ui:pulltorefresh:42.48.0@aar',
         GStoreChannel        : rootProject.ext.proDeps ? project(':GStoreChannel') : 'com.gome.ecmall.business:storechannel:' + getProperty('AAR_GBUSINESS_GSTORECHANNEL_VERSION') + '@aar',
 
         GZhiboBus            : rootProject.ext.proDeps ? project(':GZhiboBus') : 'com.gome.ecmall:zhibobus:' + getProperty('AAR_GZHIBO_BUS_VERSION') + '@aar',
         Gsuperplayerkit      : rootProject.ext.proDeps ? project(':Gsuperplayerkit') : 'com.gome.ecmall:shortvideo:' + getProperty('AAR_SHORT_VIDEO_BUS_VERSION') + '@aar',
+
+        //im plugins
+        IMPluginCommon        : rootProject.ext.proDeps ? project(":im-plugin-common") : 'com.gome.ecmall.implugin:common:' + getProperty('AAR_IM_PLUGIN_COMMON_VERSION') + '@aar',
+        IMPluginMap           : rootProject.ext.proDeps ? project(":im-plugin-map") : 'com.gome.ecmall.implugin:map:' + getProperty('AAR_IM_PLUGIN_MAP_VERSION') + '@aar',
+        IMPluginQr            : rootProject.ext.proDeps ? project(":im-plugin-qr") : 'com.gome.ecmall.implugin:qr:' + getProperty('AAR_IM_PLUGIN_QR_VERSION') + '@aar',
+        IMPluginRedenvelope   : rootProject.ext.proDeps ? project(":im-plugin-redenvelope") : 'com.gome.ecmall.implugin:redenvelope:' + getProperty('AAR_IM_PLUGIN_RED_ENVELOPE_VERSION') + '@aar',
+        IMPluginVoicetotext   : rootProject.ext.proDeps ? project(':im-plugin-voicetotext') : 'com.gome.ecmall.implugin:voicetotext:' + getProperty('AAR_IM_PLUGIN_VOICE_TO_TEXT_VERSION') + '@aar',
+        IMPluginVideoChat     : rootProject.ext.proDeps ? project(':im-plugin-videochat') : 'com.gome.ecmall.implugin:videochat:' + getProperty('AAR_IM_PLUGIN_VIDEO_CHAT_VERSION') + '@aar',
 
 
 ]
