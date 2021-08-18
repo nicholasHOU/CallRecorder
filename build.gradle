@@ -242,6 +242,7 @@ ext.deps = [
         GFrameHttp           : rootProject.ext.proDeps ? project(':GFrameHttp') : 'com.gome.ecmall:frame-http:' + getProperty('AAR_GFRAME_HTTP_VERSION') + '@aar',
         GFrameImage          : rootProject.ext.proDeps ? project(':GFrameImage') : 'com.gome.ecmall:frame-image:' + getProperty('AAR_GFRAME_IMAGE_VERSION') + '@aar',
         GFrame               : rootProject.ext.proDeps ? project(':GFrame') : 'com.gome.ecmall:frame:' + getProperty('AAR_GFRAME_VERSION') + '@aar',
+        GBase                : false ? project(':GBase') : 'com.gome.ecmall:gbase:' + getProperty('AAR_GBASE_VERSION') + '@aar',
 
         GCoreLogin           : false ? project(':GCore-login') : 'com.gome.ecmall:core-login:' + getProperty('AAR_GCORE_LOGIN_VERSION') + '@aar',
         GCore                : false ? project(':GCore') : 'com.gome.ecmall:core:' + getProperty('AAR_GCORE_VERSION') + '@aar',
