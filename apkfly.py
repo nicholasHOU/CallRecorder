@@ -1052,16 +1052,17 @@ def cmd_compile_merge(args):
                     if 'Already up to date' in merge_result:
                         print u'%s分支没有任何修改' % branch
                     elif 'CONFLICT' in merge_result:
-                        sloge(u'我屮艸芔茻，有冲突，记得去解决 err')
+                        sloge(u'我屮艸芔茻，有冲突，记得去解决 >>>err')
                     else:
                         print u'记得去push'
 
                     log = u"%s，合并完成\n==================================================================\n\n" % m
-                    mergeReustLog.write(log)
                     print log
+                    mergeReustLog.write(log)
                 else:
-                    print u'%s项目不存在\n================================================================== err\n\n' % m
-
+                    log = u'%s项目不存在\n================================================================== >>>err\n\n' % m
+                    print log
+                    mergeReustLog.write(log)
 
 def cmd_remote(args):
     set = args.set
