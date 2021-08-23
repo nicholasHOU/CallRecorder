@@ -56,3 +56,11 @@ if __name__ == '__main__':
 # -H "User-Agent: python-requests/2.26.0"
 # -H "Authorization: Basic cWl1ZG9uZ2NoYW86aHl4ZjE5ODg="
 # --compressed "http://10.115.3.136:8080/jenkins/crumbIssuer/api/python"
+
+
+
+# JenkinsApi
+# https://jenkinsapi.readthedocs.io/en/latest/api.html
+
+# Python Jenkins
+# https://python-jenkins.readthedocs.io/en/latest/api.html
