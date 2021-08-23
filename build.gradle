@@ -239,6 +239,8 @@ ext.deps = [
         //GdownLoad
         GDownload            : false ? project(":GDownload") : 'com.gome.ecmall:gdownload:' + getProperty('AAR_GDOWNLOAD_VERSION') + '@aar',
         GBase                : false ? project(':GBase') : 'com.gome.ecmall:gbase:' + getProperty('AAR_GBASE_VERSION') + '@aar',
+        GSmartRefreshLayout  : false ? project(':GSmartRefreshLayout') : 'com.gome.ecmall:refreshsmt:' + getProperty('AAR_REFRESH_SMT_VERSION') + '@aar',
+        SSelectPhoto         : false ? project(':SSelectPhoto') : 'com.gome.ecmall:selectphoto:' + getProperty('AAR_SSELECT_PHOTO_VERSION') + '@aar',
 
         GFrameHttp           : rootProject.ext.proDeps ? project(':GFrameHttp') : 'com.gome.ecmall:frame-http:' + getProperty('AAR_GFRAME_HTTP_VERSION') + '@aar',
         GFrameImage          : rootProject.ext.proDeps ? project(':GFrameImage') : 'com.gome.ecmall:frame-image:' + getProperty('AAR_GFRAME_IMAGE_VERSION') + '@aar',
@@ -248,13 +250,11 @@ ext.deps = [
         GCore                : rootProject.ext.proDeps ? project(':GCore') : 'com.gome.ecmall:core:' + getProperty('AAR_GCORE_VERSION') + '@aar',
 
         GWidget              : rootProject.ext.proDeps ? project(':GWidget') : 'com.gome.ecmall:widget:' + getProperty('AAR_GWIDGET_VERSION') + '@aar',
-        GSmartRefreshLayout  : rootProject.ext.proDeps ? project(':GSmartRefreshLayout') : 'com.gome.ecmall:refreshsmt:' + getProperty('AAR_REFRESH_SMT_VERSION') + '@aar',
-        SSelectPhoto         : rootProject.ext.proDeps ? project(':SSelectPhoto') : 'com.gome.ecmall:selectphoto:' + getProperty('AAR_SSELECT_PHOTO_VERSION') + '@aar',
         GDXRisk              : false ? project(':GDXRisk') : 'com.gome.mcp:dxrisk:' + getProperty('AAR_GDXRISK_VERSION') + '@aar',
         GLogin               : rootProject.ext.proDeps ? project(':GLogin') : 'com.gome.ecmall:login:' + getProperty('AAR_GLOGIN_VERSION') + '@aar',
         GLoginAuth           : 'com.gome.ecmall:login-auth:Release-V1.0.0@aar',
         GLoginBusiness       : rootProject.ext.proDeps ? project(':GLoginBusiness') : 'com.gome.ecmall:loginbusiness:' + getProperty('AAR_GLOGIN_BUSINESS_VERSION') + '@aar',
-        GPullrefresh         : rootProject.ext.proDeps ? project(':GPullrefresh') : 'com.gome.ecmall:pullrefresh:' + getProperty('AAR_GPULLREFRESH_VERSION') + '@aar',
+        GPullrefresh         : false ? project(':GPullrefresh') : 'com.gome.ecmall:pullrefresh:' + getProperty('AAR_GPULLREFRESH_VERSION') + '@aar',
         GCmbPay              : rootProject.ext.proDeps ? project(':GCmbPay') : 'com.gome.cmbpay:cmbpay:' + getProperty('AAR_CMBPAY_VERSION') + '@aar',
         GTongBaoSdk          : rootProject.ext.proDeps ? project(':GTongBaoSdk') : 'com.gome.ecmall:gomepay:' + getProperty('AAR_GOMEPAY_VERSION') + '@aar',
         GBaiTiao             : rootProject.ext.proDeps ? project(':GBaiTiao') : 'com.gome.ecmall:baitiao:' + getProperty('AAR_GBAITIAO_VERSION') + '@aar',
