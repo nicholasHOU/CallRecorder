@@ -268,7 +268,6 @@ ext.deps = [
         GMaterialOrder       : rootProject.ext.proDeps ? project(':GMaterialOrder') : 'com.gome.ecmall:materialorder:' + getProperty('AAR_GMATERIAL_ORDER_VERSION') + '@aar',
         GX5Lib               : false ? project(':GX5Lib') : 'com.gome.mcp:gx5:' + getProperty('AAR_GX5_VERSION') + '@aar',
         GProductDetail       : rootProject.ext.proDeps ? project(':GProductDetail') : 'com.gome.ecmall:product:' + getProperty('AAR_GPRODUCT_VERSION') + '@aar',
-        GTQDetail            : rootProject.ext.proDeps ? project(':GTQDetail') : 'com.gome.ecmall:tqdetail:' + getProperty('AAR_GTQ_DETAIL_VERSION') + '@aar',
         GZxingScan           : rootProject.ext.proDeps ? project(':GZxingScan') : 'com.gome.ecmall:gzxing:' + getProperty('AAR_GZING_VERSION') + '@aar',
         GQrScan              : rootProject.ext.proDeps ? project(':GQrScan') : 'com.gome.ecmall:qrscan:' + getProperty('AAR_QR_SCAN_VERSION') + '@aar',
         GGomeCurrency        : rootProject.ext.proDeps ? project(':GGomeCurrency') : 'com.gome.ecmall:ggomecurrency:' + getProperty('AAR_GGOMECURRENCY_VERSION') + '@aar',
@@ -329,12 +328,12 @@ ext.deps = [
         Gsuperplayerkit      : rootProject.ext.proDeps ? project(':Gsuperplayerkit') : 'com.gome.ecmall:shortvideo:' + getProperty('AAR_SHORT_VIDEO_BUS_VERSION') + '@aar',
 
         //im plugins
-        IMPluginCommon        : rootProject.ext.proDeps ? project(":im-plugin-common") : 'com.gome.ecmall.implugin:common:' + getProperty('AAR_IM_PLUGIN_COMMON_VERSION') + '@aar',
-        IMPluginMap           : rootProject.ext.proDeps ? project(":im-plugin-map") : 'com.gome.ecmall.implugin:map:' + getProperty('AAR_IM_PLUGIN_MAP_VERSION') + '@aar',
-        IMPluginQr            : rootProject.ext.proDeps ? project(":im-plugin-qr") : 'com.gome.ecmall.implugin:qr:' + getProperty('AAR_IM_PLUGIN_QR_VERSION') + '@aar',
-        IMPluginRedenvelope   : rootProject.ext.proDeps ? project(":im-plugin-redenvelope") : 'com.gome.ecmall.implugin:redenvelope:' + getProperty('AAR_IM_PLUGIN_RED_ENVELOPE_VERSION') + '@aar',
-        IMPluginVoicetotext   : rootProject.ext.proDeps ? project(':im-plugin-voicetotext') : 'com.gome.ecmall.implugin:voicetotext:' + getProperty('AAR_IM_PLUGIN_VOICE_TO_TEXT_VERSION') + '@aar',
-        IMPluginVideoChat     : rootProject.ext.proDeps ? project(':im-plugin-videochat') : 'com.gome.ecmall.implugin:videochat:' + getProperty('AAR_IM_PLUGIN_VIDEO_CHAT_VERSION') + '@aar',
+        IMPluginCommon        : false ? project(":im-plugin-common") : 'com.gome.ecmall.implugin:common:' + getProperty('AAR_IM_PLUGIN_COMMON_VERSION') + '@aar',
+        IMPluginMap           : false ? project(":im-plugin-map") : 'com.gome.ecmall.implugin:map:' + getProperty('AAR_IM_PLUGIN_MAP_VERSION') + '@aar',
+        IMPluginQr            : false ? project(":im-plugin-qr") : 'com.gome.ecmall.implugin:qr:' + getProperty('AAR_IM_PLUGIN_QR_VERSION') + '@aar',
+        IMPluginRedenvelope   : false ? project(":im-plugin-redenvelope") : 'com.gome.ecmall.implugin:redenvelope:' + getProperty('AAR_IM_PLUGIN_RED_ENVELOPE_VERSION') + '@aar',
+        IMPluginVoicetotext   : false ? project(':im-plugin-voicetotext') : 'com.gome.ecmall.implugin:voicetotext:' + getProperty('AAR_IM_PLUGIN_VOICE_TO_TEXT_VERSION') + '@aar',
+        IMPluginVideoChat     : false ? project(':im-plugin-videochat') : 'com.gome.ecmall.implugin:videochat:' + getProperty('AAR_IM_PLUGIN_VIDEO_CHAT_VERSION') + '@aar',
 
 
 ]
