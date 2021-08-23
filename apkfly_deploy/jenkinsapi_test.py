@@ -49,3 +49,10 @@ if __name__ == '__main__':
 
 # 可以通过 crul 直接build，每个用户Token不一样
 # curl -X POST 'http://qiudongchao:ba1812a1861e5d33d48a602ceb4693aa@10.115.3.136:8080/jenkins/job/GomeStaff-master/build'
+
+# 获取useCrumb
+# curl -H "Host: 10.115.3.136:8080"
+# -H "Accept: */*"
+# -H "User-Agent: python-requests/2.26.0"
+# -H "Authorization: Basic cWl1ZG9uZ2NoYW86aHl4ZjE5ODg="
+# --compressed "http://10.115.3.136:8080/jenkins/crumbIssuer/api/python"
