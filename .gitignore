@@ -17,6 +17,8 @@
 /A*
 /G*
 /M*
+/S*
+/IM*
 /buildsrc
 
 /apkfly_deploy/*.pyc
@@ -30,5 +32,3 @@
 /gradlew.bat
 
 settings.gradle
-
-/IM

@@ -18,6 +18,7 @@
     <project groups="private" url="git@code.gome.inc:mobile-android-common/GPermission.git"/>
     <project groups="private" url="git@code.gome.inc:mobile-android-common/GWatchImage.git"/>
     <project groups="private" url="git@code.gome.inc:mobile-android-business/MImageEditor.git"/>
+    <project groups="private" branch="master" url="git@code.gome.inc:mobile-android-business/SSelectPhoto.git"/>
     <project groups="private" url="git@code.gome.inc:mobile-android-business/GEmbedAnalysis.git"/>
     <project groups="private" url="git@code.gome.inc:mobile-android-repo/Glivenesslib.git"/>
     <project groups="private" branch="master" url="git@code.gome.inc:mobile-android-business/GTabLayout.git"/>
@@ -29,6 +30,8 @@
     <project groups="private" url="git@code.gome.inc:mobile-android-common/GPushXiaoMi.git"/>
     <project groups="private" url="git@code.gome.inc:mobile-android-common/GPushOppo.git"/>
     <project groups="private" url="git@code.gome.inc:mobile-android-common/GPushViVo.git"/>
+    <project groups="private" url="git@code.gome.inc:mobile-android-mcp/GBase.git"/>
+    <project groups="private" url="git@code.gome.inc:mobile-android-mcp/GUtils.git"/>
 
     <project groups="private" branch="master" url="git@code.gome.inc:mobile-android-mcp/GShare.git"/>
     <project groups="private" branch="master" url="git@code.gome.inc:mobile-android-business/GShareBus.git"/>
@@ -41,20 +44,20 @@
     <project groups="private" url="git@code.gome.inc:mobile-android-repo/GWeexUpdate.git"/>
     <project groups="private" url="git@code.gome.inc:mobile-android-repo/GWeexLib.git"/>
 
+    <project groups="private" url="git@code.gome.inc:mobile-android-common/GSmartRefreshLayout.git"/>
+    <project groups="private" branch="master" url="git@code.gome.inc:mobile-android-mcp/IMPlugins.git"/>
+
     <!--G工程-->
     <!--GFrame-->
     <project groups="frame" path="GFrameHttp" url="git@code.gome.inc:mobile-android-common/GFrame-http.git"/>
-<!--    <project groups="frame" path="GFrameUtils" url="git@code.gome.inc:mobile-android-common/GFrame-utils.git"/>-->
     <project groups="frame" path="GFrameImage" url="git@code.gome.inc:mobile-android-common/GFrame-image.git"/>
     <project groups="frame" path="GFrame" url="git@code.gome.inc:mobile-android-common/GFrame-common.git"/>
     <!--GCore-->
-    <project url="git@code.gome.inc:mobile-android-common/GSmartRefreshLayout.git"/>
     <project url="git@code.gome.inc:mobile-android-business/GWidget.git"/>
     <project url="git@code.gome.inc:mobile-android-mcp/GDXRisk.git"/>
     <project groups="core" path="GCoreLogin" url="git@code.gome.inc:mobile-android-common/GCore-login.git"/>
     <project groups="core" path="GCore"  url="git@code.gome.inc:mobile-android-common/GCore-common.git"/>
 
-    <project branch="master" url="git@code.gome.inc:mobile-android-business/SSelectPhoto.git"/>
     <project url="git@code.gome.inc:mobile-android-business/GLogin.git"/>
     <project url="git@code.gome.inc:mobile-android-business/GLoginBusiness.git"/>
     <project url="git@code.gome.inc:mobile-android-business/GPullrefresh.git"/>
@@ -74,17 +77,18 @@
     <project url="git@code.gome.inc:mobile-android-business/GDao.git"/>
     <project url="git@code.gome.inc:mobile-android-business/GBSearch.git"/>
     <project url="git@code.gome.inc:mobile-android-business/GBShop.git"/>
+    <project url="git@code.gome.inc:mobile-android-business/GMallService.git"/>
     <project url="git@code.gome.inc:mobile-android-business/GBProduct.git"/>
     <project url="git@code.gome.inc:mobile-android-business/GBCms.git"/>
     <project url="git@code.gome.inc:mobile-android-business/GShopCarBus.git"/>
     <project groups="share" url="git@code.gome.inc:mobile-android-business/GGomeShareBus.git"/>
+    <project branch="master" url="git@code.gome.inc:mobile-android-business/GSocialService.git"/>
+    <project url="git@code.gome.inc:mobile-android-common/GHybrid.git" groups="wap"/>
     <project url="git@code.gome.inc:mobile-android-business/GCashierdesk.git"/>
     <project url="git@code.gome.inc:mobile-android-common/GShelvesWidget.git"/>
-    <project branch="master" url="git@code.gome.inc:mobile-android-business/GSocialService.git"/>
     <project url="git@code.gome.inc:mobile-android-business/GBusiness.git"/>
 
     <project groups="im" url="git@code.gome.inc:mobile-android-business/MImlibrary.git"/>
-    <project url="git@code.gome.inc:mobile-android-common/GHybrid.git" groups="wap"/>
     <project url="git@code.gome.inc:mobile-android-business/GFinanceCommon.git"/>
     <!-- 业务模块 -->
     <project artifactId="finance" bundleOpen="false" url="git@code.gome.inc:mobile-android-business/GFinance.git"/>
@@ -99,25 +103,27 @@
     <project url="git@code.gome.inc:mobile-android-business/GGroupBuy.git"/>
     <project url="git@code.gome.inc:mobile-android-business/GAppraise.git"/>
 
+    <project branch="master" url="git@code.gome.inc:mobile-android-mcp/GQrScan.git"/>
     <project artifactId="productsearch" bundleOpen="false" url="git@code.gome.inc:mobile-android-business/GProductSearch.git"/>
     <project branch="masterJni" url="git@code.gome.inc:mobile-android-business/GZxingScan.git"/>
-<!--    <project url="git@code.gome.inc:mobile-android-business/GZxingScan.git"/>-->
     <project groups="im" url="git@code.gome.inc:mobile-android-business/GIMRedEnvelope.git"/>
     <project groups="im" url="git@code.gome.inc:mobile-android-business/MCommon.git"/>
 
     <project url="git@code.gome.inc:mobile-android-business/GOnlinememberCard.git"/>
+
     <project groups="im" url="git@code.gome.inc:mobile-android-business/MFriendCircle.git"/>
     <project groups="im" url="git@code.gome.inc:mobile-android-business/MSocial.git"/>
     <project artifactId="videoguide" bundleOpen="false" url="git@code.gome.inc:mobile-android-business/GProductVideoGuide.git"/>
     <project groups="im" branch="master" url="git@code.gome.inc:mobile-android-business/SIm.git"/>
     <project groups="im" url="git@code.gome.inc:mobile-android-business/MIm.git"/>
     <project groups="im" url="git@code.gome.inc:mobile-android-business/MFriends.git"/>
+    <project branch="master" url="git@code.gome.inc:mobile-android-mcp/IMKit.git"/>
     <project url="git@code.gome.inc:mobile-android-business/GMoreService.git"/>
     <project url="git@code.gome.inc:mobile-android-business/GMallPage.git"/>
 
     <project url="git@code.gome.inc:mobile-android-business/GCollection.git"/>
 
-     <project artifactId="product" bundleOpen="false" url="git@code.gome.inc:mobile-android-business/GProductDetail.git"/>
+    <project artifactId="product" bundleOpen="false" url="git@code.gome.inc:mobile-android-business/GProductDetail.git"/>
     <project url="git@code.gome.inc:mobile-android-business/GShoppingCart.git"/>
     <project url="git@code.gome.inc:mobile-android-business/GShopCart.git"/>
     <project url="git@code.gome.inc:mobile-android-business/GSetting.git"/>

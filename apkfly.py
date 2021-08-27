@@ -10,7 +10,6 @@ import time
 import xml
 from collections import Counter
 from xml.dom import minidom
-import platform
 sys.path.append(r'apkfly_deploy')
 import deploy
 import tempfile
@@ -953,6 +952,7 @@ def check_modules(target_modules, deps_modules):
 def cmd_compile_aar(args):
     modules_aar = args.modules
     version_index = args.version_index
+    not_check = args.not_check
 
     if modules_aar:
         print u'开始打包aar'
@@ -973,17 +973,19 @@ def cmd_compile_aar(args):
 
         # 2、根据projects.xml对modules打包排序
         modules_aar_new = []
-        projects = XmlProject.parser_manifest("projects.xml", allow_private=True)
-        for project in projects:
-            for m in modules_aar:
-                if m == project.path:
-                    modules_aar_new.append(m)
-
-        print u'2、根据projects.xml对modules打包排序完成: '
-        print modules_aar_new
-        if len(modules_aar) != len(modules_aar_new):
-            print u'请检查输入的moduleNames与projects.xml中的path是否相同'
-            return
+        if not_check: # 不检查，不排序，直接安装输入的顺序打包
+            modules_aar_new = modules_aar
+        else:
+            projects = XmlProject.parser_manifest("projects.xml", allow_private=True)
+            for project in projects:
+                for m in modules_aar:
+                    if m == project.path:
+                        modules_aar_new.append(m)
+            print u'2、根据projects.xml对modules打包排序完成: '
+            print modules_aar_new
+            if len(modules_aar) != len(modules_aar_new):
+                print u'请检查输入的moduleNames与projects.xml中的path是否相同'
+                return
 
         # 轮询批量aar
         exec_compile_aar(modules_aar_new, version_index)
@@ -1028,6 +1030,39 @@ def get_module_version_tag(moduleName):
                         versionTag = versionTags[0]
                     break
     return versionTag
+
+def cmd_compile_merge(args):
+    branch = args.branch
+
+    cmd = "cd %s && git merge %s"
+
+    if branch:
+        with open(os.path.join('.idea', 'caches', 'merge-result.log'), "w") as mergeReustLog: # 合并详细结果，缓存文件
+            # settings.gradle 中的module配置
+            includeModules = deploy.getIncludeModule()
+            for m in includeModules:
+                if os.path.exists(os.path.join(dir_current, m)) and os.path.isdir(os.path.join(dir_current, m)):
+
+                    mergeReustLog.write(u'开始合并%s\n' % m)
+                    # 执行合并命令
+                    merge_result = os.popen(cmd % (m, branch)).read()
+                    mergeReustLog.write(u'merge_result:\n')
+                    mergeReustLog.write(merge_result)
+
+                    if 'Already up to date' in merge_result:
+                        print u'%s分支没有任何修改' % branch
+                    elif 'CONFLICT' in merge_result:
+                        sloge(u'我屮艸芔茻，有冲突，记得去解决 >>>err')
+                    else:
+                        print u'记得去push'
+
+                    log = u"%s，合并完成\n==================================================================\n\n" % m
+                    print log
+                    mergeReustLog.write(log)
+                else:
+                    log = u'%s项目不存在\n================================================================== >>>err\n\n' % m
+                    print log
+                    mergeReustLog.write(log)
 
 def cmd_remote(args):
     set = args.set
@@ -1192,7 +1227,12 @@ if __name__ == '__main__':
     parser_aar.set_defaults(func=cmd_compile_aar)
     parser_aar.add_argument("-m", "--modules", help=u'多个module打包aar', nargs='+')
     parser_aar.add_argument('-v', "--version_index", type=int, default=3, choices=[1, 2, 3], help=u'自增版本索引【1大版本，2中间版本，3小版本】')
+    parser_aar.add_argument('-nc', "--not_check", help=u'不检查，不排序，直接安装输入的顺序打包', action='store_true', default=False)
     #parser_aar.add_argument("-s", "--start_projects_xml", type=str, default='GFrameHttp', help=u'从某个module开始打包（根据projects.xml中的顺序）')
+
+    parser_merge = subparsers.add_parser("merge", help=u"合并")
+    parser_merge.set_defaults(func=cmd_compile_merge)
+    parser_merge.add_argument('-b', "--branch", type=str, help=u'分支名')
 
     # 切换远程地址
     parser_remote = subparsers.add_parser("remote", help=u"远程地址")
