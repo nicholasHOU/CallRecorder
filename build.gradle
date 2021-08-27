@@ -16,7 +16,7 @@ buildscript {
     dependencies {
 
         classpath 'com.android.tools.build:gradle:3.2.1'
-        classpath 'com.gutils:apker:0.0.22-3.2.1'
+        classpath 'com.gutils:apker:0.0.27-3.2.1'
 
         //classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.5"
 
@@ -131,12 +131,13 @@ ext.deps = [
 
         GRetrofit            : 'com.gome.mobile:retrofit:2.1.0-g7',
         GChannel             : 'com.gome.ecmall:channel:0.0.1',
-        GPassguard           : 'com.gome.ecmall.third:passguard:0.0.2@aar',
-        GMeifubao            : 'com.gome.ecmall.third:meifubao:2.1.9@aar',
+        GPassguard           : 'com.gome.ecmall.third:passguard:0.0.4@aar',
+        GMeifubao            : 'com.gome.ecmall.third:meifubao:2.2.0@aar',
         GZxing               : 'com.google.zxing:core:3.3.0',
-        GMsc                 : 'com.gome.ecmall:msc:1.0.2@aar',
+        GPlayer              : 'cn.com.gomeplus.player:gomeplus-player:1.0.32',
+        GMsc                 : 'com.gome.ecmall:msc:1.0.4@aar',
         GMscStaff            : 'com.gome.staff:msc:21.7.16@aar',
-        GAVSdk               : 'com.gome.third:sessionsdk:21.7.22',
+        GAVSdk               : 'com.gome:avsdk:1.1.022',
         SLiteAVSDK           : 'com.tencent.liteav:LiteAVSDK_Professional:8.2.9809', //专业版
         //SLiteAVSDK        : 'com.tencent.liteavsdk:LiteAVSDK_Smart:latest.release', //普通版
         //SLiteAVSDK        : 'com.gome.zhibo:LiteAVSDK_Enterprise:7.5.9318', //企业版
@@ -176,17 +177,17 @@ ext.deps = [
         GomeWebpsupport      : 'com.gome.fresco:webpsupport:1.10.0@aar',
         GRouter              : 'com.gutils.router:router:' + getProperty('LIB_ROUTER_VERSION') + '@aar',
 
-        GSafekeyboard        : 'com.gome.mcp:safeKeyboard:2.8.8-v7a',
+        GSafekeyboard        : 'com.gome.mcp:safeKeyboard:' +  getProperty('AAR_GSAFEKEYBOARD_VERSION') ,
         GUpdate              : 'com.gome.mcp:update:2.8.9',
         GYunNengTimeWidget   : 'com.gome.ecmall:yunnengtimewidget:3.1.0@aar',
         GWap                 : 'com.gome.mcp:wap:' + getProperty('AAR_MCP_WAP_VERSION') + '@aar',
         STitlebar            : 'cn.gome.staff.ui:titlebar:' + getProperty('AAR_STITLEBAR_VERSION') + '@aar',
         GCrash               : 'com.gome.mcp:crash:' + getProperty('AAR_MCP_VERSION') + '@aar',
-        GSecret              : 'com.gome.mcp:sec-gome:2.8.8-v15:gomeRelease@aar',
+        GSecret              : 'com.gome.mcp:sec-gome:2.8.8-v22:gomeRelease@aar',
         BSecret              : 'com.gome.mcp:sec-bangbang:2.8.8-v21:bangbangRelease@aar',
         GBuildConfig         : 'com.gome.mcp:buildconfig:2.8.8.5',
         GPlugin              : 'com.gome.ecmall.core:plugin:1.0.39@aar',
-        ABTest               : 'com.gome.mcp:abtestlib:1.0.8',
+        ABTest               : 'com.gome.mcp:abtestlib:' + getProperty('AAR_GABTEST_VERSION'),
         DXCaptcha            : 'com.gome.third:dx-captcha:1.5.4@aar',
         AMapLocation         : 'com.gome.ecmall.third:amap-location:4.4.0_20181122',
         AMap2DMap            : 'com.gome.ecmall.third:amap-2dmap:5.2.0_20170627',
@@ -214,7 +215,6 @@ ext.deps = [
         GTabLayout           : 'com.gome.ecmall:tablayout:' + getProperty('AAR_GTABLAYOUT_VERSION') + '@aar',
         GHtmlSpanner         : 'com.gome.ecmall:htmlspanner:' + getProperty('AAR_HTMLSPANNER_VERSION') + '@aar',
 
-        GWeexLib             : false ? project(':GWeexLib') : 'com.gome.mobile.weex:components:' + getProperty('AAR_GWEEXLIB_VERSION') + '@aar',
         GFaceLive            : false ? project(':GFaceLive') : 'com.gome.mobile.common:facelive:' + getProperty('AAR_GFACELIVE_VERSION') + '@aar',
         GShare               : false ? project(':GShare') : 'com.gome.mcp:share:' + getProperty('AAR_MCP_GSHARE_VERSION') + '@aar',
         GShareBus            : false ? project(':GShareBus') : 'com.gome.ecmall:sharebus:' + getProperty('AAR_GSHARE_BUS_VERSION') + '@aar',
@@ -229,8 +229,12 @@ ext.deps = [
         GPushViVo            : false ? project(':GPushViVo') : 'com.gome.ecmall:pushvivo:' + getProperty('AAR_GPUSH_VIVO_VERSION') + '@aar',
 
         GLogStatistics       : false ? project(':GLogStatistics') : 'com.gome.ecmall:logstats:' + getProperty('AAR_GLOGSTATS_VERSION') + '@aar',
+
+        // Weex
+        GWeexSDK             : false ? project(':GWeexSDK') : 'com.gome.mcp:weex-sdk:' + getProperty('AAR_GWEEXSDK_VERSION') + '@aar',
         GWeexCore            : false ? project(':GWeexCore') : 'com.gome.mcp:weex-core:' + getProperty('AAR_GWEEXCORE_VERSION') + '@aar',
-        GWeexUpdate          : false ? project(':GWeexUpdate') : 'com.gome.mcp:weex-update:' + getProperty('AAR_GWEEXUPDATE_VERSION') + '-gome@aar',
+        GWeexLib             : false ? project(':GWeexLib') : 'com.gome.mcp:weex-components:' + getProperty('AAR_GWEEXLIB_VERSION') + '@aar',
+        GWeexUpdate          : false ? project(':GWeexUpdate') : 'com.gome.mcp:weex-update:' + getProperty('AAR_GWEEXUPDATE_VERSION') + '@aar',
 
         // Flutter模块
         GFlutterPluginSdk    : false ? project(":GFlutterPluginSDK") : 'com.gome.mcp:flutter-plugin-sdk:' + getProperty('AAR_FLUTTER_PLUGIN_SDK_VERSION') + '@aar',
