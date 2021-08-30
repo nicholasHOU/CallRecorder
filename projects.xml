@@ -135,6 +135,11 @@
     <project branch="master" url="git@code.gome.inc:mobile-android-business/GZhiboBus.git"/>
     <project branch="master" url="git@code.gome.inc:mobile-android-business/Gsuperplayerkit.git"/>
 
+    <project groups="video" branch="liveSDk0930" url="git@code.gome.inc:mobile-android-video/VideoInterface.git"/>
+    <project groups="video" branch="liveSDk0930" url="git@code.gome.inc:mobile-android-video/GVideoRecordingUgcKit.git"/>
+    <project groups="video" branch="liveSDk0930" url="git@code.gome.inc:mobile-android-video/GVideoRecording.git"/>
+    <project groups="video" branch="liveSDk0930" url="git@code.gome.inc:mobile-android-video/VideoEdit.git"/>
+
     <!--主工程-->
-    <project app="true" groups="app" path="GomeApp" url="git@code.gome.inc:mobile-android/GomePlus.git"/>
+    <project app="true" groups="video" branch="liveSDk0930"  path="GomeApp" url="git@code.gome.inc:mobile-android/GomePlus.git"/>
 </manifest>
