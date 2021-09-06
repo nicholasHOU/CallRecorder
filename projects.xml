@@ -103,9 +103,9 @@
     <project url="git@code.gome.inc:mobile-android-business/GGroupBuy.git"/>
     <project url="git@code.gome.inc:mobile-android-business/GAppraise.git"/>
 
-    <project branch="master" url="git@code.gome.inc:mobile-android-mcp/GQrScan.git"/>
+    <project url="git@code.gome.inc:mobile-android-mcp/GPhotoScan.git"/>
     <project artifactId="productsearch" bundleOpen="false" url="git@code.gome.inc:mobile-android-business/GProductSearch.git"/>
-    <project branch="masterJni" url="git@code.gome.inc:mobile-android-business/GZxingScan.git"/>
+
     <project groups="im" url="git@code.gome.inc:mobile-android-business/GIMRedEnvelope.git"/>
     <project groups="im" url="git@code.gome.inc:mobile-android-business/MCommon.git"/>
 
