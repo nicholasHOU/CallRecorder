@@ -140,7 +140,7 @@ ext.deps = [
         GAVSdk               : 'com.gome.third:sessionsdk:21.7.22',
 //        SLiteAVSDK           : 'com.tencent.liteav:LiteAVSDK_Professional:8.2.9809', //专业版
         //SLiteAVSDK        : 'com.tencent.liteavsdk:LiteAVSDK_Smart:latest.release', //普通版
-        SLiteAVSDK        : 'com.gome.zhibo:LiteAVSDK_Enterprise:7.5.9318', //企业版
+        SLiteAVSDK        : 'com.gome.zhibo:LiteAVSDK_Enterprise:9.1.10566', //企业版
         GSuperplayerSDK      : 'com.gome.ecmall:superplayer:1.0.7',//播放器
         GImage               : 'com.gome.mcp:image:2.8.8',
         GCACHE               : 'com.gome.mcp:cache:' + getProperty('AAR_MCP_VERSION') + '@aar',
@@ -341,7 +341,7 @@ ext.deps = [
 
 
         GLog              : 'com.gome.mcp:log:2.9.3@aar',
-        GVideoLiteAVSDK   : 'com.gome.zhibo:LiteAVSDK_Enterprise:8.2.9809', //企业版
+        GVideoLiteAVSDK   : 'com.gome.zhibo:LiteAVSDK_Enterprise:9.1.10566', //企业版
         GStatusView       : rootProject.ext.proDeps ? project(':GStatusView') : 'cn.gome.staff.ui:statusview:' + getProperty('AAR_UI_STATUSVIEW_VERSION') + '@aar',
         VideoInterface    : rootProject.ext.proDeps ? project(':GStatusView') : 'cn.gome.video:vinterface:0.0.1',
 //        VideoEdit :        project(':VideoEdit'),
