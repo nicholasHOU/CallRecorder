@@ -138,9 +138,9 @@ ext.deps = [
         GMsc                 : 'com.gome.ecmall:msc:1.0.4@aar',
         GMscStaff            : 'com.gome.staff:msc:21.7.16@aar',
         GAVSdk               : 'com.gome.third:sessionsdk:21.7.22',
-        SLiteAVSDK           : 'com.tencent.liteav:LiteAVSDK_Professional:8.2.9809', //专业版
+//        SLiteAVSDK           : 'com.tencent.liteav:LiteAVSDK_Professional:8.2.9809', //专业版
         //SLiteAVSDK        : 'com.tencent.liteavsdk:LiteAVSDK_Smart:latest.release', //普通版
-        //SLiteAVSDK        : 'com.gome.zhibo:LiteAVSDK_Enterprise:7.5.9318', //企业版
+        SLiteAVSDK        : 'com.gome.zhibo:LiteAVSDK_Enterprise:9.1.10566', //企业版
         GSuperplayerSDK      : 'com.gome.ecmall:superplayer:1.0.7',//播放器
         GImage               : 'com.gome.mcp:image:2.8.8',
         GCACHE               : 'com.gome.mcp:cache:' + getProperty('AAR_MCP_VERSION') + '@aar',
@@ -302,7 +302,7 @@ ext.deps = [
         GAddress             : rootProject.ext.proDeps ? project(':GAddress') : 'com.gome.ecmall.business:address:' + getProperty('AAR_GBUSINESS_ADRESS_VERSION') + '@aar',
         GBigPhoto            : rootProject.ext.proDeps ? project(':GBigPhoto') : 'com.gome.ecmall.business:bigphoto:' + getProperty('AAR_GBUSINESS_BIGPHOTO_VERSION') + '@aar',
         GAlbum               : rootProject.ext.proDeps ? project(':GAlbum') : 'com.gome.ecmall.business:album:' + getProperty('AAR_GBUSINESS_ALBUM_VERSION') + '@aar',
-        GRouterInterface     : true ? project(':GRouterInterface') : 'com.gome.ecmall.business:router:' + getProperty('AAR_GINTERFACE_VERSION') + '@aar',
+        GRouterInterface     : rootProject.ext.proDeps ? project(':GRouterInterface') : 'com.gome.ecmall.business:router:' + getProperty('AAR_GINTERFACE_VERSION') + '@aar',
         GBusinessDeps        : rootProject.ext.proDeps ? project(':GBusinessDeps') : 'com.gome.ecmall.business:deps:' + getProperty('AAR_GBUSINESS_DEPS_VERSION') + '@aar',
         GYYTPassWord         : rootProject.ext.proDeps ? project(':GYYTPassWord') : 'com.gome.ecmall.business:yytpassword:' + getProperty('AAR_GBUSINESS_YYTPASSWORD_VERSION') + '@aar',
         GCashierdesk         : rootProject.ext.proDeps ? project(':GCashierdesk') : 'com.gome.ecmall.business:cashierdesk:' + getProperty('AAR_GBUSINESS_CASHIERDESK_VERSION') + '@aar',
@@ -329,7 +329,7 @@ ext.deps = [
         GStoreChannel        : rootProject.ext.proDeps ? project(':GStoreChannel') : 'com.gome.ecmall.business:storechannel:' + getProperty('AAR_GBUSINESS_GSTORECHANNEL_VERSION') + '@aar',
 
         GZhiboBus            : rootProject.ext.proDeps ? project(':GZhiboBus') : 'com.gome.ecmall:zhibobus:' + getProperty('AAR_GZHIBO_BUS_VERSION') + '@aar',
-        Gsuperplayerkit      : true ? project(':Gsuperplayerkit') : 'com.gome.ecmall:shortvideo:' + getProperty('AAR_SHORT_VIDEO_BUS_VERSION') + '@aar',
+        Gsuperplayerkit      : rootProject.ext.proDeps ? project(':Gsuperplayerkit') : 'com.gome.ecmall:shortvideo:' + getProperty('AAR_SHORT_VIDEO_BUS_VERSION') + '@aar',
 
         //im plugins
         IMPluginCommon        : false ? project(":im-plugin-common") : 'com.gome.ecmall.implugin:common:' + getProperty('AAR_IM_PLUGIN_COMMON_VERSION') + '@aar',
@@ -341,11 +341,11 @@ ext.deps = [
 
 
         GLog              : 'com.gome.mcp:log:2.9.3@aar',
-        GVideoLiteAVSDK        : 'com.gome.zhibo:LiteAVSDK_Enterprise:8.2.9809', //企业版
-        GStatusView          : rootProject.ext.proDeps ? project(':GStatusView') : 'cn.gome.staff.ui:statusview:' + getProperty('AAR_UI_STATUSVIEW_VERSION') + '@aar',
-
-        GBusinessView :project(':GBusinessView')
-
+        GVideoLiteAVSDK   : 'com.gome.zhibo:LiteAVSDK_Enterprise:9.1.10566', //企业版
+        GStatusView       : rootProject.ext.proDeps ? project(':GStatusView') : 'cn.gome.staff.ui:statusview:' + getProperty('AAR_UI_STATUSVIEW_VERSION') + '@aar',
+        VideoInterface    : rootProject.ext.proDeps ? project(':GStatusView') : 'cn.gome.video:vinterface:0.0.1',
+//        VideoEdit :        project(':VideoEdit'),
+//        GHomeAdd :         project(':GHomeAdd')
 ]
 /**
  * depMcp dep aar, default exclude transitive dependencies
