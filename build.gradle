@@ -345,8 +345,9 @@ ext.deps = [
         GStatusView       : rootProject.ext.proDeps ? project(':GStatusView') : 'cn.gome.staff.ui:statusview:' + getProperty('AAR_UI_STATUSVIEW_VERSION') + '@aar',
         VideoInterface    : rootProject.ext.proDeps ? project(':VideoInterface') : 'cn.gome.video:vinterface:0.0.5',
         GHomeAddInterface : rootProject.ext.proDeps ? project(':GHomeAddInterface') : 'com.gome.ecmall:homeaddinter:0.0.2',
+        GEntMediaPicker :  rootProject.ext.proDeps ? project(':GEntMediaPicker') : 'com.gome.mcp:ent-mediapicker:0.0.1',
 //        VideoEdit :        project(':VideoEdit'),
-//        GHomeAdd         : rootProject.ext.proDeps ? project(':GHomeAdd') : 'com.gome.ecmall:homeadd:0.0.1',
+//        GHomeAdd         : true ? project(':GHomeAdd') : 'com.gome.ecmall:homeadd:0.0.1',
 ]
 /**
  * depMcp dep aar, default exclude transitive dependencies
