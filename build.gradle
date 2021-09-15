@@ -29,6 +29,12 @@ buildscript {
          * 处理多渠道
          */
         classpath 'com.android.gome.cary:plugin:0.0.5'
+        /**
+         * TODO
+         * add by yangbo
+         * 删除冗余资源
+         */
+        classpath 'com.gome.utils:apkscan:1.0.2'
         classpath 'com.huawei.agconnect:agcp:1.4.1.300'
 
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
@@ -343,9 +349,9 @@ ext.deps = [
         GLog              : 'com.gome.mcp:log:2.9.3@aar',
         GVideoLiteAVSDK   : 'com.gome.zhibo:LiteAVSDK_Enterprise:9.1.10566', //企业版
         GStatusView       : rootProject.ext.proDeps ? project(':GStatusView') : 'cn.gome.staff.ui:statusview:' + getProperty('AAR_UI_STATUSVIEW_VERSION') + '@aar',
-        VideoInterface    : rootProject.ext.proDeps ? project(':VideoInterface') : 'cn.gome.video:vinterface:0.0.5',
+        VideoInterface    : rootProject.ext.proDeps ? project(':VideoInterface') : 'cn.gome.video:vinterface:0.0.8',
         GHomeAddInterface : rootProject.ext.proDeps ? project(':GHomeAddInterface') : 'com.gome.ecmall:homeaddinter:0.0.2',
-        GEntMediaPicker :  rootProject.ext.proDeps ? project(':GEntMediaPicker') : 'com.gome.mcp:ent-mediapicker:0.0.1',
+        GEntMediaPicker :  rootProject.ext.proDeps ? project(':GEntMediaPicker') : 'com.gome.mcp:ent-mediapicker:0.0.2',
 //        VideoEdit :        project(':VideoEdit'),
 //        GHomeAdd         : true ? project(':GHomeAdd') : 'com.gome.ecmall:homeadd:0.0.1',
 ]
