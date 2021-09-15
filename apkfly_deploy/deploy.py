@@ -75,25 +75,24 @@ def deployMainAppDeps():
         print u'出错警告： setting.gradle 配置超过2个module再来哦'
         return
 
-    # 2、module的maven信息，并include的module在ext.deps[ ]中打开依赖
+    # 2、从build.gradle读取module的maven信息，并include的module在ext.deps[ ]中打开依赖
     moduleInfos = getModuleMavenInfo(includeModules)
     print u"2、includeModule的maven信息读取完毕，并在ext.deps[ ]中打开依赖"
 
     # 3、主工程build.gradle加入部署依赖
-    mainModuleName = getMainModule(includeModules, moduleInfos)
+    mainModuleName = getMainModule(includeModules)
     print u"3、开始为主工程 %s build.gradle加入部署依赖" % mainModuleName
     writeConfigurationsExcludesAndCompileToBuildGradle(ModuleInfo(mainModuleName, '', ''), moduleInfos)
 
     print u"部署完毕"
 
-def getMainModule(includeModules, moduleInfos):
+def getMainModule(includeModules):
     for includeModule in includeModules:
-        has = False
-        for moduleInfo in moduleInfos:
-            if includeModule == moduleInfo.name:
-                has = True
-        if not has:
-            return includeModule
+        with open(os.path.join(dir_current, includeModule, file_build_gradle), "r") as file:
+            for line in file:
+                l = line.replace(' ', '')
+                if l.startswith("applyplugin:'com.android.application'"):
+                    return includeModule
 
 def getIncludeModule():
     """获取include中的所有module
