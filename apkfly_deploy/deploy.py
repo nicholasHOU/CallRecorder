@@ -17,6 +17,7 @@ file_build_gradle = "build.gradle"
 dir_current = os.path.abspath(".")
 file_settings = os.path.join(dir_current, "settings.gradle")
 file_build = os.path.join(dir_current, file_build_gradle)
+path_build_deps = os.path.join('deps', 'coredeps.gradle')
 
 def exclude_aar_dep_source(tModule, dModules):
     print u'开始部署依赖，排除%s中的%s AAR依赖，直接依赖其源码' % (tModule, ",".join(dModules))
@@ -81,7 +82,14 @@ def deployMainAppDeps():
 
     # 3、主工程build.gradle加入部署依赖
     mainModuleName = getMainModule(includeModules)
-    print u"3、开始为主工程 %s build.gradle加入部署依赖" % mainModuleName
+    print u"3、解析到主工程 %s" % mainModuleName
+
+    # 4、把主工程上次部署的（依赖、排除）reset
+    print u"4、把主工程上次部署的（依赖、排除）reset"
+    os.popen("cd %s && git checkout %s" % (mainModuleName, path_build_deps))
+
+    # 5、
+    print u"5、开始为主工程 %s build.gradle加入部署依赖" % mainModuleName
     writeConfigurationsExcludesAndCompileToBuildGradle(ModuleInfo(mainModuleName, '', ''), moduleInfos)
 
     print u"部署完毕"
@@ -230,7 +238,7 @@ class ModuleInfo(object):
     def getBuildFile(self):
         if self.groupId == '':
             # 本modulInfo对象为主工程 - 真快乐、帮帮、极简都依赖了coredeps.gradle
-            return os.path.join(dir_current, self.name, 'deps', 'coredeps.gradle')
+            return os.path.join(dir_current, self.name, path_build_deps)
         else:
             return os.path.join(dir_current, self.name, file_build_gradle)
 
