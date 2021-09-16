@@ -80,7 +80,7 @@
     <project url="git@code.gome.inc:mobile-android-business/GBSearch.git"/>
     <project url="git@code.gome.inc:mobile-android-business/GBShop.git"/>
     <project url="git@code.gome.inc:mobile-android-business/GMallService.git"/>
-    <project url="git@code.gome.inc:mobile-android-business/GBProduct.git"/>
+    <project groups="liveSDk0930" url="git@code.gome.inc:mobile-android-business/GBProduct.git"/>
     <project url="git@code.gome.inc:mobile-android-business/GBCms.git"/>
     <project url="git@code.gome.inc:mobile-android-business/GShopCarBus.git"/>
     <project groups="share" url="git@code.gome.inc:mobile-android-business/GGomeShareBus.git"/>
