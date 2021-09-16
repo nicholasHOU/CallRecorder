@@ -138,7 +138,8 @@
     <project groups="video" branch="liveSDk0930" url="git@code.gome.inc:mobile-android-video/GVideoRecordingUgcKit.git"/>
     <project groups="video" branch="liveSDk0930" url="git@code.gome.inc:mobile-android-video/GVideoRecording.git"/>
     <project groups="video" branch="liveSDk0930" url="git@code.gome.inc:mobile-android-video/VideoEdit.git"/>
-
+    <project  branch="master" url="git@code.gome.inc:mobile-android-video/VideoMine.git"/>
+<!--//git@code.gome.inc:mobile-android-video/VideoMine.git-->
     <!--主工程-->
     <project app="true" groups="video" branch="liveSDk0930"  path="GomeApp" url="git@code.gome.inc:mobile-android/GomePlus.git"/>
 </manifest>

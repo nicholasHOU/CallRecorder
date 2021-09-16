@@ -287,7 +287,7 @@ ext.deps = [
         GOnlinememberCard    : rootProject.ext.proDeps ? project(':GOnlinememberCard') : 'com.gome.ecmall:GOnlinememberCard:' + getProperty('AAR_GONLINEMEMBERCARD_VERSION') + '@aar',
         GShopCart            : rootProject.ext.proDeps ? project(':GShopCart') : 'com.gome.ecmall:shopcar:' + getProperty('AAR_GSHOPCAR_VERSION') + '@aar',
         GSetting             : rootProject.ext.proDeps ? project(':GSetting') : 'com.gome.ecmall:setting:' + getProperty('AAR_GSETTING_VERSION') + '@aar',
-        GMemHome             : rootProject.ext.proDeps ? project(':GMemHome') : 'com.gome.ecmall:memhome:' + getProperty('AAR_GMEM_HOME_VERSION') + '@aar',
+        GMemHome             : true ? project(':GMemHome') : 'com.gome.ecmall:memhome:' + getProperty('AAR_GMEM_HOME_VERSION') + '@aar',
         AMemHome             : rootProject.ext.proDeps ? project(':AMemHome') : 'com.gome.ecmall:amemhome:' + getProperty('AAR_AMEM_HOME_VERSION') + '@aar',
         GMemService          : rootProject.ext.proDeps ? project(':GMemService') : 'com.gome.ecmall:memservice:' + getProperty('AAR_GMEM_SERVICE_VERSION') + '@aar',
         GSimilar             : rootProject.ext.proDeps ? project(':GSimilar') : 'com.gome.ecmall:similar:' + getProperty('AAR_GSIMILAR_VERSION') + '@aar',
@@ -296,13 +296,13 @@ ext.deps = [
         GShopCarBus          : rootProject.ext.proDeps ? project(':GShopCarBus') : 'com.gome.ecmall.business:gshopcartbus:' + getProperty('AAR_GBUSINESS_GSHOPCARTBUS_VERSION') + '@aar',
         GGomeShareBus        : rootProject.ext.proDeps ? project(':GGomeShareBus') : 'com.gome.ecmall:gomesharebus:' + getProperty('AAR_GGOMESHAREBUS_VERSION') + '@aar',
         GBusiness            : rootProject.ext.proDeps ? project(':GBusiness') : 'com.gome.ecmall:business:' + getProperty('AAR_GBUSINESS_VERSION') + '@aar',
-        GScheme              : rootProject.ext.proDeps ? project(':GScheme') : 'com.gome.ecmall:scheme:' + getProperty('AAR_GSCHEME_VERSION') + '@aar',
+        GScheme              : true ? project(':GScheme') : 'com.gome.ecmall:scheme:' + getProperty('AAR_GSCHEME_VERSION') + '@aar',
         GMallService         : rootProject.ext.proDeps ? project(':GMallService') : 'com.gome.ecmall:mallservice:' + getProperty('AAR_GMALL_SERVICE_VERSION') + '@aar',
         GSocialService       : rootProject.ext.proDeps ? project(':GSocialService') : 'com.gome.ecmall:socialservice:' + getProperty('AAR_GSOCIAL_SERVICE_VERSION') + '@aar',
         GAddress             : rootProject.ext.proDeps ? project(':GAddress') : 'com.gome.ecmall.business:address:' + getProperty('AAR_GBUSINESS_ADRESS_VERSION') + '@aar',
         GBigPhoto            : rootProject.ext.proDeps ? project(':GBigPhoto') : 'com.gome.ecmall.business:bigphoto:' + getProperty('AAR_GBUSINESS_BIGPHOTO_VERSION') + '@aar',
         GAlbum               : rootProject.ext.proDeps ? project(':GAlbum') : 'com.gome.ecmall.business:album:' + getProperty('AAR_GBUSINESS_ALBUM_VERSION') + '@aar',
-        GRouterInterface     : rootProject.ext.proDeps ? project(':GRouterInterface') : 'com.gome.ecmall.business:router:' + getProperty('AAR_GINTERFACE_VERSION') + '@aar',
+        GRouterInterface     :true ? project(':GRouterInterface') : 'com.gome.ecmall.business:router:' + getProperty('AAR_GINTERFACE_VERSION') + '@aar',
         GBusinessDeps        : rootProject.ext.proDeps ? project(':GBusinessDeps') : 'com.gome.ecmall.business:deps:' + getProperty('AAR_GBUSINESS_DEPS_VERSION') + '@aar',
         GYYTPassWord         : rootProject.ext.proDeps ? project(':GYYTPassWord') : 'com.gome.ecmall.business:yytpassword:' + getProperty('AAR_GBUSINESS_YYTPASSWORD_VERSION') + '@aar',
         GCashierdesk         : rootProject.ext.proDeps ? project(':GCashierdesk') : 'com.gome.ecmall.business:cashierdesk:' + getProperty('AAR_GBUSINESS_CASHIERDESK_VERSION') + '@aar',
@@ -328,7 +328,7 @@ ext.deps = [
         GPullToRefresh       : 'cn.gome.staff.ui:pulltorefresh:42.48.0@aar',
         GStoreChannel        : rootProject.ext.proDeps ? project(':GStoreChannel') : 'com.gome.ecmall.business:storechannel:' + getProperty('AAR_GBUSINESS_GSTORECHANNEL_VERSION') + '@aar',
 
-        GZhiboBus            : rootProject.ext.proDeps ? project(':GZhiboBus') : 'com.gome.ecmall:zhibobus:' + getProperty('AAR_GZHIBO_BUS_VERSION') + '@aar',
+        GZhiboBus            : true? project(':GZhiboBus') : 'com.gome.ecmall:zhibobus:' + getProperty('AAR_GZHIBO_BUS_VERSION') + '@aar',
         Gsuperplayerkit      : rootProject.ext.proDeps ? project(':Gsuperplayerkit') : 'com.gome.ecmall:shortvideo:' + getProperty('AAR_SHORT_VIDEO_BUS_VERSION') + '@aar',
 
         //im plugins
