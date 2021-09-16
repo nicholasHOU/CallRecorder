@@ -29,6 +29,12 @@ buildscript {
          * 处理多渠道
          */
         classpath 'com.android.gome.cary:plugin:0.0.5'
+        /**
+         * TODO
+         * add by yangbo
+         * 删除冗余资源
+         */
+        classpath 'com.gome.utils:apkscan:1.0.2'
         classpath 'com.huawei.agconnect:agcp:1.4.1.300'
 
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
@@ -218,7 +224,7 @@ ext.deps = [
         GFaceLive            : false ? project(':GFaceLive') : 'com.gome.mobile.common:facelive:' + getProperty('AAR_GFACELIVE_VERSION') + '@aar',
         GShare               : false ? project(':GShare') : 'com.gome.mcp:share:' + getProperty('AAR_MCP_GSHARE_VERSION') + '@aar',
         GShareBus            : false ? project(':GShareBus') : 'com.gome.ecmall:sharebus:' + getProperty('AAR_GSHARE_BUS_VERSION') + '@aar',
-        GView                : false ? project(':GView') : 'cn.gome.staff.ui:view:' + getProperty('AAR_UI_VIEW_VERSION') + '@aar',
+//        GView                : false ? project(':GView') : 'cn.gome.staff.ui:view:' + getProperty('AAR_UI_VIEW_VERSION') + '@aar',
         GPushService         : 'com.gome.ecmall:pushservice:' + getProperty('AAR_GPUSH_SERVICE_VERSION') + '@aar',
         GPushCore            : false ? project(':GPushCore') : 'com.gome.ecmall:pushcore:' + getProperty('AAR_GPUSH_CORE_VERSION') + '@aar',
         GPushGome            : false ? project(':GPushGome') : 'com.gome.ecmall:pushgome:' + getProperty('AAR_GPUSH_GOME_VERSION') + '@aar',
@@ -343,9 +349,11 @@ ext.deps = [
         GLog              : 'com.gome.mcp:log:2.9.3@aar',
         GVideoLiteAVSDK   : 'com.gome.zhibo:LiteAVSDK_Enterprise:9.1.10566', //企业版
         GStatusView       : rootProject.ext.proDeps ? project(':GStatusView') : 'cn.gome.staff.ui:statusview:' + getProperty('AAR_UI_STATUSVIEW_VERSION') + '@aar',
-        VideoInterface    : rootProject.ext.proDeps ? project(':GStatusView') : 'cn.gome.video:vinterface:0.0.1',
+        VideoInterface    : rootProject.ext.proDeps ? project(':VideoInterface') : 'cn.gome.video:vinterface:0.0.8',
+        GHomeAddInterface : rootProject.ext.proDeps ? project(':GHomeAddInterface') : 'com.gome.ecmall:homeaddinter:0.0.3',
+        GEntMediaPicker :  rootProject.ext.proDeps ? project(':GEntMediaPicker') : 'com.gome.mcp:ent-mediapicker:0.0.2',
 //        VideoEdit :        project(':VideoEdit'),
-//        GHomeAdd :         project(':GHomeAdd')
+//        GHomeAdd         : true ? project(':GHomeAdd') : 'com.gome.ecmall:homeadd:0.0.1',
 ]
 /**
  * depMcp dep aar, default exclude transitive dependencies
