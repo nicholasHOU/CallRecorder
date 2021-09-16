@@ -17,6 +17,7 @@ file_build_gradle = "build.gradle"
 dir_current = os.path.abspath(".")
 file_settings = os.path.join(dir_current, "settings.gradle")
 file_build = os.path.join(dir_current, file_build_gradle)
+path_build_deps = os.path.join('deps', 'coredeps.gradle')
 
 def exclude_aar_dep_source(tModule, dModules):
     print u'开始部署依赖，排除%s中的%s AAR依赖，直接依赖其源码' % (tModule, ",".join(dModules))
@@ -68,32 +69,33 @@ def deployMainAppDeps():
     # 添加项目compile依赖
     # 关闭debug下的混淆开关
 
-    # 1、settings.gradle中include的所有module
+    print u"1、读取settings.gradle中include的所有module"
     includeModules = getIncludeModule()
-    print u"1、include的所有module配置读取完毕"
     if len(includeModules) < 2:
         print u'出错警告： setting.gradle 配置超过2个module再来哦'
         return
 
-    # 2、module的maven信息，并include的module在ext.deps[ ]中打开依赖
+    print u"2、从build.gradle读取module的maven信息，并把include的module在其ext.deps[ ]中打开依赖"
     moduleInfos = getModuleMavenInfo(includeModules)
-    print u"2、includeModule的maven信息读取完毕，并在ext.deps[ ]中打开依赖"
 
-    # 3、主工程build.gradle加入部署依赖
-    mainModuleName = getMainModule(includeModules, moduleInfos)
-    print u"3、开始为主工程 %s build.gradle加入部署依赖" % mainModuleName
+    mainModuleName = getMainModule(includeModules)
+    print u"3、解析到主工程 %s" % mainModuleName
+
+    print u"4、把主工程上次部署的（依赖、排除）reset"
+    os.popen("cd %s && git checkout %s" % (mainModuleName, path_build_deps))
+
+    print u"5、开始为主工程 %s build.gradle加入部署依赖" % mainModuleName
     writeConfigurationsExcludesAndCompileToBuildGradle(ModuleInfo(mainModuleName, '', ''), moduleInfos)
 
     print u"部署完毕"
 
-def getMainModule(includeModules, moduleInfos):
+def getMainModule(includeModules):
     for includeModule in includeModules:
-        has = False
-        for moduleInfo in moduleInfos:
-            if includeModule == moduleInfo.name:
-                has = True
-        if not has:
-            return includeModule
+        with open(os.path.join(dir_current, includeModule, file_build_gradle), "r") as file:
+            for line in file:
+                l = line.replace(' ', '')
+                if l.startswith("applyplugin:'com.android.application'"):
+                    return includeModule
 
 def getIncludeModule():
     """获取include中的所有module
@@ -231,7 +233,7 @@ class ModuleInfo(object):
     def getBuildFile(self):
         if self.groupId == '':
             # 本modulInfo对象为主工程 - 真快乐、帮帮、极简都依赖了coredeps.gradle
-            return os.path.join(dir_current, self.name, 'deps', 'coredeps.gradle')
+            return os.path.join(dir_current, self.name, path_build_deps)
         else:
             return os.path.join(dir_current, self.name, file_build_gradle)
 
