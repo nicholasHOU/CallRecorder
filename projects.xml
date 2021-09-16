@@ -115,7 +115,6 @@
 
     <project groups="im" url="git@code.gome.inc:mobile-android-business/MFriendCircle.git"/>
     <project groups="im" url="git@code.gome.inc:mobile-android-business/MSocial.git"/>
-    <project groups="im" branch="master" url="git@code.gome.inc:mobile-android-business/SIm.git"/>
     <project groups="liveSDk0930"  url="git@code.gome.inc:mobile-android-business/MIm.git"/>
     <project groups="im" url="git@code.gome.inc:mobile-android-business/MFriends.git"/>
     <project branch="master" url="git@code.gome.inc:mobile-android-mcp/IMKit.git"/>
