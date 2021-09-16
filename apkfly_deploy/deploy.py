@@ -69,26 +69,21 @@ def deployMainAppDeps():
     # 添加项目compile依赖
     # 关闭debug下的混淆开关
 
-    # 1、settings.gradle中include的所有module
+    print u"1、读取settings.gradle中include的所有module"
     includeModules = getIncludeModule()
-    print u"1、include的所有module配置读取完毕"
     if len(includeModules) < 2:
         print u'出错警告： setting.gradle 配置超过2个module再来哦'
         return
 
-    # 2、从build.gradle读取module的maven信息，并include的module在ext.deps[ ]中打开依赖
+    print u"2、从build.gradle读取module的maven信息，并把include的module在其ext.deps[ ]中打开依赖"
     moduleInfos = getModuleMavenInfo(includeModules)
-    print u"2、includeModule的maven信息读取完毕，并在ext.deps[ ]中打开依赖"
 
-    # 3、主工程build.gradle加入部署依赖
     mainModuleName = getMainModule(includeModules)
     print u"3、解析到主工程 %s" % mainModuleName
 
-    # 4、把主工程上次部署的（依赖、排除）reset
     print u"4、把主工程上次部署的（依赖、排除）reset"
     os.popen("cd %s && git checkout %s" % (mainModuleName, path_build_deps))
 
-    # 5、
     print u"5、开始为主工程 %s build.gradle加入部署依赖" % mainModuleName
     writeConfigurationsExcludesAndCompileToBuildGradle(ModuleInfo(mainModuleName, '', ''), moduleInfos)
 
