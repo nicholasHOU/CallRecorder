@@ -351,13 +351,13 @@ ext.deps = [
         GStatusView       : rootProject.ext.proDeps ? project(':GStatusView') : 'cn.gome.staff.ui:statusview:' + getProperty('AAR_UI_STATUSVIEW_VERSION') + '@aar',
         VideoInterface    : rootProject.ext.proDeps ? project(':VideoInterface') : 'cn.gome.video:vinterface:'+ getProperty('AAR_VIDEOINTER_VERSION'),
         GHomeAddInterface : rootProject.ext.proDeps ? project(':GHomeAddInterface') : 'com.gome.ecmall:homeaddinter:'+ getProperty('AAR_HOMEADDINTER_VERSION'),
-        GEntMediaPicker :  rootProject.ext.proDeps ? project(':GEntMediaPicker') : 'com.gome.mcp:ent-mediapicker:0.0.6',
-        VideoSearch :  rootProject.ext.proDeps ? project(':VideoSearch') : 'com.gome.mcp:ent-mediapicker:0.0.6'+ getProperty('AAR_VIDEOSEARCH_VERSION'),
+        GEntMediaPicker :  rootProject.ext.proDeps ? project(':GEntMediaPicker') : 'com.gome.mcp:ent-mediapicker:'+ getProperty('AAR_ENTMEDIAPICKER_VERSION'),
+        VideoSearch :  rootProject.ext.proDeps ? project(':VideoSearch') : 'com.gome.mcp:ent-mediapicker:'+ getProperty('AAR_VIDEOSEARCH_VERSION'),
         VideoEdit            :  rootProject.ext.proDeps ? project(':VideoEdit') : 'cn.gome.video:vedit:0.0.1',
         GVideoRecording      :   rootProject.ext.proDeps ? project('GVideoRecording') : 'cn.gome.video:gzhibo_record:0.0.1',
         GVideoRecordingUgcKit:  rootProject.ext.proDeps ? project('GVideoRecordingUgcKit') : 'cn.gome.video:gzhibo_ugckit:0.0.1',
         GHomeAdd         : rootProject.ext.proDeps ? project(':GHomeAdd') : 'com.gome.ecmall:homeadd:'+getProperty('AAR_HOMEADD_VERSION'),
-        GBusinessView : project("GBusinessView")
+//        GBusinessView : project("GBusinessView")
 ]
 /**
  * depMcp dep aar, default exclude transitive dependencies
