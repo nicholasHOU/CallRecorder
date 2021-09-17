@@ -140,10 +140,10 @@
     <project groups="liveSDk0930"  url="git@code.gome.inc:mobile-android-video/GVideoRecordingUgcKit.git"/>
     <project groups="liveSDk0930"  url="git@code.gome.inc:mobile-android-video/GVideoRecording.git"/>
     <project groups="liveSDk0930"  url="git@code.gome.inc:mobile-android-video/VideoEdit.git"/>
-
+    <project groups="liveSDk0930"  url="git@code.gome.inc:mobile-android-mcp/GEntMediaPicker.git"/>
     <project groups="liveSDk0930"  branch="master"  url="git@code.gome.inc:mobile-android-business/GHomeAddInterface.git"/>
     <project groups="liveSDk0930"  branch="master"  url="git@code.gome.inc:mobile-android-business/GHomeAdd.git"/>
-    <project groups="liveSDk0930"  url="git@code.gome.inc:mobile-android-mcp/GEntMediaPicker.git"/>
+
 
 
     <!--主工程-->
