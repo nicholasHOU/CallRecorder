@@ -98,7 +98,7 @@
     <project artifactId="phonerecharge" bundleOpen="true" url="git@code.gome.inc:mobile-android-business/GPhoneRecharge.git"/>
     <project artifactId="storesearch" bundleOpen="true" url="git@code.gome.inc:mobile-android-business/GStoreSearch.git"/>
     <project artifactId="greturn" bundleOpen="true" url="git@code.gome.inc:mobile-android-business/GReturn.git"/>
-    <project artifactId="materialorder" bundleOpen="false" url="git@code.gome.inc:mobile-android-business/GMaterialOrder.git"/>
+    <project artifactId="materialorder" branch="liveSDK0930"  bundleOpen="false" url="git@code.gome.inc:mobile-android-business/GMaterialOrder.git"/>
     <project groups="liveSDk0930"  url="git@code.gome.inc:mobile-android-business/GGomeCurrency.git"/>
     <project url="git@code.gome.inc:mobile-android-business/GShop.git"/>
     <project url="git@code.gome.inc:mobile-android-business/GPanicBuy.git"/>
@@ -140,10 +140,10 @@
     <project groups="liveSDk0930"  url="git@code.gome.inc:mobile-android-video/GVideoRecordingUgcKit.git"/>
     <project groups="liveSDk0930"  url="git@code.gome.inc:mobile-android-video/GVideoRecording.git"/>
     <project groups="liveSDk0930"  url="git@code.gome.inc:mobile-android-video/VideoEdit.git"/>
-
+    <project groups="liveSDk0930"  url="git@code.gome.inc:mobile-android-mcp/GEntMediaPicker.git"/>
     <project groups="liveSDk0930"  branch="master"  url="git@code.gome.inc:mobile-android-business/GHomeAddInterface.git"/>
     <project groups="liveSDk0930"  branch="master"  url="git@code.gome.inc:mobile-android-business/GHomeAdd.git"/>
-    <project groups="liveSDk0930"  url="git@code.gome.inc:mobile-android-mcp/GEntMediaPicker.git"/>
+
 
 
     <!--主工程-->
