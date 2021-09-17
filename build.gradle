@@ -355,7 +355,8 @@ ext.deps = [
         VideoEdit            :  rootProject.ext.proDeps ? project(':VideoEdit') : 'cn.gome.video:vedit:0.0.1',
         GVideoRecording      :   rootProject.ext.proDeps ? project('GVideoRecording') : 'cn.gome.video:gzhibo_record:0.0.1',
         GVideoRecordingUgcKit:   rootProject.ext.proDeps ? project('GVideoRecordingUgcKit') : 'cn.gome.video:gzhibo_ugckit:0.0.1',
-        GHomeAdd         : rootProject.ext.proDeps ? project(':GHomeAdd') : 'com.gome.ecmall:homeadd:'+getProperty('AAR_HOMEADD_VERSION')
+        GHomeAdd         : rootProject.ext.proDeps ? project(':GHomeAdd') : 'com.gome.ecmall:homeadd:'+getProperty('AAR_HOMEADD_VERSION'),
+        GBusinessView : project("GBusinessView")
 ]
 /**
  * depMcp dep aar, default exclude transitive dependencies
