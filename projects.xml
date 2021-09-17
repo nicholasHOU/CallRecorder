@@ -141,6 +141,10 @@
     <project groups="liveSDk0930"  url="git@code.gome.inc:mobile-android-video/GVideoRecording.git"/>
     <project groups="liveSDk0930"  url="git@code.gome.inc:mobile-android-video/VideoEdit.git"/>
 
+    <project groups="liveSDk0930"  branch="master"  url="git@code.gome.inc:mobile-android-business/GHomeAddInterface.git"/>
+    <project groups="liveSDk0930"  branch="master"  url="git@code.gome.inc:mobile-android-business/GHomeAdd.git"/>
+
+
     <!--主工程-->
     <project app="true" groups="liveSDk0930"   path="GomeApp" url="git@code.gome.inc:mobile-android/GomePlus.git"/>
 </manifest>
