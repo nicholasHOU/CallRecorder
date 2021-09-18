@@ -19,6 +19,7 @@
 /M*
 /S*
 /IM*
+/Video*
 /buildsrc
 
 /apkfly_deploy/*.pyc
