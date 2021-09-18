@@ -359,8 +359,8 @@ ext.deps = [
         GVideoRecording      :  true ? project('GVideoRecording') : 'cn.gome.video:gzhibo_record:0.0.1',
         GVideoRecordingUgcKit:  true ? project('GVideoRecordingUgcKit') : 'cn.gome.video:gzhibo_ugckit:0.0.1',
         GHomeAdd         : true ? project(':GHomeAdd') : 'com.gome.ecmall:homeadd:'+getProperty('AAR_HOMEADD_VERSION'),
-//        GBusinessView : project("GBusinessView"),
-//        GAmusement :        project(':GAmusement')
+        GBusinessView : project("GBusinessView"),
+        GAmusement :        project(':GAmusement')
 ]
 /**
  * depMcp dep aar, default exclude transitive dependencies
