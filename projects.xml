@@ -56,7 +56,7 @@
     <project url="git@code.gome.inc:mobile-android-business/GWidget.git"/>
     <project url="git@code.gome.inc:mobile-android-mcp/GDXRisk.git"/>
     <project groups="core" path="GCoreLogin" url="git@code.gome.inc:mobile-android-common/GCore-login.git"/>
-    <project groups="liveSDk0930" path="GCore"  url="git@code.gome.inc:mobile-android-common/GCore-common.git"/>
+    <project groups="core" path="GCore"  url="git@code.gome.inc:mobile-android-common/GCore-common.git"/>
 
     <project url="git@code.gome.inc:mobile-android-business/GLogin.git"/>
     <project url="git@code.gome.inc:mobile-android-business/GLoginBusiness.git"/>
