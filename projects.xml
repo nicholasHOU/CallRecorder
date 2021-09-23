@@ -72,7 +72,7 @@
 
     <project url="git@code.gome.inc:mobile-android-business/GBusinessDeps.git"/>
     <project groups="liveSDk0930"  url="git@code.gome.inc:mobile-android-business/GScheme.git"/>
-    <project url="git@code.gome.inc:mobile-android-business/GAddress.git"/>
+    <project groups="liveSDk0930" url="git@code.gome.inc:mobile-android-business/GAddress.git"/>
     <project url="git@code.gome.inc:mobile-android-business/GBigPhoto.git"/>
     <project url="git@code.gome.inc:mobile-android-business/GAlbum.git"/>
     <project url="git@code.gome.inc:mobile-android-business/GYYTPassWord.git"/>
