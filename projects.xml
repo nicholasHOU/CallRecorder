@@ -105,9 +105,8 @@
     <project url="git@code.gome.inc:mobile-android-business/GGroupBuy.git"/>
     <project url="git@code.gome.inc:mobile-android-business/GAppraise.git"/>
 
-    <project branch="master" url="git@code.gome.inc:mobile-android-mcp/GQrScan.git"/>
+    <project url="git@code.gome.inc:mobile-android-mcp/GPhotoScan.git"/>
     <project groups="liveSDk0930"  artifactId="productsearch" bundleOpen="false" url="git@code.gome.inc:mobile-android-business/GProductSearch.git"/>
-    <project branch="masterJni" url="git@code.gome.inc:mobile-android-business/GZxingScan.git"/>
     <project groups="liveSDk0930"  url="git@code.gome.inc:mobile-android-business/GIMRedEnvelope.git"/>
     <project groups="liveSDk0930"  url="git@code.gome.inc:mobile-android-business/MCommon.git"/>
 
