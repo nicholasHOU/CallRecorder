@@ -359,7 +359,7 @@ ext.deps = [
         GVideoRecording      :  rootProject.ext.proDeps ? project('GVideoRecording') : 'cn.gome.video:gzhibo_record:' + getProperty('AAR_VIDEORECORDUGC_VERSION'),
         GVideoRecordingUgcKit:  rootProject.ext.proDeps ? project('GVideoRecordingUgcKit') : 'cn.gome.video:gzhibo_ugckit:' + getProperty('AAR_VIDEORECORDUGCKIT_VERSION'),
         GHomeAdd         : rootProject.ext.proDeps ? project(':GHomeAdd') : 'com.gome.ecmall:homeadd:'+getProperty('AAR_HOMEADD_VERSION'),
-        GBusinessView : project("GBusinessView"),
+        GBusinessView : rootProject.ext.proDeps ? project(':GBusinessView') : 'com.gome.business.view:businessview:'+getProperty('AAR_BUSINESSVIEW_VERSION'),
         GAmusement :        project(':GAmusement')
 ]
 /**
