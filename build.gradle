@@ -336,7 +336,7 @@ ext.deps = [
         GPullToRefresh       : 'cn.gome.staff.ui:pulltorefresh:42.48.0@aar',
         GStoreChannel        : rootProject.ext.proDeps ? project(':GStoreChannel') : 'com.gome.ecmall.business:storechannel:' + getProperty('AAR_GBUSINESS_GSTORECHANNEL_VERSION') + '@aar',
 
-        GZhiboBus            : true ? project(':GZhiboBus') : 'com.gome.ecmall:zhibobus:' + getProperty('AAR_GZHIBO_BUS_VERSION') + '@aar',
+        GZhiboBus            : rootProject.ext.proDeps ? project(':GZhiboBus') : 'com.gome.ecmall:zhibobus:' + getProperty('AAR_GZHIBO_BUS_VERSION') + '@aar',
         Gsuperplayerkit      : rootProject.ext.proDeps ? project(':Gsuperplayerkit') : 'com.gome.ecmall:shortvideo:' + getProperty('AAR_SHORT_VIDEO_BUS_VERSION') + '@aar',
 
         //im plugins
