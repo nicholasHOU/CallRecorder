@@ -355,9 +355,9 @@ ext.deps = [
         GHomeAddInterface : rootProject.ext.proDeps ? project(':GHomeAddInterface') : 'com.gome.ecmall:homeaddinter:'+ getProperty('AAR_HOMEADDINTER_VERSION'),
         GEntMediaPicker :  true ? project(':GEntMediaPicker') : 'com.gome.mcp:ent-mediapicker:'+ getProperty('AAR_ENTMEDIAPICKER_VERSION'),
         VideoSearch :       rootProject.ext.proDeps ? project(':VideoSearch') : 'cn.gome.video:vsearch:'+ getProperty('AAR_VIDEOSEARCH_VERSION'),
-        VideoEdit            :  true ? project(':VideoEdit') : 'cn.gome.video:vedit:0.0.1',
-        GVideoRecording      :  true ? project('GVideoRecording') : 'cn.gome.video:gzhibo_record:0.0.1',
-        GVideoRecordingUgcKit:  true ? project('GVideoRecordingUgcKit') : 'cn.gome.video:gzhibo_ugckit:0.0.1',
+        VideoEdit            :  rootProject.ext.proDeps ? project(':VideoEdit') : 'cn.gome.video:vedit:' + getProperty('AAR_VIDEOVEDIT_VERSION'),
+        GVideoRecording      :  rootProject.ext.proDeps ? project('GVideoRecording') : 'cn.gome.video:gzhibo_record:' + getProperty('AAR_VIDEORECORDUGC_VERSION'),
+        GVideoRecordingUgcKit:  rootProject.ext.proDeps ? project('GVideoRecordingUgcKit') : 'cn.gome.video:gzhibo_ugckit:' + getProperty('AAR_VIDEORECORDUGCKIT_VERSION'),
         GHomeAdd         : true ? project(':GHomeAdd') : 'com.gome.ecmall:homeadd:'+getProperty('AAR_HOMEADD_VERSION'),
         GBusinessView : project("GBusinessView"),
         GAmusement :        project(':GAmusement')
