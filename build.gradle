@@ -355,7 +355,7 @@ ext.deps = [
         GHomeAddInterface : rootProject.ext.proDeps ? project(':GHomeAddInterface') : 'com.gome.ecmall:homeaddinter:'+ getProperty('AAR_HOMEADDINTER_VERSION'),
         GEntMediaPicker :  true ? project(':GEntMediaPicker') : 'com.gome.mcp:ent-mediapicker:'+ getProperty('AAR_ENTMEDIAPICKER_VERSION'),
         VideoSearch :       rootProject.ext.proDeps ? project(':VideoSearch') : 'cn.gome.video:vsearch:'+ getProperty('AAR_VIDEOSEARCH_VERSION'),
-        VideoEdit            :  rootProject.ext.proDeps ? project(':VideoEdit') : 'cn.gome.video:vedit:' + getProperty('AAR_VIDEOVEDIT_VERSION'),
+        VideoEdit            :  rootProject.ext.proDeps ? project(':VideoEdit') : 'cn.gome.video:vedit:' + getProperty('AAR_VIDEOEDIT_VERSION'),
         GVideoRecording      :  rootProject.ext.proDeps ? project('GVideoRecording') : 'cn.gome.video:gzhibo_record:' + getProperty('AAR_VIDEORECORDUGC_VERSION'),
         GVideoRecordingUgcKit:  rootProject.ext.proDeps ? project('GVideoRecordingUgcKit') : 'cn.gome.video:gzhibo_ugckit:' + getProperty('AAR_VIDEORECORDUGCKIT_VERSION'),
         GHomeAdd         : rootProject.ext.proDeps ? project(':GHomeAdd') : 'com.gome.ecmall:homeadd:'+getProperty('AAR_HOMEADD_VERSION'),
