@@ -348,19 +348,20 @@ ext.deps = [
         IMPluginVideoChat     : false ? project(':im-plugin-videochat') : 'com.gome.ecmall.implugin:videochat:' + getProperty('AAR_IM_PLUGIN_VIDEO_CHAT_VERSION') + '@aar',
         GViewTracker          : rootProject.ext.proDeps ? project(':GViewTracker') : 'com.gome.viewtracker:viewtracker:'+getProperty('AAR_VIEW_TRACKER_VERSION') + '@aar',
 
-        GLog              : 'com.gome.mcp:log:2.9.3@aar',
-        GVideoLiteAVSDK   : 'com.gome.zhibo:LiteAVSDK_Enterprise:9.1.10566', //企业版
-        GStatusView       : rootProject.ext.proDeps ? project(':GStatusView') : 'cn.gome.staff.ui:statusview:' + getProperty('AAR_UI_STATUSVIEW_VERSION') + '@aar',
-        VideoInterface    : rootProject.ext.proDeps ? project(':VideoInterface') : 'cn.gome.video:vinterface:'+ getProperty('AAR_VIDEOINTER_VERSION'),
-        GHomeAddInterface : rootProject.ext.proDeps ? project(':GHomeAddInterface') : 'com.gome.ecmall:homeaddinter:'+ getProperty('AAR_HOMEADDINTER_VERSION'),
-        GEntMediaPicker :  true ? project(':GEntMediaPicker') : 'com.gome.mcp:ent-mediapicker:'+ getProperty('AAR_ENTMEDIAPICKER_VERSION'),
-        VideoSearch :       rootProject.ext.proDeps ? project(':VideoSearch') : 'cn.gome.video:vsearch:'+ getProperty('AAR_VIDEOSEARCH_VERSION'),
-        VideoEdit            :  rootProject.ext.proDeps ? project(':VideoEdit') : 'cn.gome.video:vedit:' + getProperty('AAR_VIDEOEDIT_VERSION'),
-        GVideoRecording      :  rootProject.ext.proDeps ? project('GVideoRecording') : 'cn.gome.video:gzhibo_record:' + getProperty('AAR_VIDEORECORDUGC_VERSION'),
-        GVideoRecordingUgcKit:  rootProject.ext.proDeps ? project('GVideoRecordingUgcKit') : 'cn.gome.video:gzhibo_ugckit:' + getProperty('AAR_VIDEORECORDUGCKIT_VERSION'),
-        GHomeAdd         : rootProject.ext.proDeps ? project(':GHomeAdd') : 'com.gome.ecmall:homeadd:'+getProperty('AAR_HOMEADD_VERSION'),
-        GBusinessView : rootProject.ext.proDeps ? project(':GBusinessView') : 'com.gome.business.view:businessview:'+getProperty('AAR_BUSINESSVIEW_VERSION'),
-        GAmusement :        project(':GAmusement')
+        GLog                 : 'com.gome.mcp:log:2.9.3@aar',
+        GVideoLiteAVSDK      : 'com.gome.zhibo:LiteAVSDK_Enterprise:9.1.10566', //企业版
+        GStatusView          : rootProject.ext.proDeps ? project(':GStatusView') : 'cn.gome.staff.ui:statusview:' + getProperty('AAR_UI_STATUSVIEW_VERSION') + '@aar',
+        VideoInterface       : rootProject.ext.proDeps ? project(':VideoInterface') : 'cn.gome.video:vinterface:' + getProperty('AAR_VIDEOINTER_VERSION'),
+        GHomeAddInterface    : rootProject.ext.proDeps ? project(':GHomeAddInterface') : 'com.gome.ecmall:homeaddinter:' + getProperty('AAR_HOMEADDINTER_VERSION'),
+        GEntMediaPicker      : true ? project(':GEntMediaPicker') : 'com.gome.mcp:ent-mediapicker:' + getProperty('AAR_ENTMEDIAPICKER_VERSION'),
+        VideoSearch          : rootProject.ext.proDeps ? project(':VideoSearch') : 'cn.gome.video:vsearch:' + getProperty('AAR_VIDEOSEARCH_VERSION'),
+        VideoEdit            : rootProject.ext.proDeps ? project(':VideoEdit') : 'cn.gome.video:vedit:' + getProperty('AAR_VIDEOEDIT_VERSION'),
+        GVideoRecording      : rootProject.ext.proDeps ? project('GVideoRecording') : 'cn.gome.video:gzhibo_record:' + getProperty('AAR_VIDEORECORDUGC_VERSION'),
+        GVideoRecordingUgcKit: rootProject.ext.proDeps ? project('GVideoRecordingUgcKit') : 'cn.gome.video:gzhibo_ugckit:' + getProperty('AAR_VIDEORECORDUGCKIT_VERSION'),
+        GHomeAdd             : rootProject.ext.proDeps ? project(':GHomeAdd') : 'com.gome.ecmall:homeadd:' + getProperty('AAR_HOMEADD_VERSION'),
+        GBusinessView        : rootProject.ext.proDeps ? project(':GBusinessView') : 'com.gome.business.view:businessview:' + getProperty('AAR_BUSINESSVIEW_VERSION'),
+        GAmusement           : project(':GAmusement'),
+        GAnimView            : 'io.github.tencent:vap:2.0.20'
 ]
 /**
  * depMcp dep aar, default exclude transitive dependencies
