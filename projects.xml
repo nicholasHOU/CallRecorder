@@ -58,7 +58,7 @@
     <project groups="core" path="GCoreLogin" url="git@code.gome.inc:mobile-android-common/GCore-login.git"/>
     <project groups="core" path="GCore"  url="git@code.gome.inc:mobile-android-common/GCore-common.git"/>
 
-    <project branch="liveSDk0930" url="git@code.gome.inc:mobile-android-business/GLogin.git"/>
+    <project branch="liveSDK0930" url="git@code.gome.inc:mobile-android-business/GLogin.git"/>
     <project url="git@code.gome.inc:mobile-android-business/GLoginBusiness.git"/>
     <project url="git@code.gome.inc:mobile-android-business/GPullrefresh.git"/>
     <project url="git@code.gome.inc:mobile-android-business/GCmbPay.git"/>
