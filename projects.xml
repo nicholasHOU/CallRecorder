@@ -68,6 +68,7 @@
     <!--支持3D Wap-->
     <project url="git@code.gome.inc:mobile-android-repo/GX5Lib.git"/>
     <project groups="liveSDk0930" branch="liveSDk0930" url="git@code.gome.inc:mobile-android-business/GRouterInterface.git"/>
+    <project groups="liveSDk0930"  url="git@code.gome.inc:mobile-android-video/VideoInterface.git"/>
     <project groups="liveSDk0930" branch="master" url="git@code.gome.inc:mobile-android-business/GBusinessView.git"/>
 
     <project url="git@code.gome.inc:mobile-android-business/GBusinessDeps.git"/>
@@ -135,7 +136,7 @@
     <project groups="liveSDk0930"  url="git@code.gome.inc:mobile-android-business/GAmusement.git"/>
     <project groups="liveSDk0930" branch="liveSDK0930" url="git@code.gome.inc:mobile-android-business/Gsuperplayerkit.git"/>
 
-    <project groups="liveSDk0930"  url="git@code.gome.inc:mobile-android-video/VideoInterface.git"/>
+
     <project groups="liveSDk0930"  url="git@code.gome.inc:mobile-android-video/GVideoRecordingUgcKit.git"/>
     <project groups="liveSDk0930"  url="git@code.gome.inc:mobile-android-video/GVideoRecording.git"/>
     <project groups="liveSDk0930"  url="git@code.gome.inc:mobile-android-video/VideoEdit.git"/>
