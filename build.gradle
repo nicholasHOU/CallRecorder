@@ -353,7 +353,7 @@ ext.deps = [
         GStatusView          : rootProject.ext.proDeps ? project(':GStatusView') : 'cn.gome.staff.ui:statusview:' + getProperty('AAR_UI_STATUSVIEW_VERSION') + '@aar',
         VideoInterface       : rootProject.ext.proDeps ? project(':VideoInterface') : 'cn.gome.video:vinterface:' + getProperty('AAR_VIDEOINTER_VERSION'),
         GHomeAddInterface    : rootProject.ext.proDeps ? project(':GHomeAddInterface') : 'com.gome.ecmall:homeaddinter:' + getProperty('AAR_HOMEADDINTER_VERSION'),
-        GEntMediaPicker      : true ? project(':GEntMediaPicker') : 'com.gome.mcp:ent-mediapicker:' + getProperty('AAR_ENTMEDIAPICKER_VERSION'),
+        GEntMediaPicker      : rootProject.ext.proDeps ? project(':GEntMediaPicker') : 'com.gome.mcp:ent-mediapicker:' + getProperty('AAR_ENTMEDIAPICKER_VERSION'),
         VideoSearch          : rootProject.ext.proDeps ? project(':VideoSearch') : 'cn.gome.video:vsearch:' + getProperty('AAR_VIDEOSEARCH_VERSION'),
         VideoEdit            : rootProject.ext.proDeps ? project(':VideoEdit') : 'cn.gome.video:vedit:' + getProperty('AAR_VIDEOEDIT_VERSION'),
         GVideoRecording      : rootProject.ext.proDeps ? project('GVideoRecording') : 'cn.gome.video:gzhibo_record:' + getProperty('AAR_VIDEORECORDUGC_VERSION'),
