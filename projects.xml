@@ -145,5 +145,5 @@
     <project groups="liveSDk0930" branch="liveSDk0930"  url="git@code.gome.inc:mobile-android-business/GAmusement.git"/>
 
     <!--主工程-->
-    <project app="true" groups="liveSDk0930"   path="GomeApp" url="git@code.gome.inc:mobile-android/GomePlus.git"/>
+    <project app="true" groups="liveSDk0930" branch="liveSDk0930"  path="GomeApp" url="git@code.gome.inc:mobile-android/GomePlus.git"/>
 </manifest>
