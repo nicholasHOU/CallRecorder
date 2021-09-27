@@ -1,4 +1,4 @@
-<?xml version="1.0" ?><manifest branch="liveSDk0930" bundleOpen="true" host="git@code.gome.inc:">
+<?xml version="1.0" ?><manifest branch="mergeDev" bundleOpen="true" host="git@code.gome.inc:">
     <!--私有工程-->
     <project branch="master" groups="private" url="git@code.gome.inc:mobile-android-admin/buildsrc.git"/>
     <project groups="private" url="git@code.gome.inc:mobile-android/GWorkspace.git"/>
@@ -58,7 +58,7 @@
     <project groups="core" path="GCoreLogin" url="git@code.gome.inc:mobile-android-common/GCore-login.git"/>
     <project groups="core" path="GCore"  url="git@code.gome.inc:mobile-android-common/GCore-common.git"/>
 
-    <project url="git@code.gome.inc:mobile-android-business/GLogin.git"/>
+    <project branch="liveSDk0930" url="git@code.gome.inc:mobile-android-business/GLogin.git"/>
     <project url="git@code.gome.inc:mobile-android-business/GLoginBusiness.git"/>
     <project url="git@code.gome.inc:mobile-android-business/GPullrefresh.git"/>
     <project url="git@code.gome.inc:mobile-android-business/GCmbPay.git"/>
@@ -68,12 +68,12 @@
     <!--支持3D Wap-->
     <project url="git@code.gome.inc:mobile-android-repo/GX5Lib.git"/>
     <project groups="liveSDk0930" branch="liveSDk0930" url="git@code.gome.inc:mobile-android-business/GRouterInterface.git"/>
-    <project groups="liveSDk0930"  url="git@code.gome.inc:mobile-android-video/VideoInterface.git"/>
+    <project groups="liveSDk0930"  branch="liveSDk0930" url="git@code.gome.inc:mobile-android-video/VideoInterface.git"/>
     <project groups="liveSDk0930" branch="master" url="git@code.gome.inc:mobile-android-business/GBusinessView.git"/>
 
     <project url="git@code.gome.inc:mobile-android-business/GBusinessDeps.git"/>
-    <project groups="liveSDk0930"  url="git@code.gome.inc:mobile-android-business/GScheme.git"/>
-    <project groups="liveSDk0930" url="git@code.gome.inc:mobile-android-business/GAddress.git"/>
+    <project groups="liveSDk0930" branch="liveSDk0930" url="git@code.gome.inc:mobile-android-business/GScheme.git"/>
+    <project groups="liveSDk0930" branch="liveSDk0930" url="git@code.gome.inc:mobile-android-business/GAddress.git"/>
     <project url="git@code.gome.inc:mobile-android-business/GBigPhoto.git"/>
     <project url="git@code.gome.inc:mobile-android-business/GAlbum.git"/>
     <project url="git@code.gome.inc:mobile-android-business/GYYTPassWord.git"/>
@@ -81,15 +81,15 @@
     <project url="git@code.gome.inc:mobile-android-business/GBSearch.git"/>
     <project url="git@code.gome.inc:mobile-android-business/GBShop.git"/>
     <project url="git@code.gome.inc:mobile-android-business/GMallService.git"/>
-    <project groups="liveSDk0930" url="git@code.gome.inc:mobile-android-business/GBProduct.git"/>
+    <project groups="liveSDk0930" branch="liveSDk0930" url="git@code.gome.inc:mobile-android-business/GBProduct.git"/>
     <project url="git@code.gome.inc:mobile-android-business/GBCms.git"/>
     <project url="git@code.gome.inc:mobile-android-business/GShopCarBus.git"/>
     <project groups="share" url="git@code.gome.inc:mobile-android-business/GGomeShareBus.git"/>
     <project branch="master" url="git@code.gome.inc:mobile-android-business/GSocialService.git"/>
-    <project groups="liveSDk0930" url="git@code.gome.inc:mobile-android-common/GHybrid.git"/>
+    <project groups="liveSDk0930" branch="liveSDk0930" url="git@code.gome.inc:mobile-android-common/GHybrid.git"/>
     <project url="git@code.gome.inc:mobile-android-business/GCashierdesk.git"/>
-    <project groups="liveSDk0930"  url="git@code.gome.inc:mobile-android-common/GShelvesWidget.git"/>
-    <project groups="liveSDk0930"  url="git@code.gome.inc:mobile-android-business/GBusiness.git"/>
+    <project groups="liveSDk0930" branch="liveSDk0930" url="git@code.gome.inc:mobile-android-common/GShelvesWidget.git"/>
+    <project groups="liveSDk0930" branch="liveSDk0930" url="git@code.gome.inc:mobile-android-business/GBusiness.git"/>
 
     <project groups="im" url="git@code.gome.inc:mobile-android-business/MImlibrary.git"/>
     <project url="git@code.gome.inc:mobile-android-business/GFinanceCommon.git"/>
@@ -100,52 +100,49 @@
     <project artifactId="storesearch" bundleOpen="true" url="git@code.gome.inc:mobile-android-business/GStoreSearch.git"/>
     <project artifactId="greturn" bundleOpen="true" url="git@code.gome.inc:mobile-android-business/GReturn.git"/>
     <project artifactId="materialorder" groups="liveSDk0930" branch="liveSDK0930"  bundleOpen="false" url="git@code.gome.inc:mobile-android-business/GMaterialOrder.git"/>
-    <project groups="liveSDk0930"  url="git@code.gome.inc:mobile-android-business/GGomeCurrency.git"/>
+    <project groups="liveSDk0930" branch="liveSDk0930" url="git@code.gome.inc:mobile-android-business/GGomeCurrency.git"/>
     <project url="git@code.gome.inc:mobile-android-business/GShop.git"/>
     <project url="git@code.gome.inc:mobile-android-business/GPanicBuy.git"/>
     <project url="git@code.gome.inc:mobile-android-business/GGroupBuy.git"/>
     <project url="git@code.gome.inc:mobile-android-business/GAppraise.git"/>
 
     <project url="git@code.gome.inc:mobile-android-mcp/GPhotoScan.git"/>
-    <project groups="liveSDk0930"  artifactId="productsearch" bundleOpen="false" url="git@code.gome.inc:mobile-android-business/GProductSearch.git"/>
-    <project groups="liveSDk0930"  url="git@code.gome.inc:mobile-android-business/GIMRedEnvelope.git"/>
-    <project groups="liveSDk0930"  url="git@code.gome.inc:mobile-android-business/MCommon.git"/>
+    <project groups="liveSDk0930" branch="liveSDk0930" artifactId="productsearch" bundleOpen="false" url="git@code.gome.inc:mobile-android-business/GProductSearch.git"/>
+    <project groups="liveSDk0930" branch="liveSDk0930" url="git@code.gome.inc:mobile-android-business/GIMRedEnvelope.git"/>
+    <project groups="liveSDk0930" branch="liveSDk0930" url="git@code.gome.inc:mobile-android-business/MCommon.git"/>
 
     <project url="git@code.gome.inc:mobile-android-business/GOnlinememberCard.git"/>
 
     <project groups="im" url="git@code.gome.inc:mobile-android-business/MFriendCircle.git"/>
     <project groups="im" url="git@code.gome.inc:mobile-android-business/MSocial.git"/>
-    <project groups="liveSDk0930"  url="git@code.gome.inc:mobile-android-business/MIm.git"/>
+    <project groups="liveSDk0930" branch="liveSDk0930"  url="git@code.gome.inc:mobile-android-business/MIm.git"/>
     <project groups="im" url="git@code.gome.inc:mobile-android-business/MFriends.git"/>
     <project branch="master" url="git@code.gome.inc:mobile-android-mcp/IMKit.git"/>
     <project url="git@code.gome.inc:mobile-android-business/GMoreService.git"/>
-    <project groups="liveSDk0930"  url="git@code.gome.inc:mobile-android-business/GMallPage.git"/>
+    <project groups="liveSDk0930" branch="liveSDk0930"  url="git@code.gome.inc:mobile-android-business/GMallPage.git"/>
 
     <project groups="liveSDk0930" branch="Live0913" url="git@code.gome.inc:mobile-android-business/GCollection.git"/>
 
-    <project groups="liveSDk0930"  artifactId="product" bundleOpen="false" url="git@code.gome.inc:mobile-android-business/GProductDetail.git"/>
+    <project groups="liveSDk0930" branch="liveSDk0930"  artifactId="product" bundleOpen="false" url="git@code.gome.inc:mobile-android-business/GProductDetail.git"/>
     <project url="git@code.gome.inc:mobile-android-business/GShoppingCart.git"/>
     <project url="git@code.gome.inc:mobile-android-business/GShopCart.git"/>
-    <project groups="liveSDk0930"  url="git@code.gome.inc:mobile-android-business/GSetting.git"/>
-    <project groups="liveSDk0930"  url="git@code.gome.inc:mobile-android-business/GMemHome.git"/>
+    <project groups="liveSDk0930" branch="liveSDk0930"  url="git@code.gome.inc:mobile-android-business/GSetting.git"/>
+    <project groups="liveSDk0930" branch="liveSDk0930"  url="git@code.gome.inc:mobile-android-business/GMemHome.git"/>
     <project url="git@code.gome.inc:mobile-android-business/AMemHome.git"/>
-    <project groups="liveSDk0930"  url="git@code.gome.inc:mobile-android-business/GMemService.git"/>
+    <project groups="liveSDk0930" branch="liveSDk0930"  url="git@code.gome.inc:mobile-android-business/GMemService.git"/>
     <project url="git@code.gome.inc:mobile-android-business/GSimilar.git"/>
     <project url="git@code.gome.inc:mobile-android-business/GStoreChannel.git"/>
-    <project groups="liveSDk0930"  url="git@code.gome.inc:mobile-android-business/GZhiboBus.git"/>
+    <project groups="liveSDk0930" branch="liveSDk0930"  url="git@code.gome.inc:mobile-android-business/GZhiboBus.git"/>
     <project groups="liveSDk0930" branch="liveSDK0930" url="git@code.gome.inc:mobile-android-business/Gsuperplayerkit.git"/>
 
-
-    <project groups="liveSDk0930"  url="git@code.gome.inc:mobile-android-video/GVideoRecordingUgcKit.git"/>
-    <project groups="liveSDk0930"  url="git@code.gome.inc:mobile-android-video/GVideoRecording.git"/>
-    <project groups="liveSDk0930"  url="git@code.gome.inc:mobile-android-video/VideoEdit.git"/>
-    <project groups="liveSDk0930"  url="git@code.gome.inc:mobile-android-video/VideoSearch.git"/>
-    <project groups="liveSDk0930"  branch="master"  url="git@code.gome.inc:mobile-android-business/GHomeAddInterface.git"/>
-    <project groups="liveSDk0930"  branch="liveSDk0930"  url="git@code.gome.inc:mobile-android-mcp/GEntMediaPicker.git"/>
-    <project groups="liveSDk0930"  branch="master"  url="git@code.gome.inc:mobile-android-business/GHomeAdd.git"/>
-    <project groups="liveSDk0930"  url="git@code.gome.inc:mobile-android-business/GAmusement.git"/>
-
-
+    <project groups="liveSDk0930" branch="liveSDk0930"  url="git@code.gome.inc:mobile-android-video/GVideoRecordingUgcKit.git"/>
+    <project groups="liveSDk0930" branch="liveSDk0930"  url="git@code.gome.inc:mobile-android-video/GVideoRecording.git"/>
+    <project groups="liveSDk0930" branch="liveSDk0930"  url="git@code.gome.inc:mobile-android-video/VideoEdit.git"/>
+    <project groups="liveSDk0930" branch="liveSDk0930"  url="git@code.gome.inc:mobile-android-video/VideoSearch.git"/>
+    <project groups="liveSDk0930" branch="master"  url="git@code.gome.inc:mobile-android-business/GHomeAddInterface.git"/>
+    <project groups="liveSDk0930" branch="liveSDk0930"  url="git@code.gome.inc:mobile-android-mcp/GEntMediaPicker.git"/>
+    <project groups="liveSDk0930" branch="master"  url="git@code.gome.inc:mobile-android-business/GHomeAdd.git"/>
+    <project groups="liveSDk0930" branch="liveSDk0930"  url="git@code.gome.inc:mobile-android-business/GAmusement.git"/>
 
     <!--主工程-->
     <project app="true" groups="liveSDk0930"   path="GomeApp" url="git@code.gome.inc:mobile-android/GomePlus.git"/>
