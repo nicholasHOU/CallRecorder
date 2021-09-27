@@ -132,7 +132,6 @@
     <project url="git@code.gome.inc:mobile-android-business/GSimilar.git"/>
     <project url="git@code.gome.inc:mobile-android-business/GStoreChannel.git"/>
     <project groups="liveSDk0930"  url="git@code.gome.inc:mobile-android-business/GZhiboBus.git"/>
-    <project groups="liveSDk0930"  url="git@code.gome.inc:mobile-android-business/GAmusement.git"/>
     <project groups="liveSDk0930" branch="liveSDK0930" url="git@code.gome.inc:mobile-android-business/Gsuperplayerkit.git"/>
 
     <project groups="liveSDk0930"  url="git@code.gome.inc:mobile-android-video/VideoInterface.git"/>
@@ -143,6 +142,7 @@
     <project groups="liveSDk0930"  branch="liveSDk0930"  url="git@code.gome.inc:mobile-android-mcp/GEntMediaPicker.git"/>
     <project groups="liveSDk0930"  branch="master"  url="git@code.gome.inc:mobile-android-business/GHomeAddInterface.git"/>
     <project groups="liveSDk0930"  branch="master"  url="git@code.gome.inc:mobile-android-business/GHomeAdd.git"/>
+    <project groups="liveSDk0930"  url="git@code.gome.inc:mobile-android-business/GAmusement.git"/>
 
 
 
