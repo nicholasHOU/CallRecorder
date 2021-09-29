@@ -113,7 +113,7 @@
 
     <project url="git@code.gome.inc:mobile-android-business/GOnlinememberCard.git"/>
 
-    <project groups="im" url="git@code.gome.inc:mobile-android-business/MFriendCircle.git"/>
+    <project groups="liveSDk0930" branch="liveSDk0930" url="git@code.gome.inc:mobile-android-business/MFriendCircle.git"/>
     <project groups="im" url="git@code.gome.inc:mobile-android-business/MSocial.git"/>
     <project groups="liveSDk0930" branch="liveSDk0930"  url="git@code.gome.inc:mobile-android-business/MIm.git"/>
     <project groups="im" url="git@code.gome.inc:mobile-android-business/MFriends.git"/>
