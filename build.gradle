@@ -29,6 +29,12 @@ buildscript {
          * 处理多渠道
          */
         classpath 'com.android.gome.cary:plugin:0.0.5'
+        /**
+         * TODO
+         * add by yangbo
+         * 删除冗余资源
+         */
+        classpath 'com.gome.utils:apkscan:1.0.2'
         classpath 'com.huawei.agconnect:agcp:1.4.1.300'
 
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
@@ -138,9 +144,9 @@ ext.deps = [
         GMsc                 : 'com.gome.ecmall:msc:1.0.4@aar',
         GMscStaff            : 'com.gome.staff:msc:21.7.16@aar',
         GAVSdk               : 'com.gome.third:sessionsdk:21.7.22',
-        SLiteAVSDK           : 'com.tencent.liteav:LiteAVSDK_Professional:8.2.9809', //专业版
+//        SLiteAVSDK           : 'com.tencent.liteav:LiteAVSDK_Professional:8.2.9809', //专业版
         //SLiteAVSDK        : 'com.tencent.liteavsdk:LiteAVSDK_Smart:latest.release', //普通版
-        //SLiteAVSDK        : 'com.gome.zhibo:LiteAVSDK_Enterprise:7.5.9318', //企业版
+        SLiteAVSDK        : 'com.gome.zhibo:LiteAVSDK_Enterprise:9.1.10566', //企业版
         GSuperplayerSDK      : 'com.gome.ecmall:superplayer:1.0.7',//播放器
         GImage               : 'com.gome.mcp:image:2.8.8',
         GCACHE               : 'com.gome.mcp:cache:' + getProperty('AAR_MCP_VERSION') + '@aar',
@@ -198,8 +204,10 @@ ext.deps = [
         GOaid                : 'com.gome.third.oaid:oaid:1.0.25@aar',
         GAdSDK               :'cn.com.gomeplus.ad:gomeplus-ad-SDK:1.4.2@aar',
         SConstraintSolver    : 'com.android.support.constraint:constraint-layout-solver:1.1.3',
-        SExif            : 'com.android.support:exifinterface:28.0.0',
-
+        SExif                : 'com.android.support:exifinterface:28.0.0',
+        SAdapterHelper       : 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.50',
+        SLuBan               : 'top.zibin:Luban:1.1.8',
+        SPickerView          : 'com.contrarywind:Android-PickerView:4.1.9',
         GTheme               : 'com.gome.ecmall:theme:' + getProperty('AAR_GTHEME_VERSION') + '@aar',
         GPermission          : 'com.gome.ecmall:permission:' + getProperty('AAR_GPERMISSION_VERSION') + '@aar',
         GMVP                 : 'com.gome.mcp:mvp:' + getProperty('AAR_MCP_VERSION') + '@aar',
@@ -218,7 +226,7 @@ ext.deps = [
         GFaceLive            : false ? project(':GFaceLive') : 'com.gome.mobile.common:facelive:' + getProperty('AAR_GFACELIVE_VERSION') + '@aar',
         GShare               : false ? project(':GShare') : 'com.gome.mcp:share:' + getProperty('AAR_MCP_GSHARE_VERSION') + '@aar',
         GShareBus            : false ? project(':GShareBus') : 'com.gome.ecmall:sharebus:' + getProperty('AAR_GSHARE_BUS_VERSION') + '@aar',
-        GView                : false ? project(':GView') : 'cn.gome.staff.ui:view:' + getProperty('AAR_UI_VIEW_VERSION') + '@aar',
+        //GView                : false ? project(':GView') : 'cn.gome.staff.ui:view:' + getProperty('AAR_UI_VIEW_VERSION') + '@aar',
         GPushService         : 'com.gome.ecmall:pushservice:' + getProperty('AAR_GPUSH_SERVICE_VERSION') + '@aar',
         GPushCore            : false ? project(':GPushCore') : 'com.gome.ecmall:pushcore:' + getProperty('AAR_GPUSH_CORE_VERSION') + '@aar',
         GPushGome            : false ? project(':GPushGome') : 'com.gome.ecmall:pushgome:' + getProperty('AAR_GPUSH_GOME_VERSION') + '@aar',
@@ -272,7 +280,8 @@ ext.deps = [
         GMaterialOrder       : rootProject.ext.proDeps ? project(':GMaterialOrder') : 'com.gome.ecmall:materialorder:' + getProperty('AAR_GMATERIAL_ORDER_VERSION') + '@aar',
         GX5Lib               : false ? project(':GX5Lib') : 'com.gome.mcp:gx5:' + getProperty('AAR_GX5_VERSION') + '@aar',
         GProductDetail       : rootProject.ext.proDeps ? project(':GProductDetail') : 'com.gome.ecmall:product:' + getProperty('AAR_GPRODUCT_VERSION') + '@aar',
-        GZxingScan           : false ? project(':GPhotoScan') : 'com.gome.mcp:gzxing:' + getProperty('AAR_GZING_VERSION') + '@aar',
+        GZxingScan           : rootProject.ext.proDeps ? project(':GPhotoScan') : 'com.gome.mcp:gzxing:' + getProperty('AAR_GZING_VERSION') + '@aar',
+        GQrScan              : rootProject.ext.proDeps ? project(':GQrScan') : 'com.gome.ecmall:qrscan:' + getProperty('AAR_QR_SCAN_VERSION') + '@aar',
         GGomeCurrency        : rootProject.ext.proDeps ? project(':GGomeCurrency') : 'com.gome.ecmall:ggomecurrency:' + getProperty('AAR_GGOMECURRENCY_VERSION') + '@aar',
         GProductSearch       : rootProject.ext.proDeps ? project(':GProductSearch') : 'com.gome.ecmall:productsearch:' + getProperty('AAR_GPRODUCT_SEARCH_VERSION') + '@aar',
         GShop                : rootProject.ext.proDeps ? project(':GShop') : 'com.gome.ecmall:gshop:' + getProperty('AAR_GSHOP_VERSION') + '@aar',
@@ -337,8 +346,22 @@ ext.deps = [
         IMPluginRedenvelope   : false ? project(":im-plugin-redenvelope") : 'com.gome.ecmall.implugin:redenvelope:' + getProperty('AAR_IM_PLUGIN_RED_ENVELOPE_VERSION') + '@aar',
         IMPluginVoicetotext   : false ? project(':im-plugin-voicetotext') : 'com.gome.ecmall.implugin:voicetotext:' + getProperty('AAR_IM_PLUGIN_VOICE_TO_TEXT_VERSION') + '@aar',
         IMPluginVideoChat     : false ? project(':im-plugin-videochat') : 'com.gome.ecmall.implugin:videochat:' + getProperty('AAR_IM_PLUGIN_VIDEO_CHAT_VERSION') + '@aar',
-        GViewTracker          : rootProject.ext.proDeps ? project(':GViewTracker') : 'com.gome.viewtracker:viewtracker:'+getProperty('AAR_VIEW_TRACKER_VERSION') + '@aar'
+        GViewTracker          : rootProject.ext.proDeps ? project(':GViewTracker') : 'com.gome.viewtracker:viewtracker:'+getProperty('AAR_VIEW_TRACKER_VERSION') + '@aar',
 
+        GLog                 : 'com.gome.mcp:log:2.9.3@aar',
+        GVideoLiteAVSDK      : 'com.gome.zhibo:LiteAVSDK_Enterprise:9.1.10566', //企业版
+        GStatusView          : rootProject.ext.proDeps ? project(':GStatusView') : 'cn.gome.staff.ui:statusview:' + getProperty('AAR_UI_STATUSVIEW_VERSION') + '@aar',
+        VideoInterface       : rootProject.ext.proDeps ? project(':VideoInterface') : 'cn.gome.video:vinterface:' + getProperty('AAR_VIDEOINTER_VERSION'),
+        GHomeAddInterface    : rootProject.ext.proDeps ? project(':GHomeAddInterface') : 'com.gome.ecmall:homeaddinter:' + getProperty('AAR_HOMEADDINTER_VERSION'),
+        GEntMediaPicker      : rootProject.ext.proDeps ? project(':GEntMediaPicker') : 'com.gome.mcp:ent-mediapicker:' + getProperty('AAR_ENTMEDIAPICKER_VERSION'),
+        VideoSearch          : rootProject.ext.proDeps ? project(':VideoSearch') : 'cn.gome.video:vsearch:' + getProperty('AAR_VIDEOSEARCH_VERSION'),
+        VideoEdit            : rootProject.ext.proDeps ? project(':VideoEdit') : 'cn.gome.video:vedit:' + getProperty('AAR_VIDEOEDIT_VERSION'),
+        GVideoRecording      : rootProject.ext.proDeps ? project('GVideoRecording') : 'cn.gome.video:gzhibo_record:' + getProperty('AAR_VIDEORECORDUGC_VERSION'),
+        GVideoRecordingUgcKit: rootProject.ext.proDeps ? project('GVideoRecordingUgcKit') : 'cn.gome.video:gzhibo_ugckit:' + getProperty('AAR_VIDEORECORDUGCKIT_VERSION'),
+        GHomeAdd             : rootProject.ext.proDeps ? project(':GHomeAdd') : 'com.gome.ecmall:homeadd:' + getProperty('AAR_HOMEADD_VERSION'),
+        GBusinessView        : rootProject.ext.proDeps ? project(':GBusinessView') : 'com.gome.business.view:businessview:' + getProperty('AAR_BUSINESSVIEW_VERSION'),
+        GAmusement           : rootProject.ext.proDeps ? project(':GAmusement') : 'com.gome.ecmall:amusement:' + getProperty('AAR_AMUSEMENT_VERSION'),
+        GAnimView            : 'io.github.tencent:vap:2.0.20'
 ]
 /**
  * depMcp dep aar, default exclude transitive dependencies
