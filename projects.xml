@@ -92,7 +92,7 @@
     <project url="git@code.gome.inc:mobile-android-business/GBCms.git" />
     <project url="git@code.gome.inc:mobile-android-business/GShopCarBus.git" />
     <project groups="share" url="git@code.gome.inc:mobile-android-business/GGomeShareBus.git" />
-    <project branch="master" url="git@code.gome.inc:mobile-android-business/GSocialService.git" />
+    <project groups="liveSDk0930" branch="liveSDk0930" url="git@code.gome.inc:mobile-android-business/GSocialService.git" />
     <project groups="liveSDk0930" branch="liveSDk0930"
         url="git@code.gome.inc:mobile-android-common/GHybrid.git" />
     <project url="git@code.gome.inc:mobile-android-business/GCashierdesk.git" />
