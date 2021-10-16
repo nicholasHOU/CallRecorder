@@ -1,4 +1,4 @@
-<?xml version="1.0" ?><manifest branch="publish" bundleOpen="true" host="git@code.gome.inc:">
+<?xml version="1.0" ?><manifest branch="platformPublish64" bundleOpen="true" host="git@code.gome.inc:">
     <!--私有工程-->
     <project branch="master" groups="private" url="git@code.gome.inc:mobile-android-admin/buildsrc.git"/>
     <project groups="private" url="git@code.gome.inc:mobile-android/GWorkspace.git"/>
@@ -135,5 +135,5 @@
     <project branch="master" url="git@code.gome.inc:mobile-android-business/Gsuperplayerkit.git"/>
 
     <!--主工程-->
-    <project app="true" groups="app" path="GomeApp" branch="platformPublish64" url="git@code.gome.inc:mobile-android/GomePlus.git"/>
+    <project app="true" groups="app" path="GomeApp" url="git@code.gome.inc:mobile-android/GomePlus.git"/>
 </manifest>
