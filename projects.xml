@@ -135,5 +135,5 @@
     <project branch="master" url="git@code.gome.inc:mobile-android-business/Gsuperplayerkit.git"/>
 
     <!--主工程-->
-    <project app="true" groups="app" path="GomeApp" url="git@code.gome.inc:mobile-android/GomePlus.git"/>
+    <project app="true" groups="app" path="GomeApp" branch="platformPublish64" url="git@code.gome.inc:mobile-android/GomePlus.git"/>
 </manifest>
