@@ -92,7 +92,7 @@
     <project url="git@code.gome.inc:mobile-android-business/GBCms.git" />
     <project url="git@code.gome.inc:mobile-android-business/GShopCarBus.git" />
     <project groups="share" url="git@code.gome.inc:mobile-android-business/GGomeShareBus.git" />
-    <project branch="master" url="git@code.gome.inc:mobile-android-business/GSocialService.git" />
+    <project groups="liveSDk0930" branch="liveSDk0930" url="git@code.gome.inc:mobile-android-business/GSocialService.git" />
     <project groups="liveSDk0930" branch="liveSDk0930"
         url="git@code.gome.inc:mobile-android-common/GHybrid.git" />
     <project url="git@code.gome.inc:mobile-android-business/GCashierdesk.git" />
@@ -149,7 +149,8 @@
 
     <project groups="liveSDk0930" branch="liveSDk0930" artifactId="product" bundleOpen="false"
         url="git@code.gome.inc:mobile-android-business/GProductDetail.git" />
-    <project url="git@code.gome.inc:mobile-android-business/GShoppingCart.git" />
+    <project groups="liveSDk0930" branch="liveSDk0930"
+        url="git@code.gome.inc:mobile-android-business/GShoppingCart.git" />
     <project url="git@code.gome.inc:mobile-android-business/GShopCart.git" />
     <project groups="liveSDk0930" branch="liveSDk0930"
         url="git@code.gome.inc:mobile-android-business/GSetting.git" />
@@ -181,6 +182,7 @@
         url="git@code.gome.inc:mobile-android-business/GHomeAdd.git" />
     <project groups="liveSDk0930" branch="liveSDk0930"
         url="git@code.gome.inc:mobile-android-business/GAmusement.git" />
+
 
     <!--主工程-->
     <project app="true" groups="liveSDk0930" branch="liveSDk0930" path="GomeApp"
