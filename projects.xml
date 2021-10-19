@@ -185,6 +185,6 @@
 
 
     <!--主工程-->
-    <project app="true" groups="liveSDk0930" branch="liveSDk0930" path="GomeApp"
+    <project app="true" groups="app" branch="liveSDk0930" path="GomeApp"
         url="git@code.gome.inc:mobile-android/GomePlus.git" />
 </manifest>
