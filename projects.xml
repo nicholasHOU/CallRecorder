@@ -59,7 +59,6 @@
     <project groups="core" path="GCore"  url="git@code.gome.inc:mobile-android-common/GCore-common.git"/>
 
     <project url="git@code.gome.inc:mobile-android-business/GLogin.git"/>
-    <project url="git@code.gome.inc:mobile-android-business/GLoginBusiness.git"/>
     <project url="git@code.gome.inc:mobile-android-business/GPullrefresh.git"/>
     <project url="git@code.gome.inc:mobile-android-business/GCmbPay.git"/>
     <project url="git@code.gome.inc:mobile-android-business/GBaiTiao.git"/>
