@@ -84,7 +84,7 @@
     <project url="git@code.gome.inc:mobile-android-business/GBCms.git" />
     <project url="git@code.gome.inc:mobile-android-business/GShopCarBus.git" />
     <project url="git@code.gome.inc:mobile-android-business/GGomeShareBus.git" />
-    <project url="git@code.gome.inc:mobile-android-business/GSocialService.git" />
+    <project branch="master" url="git@code.gome.inc:mobile-android-business/GSocialService.git" />
     <project url="git@code.gome.inc:mobile-android-common/GHybrid.git" />
     <project url="git@code.gome.inc:mobile-android-business/GCashierdesk.git" />
     <project url="git@code.gome.inc:mobile-android-common/GShelvesWidget.git" />
