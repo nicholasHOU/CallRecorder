@@ -1043,21 +1043,25 @@ def cmd_compile_merge(args):
             for m in includeModules:
                 if os.path.exists(os.path.join(dir_current, m)) and os.path.isdir(os.path.join(dir_current, m)):
 
-                    mergeReustLog.write(u'开始合并%s\n' % m)
+                    mergeReustLog.write(u'开始合并: %s\n' % m)
                     # 执行合并命令
                     merge_result = os.popen(cmd % (m, branch)).read()
-                    mergeReustLog.write(u'merge_result:\n')
-                    mergeReustLog.write(merge_result)
 
-                    if 'Already up to date' in merge_result:
+                    if '' == merge_result:
+                        merge_result = u'未获取到执行结果，请查看>>> 请查看>>> 请查看>>>\n'
+                        print merge_result
+                    elif 'Already up to date' in merge_result:
                         print u'%s分支没有任何修改' % branch
                     elif 'CONFLICT' in merge_result:
-                        sloge(u'我屮艸芔茻，有冲突，记得去解决 >>>err')
+                        sloge(u'我屮艸芔茻，有冲突，记得去解决 \n >>> err >>> err >>> err')
+                    elif 'not something we can merge' in merge_result:
+                        print u'本项目应该没有该分支-%s，请检查后再处理' % branch
                     else:
                         print u'记得去push'
 
-                    log = u"%s，合并完成\n==================================================================\n\n" % m
+                    log = u"%s，合并结束\n==================================================================\n\n" % m
                     print log
+                    mergeReustLog.write(u'merge_result: %s' % merge_result)
                     mergeReustLog.write(log)
                 else:
                     log = u'%s项目不存在\n================================================================== >>>err\n\n' % m
@@ -1232,7 +1236,7 @@ if __name__ == '__main__':
 
     parser_merge = subparsers.add_parser("merge", help=u"合并")
     parser_merge.set_defaults(func=cmd_compile_merge)
-    parser_merge.add_argument('-b', "--branch", type=str, help=u'分支名')
+    parser_merge.add_argument('-b', "--branch", type=str, help=u'分支名(origin/branch)')
 
     # 切换远程地址
     parser_remote = subparsers.add_parser("remote", help=u"远程地址")
