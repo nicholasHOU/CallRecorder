@@ -184,7 +184,7 @@ ext.deps = [
         GRouter              : 'com.gutils.router:router:' + getProperty('LIB_ROUTER_VERSION') + '@aar',
 
         GSafekeyboard        : 'com.gome.mcp:safeKeyboard:' +  getProperty('AAR_GSAFEKEYBOARD_VERSION') ,
-        GUpdate              : 'com.gome.mcp:update:2.8.9',
+        GUpdate              : 'com.gome.mcp:update:2.9.4',
         GYunNengTimeWidget   : 'com.gome.ecmall:yunnengtimewidget:3.1.0@aar',
         GWap                 : 'com.gome.mcp:wap:' + getProperty('AAR_MCP_WAP_VERSION') + '@aar',
         STitlebar            : 'cn.gome.staff.ui:titlebar:' + getProperty('AAR_STITLEBAR_VERSION') + '@aar',
@@ -265,7 +265,6 @@ ext.deps = [
         GDXRisk              : false ? project(':GDXRisk') : 'com.gome.mcp:dxrisk:' + getProperty('AAR_GDXRISK_VERSION') + '@aar',
         GLogin               : rootProject.ext.proDeps ? project(':GLogin') : 'com.gome.ecmall:login:' + getProperty('AAR_GLOGIN_VERSION') + '@aar',
         GLoginAuth           : 'com.gome.ecmall:login-auth:Release-V1.0.0@aar',
-        GLoginBusiness       : rootProject.ext.proDeps ? project(':GLoginBusiness') : 'com.gome.ecmall:loginbusiness:' + getProperty('AAR_GLOGIN_BUSINESS_VERSION') + '@aar',
         GPullrefresh         : false ? project(':GPullrefresh') : 'com.gome.ecmall:pullrefresh:' + getProperty('AAR_GPULLREFRESH_VERSION') + '@aar',
         GCmbPay              : rootProject.ext.proDeps ? project(':GCmbPay') : 'com.gome.cmbpay:cmbpay:' + getProperty('AAR_CMBPAY_VERSION') + '@aar',
         GTongBaoSdk          : rootProject.ext.proDeps ? project(':GTongBaoSdk') : 'com.gome.ecmall:gomepay:' + getProperty('AAR_GOMEPAY_VERSION') + '@aar',
