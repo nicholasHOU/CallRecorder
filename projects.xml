@@ -59,7 +59,6 @@
     <project groups="core" path="GCore" url="git@code.gome.inc:mobile-android-common/GCore-common.git" />
 
     <project  url="git@code.gome.inc:mobile-android-business/GLogin.git"/>
-    <project url="git@code.gome.inc:mobile-android-business/GLoginBusiness.git"/>
     <project url="git@code.gome.inc:mobile-android-business/GPullrefresh.git"/>
     <project url="git@code.gome.inc:mobile-android-business/GCmbPay.git"/>
     <project url="git@code.gome.inc:mobile-android-business/GBaiTiao.git"/>
@@ -68,8 +67,7 @@
     <!--支持3D Wap-->
     <project url="git@code.gome.inc:mobile-android-repo/GX5Lib.git" />
     <project url="git@code.gome.inc:mobile-android-business/GRouterInterface.git" />
-    <project 
-        url="git@code.gome.inc:mobile-android-video/VideoInterface.git" />
+    <project branch="master" url="git@code.gome.inc:mobile-android-video/VideoInterface.git" />
     <project branch="master" url="git@code.gome.inc:mobile-android-business/GBusinessView.git" />
 
     <project url="git@code.gome.inc:mobile-android-business/GBusinessDeps.git" />
@@ -142,15 +140,15 @@
     <project url="git@code.gome.inc:mobile-android-business/GStoreChannel.git" />
     <project branch="master" url="git@code.gome.inc:mobile-android-business/GHomeAddInterface.git" />
     <project url="git@code.gome.inc:mobile-android-business/GZhiboBus.git" />
-    <project url="git@code.gome.inc:mobile-android-business/Gsuperplayerkit.git" />
+    <project branch="master" url="git@code.gome.inc:mobile-android-business/Gsuperplayerkit.git" />
 
-    <project url="git@code.gome.inc:mobile-android-video/GVideoRecordingUgcKit.git" />
-    <project url="git@code.gome.inc:mobile-android-video/GVideoRecording.git" />
-    <project url="git@code.gome.inc:mobile-android-video/VideoEdit.git" />
-    <project url="git@code.gome.inc:mobile-android-video/VideoSearch.git" />
-    <project url="git@code.gome.inc:mobile-android-mcp/GEntMediaPicker.git" />
+    <project branch="master" url="git@code.gome.inc:mobile-android-video/GVideoRecordingUgcKit.git" />
+    <project branch="master" url="git@code.gome.inc:mobile-android-video/GVideoRecording.git" />
+    <project branch="master" url="git@code.gome.inc:mobile-android-video/VideoEdit.git" />
+    <project branch="master" url="git@code.gome.inc:mobile-android-video/VideoSearch.git" />
+    <project branch="master" url="git@code.gome.inc:mobile-android-mcp/GEntMediaPicker.git" />
     <project branch="master" url="git@code.gome.inc:mobile-android-business/GHomeAdd.git" />
-    <project url="git@code.gome.inc:mobile-android-business/GAmusement.git" />
+    <project branch="master" url="git@code.gome.inc:mobile-android-business/GAmusement.git" />
 
     <!--主工程-->
     <project app="true" groups="app" path="GomeApp" url="git@code.gome.inc:mobile-android/GomePlus.git" />
