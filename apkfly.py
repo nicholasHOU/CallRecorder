@@ -64,6 +64,13 @@ def slogr(success):
     """
     slog(u"O(∩_∩)O哈哈~" if success else u"╮(╯▽╰)╭哎")
 
+def sloge4red(message):
+    """
+    打印异常日志，红色文字
+    :param message:
+    :return:
+    """
+    print "\033[1;31m[Exception] %s\033[0m" % message
 
 def check_root_project():
     """
@@ -1037,36 +1044,47 @@ def cmd_compile_merge(args):
     cmd = "cd %s && git merge %s"
 
     if branch:
-        with open(os.path.join('.idea', 'caches', 'merge-result.log'), "w") as mergeReustLog: # 合并详细结果，缓存文件
+        mergeLogName = 'merge-result.log'
+        with open(os.path.join(mergeLogName), "w") as mergeReustLog: # 合并详细结果，缓存文件
             # settings.gradle 中的module配置
             includeModules = deploy.getIncludeModule()
             for m in includeModules:
+                startlog = u'开始合并: %s' % m
+                print startlog
+                mergeReustLog.write(startlog)
+
                 if os.path.exists(os.path.join(dir_current, m)) and os.path.isdir(os.path.join(dir_current, m)):
 
-                    mergeReustLog.write(u'开始合并: %s\n' % m)
                     # 执行合并命令
                     merge_result = os.popen(cmd % (m, branch)).read()
 
                     if '' == merge_result:
-                        merge_result = u'未获取到执行结果，请查看>>> 请查看>>> 请查看>>>\n'
-                        print merge_result
+                        merge_result = u'未获取到执行结果，本项目好像没有%s这个分支 <Err>' % branch
+                        sloge4red(merge_result)
                     elif 'Already up to date' in merge_result:
-                        print u'%s分支没有任何修改' % branch
+                        print u'合并成功，分支<%s>没有任何修改' % branch
+                    elif 'Fast-forward' in merge_result:
+                        print u'合并成功，记得去push [Fast-forward]'
+                    elif "Merge made by the 'recursiv" in merge_result:
+                        print u"合并成功，记得去push [Merge made by the 'recursive' strategy]"
                     elif 'CONFLICT' in merge_result:
-                        sloge(u'我屮艸芔茻，有冲突，记得去解决 \n >>> err >>> err >>> err')
+                        sloge4red(u'合并出错，屮艸芔茻，有冲突 <Err>')
                     elif 'not something we can merge' in merge_result:
-                        print u'本项目应该没有该分支-%s，请检查后再处理' % branch
+                        sloge4red(u'本项目应该没有该分支-%s，请检查后再处理 <Err>' % branch)
                     else:
-                        print u'记得去push'
+                        sloge4red(u'合并完成，无法分析合并log，请自行分析 <Warn>')
 
-                    log = u"%s，合并结束\n==================================================================\n\n" % m
-                    print log
-                    mergeReustLog.write(u'merge_result: %s' % merge_result)
-                    mergeReustLog.write(log)
+                    mergeReustLog.write(u'\nmerge_result:\n%s\n' % merge_result)
                 else:
-                    log = u'%s项目不存在\n================================================================== >>>err\n\n' % m
-                    print log
-                    mergeReustLog.write(log)
+                    log = u'项目不存在，请核实 <Err>'
+                    sloge4red(log)
+                    mergeReustLog.write('\n%s\n' % log)
+
+                endlog = u"合并结束\n-----------------------------------------------------"
+                print endlog
+                mergeReustLog.write(endlog + '\n')
+
+        print u'\n\033[1;46;32m合并详细日志：根目录的这个文件%s\033[0m' % mergeLogName
 
 def cmd_remote(args):
     set = args.set
