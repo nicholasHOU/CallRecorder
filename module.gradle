@@ -23,6 +23,10 @@ android {
                 setAbiFilters project.ext.has("abiFilters") ? project.ext.getProperty("abiFilters") : ["armeabi-v7a"]
             }
         }
+        //资源前缀
+        if (project.ext.has("resourcePrefix")) {
+            resourcePrefix project.ext.getProperty("resourcePrefix")
+        }
     }
 
     buildTypes {
