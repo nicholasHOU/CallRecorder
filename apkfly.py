@@ -1063,10 +1063,10 @@ def cmd_compile_merge(args):
         mergeType4 = 'CONFLICT'
         mergeType4M = []
 
-        mergeType5 = 'not something we can merge'
+        # 无法分析log
         mergeType5M = []
 
-        # 无法分析log
+        mergeType6 = 'not something we can merge'
         mergeType6M = []
 
         # 项目不存在
@@ -1102,12 +1102,12 @@ def cmd_compile_merge(args):
                     elif mergeType4 in merge_result:
                         sloge4red(u'合并出错，屮艸芔茻，有冲突 <Err>')
                         mergeType4M.append(m)
-                    elif mergeType5 in merge_result:
+                    elif mergeType6 in merge_result:
                         sloge4red(u'本项目应该没有该分支-%s，请检查后再处理 <Err>' % branch)
-                        mergeType5M.append(m)
-                    else:
-                        sloge4red(u'合并完成，无法分析合并log，请自行分析 <Warn>')
                         mergeType6M.append(m)
+                    else:
+                        sloge4red(u'合并出错，无法分析合并log，请自行分析 <Warn>')
+                        mergeType5M.append(m)
                     mergeReustLog.write(u'\nmerge_result:\n%s\n' % merge_result)
                 else:
                     log = u'项目不存在，请核实 <Err>'
@@ -1146,12 +1146,12 @@ def cmd_compile_merge(args):
         printRed(msg4)
         print(mergeType4M)
 
-        msg5 = u'\n5、好像没有%s这个分支的项目，共%s个：「和第0条可能有重复」' % (branch, len(mergeType5M))
-        printYellow(msg5)
+        msg5 = u'\n5、合并出错，无法分析log，请自行查看的项目，共%s个：' % len(mergeType5M)
+        printRed(msg5)
         print(mergeType5M)
 
-        msg6 = u'\n6、合并完成，无法分析log请自行查看的项目，共%s个：' % len(mergeType6M)
-        printRed(msg6)
+        msg6 = u'\n6、好像没有%s这个分支的项目，共%s个：「和第0条可能有重复」' % (branch, len(mergeType6M))
+        printYellow(msg6)
         print(mergeType6M)
 
         msg7 = u'\n7、项目不存在，共%s个：' % len(mergeType7M)
@@ -1159,13 +1159,13 @@ def cmd_compile_merge(args):
         print(mergeType7M)
 
 def printGreen(message):
-    print "\033[0;36m%s\033[0m" % message
+    print "\033[4;36m%s\033[0m" % message
 
 def printRed(message):
-    print "\033[0;31m%s\033[0m" % message
+    print "\033[4;31m%s\033[0m" % message
 
 def printYellow(message):
-    print "\033[0;33m%s\033[0m" % message
+    print "\033[4;33m%s\033[0m" % message
 
 def cmd_remote(args):
     set = args.set
