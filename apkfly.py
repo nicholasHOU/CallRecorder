@@ -1335,7 +1335,7 @@ if __name__ == '__main__':
 
     parser_merge = subparsers.add_parser("merge", help=u"合并")
     parser_merge.set_defaults(func=cmd_compile_merge)
-    parser_merge.add_argument('-b', "--branch", type=str, help=u'分支名(origin/branch)')
+    parser_merge.add_argument('-b', "--branch", type=str, help=u'远程分支(-b origin/branch)；本地分支(-b branch)')
 
     # 切换远程地址
     parser_remote = subparsers.add_parser("remote", help=u"远程地址")
