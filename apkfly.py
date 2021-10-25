@@ -1119,33 +1119,53 @@ def cmd_compile_merge(args):
                 print endlog
                 mergeReustLog.write(endlog + '\n')
 
-        print u'\n\033[1;46;32m合并详细日志：根目录的这个文件%s\033[0m' % mergeLogName
+        print('\033[1;37;41m')     #下一目标输出背景为黑色，颜色红色高亮显示
+        print(' ' * 100)
+        print('\033[0m')
 
-        print u'\n总结如下，共处理%s个项目：' % moduleNum
+        print u'\n\033[1;35m合并详细日志：根目录的[%s]这个文件' % mergeLogName
+        print u'\n总结如下，共处理%s个项目：\033[0m' % moduleNum
 
-        print u'\n0、好像没有%s这个分支的项目，共%s个：' % (branch, len(mergeType0M))
+        msg0 = u'\n0、好像没有%s这个分支的项目，共%s个：' % (branch, len(mergeType0M))
+        printYellow(msg0)
         print(mergeType0M)
 
-        print u'\n1、合并成功，没有任何修改的项目，共%s个：' % len(mergeType1M)
+        msg1 = u'\n1、合并成功，没有任何修改的项目，共%s个：' % len(mergeType1M)
+        printGreen(msg1)
         print(mergeType1M)
 
-        print u'\n2、合并成功，记得去push的项目[Fast-forward]，共%s个：' % len(mergeType2M)
+        msg2 = u'\n2、合并成功，记得去push的项目[Fast-forward]，共%s个：' % len(mergeType2M)
+        printGreen(msg2)
         print(mergeType2M)
 
-        print u"\n3、合并成功，记得去push的项目[Merge made by the 'recursive' strategy]，共%s个：" % len(mergeType3M)
+        msg3 = u"\n3、合并成功，记得去push的项目[Merge made by the 'recursive' strategy]，共%s个：" % len(mergeType3M)
+        printGreen(msg3)
         print(mergeType3M)
 
-        print u'\n4、合并出错，屮艸芔茻，有冲突的项目，共%s个：' % len(mergeType4M)
+        msg4 = u'\n4、合并出错，屮艸芔茻，有冲突的项目，共%s个：' % len(mergeType4M)
+        printRed(msg4)
         print(mergeType4M)
 
-        print u'\n5、好像没有%s这个分支的项目，共%s个：「和第0条可能有重复」' % (branch, len(mergeType5M))
+        msg5 = u'\n5、好像没有%s这个分支的项目，共%s个：「和第0条可能有重复」' % (branch, len(mergeType5M))
+        printYellow(msg5)
         print(mergeType5M)
 
-        print u'\n6、合并完成，无法分析log请自行查看，共%s个：' % len(mergeType6M)
+        msg6 = u'\n6、合并完成，无法分析log请自行查看的项目，共%s个：' % len(mergeType6M)
+        printRed(msg6)
         print(mergeType6M)
 
-        print u'\n7、项目不存在，共%s个：' % len(mergeType7M)
+        msg7 = u'\n7、项目不存在，共%s个：' % len(mergeType7M)
+        printYellow(msg7)
         print(mergeType7M)
+
+def printGreen(message):
+    print "\033[0;36m%s\033[0m" % message
+
+def printRed(message):
+    print "\033[0;31m%s\033[0m" % message
+
+def printYellow(message):
+    print "\033[0;33m%s\033[0m" % message
 
 def cmd_remote(args):
     set = args.set
