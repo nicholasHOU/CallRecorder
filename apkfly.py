@@ -1045,9 +1045,37 @@ def cmd_compile_merge(args):
 
     if branch:
         mergeLogName = 'merge-result.log'
+
+        moduleNum = 0
+
+        mergeType0 = ''
+        mergeType0M = []
+
+        mergeType1 = 'Already up to date'
+        mergeType1M = []
+
+        mergeType2 = 'Fast-forward'
+        mergeType2M = []
+
+        mergeType3 = "Merge made by the 'recursiv"
+        mergeType3M = []
+
+        mergeType4 = 'CONFLICT'
+        mergeType4M = []
+
+        # 无法分析log
+        mergeType5M = []
+
+        mergeType6 = 'not something we can merge'
+        mergeType6M = []
+
+        # 项目不存在
+        mergeType7M = []
+
         with open(os.path.join(mergeLogName), "w") as mergeReustLog: # 合并详细结果，缓存文件
             # settings.gradle 中的module配置
             includeModules = deploy.getIncludeModule()
+            moduleNum = len(includeModules)
             for m in includeModules:
                 startlog = u'开始合并: %s' % m
                 print startlog
@@ -1058,33 +1086,86 @@ def cmd_compile_merge(args):
                     # 执行合并命令
                     merge_result = os.popen(cmd % (m, branch)).read()
 
-                    if '' == merge_result:
+                    if mergeType0 == merge_result:
                         merge_result = u'未获取到执行结果，本项目好像没有%s这个分支 <Err>' % branch
                         sloge4red(merge_result)
-                    elif 'Already up to date' in merge_result:
+                        mergeType0M.append(m)
+                    elif mergeType1 in merge_result:
                         print u'合并成功，分支<%s>没有任何修改' % branch
-                    elif 'Fast-forward' in merge_result:
+                        mergeType1M.append(m)
+                    elif mergeType2 in merge_result:
                         print u'合并成功，记得去push [Fast-forward]'
-                    elif "Merge made by the 'recursiv" in merge_result:
+                        mergeType2M.append(m)
+                    elif mergeType3 in merge_result:
                         print u"合并成功，记得去push [Merge made by the 'recursive' strategy]"
-                    elif 'CONFLICT' in merge_result:
+                        mergeType3M.append(m)
+                    elif mergeType4 in merge_result:
                         sloge4red(u'合并出错，屮艸芔茻，有冲突 <Err>')
-                    elif 'not something we can merge' in merge_result:
+                        mergeType4M.append(m)
+                    elif mergeType6 in merge_result:
                         sloge4red(u'本项目应该没有该分支-%s，请检查后再处理 <Err>' % branch)
+                        mergeType6M.append(m)
                     else:
-                        sloge4red(u'合并完成，无法分析合并log，请自行分析 <Warn>')
-
+                        sloge4red(u'合并出错，无法分析合并log，请自行分析 <Warn>')
+                        mergeType5M.append(m)
                     mergeReustLog.write(u'\nmerge_result:\n%s\n' % merge_result)
                 else:
                     log = u'项目不存在，请核实 <Err>'
                     sloge4red(log)
                     mergeReustLog.write('\n%s\n' % log)
+                    mergeType7M.append(m)
 
                 endlog = u"合并结束\n-----------------------------------------------------"
                 print endlog
                 mergeReustLog.write(endlog + '\n')
 
-        print u'\n\033[1;46;32m合并详细日志：根目录的这个文件%s\033[0m' % mergeLogName
+        print('\033[1;37;41m')     #下一目标输出背景为黑色，颜色红色高亮显示
+        print(' ' * 100)
+        print('\033[0m')
+
+        print u'\n\033[1;35m合并详细日志：根目录的[%s]这个文件' % mergeLogName
+        print u'\n总结如下，共处理%s个项目：\033[0m' % moduleNum
+
+        msg0 = u'\n0、好像没有%s这个分支的项目，共%s个：' % (branch, len(mergeType0M))
+        printYellow(msg0)
+        print(mergeType0M)
+
+        msg1 = u'\n1、合并成功，没有任何修改的项目，共%s个：' % len(mergeType1M)
+        printGreen(msg1)
+        print(mergeType1M)
+
+        msg2 = u'\n2、合并成功，记得去push的项目[Fast-forward]，共%s个：' % len(mergeType2M)
+        printGreen(msg2)
+        print(mergeType2M)
+
+        msg3 = u"\n3、合并成功，记得去push的项目[Merge made by the 'recursive' strategy]，共%s个：" % len(mergeType3M)
+        printGreen(msg3)
+        print(mergeType3M)
+
+        msg4 = u'\n4、合并出错，屮艸芔茻，有冲突的项目，共%s个：' % len(mergeType4M)
+        printRed(msg4)
+        print(mergeType4M)
+
+        msg5 = u'\n5、合并出错，无法分析log，请自行查看的项目，共%s个：' % len(mergeType5M)
+        printRed(msg5)
+        print(mergeType5M)
+
+        msg6 = u'\n6、好像没有%s这个分支的项目，共%s个：「和第0条可能有重复」' % (branch, len(mergeType6M))
+        printYellow(msg6)
+        print(mergeType6M)
+
+        msg7 = u'\n7、项目不存在，共%s个：' % len(mergeType7M)
+        printYellow(msg7)
+        print(mergeType7M)
+
+def printGreen(message):
+    print "\033[4;36m%s\033[0m" % message
+
+def printRed(message):
+    print "\033[4;31m%s\033[0m" % message
+
+def printYellow(message):
+    print "\033[4;33m%s\033[0m" % message
 
 def cmd_remote(args):
     set = args.set
@@ -1254,7 +1335,7 @@ if __name__ == '__main__':
 
     parser_merge = subparsers.add_parser("merge", help=u"合并")
     parser_merge.set_defaults(func=cmd_compile_merge)
-    parser_merge.add_argument('-b', "--branch", type=str, help=u'分支名(origin/branch)')
+    parser_merge.add_argument('-b', "--branch", type=str, help=u'远程分支(-b origin/branch)；本地分支(-b branch)')
 
     # 切换远程地址
     parser_remote = subparsers.add_parser("remote", help=u"远程地址")
