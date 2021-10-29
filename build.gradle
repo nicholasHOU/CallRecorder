@@ -246,7 +246,7 @@ ext.deps = [
 
         // Flutter模块
         GFlutterPluginSdk    : false ? project(":GFlutterPluginSDK") : 'com.gome.mcp:flutter-plugin-sdk:' + getProperty('AAR_FLUTTER_PLUGIN_SDK_VERSION') + '@aar',
-        GFlutterModule       : 'com.gome.ecmall.flutter:gm_bang_flutter:1.0.67' ,
+        GFlutterModule       : false ? project(":flutter") : 'com.gome.ecmall.flutter:gm_bang_flutter:' + getProperty('AAR_FLUTTER_MODULE_VERSION') + '@aar',
         GFlutterBoost        : false ? project(":flutter_boost") : 'com.gome.ecmall.flutter:flutter_boost:' + getProperty('AAR_FLUTTER_MODULE_VERSION') + '@aar',
         //GdownLoad
         GDownload            : false ? project(":GDownload") : 'com.gome.ecmall:gdownload:' + getProperty('AAR_GDOWNLOAD_VERSION') + '@aar',
