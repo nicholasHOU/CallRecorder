@@ -1098,7 +1098,20 @@ def cmd_compile_merge(args):
             if os.path.exists(os.path.join(dir_current, m)) and os.path.isdir(os.path.join(dir_current, m)):
 
                 # 执行合并命令
-                merge_result = os.popen(cmd % (m, branch)).read()
+                # merge_result = os.popen(cmd % (m, branch)).read()
+
+                out_temp = tempfile.SpooledTemporaryFile(bufsize=10*1000)
+                fileno = out_temp.fileno()
+                # subprocess.PIPE 本身可容纳的量比较小，所以程序会卡死
+                process_check = subprocess.Popen(['git', 'merge', branch], stderr=fileno, stdout=fileno,
+                                                 cwd=os.path.join(dir_current, m))
+                code_check = process_check.wait()
+                # if code_check != 0:
+                #   continue
+
+                out_temp.seek(0)
+                merge_result = ''.join([x.rstrip() for x in out_temp.readlines()])
+                out_temp.close()
 
                 if mergeType1 in merge_result:
                     print u'合并成功，分支<%s>没有任何修改' % branch
@@ -1158,7 +1171,7 @@ def cmd_compile_merge(args):
     printRed(msg5)
     print(mergeType5M)
 
-    msg6 = u'\n6、好像没有%s这个分支的项目，共%s个：「和第5条中的项目可能有重复」' % (branch, len(mergeType6M))
+    msg6 = u'\n6、好像没有%s这个分支的项目，共%s个：' % (branch, len(mergeType6M))
     printYellow(msg6)
     print(mergeType6M)
 
