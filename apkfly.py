@@ -1067,9 +1067,6 @@ def cmd_compile_merge(args):
 
     mergeLogName = 'merge-result.log'
 
-    mergeType0 = ''
-    mergeType0M = []
-
     mergeType1 = 'Already up to date'
     mergeType1M = []
 
@@ -1103,11 +1100,7 @@ def cmd_compile_merge(args):
                 # 执行合并命令
                 merge_result = os.popen(cmd % (m, branch)).read()
 
-                if mergeType0 == merge_result:
-                    merge_result = u'未获取到执行结果，本项目好像没有%s这个分支 <Err>' % branch
-                    sloge4red(merge_result)
-                    mergeType0M.append(m)
-                elif mergeType1 in merge_result:
+                if mergeType1 in merge_result:
                     print u'合并成功，分支<%s>没有任何修改' % branch
                     mergeType1M.append(m)
                 elif mergeType2 in merge_result:
@@ -1136,16 +1129,14 @@ def cmd_compile_merge(args):
             print endlog
             mergeReustLog.write(endlog + '\n')
 
-    print('\033[1;37;41m')     #下一目标输出背景为黑色，颜色红色高亮显示
-    print(' ' * 100)
+    print('\033[33m')
+    print('-' * 100)
+    print('-' * 100)
+    print('-' * 100)
     print('\033[0m')
 
-    print u'\n\033[1;35m合并详细日志：根目录的[%s]这个文件' % mergeLogName
-    print u'\n总结如下，共处理%s个项目：\033[0m' % moduleNum
-
-    msg0 = u'\n0、好像没有%s这个分支的项目，共%s个：' % (branch, len(mergeType0M))
-    printYellow(msg0)
-    print(mergeType0M)
+    print u'\n\033[1;35m合并详细日志：根目录的[%s]这个文件\033[0m' % mergeLogName
+    print u'\n总结如下，共处理%s个项目：' % moduleNum
 
     msg1 = u'\n1、合并成功，没有任何修改的项目，共%s个：' % len(mergeType1M)
     printGreen(msg1)
@@ -1167,7 +1158,7 @@ def cmd_compile_merge(args):
     printRed(msg5)
     print(mergeType5M)
 
-    msg6 = u'\n6、好像没有%s这个分支的项目，共%s个：「和第0条可能有重复」' % (branch, len(mergeType6M))
+    msg6 = u'\n6、好像没有%s这个分支的项目，共%s个：「和第5条中的项目可能有重复」' % (branch, len(mergeType6M))
     printYellow(msg6)
     print(mergeType6M)
 
