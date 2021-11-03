@@ -1063,8 +1063,6 @@ def cmd_compile_merge(args):
 
     moduleNum = len(includeModules)
 
-    cmd = "cd %s && git merge %s"
-
     mergeLogName = 'merge-result.log'
 
     mergeType1 = 'Already up to date'
@@ -1090,7 +1088,11 @@ def cmd_compile_merge(args):
 
     with open(os.path.join(mergeLogName), "w") as mergeReustLog: # 合并详细结果，缓存文件
 
+        # for循环计数
+        forCount = 0
+
         for m in includeModules:
+            forCount = forCount + 1
             startlog = u'开始合并: %s' % m
             print startlog
             mergeReustLog.write(startlog)
@@ -1109,6 +1111,7 @@ def cmd_compile_merge(args):
                 # if code_check != 0:
                 #   continue
 
+                # 读取命令执行结果
                 out_temp.seek(0)
                 merge_result = ''.join([x.rstrip() for x in out_temp.readlines()])
                 out_temp.close()
@@ -1138,55 +1141,70 @@ def cmd_compile_merge(args):
                 mergeReustLog.write('\n%s\n' % log)
                 mergeType7M.append(m)
 
-            endlog = u"合并结束\n-----------------------------------------------------"
-            print endlog
-            mergeReustLog.write(endlog + '\n')
+            if forCount != moduleNum: # 最后一个不打印
+                endlog = u"合并结束\n-----------------------------------------------------"
+                print endlog
+                mergeReustLog.write(endlog + '\n')
 
     print('\033[33m')
     print('-' * 100)
-    print('-' * 100)
-    print('-' * 100)
     print('\033[0m')
 
-    print u'\n\033[1;35m合并详细日志：根目录的[%s]这个文件\033[0m' % mergeLogName
+    print u'\033[1;35m合并详细日志：根目录的[%s]这个文件\033[0m' % mergeLogName
     print u'\n总结如下，共处理%s个项目：' % moduleNum
 
-    msg1 = u'\n1、合并成功，没有任何修改的项目，共%s个：' % len(mergeType1M)
-    printGreen(msg1)
-    print(mergeType1M)
+    # 当前打印的序号，只打印有用的条目
+    printNum = 0
+    if len(mergeType1M) > 0:
+        printNum = printNum + 1
+        msg1 = u'\n%s、合并成功，没有任何修改的项目，共%s个：' % (printNum, len(mergeType1M))
+        printGreen(msg1)
+        print(mergeType1M)
 
-    msg2 = u'\n2、合并成功，记得去push的项目[Fast-forward]，共%s个：' % len(mergeType2M)
-    printGreen(msg2)
-    print(mergeType2M)
+    if len(mergeType2M) > 0:
+        printNum = printNum + 1
+        msg2 = u'\n%s、合并成功，记得去push的项目[Fast-forward]，共%s个：' % (printNum, len(mergeType2M))
+        printGreen(msg2)
+        print(mergeType2M)
 
-    msg3 = u"\n3、合并成功，记得去push的项目[Merge made by the 'recursive' strategy]，共%s个：" % len(mergeType3M)
-    printGreen(msg3)
-    print(mergeType3M)
+    if len(mergeType3M) > 0:
+        printNum = printNum + 1
+        msg3 = u"\n%s、合并成功，记得去push的项目[Merge made by the 'recursive' strategy]，共%s个：" % (printNum, len(mergeType3M))
+        printGreen(msg3)
+        print(mergeType3M)
 
-    msg4 = u'\n4、合并出错，屮艸芔茻，有冲突的项目，共%s个：' % len(mergeType4M)
-    printRed(msg4)
-    print(mergeType4M)
+    if len(mergeType4M) > 0:
+        printNum = printNum + 1
+        msg4 = u'\n%s、合并出错，屮艸芔茻，有冲突的项目，共%s个：' % (printNum, len(mergeType4M))
+        printRed(msg4)
+        print(mergeType4M)
 
-    msg5 = u'\n5、合并出错，无法分析log，请自行查看的项目，共%s个：' % len(mergeType5M)
-    printRed(msg5)
-    print(mergeType5M)
+    if len(mergeType5M) > 0:
+        printNum = printNum + 1
+        msg5 = u'\n%s、合并出错，无法分析log，请自行查看的项目，共%s个：' % (printNum, len(mergeType5M))
+        printRed(msg5)
+        print(mergeType5M)
 
-    msg6 = u'\n6、好像没有%s这个分支的项目，共%s个：' % (branch, len(mergeType6M))
-    printYellow(msg6)
-    print(mergeType6M)
+    if len(mergeType6M) > 0:
+        printNum = printNum + 1
+        msg6 = u'\n%s、好像没有%s这个分支的项目，共%s个：' % (printNum, branch, len(mergeType6M))
+        printYellow(msg6)
+        print(mergeType6M)
 
-    msg7 = u'\n7、项目不存在，共%s个：' % len(mergeType7M)
-    printYellow(msg7)
-    print(mergeType7M)
+    if len(mergeType7M) > 0:
+        printNum = printNum + 1
+        msg7 = u'\n%s、项目不存在，共%s个：' % (printNum, len(mergeType7M))
+        printYellow(msg7)
+        print(mergeType7M)
 
 def printGreen(message):
-    print "\033[4;36m%s\033[0m" % message
+    print "\033[1;36m%s\033[0m" % message
 
 def printRed(message):
-    print "\033[4;31m%s\033[0m" % message
+    print "\033[1;31m%s\033[0m" % message
 
 def printYellow(message):
-    print "\033[4;33m%s\033[0m" % message
+    print "\033[1;33m%s\033[0m" % message
 
 def cmd_remote(args):
     set = args.set
