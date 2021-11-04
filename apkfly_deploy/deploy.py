@@ -81,11 +81,14 @@ def deployMainAppDeps():
     mainModuleName = getMainModule(includeModules)
     print u"3、解析到主工程 %s" % mainModuleName
 
+    # 主工程信息
+    mainModuleInfo = ModuleInfo(mainModuleName, '', '')
+
     print u"4、把主工程上次部署的（依赖、排除）reset"
-    os.popen("cd %s && git checkout %s" % (mainModuleName, path_build_deps))
+    os.popen("cd %s && git checkout %s" % (mainModuleName, mainModuleInfo.getBuildFile()))
 
     print u"5、开始为主工程 %s build.gradle加入部署依赖" % mainModuleName
-    writeConfigurationsExcludesAndCompileToBuildGradle(ModuleInfo(mainModuleName, '', ''), moduleInfos)
+    writeConfigurationsExcludesAndCompileToBuildGradle(mainModuleInfo, moduleInfos)
 
     print u"部署完毕"
 
@@ -110,6 +113,9 @@ def getIncludeModule():
             includeModules.append(moduleName)
     return includeModules
 
+def printRed(message):
+    print "\033[4;31m%s\033[0m" % message
+
 def getModuleMavenInfo(includeModules):
     """获取module的maven信息
     :param includeModules:
@@ -124,7 +130,12 @@ def getModuleMavenInfo(includeModules):
             for includeModule in includeModules:
                 line_ = line.replace(' ', '')
                 if includeModule + ":" in line_:# 这里不能直接用line包含includeModule，应为module有MIm、MImlibrary这样的，如果只include MIm，MImlibrary也会被修改
-                    line = line.replace('rootProject.ext.proDeps', 'true')
+                    depTag = 'rootProject.ext.proDeps'
+                    if depTag not in line:
+                        # 有bug，有的不是这个关键字而直接写的 false
+                        printRed(u'%s项目没有打开源码依赖开关' % includeModule)
+                    else:
+                        line = line.replace(depTag, 'true')
                     break
             file_bak.write(line)
 
@@ -232,8 +243,11 @@ class ModuleInfo(object):
 
     def getBuildFile(self):
         if self.groupId == '':
-            # 本modulInfo对象为主工程 - 真快乐、帮帮、极简都依赖了coredeps.gradle
-            return os.path.join(dir_current, self.name, path_build_deps)
+            # 本modulInfo对象为主工程 - 真快乐、帮帮、极简使用coredeps.gradle，其他app使用build.gradle
+            depsPath = os.path.join(dir_current, self.name, path_build_deps)
+            if os.path.exists(depsPath):
+                depsPath
+            return os.path.join(dir_current, self.name, file_build_gradle)
         else:
             return os.path.join(dir_current, self.name, file_build_gradle)
 
