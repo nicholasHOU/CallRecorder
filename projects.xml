@@ -66,7 +66,7 @@
 
     <!--支持3D Wap-->
     <project url="git@code.gome.inc:mobile-android-repo/GX5Lib.git" />
-    <project url="git@code.gome.inc:mobile-android-business/GRouterInterface.git" />
+    <project branch="liveAuth1115" groups="videoMusic1130" url="git@code.gome.inc:mobile-android-business/GRouterInterface.git" />
     <project branch="master" url="git@code.gome.inc:mobile-android-video/VideoInterface.git" />
     <project branch="master" url="git@code.gome.inc:mobile-android-business/GBusinessView.git" />
 
@@ -85,10 +85,10 @@
     <project url="git@code.gome.inc:mobile-android-business/GShopCarBus.git" />
     <project url="git@code.gome.inc:mobile-android-business/GGomeShareBus.git" />
     <project branch="master" url="git@code.gome.inc:mobile-android-business/GSocialService.git" />
-    <project url="git@code.gome.inc:mobile-android-common/GHybrid.git" />
+    <project branch="liveAuth1115" groups="videoMusic1130" url="git@code.gome.inc:mobile-android-common/GHybrid.git" />
     <project url="git@code.gome.inc:mobile-android-business/GCashierdesk.git" />
     <project url="git@code.gome.inc:mobile-android-common/GShelvesWidget.git" />
-    <project url="git@code.gome.inc:mobile-android-business/GBusiness.git" />
+    <project branch="liveAuth1115" groups="videoMusic1130" url="git@code.gome.inc:mobile-android-business/GBusiness.git" />
 
     <project url="git@code.gome.inc:mobile-android-business/MImlibrary.git" />
     <project url="git@code.gome.inc:mobile-android-business/GFinanceCommon.git" />
@@ -132,7 +132,7 @@
         url="git@code.gome.inc:mobile-android-business/GProductDetail.git" />
     <project url="git@code.gome.inc:mobile-android-business/GShoppingCart.git" />
     <project url="git@code.gome.inc:mobile-android-business/GShopCart.git" />
-    <project url="git@code.gome.inc:mobile-android-business/GSetting.git" />
+    <project branch="liveAuth1115" groups="videoMusic1130" url="git@code.gome.inc:mobile-android-business/GSetting.git" />
     <project url="git@code.gome.inc:mobile-android-business/GMemHome.git" />
     <project url="git@code.gome.inc:mobile-android-business/AMemHome.git" />
     <project url="git@code.gome.inc:mobile-android-business/GMemService.git" />
