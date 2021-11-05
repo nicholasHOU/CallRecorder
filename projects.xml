@@ -142,14 +142,14 @@
     <project url="git@code.gome.inc:mobile-android-business/GZhiboBus.git" />
     <project branch="master" url="git@code.gome.inc:mobile-android-business/Gsuperplayerkit.git" />
 
-    <project branch="videoMusic1130" groups="app" url="git@code.gome.inc:mobile-android-video/GVideoRecordingUgcKit.git" />
-    <project branch="videoMusic1130" groups="app" url="git@code.gome.inc:mobile-android-video/GVideoRecording.git" />
-    <project branch="videoMusic1130" groups="app"  url="git@code.gome.inc:mobile-android-video/VideoEdit.git" />
+    <project branch="videoMusic1130" groups="videoMusic1130" url="git@code.gome.inc:mobile-android-video/GVideoRecordingUgcKit.git" />
+    <project branch="videoMusic1130" groups="videoMusic1130" url="git@code.gome.inc:mobile-android-video/GVideoRecording.git" />
+    <project branch="videoMusic1130" groups="videoMusic1130"  url="git@code.gome.inc:mobile-android-video/VideoEdit.git" />
     <project branch="master" url="git@code.gome.inc:mobile-android-video/VideoSearch.git" />
     <project branch="master" url="git@code.gome.inc:mobile-android-mcp/GEntMediaPicker.git" />
     <project branch="master" url="git@code.gome.inc:mobile-android-business/GHomeAdd.git" />
-    <project branch="videoMusic1130" groups="app"  url="git@code.gome.inc:mobile-android-business/GAmusement.git" />
+    <project branch="videoMusic1130" groups="videoMusic1130"  url="git@code.gome.inc:mobile-android-business/GAmusement.git" />
 
     <!--主工程-->
-    <project app="true" branch="videoMusic1130" groups="app" path="GomeApp" url="git@code.gome.inc:mobile-android/GomePlus.git" />
+    <project app="true" branch="videoMusic1130" groups="videoMusic1130" path="GomeApp" url="git@code.gome.inc:mobile-android/GomePlus.git" />
 </manifest>
