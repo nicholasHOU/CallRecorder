@@ -17,7 +17,7 @@ file_build_gradle = "build.gradle"
 dir_current = os.path.abspath(".")
 file_settings = os.path.join(dir_current, "settings.gradle")
 file_build = os.path.join(dir_current, file_build_gradle)
-path_build_deps = os.path.join('deps', 'coredeps.gradle')
+path_build_gome_core_deps = os.path.join('deps', 'coredeps.gradle')
 
 def exclude_aar_dep_source(tModule, dModules):
     print u'开始部署依赖，排除%s中的%s AAR依赖，直接依赖其源码' % (tModule, ",".join(dModules))
@@ -114,7 +114,7 @@ def getIncludeModule():
     return includeModules
 
 def printRed(message):
-    print "\033[4;31m%s\033[0m" % message
+    print "\033[1;31m%s\033[0m" % message
 
 def getModuleMavenInfo(includeModules):
     """获取module的maven信息
@@ -131,18 +131,23 @@ def getModuleMavenInfo(includeModules):
                 line_ = line.replace(' ', '')
                 if includeModule + ":" in line_:# 这里不能直接用line包含includeModule，应为module有MIm、MImlibrary这样的，如果只include MIm，MImlibrary也会被修改
                     depTag = 'rootProject.ext.proDeps'
-                    if depTag not in line:
-                        # 有bug，有的不是这个关键字而直接写的 false
-                        printRed(u'%s项目没有打开源码依赖开关' % includeModule)
+                    depTag2 = "%s:%s?project"
+                    if depTag in line:
+                        # 把依赖开关tag替换为true
+                        line = line.replace(depTag, 'true', 1)
                     else:
-                        line = line.replace(depTag, 'true')
+                        # 未检测到依赖开关配置
+                        # 再次检查是否已把开关配置写成false，如果是则修改为true
+                        if line_.startswith(depTag2 % (includeModule, 'false')):
+                            line = line_.replace(depTag2 % (includeModule, 'false'), depTag2 % (includeModule, 'true'), 1)
+                        elif not line_.startswith(depTag2 % (includeModule, 'true')):
+                            # 有bug，有的不是这个关键字而直接写的 false
+                            printRed(u'%s项目没有打开源码依赖开关' % includeModule)
                     break
             file_bak.write(line)
 
             # 2、马上进入解析 ext.deps[ ] 中的配置
             line = line.strip()
-            lines = line.split(' ', 1)
-            moduleName = lines[0]
             if not (line == "" or line.startswith('//') or line.startswith('/') or line.startswith('*')):
                 if line.startswith('ext.deps'):
                     start = True
@@ -151,9 +156,11 @@ def getModuleMavenInfo(includeModules):
                     start = False
                 # 开始解析
                 if  start:
+                    lines = line.split(':', 1)
+                    moduleName = lines[0].strip()
                     if moduleName in includeModules:
                         # 从build.gradle的deps配置中查出module的maven信息
-                        matchObj = re.match(u".*'((com|cn)\.gome\.[^']*)'", lines[1], re.M|re.I)
+                        matchObj = re.match(u".*'((com|cn)\.gome\.[^']*)'", line, re.M|re.I)
                         if matchObj:
                             ga = matchObj.group(1)
                             gas = ga.split(':')
@@ -164,6 +171,10 @@ def getModuleMavenInfo(includeModules):
         # 把新文件覆盖现文件
         os.remove(file_build)
         os.rename("%s.bak" % file_build, file_build)
+
+        # 做个验证，
+        if len(includeModules) - 1 > len(moduleInfos):
+            printRed(u"获取setting中module的maven信息出错 - getModuleMavenInfo - 请检查")
     return moduleInfos
 
 def writeConfigurationsExcludesAndCompileToBuildGradle(moule, moduleInfos):
@@ -178,6 +189,7 @@ def writeConfigurationsExcludesAndCompileToBuildGradle(moule, moduleInfos):
     moduleBuildGradle_bak = moduleBuildGradle + '.bak'
     moduleBuildGradle_new = moduleBuildGradle + '.new'
 
+    isWriteCompileConfig = False
     with open(moduleBuildGradle_new, "w") as new_file:
         # 添加排除配置
         writeExcludesToBuildGradle(new_file, moule, moduleInfos)
@@ -189,7 +201,11 @@ def writeConfigurationsExcludesAndCompileToBuildGradle(moule, moduleInfos):
             if line.strip().startswith('dependencies'):
                 # 写入compile
                 writeCompileToBuildGradle(new_file, moule, moduleInfos)
+                isWriteCompileConfig = True
                 print u"    写入compile完毕"
+    if not isWriteCompileConfig:
+        printRed(u"    compile配置写入出错, 请检查")
+
     new_file.close()
     # 把目前的build文件备份，新生成的build文件替换原文件
     # if os.path.exists(moduleBuildGradle_bak): os.remove(moduleBuildGradle_bak)
@@ -244,9 +260,9 @@ class ModuleInfo(object):
     def getBuildFile(self):
         if self.groupId == '':
             # 本modulInfo对象为主工程 - 真快乐、帮帮、极简使用coredeps.gradle，其他app使用build.gradle
-            depsPath = os.path.join(dir_current, self.name, path_build_deps)
-            if os.path.exists(depsPath):
-                depsPath
+            coreDepsPath = os.path.join(dir_current, self.name, path_build_gome_core_deps)
+            if os.path.exists(coreDepsPath):
+                return coreDepsPath
             return os.path.join(dir_current, self.name, file_build_gradle)
         else:
             return os.path.join(dir_current, self.name, file_build_gradle)
