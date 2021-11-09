@@ -21,7 +21,7 @@
     <project groups="private" branch="master" url="git@code.gome.inc:mobile-android-business/SSelectPhoto.git"/>
     <project groups="private" url="git@code.gome.inc:mobile-android-business/GEmbedAnalysis.git"/>
     <project groups="private" url="git@code.gome.inc:mobile-android-repo/Glivenesslib.git"/>
-    <project groups="private" branch="master" url="git@code.gome.inc:mobile-android-business/GTabLayout.git"/>
+    <project branch="homeguide1028" groups="videoMusic1130"  url="git@code.gome.inc:mobile-android-business/GTabLayout.git"/>
 
     <project groups="private" url="git@code.gome.inc:mobile-android-common/GPushCore.git"/>
     <project groups="private" url="git@code.gome.inc:mobile-android-common/GPushGome.git"/>
