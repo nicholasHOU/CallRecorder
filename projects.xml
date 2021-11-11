@@ -67,7 +67,7 @@
     <!--支持3D Wap-->
     <project url="git@code.gome.inc:mobile-android-repo/GX5Lib.git" />
     <project branch="liveAuth1115" groups="videoMusic1130" url="git@code.gome.inc:mobile-android-business/GRouterInterface.git" />
-    <project url="git@code.gome.inc:mobile-android-video/VideoInterface.git" />
+    <project groups="videoMusic1130"  url="git@code.gome.inc:mobile-android-video/VideoInterface.git" />
     <project url="git@code.gome.inc:mobile-android-business/GBusinessView.git" />
 
     <project url="git@code.gome.inc:mobile-android-business/GBusinessDeps.git" />
