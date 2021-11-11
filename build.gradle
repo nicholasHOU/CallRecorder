@@ -93,7 +93,6 @@ ext.deps = [
         //kotlin support
         SConstraintLayout    : 'com.android.support.constraint:constraint-layout:1.1.3',
         SKotlin              : "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version",
-        GKotlinEx            : "org.jetbrains.kotlin:kotlin-android-extensions:1.3.50",
         GHttp                : 'com.gome.mcp:http:2.10.2',
         GHttpIntercept       : 'com.gome.mcp:http-intercept:2.9.2',
         GUtils               : false ? project(':GUtils') : 'com.gome.mcp:utils:'+getProperty('AAR_GUTILS_VERSION')+'@aar',
