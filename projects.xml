@@ -68,7 +68,7 @@
     <project url="git@code.gome.inc:mobile-android-repo/GX5Lib.git" />
     <project branch="liveAuth1115" groups="videoMusic1130" url="git@code.gome.inc:mobile-android-business/GRouterInterface.git" />
     <project branch="videoMusic1130" groups="videoMusic1130"  url="git@code.gome.inc:mobile-android-video/VideoInterface.git" />
-    <project url="git@code.gome.inc:mobile-android-business/GBusinessView.git" />
+    <project branch="mergeDev" groups="videoMusic1130" url="git@code.gome.inc:mobile-android-business/GBusinessView.git" />
 
     <project url="git@code.gome.inc:mobile-android-business/GBusinessDeps.git" />
     <project url="git@code.gome.inc:mobile-android-business/GScheme.git" />
