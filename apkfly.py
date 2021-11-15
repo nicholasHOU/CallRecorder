@@ -960,47 +960,58 @@ def check_modules(target_modules, deps_modules):
     return err
 
 def cmd_compile_aar(args):
+    setting = args.setting
     modules_aar = args.modules
     version_index = args.version_index
     not_check = args.not_check
 
-    if modules_aar:
-        print u'开始打包aar'
+    if setting:
+        includeModules = deploy.getIncludeModule()
+        mainModuleName = deploy.getMainModule(includeModules)
+        if mainModuleName:
+            # 删除主工程
+            includeModules.remove(mainModuleName)
+        exec_compile_aars(includeModules, version_index, not_check)
+    elif modules_aar:
+        exec_compile_aars(modules_aar, version_index, not_check)
 
-        # 注意点： clone代码时用apkfly，确保项目名和projects.xml中的path相同
+def exec_compile_aars(modules_aar, version_index, not_check):
+    print u'开始打包aar'
 
-        # 1、把build.gradle中deps的true全部改为false
-        with open(file_build, "r") as file, open("%s.bak" % file_build, "w") as file_bak:
-            for line in file:
-                line = re.sub(r":\s*(true)\s*\?", ": false ?", line)
-                file_bak.write(line)
-            file.close()
-            file_bak.close()
-            # 把新文件覆盖现文件
-            os.remove(file_build)
-            os.rename("%s.bak" % file_build, file_build)
-        print u'1、把build.gradle中deps的true全部改为false'
+    # 注意点： clone代码时用apkfly，确保项目名和projects.xml中的path相同
 
-        # 2、根据projects.xml对modules打包排序
-        modules_aar_new = []
-        if not_check: # 不检查，不排序，直接安装输入的顺序打包
-            modules_aar_new = modules_aar
-        else:
-            projects = XmlProject.parser_manifest("projects.xml", allow_private=True)
-            for project in projects:
-                for m in modules_aar:
-                    if m == project.path:
-                        modules_aar_new.append(m)
-            print u'2、根据projects.xml对modules打包排序完成: '
-            print modules_aar_new
-            if len(modules_aar) != len(modules_aar_new):
-                print u'请检查输入的moduleNames与projects.xml中的path是否相同'
-                return
+    # 1、把build.gradle中deps的true全部改为false
+    with open(file_build, "r") as file, open("%s.bak" % file_build, "w") as file_bak:
+        for line in file:
+            line = re.sub(r":\s*(true)\s*\?", ": false ?", line)
+            file_bak.write(line)
+        file.close()
+        file_bak.close()
+        # 把新文件覆盖现文件
+        os.remove(file_build)
+        os.rename("%s.bak" % file_build, file_build)
+    print u'1、把build.gradle中deps的true全部改为false'
 
-        # 轮询批量aar
-        exec_compile_aar(modules_aar_new, version_index)
+    # 2、根据projects.xml对modules打包排序
+    modules_aar_new = []
+    if not_check: # 不检查，不排序，直接安装输入的顺序打包
+        modules_aar_new = modules_aar
+    else:
+        projects = XmlProject.parser_manifest("projects.xml", allow_private=True)
+        for project in projects:
+            for m in modules_aar:
+                if m == project.path:
+                    modules_aar_new.append(m)
+        print u'2、根据projects.xml对modules打包排序完成: '
+        print modules_aar_new
+        if len(modules_aar) != len(modules_aar_new):
+            print u'请检查输入的moduleNames与projects.xml中的path是否相同'
+            return
 
-        print u'3、打包结束'
+    # 轮询批量aar
+    exec_compile_aar(modules_aar_new, version_index)
+
+    print u'3、打包结束'
 
 def exec_compile_aar(modules_aar, version_index):
     for module in modules_aar:
@@ -1371,9 +1382,10 @@ if __name__ == '__main__':
 
     parser_aar = subparsers.add_parser("aar", help=u"批量aar")
     parser_aar.set_defaults(func=cmd_compile_aar)
+    parser_aar.add_argument('-s', "--setting", help=u'根据setting文件中module打aar', action='store_true', default=False)
     parser_aar.add_argument("-m", "--modules", help=u'多个module打包aar', nargs='+')
     parser_aar.add_argument('-v', "--version_index", type=int, default=3, choices=[1, 2, 3], help=u'自增版本索引【1大版本，2中间版本，3小版本】')
-    parser_aar.add_argument('-nc', "--not_check", help=u'不检查，不排序，直接安装输入的顺序打包', action='store_true', default=False)
+    parser_aar.add_argument('-nc', "--not_check", help=u'不检查，不排序，直接按照输入的顺序打包', action='store_true', default=False)
     #parser_aar.add_argument("-s", "--start_projects_xml", type=str, default='GFrameHttp', help=u'从某个module开始打包（根据projects.xml中的顺序）')
 
     parser_merge = subparsers.add_parser("merge", help=u"合并")
