@@ -21,7 +21,7 @@
     <project groups="private" branch="master" url="git@code.gome.inc:mobile-android-business/SSelectPhoto.git"/>
     <project groups="private" url="git@code.gome.inc:mobile-android-business/GEmbedAnalysis.git"/>
     <project groups="private" url="git@code.gome.inc:mobile-android-repo/Glivenesslib.git"/>
-    <project branch="homeguide1028" groups="videoMusic1130"  url="git@code.gome.inc:mobile-android-business/GTabLayout.git"/>
+    <project groups="private" url="git@code.gome.inc:mobile-android-business/GTabLayout.git"/>
 
     <project groups="private" url="git@code.gome.inc:mobile-android-common/GPushCore.git"/>
     <project groups="private" url="git@code.gome.inc:mobile-android-common/GPushGome.git"/>
@@ -66,9 +66,9 @@
 
     <!--支持3D Wap-->
     <project url="git@code.gome.inc:mobile-android-repo/GX5Lib.git" />
-    <project branch="liveAuth1115" groups="videoMusic1130" url="git@code.gome.inc:mobile-android-business/GRouterInterface.git" />
-    <project branch="videoMusic1130" groups="videoMusic1130"  url="git@code.gome.inc:mobile-android-video/VideoInterface.git" />
-    <project branch="mergeDev" groups="videoMusic1130" url="git@code.gome.inc:mobile-android-business/GBusinessView.git" />
+    <project  url="git@code.gome.inc:mobile-android-business/GRouterInterface.git" />
+    <project  url="git@code.gome.inc:mobile-android-video/VideoInterface.git" />
+    <project  url="git@code.gome.inc:mobile-android-business/GBusinessView.git" />
 
     <project url="git@code.gome.inc:mobile-android-business/GBusinessDeps.git" />
     <project url="git@code.gome.inc:mobile-android-business/GScheme.git" />
@@ -85,10 +85,10 @@
     <project url="git@code.gome.inc:mobile-android-business/GShopCarBus.git" />
     <project url="git@code.gome.inc:mobile-android-business/GGomeShareBus.git" />
     <project url="git@code.gome.inc:mobile-android-business/GSocialService.git" />
-    <project branch="liveAuth1115" groups="videoMusic1130" url="git@code.gome.inc:mobile-android-common/GHybrid.git" />
+    <project url="git@code.gome.inc:mobile-android-common/GHybrid.git" />
     <project url="git@code.gome.inc:mobile-android-business/GCashierdesk.git" />
     <project url="git@code.gome.inc:mobile-android-common/GShelvesWidget.git" />
-    <project branch="liveAuth1115" groups="videoMusic1130" url="git@code.gome.inc:mobile-android-business/GBusiness.git" />
+    <project url="git@code.gome.inc:mobile-android-business/GBusiness.git" />
 
     <project url="git@code.gome.inc:mobile-android-business/MImlibrary.git" />
     <project url="git@code.gome.inc:mobile-android-business/GFinanceCommon.git" />
@@ -126,30 +126,30 @@
     <project url="git@code.gome.inc:mobile-android-business/GMoreService.git" />
     <project url="git@code.gome.inc:mobile-android-business/GMallPage.git" />
 
-    <project branch="videoMusic1130" groups="videoMusic1130" url="git@code.gome.inc:mobile-android-business/GCollection.git" />
+    <project url="git@code.gome.inc:mobile-android-business/GCollection.git" />
 
     <project  artifactId="product" bundleOpen="false"
         url="git@code.gome.inc:mobile-android-business/GProductDetail.git" />
     <project url="git@code.gome.inc:mobile-android-business/GShoppingCart.git" />
     <project url="git@code.gome.inc:mobile-android-business/GShopCart.git" />
-    <project branch="liveAuth1115" groups="videoMusic1130" url="git@code.gome.inc:mobile-android-business/GSetting.git" />
-    <project branch="videoMusic1130" groups="videoMusic1130" url="git@code.gome.inc:mobile-android-business/GMemHome.git" />
+    <project url="git@code.gome.inc:mobile-android-business/GSetting.git" />
+    <project url="git@code.gome.inc:mobile-android-business/GMemHome.git" />
     <project url="git@code.gome.inc:mobile-android-business/AMemHome.git" />
     <project url="git@code.gome.inc:mobile-android-business/GMemService.git" />
     <project url="git@code.gome.inc:mobile-android-business/GSimilar.git" />
     <project url="git@code.gome.inc:mobile-android-business/GStoreChannel.git" />
     <project url="git@code.gome.inc:mobile-android-business/GHomeAddInterface.git" />
-    <project branch="livefun1.3" groups="videoMusic1130" url="git@code.gome.inc:mobile-android-business/GZhiboBus.git" />
-    <project branch="yule1.2" groups="videoMusic1130"  url="git@code.gome.inc:mobile-android-business/Gsuperplayerkit.git" />
+    <project url="git@code.gome.inc:mobile-android-business/GZhiboBus.git" />
+    <project url="git@code.gome.inc:mobile-android-business/Gsuperplayerkit.git" />
 
-    <project branch="videoMusic1130" groups="videoMusic1130" url="git@code.gome.inc:mobile-android-video/GVideoRecordingUgcKit.git" />
-    <project branch="videoMusic1130" groups="videoMusic1130" url="git@code.gome.inc:mobile-android-video/GVideoRecording.git" />
-    <project branch="videoMusic1130" groups="videoMusic1130"  url="git@code.gome.inc:mobile-android-video/VideoEdit.git" />
+    <project url="git@code.gome.inc:mobile-android-video/GVideoRecordingUgcKit.git" />
+    <project url="git@code.gome.inc:mobile-android-video/GVideoRecording.git" />
+    <project url="git@code.gome.inc:mobile-android-video/VideoEdit.git" />
     <project url="git@code.gome.inc:mobile-android-video/VideoSearch.git" />
     <project url="git@code.gome.inc:mobile-android-mcp/GEntMediaPicker.git" />
-    <project branch="faceAuth" groups="videoMusic1130" url="git@code.gome.inc:mobile-android-business/GHomeAdd.git" />
-    <project branch="videoMusic1130" groups="videoMusic1130"  url="git@code.gome.inc:mobile-android-business/GAmusement.git" />
+    <project url="git@code.gome.inc:mobile-android-business/GHomeAdd.git" />
+    <project url="git@code.gome.inc:mobile-android-business/GAmusement.git" />
 
     <!--主工程-->
-    <project app="true" branch="videoMusic1130" groups="videoMusic1130" path="GomeApp" url="git@code.gome.inc:mobile-android/GomePlus.git" />
+    <project app="true" groups="app" path="GomeApp" url="git@code.gome.inc:mobile-android/GomePlus.git" />
 </manifest>
