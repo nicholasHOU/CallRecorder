@@ -62,7 +62,6 @@
     <project url="git@code.gome.inc:mobile-android-business/GPullrefresh.git"/>
     <project url="git@code.gome.inc:mobile-android-business/GCmbPay.git"/>
     <project url="git@code.gome.inc:mobile-android-business/GBaiTiao.git"/>
-    <project url="git@code.gome.inc:mobile-android-common/GTongBaoSdk.git"/>
 
     <!--支持3D Wap-->
     <project url="git@code.gome.inc:mobile-android-repo/GX5Lib.git" />

@@ -924,6 +924,7 @@ def cmd_deploy(args):
     app = args.app_deps_settings_module
     target_modules = args.target_modules
     deps_modules = args.deps_modules
+    del_ex_setting_modules = args.del_ex_setting_modules
 
     if upload:
         deploy.uploadApk()
@@ -941,6 +942,8 @@ def cmd_deploy(args):
             print ''
             deploy.exclude_aar_dep_source(m, deps_modules)
             print u'-------------------------------------------------'
+    elif del_ex_setting_modules:
+        deploy.deleteExIncludeModule()
     else:
         print u'请输入正确命令, 比如：deploy -t ... -d ...'
 
@@ -1364,6 +1367,7 @@ if __name__ == '__main__':
     parser_apk_.add_argument("-app", "--app_deps_settings_module", help=u'根据setting中的配置的项目，对App部署依赖', action='store_true', default=False)
     parser_apk_.add_argument("-t", "--target_modules", help=u'对某些module部署依赖', nargs='*')
     parser_apk_.add_argument("-d", "--deps_modules", type=str, help=u'依赖某些module的源码', nargs='*')
+    parser_apk_.add_argument("-dm", "--del_ex_setting_modules", help=u'删除非setting配置的其他module', action='store_true', default=False)
 
     parser_aar = subparsers.add_parser("aar", help=u"批量aar")
     parser_aar.set_defaults(func=cmd_compile_aar)

@@ -485,3 +485,25 @@ def uploadApkByPath(apkPath):
     except ImportError:
         print "Please install python requests lib !"
         return ''
+
+
+#---------------------------------------------------------- 删除文件 -----------------------------------------------------------------------
+
+def deleteExIncludeModule():
+    inM = getIncludeModule()
+    rootFiles = os.listdir('.')
+    for f in rootFiles:
+        if f not in inM and (f.startswith('G') or f.startswith('M') or f.startswith('V')):
+            remove_dir(f)
+
+
+def remove_dir(dir):
+    dir = dir.replace('\\', '/')
+    if (os.path.isdir(dir)):
+        for p in os.listdir(dir):
+            remove_dir(os.path.join(dir, p))
+        if (os.path.exists(dir)):
+            os.rmdir(dir)
+    else:
+        if (os.path.exists(dir)):
+            os.remove(dir)
