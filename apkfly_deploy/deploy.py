@@ -126,46 +126,55 @@ def getModuleMavenInfo(includeModules):
     with open(file_build, "r") as file, open("%s.bak" % file_build, "w") as file_bak:
         for line in file:
 
-            #1、把依赖本地module开关打开
-            for includeModule in includeModules:
-                line_ = line.replace(' ', '')
-                if includeModule + ":" in line_:# 这里不能直接用line包含includeModule，应为module有MIm、MImlibrary这样的，如果只include MIm，MImlibrary也会被修改
-                    depTag = 'rootProject.ext.proDeps'
-                    depTag2 = "%s:%s?project"
-                    if depTag in line:
-                        # 把依赖开关tag替换为true
-                        line = line.replace(depTag, 'true', 1)
-                    else:
-                        # 未检测到依赖开关配置
-                        # 再次检查是否已把开关配置写成false，如果是则修改为true
-                        if line_.startswith(depTag2 % (includeModule, 'false')):
-                            line = line_.replace(depTag2 % (includeModule, 'false'), depTag2 % (includeModule, 'true'), 1)
-                        elif not line_.startswith(depTag2 % (includeModule, 'true')):
-                            # 有bug，有的不是这个关键字而直接写的 false
-                            printRed(u'%s项目没有打开源码依赖开关' % includeModule)
-                    break
-            file_bak.write(line)
-
-            # 2、马上进入解析 ext.deps[ ] 中的配置
-            line = line.strip()
-            if not (line == "" or line.startswith('//') or line.startswith('/') or line.startswith('*')):
-                if line.startswith('ext.deps'):
+            # 只解析ext.deps = [ ] 之中的配置，也排除注释的代码
+            line_ = line.replace(' ', '')
+            if not (line == "" or line_.startswith('//') or line_.startswith('/') or line_.startswith('*')):
+                if line_.startswith('ext.deps'):
                     start = True
+                    file_bak.write(line)
                     continue
-                elif line.startswith(']') and start:
+                elif line_.startswith(']') and start:
                     start = False
-                # 开始解析
+
                 if  start:
-                    lines = line.split(':', 1)
-                    moduleName = lines[0].strip()
-                    if moduleName in includeModules:
+                    # 首先匹配该行代码是否包含include的module之一
+                    isMatch = False
+                    curModule = ""
+                    for includeModule in includeModules:
+                        # 第一个in判断是匹配开头
+                        # 第二个in判断是匹配中间的project(':xxx')，这个目前有个bug，compile的module是真实的而不是ext.deps中配置的，这样导致compile找不到配置
+                        # 这里不能直接用line包含includeModule，应为module有MIm、MImlibrary这样的，如果只include MIm，MImlibrary也会被修改，所以得加上: 一块匹配
+                        if (includeModule + ":") in line_ or (":" + includeModule) in line_:
+                            isMatch = True
+                            curModule = includeModule
+                            break
+
+                    if isMatch:
+                        #1、把依赖本地module开关打开
+                        depTag = 'rootProject.ext.proDeps'
+                        depTag2 = "%s:%s?project"
+                        if depTag in line:
+                            # 把依赖开关tag替换为true
+                            line = line.replace(depTag, 'true', 1)
+                        else:
+                            # 未检测到依赖开关配置
+                            # 再次检查是否已把开关配置写成false，如果是则修改为true
+                            if line_.startswith(depTag2 % (includeModule, 'false')):
+                                line = line_.replace(depTag2 % (includeModule, 'false'), depTag2 % (includeModule, 'true'), 1)
+                            elif not line_.startswith(depTag2 % (includeModule, 'true')):
+                                # 有bug，有的不是这个关键字而直接写的 false
+                                printRed(u'%s项目没有打开源码依赖开关' % includeModule)
+
+                        # 2、马上进入解析 ext.deps[ ] 中的配置
                         # 从build.gradle的deps配置中查出module的maven信息
                         matchObj = re.match(u".*'((com|cn)\.gome\.[^']*)'", line, re.M|re.I)
                         if matchObj:
                             ga = matchObj.group(1)
                             gas = ga.split(':')
-                            module = ModuleInfo(moduleName, gas[0], gas[1])
+                            module = ModuleInfo(curModule, gas[0], gas[1])
                             moduleInfos.append(module)
+            file_bak.write(line)
+
         file.close()
         file_bak.close()
         # 把新文件覆盖现文件
