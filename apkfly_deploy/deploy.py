@@ -82,7 +82,7 @@ def deployMainAppDeps():
     print u"3、解析到主工程 %s" % mainModuleName
 
     # 主工程信息
-    mainModuleInfo = ModuleInfo(mainModuleName, '', '')
+    mainModuleInfo = ModuleInfo(mainModuleName, '', '', '')
 
     print u"4、把主工程上次部署的（依赖、排除）reset"
     os.popen("cd %s && git checkout %s" % (mainModuleName, mainModuleInfo.getBuildFile()))
@@ -140,13 +140,21 @@ def getModuleMavenInfo(includeModules):
                     # 首先匹配该行代码是否包含include的module之一
                     isMatch = False
                     curModule = ""
+                    depsModule = ""
                     for includeModule in includeModules:
                         # 第一个in判断是匹配开头
-                        # 第二个in判断是匹配中间的project(':xxx')，这个目前有个bug，compile的module是真实的而不是ext.deps中配置的，这样导致compile找不到配置
+                        # 第二个in判断是匹配中间的project(':xxx')，这个目前是个bug，compile的module是真实的而不是ext.deps中配置的，这样导致compile找不到配置
                         # 这里不能直接用line包含includeModule，应为module有MIm、MImlibrary这样的，如果只include MIm，MImlibrary也会被修改，所以得加上: 一块匹配
-                        if (includeModule + ":") in line_ or (":" + includeModule) in line_:
+                        if (includeModule + ":") in line_:
                             isMatch = True
                             curModule = includeModule
+                            break
+                        elif (":" + includeModule) in line_:
+                            isMatch = True
+                            curModule = includeModule
+                            # 分割，取deps别名
+                            lines = line_.split(':', 1)
+                            depsModule = lines[0]
                             break
 
                     if isMatch:
@@ -171,7 +179,7 @@ def getModuleMavenInfo(includeModules):
                         if matchObj:
                             ga = matchObj.group(1)
                             gas = ga.split(':')
-                            module = ModuleInfo(curModule, gas[0], gas[1])
+                            module = ModuleInfo(curModule, gas[0], gas[1], depsModule)
                             moduleInfos.append(module)
             file_bak.write(line)
 
@@ -258,11 +266,12 @@ def writeCompileToBuildGradle(new_file, curModule, moduleInfos):
 
 # module 的信息（名字、groupId、artifactId）
 class ModuleInfo(object):
-    def __init__(self, name, groupId, artifactId):
+    def __init__(self, name, groupId, artifactId, depsName):
         self.name = name
         self.groupId = groupId
         self.artifactId = artifactId
-        self.deps = '    compile (deps.%s){\n        transitive = true\n    }' % name
+        self.depsName = depsName
+        self.deps = '    compile (deps.%s){\n        transitive = true\n    }' % (name if(depsName == None or depsName == '') else depsName)
         self.compileExclude = "    compile.exclude group: '%s', module: '%s'" % (groupId, artifactId)
         self.exclude = "        exclude group: '%s', module: '%s'" % (groupId, artifactId)
 
