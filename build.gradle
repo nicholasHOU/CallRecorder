@@ -334,7 +334,7 @@ ext.deps = [
         GStoreChannel        : rootProject.ext.proDeps ? project(':GStoreChannel') : 'com.gome.ecmall.business:storechannel:' + getProperty('AAR_GBUSINESS_GSTORECHANNEL_VERSION') + '@aar',
 
         GZhiboBus            : rootProject.ext.proDeps ? project(':GZhiboBus') : 'com.gome.ecmall:zhibobus:' + getProperty('AAR_GZHIBO_BUS_VERSION') + '@aar',
-        Gsuperplayerkit      : rootProject.ext.proDeps ? project(':Gsuperplayerkit') : 'com.gome.ecmall:shortvideo:' + getProperty('AAR_SHORT_VIDEO_BUS_VERSION') + '@aar',
+        Gsuperplayerkit      : true ? project(':Gsuperplayerkit') : 'com.gome.ecmall:shortvideo:' + getProperty('AAR_SHORT_VIDEO_BUS_VERSION') + '@aar',
 
         //im plugins
         IMPluginCommon        : false ? project(":im-plugin-common") : 'com.gome.ecmall.implugin:common:' + getProperty('AAR_IM_PLUGIN_COMMON_VERSION') + '@aar',
@@ -356,7 +356,7 @@ ext.deps = [
         GVideoRecording      : rootProject.ext.proDeps ? project('GVideoRecording') : 'cn.gome.video:gzhibo_record:' + getProperty('AAR_VIDEORECORDUGC_VERSION'),
         GVideoRecordingUgcKit: rootProject.ext.proDeps ? project('GVideoRecordingUgcKit') : 'cn.gome.video:gzhibo_ugckit:' + getProperty('AAR_VIDEORECORDUGCKIT_VERSION'),
         GHomeAdd             : rootProject.ext.proDeps ? project(':GHomeAdd') : 'com.gome.ecmall:homeadd:' + getProperty('AAR_HOMEADD_VERSION'),
-        GBusinessView        : rootProject.ext.proDeps ? project(':GBusinessView') : 'com.gome.business.view:businessview:' + getProperty('AAR_BUSINESSVIEW_VERSION'),
+        GBusinessView        : true ? project(':GBusinessView') : 'com.gome.business.view:businessview:' + getProperty('AAR_BUSINESSVIEW_VERSION'),
         GAmusement           : rootProject.ext.proDeps ? project(':GAmusement') : 'com.gome.ecmall:amusement:' + getProperty('AAR_AMUSEMENT_VERSION'),
         GAnimView            : 'io.github.tencent:vap:2.0.20'
 ]
