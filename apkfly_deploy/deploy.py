@@ -487,17 +487,21 @@ def uploadApkByPath(apkPath):
         return ''
 
 
-#---------------------------------------------------------- 删除文件 -----------------------------------------------------------------------
+#---------------------------------------------------------- 删除module文件 -----------------------------------------------------------------------
 
 def deleteExIncludeModule():
     inM = getIncludeModule()
     rootFiles = os.listdir('.')
     for f in rootFiles:
-        if f not in inM and (f.startswith('G') or f.startswith('M') or f.startswith('V')):
+        if f not in inM and os.path.exists(os.path.join(f, file_build_gradle)):
             remove_dir(f)
 
-
 def remove_dir(dir):
+    """
+    删除文件夹
+    :param dir: 路径
+    :return:
+    """
     dir = dir.replace('\\', '/')
     if (os.path.isdir(dir)):
         for p in os.listdir(dir):
