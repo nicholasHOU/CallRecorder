@@ -147,7 +147,7 @@ ext.deps = [
 //        SLiteAVSDK           : 'com.tencent.liteav:LiteAVSDK_Professional:8.2.9809', //专业版
         //SLiteAVSDK        : 'com.tencent.liteavsdk:LiteAVSDK_Smart:latest.release', //普通版
         SLiteAVSDK        : 'com.gome.zhibo:LiteAVSDK_Enterprise:9.2.10641', //企业版
-        GSuperplayerSDK      : 'com.gome.ecmall:superplayer:1.0.7',//播放器
+        GSuperplayerSDK      : 'com.gome.ecmall:superplayer:1.0.10',//播放器
         GImage               : 'com.gome.mcp:image:2.8.8',
         GCACHE               : 'com.gome.mcp:cache:' + getProperty('AAR_MCP_VERSION') + '@aar',
         //异形屏适配工具
