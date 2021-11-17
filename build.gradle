@@ -320,7 +320,6 @@ ext.deps = [
         MImlibrary           : rootProject.ext.proDeps ? project(':MImlibrary') : 'com.gome.ecmall:mimlib:' + getProperty('AAR_MIM_LIB_VERSION') + '@aar',
         MCommon              : rootProject.ext.proDeps ? project(':MCommon') : 'com.gome.ecmall:mcommon:' + getProperty('AAR_MCOMMON_VERSION') + '@aar',
         MFriendCircle        : rootProject.ext.proDeps ? project(':MFriendCircle') : 'com.gome.ecmall:mfriendcircle:' + getProperty('AAR_MFRIEND_CIRCLE_VERSION') + '@aar',
-        SIm                  : rootProject.ext.proDeps ? project(':SIm') : 'cn.gome.staff:im:' + getProperty('AAR_SIM_VERSION') + '@aar',
         MIm                  : rootProject.ext.proDeps ? project(':MIm') : 'com.gome.ecmall:mim:' + getProperty('AAR_MIM_VERSION') + '@aar',
         MFriends             : rootProject.ext.proDeps ? project(':MFriends') : 'com.gome.ecmall:mfriends:' + getProperty('AAR_MFRIENDS_VERSION') + '@aar',
         MSocial              : rootProject.ext.proDeps ? project(':MSocial') : 'com.gome.ecmall:msocial:' + getProperty('AAR_MSOCIAL_VERSION') + '@aar',
@@ -343,11 +342,11 @@ ext.deps = [
         IMPluginRedenvelope   : false ? project(":im-plugin-redenvelope") : 'com.gome.ecmall.implugin:redenvelope:' + getProperty('AAR_IM_PLUGIN_RED_ENVELOPE_VERSION') + '@aar',
         IMPluginVoicetotext   : false ? project(':im-plugin-voicetotext') : 'com.gome.ecmall.implugin:voicetotext:' + getProperty('AAR_IM_PLUGIN_VOICE_TO_TEXT_VERSION') + '@aar',
         IMPluginVideoChat     : false ? project(':im-plugin-videochat') : 'com.gome.ecmall.implugin:videochat:' + getProperty('AAR_IM_PLUGIN_VIDEO_CHAT_VERSION') + '@aar',
-        GViewTracker          : rootProject.ext.proDeps ? project(':GViewTracker') : 'com.gome.viewtracker:viewtracker:'+getProperty('AAR_VIEW_TRACKER_VERSION') + '@aar',
+        GViewTracker          : false ? project(':GViewTracker') : 'com.gome.viewtracker:viewtracker:'+getProperty('AAR_VIEW_TRACKER_VERSION') + '@aar',
 
         GLog                 : 'com.gome.mcp:log:2.9.3@aar',
         GVideoLiteAVSDK      : 'com.gome.zhibo:LiteAVSDK_Enterprise:9.2.10641', //企业版
-        GStatusView          : rootProject.ext.proDeps ? project(':GStatusView') : 'cn.gome.staff.ui:statusview:' + getProperty('AAR_UI_STATUSVIEW_VERSION') + '@aar',
+        GStatusView          : false ? project(':GStatusView') : 'cn.gome.staff.ui:statusview:' + getProperty('AAR_UI_STATUSVIEW_VERSION') + '@aar',
         VideoInterface       : rootProject.ext.proDeps ? project(':VideoInterface') : 'cn.gome.video:vinterface:' + getProperty('AAR_VIDEOINTER_VERSION'),
         GHomeAddInterface    : rootProject.ext.proDeps ? project(':GHomeAddInterface') : 'com.gome.ecmall:homeaddinter:' + getProperty('AAR_HOMEADDINTER_VERSION'),
         GEntMediaPicker      : rootProject.ext.proDeps ? project(':GEntMediaPicker') : 'com.gome.mcp:ent-mediapicker:' + getProperty('AAR_ENTMEDIAPICKER_VERSION'),
