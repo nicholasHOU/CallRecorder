@@ -300,6 +300,7 @@ def installApk():
         install_output = os.popen("adb install -r %s" % (apkPath)).read()
         print install_output
         if 'Success' in install_output:
+            time.sleep(1)# 延迟一秒安装app，兼容启动失败bug
             startApp(apkPath)
         else:
             print 'install fail'
@@ -392,7 +393,7 @@ def startApp(apkPath):
     print u'3. Start open app...'
     start_output = os.popen("adb shell am start -n %s/%s" % (package, launch))
     print start_output.read()
-    print u'如未启动app，请检查手机设置，允许app后台允许'
+    print u'如未启动app，请检查手机设置，允许app后台启动'
 
 # 分解aapt查找出的信息，组装成字典
 def splitKV(line):
