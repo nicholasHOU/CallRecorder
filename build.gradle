@@ -184,7 +184,7 @@ ext.deps = [
         GRouter              : 'com.gutils.router:router:' + getProperty('LIB_ROUTER_VERSION') + '@aar',
 
         GSafekeyboard        : 'com.gome.mcp:safeKeyboard:' +  getProperty('AAR_GSAFEKEYBOARD_VERSION') ,
-        GUpdate              : 'com.gome.mcp:update:2.9.4',
+        GUpdate              : 'com.gome.mcp:update:2.9.6',
         GYunNengTimeWidget   : 'com.gome.ecmall:yunnengtimewidget:3.1.0@aar',
         GWap                 : 'com.gome.mcp:wap:' + getProperty('AAR_MCP_WAP_VERSION') + '@aar',
         STitlebar            : 'cn.gome.staff.ui:titlebar:' + getProperty('AAR_STITLEBAR_VERSION') + '@aar',
