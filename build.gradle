@@ -142,7 +142,7 @@ ext.deps = [
         GZxing               : 'com.google.zxing:core:3.3.0',
         GPlayer              : 'cn.com.gomeplus.player:gomeplus-player:1.0.32',
         GMsc                 : 'com.gome.ecmall:msc:1.0.4@aar',
-        GMscStaff            : 'com.gome.staff:msc:21.7.16@aar',
+        GMscStaff            : 'com.gome.staff:msc:21.11.18@aar',
         GAVSdk               : 'com.gome.third:sessionsdk:21.7.22',
 //        SLiteAVSDK           : 'com.tencent.liteav:LiteAVSDK_Professional:8.2.9809', //专业版
         //SLiteAVSDK        : 'com.tencent.liteavsdk:LiteAVSDK_Smart:latest.release', //普通版
