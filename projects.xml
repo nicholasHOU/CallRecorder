@@ -111,6 +111,7 @@
     <project url="git@code.gome.inc:mobile-android-business/GAppraise.git" />
 
     <project groups="XLSizeScreen1130" url="git@code.gome.inc:mobile-android-mcp/GPhotoScan.git" />
+    <project groups="XLSizeScreen1130" url="git@code.gome.inc:mobile-android-mcp/GScanAuthLogin.git" />
     <project groups="XLSizeScreen1130"  artifactId="productsearch" bundleOpen="false"
         url="git@code.gome.inc:mobile-android-business/GProductSearch.git" />
     <project url="git@code.gome.inc:mobile-android-business/GIMRedEnvelope.git" />

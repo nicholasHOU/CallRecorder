@@ -278,7 +278,7 @@ ext.deps = [
         GMaterialOrder       : rootProject.ext.proDeps ? project(':GMaterialOrder') : 'com.gome.ecmall:materialorder:' + getProperty('AAR_GMATERIAL_ORDER_VERSION') + '@aar',
         GX5Lib               : false ? project(':GX5Lib') : 'com.gome.mcp:gx5:' + getProperty('AAR_GX5_VERSION') + '@aar',
         GProductDetail       : rootProject.ext.proDeps ? project(':GProductDetail') : 'com.gome.ecmall:product:' + getProperty('AAR_GPRODUCT_VERSION') + '@aar',
-        GZxingScan           : rootProject.ext.proDeps ? project(':GPhotoScan') : 'com.gome.mcp:gzxing:' + getProperty('AAR_GZING_VERSION') + '@aar',
+        GZxingScan           : true ? project(':GPhotoScan') : 'com.gome.mcp:gzxing:' + getProperty('AAR_GZING_VERSION') + '@aar',
         GGomeCurrency        : rootProject.ext.proDeps ? project(':GGomeCurrency') : 'com.gome.ecmall:ggomecurrency:' + getProperty('AAR_GGOMECURRENCY_VERSION') + '@aar',
         GProductSearch       : rootProject.ext.proDeps ? project(':GProductSearch') : 'com.gome.ecmall:productsearch:' + getProperty('AAR_GPRODUCT_SEARCH_VERSION') + '@aar',
         GShop                : rootProject.ext.proDeps ? project(':GShop') : 'com.gome.ecmall:gshop:' + getProperty('AAR_GSHOP_VERSION') + '@aar',
@@ -301,7 +301,7 @@ ext.deps = [
         GShopCarBus          : rootProject.ext.proDeps ? project(':GShopCarBus') : 'com.gome.ecmall.business:gshopcartbus:' + getProperty('AAR_GBUSINESS_GSHOPCARTBUS_VERSION') + '@aar',
         GGomeShareBus        : rootProject.ext.proDeps ? project(':GGomeShareBus') : 'com.gome.ecmall:gomesharebus:' + getProperty('AAR_GGOMESHAREBUS_VERSION') + '@aar',
         GBusiness            : rootProject.ext.proDeps ? project(':GBusiness') : 'com.gome.ecmall:business:' + getProperty('AAR_GBUSINESS_VERSION') + '@aar',
-        GScheme              : rootProject.ext.proDeps ? project(':GScheme') : 'com.gome.ecmall:scheme:' + getProperty('AAR_GSCHEME_VERSION') + '@aar',
+        GScheme              : true ? project(':GScheme') : 'com.gome.ecmall:scheme:' + getProperty('AAR_GSCHEME_VERSION') + '@aar',
         GMallService         : rootProject.ext.proDeps ? project(':GMallService') : 'com.gome.ecmall:mallservice:' + getProperty('AAR_GMALL_SERVICE_VERSION') + '@aar',
         GSocialService       : rootProject.ext.proDeps ? project(':GSocialService') : 'com.gome.ecmall:socialservice:' + getProperty('AAR_GSOCIAL_SERVICE_VERSION') + '@aar',
         GAddress             : rootProject.ext.proDeps ? project(':GAddress') : 'com.gome.ecmall.business:address:' + getProperty('AAR_GBUSINESS_ADRESS_VERSION') + '@aar',
@@ -358,7 +358,8 @@ ext.deps = [
         GHomeAdd             : rootProject.ext.proDeps ? project(':GHomeAdd') : 'com.gome.ecmall:homeadd:' + getProperty('AAR_HOMEADD_VERSION'),
         GBusinessView        : rootProject.ext.proDeps ? project(':GBusinessView') : 'com.gome.business.view:businessview:' + getProperty('AAR_BUSINESSVIEW_VERSION'),
         GAmusement           : rootProject.ext.proDeps ? project(':GAmusement') : 'com.gome.ecmall:amusement:' + getProperty('AAR_AMUSEMENT_VERSION'),
-        GAnimView            : 'io.github.tencent:vap:2.0.20'
+        GAnimView            : 'io.github.tencent:vap:2.0.20',
+        GScanAuthLogin       : project(':GScanAuthLogin')
 ]
 /**
  * depMcp dep aar, default exclude transitive dependencies
