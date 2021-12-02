@@ -65,7 +65,7 @@
 
     <!--支持3D Wap-->
     <project url="git@code.gome.inc:mobile-android-repo/GX5Lib.git" />
-    <project  url="git@code.gome.inc:mobile-android-business/GRouterInterface.git" />
+    <project  groups="ylh1.5" url="git@code.gome.inc:mobile-android-business/GRouterInterface.git" />
     <project  url="git@code.gome.inc:mobile-android-video/VideoInterface.git" />
     <project  groups="ylh1.5" url="git@code.gome.inc:mobile-android-business/GBusinessView.git" />
 
