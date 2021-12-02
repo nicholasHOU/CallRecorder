@@ -139,7 +139,7 @@
     <project url="git@code.gome.inc:mobile-android-business/GStoreChannel.git" />
     <project url="git@code.gome.inc:mobile-android-business/GHomeAddInterface.git" />
     <project url="git@code.gome.inc:mobile-android-business/GZhiboBus.git" />
-    <project url="git@code.gome.inc:mobile-android-business/Gsuperplayerkit.git" />
+    <project groups="ylh1.5" url="git@code.gome.inc:mobile-android-business/Gsuperplayerkit.git" />
 
     <project url="git@code.gome.inc:mobile-android-video/GVideoRecordingUgcKit.git" />
     <project url="git@code.gome.inc:mobile-android-video/GVideoRecording.git" />
