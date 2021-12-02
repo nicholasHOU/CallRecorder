@@ -113,14 +113,14 @@
     <project url="git@code.gome.inc:mobile-android-mcp/GPhotoScan.git" />
     <project  artifactId="productsearch" bundleOpen="false"
         url="git@code.gome.inc:mobile-android-business/GProductSearch.git" />
-    <project url="git@code.gome.inc:mobile-android-business/GIMRedEnvelope.git" />
+    <project groups="ylh1.5" url="git@code.gome.inc:mobile-android-business/GIMRedEnvelope.git" />
     <project url="git@code.gome.inc:mobile-android-business/MCommon.git" />
     <project url="git@code.gome.inc:mobile-android-business/GOnlinememberCard.git" />
 
     <project url="git@code.gome.inc:mobile-android-business/MFriendCircle.git" />
     <project url="git@code.gome.inc:mobile-android-business/MSocial.git" />
     <project url="git@code.gome.inc:mobile-android-business/MIm.git" />
-    <project url="git@code.gome.inc:mobile-android-business/MFriends.git" />
+    <project groups="ylh1.5" url="git@code.gome.inc:mobile-android-business/MFriends.git" />
     <project url="git@code.gome.inc:mobile-android-mcp/IMKit.git" />
     <project url="git@code.gome.inc:mobile-android-business/GMoreService.git" />
     <project url="git@code.gome.inc:mobile-android-business/GMallPage.git" />
@@ -150,5 +150,5 @@
     <project url="git@code.gome.inc:mobile-android-business/GAmusement.git" />
 
     <!--主工程-->
-    <project app="true" groups="app" path="GomeApp" url="git@code.gome.inc:mobile-android/GomePlus.git" />
+    <project app="true" groups="ylh1.5" path="GomeApp" url="git@code.gome.inc:mobile-android/GomePlus.git" />
 </manifest>
