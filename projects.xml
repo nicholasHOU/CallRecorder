@@ -132,7 +132,7 @@
     <project url="git@code.gome.inc:mobile-android-business/GShoppingCart.git" />
     <project url="git@code.gome.inc:mobile-android-business/GShopCart.git" />
     <project url="git@code.gome.inc:mobile-android-business/GSetting.git" />
-    <project url="git@code.gome.inc:mobile-android-business/GMemHome.git" />
+    <project groups="ylh1.5" url="git@code.gome.inc:mobile-android-business/GMemHome.git" />
     <project url="git@code.gome.inc:mobile-android-business/AMemHome.git" />
     <project url="git@code.gome.inc:mobile-android-business/GMemService.git" />
     <project url="git@code.gome.inc:mobile-android-business/GSimilar.git" />
