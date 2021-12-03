@@ -17,7 +17,7 @@ file_build_gradle = "build.gradle"
 dir_current = os.path.abspath(".")
 file_settings = os.path.join(dir_current, "settings.gradle")
 file_build = os.path.join(dir_current, file_build_gradle)
-path_build_deps = os.path.join('deps', 'coredeps.gradle')
+path_build_gome_core_deps = os.path.join('deps', 'coredeps.gradle')
 
 def exclude_aar_dep_source(tModule, dModules):
     print u'开始部署依赖，排除%s中的%s AAR依赖，直接依赖其源码' % (tModule, ",".join(dModules))
@@ -81,11 +81,14 @@ def deployMainAppDeps():
     mainModuleName = getMainModule(includeModules)
     print u"3、解析到主工程 %s" % mainModuleName
 
+    # 主工程信息
+    mainModuleInfo = ModuleInfo(mainModuleName, '', '')
+
     print u"4、把主工程上次部署的（依赖、排除）reset"
-    os.popen("cd %s && git checkout %s" % (mainModuleName, path_build_deps))
+    os.popen("cd %s && git checkout %s" % (mainModuleName, mainModuleInfo.getBuildFile()))
 
     print u"5、开始为主工程 %s build.gradle加入部署依赖" % mainModuleName
-    writeConfigurationsExcludesAndCompileToBuildGradle(ModuleInfo(mainModuleName, '', ''), moduleInfos)
+    writeConfigurationsExcludesAndCompileToBuildGradle(mainModuleInfo, moduleInfos)
 
     print u"部署完毕"
 
@@ -110,6 +113,9 @@ def getIncludeModule():
             includeModules.append(moduleName)
     return includeModules
 
+def printRed(message):
+    print "\033[1;31m%s\033[0m" % message
+
 def getModuleMavenInfo(includeModules):
     """获取module的maven信息
     :param includeModules:
@@ -124,14 +130,24 @@ def getModuleMavenInfo(includeModules):
             for includeModule in includeModules:
                 line_ = line.replace(' ', '')
                 if includeModule + ":" in line_:# 这里不能直接用line包含includeModule，应为module有MIm、MImlibrary这样的，如果只include MIm，MImlibrary也会被修改
-                    line = line.replace('rootProject.ext.proDeps', 'true')
+                    depTag = 'rootProject.ext.proDeps'
+                    depTag2 = "%s:%s?project"
+                    if depTag in line:
+                        # 把依赖开关tag替换为true
+                        line = line.replace(depTag, 'true', 1)
+                    else:
+                        # 未检测到依赖开关配置
+                        # 再次检查是否已把开关配置写成false，如果是则修改为true
+                        if line_.startswith(depTag2 % (includeModule, 'false')):
+                            line = line_.replace(depTag2 % (includeModule, 'false'), depTag2 % (includeModule, 'true'), 1)
+                        elif not line_.startswith(depTag2 % (includeModule, 'true')):
+                            # 有bug，有的不是这个关键字而直接写的 false
+                            printRed(u'%s项目没有打开源码依赖开关' % includeModule)
                     break
             file_bak.write(line)
 
             # 2、马上进入解析 ext.deps[ ] 中的配置
             line = line.strip()
-            lines = line.split(' ', 1)
-            moduleName = lines[0]
             if not (line == "" or line.startswith('//') or line.startswith('/') or line.startswith('*')):
                 if line.startswith('ext.deps'):
                     start = True
@@ -140,9 +156,11 @@ def getModuleMavenInfo(includeModules):
                     start = False
                 # 开始解析
                 if  start:
+                    lines = line.split(':', 1)
+                    moduleName = lines[0].strip()
                     if moduleName in includeModules:
                         # 从build.gradle的deps配置中查出module的maven信息
-                        matchObj = re.match(u".*'((com|cn)\.gome\.[^']*)'", lines[1], re.M|re.I)
+                        matchObj = re.match(u".*'((com|cn)\.gome\.[^']*)'", line, re.M|re.I)
                         if matchObj:
                             ga = matchObj.group(1)
                             gas = ga.split(':')
@@ -153,6 +171,10 @@ def getModuleMavenInfo(includeModules):
         # 把新文件覆盖现文件
         os.remove(file_build)
         os.rename("%s.bak" % file_build, file_build)
+
+        # 做个验证，
+        if len(includeModules) - 1 > len(moduleInfos):
+            printRed(u"获取setting中module的maven信息出错 - getModuleMavenInfo - 请检查")
     return moduleInfos
 
 def writeConfigurationsExcludesAndCompileToBuildGradle(moule, moduleInfos):
@@ -167,6 +189,7 @@ def writeConfigurationsExcludesAndCompileToBuildGradle(moule, moduleInfos):
     moduleBuildGradle_bak = moduleBuildGradle + '.bak'
     moduleBuildGradle_new = moduleBuildGradle + '.new'
 
+    isWriteCompileConfig = False
     with open(moduleBuildGradle_new, "w") as new_file:
         # 添加排除配置
         writeExcludesToBuildGradle(new_file, moule, moduleInfos)
@@ -178,7 +201,11 @@ def writeConfigurationsExcludesAndCompileToBuildGradle(moule, moduleInfos):
             if line.strip().startswith('dependencies'):
                 # 写入compile
                 writeCompileToBuildGradle(new_file, moule, moduleInfos)
+                isWriteCompileConfig = True
                 print u"    写入compile完毕"
+    if not isWriteCompileConfig:
+        printRed(u"    compile配置写入出错, 请检查")
+
     new_file.close()
     # 把目前的build文件备份，新生成的build文件替换原文件
     # if os.path.exists(moduleBuildGradle_bak): os.remove(moduleBuildGradle_bak)
@@ -232,8 +259,11 @@ class ModuleInfo(object):
 
     def getBuildFile(self):
         if self.groupId == '':
-            # 本modulInfo对象为主工程 - 真快乐、帮帮、极简都依赖了coredeps.gradle
-            return os.path.join(dir_current, self.name, path_build_deps)
+            # 本modulInfo对象为主工程 - 真快乐、帮帮、极简使用coredeps.gradle，其他app使用build.gradle
+            coreDepsPath = os.path.join(dir_current, self.name, path_build_gome_core_deps)
+            if os.path.exists(coreDepsPath):
+                return coreDepsPath
+            return os.path.join(dir_current, self.name, file_build_gradle)
         else:
             return os.path.join(dir_current, self.name, file_build_gradle)
 
@@ -455,3 +485,29 @@ def uploadApkByPath(apkPath):
     except ImportError:
         print "Please install python requests lib !"
         return ''
+
+
+#---------------------------------------------------------- 删除module文件 -----------------------------------------------------------------------
+
+def deleteExIncludeModule():
+    inM = getIncludeModule()
+    rootFiles = os.listdir('.')
+    for f in rootFiles:
+        if f not in inM and os.path.exists(os.path.join(f, file_build_gradle)):
+            remove_dir(f)
+
+def remove_dir(dir):
+    """
+    删除文件夹
+    :param dir: 路径
+    :return:
+    """
+    dir = dir.replace('\\', '/')
+    if (os.path.isdir(dir)):
+        for p in os.listdir(dir):
+            remove_dir(os.path.join(dir, p))
+        if (os.path.exists(dir)):
+            os.rmdir(dir)
+    else:
+        if (os.path.exists(dir)):
+            os.remove(dir)

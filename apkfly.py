@@ -924,9 +924,10 @@ def cmd_deploy(args):
     app = args.app_deps_settings_module
     target_modules = args.target_modules
     deps_modules = args.deps_modules
+    del_ex_setting_modules = args.del_ex_setting_modules
 
     if upload:
-       deploy.uploadApk()
+        deploy.uploadApk()
     elif install:
         deploy.installApk()
     elif app:
@@ -941,8 +942,10 @@ def cmd_deploy(args):
             print ''
             deploy.exclude_aar_dep_source(m, deps_modules)
             print u'-------------------------------------------------'
+    elif del_ex_setting_modules:
+        deploy.deleteExIncludeModule()
     else:
-            print u'请输入正确命令, 比如：deploy -t ... -d ...'
+        print u'请输入正确命令, 比如：deploy -t ... -d ...'
 
 def check_modules(target_modules, deps_modules):
     err = False
@@ -957,47 +960,58 @@ def check_modules(target_modules, deps_modules):
     return err
 
 def cmd_compile_aar(args):
+    setting = args.setting
     modules_aar = args.modules
     version_index = args.version_index
     not_check = args.not_check
 
-    if modules_aar:
-        print u'开始打包aar'
+    if setting:
+        includeModules = deploy.getIncludeModule()
+        mainModuleName = deploy.getMainModule(includeModules)
+        if mainModuleName:
+            # 删除主工程
+            includeModules.remove(mainModuleName)
+        exec_compile_aars(includeModules, version_index, not_check)
+    elif modules_aar:
+        exec_compile_aars(modules_aar, version_index, not_check)
 
-        # 注意点： clone代码时用apkfly，确保项目名和projects.xml中的path相同
+def exec_compile_aars(modules_aar, version_index, not_check):
+    print u'开始打包aar'
 
-        # 1、把build.gradle中deps的true全部改为false
-        with open(file_build, "r") as file, open("%s.bak" % file_build, "w") as file_bak:
-            for line in file:
-                line = re.sub(r":\s*(true)\s*\?", ": false ?", line)
-                file_bak.write(line)
-            file.close()
-            file_bak.close()
-            # 把新文件覆盖现文件
-            os.remove(file_build)
-            os.rename("%s.bak" % file_build, file_build)
-        print u'1、把build.gradle中deps的true全部改为false'
+    # 注意点： clone代码时用apkfly，确保项目名和projects.xml中的path相同
 
-        # 2、根据projects.xml对modules打包排序
-        modules_aar_new = []
-        if not_check: # 不检查，不排序，直接安装输入的顺序打包
-            modules_aar_new = modules_aar
-        else:
-            projects = XmlProject.parser_manifest("projects.xml", allow_private=True)
-            for project in projects:
-                for m in modules_aar:
-                    if m == project.path:
-                        modules_aar_new.append(m)
-            print u'2、根据projects.xml对modules打包排序完成: '
-            print modules_aar_new
-            if len(modules_aar) != len(modules_aar_new):
-                print u'请检查输入的moduleNames与projects.xml中的path是否相同'
-                return
+    # 1、把build.gradle中deps的true全部改为false
+    with open(file_build, "r") as file, open("%s.bak" % file_build, "w") as file_bak:
+        for line in file:
+            line = re.sub(r":\s*(true)\s*\?", ": false ?", line)
+            file_bak.write(line)
+        file.close()
+        file_bak.close()
+        # 把新文件覆盖现文件
+        os.remove(file_build)
+        os.rename("%s.bak" % file_build, file_build)
+    print u'1、把build.gradle中deps的true全部改为false'
 
-        # 轮询批量aar
-        exec_compile_aar(modules_aar_new, version_index)
+    # 2、根据projects.xml对modules打包排序
+    modules_aar_new = []
+    if not_check: # 不检查，不排序，直接安装输入的顺序打包
+        modules_aar_new = modules_aar
+    else:
+        projects = XmlProject.parser_manifest("projects.xml", allow_private=True)
+        for project in projects:
+            for m in modules_aar:
+                if m == project.path:
+                    modules_aar_new.append(m)
+        print u'2、根据projects.xml对modules打包排序完成: '
+        print modules_aar_new
+        if len(modules_aar) != len(modules_aar_new):
+            print u'请检查输入的moduleNames与projects.xml中的path是否相同'
+            return
 
-        print u'3、打包结束'
+    # 轮询批量aar
+    exec_compile_aar(modules_aar_new, version_index)
+
+    print u'3、打包结束'
 
 def exec_compile_aar(modules_aar, version_index):
     for module in modules_aar:
@@ -1040,132 +1054,171 @@ def get_module_version_tag(moduleName):
 
 def cmd_compile_merge(args):
     branch = args.branch
+    setting = args.setting
+    app = args.app
 
-    cmd = "cd %s && git merge %s"
+    if setting and app:
+        print 'setting和app 不可同时调用'
+        return
 
-    if branch:
-        mergeLogName = 'merge-result.log'
+    if not branch:
+        print '分支名不可为空，请补充 -b 参数'
+        return
 
-        moduleNum = 0
+    if setting:
+        # settings.gradle 中的module配置
+        includeModules = deploy.getIncludeModule()
+    elif app:
+        # 合并 WorkSpace GomeApp
+        includeModules = ['./', 'GomeApp']
+    else:
+        print '参数错误'
+        return
 
-        mergeType0 = ''
-        mergeType0M = []
+    moduleNum = len(includeModules)
 
-        mergeType1 = 'Already up to date'
-        mergeType1M = []
+    mergeLogName = 'merge-result.log'
 
-        mergeType2 = 'Fast-forward'
-        mergeType2M = []
+    mergeType1 = 'Already up to date'
+    mergeType1M = []
 
-        mergeType3 = "Merge made by the 'recursiv"
-        mergeType3M = []
+    mergeType2 = 'Fast-forward'
+    mergeType2M = []
 
-        mergeType4 = 'CONFLICT'
-        mergeType4M = []
+    mergeType3 = "Merge made by the 'recursiv"
+    mergeType3M = []
 
-        # 无法分析log
-        mergeType5M = []
+    mergeType4 = 'CONFLICT'
+    mergeType4M = []
 
-        mergeType6 = 'not something we can merge'
-        mergeType6M = []
+    # 无法分析log
+    mergeType5M = []
 
-        # 项目不存在
-        mergeType7M = []
+    mergeType6 = 'not something we can merge'
+    mergeType6M = []
 
-        with open(os.path.join(mergeLogName), "w") as mergeReustLog: # 合并详细结果，缓存文件
-            # settings.gradle 中的module配置
-            includeModules = deploy.getIncludeModule()
-            moduleNum = len(includeModules)
-            for m in includeModules:
-                startlog = u'开始合并: %s' % m
-                print startlog
-                mergeReustLog.write(startlog)
+    # 项目不存在
+    mergeType7M = []
 
-                if os.path.exists(os.path.join(dir_current, m)) and os.path.isdir(os.path.join(dir_current, m)):
+    with open(os.path.join(mergeLogName), "w") as mergeReustLog: # 合并详细结果，缓存文件
 
-                    # 执行合并命令
-                    merge_result = os.popen(cmd % (m, branch)).read()
+        # for循环计数
+        forCount = 0
 
-                    if mergeType0 == merge_result:
-                        merge_result = u'未获取到执行结果，本项目好像没有%s这个分支 <Err>' % branch
-                        sloge4red(merge_result)
-                        mergeType0M.append(m)
-                    elif mergeType1 in merge_result:
-                        print u'合并成功，分支<%s>没有任何修改' % branch
-                        mergeType1M.append(m)
-                    elif mergeType2 in merge_result:
-                        print u'合并成功，记得去push [Fast-forward]'
-                        mergeType2M.append(m)
-                    elif mergeType3 in merge_result:
-                        print u"合并成功，记得去push [Merge made by the 'recursive' strategy]"
-                        mergeType3M.append(m)
-                    elif mergeType4 in merge_result:
-                        sloge4red(u'合并出错，屮艸芔茻，有冲突 <Err>')
-                        mergeType4M.append(m)
-                    elif mergeType6 in merge_result:
-                        sloge4red(u'本项目应该没有该分支-%s，请检查后再处理 <Err>' % branch)
-                        mergeType6M.append(m)
-                    else:
-                        sloge4red(u'合并出错，无法分析合并log，请自行分析 <Warn>')
-                        mergeType5M.append(m)
-                    mergeReustLog.write(u'\nmerge_result:\n%s\n' % merge_result)
+        for m in includeModules:
+            forCount = forCount + 1
+            startlog = u'开始合并: %s' % m
+            print startlog
+            mergeReustLog.write(startlog)
+
+            if os.path.exists(os.path.join(dir_current, m)) and os.path.isdir(os.path.join(dir_current, m)):
+
+                # 执行合并命令
+                # merge_result = os.popen(cmd % (m, branch)).read()
+
+                out_temp = tempfile.SpooledTemporaryFile(bufsize=10*1000)
+                fileno = out_temp.fileno()
+                # subprocess.PIPE 本身可容纳的量比较小，所以程序会卡死
+                process_check = subprocess.Popen(['git', 'merge', branch], stderr=fileno, stdout=fileno,
+                                                 cwd=os.path.join(dir_current, m))
+                code_check = process_check.wait()
+                # if code_check != 0:
+                #   continue
+
+                # 读取命令执行结果
+                out_temp.seek(0)
+                merge_result = ''.join([x.rstrip() for x in out_temp.readlines()])
+                out_temp.close()
+
+                if mergeType1 in merge_result:
+                    print u'合并成功，分支<%s>没有任何修改' % branch
+                    mergeType1M.append(m)
+                elif mergeType2 in merge_result:
+                    print u'合并成功，记得去push [Fast-forward]'
+                    mergeType2M.append(m)
+                elif mergeType3 in merge_result:
+                    print u"合并成功，记得去push [Merge made by the 'recursive' strategy]"
+                    mergeType3M.append(m)
+                elif mergeType4 in merge_result:
+                    sloge4red(u'合并出错，屮艸芔茻，有冲突 <Err>')
+                    mergeType4M.append(m)
+                elif mergeType6 in merge_result:
+                    sloge4red(u'本项目应该没有该分支-%s，请检查后再处理 <Err>' % branch)
+                    mergeType6M.append(m)
                 else:
-                    log = u'项目不存在，请核实 <Err>'
-                    sloge4red(log)
-                    mergeReustLog.write('\n%s\n' % log)
-                    mergeType7M.append(m)
+                    sloge4red(u'合并出错，无法分析合并log，请自行分析 <Warn>')
+                    mergeType5M.append(m)
+                mergeReustLog.write(u'\nmerge_result:\n%s\n' % merge_result)
+            else:
+                log = u'项目不存在，请核实 <Err>'
+                sloge4red(log)
+                mergeReustLog.write('\n%s\n' % log)
+                mergeType7M.append(m)
 
+            if forCount != moduleNum: # 最后一个不打印
                 endlog = u"合并结束\n-----------------------------------------------------"
                 print endlog
                 mergeReustLog.write(endlog + '\n')
 
-        print('\033[1;37;41m')     #下一目标输出背景为黑色，颜色红色高亮显示
-        print(' ' * 100)
-        print('\033[0m')
+    print('\033[33m')
+    print('-' * 100)
+    print('\033[0m')
 
-        print u'\n\033[1;35m合并详细日志：根目录的[%s]这个文件' % mergeLogName
-        print u'\n总结如下，共处理%s个项目：\033[0m' % moduleNum
+    print u'\033[1;35m合并详细日志：根目录的[%s]这个文件\033[0m' % mergeLogName
+    print u'\n总结如下，共处理%s个项目：' % moduleNum
 
-        msg0 = u'\n0、好像没有%s这个分支的项目，共%s个：' % (branch, len(mergeType0M))
-        printYellow(msg0)
-        print(mergeType0M)
-
-        msg1 = u'\n1、合并成功，没有任何修改的项目，共%s个：' % len(mergeType1M)
+    # 当前打印的序号，只打印有用的条目
+    printNum = 0
+    if len(mergeType1M) > 0:
+        printNum = printNum + 1
+        msg1 = u'\n%s、合并成功，没有任何修改的项目，共%s个：' % (printNum, len(mergeType1M))
         printGreen(msg1)
         print(mergeType1M)
 
-        msg2 = u'\n2、合并成功，记得去push的项目[Fast-forward]，共%s个：' % len(mergeType2M)
+    if len(mergeType2M) > 0:
+        printNum = printNum + 1
+        msg2 = u'\n%s、合并成功，记得去push的项目[Fast-forward]，共%s个：' % (printNum, len(mergeType2M))
         printGreen(msg2)
         print(mergeType2M)
 
-        msg3 = u"\n3、合并成功，记得去push的项目[Merge made by the 'recursive' strategy]，共%s个：" % len(mergeType3M)
+    if len(mergeType3M) > 0:
+        printNum = printNum + 1
+        msg3 = u"\n%s、合并成功，记得去push的项目[Merge made by the 'recursive' strategy]，共%s个：" % (printNum, len(mergeType3M))
         printGreen(msg3)
         print(mergeType3M)
 
-        msg4 = u'\n4、合并出错，屮艸芔茻，有冲突的项目，共%s个：' % len(mergeType4M)
+    if len(mergeType4M) > 0:
+        printNum = printNum + 1
+        msg4 = u'\n%s、合并出错，屮艸芔茻，有冲突的项目，共%s个：' % (printNum, len(mergeType4M))
         printRed(msg4)
         print(mergeType4M)
 
-        msg5 = u'\n5、合并出错，无法分析log，请自行查看的项目，共%s个：' % len(mergeType5M)
+    if len(mergeType5M) > 0:
+        printNum = printNum + 1
+        msg5 = u'\n%s、合并出错，无法分析log，请自行查看的项目，共%s个：' % (printNum, len(mergeType5M))
         printRed(msg5)
         print(mergeType5M)
 
-        msg6 = u'\n6、好像没有%s这个分支的项目，共%s个：「和第0条可能有重复」' % (branch, len(mergeType6M))
+    if len(mergeType6M) > 0:
+        printNum = printNum + 1
+        msg6 = u'\n%s、好像没有%s这个分支的项目，共%s个：' % (printNum, branch, len(mergeType6M))
         printYellow(msg6)
         print(mergeType6M)
 
-        msg7 = u'\n7、项目不存在，共%s个：' % len(mergeType7M)
+    if len(mergeType7M) > 0:
+        printNum = printNum + 1
+        msg7 = u'\n%s、项目不存在，共%s个：' % (printNum, len(mergeType7M))
         printYellow(msg7)
         print(mergeType7M)
 
 def printGreen(message):
-    print "\033[4;36m%s\033[0m" % message
+    print "\033[0;36m%s\033[0m" % message
 
 def printRed(message):
-    print "\033[4;31m%s\033[0m" % message
+    print "\033[0;31m%s\033[0m" % message
 
 def printYellow(message):
-    print "\033[4;33m%s\033[0m" % message
+    print "\033[0;33m%s\033[0m" % message
 
 def cmd_remote(args):
     set = args.set
@@ -1325,17 +1378,21 @@ if __name__ == '__main__':
     parser_apk_.add_argument("-app", "--app_deps_settings_module", help=u'根据setting中的配置的项目，对App部署依赖', action='store_true', default=False)
     parser_apk_.add_argument("-t", "--target_modules", help=u'对某些module部署依赖', nargs='*')
     parser_apk_.add_argument("-d", "--deps_modules", type=str, help=u'依赖某些module的源码', nargs='*')
+    parser_apk_.add_argument("-dm", "--del_ex_setting_modules", help=u'删除非setting配置的其他module', action='store_true', default=False)
 
     parser_aar = subparsers.add_parser("aar", help=u"批量aar")
     parser_aar.set_defaults(func=cmd_compile_aar)
+    parser_aar.add_argument('-s', "--setting", help=u'根据setting文件中module打aar', action='store_true', default=False)
     parser_aar.add_argument("-m", "--modules", help=u'多个module打包aar', nargs='+')
     parser_aar.add_argument('-v', "--version_index", type=int, default=3, choices=[1, 2, 3], help=u'自增版本索引【1大版本，2中间版本，3小版本】')
-    parser_aar.add_argument('-nc', "--not_check", help=u'不检查，不排序，直接安装输入的顺序打包', action='store_true', default=False)
+    parser_aar.add_argument('-nc', "--not_check", help=u'不检查，不排序，直接按照输入的顺序打包', action='store_true', default=False)
     #parser_aar.add_argument("-s", "--start_projects_xml", type=str, default='GFrameHttp', help=u'从某个module开始打包（根据projects.xml中的顺序）')
 
     parser_merge = subparsers.add_parser("merge", help=u"合并")
     parser_merge.set_defaults(func=cmd_compile_merge)
     parser_merge.add_argument('-b', "--branch", type=str, help=u'远程分支(-b origin/branch)；本地分支(-b branch)')
+    parser_merge.add_argument('-a', "--app", help=u'合并WorkSpace + GomeApp', action='store_true', default=False)
+    parser_merge.add_argument('-s', "--setting", help=u'根据setting合并其中的所有module', action='store_true', default=False)
 
     # 切换远程地址
     parser_remote = subparsers.add_parser("remote", help=u"远程地址")
