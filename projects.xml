@@ -147,7 +147,7 @@
     <project url="git@code.gome.inc:mobile-android-video/VideoSearch.git" />
     <project url="git@code.gome.inc:mobile-android-mcp/GEntMediaPicker.git" />
     <project url="git@code.gome.inc:mobile-android-business/GHomeAdd.git" />
-    <project url="git@code.gome.inc:mobile-android-business/GAmusement.git" />
+    <project groups="ylh1.5" url="git@code.gome.inc:mobile-android-business/GAmusement.git" />
 
     <!--主工程-->
     <project app="true" groups="ylh1.5" path="GomeApp" url="git@code.gome.inc:mobile-android/GomePlus.git" />
