@@ -18,7 +18,7 @@
     <project groups="private" url="git@code.gome.inc:mobile-android-common/GPermission.git"/>
     <project groups="private" url="git@code.gome.inc:mobile-android-common/GWatchImage.git"/>
     <project groups="private" url="git@code.gome.inc:mobile-android-business/MImageEditor.git"/>
-    <project groups="private" branch="master" url="git@code.gome.inc:mobile-android-business/SSelectPhoto.git"/>
+    <project groups="ylh1.5"  url="git@code.gome.inc:mobile-android-business/SSelectPhoto.git"/>
     <project groups="private" url="git@code.gome.inc:mobile-android-business/GEmbedAnalysis.git"/>
     <project groups="private" url="git@code.gome.inc:mobile-android-repo/Glivenesslib.git"/>
     <project groups="private" url="git@code.gome.inc:mobile-android-business/GTabLayout.git"/>
