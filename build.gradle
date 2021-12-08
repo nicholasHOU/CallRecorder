@@ -301,7 +301,7 @@ ext.deps = [
         GShopCarBus          : rootProject.ext.proDeps ? project(':GShopCarBus') : 'com.gome.ecmall.business:gshopcartbus:' + getProperty('AAR_GBUSINESS_GSHOPCARTBUS_VERSION') + '@aar',
         GGomeShareBus        : rootProject.ext.proDeps ? project(':GGomeShareBus') : 'com.gome.ecmall:gomesharebus:' + getProperty('AAR_GGOMESHAREBUS_VERSION') + '@aar',
         GBusiness            : rootProject.ext.proDeps ? project(':GBusiness') : 'com.gome.ecmall:business:' + getProperty('AAR_GBUSINESS_VERSION') + '@aar',
-        GScheme              : true ? project(':GScheme') : 'com.gome.ecmall:scheme:' + getProperty('AAR_GSCHEME_VERSION') + '@aar',
+        GScheme              : rootProject.ext.proDeps ? project(':GScheme') : 'com.gome.ecmall:scheme:' + getProperty('AAR_GSCHEME_VERSION') + '@aar',
         GMallService         : rootProject.ext.proDeps ? project(':GMallService') : 'com.gome.ecmall:mallservice:' + getProperty('AAR_GMALL_SERVICE_VERSION') + '@aar',
         GSocialService       : rootProject.ext.proDeps ? project(':GSocialService') : 'com.gome.ecmall:socialservice:' + getProperty('AAR_GSOCIAL_SERVICE_VERSION') + '@aar',
         GAddress             : rootProject.ext.proDeps ? project(':GAddress') : 'com.gome.ecmall.business:address:' + getProperty('AAR_GBUSINESS_ADRESS_VERSION') + '@aar',
@@ -359,7 +359,7 @@ ext.deps = [
         GBusinessView        : rootProject.ext.proDeps ? project(':GBusinessView') : 'com.gome.business.view:businessview:' + getProperty('AAR_BUSINESSVIEW_VERSION'),
         GAmusement           : rootProject.ext.proDeps ? project(':GAmusement') : 'com.gome.ecmall:amusement:' + getProperty('AAR_AMUSEMENT_VERSION'),
         GAnimView            : 'io.github.tencent:vap:2.0.20',
-        GScanAuthLogin       : project(':GScanAuthLogin')
+        GScanAuthLogin       :  rootProject.ext.proDeps ?project(':GScanAuthLogin'): 'com.gome.mcp:gscanauth:' + getProperty('AAR_SCANAUTHLOGIN_VERSION')+ '@aar'
 ]
 /**
  * depMcp dep aar, default exclude transitive dependencies
