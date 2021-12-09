@@ -143,7 +143,7 @@
 
     <project url="git@code.gome.inc:mobile-android-video/GVideoRecordingUgcKit.git" />
     <project url="git@code.gome.inc:mobile-android-video/GVideoRecording.git" />
-    <project url="git@code.gome.inc:mobile-android-video/VideoEdit.git" />
+    <project groups="ylh1.5" url="git@code.gome.inc:mobile-android-video/VideoEdit.git" />
     <project url="git@code.gome.inc:mobile-android-video/VideoSearch.git" />
     <project url="git@code.gome.inc:mobile-android-mcp/GEntMediaPicker.git" />
     <project url="git@code.gome.inc:mobile-android-business/GHomeAdd.git" />
