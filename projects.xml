@@ -18,7 +18,7 @@
     <project groups="private" url="git@code.gome.inc:mobile-android-common/GPermission.git"/>
     <project groups="private" url="git@code.gome.inc:mobile-android-common/GWatchImage.git"/>
     <project groups="private" url="git@code.gome.inc:mobile-android-business/MImageEditor.git"/>
-    <project groups="ylh1.5"  url="git@code.gome.inc:mobile-android-business/SSelectPhoto.git"/>
+    <project groups="ylh1.5" branch="ylh1.5" url="git@code.gome.inc:mobile-android-business/SSelectPhoto.git"/>
     <project groups="private" url="git@code.gome.inc:mobile-android-business/GEmbedAnalysis.git"/>
     <project groups="private" url="git@code.gome.inc:mobile-android-repo/Glivenesslib.git"/>
     <project groups="private" url="git@code.gome.inc:mobile-android-business/GTabLayout.git"/>
@@ -65,9 +65,9 @@
 
     <!--支持3D Wap-->
     <project url="git@code.gome.inc:mobile-android-repo/GX5Lib.git" />
-    <project  groups="ylh1.5" url="git@code.gome.inc:mobile-android-business/GRouterInterface.git" />
+    <project  groups="ylh1.5" branch="ylh1.5" url="git@code.gome.inc:mobile-android-business/GRouterInterface.git" />
     <project  url="git@code.gome.inc:mobile-android-video/VideoInterface.git" />
-    <project  groups="ylh1.5" url="git@code.gome.inc:mobile-android-business/GBusinessView.git" />
+    <project  groups="ylh1.5" branch="ylh1.5" url="git@code.gome.inc:mobile-android-business/GBusinessView.git" />
 
     <project url="git@code.gome.inc:mobile-android-business/GBusinessDeps.git" />
     <project url="git@code.gome.inc:mobile-android-business/GScheme.git" />
@@ -113,14 +113,14 @@
     <project url="git@code.gome.inc:mobile-android-mcp/GPhotoScan.git" />
     <project  artifactId="productsearch" bundleOpen="false"
         url="git@code.gome.inc:mobile-android-business/GProductSearch.git" />
-    <project groups="ylh1.5" url="git@code.gome.inc:mobile-android-business/GIMRedEnvelope.git" />
+    <project groups="ylh1.5" branch="ylh1.5" url="git@code.gome.inc:mobile-android-business/GIMRedEnvelope.git" />
     <project url="git@code.gome.inc:mobile-android-business/MCommon.git" />
     <project url="git@code.gome.inc:mobile-android-business/GOnlinememberCard.git" />
 
     <project url="git@code.gome.inc:mobile-android-business/MFriendCircle.git" />
     <project url="git@code.gome.inc:mobile-android-business/MSocial.git" />
     <project url="git@code.gome.inc:mobile-android-business/MIm.git" />
-    <project groups="ylh1.5" url="git@code.gome.inc:mobile-android-business/MFriends.git" />
+    <project groups="ylh1.5" branch="ylh1.5" url="git@code.gome.inc:mobile-android-business/MFriends.git" />
     <project url="git@code.gome.inc:mobile-android-mcp/IMKit.git" />
     <project url="git@code.gome.inc:mobile-android-business/GMoreService.git" />
     <project url="git@code.gome.inc:mobile-android-business/GMallPage.git" />
@@ -132,23 +132,23 @@
     <project url="git@code.gome.inc:mobile-android-business/GShoppingCart.git" />
     <project url="git@code.gome.inc:mobile-android-business/GShopCart.git" />
     <project url="git@code.gome.inc:mobile-android-business/GSetting.git" />
-    <project groups="ylh1.5" url="git@code.gome.inc:mobile-android-business/GMemHome.git" />
+    <project groups="ylh1.5" branch="ylh1.5" url="git@code.gome.inc:mobile-android-business/GMemHome.git" />
     <project url="git@code.gome.inc:mobile-android-business/AMemHome.git" />
     <project url="git@code.gome.inc:mobile-android-business/GMemService.git" />
     <project url="git@code.gome.inc:mobile-android-business/GSimilar.git" />
     <project url="git@code.gome.inc:mobile-android-business/GStoreChannel.git" />
     <project url="git@code.gome.inc:mobile-android-business/GHomeAddInterface.git" />
     <project groups="ylh1.5" branch="fun1.5" url="git@code.gome.inc:mobile-android-business/GZhiboBus.git" />
-    <project groups="ylh1.5" url="git@code.gome.inc:mobile-android-business/Gsuperplayerkit.git" />
+    <project groups="ylh1.5" branch="ylh1.5" url="git@code.gome.inc:mobile-android-business/Gsuperplayerkit.git" />
 
     <project url="git@code.gome.inc:mobile-android-video/GVideoRecordingUgcKit.git" />
     <project url="git@code.gome.inc:mobile-android-video/GVideoRecording.git" />
-    <project groups="ylh1.5" url="git@code.gome.inc:mobile-android-video/VideoEdit.git" />
+    <project groups="ylh1.5" branch="ylh1.5" url="git@code.gome.inc:mobile-android-video/VideoEdit.git" />
     <project url="git@code.gome.inc:mobile-android-video/VideoSearch.git" />
     <project url="git@code.gome.inc:mobile-android-mcp/GEntMediaPicker.git" />
     <project url="git@code.gome.inc:mobile-android-business/GHomeAdd.git" />
-    <project groups="ylh1.5" url="git@code.gome.inc:mobile-android-business/GAmusement.git" />
+    <project groups="ylh1.5" branch="ylh1.5" url="git@code.gome.inc:mobile-android-business/GAmusement.git" />
 
     <!--主工程-->
-    <project app="true" groups="ylh1.5" path="GomeApp" url="git@code.gome.inc:mobile-android/GomePlus.git" />
+    <project app="true" groups="ylh1.5" branch="ylh1.5" path="GomeApp" url="git@code.gome.inc:mobile-android/GomePlus.git" />
 </manifest>
