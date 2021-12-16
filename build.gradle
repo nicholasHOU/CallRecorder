@@ -41,7 +41,7 @@ buildscript {
         classpath "org.jetbrains.kotlin:kotlin-android-extensions:$kotlin_version"
 
         /**
-         * 打包图片资源压缩
+         * 打包资源压缩
          */
         classpath "com.gome.compress:compress_plugin:1.0.6"
     }
