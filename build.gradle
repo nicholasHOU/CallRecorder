@@ -43,7 +43,7 @@ buildscript {
         /**
          * 打包资源压缩
          */
-        classpath "com.gome.compress:compress_plugin:1.0.7"
+        classpath "com.gome.compress:compress_plugin:1.0.9"
     }
 }
 
