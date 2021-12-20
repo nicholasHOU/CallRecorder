@@ -191,7 +191,7 @@ ext.deps = [
         GBuildConfig         : 'com.gome.mcp:buildconfig:2.8.8.5',
         GPlugin              : 'com.gome.ecmall.core:plugin:1.0.39@aar',
         ABTest               : 'com.gome.mcp:abtestlib:' + getProperty('AAR_GABTEST_VERSION'),
-        DXCaptcha            : 'com.gome.third:dx-captcha:1.5.4@aar',
+        DXCaptcha            : 'com.gome.third:dx-captcha:1.7.2@aar',
         AMapLocation         : 'com.gome.ecmall.third:amap-location:4.4.0_20181122',
         AMap2DMap            : 'com.gome.ecmall.third:amap-2dmap:5.2.0_20170627',
         AMapSearch           : 'com.gome.ecmall.third:amap-search:6.5.0_20180930',
