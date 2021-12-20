@@ -16,7 +16,7 @@ buildscript {
     dependencies {
 
         classpath 'com.android.tools.build:gradle:3.2.1'
-        classpath 'com.gutils:apker:0.0.27-3.2.1'
+        classpath 'com.gutils:apker:0.0.31-3.2.1'
 
         //classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.5"
 
@@ -44,6 +44,7 @@ buildscript {
          * 打包资源压缩
          */
         classpath "com.gome.compress:compress_plugin:1.0.9"
+        classpath 'com.tencent.mm:AndResGuard-gradle-plugin:1.2.19'
     }
 }
 
