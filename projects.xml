@@ -123,7 +123,7 @@
     <project groups="ylh1.5" url="git@code.gome.inc:mobile-android-business/MFriends.git" />
     <project url="git@code.gome.inc:mobile-android-mcp/IMKit.git" />
     <project url="git@code.gome.inc:mobile-android-business/GMoreService.git" />
-    <project url="git@code.gome.inc:mobile-android-business/GMallPage.git" />
+    <project groups="ylh1.5" url="git@code.gome.inc:mobile-android-business/GMallPage.git" />
 
     <project url="git@code.gome.inc:mobile-android-business/GCollection.git" />
 
