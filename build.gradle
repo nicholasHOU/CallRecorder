@@ -144,9 +144,6 @@ ext.deps = [
         GMsc                 : 'com.gome.ecmall:msc:1.0.4@aar',
         GMscStaff            : 'com.gome.staff:msc:21.11.18@aar',
         GAVSdk               : 'com.gome.third:sessionsdk:21.7.22',
-//        SLiteAVSDK           : 'com.tencent.liteav:LiteAVSDK_Professional:8.2.9809', //专业版
-        //SLiteAVSDK        : 'com.tencent.liteavsdk:LiteAVSDK_Smart:latest.release', //普通版
-        SLiteAVSDK        : 'com.gome.zhibo:LiteAVSDK_Enterprise:9.2.10641', //企业版
         GSuperplayerSDK      : 'com.gome.ecmall:superplayer:1.0.10',//播放器
         GImage               : 'com.gome.mcp:image:2.8.8',
         GCACHE               : 'com.gome.mcp:cache:' + getProperty('AAR_MCP_VERSION') + '@aar',
@@ -187,14 +184,14 @@ ext.deps = [
         GUpdate              : 'com.gome.mcp:update:2.9.6',
         GYunNengTimeWidget   : 'com.gome.ecmall:yunnengtimewidget:3.1.0@aar',
         GWap                 : 'com.gome.mcp:wap:' + getProperty('AAR_MCP_WAP_VERSION') + '@aar',
-        STitlebar            : 'cn.gome.staff.ui:titlebar:' + getProperty('AAR_STITLEBAR_VERSION') + '@aar',
+        STitlebar            : 'cn.gome.staff.ui:titlebar:' + getProperty('AAR_UI_TITLEBAR_VERSION') + '@aar',
         GCrash               : 'com.gome.mcp:crash:' + getProperty('AAR_MCP_VERSION') + '@aar',
         GSecret              : 'com.gome.mcp:sec-gome:2.8.8-v22:gomeRelease@aar',
         BSecret              : 'com.gome.mcp:sec-bangbang:2.8.8-v21:bangbangRelease@aar',
         GBuildConfig         : 'com.gome.mcp:buildconfig:2.8.8.5',
         GPlugin              : 'com.gome.ecmall.core:plugin:1.0.39@aar',
         ABTest               : 'com.gome.mcp:abtestlib:' + getProperty('AAR_GABTEST_VERSION'),
-        DXCaptcha            : 'com.gome.third:dx-captcha:1.5.4@aar',
+        DXCaptcha            : 'com.gome.third:dx-captcha:1.7.2@aar',
         AMapLocation         : 'com.gome.ecmall.third:amap-location:4.4.0_20181122',
         AMap2DMap            : 'com.gome.ecmall.third:amap-2dmap:5.2.0_20170627',
         AMapSearch           : 'com.gome.ecmall.third:amap-search:6.5.0_20180930',
@@ -345,7 +342,7 @@ ext.deps = [
         GViewTracker          : false ? project(':GViewTracker') : 'com.gome.viewtracker:viewtracker:'+getProperty('AAR_VIEW_TRACKER_VERSION') + '@aar',
 
         GLog                 : 'com.gome.mcp:log:2.9.3@aar',
-        GVideoLiteAVSDK      : 'com.gome.zhibo:LiteAVSDK_Enterprise:9.2.10641', //企业版
+        GVideoLiteAVSDK      : 'com.gome.zhibo:LiteAVSDK_Enterprise:9.2.29400', //企业版
         GStatusView          : false ? project(':GStatusView') : 'cn.gome.staff.ui:statusview:' + getProperty('AAR_UI_STATUSVIEW_VERSION') + '@aar',
         VideoInterface       : rootProject.ext.proDeps ? project(':VideoInterface') : 'cn.gome.video:vinterface:' + getProperty('AAR_VIDEOINTER_VERSION'),
         GHomeAddInterface    : rootProject.ext.proDeps ? project(':GHomeAddInterface') : 'com.gome.ecmall:homeaddinter:' + getProperty('AAR_HOMEADDINTER_VERSION'),
