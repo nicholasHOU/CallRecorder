@@ -76,8 +76,6 @@
     <project url="git@code.gome.inc:mobile-android-business/GAlbum.git" />
     <project url="git@code.gome.inc:mobile-android-business/GYYTPassWord.git" />
     <project url="git@code.gome.inc:mobile-android-business/GDao.git" />
-    <project url="git@code.gome.inc:mobile-android-business/GBSearch.git" />
-    <project url="git@code.gome.inc:mobile-android-business/GBShop.git" />
     <project url="git@code.gome.inc:mobile-android-business/GMallService.git" />
     <project url="git@code.gome.inc:mobile-android-business/GBProduct.git" />
     <project url="git@code.gome.inc:mobile-android-business/GBCms.git" />
@@ -105,7 +103,6 @@
     <project artifactId="materialorder"  bundleOpen="false"
         url="git@code.gome.inc:mobile-android-business/GMaterialOrder.git" />
     <project url="git@code.gome.inc:mobile-android-business/GGomeCurrency.git" />
-    <project url="git@code.gome.inc:mobile-android-business/GShop.git" />
     <project url="git@code.gome.inc:mobile-android-business/GPanicBuy.git" />
     <project url="git@code.gome.inc:mobile-android-business/GGroupBuy.git" />
     <project url="git@code.gome.inc:mobile-android-business/GAppraise.git" />
