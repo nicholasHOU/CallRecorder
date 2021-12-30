@@ -636,7 +636,8 @@ def cmd_clone(args):
                 slog(u"Module:%s  Branch：%s" % (project.path, project.branch))
                 slog("Url:%s" % project.url)
                 cmd = "git clone %s -b %s %s" % (project.url, project.branch, project.path)
-                os.popen(cmd)
+                clone_cmd = os.popen(cmd)
+                print clone_cmd.read()
                 print ""  # 换行
             else:
                 slog("%s has already existed" % project.path)
