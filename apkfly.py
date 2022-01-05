@@ -636,7 +636,8 @@ def cmd_clone(args):
                 slog(u"Module:%s  Branch：%s" % (project.path, project.branch))
                 slog("Url:%s" % project.url)
                 cmd = "git clone %s -b %s %s" % (project.url, project.branch, project.path)
-                os.popen(cmd)
+                clone_cmd = os.popen(cmd)
+                print clone_cmd.read()
                 print ""  # 换行
             else:
                 slog("%s has already existed" % project.path)
@@ -796,8 +797,12 @@ def cmd_branch(args):
     is_delete = args.delete
     is_push = args.push
     is_continue_branch = args.continue_branch
+    is_include_work_space = args.include_work_space
 
     sub_projects = _git_projects()
+    if is_include_work_space:
+        sub_projects.append('./')
+
     if is_delete:
         _git_delete_push(branch_name, sub_projects, ["git", "branch", "-d", branch_name],
                          ["git", "push", "origin", ":" + branch_name], is_push)
@@ -1349,6 +1354,7 @@ if __name__ == '__main__':
     parser_branch.add_argument("-p", "--push", help=u'是否推送到服务器', action='store_true', default=False)
     parser_branch.add_argument("-d", "--delete", help=u'删除分支', action='store_true', default=False)
     parser_branch.add_argument("-c", "--continue_branch", help=u'创建分支时如某项目已有该分支直接跳过，如不加此命令会打印错误日志不继续创建分支', action='store_true', default=False)
+    parser_branch.add_argument("-i", "--include_work_space", help=u'是否创建workspace的分支', action='store_true', default=False)
 
     # 创建tag
     parser_tag = subparsers.add_parser("tag", help=u"打tag")
