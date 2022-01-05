@@ -43,7 +43,7 @@ buildscript {
         /**
          * 打包资源压缩
          */
-        classpath "com.gome.compress:compress_plugin:1.0.9"
+        classpath "com.gome.compress:compress_plugin:1.0.10"
 //        classpath "com.gome.code:check_plugin:1.0.1"
         classpath 'com.tencent.mm:AndResGuard-gradle-plugin:1.2.19'
     }
