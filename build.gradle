@@ -351,7 +351,7 @@ ext.deps = [
         GHomeAdd             : rootProject.ext.proDeps ? project(':GHomeAdd') : 'com.gome.ecmall:homeadd:' + getProperty('AAR_HOMEADD_VERSION'),
         GBusinessView        : rootProject.ext.proDeps ? project(':GBusinessView') : 'com.gome.business.view:businessview:' + getProperty('AAR_BUSINESSVIEW_VERSION'),
         GAmusement           : rootProject.ext.proDeps ? project(':GAmusement') : 'com.gome.ecmall:amusement:' + getProperty('AAR_AMUSEMENT_VERSION'),
-        ivview               : false ? project(':ivview') : 'com.com.ctrlvideo.ivplayer:ivview:' + getProperty('AAR_IVVIEW_VERSION'),
+        ivview               : false ? project(':ivview') : 'com.ctrlvideo.ivplayer:ivview:' + getProperty('AAR_IVVIEW_VERSION'),
         GAnimView            : 'io.github.tencent:vap:2.0.20'
 ]
 /**
