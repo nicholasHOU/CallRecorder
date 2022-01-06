@@ -129,7 +129,7 @@
 
     <project  artifactId="product" bundleOpen="false"
         url="git@code.gome.inc:mobile-android-business/GProductDetail.git" />
-    <project url="git@code.gome.inc:mobile-android-business/GShoppingCart.git" />
+    <project groups="ylh1.5" url="git@code.gome.inc:mobile-android-business/GShoppingCart.git" />
     <project url="git@code.gome.inc:mobile-android-business/GShopCart.git" />
     <project groups="ylh1.5" url="git@code.gome.inc:mobile-android-business/GSetting.git" />
     <project groups="ylh1.5" url="git@code.gome.inc:mobile-android-business/GMemHome.git" />
