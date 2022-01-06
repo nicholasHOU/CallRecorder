@@ -87,7 +87,7 @@
     <project url="git@code.gome.inc:mobile-android-common/GHybrid.git" />
     <project url="git@code.gome.inc:mobile-android-business/GCashierdesk.git" />
     <project url="git@code.gome.inc:mobile-android-common/GShelvesWidget.git" />
-    <project url="git@code.gome.inc:mobile-android-business/GBusiness.git" />
+    <project groups="ylh1.5" url="git@code.gome.inc:mobile-android-business/GBusiness.git" />
 
     <project url="git@code.gome.inc:mobile-android-business/MImlibrary.git" />
     <project url="git@code.gome.inc:mobile-android-business/GFinanceCommon.git" />
