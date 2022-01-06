@@ -145,7 +145,6 @@
     <project url="git@code.gome.inc:mobile-android-mcp/GEntMediaPicker.git" />
     <project url="git@code.gome.inc:mobile-android-business/GHomeAdd.git" />
     <project url="git@code.gome.inc:mobile-android-business/GAmusement.git" />
-    <project url="git@code.gome.inc:mobile-android-business/GSuperplayerSDK.git" />
 
     <!--主工程-->
     <project app="true" groups="app" path="GomeApp" url="git@code.gome.inc:mobile-android/GomePlus.git" />
