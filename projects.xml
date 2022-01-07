@@ -84,7 +84,7 @@
     <project url="git@code.gome.inc:mobile-android-business/GShopCarBus.git" />
     <project url="git@code.gome.inc:mobile-android-business/GGomeShareBus.git" />
     <project url="git@code.gome.inc:mobile-android-business/GSocialService.git" />
-    <project url="git@code.gome.inc:mobile-android-common/GHybrid.git" />
+    <project groups="ylh1.5" branch="zszPay1209" url="git@code.gome.inc:mobile-android-common/GHybrid.git" />
     <project url="git@code.gome.inc:mobile-android-business/GCashierdesk.git" />
     <project url="git@code.gome.inc:mobile-android-common/GShelvesWidget.git" />
     <project url="git@code.gome.inc:mobile-android-business/GBusiness.git" />
@@ -104,7 +104,7 @@
         url="git@code.gome.inc:mobile-android-business/GReturn.git" />
     <project artifactId="materialorder"  bundleOpen="false"
         url="git@code.gome.inc:mobile-android-business/GMaterialOrder.git" />
-    <project url="git@code.gome.inc:mobile-android-business/GGomeCurrency.git" />
+    <project groups="ylh1.5" branch="zszPay1209" url="git@code.gome.inc:mobile-android-business/GGomeCurrency.git" />
     <project url="git@code.gome.inc:mobile-android-business/GShop.git" />
     <project url="git@code.gome.inc:mobile-android-business/GPanicBuy.git" />
     <project url="git@code.gome.inc:mobile-android-business/GGroupBuy.git" />
@@ -146,7 +146,7 @@
     <project groups="ylh1.5" url="git@code.gome.inc:mobile-android-video/VideoEdit.git" />
     <project url="git@code.gome.inc:mobile-android-video/VideoSearch.git" />
     <project url="git@code.gome.inc:mobile-android-mcp/GEntMediaPicker.git" />
-    <project url="git@code.gome.inc:mobile-android-business/GHomeAdd.git" />
+    <project groups="ylh1.5" branch="v1.5" url="git@code.gome.inc:mobile-android-business/GHomeAdd.git" />
     <project groups="ylh1.5" url="git@code.gome.inc:mobile-android-business/GAmusement.git" />
 
     <!--主工程-->
