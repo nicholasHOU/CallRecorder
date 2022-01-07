@@ -69,7 +69,7 @@
     <project  url="git@code.gome.inc:mobile-android-video/VideoInterface.git" />
     <project  groups="ylh1.5" url="git@code.gome.inc:mobile-android-business/GBusinessView.git" />
 
-    <project url="git@code.gome.inc:mobile-android-business/GBusinessDeps.git" />
+    <project groups="ylh1.5" url="git@code.gome.inc:mobile-android-business/GBusinessDeps.git" />
     <project url="git@code.gome.inc:mobile-android-business/GScheme.git" />
     <project url="git@code.gome.inc:mobile-android-business/GAddress.git" />
     <project url="git@code.gome.inc:mobile-android-business/GBigPhoto.git" />
@@ -85,9 +85,9 @@
     <project url="git@code.gome.inc:mobile-android-business/GGomeShareBus.git" />
     <project url="git@code.gome.inc:mobile-android-business/GSocialService.git" />
     <project groups="ylh1.5" branch="zszPay1209" url="git@code.gome.inc:mobile-android-common/GHybrid.git" />
-    <project url="git@code.gome.inc:mobile-android-business/GCashierdesk.git" />
+    <project groups="ylh1.5" url="git@code.gome.inc:mobile-android-business/GCashierdesk.git" />
     <project url="git@code.gome.inc:mobile-android-common/GShelvesWidget.git" />
-    <project url="git@code.gome.inc:mobile-android-business/GBusiness.git" />
+    <project groups="ylh1.5" url="git@code.gome.inc:mobile-android-business/GBusiness.git" />
 
     <project url="git@code.gome.inc:mobile-android-business/MImlibrary.git" />
     <project url="git@code.gome.inc:mobile-android-business/GFinanceCommon.git" />
@@ -129,7 +129,7 @@
 
     <project  artifactId="product" bundleOpen="false"
         url="git@code.gome.inc:mobile-android-business/GProductDetail.git" />
-    <project url="git@code.gome.inc:mobile-android-business/GShoppingCart.git" />
+    <project groups="ylh1.5" url="git@code.gome.inc:mobile-android-business/GShoppingCart.git" />
     <project url="git@code.gome.inc:mobile-android-business/GShopCart.git" />
     <project groups="ylh1.5" url="git@code.gome.inc:mobile-android-business/GSetting.git" />
     <project groups="ylh1.5" url="git@code.gome.inc:mobile-android-business/GMemHome.git" />
