@@ -82,7 +82,6 @@
     <project url="git@code.gome.inc:mobile-android-business/GShopCarBus.git" />
     <project url="git@code.gome.inc:mobile-android-business/GGomeShareBus.git" />
     <project url="git@code.gome.inc:mobile-android-business/GSocialService.git" />
-    <project url="git@code.gome.inc:mobile-android-common/GHybrid.git" />
     <project url="git@code.gome.inc:mobile-android-business/GCashierdesk.git" />
     <project url="git@code.gome.inc:mobile-android-common/GShelvesWidget.git" />
     <project url="git@code.gome.inc:mobile-android-business/GBusiness.git" />
@@ -114,6 +113,8 @@
     <project url="git@code.gome.inc:mobile-android-business/GIMRedEnvelope.git" />
     <project url="git@code.gome.inc:mobile-android-business/MCommon.git" />
     <project url="git@code.gome.inc:mobile-android-business/GOnlinememberCard.git" />
+
+    <project url="git@code.gome.inc:mobile-android-common/GHybrid.git" />
 
     <project url="git@code.gome.inc:mobile-android-business/MFriendCircle.git" />
     <project url="git@code.gome.inc:mobile-android-business/MSocial.git" />
