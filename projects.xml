@@ -108,6 +108,7 @@
     <project url="git@code.gome.inc:mobile-android-business/GAppraise.git" />
 
     <project url="git@code.gome.inc:mobile-android-mcp/GPhotoScan.git" />
+    <project url="git@code.gome.inc:mobile-android-mcp/GScanAuthLogin.git" />
     <project  artifactId="productsearch" bundleOpen="false"
         url="git@code.gome.inc:mobile-android-business/GProductSearch.git" />
     <project url="git@code.gome.inc:mobile-android-business/GIMRedEnvelope.git" />

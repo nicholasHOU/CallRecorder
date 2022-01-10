@@ -82,7 +82,7 @@ def deployMainAppDeps():
     print u"3、解析到主工程 %s" % mainModuleName
 
     # 主工程信息
-    mainModuleInfo = ModuleInfo(mainModuleName, '', '')
+    mainModuleInfo = ModuleInfo(mainModuleName, '', '', '')
 
     print u"4、把主工程上次部署的（依赖、排除）reset"
     os.popen("cd %s && git checkout %s" % (mainModuleName, mainModuleInfo.getBuildFile()))
@@ -126,46 +126,63 @@ def getModuleMavenInfo(includeModules):
     with open(file_build, "r") as file, open("%s.bak" % file_build, "w") as file_bak:
         for line in file:
 
-            #1、把依赖本地module开关打开
-            for includeModule in includeModules:
-                line_ = line.replace(' ', '')
-                if includeModule + ":" in line_:# 这里不能直接用line包含includeModule，应为module有MIm、MImlibrary这样的，如果只include MIm，MImlibrary也会被修改
-                    depTag = 'rootProject.ext.proDeps'
-                    depTag2 = "%s:%s?project"
-                    if depTag in line:
-                        # 把依赖开关tag替换为true
-                        line = line.replace(depTag, 'true', 1)
-                    else:
-                        # 未检测到依赖开关配置
-                        # 再次检查是否已把开关配置写成false，如果是则修改为true
-                        if line_.startswith(depTag2 % (includeModule, 'false')):
-                            line = line_.replace(depTag2 % (includeModule, 'false'), depTag2 % (includeModule, 'true'), 1)
-                        elif not line_.startswith(depTag2 % (includeModule, 'true')):
-                            # 有bug，有的不是这个关键字而直接写的 false
-                            printRed(u'%s项目没有打开源码依赖开关' % includeModule)
-                    break
-            file_bak.write(line)
-
-            # 2、马上进入解析 ext.deps[ ] 中的配置
-            line = line.strip()
-            if not (line == "" or line.startswith('//') or line.startswith('/') or line.startswith('*')):
-                if line.startswith('ext.deps'):
+            # 只解析ext.deps = [ ] 之中的配置，也排除注释的代码
+            line_ = line.replace(' ', '')
+            if not (line == "" or line_.startswith('//') or line_.startswith('/') or line_.startswith('*')):
+                if line_.startswith('ext.deps'):
                     start = True
+                    file_bak.write(line)
                     continue
-                elif line.startswith(']') and start:
+                elif line_.startswith(']') and start:
                     start = False
-                # 开始解析
+
                 if  start:
-                    lines = line.split(':', 1)
-                    moduleName = lines[0].strip()
-                    if moduleName in includeModules:
+                    # 首先匹配该行代码是否包含include的module之一
+                    isMatch = False
+                    curModule = ""
+                    depsModule = ""
+                    for includeModule in includeModules:
+                        # 第一个in判断是匹配开头
+                        # 第二个in判断是匹配中间的project(':xxx')，这个目前是个bug，compile的module是真实的而不是ext.deps中配置的，这样导致compile找不到配置
+                        # 这里不能直接用line包含includeModule，应为module有MIm、MImlibrary这样的，如果只include MIm，MImlibrary也会被修改，所以得加上: 一块匹配
+                        if (includeModule + ":") in line_:
+                            isMatch = True
+                            curModule = includeModule
+                            break
+                        elif (":" + includeModule) in line_:
+                            isMatch = True
+                            curModule = includeModule
+                            # 分割，取deps别名
+                            lines = line_.split(':', 1)
+                            depsModule = lines[0]
+                            break
+
+                    if isMatch:
+                        #1、把依赖本地module开关打开
+                        depTag = 'rootProject.ext.proDeps'
+                        depTag2 = "%s:%s?project"
+                        if depTag in line:
+                            # 把依赖开关tag替换为true
+                            line = line.replace(depTag, 'true', 1)
+                        else:
+                            # 未检测到依赖开关配置
+                            # 再次检查是否已把开关配置写成false，如果是则修改为true
+                            if line_.startswith(depTag2 % (includeModule, 'false')):
+                                line = line_.replace(depTag2 % (includeModule, 'false'), depTag2 % (includeModule, 'true'), 1)
+                            elif not line_.startswith(depTag2 % (includeModule, 'true')):
+                                # 有bug，有的不是这个关键字而直接写的 false
+                                printRed(u'%s项目没有打开源码依赖开关' % includeModule)
+
+                        # 2、马上进入解析 ext.deps[ ] 中的配置
                         # 从build.gradle的deps配置中查出module的maven信息
                         matchObj = re.match(u".*'((com|cn)\.gome\.[^']*)'", line, re.M|re.I)
                         if matchObj:
                             ga = matchObj.group(1)
                             gas = ga.split(':')
-                            module = ModuleInfo(moduleName, gas[0], gas[1])
+                            module = ModuleInfo(curModule, gas[0], gas[1], depsModule)
                             moduleInfos.append(module)
+            file_bak.write(line)
+
         file.close()
         file_bak.close()
         # 把新文件覆盖现文件
@@ -249,11 +266,12 @@ def writeCompileToBuildGradle(new_file, curModule, moduleInfos):
 
 # module 的信息（名字、groupId、artifactId）
 class ModuleInfo(object):
-    def __init__(self, name, groupId, artifactId):
+    def __init__(self, name, groupId, artifactId, depsName):
         self.name = name
         self.groupId = groupId
         self.artifactId = artifactId
-        self.deps = '    compile (deps.%s){\n        transitive = true\n    }' % name
+        self.depsName = depsName
+        self.deps = '    compile (deps.%s){\n        transitive = true\n    }' % (name if(depsName == None or depsName == '') else depsName)
         self.compileExclude = "    compile.exclude group: '%s', module: '%s'" % (groupId, artifactId)
         self.exclude = "        exclude group: '%s', module: '%s'" % (groupId, artifactId)
 
@@ -282,6 +300,7 @@ def installApk():
         install_output = os.popen("adb install -r %s" % (apkPath)).read()
         print install_output
         if 'Success' in install_output:
+            time.sleep(1)# 延迟一秒安装app，兼容启动失败bug
             startApp(apkPath)
         else:
             print 'install fail'
@@ -374,7 +393,7 @@ def startApp(apkPath):
     print u'3. Start open app...'
     start_output = os.popen("adb shell am start -n %s/%s" % (package, launch))
     print start_output.read()
-    print u'如未启动app，请检查手机设置，允许app后台允许'
+    print u'如未启动app，请检查手机设置，允许app后台启动'
 
 # 分解aapt查找出的信息，组装成字典
 def splitKV(line):

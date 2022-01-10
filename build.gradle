@@ -352,6 +352,7 @@ ext.deps = [
         GBusinessView        : rootProject.ext.proDeps ? project(':GBusinessView') : 'com.gome.business.view:businessview:' + getProperty('AAR_BUSINESSVIEW_VERSION'),
         GAmusement           : rootProject.ext.proDeps ? project(':GAmusement') : 'com.gome.ecmall:amusement:' + getProperty('AAR_AMUSEMENT_VERSION'),
         ivview               : false ? project(':ivview') : 'com.ctrlvideo.ivplayer:ivview:' + getProperty('AAR_IVVIEW_VERSION'),
+        GScanAuthLogin       :  rootProject.ext.proDeps ?project(':GScanAuthLogin'): 'com.gome.mcp:gscanauth:' + getProperty('AAR_SCANAUTHLOGIN_VERSION')+ '@aar'
         GAnimView            : 'io.github.tencent:vap:2.0.20'
 ]
 /**
