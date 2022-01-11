@@ -82,6 +82,9 @@
     <project url="git@code.gome.inc:mobile-android-business/GShopCarBus.git" />
     <project url="git@code.gome.inc:mobile-android-business/GGomeShareBus.git" />
     <project url="git@code.gome.inc:mobile-android-business/GSocialService.git" />
+    
+    <project url="git@code.gome.inc:mobile-android-mcp/GPhotoScan.git" />
+
     <project url="git@code.gome.inc:mobile-android-common/GHybrid.git" />
     <project url="git@code.gome.inc:mobile-android-business/GCashierdesk.git" />
     <project url="git@code.gome.inc:mobile-android-common/GShelvesWidget.git" />
@@ -107,7 +110,7 @@
     <project url="git@code.gome.inc:mobile-android-business/GGroupBuy.git" />
     <project url="git@code.gome.inc:mobile-android-business/GAppraise.git" />
 
-    <project url="git@code.gome.inc:mobile-android-mcp/GPhotoScan.git" />
+    <project branch="master" url="git@code.gome.inc:mobile-android-mcp/GScanAuthLogin.git" />
     <project  artifactId="productsearch" bundleOpen="false"
         url="git@code.gome.inc:mobile-android-business/GProductSearch.git" />
     <project url="git@code.gome.inc:mobile-android-business/GIMRedEnvelope.git" />
