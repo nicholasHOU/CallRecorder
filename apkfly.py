@@ -1057,28 +1057,91 @@ def get_module_version_tag(moduleName):
                     break
     return versionTag
 
+def checkout_branch_pull(module, branch):
+    printGreen('%s: git checkout %s' % (module, branch))
+    os.chdir(os.path.join(dir_current, module))
+    # 切换分支
+    git_cmd = os.popen("git checkout %s" % branch)
+    print git_cmd.read()
+    # 更新一下
+    printGreen('%s: git pull')
+    git_cmd = os.popen("git pull")
+    print git_cmd.read()
+
 def cmd_compile_merge(args):
     branch = args.branch
-    setting = args.setting
-    app = args.app
-
-    if setting and app:
-        print 'setting和app 不可同时调用'
-        return
+    workspace_setting = args.workspace_setting
+    check_branch = args.check_branch
 
     if not branch:
         print '分支名不可为空，请补充 -b 参数'
         return
 
-    if setting:
-        # settings.gradle 中的module配置
-        includeModules = deploy.getIncludeModule()
-    elif app:
-        # 合并 WorkSpace GomeApp
-        includeModules = ['./', 'GomeApp']
+    # settings.gradle 中的module配置
+    includeModules = deploy.getIncludeModule()
+
+    # projects_merge.xml配置信息
+    projects_merge = []
+
+    if check_branch:
+        # 在需求分支上自动合并
+
+        # 1、把当前project.xml备份为 project_merge.xml
+        # 2、
+        # 全部切换到mergeDev
+        # 直接 checkout 和 git pull
+        # 3、
+        # 读取主干的 project.xml
+        # 读取分支的 project_merge.xml
+        #
+        # 对比module的主分支和子分支
+        # 4、轮询合并分支
+
+        # 判断当前分支是否是业务分支
+        cBranch = os.popen("git branch --show-current").read()
+        if branch != cBranch:
+            printRed('当前不在业务分支，无法使用 -a 参数')
+            return
+
+        # 备份需求分支上的projects.xml
+        with open("projects.xml", "r") as file:
+            content = file.read()
+            with open("projects_merge.xml", "w") as wFile:
+                wFile.write(content)
+        # 切换workspace到主干
+        checkout_branch_pull(dir_current, check_branch)
+
+        # 主干project.xml
+        projects_main = XmlProject.parser_manifest("projects.xml", by_project=includeModules)
+
+        # 把所有module切换到主分支，并更新代码
+        for p in projects_main:
+            checkout_branch_pull(p.path, p.branch)
     else:
-        print '参数错误'
+        if os.path.exists(os.path.join(dir_current, 'projects_merge.xml')):
+            requestCode = raw_input("当前使用projects_merge.xml中的配置进行合并 y/n:")
+            if 'n' == requestCode:
+                return
+            else:
+                projects_merge = XmlProject.parser_manifest("projects_merge.xml", by_project=includeModules)
+        else:
+            requestCode = raw_input("当前没有找到projects_merge.xml，所有合并分支都用%s y/n:" % branch)
+            if "n" == requestCode:
+                return
+
+    # 把当前目录切换workspace
+    os.chdir(dir_current)
+
+    if workspace_setting:
+        # 加上 WorkSpace
+        includeModules.append(dir_current)
+
+    if len(includeModules) < 1:
+        printRed("merge modules is empty")
         return
+
+    # 马上合并集合中的所有module
+    printGreen(includeModules)
 
     moduleNum = len(includeModules)
 
@@ -1112,19 +1175,25 @@ def cmd_compile_merge(args):
 
         for m in includeModules:
             forCount = forCount + 1
-            startlog = u'开始合并: %s' % m
+
+            if len(projects_merge) > 0:
+                try:
+                    mergeBranch = projects_merge[forCount-1].branch
+                except IndexError, e:
+                    mergeBranch = branch
+            else:
+                mergeBranch = branch
+
+            startlog = u'%s 开始合并: %s -> 当前分支\n' % (m, mergeBranch)
             print startlog
             mergeReustLog.write(startlog)
 
             if os.path.exists(os.path.join(dir_current, m)) and os.path.isdir(os.path.join(dir_current, m)):
-
                 # 执行合并命令
-                # merge_result = os.popen(cmd % (m, branch)).read()
-
                 out_temp = tempfile.SpooledTemporaryFile(bufsize=10*1000)
                 fileno = out_temp.fileno()
                 # subprocess.PIPE 本身可容纳的量比较小，所以程序会卡死
-                process_check = subprocess.Popen(['git', 'merge', branch], stderr=fileno, stdout=fileno,
+                process_check = subprocess.Popen(['git', 'merge', mergeBranch], stderr=fileno, stdout=fileno,
                                                  cwd=os.path.join(dir_current, m))
                 code_check = process_check.wait()
                 # if code_check != 0:
@@ -1136,7 +1205,7 @@ def cmd_compile_merge(args):
                 out_temp.close()
 
                 if mergeType1 in merge_result:
-                    print u'合并成功，分支<%s>没有任何修改' % branch
+                    print u'合并成功，分支<%s>没有任何修改' % mergeBranch
                     mergeType1M.append(m)
                 elif mergeType2 in merge_result:
                     print u'合并成功，记得去push [Fast-forward]'
@@ -1148,7 +1217,7 @@ def cmd_compile_merge(args):
                     sloge4red(u'合并出错，屮艸芔茻，有冲突 <Err>')
                     mergeType4M.append(m)
                 elif mergeType6 in merge_result:
-                    sloge4red(u'本项目应该没有该分支-%s，请检查后再处理 <Err>' % branch)
+                    sloge4red(u'本项目应该没有该分支%s，请检查后再处理 <Err>' % mergeBranch)
                     mergeType6M.append(m)
                 else:
                     sloge4red(u'合并出错，无法分析合并log，请自行分析 <Warn>')
@@ -1206,7 +1275,7 @@ def cmd_compile_merge(args):
 
     if len(mergeType6M) > 0:
         printNum = printNum + 1
-        msg6 = u'\n%s、好像没有%s这个分支的项目，共%s个：' % (printNum, branch, len(mergeType6M))
+        msg6 = u'\n%s、没有对应分支的项目，共%s个：' % (printNum, len(mergeType6M))
         printYellow(msg6)
         print(mergeType6M)
 
@@ -1394,11 +1463,11 @@ if __name__ == '__main__':
     parser_aar.add_argument('-nc', "--not_check", help=u'不检查，不排序，直接按照输入的顺序打包', action='store_true', default=False)
     #parser_aar.add_argument("-s", "--start_projects_xml", type=str, default='GFrameHttp', help=u'从某个module开始打包（根据projects.xml中的顺序）')
 
-    parser_merge = subparsers.add_parser("merge", help=u"合并")
+    parser_merge = subparsers.add_parser("merge", help=u"合并代码，默认setting配置的所有module")
     parser_merge.set_defaults(func=cmd_compile_merge)
-    parser_merge.add_argument('-b', "--branch", type=str, help=u'远程分支(-b origin/branch)；本地分支(-b branch)')
-    parser_merge.add_argument('-a', "--app", help=u'合并WorkSpace + GomeApp', action='store_true', default=False)
-    parser_merge.add_argument('-s', "--setting", help=u'根据setting合并其中的所有module', action='store_true', default=False)
+    parser_merge.add_argument('branch', help=u'远程分支(origin/branch)；本地分支(branch)', action='store')
+    parser_merge.add_argument('-w', '--workspace_setting', help=u'合并WorkSpace + 还有setting配置的所有module', action='store_true', default=False)
+    parser_merge.add_argument('-c', '--check_branch', type=str, help=u'主分支名名，自动切换分支，然后再合并代码（适合工作空间还在需求分支上的场景）')
 
     # 切换远程地址
     parser_remote = subparsers.add_parser("remote", help=u"远程地址")
