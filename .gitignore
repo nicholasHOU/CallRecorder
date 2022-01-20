@@ -21,6 +21,7 @@
 /IM*
 /Video*
 /buildsrc
+/apkfly.sh
 
 /apkfly_deploy/*.pyc
 
@@ -31,5 +32,6 @@
 /gradle
 /gradlew
 /gradlew.bat
+/merge-result.log
 
 settings.gradle
