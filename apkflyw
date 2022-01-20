@@ -22,6 +22,7 @@ if [ $pVersionInt -lt 3 ] ; then
     echo "apkfly.sh仓库存在，现在更新仓库"
     cd $apkflyF
     git pull
+    cd .. # 把目录切回workspace
   else
     # clone仓库
     echo "apkfly.sh仓库不存在，现在clone仓库"
