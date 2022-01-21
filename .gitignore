@@ -21,8 +21,9 @@
 /IM*
 /Video*
 /buildsrc
-/apkfly.sh
 
+/apkfly.sh
+/.apkfly
 /apkfly_deploy/*.pyc
 
 /settings.gradle

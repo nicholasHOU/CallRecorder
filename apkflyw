@@ -6,8 +6,10 @@
 ##
 ##############################################################################
 
+APKFLY_CACHE_NAME=".apkfly"
+
 APP_HOME="`pwd -P`"
-apkflyF=$APP_HOME/apkfly.sh
+apkflyF=$APP_HOME/$APKFLY_CACHE_NAME
 apkflyPy=$apkflyF/apkfly.py
 
 # 1、判断一下python环境是否是2.x版本
@@ -26,7 +28,7 @@ if [ $pVersionInt -lt 3 ] ; then
   else
     # clone仓库
     echo "apkfly.sh仓库不存在，现在clone仓库"
-    git clone 'git@code.gome.inc:mobile-android-admin/apkfly.sh.git'
+    git clone 'git@code.gome.inc:mobile-android-admin/apkfly.sh.git' $APKFLY_CACHE_NAME
   fi
 
   echo -e "************************ 准备工作完成 ************************\n"
