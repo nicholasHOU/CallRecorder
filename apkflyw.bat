@@ -1,0 +1,46 @@
+@if "%DEBUG%" == "" @echo off
+@rem ##########################################################################
+@rem
+@rem  apkfly startup script for Windows
+@rem
+@rem ##########################################################################
+
+set DIRNAME=%~dp0
+if "%DIRNAME%" == "" set DIRNAME=.
+set APP_BASE_NAME=%~n0
+set APP_HOME=%DIRNAME%
+
+set APKFLY_CACHE_NAME=.apkfly
+
+set apkflyF=%APP_HOME%\%APKFLY_CACHE_NAME%
+set apkflyPy=%apkflyF%\apkfly.py
+
+if not exist "%apkflyF%" goto git_clone
+
+:git_clone
+echo apkfly.sh not exist, exec git clone
+git clone git@code.gome.inc:mobile-android-admin/apkfly.sh.git %APKFLY_CACHE_NAME%
+
+
+if not "%OS%" == "Windows_NT" goto win9xME_args
+if "%@eval[2+2]" == "4" goto 4NT_args
+
+:win9xME_args
+@rem Slurp the command line arguments.
+set CMD_LINE_ARGS=
+set _SKIP=2
+
+:win9xME_args_slurp
+if "x%~1" == "x" goto execute
+
+set CMD_LINE_ARGS=%*
+goto execute
+
+:4NT_args
+@rem Get arguments from the 4NT Shell from JP Software
+set CMD_LINE_ARGS=%$
+
+:execute
+@rem Setup the command line
+
+python %apkflyPy% %CMD_LINE_ARGS%
