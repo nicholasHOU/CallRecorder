@@ -1,4 +1,4 @@
-<?xml version="1.0" ?><manifest branch="mergeDev" bundleOpen="true" host="git@code.gome.inc:">
+<?xml version="1.0" ?><manifest branch="cutout202202" bundleOpen="true" host="git@code.gome.inc:">
     <!--私有工程-->
     <project branch="master" groups="private" url="git@code.gome.inc:mobile-android-admin/buildsrc.git"/>
     <project groups="private" url="git@code.gome.inc:mobile-android/GWorkspace.git"/>
@@ -110,7 +110,7 @@
     <project url="git@code.gome.inc:mobile-android-business/GGroupBuy.git" />
     <project url="git@code.gome.inc:mobile-android-business/GAppraise.git" />
 
-    <project branch="master" url="git@code.gome.inc:mobile-android-mcp/GScanAuthLogin.git" />
+    <project url="git@code.gome.inc:mobile-android-mcp/GScanAuthLogin.git" />
     <project  artifactId="productsearch" bundleOpen="false"
         url="git@code.gome.inc:mobile-android-business/GProductSearch.git" />
     <project url="git@code.gome.inc:mobile-android-business/GIMRedEnvelope.git" />
