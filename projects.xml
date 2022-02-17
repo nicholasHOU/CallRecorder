@@ -30,8 +30,8 @@
     <project groups="private" url="git@code.gome.inc:mobile-android-common/GPushXiaoMi.git"/>
     <project groups="private" url="git@code.gome.inc:mobile-android-common/GPushOppo.git"/>
     <project groups="private" url="git@code.gome.inc:mobile-android-common/GPushViVo.git"/>
-    <project groups="private" url="git@code.gome.inc:mobile-android-mcp/GBase.git"/>
-    <project groups="private" url="git@code.gome.inc:mobile-android-mcp/GUtils.git"/>
+    <project groups="private" branch="master" url="git@code.gome.inc:mobile-android-mcp/GBase.git"/>
+    <project groups="private" branch="master" url="git@code.gome.inc:mobile-android-mcp/GUtils.git"/>
 
     <project groups="private" branch="master" url="git@code.gome.inc:mobile-android-mcp/GShare.git"/>
     <project groups="private" branch="master" url="git@code.gome.inc:mobile-android-business/GShareBus.git"/>
