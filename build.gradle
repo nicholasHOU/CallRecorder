@@ -100,6 +100,7 @@ ext.deps = [
         LeakcanaryDebug      : "com.squareup.leakcanary:leakcanary-android:1.6.3",
         LeakcanaryRelease    : "com.squareup.leakcanary:leakcanary-android-no-op:1.6.3",
 
+        GLottie              : 'com.airbnb.android:lottie:2.7.0',
         SProtobuf            : 'com.google.protobuf:protobuf-java:2.6.1',
         SOkHttp              : 'com.squareup.okhttp3:okhttp:3.12.12',
         SOkHttpLog           : 'com.squareup.okhttp3:logging-interceptor:3.12.12',
