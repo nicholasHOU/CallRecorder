@@ -340,7 +340,7 @@ ext.deps = [
         GViewTracker          : false ? project(':GViewTracker') : 'com.gome.viewtracker:viewtracker:'+getProperty('AAR_VIEW_TRACKER_VERSION') + '@aar',
 
         GLog                 : 'com.gome.mcp:log:2.9.3@aar',
-        GVideoLiteAVSDK      : 'com.gome.zhibo:LiteAVSDK_Enterprise:9.2.29400', //企业版
+        GVideoLiteAVSDK      : 'com.gome.zhibo:LiteAVSDK_Enterprise:9.4.29401', //企业版
         GStatusView          : false ? project(':GStatusView') : 'cn.gome.staff.ui:statusview:' + getProperty('AAR_UI_STATUSVIEW_VERSION') + '@aar',
         VideoInterface       : rootProject.ext.proDeps ? project(':VideoInterface') : 'cn.gome.video:vinterface:' + getProperty('AAR_VIDEOINTER_VERSION'),
         GHomeAddInterface    : rootProject.ext.proDeps ? project(':GHomeAddInterface') : 'com.gome.ecmall:homeaddinter:' + getProperty('AAR_HOMEADDINTER_VERSION'),
