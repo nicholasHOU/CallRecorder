@@ -12,6 +12,7 @@ buildscript {
             url 'https://developer.huawei.com/repo'
         }
         maven{url 'http://maven.aliyun.com/nexus/content/groups/public/'}
+        google()
     }
     dependencies {
 
@@ -55,6 +56,7 @@ allprojects {
             url 'https://developer.huawei.com/repo'
         }
         maven{url 'http://maven.aliyun.com/nexus/content/groups/public/'}
+        google()
     }
     ext {
         compileSdkVersion = getProperty("COMPILE_SDK_VERSION") as Integer
@@ -91,7 +93,7 @@ task clean(type: Delete) {
 
 ext.deps = [
         //kotlin support
-        SConstraintLayout    : 'com.android.support.constraint:constraint-layout:1.1.3',
+        SConstraintLayout    : 'androidx.constraintlayout:constraintlayout:1.1.3',
         SKotlin              : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version",
         GHttp                : 'com.gome.mcp:http:2.10.2',
         GHttpIntercept       : 'com.gome.mcp:http-intercept:2.9.4',
@@ -161,16 +163,16 @@ ext.deps = [
 //        SPercent             : 'com.android.support:percent:26.0.1',
 //        SConstraint          : 'com.android.support.constraint:constraint-layout:1.0.2',
 
-        SMultidex            : 'com.android.support:multidex:1.0.3',
-        SMultidexInstr       : 'com.android.support:multidex-instrumentation:1.0.3',
+        SMultidex            : 'androidx.multidex:multidex:2.0.0',
+        SMultidexInstr       : 'androidx.multidex:multidex-instrumentation:2.0.0',
 
-        SRecyclerview        : 'com.android.support:recyclerview-v7:28.0.0',
-        SAppcompat           : 'com.android.support:appcompat-v7:28.0.0',
-        SV4                  : 'com.android.support:support-v4:28.0.0',
-        SCardview            : 'com.android.support:cardview-v7:28.0.0',
-        SDesign              : 'com.android.support:design:28.0.0',
-        SPercent             : 'com.android.support:percent:28.0.0',
-        SConstraint          : 'com.android.support.constraint:constraint-layout:1.1.3',
+        SRecyclerview        : 'androidx.recyclerview:recyclerview:1.0.0',
+        SAppcompat           : 'androidx.appcompat:appcompat:1.0.0',
+        SV4                  : 'androidx.legacy:legacy-support-v4:1.0.0',
+        SCardview            : 'androidx.cardview:cardview:1.0.0',
+        SDesign              : 'com.google.android.material:material:1.0.0',
+        SPercent             : 'androidx.percentlayout:percentlayout:1.0.0',
+        SConstraint          : 'androidx.constraintlayout:constraintlayout:1.1.3',
 
         SFresco              : 'com.facebook.fresco:fresco:1.10.0',
         SAnimatedGif         : 'com.facebook.fresco:animated-gif:1.10.0',
@@ -201,8 +203,8 @@ ext.deps = [
         GFaceCommon          : 'com.gome.face:common-motion:1.0.9-202010191740@aar',
         GOaid                : 'com.gome.third.oaid:oaid:1.0.25@aar',
         GAdSDK               :'cn.com.gomeplus.ad:gomeplus-ad-SDK:1.4.2@aar',
-        SConstraintSolver    : 'com.android.support.constraint:constraint-layout-solver:1.1.3',
-        SExif                : 'com.android.support:exifinterface:28.0.0',
+        SConstraintSolver    : 'androidx.constraintlayout:constraintlayout-solver:1.1.3',
+        SExif                : 'androidx.exifinterface:exifinterface:1.0.0',
         SAdapterHelper       : 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.50',
         SLuBan               : 'top.zibin:Luban:1.1.8',
         SPickerView          : 'com.contrarywind:Android-PickerView:4.1.9',
