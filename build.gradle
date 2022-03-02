@@ -13,10 +13,7 @@ buildscript {
         }
         maven{url 'http://maven.aliyun.com/nexus/content/groups/public/'}
         //honor
-        maven{url 'http://cloudartifact.ipd.hihonor.com/artifactory/Product-push-release'}
-        flatDir {
-            dirs 'libs'
-        }
+        //maven{url 'http://cloudartifact.ipd.hihonor.com/artifactory/Product-push-release'}
     }
     dependencies {
 
@@ -61,10 +58,7 @@ allprojects {
         }
         maven{url 'http://maven.aliyun.com/nexus/content/groups/public/'}
         //honor
-        maven{url 'http://cloudartifact.ipd.hihonor.com/artifactory/Product-push-release'}
-        flatDir {
-            dirs 'libs'
-        }
+//        maven{url 'http://cloudartifact.ipd.hihonor.com/artifactory/Product-push-release'}
     }
     ext {
         compileSdkVersion = getProperty("COMPILE_SDK_VERSION") as Integer
