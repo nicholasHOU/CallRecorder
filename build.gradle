@@ -186,7 +186,7 @@ ext.deps = [
         GYunNengTimeWidget   : 'com.gome.ecmall:yunnengtimewidget:3.1.0@aar',
         GWap                 : 'com.gome.mcp:wap:' + getProperty('AAR_MCP_WAP_VERSION') + '@aar',
         STitlebar            : 'cn.gome.staff.ui:titlebar:' + getProperty('AAR_UI_TITLEBAR_VERSION') + '@aar',
-        GCrash               : 'com.gome.mcp:crash:3.1.14',
+        GCrash               : 'com.gome.mcp:crash:3.1.16',
         GSecret              : 'com.gome.mcp:sec-gome:2.8.8-v22:gomeRelease@aar',
         BSecret              : 'com.gome.mcp:sec-bangbang:2.8.8-v21:bangbangRelease@aar',
         GBuildConfig         : 'com.gome.mcp:buildconfig:2.8.8.5',
