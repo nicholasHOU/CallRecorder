@@ -12,6 +12,11 @@ buildscript {
             url 'https://developer.huawei.com/repo'
         }
         maven{url 'http://maven.aliyun.com/nexus/content/groups/public/'}
+        //honor
+        maven{url 'http://cloudartifact.ipd.hihonor.com/artifactory/Product-push-release'}
+        flatDir {
+            dirs 'libs'
+        }
     }
     dependencies {
 
@@ -55,6 +60,11 @@ allprojects {
             url 'https://developer.huawei.com/repo'
         }
         maven{url 'http://maven.aliyun.com/nexus/content/groups/public/'}
+        //honor
+        maven{url 'http://cloudartifact.ipd.hihonor.com/artifactory/Product-push-release'}
+        flatDir {
+            dirs 'libs'
+        }
     }
     ext {
         compileSdkVersion = getProperty("COMPILE_SDK_VERSION") as Integer
