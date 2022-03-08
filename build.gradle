@@ -186,7 +186,7 @@ ext.deps = [
         GYunNengTimeWidget   : 'com.gome.ecmall:yunnengtimewidget:3.1.0@aar',
         GWap                 : 'com.gome.mcp:wap:' + getProperty('AAR_MCP_WAP_VERSION') + '@aar',
         STitlebar            : 'cn.gome.staff.ui:titlebar:' + getProperty('AAR_UI_TITLEBAR_VERSION') + '@aar',
-        GCrash               : 'com.gome.mcp:crash:3.1.14',
+        GCrash               : 'com.gome.mcp:crash:3.1.16',
         GSecret              : 'com.gome.mcp:sec-gome:2.8.8-v22:gomeRelease@aar',
         BSecret              : 'com.gome.mcp:sec-bangbang:2.8.8-v21:bangbangRelease@aar',
         GBuildConfig         : 'com.gome.mcp:buildconfig:2.8.8.5',
@@ -252,6 +252,7 @@ ext.deps = [
         GSmartRefreshLayout  : false ? project(':GSmartRefreshLayout') : 'com.gome.ecmall:refreshsmt:' + getProperty('AAR_REFRESH_SMT_VERSION') + '@aar',
         SSelectPhoto         : false ? project(':SSelectPhoto') : 'com.gome.ecmall:selectphoto:' + getProperty('AAR_SSELECT_PHOTO_VERSION') + '@aar',
         ivview               : false ? project(':ivview') : 'com.ctrlvideo.ivplayer:ivview:' + getProperty('AAR_IVVIEW_VERSION'),
+        GCutout              : false ? project(':GCutout') :'com.gome.ecmall:cutout:' + getProperty('AAR_GCUTOUT_VERSION') + '@aar',
 
         GFrameHttp           : rootProject.ext.proDeps ? project(':GFrameHttp') : 'com.gome.ecmall:frame-http:' + getProperty('AAR_GFRAME_HTTP_VERSION') + '@aar',
         GFrameImage          : rootProject.ext.proDeps ? project(':GFrameImage') : 'com.gome.ecmall:frame-image:' + getProperty('AAR_GFRAME_IMAGE_VERSION') + '@aar',
