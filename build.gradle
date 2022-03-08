@@ -252,6 +252,7 @@ ext.deps = [
         GSmartRefreshLayout  : false ? project(':GSmartRefreshLayout') : 'com.gome.ecmall:refreshsmt:' + getProperty('AAR_REFRESH_SMT_VERSION') + '@aar',
         SSelectPhoto         : false ? project(':SSelectPhoto') : 'com.gome.ecmall:selectphoto:' + getProperty('AAR_SSELECT_PHOTO_VERSION') + '@aar',
         ivview               : false ? project(':ivview') : 'com.ctrlvideo.ivplayer:ivview:' + getProperty('AAR_IVVIEW_VERSION'),
+        GCutout              : false ? project(':GCutout') :'com.gome.ecmall:cutout:' + getProperty('AAR_GCUTOUT_VERSION') + '@aar',
 
         GFrameHttp           : rootProject.ext.proDeps ? project(':GFrameHttp') : 'com.gome.ecmall:frame-http:' + getProperty('AAR_GFRAME_HTTP_VERSION') + '@aar',
         GFrameImage          : rootProject.ext.proDeps ? project(':GFrameImage') : 'com.gome.ecmall:frame-image:' + getProperty('AAR_GFRAME_IMAGE_VERSION') + '@aar',
