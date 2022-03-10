@@ -15,13 +15,6 @@ set APKFLY_CACHE_NAME=.apkfly
 set apkflyF=%APP_HOME%\%APKFLY_CACHE_NAME%
 set apkflyPy=%apkflyF%\apkfly.py
 
-if not exist "%apkflyF%" goto git_clone
-
-:git_clone
-echo apkfly.sh not exist, exec git clone
-git clone git@code.gome.inc:mobile-android-admin/apkfly.sh.git %APKFLY_CACHE_NAME%
-
-
 if not "%OS%" == "Windows_NT" goto win9xME_args
 if "%@eval[2+2]" == "4" goto 4NT_args
 
@@ -43,4 +36,11 @@ set CMD_LINE_ARGS=%$
 :execute
 @rem Setup the command line
 
+if exist "%apkflyF%" goto exec_apkfly
+
+:git_clone
+echo apkfly.sh not exist, exec git clone
+git clone git@code.gome.inc:mobile-android-admin/apkfly.sh.git %APKFLY_CACHE_NAME%
+
+:exec_apkfly
 python %apkflyPy% %CMD_LINE_ARGS%
