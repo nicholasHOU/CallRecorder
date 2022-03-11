@@ -70,9 +70,6 @@ allprojects {
         supportLibVersion = "26.0.1"
         proDeps = false //改false 时需要把xiaomi的几个工程注掉
         isXiaoMi = false
-        //添加此段
-        mcpPkg = getEnvValue("mcpPkg",false)
-
         fastjsonLibVersion = "1.1.54.android"
     }
 }
