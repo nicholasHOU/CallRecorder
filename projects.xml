@@ -1,14 +1,20 @@
-<?xml version="1.0" ?><manifest branch="up_androidx" bundleOpen="true" host="git@code.gome.inc:">
+<?xml version="1.0" ?>
+<manifest branch="mergeDev_androidx_up_flutter" bundleOpen="true" host="git@code.gome.inc:">
     <!--私有工程-->
-    <project branch="master" groups="private" url="git@code.gome.inc:mobile-android-admin/buildsrc.git"/>
-    <project groups="private" url="git@code.gome.inc:mobile-android/GWorkspace.git"/>
-    <project groups="private" url="git@code.gome.inc:mobile-android-admin/GSafekeyboard.git"/>
-    <project branch="master" groups="private" url="git@code.gome.inc:mobile-android-admin/GSecret.git"/>
-    <project branch="master" groups="private" url="git@code.gome.inc:mobile-android-common/GBuildConfig.git"/>
-    <project branch="master" groups="private" url="git@code.gome.inc:mobile-android-common/GPlugin.git"/>
-    <project groups="private" url="git@code.gome.inc:mobile-android-common/GHotfix.git"/>
-    <project groups="private" url="git@code.gome.inc:mobile-android-common/GUpPay.git"/>
-    <project groups="private" url="git@code.gome.inc:mobile-android-business/GZhiBoAudioeffectsettingkit.git"/>
+    <project branch="master" groups="private"
+        url="git@code.gome.inc:mobile-android-admin/buildsrc.git" />
+    <project groups="private" url="git@code.gome.inc:mobile-android/GWorkspace.git" />
+    <project groups="private" url="git@code.gome.inc:mobile-android-admin/GSafekeyboard.git" />
+    <project branch="master" groups="private"
+        url="git@code.gome.inc:mobile-android-admin/GSecret.git" />
+    <project branch="master" groups="private"
+        url="git@code.gome.inc:mobile-android-common/GBuildConfig.git" />
+    <project branch="master" groups="private"
+        url="git@code.gome.inc:mobile-android-common/GPlugin.git" />
+    <project groups="private" url="git@code.gome.inc:mobile-android-common/GHotfix.git" />
+    <project groups="private" url="git@code.gome.inc:mobile-android-common/GUpPay.git" />
+    <project groups="private"
+        url="git@code.gome.inc:mobile-android-business/GZhiBoAudioeffectsettingkit.git" />
     <project groups="private" url="git@code.gome.inc:mobile-android-business/GZhiBoBeautysettingkit.git"/>
     <project groups="private" url="git@code.gome.inc:mobile-android-business/GSZhiBo.git"/>
 
@@ -150,5 +156,6 @@
     <project url="git@code.gome.inc:mobile-android-business/GAmusement.git" />
 
     <!--主工程-->
-    <project app="true" groups="app" path="GomeApp" url="git@code.gome.inc:mobile-android/GomePlus.git" />
+    <project app="true" groups="mergeDev_androidx_up_flutter" path="GomeApp"
+        url="git@code.gome.inc:mobile-android/GomePlus.git" />
 </manifest>
