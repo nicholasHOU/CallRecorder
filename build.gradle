@@ -284,7 +284,6 @@ ext.deps = [
         GMoreService         : rootProject.ext.proDeps ? project(':GMoreService') : 'com.gome.ecmall:moreservice:' + getProperty('AAR_MORE_SERVICE_VERSION') + '@aar',
         GMallPage            : rootProject.ext.proDeps ? project(':GMallPage') : 'com.gome.ecmall:gmallpage:' + getProperty('AAR_GMALL_PAGE_VERSION') + '@aar',
         GShelvesWidget       : rootProject.ext.proDeps ? project(':GShelvesWidget') : 'com.gome.ecmall:shelveswidget:' + getProperty('AAR_GSHELVES_WIDGET_VERSION') + '@aar',
-        GGroupBuy            : rootProject.ext.proDeps ? project(':GGroupBuy') : 'com.gome.ecmall:groupbuy:' + getProperty('AAR_GGROUPBUY_VERSION') + '@aar',
         GPanicBuy            : rootProject.ext.proDeps ? project(':GPanicBuy') : 'com.gome.ecmall:panicbuy:' + getProperty('AAR_GPANICBUY_VERSION') + '@aar',
         GAppraise            : rootProject.ext.proDeps ? project(':GAppraise') : 'com.gome.ecmall:appraise:' + getProperty('AAR_GAPPRAISE_VERSION') + '@aar',
         GCollection          : rootProject.ext.proDeps ? project(':GCollection') : 'com.gome.ecmall:collection:' + getProperty('AAR_GCOLLECTION_VERSION') + '@aar',

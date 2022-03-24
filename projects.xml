@@ -107,7 +107,6 @@
         url="git@code.gome.inc:mobile-android-business/GMaterialOrder.git" />
     <project url="git@code.gome.inc:mobile-android-business/GGomeCurrency.git" />
     <project url="git@code.gome.inc:mobile-android-business/GPanicBuy.git" />
-    <project url="git@code.gome.inc:mobile-android-business/GGroupBuy.git" />
     <project url="git@code.gome.inc:mobile-android-business/GAppraise.git" />
 
     <project branch="master" url="git@code.gome.inc:mobile-android-mcp/GScanAuthLogin.git" />
