@@ -14,6 +14,7 @@ buildscript {
         maven{url 'http://maven.aliyun.com/nexus/content/groups/public/'}
         //honor
         //maven{url 'http://cloudartifact.ipd.hihonor.com/artifactory/Product-push-release'}
+        maven{url 'https://maven.aliyun.com/repository/google'}
     }
     dependencies {
 
@@ -41,6 +42,11 @@ buildscript {
 
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "org.jetbrains.kotlin:kotlin-android-extensions:$kotlin_version"
+
+        /**
+         * 包体压缩插件
+         */
+        classpath "com.gome.compress:compress_plugin:1.1.4"
     }
 }
 
@@ -59,6 +65,7 @@ allprojects {
         maven{url 'http://maven.aliyun.com/nexus/content/groups/public/'}
         //honor
 //        maven{url 'http://cloudartifact.ipd.hihonor.com/artifactory/Product-push-release'}
+        maven{url 'https://maven.aliyun.com/repository/google'}
     }
     ext {
         compileSdkVersion = getProperty("COMPILE_SDK_VERSION") as Integer
@@ -68,24 +75,8 @@ allprojects {
         supportLibVersion = "26.0.1"
         proDeps = false //改false 时需要把xiaomi的几个工程注掉
         isXiaoMi = false
-        //添加此段
-        mcpPkg = getEnvValue("mcpPkg",false)
-
         fastjsonLibVersion = "1.1.54.android"
     }
-}
-
-//添加此段
-boolean getEnvValue(key, defValue) {
-    def val = System.getProperty(key)
-    if (null != val) {
-        return "true" == val? true:defValue
-    }
-    val = System.getenv(key)
-    if (null != val) {
-        return "true" == val? true:defValue
-    }
-    return defValue
 }
 
 task clean(type: Delete) {
@@ -95,7 +86,7 @@ task clean(type: Delete) {
 
 ext.deps = [
         //kotlin support
-        SConstraintLayout    : 'com.android.support.constraint:constraint-layout:1.1.3',
+        SConstraintLayout    : 'androidx.constraintlayout:constraintlayout:1.1.3',
         SKotlin              : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version",
         GHttp                : 'com.gome.mcp:http:2.10.2',
         GHttpIntercept       : 'com.gome.mcp:http-intercept:2.9.4',
@@ -165,16 +156,16 @@ ext.deps = [
 //        SPercent             : 'com.android.support:percent:26.0.1',
 //        SConstraint          : 'com.android.support.constraint:constraint-layout:1.0.2',
 
-        SMultidex            : 'com.android.support:multidex:1.0.3',
-        SMultidexInstr       : 'com.android.support:multidex-instrumentation:1.0.3',
+        SMultidex            : 'androidx.multidex:multidex:2.0.0',
+        SMultidexInstr       : 'androidx.multidex:multidex-instrumentation:2.0.0',
 
-        SRecyclerview        : 'com.android.support:recyclerview-v7:28.0.0',
-        SAppcompat           : 'com.android.support:appcompat-v7:28.0.0',
-        SV4                  : 'com.android.support:support-v4:28.0.0',
-        SCardview            : 'com.android.support:cardview-v7:28.0.0',
-        SDesign              : 'com.android.support:design:28.0.0',
-        SPercent             : 'com.android.support:percent:28.0.0',
-        SConstraint          : 'com.android.support.constraint:constraint-layout:1.1.3',
+        SRecyclerview        : 'androidx.recyclerview:recyclerview:1.0.0',
+        SAppcompat           : 'androidx.appcompat:appcompat:1.0.0',
+        SV4                  : 'androidx.legacy:legacy-support-v4:1.0.0',
+        SCardview            : 'androidx.cardview:cardview:1.0.0',
+        SDesign              : 'com.google.android.material:material:1.0.0',
+        SPercent             : 'androidx.percentlayout:percentlayout:1.0.0',
+        SConstraint          : 'androidx.constraintlayout:constraintlayout:1.1.3',
 
         SFresco              : 'com.facebook.fresco:fresco:1.10.0',
         SAnimatedGif         : 'com.facebook.fresco:animated-gif:1.10.0',
@@ -205,8 +196,8 @@ ext.deps = [
         GFaceCommon          : 'com.gome.face:common-motion:1.0.9-202010191740@aar',
         GOaid                : 'com.gome.third.oaid:oaid:1.0.25@aar',
         GAdSDK               :'cn.com.gomeplus.ad:gomeplus-ad-SDK:1.4.2@aar',
-        SConstraintSolver    : 'com.android.support.constraint:constraint-layout-solver:1.1.3',
-        SExif                : 'com.android.support:exifinterface:28.0.0',
+        SConstraintSolver    : 'androidx.constraintlayout:constraintlayout-solver:1.1.3',
+        SExif                : 'androidx.exifinterface:exifinterface:1.0.0',
         SAdapterHelper       : 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.50',
         SLuBan               : 'top.zibin:Luban:1.1.8',
         SPickerView          : 'com.contrarywind:Android-PickerView:4.1.9',
@@ -288,7 +279,6 @@ ext.deps = [
         GMoreService         : rootProject.ext.proDeps ? project(':GMoreService') : 'com.gome.ecmall:moreservice:' + getProperty('AAR_MORE_SERVICE_VERSION') + '@aar',
         GMallPage            : rootProject.ext.proDeps ? project(':GMallPage') : 'com.gome.ecmall:gmallpage:' + getProperty('AAR_GMALL_PAGE_VERSION') + '@aar',
         GShelvesWidget       : rootProject.ext.proDeps ? project(':GShelvesWidget') : 'com.gome.ecmall:shelveswidget:' + getProperty('AAR_GSHELVES_WIDGET_VERSION') + '@aar',
-        GGroupBuy            : rootProject.ext.proDeps ? project(':GGroupBuy') : 'com.gome.ecmall:groupbuy:' + getProperty('AAR_GGROUPBUY_VERSION') + '@aar',
         GPanicBuy            : rootProject.ext.proDeps ? project(':GPanicBuy') : 'com.gome.ecmall:panicbuy:' + getProperty('AAR_GPANICBUY_VERSION') + '@aar',
         GAppraise            : rootProject.ext.proDeps ? project(':GAppraise') : 'com.gome.ecmall:appraise:' + getProperty('AAR_GAPPRAISE_VERSION') + '@aar',
         GCollection          : rootProject.ext.proDeps ? project(':GCollection') : 'com.gome.ecmall:collection:' + getProperty('AAR_GCOLLECTION_VERSION') + '@aar',
