@@ -12,7 +12,7 @@ buildscript {
             url 'https://developer.huawei.com/repo'
         }
         maven{url 'http://maven.aliyun.com/nexus/content/groups/public/'}
-        google()
+        maven{url 'https://maven.aliyun.com/repository/google'}
     }
     dependencies {
 
@@ -61,7 +61,7 @@ allprojects {
             url 'https://developer.huawei.com/repo'
         }
         maven{url 'http://maven.aliyun.com/nexus/content/groups/public/'}
-        google()
+        maven{url 'https://maven.aliyun.com/repository/google'}
     }
     ext {
         compileSdkVersion = getProperty("COMPILE_SDK_VERSION") as Integer
