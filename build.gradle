@@ -40,6 +40,11 @@ buildscript {
 
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "org.jetbrains.kotlin:kotlin-android-extensions:$kotlin_version"
+
+        /**
+         * 包体压缩插件
+         */
+        classpath "com.gome.compress:compress_plugin:1.1.4"
     }
 }
 
@@ -66,24 +71,8 @@ allprojects {
         supportLibVersion = "26.0.1"
         proDeps = false //改false 时需要把xiaomi的几个工程注掉
         isXiaoMi = false
-        //添加此段
-        mcpPkg = getEnvValue("mcpPkg",false)
-
         fastjsonLibVersion = "1.1.54.android"
     }
-}
-
-//添加此段
-boolean getEnvValue(key, defValue) {
-    def val = System.getProperty(key)
-    if (null != val) {
-        return "true" == val? true:defValue
-    }
-    val = System.getenv(key)
-    if (null != val) {
-        return "true" == val? true:defValue
-    }
-    return defValue
 }
 
 task clean(type: Delete) {
