@@ -303,6 +303,7 @@ ext.deps = [
         GBProduct            : rootProject.ext.proDeps ? project(':GBProduct') : 'com.gome.ecmall.business:product:' + getProperty('AAR_GBUSINESS_GPRODUCT_VERSION') + '@aar',
         GDao                 : false ? project(':GDao') : 'com.gome.ecmall.business:dao:' + getProperty('AAR_GBUSINESS_GDAO_VERSION') + '@aar',
         GBCms                : rootProject.ext.proDeps ? project(':GBCms') : 'com.gome.ecmall.business:cms:' + getProperty('AAR_GBUSINESS_GCMS_VERSION') + '@aar',
+        GCms                 : true ? project(':GCms') : 'com.gome.ecmall:cms:' + getProperty('AAR_GCMS_VERSION') + '@aar',
         GIMRedEnvelope       : rootProject.ext.proDeps ? project(':GIMRedEnvelope') : 'com.gome.ecmall:imredenvelope:' + getProperty('AAR_IMREDENVELOPE_VERSION') + '@aar',
         MImlibrary           : rootProject.ext.proDeps ? project(':MImlibrary') : 'com.gome.ecmall:mimlib:' + getProperty('AAR_MIM_LIB_VERSION') + '@aar',
         MCommon              : rootProject.ext.proDeps ? project(':MCommon') : 'com.gome.ecmall:mcommon:' + getProperty('AAR_MCOMMON_VERSION') + '@aar',
