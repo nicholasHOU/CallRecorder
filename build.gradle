@@ -228,7 +228,7 @@ ext.deps = [
         GPushXiaoMi          : false ? project(':GPushXiaoMi') : 'com.gome.ecmall:pushxiaomi:' + getProperty('AAR_GPUSH_XIAOMI_VERSION') + '@aar',
         GPushOppo            : false ? project(':GPushOppo') : 'com.gome.ecmall:pushoppo:' + getProperty('AAR_GPUSH_OPPO_VERSION') + '@aar',
         GPushViVo            : false ? project(':GPushViVo') : 'com.gome.ecmall:pushvivo:' + getProperty('AAR_GPUSH_VIVO_VERSION') + '@aar',
-
+        GHonorPush           : false ? project(':GHonorPush') : 'com.gome.ecmall:pushhonor:' + getProperty('AAR_GPUSH_HONOR_VERSION') + '@aar',
         GLogStatistics       : false ? project(':GLogStatistics') : 'com.gome.ecmall:logstats:' + getProperty('AAR_GLOGSTATS_VERSION') + '@aar',
 
         // Weex
