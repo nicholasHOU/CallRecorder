@@ -274,7 +274,7 @@ ext.deps = [
         GGomeCurrency        : rootProject.ext.proDeps ? project(':GGomeCurrency') : 'com.gome.ecmall:ggomecurrency:' + getProperty('AAR_GGOMECURRENCY_VERSION') + '@aar',
         GProductSearch       : rootProject.ext.proDeps ? project(':GProductSearch') : 'com.gome.ecmall:productsearch:' + getProperty('AAR_GPRODUCT_SEARCH_VERSION') + '@aar',
         GMoreService         : rootProject.ext.proDeps ? project(':GMoreService') : 'com.gome.ecmall:moreservice:' + getProperty('AAR_MORE_SERVICE_VERSION') + '@aar',
-        GMallPage            : true ? project(':GMallPage') : 'com.gome.ecmall:gmallpage:' + getProperty('AAR_GMALL_PAGE_VERSION') + '@aar',
+        GMallPage            : rootProject.ext.proDeps ? project(':GMallPage') : 'com.gome.ecmall:gmallpage:' + getProperty('AAR_GMALL_PAGE_VERSION') + '@aar',
         GShelvesWidget       : rootProject.ext.proDeps ? project(':GShelvesWidget') : 'com.gome.ecmall:shelveswidget:' + getProperty('AAR_GSHELVES_WIDGET_VERSION') + '@aar',
         GPanicBuy            : rootProject.ext.proDeps ? project(':GPanicBuy') : 'com.gome.ecmall:panicbuy:' + getProperty('AAR_GPANICBUY_VERSION') + '@aar',
         GAppraise            : rootProject.ext.proDeps ? project(':GAppraise') : 'com.gome.ecmall:appraise:' + getProperty('AAR_GAPPRAISE_VERSION') + '@aar',
