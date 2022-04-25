@@ -140,7 +140,7 @@ ext.deps = [
         GMsc                 : 'com.gome.ecmall:msc:1.0.4@aar',
         GMscStaff            : 'com.gome.staff:msc:21.11.18@aar',
         GAVSdk               : 'com.gome.third:sessionsdk:21.7.22',
-        GSuperplayerSDK      : 'com.gome.ecmall:superplayer:1.0.14',//播放器
+        GSuperplayerSDK      : 'com.gome.ecmall:superplayer:1.0.17',//播放器
         GImage               : 'com.gome.mcp:image:2.8.8',
         GCACHE               : 'com.gome.mcp:cache:' + getProperty('AAR_MCP_VERSION') + '@aar',
         //异形屏适配工具
@@ -178,7 +178,7 @@ ext.deps = [
 
         GSafekeyboard        : 'com.gome.mcp:safeKeyboard:' +  getProperty('AAR_GSAFEKEYBOARD_VERSION') ,
         GUpdate              : 'com.gome.mcp:update:2.9.6',
-        GYunNengTimeWidget   : 'com.gome.ecmall:yunnengtimewidget:3.1.0@aar',
+        GYunNengTimeWidget   : 'com.gome.ecmall:yunnengtimewidget:3.3.0@aar',
         GWap                 : 'com.gome.mcp:wap:' + getProperty('AAR_MCP_WAP_VERSION') + '@aar',
         STitlebar            : 'cn.gome.staff.ui:titlebar:' + getProperty('AAR_UI_TITLEBAR_VERSION') + '@aar',
         GCrash               : 'com.gome.mcp:crash:3.1.16',
@@ -195,7 +195,7 @@ ext.deps = [
         GFace                : 'com.gome.face:liveness:3.6.1-20200930@aar',
         GFaceCommon          : 'com.gome.face:common-motion:1.0.9-202010191740@aar',
         GOaid                : 'com.gome.third.oaid:oaid:1.0.25@aar',
-        GAdSDK               :'cn.com.gomeplus.ad:gomeplus-ad-SDK:1.4.2@aar',
+        GAdSDK               :'cn.com.gomeplus.ad:gomeplus-ad-SDK:1.4.5@aar',
         SConstraintSolver    : 'androidx.constraintlayout:constraintlayout-solver:1.1.3',
         SExif                : 'androidx.exifinterface:exifinterface:1.0.0',
         SAdapterHelper       : 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.50',
@@ -267,7 +267,7 @@ ext.deps = [
         GFinanceCommon       : rootProject.ext.proDeps ? project(':GFinanceCommon') : 'com.gome.ecmall:financecommon:' + getProperty('AAR_GFINANCE_COMMON_VERSION') + '@aar',
         GFinance             : rootProject.ext.proDeps ? project(':GFinance') : 'com.gome.ecmall:finance:' + getProperty('AAR_GFINANCE_VERSION') + '@aar',
         GMeiyingbao          : rootProject.ext.proDeps ? project(':GMeiyingbao') : 'com.gome.ecmall:meiyingbao:' + getProperty('AAR_GMEIYINGBAO_VERSION') + '@aar',
-        GPhoneRecharge       : rootProject.ext.proDeps ? project(':GPhoneRecharge') : 'com.gome.ecmall:phonerecharge:' + getProperty('AAR_GPHONERECHARGE_VERSION') + '@aar',
+        GPhoneRecharge       : false ? project(':GPhoneRecharge') : 'com.gome.ecmall:phonerecharge:' + getProperty('AAR_GPHONERECHARGE_VERSION') + '@aar',
         GStoreSearch         : rootProject.ext.proDeps ? project(':GStoreSearch') : 'com.gome.ecmall:storesearch:' + getProperty('AAR_GSTORESEARCH_VERSION') + '@aar',
         GReturn              : rootProject.ext.proDeps ? project(':GReturn') : 'com.gome.ecmall:greturn:' + getProperty('AAR_GRETURN_VERSION') + '@aar',
         GMaterialOrder       : rootProject.ext.proDeps ? project(':GMaterialOrder') : 'com.gome.ecmall:materialorder:' + getProperty('AAR_GMATERIAL_ORDER_VERSION') + '@aar',
@@ -347,7 +347,7 @@ ext.deps = [
         GVideoRecordingUgcKit: rootProject.ext.proDeps ? project('GVideoRecordingUgcKit') : 'cn.gome.video:gzhibo_ugckit:' + getProperty('AAR_VIDEORECORDUGCKIT_VERSION'),
         GHomeAdd             : rootProject.ext.proDeps ? project(':GHomeAdd') : 'com.gome.ecmall:homeadd:' + getProperty('AAR_HOMEADD_VERSION'),
         GBusinessView        : rootProject.ext.proDeps ? project(':GBusinessView') : 'com.gome.business.view:businessview:' + getProperty('AAR_BUSINESSVIEW_VERSION'),
-        GAmusement           : rootProject.ext.proDeps ? project(':GAmusement') : 'com.gome.ecmall:amusement:' + getProperty('AAR_AMUSEMENT_VERSION'),
+        GAmusement           : false ? project(':GAmusement') : 'com.gome.ecmall:amusement:' + getProperty('AAR_AMUSEMENT_VERSION'),
         GScanAuthLogin       :  rootProject.ext.proDeps ?project(':GScanAuthLogin'): 'com.gome.mcp:gscanauth:' + getProperty('AAR_SCANAUTHLOGIN_VERSION')+ '@aar',
         GAnimView            : 'io.github.tencent:vap:2.0.20'
 ]
