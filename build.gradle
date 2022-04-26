@@ -46,7 +46,7 @@ buildscript {
         /**
          * 包体压缩插件
          */
-        classpath "com.gome.compress:compress_plugin:1.1.5"
+        classpath "com.gome.compress:compress_plugin:1.1.7"
     }
 }
 

@@ -58,14 +58,5 @@ if (project.ext.has("kotlin") && (project.ext.getProperty("kotlin") as boolean))
         compile deps.SKotlin
     }
 }
-//
-////压缩gradle配置
-//def appModuleName = "GomePlus"
-//rootProject.subprojects { Project p ->
-//    //读取Application module名称
-//    if (p.plugins.toListString().contains("AppPlugin")) {
-//        appModuleName = p.name
-//    } else {
-//        apply from: project.uri('../' + appModuleName + '/othertask/compress_config.gradle')
-//    }
-//}
+
+apply from: project.rootProject.uri('gradle/compress_config.gradle')
