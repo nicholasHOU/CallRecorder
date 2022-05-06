@@ -58,3 +58,5 @@ if (project.ext.has("kotlin") && (project.ext.getProperty("kotlin") as boolean))
         compile deps.SKotlin
     }
 }
+
+apply from: project.rootProject.uri('gradle/compress_config.gradle')

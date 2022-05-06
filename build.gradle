@@ -12,6 +12,8 @@ buildscript {
             url 'https://developer.huawei.com/repo'
         }
         maven{url 'http://maven.aliyun.com/nexus/content/groups/public/'}
+        //honor
+        //maven{url 'http://cloudartifact.ipd.hihonor.com/artifactory/Product-push-release'}
         maven{url 'https://maven.aliyun.com/repository/google'}
     }
     dependencies {
@@ -44,7 +46,7 @@ buildscript {
         /**
          * 包体压缩插件
          */
-        classpath "com.gome.compress:compress_plugin:1.1.4"
+        classpath "com.gome.compress:compress_plugin:1.1.7"
     }
 }
 
@@ -61,6 +63,8 @@ allprojects {
             url 'https://developer.huawei.com/repo'
         }
         maven{url 'http://maven.aliyun.com/nexus/content/groups/public/'}
+        //honor
+//        maven{url 'http://cloudartifact.ipd.hihonor.com/artifactory/Product-push-release'}
         maven{url 'https://maven.aliyun.com/repository/google'}
     }
     ext {
@@ -136,7 +140,7 @@ ext.deps = [
         GMsc                 : 'com.gome.ecmall:msc:1.0.4@aar',
         GMscStaff            : 'com.gome.staff:msc:21.11.18@aar',
         GAVSdk               : 'com.gome.third:sessionsdk:21.7.22',
-        GSuperplayerSDK      : 'com.gome.ecmall:superplayer:1.0.14',//播放器
+        GSuperplayerSDK      : 'com.gome.ecmall:superplayer:1.0.17',//播放器
         GImage               : 'com.gome.mcp:image:2.8.8',
         GCACHE               : 'com.gome.mcp:cache:' + getProperty('AAR_MCP_VERSION') + '@aar',
         //异形屏适配工具
@@ -175,7 +179,7 @@ ext.deps = [
 
         GSafekeyboard        : 'com.gome.mcp:safeKeyboard:' +  getProperty('AAR_GSAFEKEYBOARD_VERSION') ,
         GUpdate              : 'com.gome.mcp:update:2.9.6',
-        GYunNengTimeWidget   : 'com.gome.ecmall:yunnengtimewidget:3.1.0@aar',
+        GYunNengTimeWidget   : 'com.gome.ecmall:yunnengtimewidget:3.3.0@aar',
         GWap                 : 'com.gome.mcp:wap:' + getProperty('AAR_MCP_WAP_VERSION') + '@aar',
         STitlebar            : 'cn.gome.staff.ui:titlebar:' + getProperty('AAR_UI_TITLEBAR_VERSION') + '@aar',
         GCrash               : 'com.gome.mcp:crash:3.1.16',
@@ -192,7 +196,7 @@ ext.deps = [
         GFace                : 'com.gome.face:liveness:3.6.1-20200930@aar',
         GFaceCommon          : 'com.gome.face:common-motion:1.0.9-202010191740@aar',
         GOaid                : 'com.gome.third.oaid:oaid:1.0.25@aar',
-        GAdSDK               :'cn.com.gomeplus.ad:gomeplus-ad-SDK:1.4.2@aar',
+        GAdSDK               :'cn.com.gomeplus.ad:gomeplus-ad-SDK:1.4.5@aar',
         SConstraintSolver    : 'androidx.constraintlayout:constraintlayout-solver:1.1.3',
         SExif                : 'androidx.exifinterface:exifinterface:1.0.0',
         SAdapterHelper       : 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.50',
@@ -225,7 +229,7 @@ ext.deps = [
         GPushXiaoMi          : false ? project(':GPushXiaoMi') : 'com.gome.ecmall:pushxiaomi:' + getProperty('AAR_GPUSH_XIAOMI_VERSION') + '@aar',
         GPushOppo            : false ? project(':GPushOppo') : 'com.gome.ecmall:pushoppo:' + getProperty('AAR_GPUSH_OPPO_VERSION') + '@aar',
         GPushViVo            : false ? project(':GPushViVo') : 'com.gome.ecmall:pushvivo:' + getProperty('AAR_GPUSH_VIVO_VERSION') + '@aar',
-
+        GHonorPush           : false ? project(':GHonorPush') : 'com.gome.ecmall:pushhonor:' + getProperty('AAR_GPUSH_HONOR_VERSION') + '@aar',
         GLogStatistics       : false ? project(':GLogStatistics') : 'com.gome.ecmall:logstats:' + getProperty('AAR_GLOGSTATS_VERSION') + '@aar',
 
         // Weex

@@ -44,6 +44,7 @@
     <project groups="private" url="git@code.gome.inc:mobile-android-common/GFaceLive.git"/>
 
     <project groups="private" url="git@code.gome.inc:mobile-android-repo/GLogStatistics.git"/>
+    <project groups="private" url="git@code.gome.inc:mobile-android-business/GSuperplayerSDK.git"/>
 
     <!-- WEEX模块 -->
     <project groups="private" url="git@code.gome.inc:mobile-android-repo/GWeexCore.git" />
