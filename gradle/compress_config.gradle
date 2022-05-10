@@ -19,7 +19,7 @@ project.configurations {
 }
 
 imageCompressConfig {
-    enable = compress_enable
+    enable = true
     pluginStrategy = "webp"
     convertWebpQuality = 75
     jpegCompressQuality = 84
