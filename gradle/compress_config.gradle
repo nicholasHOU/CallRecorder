@@ -19,7 +19,7 @@ project.configurations {
 }
 
 imageCompressConfig {
-    enable = true
+    enable = false
     pluginStrategy = "webp"
     convertWebpQuality = 75
     jpegCompressQuality = 84
@@ -37,7 +37,7 @@ imageCompressConfig {
 
 if (project.plugins.toListString().contains("AppPlugin")) {
     andResGuard {
-        enable = compress_enable
+        enable = true
         mappingFile = null
         use7zip = true
         useSign = true
