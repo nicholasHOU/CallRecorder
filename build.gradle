@@ -141,7 +141,7 @@ ext.deps = [
         GMscStaff            : 'com.gome.staff:msc:21.11.18@aar',
         GAVSdk               : 'com.gome.third:sessionsdk:21.7.22',
         GSuperplayerSDK      : 'com.gome.ecmall:superplayer:1.0.17',//播放器
-        GImage               : 'com.gome.mcp:image:2.8.8',
+        GImage               : 'com.gome.mcp:image:2.9.7',
         GCACHE               : 'com.gome.mcp:cache:' + getProperty('AAR_MCP_VERSION') + '@aar',
         //异形屏适配工具
         SpecialScreenTools   : 'com.gome.ecmall:yixinscreen:0.0.1',
@@ -195,7 +195,7 @@ ext.deps = [
         GFace                : 'com.gome.face:liveness:3.6.1-20200930@aar',
         GFaceCommon          : 'com.gome.face:common-motion:1.0.9-202010191740@aar',
         GOaid                : 'com.gome.third.oaid:oaid:1.0.25@aar',
-        GAdSDK               :'cn.com.gomeplus.ad:gomeplus-ad-SDK:1.4.5@aar',
+        GAdSDK               :'cn.com.gomeplus.ad:gomeplus-ad-SDK:1.4.6@aar',
         SConstraintSolver    : 'androidx.constraintlayout:constraintlayout-solver:1.1.3',
         SExif                : 'androidx.exifinterface:exifinterface:1.0.0',
         SAdapterHelper       : 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.50',
