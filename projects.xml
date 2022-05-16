@@ -149,8 +149,8 @@
     <project url="git@code.gome.inc:mobile-android-business/GZhiboBus.git" />
     <project url="git@code.gome.inc:mobile-android-business/Gsuperplayerkit.git" />
 
-    <project url="git@code.gome.inc:mobile-android-video/GVideoRecordingUgcKit.git" />
-    <project url="git@code.gome.inc:mobile-android-video/GVideoRecording.git" />
+    <project branch="mergeDev_update_glide" url="git@code.gome.inc:mobile-android-video/GVideoRecordingUgcKit.git" />
+    <project branch="mergeDev_update_glide" url="git@code.gome.inc:mobile-android-video/GVideoRecording.git" />
     <project url="git@code.gome.inc:mobile-android-video/VideoEdit.git" />
     <project url="git@code.gome.inc:mobile-android-video/VideoSearch.git" />
     <project url="git@code.gome.inc:mobile-android-mcp/GEntMediaPicker.git" />
