@@ -55,10 +55,28 @@ fi
 # 2、判断apkfly.sh仓库是否已下载，如没下载则clone，如已下载则pull
 if [ -d $apkflyF ];then
   # 更新仓库
-  echo "apkfly.sh仓库存在，现在更新仓库"
-  cd $apkflyF
-  git pull
-  cd .. # 把目录切回workspace
+  # 10分钟不重复执行git-pull(根据git-pull的时间戳和当前时间戳对比)
+  cur_sec=`date '+%s'`
+  #echo "当前时间戳$cur_sec"
+  # 使用py获取文件最后修改时间戳（stat_float_times - False, 调用 stat 返回 ints），且此py语句适配py2、py3，因为Linux和Mac的stat命令不一样所以就不一一兼容
+  git_pull_tag_file=$apkflyF/.git/FETCH_HEAD
+  if [ -f $git_pull_tag_file ]; then
+      git_pull_sec=`$apkflyCmd -c "import os;os.stat_float_times(False);print(os.stat('$git_pull_tag_file').st_mtime)"`
+  else
+      git_pull_sec=0
+  fi
+  #echo "git-pull时间戳$git_pull_sec"
+  time_diff=$[cur_sec - git_pull_sec]
+  #echo $time_diff
+  let time_max=10*60
+  if [ $time_diff -ge $time_max ]; then
+    echo "apkfly.sh仓库存在，现在更新仓库"
+    cd $apkflyF
+    git pull
+    cd ..
+  else
+    echo "apkfly.sh仓库存在，$[time_max/60]分钟内不重复更新仓库"
+  fi
 else
   # clone仓库
   echo "apkfly.sh仓库不存在，现在clone仓库"
