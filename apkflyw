@@ -72,11 +72,11 @@ if [ -d "$apkflyF" ];then
   time_max=$((10*60))
   if [ $time_diff -ge $time_max ]; then
     echo "apkfly.sh仓库存在，现在更新仓库"
-    cd "$apkflyF" || return
+    cd "$apkflyF"
     git pull
     cd ..
   else
-    echo "apkfly.sh仓库存在，$((time_max/60))分钟内不重复更新仓库"
+    echo "apkfly.sh仓库存在，$((time_max/60))分钟内不重复更新，可执行[cd .apkfly;git pull;cd ..]手动更新"
   fi
 else
   # clone仓库
