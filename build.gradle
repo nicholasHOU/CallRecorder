@@ -140,7 +140,7 @@ ext.deps = [
         GMsc                 : 'com.gome.ecmall:msc:1.0.4@aar',
         GMscStaff            : 'com.gome.staff:msc:21.11.18@aar',
         GAVSdk               : 'com.gome.third:sessionsdk:21.7.22',
-        GSuperplayerSDK      : 'com.gome.ecmall:superplayer:1.0.17',//播放器
+        GSuperplayerSDK      : 'com.gome.ecmall:superplayer:1.0.18',//播放器
         GImage               : 'com.gome.mcp:image:2.8.8',
         GCACHE               : 'com.gome.mcp:cache:' + getProperty('AAR_MCP_VERSION') + '@aar',
         //异形屏适配工具
