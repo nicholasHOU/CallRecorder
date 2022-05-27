@@ -3,6 +3,7 @@
  * 隐患：
  * 1. 使用getIdentifier动态获取资源找不到
  * 2. 控件依赖图片分辨率尺寸自适应，压缩导致部分机型动画失效？
+ * 3. ConstraintLayout Group constraint_referenced_ids
  */
 apply plugin: 'com.gome.compress'
 
@@ -31,7 +32,6 @@ imageCompressConfig {
     filter {
         filterImageNames = [
                 "mh_bg_vip99.png",
-                "meeting_calling_ic_avatar_round.png"
         ]
     }
 }
@@ -115,6 +115,11 @@ if (project.plugins.toListString().contains("AppPlugin")) {
                 "R.drawable.push_*",
                 "R.drawable.umcsdk_*",
                 "R.drawable.im_*_emotion_logo",
+
+                //Group constraint_referenced_ids
+                "R.id.iv_sponsor_avatar", "R.id.tv_sponsor_video_tag", "R.id.ll_img_container", "R.id.view_waiting_panel",
+                "R.id.iv_sponsor_avatar", "R.id.tv_sponsor_user_name", "R.id.tv_sponsor_video_tag", "R.id.ll_img_container",
+                "R.id.ll_mute", "R.id.ll_handsfree", "R.id.tv_timer", "R.id.tv_timer"
         ]
 
         compressFilePattern = [
