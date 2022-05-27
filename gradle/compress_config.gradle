@@ -30,7 +30,8 @@ imageCompressConfig {
     pngCompressQuality = 75
     filter {
         filterImageNames = [
-                "mh_bg_vip99.png"
+                "mh_bg_vip99.png",
+                "meeting_calling_ic_avatar_round.png"
         ]
     }
 }
