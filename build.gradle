@@ -349,7 +349,13 @@ ext.deps = [
         GBusinessView        : rootProject.ext.proDeps ? project(':GBusinessView') : 'com.gome.business.view:businessview:' + getProperty('AAR_BUSINESSVIEW_VERSION'),
         GAmusement           : false ? project(':GAmusement') : 'com.gome.ecmall:amusement:' + getProperty('AAR_AMUSEMENT_VERSION'),
         GScanAuthLogin       :  rootProject.ext.proDeps ?project(':GScanAuthLogin'): 'com.gome.mcp:gscanauth:' + getProperty('AAR_SCANAUTHLOGIN_VERSION')+ '@aar',
-        GAnimView            : 'io.github.tencent:vap:2.0.20'
+        GAnimView            : 'io.github.tencent:vap:2.0.20',
+        //  zszsdk相关
+        GZSZNET              : 'com.gome.third:cashier_zsznet:' + getProperty('AAR_ZSZNET_VERSION'),
+        GZSZSDK              : 'com.gome.third:cashier_zszsdk:' + getProperty('AAR_ZSZSDK_VERSION'),
+        GZSZFACEAUTH         : 'com.gome.ecmall.third:liveness-interactive:' + getProperty('AAR_ZSZFACEAUTH_VERSION'),
+        GZSZFACECOMMON       : 'com.gome.ecmall.third:common-motion:' + getProperty('AAR_ZSZFACECOMMON_VERSION')
+
 ]
 /**
  * depMcp dep aar, default exclude transitive dependencies
