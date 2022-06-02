@@ -14,6 +14,9 @@ def compress_enable = false
 
 project.configurations {
     String enable = System.getenv()['COMPRESS_ENABLE']
+    if (enable == null || enable == "") {
+        enable = System.getProperty('COMPRESS_ENABLE')
+    }
     if (enable != null && enable != "") {
         compress_enable = (enable == "true")
     }
