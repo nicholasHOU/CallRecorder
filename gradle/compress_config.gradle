@@ -16,19 +16,21 @@ project.configurations {
     String systemEnv = System.getenv()['COMPRESS_ENABLE']
     String systemProperty = System.getProperty('COMPRESS_ENABLE')
     String localProperty = getProperty('COMPRESS_ENABLE')
-    String enable
-    if(systemEnv != null && systemEnv != ""){
-        enable = systemEnv
-    }
-    if(systemProperty != null && systemProperty != ""){
-        enable = systemProperty
-    }
+    boolean envEnable, systemEnable, localEnable
     if(localProperty != null && localProperty != ""){
-        enable = localProperty
+        envEnable = (localProperty == 'true')
+    }
+
+    if(systemProperty != null && systemProperty != ""){
+        systemEnable = (systemProperty == 'true')
+    }
+
+    if(systemEnv != null && systemEnv != ""){
+        localEnable = (systemEnv == 'true')
     }
 
     if (enable != null && enable != "") {
-        compress_enable = (enable == "true")
+        compress_enable = envEnable || systemEnable || localEnable
     }
 }
 
