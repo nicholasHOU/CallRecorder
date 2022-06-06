@@ -140,7 +140,7 @@ ext.deps = [
         GMsc                 : 'com.gome.ecmall:msc:1.0.4@aar',
         GMscStaff            : 'com.gome.staff:msc:21.11.18@aar',
         GAVSdk               : 'com.gome.third:sessionsdk:21.7.22',
-        GSuperplayerSDK      : 'com.gome.ecmall:superplayer:1.0.17',//播放器
+        GSuperplayerSDK      : 'com.gome.ecmall:superplayer:1.0.18',//播放器
         GImage               : 'com.gome.mcp:image:2.9.7',
         GCACHE               : 'com.gome.mcp:cache:' + getProperty('AAR_MCP_VERSION') + '@aar',
         //异形屏适配工具
@@ -264,8 +264,6 @@ ext.deps = [
         GCmbPay              : rootProject.ext.proDeps ? project(':GCmbPay') : 'com.gome.cmbpay:cmbpay:' + getProperty('AAR_CMBPAY_VERSION') + '@aar',
         GBaiTiao             : rootProject.ext.proDeps ? project(':GBaiTiao') : 'com.gome.ecmall:baitiao:' + getProperty('AAR_GBAITIAO_VERSION') + '@aar',
         GHybrid              : rootProject.ext.proDeps ? project(':GHybrid') : 'com.gome.ecmall:gh5:' + getProperty('AAR_GH5_VERSION') + '@aar',
-        GFinanceCommon       : rootProject.ext.proDeps ? project(':GFinanceCommon') : 'com.gome.ecmall:financecommon:' + getProperty('AAR_GFINANCE_COMMON_VERSION') + '@aar',
-        GFinance             : rootProject.ext.proDeps ? project(':GFinance') : 'com.gome.ecmall:finance:' + getProperty('AAR_GFINANCE_VERSION') + '@aar',
         GMeiyingbao          : rootProject.ext.proDeps ? project(':GMeiyingbao') : 'com.gome.ecmall:meiyingbao:' + getProperty('AAR_GMEIYINGBAO_VERSION') + '@aar',
         GPhoneRecharge       : false ? project(':GPhoneRecharge') : 'com.gome.ecmall:phonerecharge:' + getProperty('AAR_GPHONERECHARGE_VERSION') + '@aar',
         GStoreSearch         : rootProject.ext.proDeps ? project(':GStoreSearch') : 'com.gome.ecmall:storesearch:' + getProperty('AAR_GSTORESEARCH_VERSION') + '@aar',
@@ -336,7 +334,7 @@ ext.deps = [
         GViewTracker          : false ? project(':GViewTracker') : 'com.gome.viewtracker:viewtracker:'+getProperty('AAR_VIEW_TRACKER_VERSION') + '@aar',
 
         GLog                 : 'com.gome.mcp:log:2.9.3@aar',
-        GVideoLiteAVSDK      : 'com.gome.zhibo:LiteAVSDK_Enterprise:9.4.29401', //企业版
+        GVideoLiteAVSDK      : 'com.gome.zhibo:LiteAVSDK_Enterprise:9.5.11207', //企业版
         GStatusView          : false ? project(':GStatusView') : 'cn.gome.staff.ui:statusview:' + getProperty('AAR_UI_STATUSVIEW_VERSION') + '@aar',
         VideoInterface       : rootProject.ext.proDeps ? project(':VideoInterface') : 'cn.gome.video:vinterface:' + getProperty('AAR_VIDEOINTER_VERSION'),
         GHomeAddInterface    : rootProject.ext.proDeps ? project(':GHomeAddInterface') : 'com.gome.ecmall:homeaddinter:' + getProperty('AAR_HOMEADDINTER_VERSION'),

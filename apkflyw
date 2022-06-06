@@ -8,38 +8,83 @@
 
 APKFLY_CACHE_NAME=".apkfly"
 
-APP_HOME="`pwd -P`"
+APP_HOME=$(pwd -P)
 apkflyF=$APP_HOME/$APKFLY_CACHE_NAME
 apkflyPy=$apkflyF/apkfly.py
+apkflyPy2=$apkflyF/apkfly.py
+apkflyPy3=$apkflyF/3/apkfly.py
 
-# 1、判断一下python环境是否是2.x版本
-pVersion=`python -c 'import sys; print(sys.version_info.major)'`
-pVersionInt=`echo $pVersion| awk '{print int($0)}'`
-if [ $pVersionInt -lt 3 ] ; then
-  #echo 'python version 2.x'
+apkflyCmd=python
 
-  # 2、判断apkfly.sh仓库是否已下载，如没下载则clone，如已下载则pull
-  if [ -d $apkflyF ];then
-    # 更新仓库
-    echo "apkfly.sh仓库存在，现在更新仓库"
-    cd $apkflyF
-    git pull
-    cd .. # 把目录切回workspace
-  else
-    # clone仓库
-    echo "apkfly.sh仓库不存在，现在clone仓库"
-    git clone 'git@code.gome.inc:mobile-android-admin/apkfly.sh.git' $APKFLY_CACHE_NAME
-  fi
+echo -e "↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ 准备工作开始 ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓"
 
-  echo -e "************************ 准备工作完成 ************************\n"
-
-  # 3、执行apkfly.sh仓库中的python版脚本
-  python $apkflyPy $@
+# 1、判断一下python环境
+pVersion=0
+#! /bin/bash
+# 先判断py3命令是否正确，因为有的机器没有py、py2命令
+if command -v python3 >/dev/null 2>&1; then
+  pVersion=3 # 大版本号3
+  apkflyCmd=python3
 else
-  echo 'python version must 2.x'
+  # 再判断py命令是否正确
+  if command -v python >/dev/null 2>&1; then
+    # 获取py命令的大版本号
+    pVersion=$(python -c 'import sys; print(sys.version_info.major)')
+    apkflyCmd=python
+  else
+    echo -e "\033[31m [python3 & python] command not found \033[0m" # 这打印貌似没用
+    exit #退出
+  fi
 fi
 
+# 根据py版本找到对应的脚本文件
+pVersionInt=$(echo "$pVersion"| awk '{print int($0)}')
+echo "python version ${pVersionInt}.x"
+if [ "$pVersionInt" -eq 3 ] ; then #py3
+  apkflyPy=$apkflyPy3
+elif [ "$pVersionInt" -eq 2 ]; then #py2
+  echo -e "\033[41;33m apkfly2.x版本不再维护，请安装py3.x \033[0m"
+  apkflyPy=$apkflyPy2
+else
+  echo -e "\033[31m python version must 2.x or 3.x \033[0m" # 这打印貌似没用
+  exit #退出
+fi
 
+#echo $apkflyPy
 
+# 2、判断apkfly.sh仓库是否已下载，如没下载则clone，如已下载则pull
+if [ -d "$apkflyF" ];then
+  # 更新仓库
+  # 10分钟不重复执行git-pull(根据git-pull的时间戳和当前时间戳对比)
+  cur_sec=$(date '+%s')
+  #echo "当前时间戳$cur_sec"
+  # 使用py获取文件最后修改时间戳（stat_float_times - False, 调用 stat 返回 ints），且此py语句适配py2、py3，因为Linux和Mac的stat命令不一样所以就不一一兼容
+  git_pull_tag_fetch_head=$apkflyF/.git/FETCH_HEAD #在刚clone后此文件不存在
+  git_pull_tag_head=$apkflyF/.git/HEAD
+  if [ -f "$git_pull_tag_fetch_head" ]; then
+      git_pull_sec=$($apkflyCmd -c "import os;os.stat_float_times(False);print(os.stat('$git_pull_tag_fetch_head').st_mtime)")
+  else
+      git_pull_sec=$($apkflyCmd -c "import os;os.stat_float_times(False);print(os.stat('$git_pull_tag_head').st_mtime)")
+  fi
+  #echo "git-pull时间戳$git_pull_sec"
+  time_diff=$((cur_sec - git_pull_sec))
+  #echo $time_diff
+  time_max=$((10*60))
+  if [ $time_diff -ge $time_max ]; then
+    echo "apkfly.sh仓库存在，现在更新仓库"
+    cd "$apkflyF"
+    git pull
+    cd ..
+  else
+    echo "apkfly.sh仓库存在，$((time_max/60))分钟内不重复更新，可执行[cd .apkfly;git pull;cd ..]手动更新"
+  fi
+else
+  # clone仓库
+  echo "apkfly.sh仓库不存在，现在clone仓库"
+  git clone 'git@code.gome.inc:mobile-android-admin/apkfly.sh.git' $APKFLY_CACHE_NAME
+fi
 
+echo -e "↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ 准备工作完成 ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑\n"
 
+# 3、执行apkfly.sh仓库中的python版脚本
+$apkflyCmd "$apkflyPy" "$@"
