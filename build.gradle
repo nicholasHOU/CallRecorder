@@ -264,8 +264,6 @@ ext.deps = [
         GCmbPay              : rootProject.ext.proDeps ? project(':GCmbPay') : 'com.gome.cmbpay:cmbpay:' + getProperty('AAR_CMBPAY_VERSION') + '@aar',
         GBaiTiao             : rootProject.ext.proDeps ? project(':GBaiTiao') : 'com.gome.ecmall:baitiao:' + getProperty('AAR_GBAITIAO_VERSION') + '@aar',
         GHybrid              : rootProject.ext.proDeps ? project(':GHybrid') : 'com.gome.ecmall:gh5:' + getProperty('AAR_GH5_VERSION') + '@aar',
-        GFinanceCommon       : rootProject.ext.proDeps ? project(':GFinanceCommon') : 'com.gome.ecmall:financecommon:' + getProperty('AAR_GFINANCE_COMMON_VERSION') + '@aar',
-        GFinance             : rootProject.ext.proDeps ? project(':GFinance') : 'com.gome.ecmall:finance:' + getProperty('AAR_GFINANCE_VERSION') + '@aar',
         GMeiyingbao          : rootProject.ext.proDeps ? project(':GMeiyingbao') : 'com.gome.ecmall:meiyingbao:' + getProperty('AAR_GMEIYINGBAO_VERSION') + '@aar',
         GPhoneRecharge       : false ? project(':GPhoneRecharge') : 'com.gome.ecmall:phonerecharge:' + getProperty('AAR_GPHONERECHARGE_VERSION') + '@aar',
         GStoreSearch         : rootProject.ext.proDeps ? project(':GStoreSearch') : 'com.gome.ecmall:storesearch:' + getProperty('AAR_GSTORESEARCH_VERSION') + '@aar',
