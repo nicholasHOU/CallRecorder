@@ -13,9 +13,24 @@ apply plugin: 'com.gome.compress'
 def compress_enable = false
 
 project.configurations {
-    String enable = System.getenv()['COMPRESS_ENABLE']
+    String systemEnv = System.getenv()['COMPRESS_ENABLE']
+    String systemProperty = System.getProperty('COMPRESS_ENABLE')
+    String localProperty = getProperty('COMPRESS_ENABLE')
+    boolean envEnable, systemEnable, localEnable
+    if(localProperty != null && localProperty != ""){
+        envEnable = (localProperty == 'true')
+    }
+
+    if(systemProperty != null && systemProperty != ""){
+        systemEnable = (systemProperty == 'true')
+    }
+
+    if(systemEnv != null && systemEnv != ""){
+        localEnable = (systemEnv == 'true')
+    }
+
     if (enable != null && enable != "") {
-        compress_enable = (enable == "true")
+        compress_enable = envEnable || systemEnable || localEnable
     }
 }
 
