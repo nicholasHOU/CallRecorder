@@ -149,4 +149,9 @@ if (project.plugins.toListString().contains("AppPlugin")) {
             artifact = 'com.tencent.mm:SevenZip:1.2.7'
         }
     }
+
+    //资源压缩白名单扫描
+    andResGuardWhitelistScan{
+        enable = false
+    }
 }
