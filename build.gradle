@@ -118,7 +118,7 @@ ext.deps = [
         STencentSdk          : 'com.tencent.tauth:qqopensdk:3.51.1',
 
 //        SSinaWeibo        : 'com.thirdparty.sina:weibo:4.3.6',
-        SSinaWeibo           : 'com.thirdparty.sina:core:10.10.0',
+        SSinaWeibo           : 'com.thirdparty.sina:core:12.5.0',
 
         SWeWorkSdk           : 'com.tencent.wework:wwork:1.0.0',
 
