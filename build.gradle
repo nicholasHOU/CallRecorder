@@ -120,7 +120,7 @@ ext.deps = [
 //        SSinaWeibo        : 'com.thirdparty.sina:weibo:4.3.6',
         SSinaWeibo           : 'com.thirdparty.sina:core:12.5.0',
 
-        SWeWorkSdk           : 'com.tencent.wework:wwork:1.0.0',
+        SWeWorkSdk           : 'com.tencent.wework:wwork:2.0.12.11',
 
         SSafeJs              : 'com.thirdparty:safe_android_js_webview:1',
         GMBank               : 'com.thirdparty:gomepay_mbank_sdk:1.5-202009161800', // 1.0.3版本正在测试中
