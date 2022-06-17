@@ -46,7 +46,7 @@ buildscript {
         /**
          * 包体压缩插件
          */
-        classpath "com.gome.compress:compress_plugin:1.1.7"
+        classpath "com.gome.compress:compress_plugin:1.1.10"
     }
 }
 
@@ -118,9 +118,9 @@ ext.deps = [
         STencentSdk          : 'com.tencent.tauth:qqopensdk:3.51.1',
 
 //        SSinaWeibo        : 'com.thirdparty.sina:weibo:4.3.6',
-        SSinaWeibo           : 'com.thirdparty.sina:core:10.10.0',
+        SSinaWeibo           : 'com.thirdparty.sina:core:12.5.0',
 
-        SWeWorkSdk           : 'com.tencent.wework:wwork:1.0.0',
+        SWeWorkSdk           : 'com.tencent.wework:wwork:2.0.12.11',
 
         SSafeJs              : 'com.thirdparty:safe_android_js_webview:1',
         GMBank               : 'com.thirdparty:gomepay_mbank_sdk:1.5-202009161800', // 1.0.3版本正在测试中
@@ -140,7 +140,7 @@ ext.deps = [
         GMsc                 : 'com.gome.ecmall:msc:1.0.4@aar',
         GMscStaff            : 'com.gome.staff:msc:21.11.18@aar',
         GAVSdk               : 'com.gome.third:sessionsdk:21.7.22',
-        GSuperplayerSDK      : 'com.gome.ecmall:superplayer:1.0.17',//播放器
+        GSuperplayerSDK      : 'com.gome.ecmall:superplayer:1.0.18',//播放器
         GImage               : 'com.gome.mcp:image:2.8.8',
         GCACHE               : 'com.gome.mcp:cache:' + getProperty('AAR_MCP_VERSION') + '@aar',
         //异形屏适配工具
@@ -264,8 +264,6 @@ ext.deps = [
         GCmbPay              : rootProject.ext.proDeps ? project(':GCmbPay') : 'com.gome.cmbpay:cmbpay:' + getProperty('AAR_CMBPAY_VERSION') + '@aar',
         GBaiTiao             : rootProject.ext.proDeps ? project(':GBaiTiao') : 'com.gome.ecmall:baitiao:' + getProperty('AAR_GBAITIAO_VERSION') + '@aar',
         GHybrid              : rootProject.ext.proDeps ? project(':GHybrid') : 'com.gome.ecmall:gh5:' + getProperty('AAR_GH5_VERSION') + '@aar',
-        GFinanceCommon       : rootProject.ext.proDeps ? project(':GFinanceCommon') : 'com.gome.ecmall:financecommon:' + getProperty('AAR_GFINANCE_COMMON_VERSION') + '@aar',
-        GFinance             : rootProject.ext.proDeps ? project(':GFinance') : 'com.gome.ecmall:finance:' + getProperty('AAR_GFINANCE_VERSION') + '@aar',
         GMeiyingbao          : rootProject.ext.proDeps ? project(':GMeiyingbao') : 'com.gome.ecmall:meiyingbao:' + getProperty('AAR_GMEIYINGBAO_VERSION') + '@aar',
         GPhoneRecharge       : false ? project(':GPhoneRecharge') : 'com.gome.ecmall:phonerecharge:' + getProperty('AAR_GPHONERECHARGE_VERSION') + '@aar',
         GStoreSearch         : rootProject.ext.proDeps ? project(':GStoreSearch') : 'com.gome.ecmall:storesearch:' + getProperty('AAR_GSTORESEARCH_VERSION') + '@aar',
@@ -336,7 +334,7 @@ ext.deps = [
         GViewTracker          : false ? project(':GViewTracker') : 'com.gome.viewtracker:viewtracker:'+getProperty('AAR_VIEW_TRACKER_VERSION') + '@aar',
 
         GLog                 : 'com.gome.mcp:log:2.9.3@aar',
-        GVideoLiteAVSDK      : 'com.gome.zhibo:LiteAVSDK_Enterprise:9.4.29401', //企业版
+        GVideoLiteAVSDK      : 'com.gome.zhibo:LiteAVSDK_Enterprise:9.5.11588', //企业版
         GStatusView          : false ? project(':GStatusView') : 'cn.gome.staff.ui:statusview:' + getProperty('AAR_UI_STATUSVIEW_VERSION') + '@aar',
         VideoInterface       : rootProject.ext.proDeps ? project(':VideoInterface') : 'cn.gome.video:vinterface:' + getProperty('AAR_VIDEOINTER_VERSION'),
         GHomeAddInterface    : rootProject.ext.proDeps ? project(':GHomeAddInterface') : 'com.gome.ecmall:homeaddinter:' + getProperty('AAR_HOMEADDINTER_VERSION'),
@@ -349,6 +347,14 @@ ext.deps = [
         GBusinessView        : rootProject.ext.proDeps ? project(':GBusinessView') : 'com.gome.business.view:businessview:' + getProperty('AAR_BUSINESSVIEW_VERSION'),
         GAmusement           : false ? project(':GAmusement') : 'com.gome.ecmall:amusement:' + getProperty('AAR_AMUSEMENT_VERSION'),
         GScanAuthLogin       :  rootProject.ext.proDeps ?project(':GScanAuthLogin'): 'com.gome.mcp:gscanauth:' + getProperty('AAR_SCANAUTHLOGIN_VERSION')+ '@aar',
+        GAnimView            : 'io.github.tencent:vap:2.0.20',
+        //  zszsdk相关
+        GZSZNET              : 'com.gome.third:cashier_zsznet:' + getProperty('AAR_ZSZNET_VERSION'),
+        GZSZSDK              : 'com.gome.third:cashier_zszsdk:' + getProperty('AAR_ZSZSDK_VERSION'),
+        GZSZFACEAUTH         : 'com.gome.ecmall.third:liveness-interactive:' + getProperty('AAR_ZSZFACEAUTH_VERSION'),
+        GZSZFACECOMMON       : 'com.gome.ecmall.third:common-motion:' + getProperty('AAR_ZSZFACECOMMON_VERSION'),
+
+        GECMainLib           : false ? project(':GECMainLib') : 'com.gome.ecmall.ecbiz:ecmain:202206102101',
         GAnimView            : 'io.github.tencent:vap:2.0.20'
 ]
 /**

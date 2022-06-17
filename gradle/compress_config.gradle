@@ -3,6 +3,7 @@
  * 隐患：
  * 1. 使用getIdentifier动态获取资源找不到
  * 2. 控件依赖图片分辨率尺寸自适应，压缩导致部分机型动画失效？
+ * 3. ConstraintLayout Group constraint_referenced_ids
  */
 apply plugin: 'com.gome.compress'
 
@@ -12,9 +13,24 @@ apply plugin: 'com.gome.compress'
 def compress_enable = false
 
 project.configurations {
-    String enable = System.getenv()['COMPRESS_ENABLE']
+    String systemEnv = System.getenv()['COMPRESS_ENABLE']
+    String systemProperty = System.getProperty('COMPRESS_ENABLE')
+    String localProperty = getProperty('COMPRESS_ENABLE')
+    boolean envEnable, systemEnable, localEnable
+    if(localProperty != null && localProperty != ""){
+        envEnable = (localProperty == 'true')
+    }
+
+    if(systemProperty != null && systemProperty != ""){
+        systemEnable = (systemProperty == 'true')
+    }
+
+    if(systemEnv != null && systemEnv != ""){
+        localEnable = (systemEnv == 'true')
+    }
+
     if (enable != null && enable != "") {
-        compress_enable = (enable == "true")
+        compress_enable = envEnable || systemEnable || localEnable
     }
 }
 
@@ -30,7 +46,7 @@ imageCompressConfig {
     pngCompressQuality = 75
     filter {
         filterImageNames = [
-                "mh_bg_vip99.png"
+                "mh_bg_vip99.png",
         ]
     }
 }
@@ -77,7 +93,7 @@ if (project.plugins.toListString().contains("AppPlugin")) {
                 "R.id.bangclepay_*",
                 "R.id.popup_text",
                 "R.id.notify_*",
-                "R.id.custom_dialog_confirm_cancel_*",
+                "R.id.custom_dialog_confirm_*",
                 "R.id.ve_img_*",
                 "R.id.sub_title",
                 "R.id.title",
@@ -114,6 +130,22 @@ if (project.plugins.toListString().contains("AppPlugin")) {
                 "R.drawable.push_*",
                 "R.drawable.umcsdk_*",
                 "R.drawable.im_*_emotion_logo",
+                "R.drawable.vivo_push_*",
+
+                //Group constraint_referenced_ids
+                "R.id.ve_img_music_closed",
+                "R.id.ve_img_music_space",
+                "R.id.zb_tv_link_audience_time",
+                "R.id.zb_tv_link_audience_ins",
+                "R.id.zb_view_link_divider",
+                "R.id.iv_sponsor_avatar",
+                "R.id.tv_sponsor_user_name",
+                "R.id.tv_sponsor_video_tag",
+                "R.id.ll_img_container",
+                "R.id.ll_mute",
+                "R.id.ll_handsfree",
+                "R.id.tv_timer",
+                "R.id.view_waiting_panel",
         ]
 
         compressFilePattern = [
@@ -127,5 +159,10 @@ if (project.plugins.toListString().contains("AppPlugin")) {
         sevenzip {
             artifact = 'com.tencent.mm:SevenZip:1.2.7'
         }
+    }
+
+    //资源压缩白名单扫描
+    andResGuardWhitelistScan{
+        enable = false
     }
 }

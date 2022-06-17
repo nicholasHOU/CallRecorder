@@ -99,10 +99,9 @@
     <project url="git@code.gome.inc:mobile-android-business/GBusiness.git" />
 
     <project url="git@code.gome.inc:mobile-android-business/MImlibrary.git" />
-    <project url="git@code.gome.inc:mobile-android-business/GFinanceCommon.git" />
+    <project groups="private" url="git@code.gome.inc:mobile-android-business/GFinanceCommon.git" />
     <!-- 业务模块 -->
-    <project artifactId="finance" bundleOpen="false"
-        url="git@code.gome.inc:mobile-android-business/GFinance.git" />
+    <project groups="private" url="git@code.gome.inc:mobile-android-business/GFinance.git" />
     <project artifactId="meiyingbao" bundleOpen="false"
         url="git@code.gome.inc:mobile-android-business/GMeiyingbao.git" />
     <project artifactId="phonerecharge" bundleOpen="true"
