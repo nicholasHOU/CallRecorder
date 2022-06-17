@@ -354,7 +354,7 @@ ext.deps = [
         GZSZFACEAUTH         : 'com.gome.ecmall.third:liveness-interactive:' + getProperty('AAR_ZSZFACEAUTH_VERSION'),
         GZSZFACECOMMON       : 'com.gome.ecmall.third:common-motion:' + getProperty('AAR_ZSZFACECOMMON_VERSION'),
 
-        GECMainLib           : false ? project(':GECMainLib') : 'com.gome.ecmall.ecbiz:ecmain:202206102101',
+        GECMainLib           : false ? project(':GECMainLib') : 'com.gome.ecmall.ecbiz:ecmain:202206171534',
         GAnimView            : 'io.github.tencent:vap:2.0.20'
 ]
 /**
