@@ -1,5 +1,5 @@
 <?xml version="1.0" ?>
-<manifest branch="mergeDev" bundleOpen="true" host="git@code.gome.inc:">
+<manifest branch="splitshopcart06" bundleOpen="true" host="git@code.gome.inc:">
     <!--私有工程-->
     <project branch="master" groups="private"
         url="git@code.gome.inc:mobile-android-admin/buildsrc.git" />
@@ -65,7 +65,7 @@
     <project url="git@code.gome.inc:mobile-android-business/GWidget.git" />
     <project url="git@code.gome.inc:mobile-android-mcp/GDXRisk.git" />
     <project path="GCoreLogin" url="git@code.gome.inc:mobile-android-common/GCore-login.git" />
-    <project path="GCore" url="git@code.gome.inc:mobile-android-common/GCore-common.git" />
+    <project groups="splitshopcart06" path="GCore" url="git@code.gome.inc:mobile-android-common/GCore-common.git" />
 
     <project url="git@code.gome.inc:mobile-android-business/GLogin.git" />
     <project url="git@code.gome.inc:mobile-android-business/GPullrefresh.git" />
@@ -74,7 +74,7 @@
 
     <!--支持3D Wap-->
     <project url="git@code.gome.inc:mobile-android-repo/GX5Lib.git" />
-    <project  url="git@code.gome.inc:mobile-android-business/GRouterInterface.git" />
+    <project groups="splitshopcart06"  url="git@code.gome.inc:mobile-android-business/GRouterInterface.git" />
     <project  url="git@code.gome.inc:mobile-android-video/VideoInterface.git" />
     <project  url="git@code.gome.inc:mobile-android-business/GBusinessView.git" />
 
@@ -85,16 +85,16 @@
     <project url="git@code.gome.inc:mobile-android-business/GAlbum.git" />
     <project url="git@code.gome.inc:mobile-android-business/GYYTPassWord.git" />
     <project url="git@code.gome.inc:mobile-android-business/GDao.git" />
-    <project url="git@code.gome.inc:mobile-android-business/GMallService.git" />
-    <project url="git@code.gome.inc:mobile-android-business/GBProduct.git" />
+    <project groups="splitshopcart06" url="git@code.gome.inc:mobile-android-business/GMallService.git" />
+    <project groups="splitshopcart06" url="git@code.gome.inc:mobile-android-business/GBProduct.git" />
     <project url="git@code.gome.inc:mobile-android-business/GBCms.git" />
-    <project url="git@code.gome.inc:mobile-android-business/GShopCarBus.git" />
+    <project groups="splitshopcart06" url="git@code.gome.inc:mobile-android-business/GShopCarBus.git" />
     <project url="git@code.gome.inc:mobile-android-business/GGomeShareBus.git" />
     <project url="git@code.gome.inc:mobile-android-business/GSocialService.git" />
     
     <project url="git@code.gome.inc:mobile-android-mcp/GPhotoScan.git" />
 
-    <project url="git@code.gome.inc:mobile-android-common/GHybrid.git" />
+    <project groups="splitshopcart06" url="git@code.gome.inc:mobile-android-common/GHybrid.git" />
     <project url="git@code.gome.inc:mobile-android-business/GCashierdesk.git" />
     <project url="git@code.gome.inc:mobile-android-common/GShelvesWidget.git" />
     <project url="git@code.gome.inc:mobile-android-business/GBusiness.git" />
@@ -136,8 +136,8 @@
 
     <project artifactId="product" bundleOpen="false"
         url="git@code.gome.inc:mobile-android-business/GProductDetail.git" />
-    <project url="git@code.gome.inc:mobile-android-business/GShoppingCart.git" />
-    <project url="git@code.gome.inc:mobile-android-business/GShopCart.git" />
+    <project groups="splitshopcart06" url="git@code.gome.inc:mobile-android-business/GShoppingCart.git" />
+    <project groups="splitshopcart06" url="git@code.gome.inc:mobile-android-business/GShopCart.git" />
     <project url="git@code.gome.inc:mobile-android-business/GSetting.git" />
     <project url="git@code.gome.inc:mobile-android-business/GMemHome.git" />
     <project url="git@code.gome.inc:mobile-android-business/AMemHome.git" />
@@ -157,5 +157,5 @@
     <project url="git@code.gome.inc:mobile-android-business/GAmusement.git" />
 
     <!--主工程-->
-    <project app="true" groups="app" path="GomeApp" url="git@code.gome.inc:mobile-android/GomePlus.git" />
+    <project app="true" groups="splitshopcart06" path="GomeApp" url="git@code.gome.inc:mobile-android/GomePlus.git" />
 </manifest>
