@@ -62,7 +62,7 @@
     <project path="GFrameImage" url="git@code.gome.inc:mobile-android-common/GFrame-image.git" />
     <project path="GFrame" url="git@code.gome.inc:mobile-android-common/GFrame-common.git" />
     <!--GCore-->
-    <project url="git@code.gome.inc:mobile-android-business/GWidget.git" />
+    <project groups="cms20220401" url="git@code.gome.inc:mobile-android-business/GWidget.git" />
     <project url="git@code.gome.inc:mobile-android-mcp/GDXRisk.git" />
     <project path="GCoreLogin" url="git@code.gome.inc:mobile-android-common/GCore-login.git" />
     <project path="GCore" url="git@code.gome.inc:mobile-android-common/GCore-common.git" />

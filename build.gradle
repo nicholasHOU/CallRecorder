@@ -140,7 +140,7 @@ ext.deps = [
         GMsc                 : 'com.gome.ecmall:msc:1.0.4@aar',
         GMscStaff            : 'com.gome.staff:msc:21.11.18@aar',
         GAVSdk               : 'com.gome.third:sessionsdk:21.7.22',
-        GSuperplayerSDK      : 'com.gome.ecmall:superplayer:1.0.18',//播放器
+        GSuperplayerSDK      : 'com.gome.ecmall:superplayer:1.0.20',//播放器
         GImage               : 'com.gome.mcp:image:2.8.8',
         GCACHE               : 'com.gome.mcp:cache:' + getProperty('AAR_MCP_VERSION') + '@aar',
         //异形屏适配工具
@@ -257,7 +257,7 @@ ext.deps = [
         GCoreLogin           : rootProject.ext.proDeps ? project(':GCoreLogin') : 'com.gome.ecmall:core-login:' + getProperty('AAR_GCORE_LOGIN_VERSION') + '@aar',
         GCore                : rootProject.ext.proDeps ? project(':GCore') : 'com.gome.ecmall:core:' + getProperty('AAR_GCORE_VERSION') + '@aar',
 
-        GWidget              : rootProject.ext.proDeps ? project(':GWidget') : 'com.gome.ecmall:widget:' + getProperty('AAR_GWIDGET_VERSION') + '@aar',
+        GWidget              : true ? project(':GWidget') : 'com.gome.ecmall:widget:' + getProperty('AAR_GWIDGET_VERSION') + '@aar',
         GDXRisk              : false ? project(':GDXRisk') : 'com.gome.mcp:dxrisk:' + getProperty('AAR_GDXRISK_VERSION') + '@aar',
         GLogin               : rootProject.ext.proDeps ? project(':GLogin') : 'com.gome.ecmall:login:' + getProperty('AAR_GLOGIN_VERSION') + '@aar',
         GLoginAuth           : 'com.gome.ecmall:login-auth:Release-V1.0.0@aar',
@@ -276,7 +276,7 @@ ext.deps = [
         GGomeCurrency        : rootProject.ext.proDeps ? project(':GGomeCurrency') : 'com.gome.ecmall:ggomecurrency:' + getProperty('AAR_GGOMECURRENCY_VERSION') + '@aar',
         GProductSearch       : rootProject.ext.proDeps ? project(':GProductSearch') : 'com.gome.ecmall:productsearch:' + getProperty('AAR_GPRODUCT_SEARCH_VERSION') + '@aar',
         GMoreService         : rootProject.ext.proDeps ? project(':GMoreService') : 'com.gome.ecmall:moreservice:' + getProperty('AAR_MORE_SERVICE_VERSION') + '@aar',
-        GMallPage            : rootProject.ext.proDeps ? project(':GMallPage') : 'com.gome.ecmall:gmallpage:' + getProperty('AAR_GMALL_PAGE_VERSION') + '@aar',
+        GMallPage            : true ? project(':GMallPage') : 'com.gome.ecmall:gmallpage:' + getProperty('AAR_GMALL_PAGE_VERSION') + '@aar',
         GShelvesWidget       : rootProject.ext.proDeps ? project(':GShelvesWidget') : 'com.gome.ecmall:shelveswidget:' + getProperty('AAR_GSHELVES_WIDGET_VERSION') + '@aar',
         GPanicBuy            : rootProject.ext.proDeps ? project(':GPanicBuy') : 'com.gome.ecmall:panicbuy:' + getProperty('AAR_GPANICBUY_VERSION') + '@aar',
         GAppraise            : rootProject.ext.proDeps ? project(':GAppraise') : 'com.gome.ecmall:appraise:' + getProperty('AAR_GAPPRAISE_VERSION') + '@aar',
@@ -337,6 +337,7 @@ ext.deps = [
 
         GLog                 : 'com.gome.mcp:log:2.9.3@aar',
         GVideoLiteAVSDK      : 'com.gome.zhibo:LiteAVSDK_Enterprise:9.5.11588', //企业版
+        GSZhiBo              : 'com.gome.ecmall:gzhibo:0.0.96', //企业版
         GStatusView          : false ? project(':GStatusView') : 'cn.gome.staff.ui:statusview:' + getProperty('AAR_UI_STATUSVIEW_VERSION') + '@aar',
         VideoInterface       : rootProject.ext.proDeps ? project(':VideoInterface') : 'cn.gome.video:vinterface:' + getProperty('AAR_VIDEOINTER_VERSION'),
         GHomeAddInterface    : rootProject.ext.proDeps ? project(':GHomeAddInterface') : 'com.gome.ecmall:homeaddinter:' + getProperty('AAR_HOMEADDINTER_VERSION'),
@@ -356,7 +357,7 @@ ext.deps = [
         GZSZFACEAUTH         : 'com.gome.ecmall.third:liveness-interactive:' + getProperty('AAR_ZSZFACEAUTH_VERSION'),
         GZSZFACECOMMON       : 'com.gome.ecmall.third:common-motion:' + getProperty('AAR_ZSZFACECOMMON_VERSION'),
 
-        GECMainLib           : false ? project(':GECMainLib') : 'com.gome.ecmall.ecbiz:ecmain:202206102101',
+        GECMainLib           : false ? project(':GECMainLib') : 'com.gome.ecmall.ecbiz:ecmain:202206211233',
         GAnimView            : 'io.github.tencent:vap:2.0.20'
 ]
 /**
