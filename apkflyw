@@ -58,13 +58,13 @@ if [ -d "$apkflyF" ];then
   # 10分钟不重复执行git-pull(根据git-pull的时间戳和当前时间戳对比)
   cur_sec=$(date '+%s')
   #echo "当前时间戳$cur_sec"
-  # 使用py获取文件最后修改时间戳（stat_float_times - False, 调用 stat 返回 ints），且此py语句适配py2、py3，因为Linux和Mac的stat命令不一样所以就不一一兼容
+  # 使用py获取文件最后修改时间戳，此py语句适配py2、py3，因为Linux和Mac的stat命令不一样所以就不写shell一一兼容
   git_pull_tag_fetch_head=$apkflyF/.git/FETCH_HEAD #在刚clone后此文件不存在
   git_pull_tag_head=$apkflyF/.git/HEAD
   if [ -f "$git_pull_tag_fetch_head" ]; then
-      git_pull_sec=$($apkflyCmd -c "import os;os.stat_float_times(False);print(os.stat('$git_pull_tag_fetch_head').st_mtime)")
+      git_pull_sec=$($apkflyCmd -c "import os;print(int(os.stat('$git_pull_tag_fetch_head').st_mtime))")
   else
-      git_pull_sec=$($apkflyCmd -c "import os;os.stat_float_times(False);print(os.stat('$git_pull_tag_head').st_mtime)")
+      git_pull_sec=$($apkflyCmd -c "import os;print(int(os.stat('$git_pull_tag_head').st_mtime))")
   fi
   #echo "git-pull时间戳$git_pull_sec"
   time_diff=$((cur_sec - git_pull_sec))
