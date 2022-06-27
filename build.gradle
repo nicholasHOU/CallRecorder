@@ -91,6 +91,7 @@ task clean(type: Delete) {
 
 ext.deps = [
         //kotlin support
+        Pinyin4j    : 'com.belerweb:pinyin4j:2.5.1',
         SConstraintLayout    : 'androidx.constraintlayout:constraintlayout:1.1.3',
         SKotlin              : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version",
         GHttp                : 'com.gome.mcp:http:2.10.2',
