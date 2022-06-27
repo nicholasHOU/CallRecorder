@@ -1,5 +1,5 @@
 <?xml version="1.0" ?>
-<manifest branch="mergeDev" bundleOpen="true" host="git@code.gome.inc:">
+<manifest branch="mergeDev_update_glide" bundleOpen="true" host="git@code.gome.inc:">
     <!--私有工程-->
     <project branch="master" groups="private"
         url="git@code.gome.inc:mobile-android-admin/buildsrc.git" />
@@ -126,7 +126,7 @@
 
     <project url="git@code.gome.inc:mobile-android-business/MFriendCircle.git" />
     <project url="git@code.gome.inc:mobile-android-business/MSocial.git" />
-    <project url="git@code.gome.inc:mobile-android-business/MIm.git" />
+    <project branch="mergeDev_update_glide" url="git@code.gome.inc:mobile-android-business/MIm.git" />
     <project url="git@code.gome.inc:mobile-android-business/MFriends.git" />
     <project url="git@code.gome.inc:mobile-android-mcp/IMKit.git" />
     <project url="git@code.gome.inc:mobile-android-business/GMoreService.git" />
@@ -148,8 +148,8 @@
     <project url="git@code.gome.inc:mobile-android-business/GZhiboBus.git" />
     <project url="git@code.gome.inc:mobile-android-business/Gsuperplayerkit.git" />
 
-    <project url="git@code.gome.inc:mobile-android-video/GVideoRecordingUgcKit.git" />
-    <project url="git@code.gome.inc:mobile-android-video/GVideoRecording.git" />
+    <project branch="mergeDev_update_glide" url="git@code.gome.inc:mobile-android-video/GVideoRecordingUgcKit.git" />
+    <project branch="mergeDev_update_glide" url="git@code.gome.inc:mobile-android-video/GVideoRecording.git" />
     <project url="git@code.gome.inc:mobile-android-video/VideoEdit.git" />
     <project url="git@code.gome.inc:mobile-android-video/VideoSearch.git" />
     <project url="git@code.gome.inc:mobile-android-mcp/GEntMediaPicker.git" />
@@ -157,5 +157,5 @@
     <project url="git@code.gome.inc:mobile-android-business/GAmusement.git" />
 
     <!--主工程-->
-    <project app="true" groups="app" path="GomeApp" url="git@code.gome.inc:mobile-android/GomePlus.git" />
+    <project app="true" groups="mergeDev_update_glide" path="GomeApp" branch="mergeDev_update_glide" url="git@code.gome.inc:mobile-android/GomePlus.git" />
 </manifest>

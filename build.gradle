@@ -1,6 +1,9 @@
 buildscript {
     ext.kotlin_version = '1.3.72'
+    ext.tingyun_sdk_version = '2.16.0'//基调听云SDK版本
+    ext.tingyun_ndk_version = '2.0.5'//基调听云NDK版本
     repositories {
+        maven { url "https://nexus2.tingyun.com/nexus/content/repositories/snapshots/" }
         maven {
             url "http://m-maven.ds.gome.com.cn/nexus/content/groups/plugin"
             credentials {
@@ -17,6 +20,7 @@ buildscript {
         maven{url 'https://maven.aliyun.com/repository/google'}
     }
     dependencies {
+        classpath "com.networkbench:tingyun-ea-agent-android-gradle-plugin:$tingyun_sdk_version"
 
         classpath 'com.android.tools.build:gradle:3.2.1'
         classpath 'com.gutils:apker:0.0.27-3.2.1'
@@ -24,7 +28,7 @@ buildscript {
         //classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.5"
 
         //神策gradle依赖
-        classpath 'com.sensorsdata.analytics.android:android-gradle-plugin2:3.2.9'
+//        classpath 'com.sensorsdata.analytics.android:android-gradle-plugin2:3.2.9'
         classpath 'com.gutils.router:build:' + getProperty('LIB_ROUTER_VERSION')
 
         /**
@@ -52,6 +56,7 @@ buildscript {
 
 allprojects {
     repositories {
+        maven { url "https://nexus2.tingyun.com/nexus/content/repositories/snapshots/" }
         maven {
             url "http://m-maven.ds.gome.com.cn/nexus/content/groups/public"
             credentials {
@@ -141,7 +146,7 @@ ext.deps = [
         GMscStaff            : 'com.gome.staff:msc:21.11.18@aar',
         GAVSdk               : 'com.gome.third:sessionsdk:21.7.22',
         GSuperplayerSDK      : 'com.gome.ecmall:superplayer:1.0.20',//播放器
-        GImage               : 'com.gome.mcp:image:2.8.8',
+        GImage               : 'com.gome.mcp:image:2.9.7',
         GCACHE               : 'com.gome.mcp:cache:' + getProperty('AAR_MCP_VERSION') + '@aar',
         //异形屏适配工具
         SpecialScreenTools   : 'com.gome.ecmall:yixinscreen:0.0.1',
@@ -195,7 +200,7 @@ ext.deps = [
         GFace                : 'com.gome.face:liveness:3.6.1-20200930@aar',
         GFaceCommon          : 'com.gome.face:common-motion:1.0.9-202010191740@aar',
         GOaid                : 'com.gome.third.oaid:oaid:1.0.25@aar',
-        GAdSDK               :'cn.com.gomeplus.ad:gomeplus-ad-SDK:1.4.5@aar',
+        GAdSDK               :'cn.com.gomeplus.ad:gomeplus-ad-SDK:1.4.6@aar',
         SConstraintSolver    : 'androidx.constraintlayout:constraintlayout-solver:1.1.3',
         SExif                : 'androidx.exifinterface:exifinterface:1.0.0',
         SAdapterHelper       : 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.50',
@@ -355,7 +360,8 @@ ext.deps = [
         GZSZFACEAUTH         : 'com.gome.ecmall.third:liveness-interactive:' + getProperty('AAR_ZSZFACEAUTH_VERSION'),
         GZSZFACECOMMON       : 'com.gome.ecmall.third:common-motion:' + getProperty('AAR_ZSZFACECOMMON_VERSION'),
 
-        GECMainLib           : false ? project(':GECMainLib') : 'com.gome.ecmall.ecbiz:ecmain:202206211233',
+//        GECMainLib           : false ? project(':GECMainLib') : 'com.gome.ecmall.ecbiz:ecmain:202206211233',
+        GECMainLib           : false ? project(':GECMainLib') : 'com.gome.ecmall.ecbiz:ecmain:202206101856',
         GAnimView            : 'io.github.tencent:vap:2.0.20'
 ]
 /**
