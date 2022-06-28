@@ -166,6 +166,7 @@ ext.deps = [
         SMultidexInstr       : 'androidx.multidex:multidex-instrumentation:2.0.0',
 
         SRecyclerview        : 'androidx.recyclerview:recyclerview:1.0.0',
+        SViewpager2          : 'androidx.viewpager2:viewpager2:1.0.0',
         SAppcompat           : 'androidx.appcompat:appcompat:1.0.0',
         SV4                  : 'androidx.legacy:legacy-support-v4:1.0.0',
         SCardview            : 'androidx.cardview:cardview:1.0.0',
