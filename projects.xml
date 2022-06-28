@@ -130,6 +130,8 @@
     <project url="git@code.gome.inc:mobile-android-business/MFriends.git" />
     <project url="git@code.gome.inc:mobile-android-mcp/IMKit.git" />
     <project url="git@code.gome.inc:mobile-android-business/GMoreService.git" />
+
+    <project branch="master" url="git@code.gome.inc:mobile-android-common/GCms.git" />
     <project url="git@code.gome.inc:mobile-android-business/GMallPage.git" />
 
     <project url="git@code.gome.inc:mobile-android-business/GCollection.git" />
@@ -155,7 +157,6 @@
     <project url="git@code.gome.inc:mobile-android-mcp/GEntMediaPicker.git" />
     <project url="git@code.gome.inc:mobile-android-business/GHomeAdd.git" />
     <project url="git@code.gome.inc:mobile-android-business/GAmusement.git" />
-    <project branch="master" url="git@code.gome.inc:mobile-android-common/GCms.git" />
 
     <!--主工程-->
     <project app="true" groups="app" path="GomeApp" url="git@code.gome.inc:mobile-android/GomePlus.git" />
