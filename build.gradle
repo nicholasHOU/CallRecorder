@@ -28,7 +28,7 @@ buildscript {
         //classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.5"
 
         //神策gradle依赖
-        classpath 'com.sensorsdata.analytics.android:android-gradle-plugin2:3.2.9'
+//        classpath 'com.sensorsdata.analytics.android:android-gradle-plugin2:3.2.9'
         classpath 'com.gutils.router:build:' + getProperty('LIB_ROUTER_VERSION')
 
         /**
