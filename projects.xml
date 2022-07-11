@@ -138,6 +138,7 @@
         url="git@code.gome.inc:mobile-android-business/GProductDetail.git" />
     <project groups="splitshopcart06" url="git@code.gome.inc:mobile-android-business/GShoppingCart.git" />
     <project groups="splitshopcart06" url="git@code.gome.inc:mobile-android-business/GShopCart.git" />
+    <project groups="splitshopcart06" url="git@code.gome.inc:mobile-android-business/GShoppingCartProcessor.git" />
     <project url="git@code.gome.inc:mobile-android-business/GSetting.git" />
     <project url="git@code.gome.inc:mobile-android-business/GMemHome.git" />
     <project url="git@code.gome.inc:mobile-android-business/AMemHome.git" />

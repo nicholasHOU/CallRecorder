@@ -290,6 +290,7 @@ ext.deps = [
 
         GShoppingCart        : true ? project(':GShoppingCart') : 'com.gome.ecmall:shoppingcar:' + getProperty('AAR_GSHOPPINGCAR_VERSION') + '@aar',
         GShopCarBus          : true ? project(':GShopCarBus') : 'com.gome.ecmall.business:gshopcartbus:' + getProperty('AAR_GBUSINESS_GSHOPCARTBUS_VERSION') + '@aar',
+        GShoppingCartProcessor: true ? project(":GShoppingCartProcessor") : 'com.gome.ecmall.business:shoppingcar-processor:' + getProperty('AAR_GSHOPPINGCAR_PROCESSOR_VERSION') + '@aar',
         GGomeShareBus        : rootProject.ext.proDeps ? project(':GGomeShareBus') : 'com.gome.ecmall:gomesharebus:' + getProperty('AAR_GGOMESHAREBUS_VERSION') + '@aar',
         GBusiness            : rootProject.ext.proDeps ? project(':GBusiness') : 'com.gome.ecmall:business:' + getProperty('AAR_GBUSINESS_VERSION') + '@aar',
         GScheme              : rootProject.ext.proDeps ? project(':GScheme') : 'com.gome.ecmall:scheme:' + getProperty('AAR_GSCHEME_VERSION') + '@aar',
