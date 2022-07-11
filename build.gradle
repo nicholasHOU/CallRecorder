@@ -1,6 +1,9 @@
 buildscript {
     ext.kotlin_version = '1.3.72'
+//    ext.tingyun_sdk_version = '2.16.0'//基调听云SDK版本
+//    ext.tingyun_ndk_version = '2.0.5'//基调听云NDK版本
     repositories {
+//        maven { url "https://nexus2.tingyun.com/nexus/content/repositories/snapshots/" }
         maven {
             url "http://m-maven.ds.gome.com.cn/nexus/content/groups/plugin"
             credentials {
@@ -17,9 +20,10 @@ buildscript {
         maven{url 'https://maven.aliyun.com/repository/google'}
     }
     dependencies {
+//        classpath "com.networkbench:tingyun-ea-agent-android-gradle-plugin:$tingyun_sdk_version"
 
         classpath 'com.android.tools.build:gradle:3.2.1'
-        classpath 'com.gutils:apker:0.0.27-3.2.1'
+        classpath 'com.gutils:apker:0.0.31-3.2.1'
 
         //classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.5"
 
@@ -46,12 +50,17 @@ buildscript {
         /**
          * 包体压缩插件
          */
-        classpath "com.gome.compress:compress_plugin:1.1.10"
+        classpath "com.gome.compress:compress_plugin:1.1.10.2"
+        /**
+         * 检测重复资源图片及去除特定分辨率图片资源插件
+         */
+        classpath "com.gutils.resdensity:config:1.0.5"
     }
 }
 
 allprojects {
     repositories {
+//        maven { url "https://nexus2.tingyun.com/nexus/content/repositories/snapshots/" }
         maven {
             url "http://m-maven.ds.gome.com.cn/nexus/content/groups/public"
             credentials {
@@ -86,6 +95,7 @@ task clean(type: Delete) {
 
 ext.deps = [
         //kotlin support
+        Pinyin4j    : 'com.belerweb:pinyin4j:2.5.1',
         SConstraintLayout    : 'androidx.constraintlayout:constraintlayout:1.1.3',
         SKotlin              : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version",
         GHttp                : 'com.gome.mcp:http:2.10.2',
@@ -141,7 +151,7 @@ ext.deps = [
         GMscStaff            : 'com.gome.staff:msc:21.11.18@aar',
         GAVSdk               : 'com.gome.third:sessionsdk:21.7.22',
         GSuperplayerSDK      : 'com.gome.ecmall:superplayer:1.0.20',//播放器
-        GImage               : 'com.gome.mcp:image:2.8.8',
+        GImage               : 'com.gome.mcp:image:2.9.7',
         GCACHE               : 'com.gome.mcp:cache:' + getProperty('AAR_MCP_VERSION') + '@aar',
         //异形屏适配工具
         SpecialScreenTools   : 'com.gome.ecmall:yixinscreen:0.0.1',
@@ -160,6 +170,8 @@ ext.deps = [
         SMultidexInstr       : 'androidx.multidex:multidex-instrumentation:2.0.0',
 
         SRecyclerview        : 'androidx.recyclerview:recyclerview:1.0.0',
+        SViewpager2          : 'androidx.viewpager2:viewpager2:1.0.0',
+        SFragment            : 'androidx.fragment:fragment:1.0.0',
         SAppcompat           : 'androidx.appcompat:appcompat:1.0.0',
         SV4                  : 'androidx.legacy:legacy-support-v4:1.0.0',
         SCardview            : 'androidx.cardview:cardview:1.0.0',
@@ -183,7 +195,7 @@ ext.deps = [
         STitlebar            : 'cn.gome.staff.ui:titlebar:' + getProperty('AAR_UI_TITLEBAR_VERSION') + '@aar',
         GCrash               : 'com.gome.mcp:crash:3.1.16',
         GSecret              : 'com.gome.mcp:sec-gome:2.8.8-v22:gomeRelease@aar',
-        BSecret              : 'com.gome.mcp:sec-bangbang:2.8.8-v21:bangbangRelease@aar',
+        BSecret              : 'com.gome.mcp:sec-bangbang:2.8.8-v22:bangbangRelease@aar',
         GBuildConfig         : 'com.gome.mcp:buildconfig:2.8.8.5',
         GPlugin              : 'com.gome.ecmall.core:plugin:1.0.39@aar',
         ABTest               : 'com.gome.mcp:abtestlib:' + getProperty('AAR_GABTEST_VERSION'),
@@ -195,7 +207,7 @@ ext.deps = [
         GFace                : 'com.gome.face:liveness:3.6.1-20200930@aar',
         GFaceCommon          : 'com.gome.face:common-motion:1.0.9-202010191740@aar',
         GOaid                : 'com.gome.third.oaid:oaid:1.0.25@aar',
-        GAdSDK               :'cn.com.gomeplus.ad:gomeplus-ad-SDK:1.4.5@aar',
+        GAdSDK               :'cn.com.gomeplus.ad:gomeplus-ad-SDK:1.4.6@aar',
         SConstraintSolver    : 'androidx.constraintlayout:constraintlayout-solver:1.1.3',
         SExif                : 'androidx.exifinterface:exifinterface:1.0.0',
         SAdapterHelper       : 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.50',
@@ -306,6 +318,7 @@ ext.deps = [
         GBProduct            : true ? project(':GBProduct') : 'com.gome.ecmall.business:product:' + getProperty('AAR_GBUSINESS_GPRODUCT_VERSION') + '@aar',
         GDao                 : false ? project(':GDao') : 'com.gome.ecmall.business:dao:' + getProperty('AAR_GBUSINESS_GDAO_VERSION') + '@aar',
         GBCms                : rootProject.ext.proDeps ? project(':GBCms') : 'com.gome.ecmall.business:cms:' + getProperty('AAR_GBUSINESS_GCMS_VERSION') + '@aar',
+        GCms                 : rootProject.ext.proDeps ? project(':GCms') : 'com.gome.ecmall:cms:' + getProperty('AAR_GCMS_VERSION') + '@aar',
         GIMRedEnvelope       : rootProject.ext.proDeps ? project(':GIMRedEnvelope') : 'com.gome.ecmall:imredenvelope:' + getProperty('AAR_IMREDENVELOPE_VERSION') + '@aar',
         MImlibrary           : rootProject.ext.proDeps ? project(':MImlibrary') : 'com.gome.ecmall:mimlib:' + getProperty('AAR_MIM_LIB_VERSION') + '@aar',
         MCommon              : rootProject.ext.proDeps ? project(':MCommon') : 'com.gome.ecmall:mcommon:' + getProperty('AAR_MCOMMON_VERSION') + '@aar',
@@ -356,7 +369,8 @@ ext.deps = [
         GZSZFACEAUTH         : 'com.gome.ecmall.third:liveness-interactive:' + getProperty('AAR_ZSZFACEAUTH_VERSION'),
         GZSZFACECOMMON       : 'com.gome.ecmall.third:common-motion:' + getProperty('AAR_ZSZFACECOMMON_VERSION'),
 
-        GECMainLib           : false ? project(':GECMainLib') : 'com.gome.ecmall.ecbiz:ecmain:202206211233',
+//        GECMainLib           : false ? project(':GECMainLib') : 'com.gome.ecmall.ecbiz:ecmain:202206211233',
+        GECMainLib           : false ? project(':GECMainLib') : 'com.gome.ecmall.ecbiz:ecmain:202206301750',
         GAnimView            : 'io.github.tencent:vap:2.0.20'
 ]
 /**
