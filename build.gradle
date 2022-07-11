@@ -195,7 +195,7 @@ ext.deps = [
         STitlebar            : 'cn.gome.staff.ui:titlebar:' + getProperty('AAR_UI_TITLEBAR_VERSION') + '@aar',
         GCrash               : 'com.gome.mcp:crash:3.1.16',
         GSecret              : 'com.gome.mcp:sec-gome:2.8.8-v22:gomeRelease@aar',
-        BSecret              : 'com.gome.mcp:sec-bangbang:2.8.8-v21:bangbangRelease@aar',
+        BSecret              : 'com.gome.mcp:sec-bangbang:2.8.8-v22:bangbangRelease@aar',
         GBuildConfig         : 'com.gome.mcp:buildconfig:2.8.8.5',
         GPlugin              : 'com.gome.ecmall.core:plugin:1.0.39@aar',
         ABTest               : 'com.gome.mcp:abtestlib:' + getProperty('AAR_GABTEST_VERSION'),
