@@ -151,7 +151,7 @@ ext.deps = [
         GMscStaff            : 'com.gome.staff:msc:21.11.18@aar',
         GAVSdk               : 'com.gome.third:sessionsdk:21.7.22',
         GSuperplayerSDK      : 'com.gome.ecmall:superplayer:1.0.20',//播放器
-        GImage               : 'com.gome.mcp:image:2.9.7',
+        GImage               : 'com.gome.mcp:image:2.9.8',
         GCACHE               : 'com.gome.mcp:cache:' + getProperty('AAR_MCP_VERSION') + '@aar',
         //异形屏适配工具
         SpecialScreenTools   : 'com.gome.ecmall:yixinscreen:0.0.1',
