@@ -159,6 +159,6 @@
     <project url="git@code.gome.inc:mobile-android-business/GAmusement.git" />
 
     <!--主工程-->
-    <project app="true" groups="app" branch="mergeDev_convert_link" path="GomeApp"
+    <project app="true" groups="mergeDev_convert_link" branch="mergeDev_convert_link" path="GomeApp"
         url="git@code.gome.inc:mobile-android/GomePlus.git" />
 </manifest>
