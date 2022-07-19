@@ -1,59 +1,53 @@
-<?xml version="1.0" ?><manifest branch="mergeDev" bundleOpen="true" host="git@code.gome.inc:">
+<?xml version='1.0' encoding='utf-8'?>
+<manifest branch="mergeDev" bundleOpen="true" host="git@code.gome.inc:">
     <!--私有工程-->
-    <project branch="master" groups="private"
-        url="git@code.gome.inc:mobile-android-admin/buildsrc.git" />
+    <project branch="master" groups="private" url="git@code.gome.inc:mobile-android-admin/buildsrc.git" />
     <project groups="private" url="git@code.gome.inc:mobile-android/GWorkspace.git" />
     <project groups="private" url="git@code.gome.inc:mobile-android-admin/GSafekeyboard.git" />
-    <project branch="master" groups="private"
-        url="git@code.gome.inc:mobile-android-admin/GSecret.git" />
-    <project branch="master" groups="private"
-        url="git@code.gome.inc:mobile-android-common/GBuildConfig.git" />
-    <project branch="master" groups="private"
-        url="git@code.gome.inc:mobile-android-common/GPlugin.git" />
+    <project branch="master" groups="private" url="git@code.gome.inc:mobile-android-admin/GSecret.git" />
+    <project branch="master" groups="private" url="git@code.gome.inc:mobile-android-common/GBuildConfig.git" />
+    <project branch="master" groups="private" url="git@code.gome.inc:mobile-android-common/GPlugin.git" />
     <project groups="private" url="git@code.gome.inc:mobile-android-common/GHotfix.git" />
     <project groups="private" url="git@code.gome.inc:mobile-android-common/GUpPay.git" />
-    <project groups="private"
-        url="git@code.gome.inc:mobile-android-business/GZhiBoAudioeffectsettingkit.git" />
-    <project groups="private" url="git@code.gome.inc:mobile-android-business/GZhiBoBeautysettingkit.git"/>
-    <project groups="private" url="git@code.gome.inc:mobile-android-business/GSZhiBo.git"/>
+    <project groups="private" url="git@code.gome.inc:mobile-android-business/GZhiBoAudioeffectsettingkit.git" />
+    <project groups="private" url="git@code.gome.inc:mobile-android-business/GZhiBoBeautysettingkit.git" />
+    <project groups="private" url="git@code.gome.inc:mobile-android-business/GSZhiBo.git" />
 
-    <project groups="private" url="git@code.gome.inc:mobile-android-common/GTheme.git"/>
-    <project groups="private" url="git@code.gome.inc:mobile-android-common/GAnalytics.git"/>
+    <project groups="private" url="git@code.gome.inc:mobile-android-common/GTheme.git" />
+    <project groups="private" url="git@code.gome.inc:mobile-android-common/GAnalytics.git" />
 
-    <project groups="private" url="git@code.gome.inc:mobile-android-common/GPermission.git"/>
-    <project groups="private" url="git@code.gome.inc:mobile-android-common/GWatchImage.git"/>
-    <project groups="private" url="git@code.gome.inc:mobile-android-business/MImageEditor.git"/>
-    <project groups="private" branch="master" url="git@code.gome.inc:mobile-android-business/SSelectPhoto.git"/>
-    <project groups="private" url="git@code.gome.inc:mobile-android-business/GEmbedAnalysis.git"/>
-    <project groups="private" url="git@code.gome.inc:mobile-android-repo/Glivenesslib.git"/>
-    <project groups="private" url="git@code.gome.inc:mobile-android-business/GTabLayout.git"/>
+    <project groups="private" url="git@code.gome.inc:mobile-android-common/GPermission.git" />
+    <project groups="private" url="git@code.gome.inc:mobile-android-common/GWatchImage.git" />
+    <project groups="private" url="git@code.gome.inc:mobile-android-business/MImageEditor.git" />
+    <project groups="private" branch="master" url="git@code.gome.inc:mobile-android-business/SSelectPhoto.git" />
+    <project groups="private" url="git@code.gome.inc:mobile-android-business/GEmbedAnalysis.git" />
+    <project groups="private" url="git@code.gome.inc:mobile-android-repo/Glivenesslib.git" />
+    <project groups="private" url="git@code.gome.inc:mobile-android-business/GTabLayout.git" />
 
-    <project groups="private" url="git@code.gome.inc:mobile-android-common/GPushCore.git"/>
-    <project groups="private" url="git@code.gome.inc:mobile-android-common/GPushGome.git"/>
-    <project groups="private" url="git@code.gome.inc:mobile-android-common/GPushHuaWei.git"/>
-    <project groups="private" url="git@code.gome.inc:mobile-android-common/GPushMeiZu.git"/>
-    <project groups="private" url="git@code.gome.inc:mobile-android-common/GPushXiaoMi.git"/>
-    <project groups="private" url="git@code.gome.inc:mobile-android-common/GPushOppo.git"/>
-    <project groups="private" url="git@code.gome.inc:mobile-android-common/GPushViVo.git"/>
-    <project groups="private" branch="master" url="git@code.gome.inc:mobile-android-mcp/GBase.git"/>
-    <project groups="private" branch="master" url="git@code.gome.inc:mobile-android-mcp/GUtils.git"/>
+    <project groups="private" url="git@code.gome.inc:mobile-android-common/GPushCore.git" />
+    <project groups="private" url="git@code.gome.inc:mobile-android-common/GPushGome.git" />
+    <project groups="private" url="git@code.gome.inc:mobile-android-common/GPushHuaWei.git" />
+    <project groups="private" url="git@code.gome.inc:mobile-android-common/GPushMeiZu.git" />
+    <project groups="private" url="git@code.gome.inc:mobile-android-common/GPushXiaoMi.git" />
+    <project groups="private" url="git@code.gome.inc:mobile-android-common/GPushOppo.git" />
+    <project groups="private" url="git@code.gome.inc:mobile-android-common/GPushViVo.git" />
+    <project groups="private" branch="master" url="git@code.gome.inc:mobile-android-mcp/GBase.git" />
+    <project groups="private" branch="master" url="git@code.gome.inc:mobile-android-mcp/GUtils.git" />
 
-    <project groups="private" branch="master" url="git@code.gome.inc:mobile-android-mcp/GShare.git"/>
-    <project groups="private" branch="master" url="git@code.gome.inc:mobile-android-business/GShareBus.git"/>
-    <project groups="private" url="git@code.gome.inc:mobile-android-common/GFaceLive.git"/>
+    <project groups="private" branch="master" url="git@code.gome.inc:mobile-android-mcp/GShare.git" />
+    <project groups="private" branch="master" url="git@code.gome.inc:mobile-android-business/GShareBus.git" />
+    <project groups="private" url="git@code.gome.inc:mobile-android-common/GFaceLive.git" />
 
-    <project groups="private" url="git@code.gome.inc:mobile-android-repo/GLogStatistics.git"/>
-    <project groups="private" url="git@code.gome.inc:mobile-android-business/GSuperplayerSDK.git"/>
+    <project groups="private" url="git@code.gome.inc:mobile-android-repo/GLogStatistics.git" />
+    <project groups="private" url="git@code.gome.inc:mobile-android-business/GSuperplayerSDK.git" />
 
     <!-- WEEX模块 -->
     <project groups="private" url="git@code.gome.inc:mobile-android-repo/GWeexCore.git" />
     <project groups="private" url="git@code.gome.inc:mobile-android-repo/GWeexUpdate.git" />
     <project groups="private" url="git@code.gome.inc:mobile-android-repo/GWeexLib.git" />
 
-    <project groups="private"
-        url="git@code.gome.inc:mobile-android-common/GSmartRefreshLayout.git" />
-    <project groups="private" branch="master"
-        url="git@code.gome.inc:mobile-android-mcp/IMPlugins.git" />
+    <project groups="private" url="git@code.gome.inc:mobile-android-common/GSmartRefreshLayout.git" />
+    <project groups="private" branch="master" url="git@code.gome.inc:mobile-android-mcp/IMPlugins.git" />
 
     <!--G工程-->
     <!--GFrame-->
@@ -73,9 +67,9 @@
 
     <!--支持3D Wap-->
     <project url="git@code.gome.inc:mobile-android-repo/GX5Lib.git" />
-    <project  url="git@code.gome.inc:mobile-android-business/GRouterInterface.git" />
-    <project  url="git@code.gome.inc:mobile-android-video/VideoInterface.git" />
-    <project  url="git@code.gome.inc:mobile-android-business/GBusinessView.git" />
+    <project url="git@code.gome.inc:mobile-android-business/GRouterInterface.git" />
+    <project url="git@code.gome.inc:mobile-android-video/VideoInterface.git" />
+    <project url="git@code.gome.inc:mobile-android-business/GBusinessView.git" />
 
     <project url="git@code.gome.inc:mobile-android-business/GBusinessDeps.git" />
     <project url="git@code.gome.inc:mobile-android-business/GScheme.git" />
@@ -102,23 +96,17 @@
     <project groups="private" url="git@code.gome.inc:mobile-android-business/GFinanceCommon.git" />
     <!-- 业务模块 -->
     <project groups="private" url="git@code.gome.inc:mobile-android-business/GFinance.git" />
-    <project artifactId="meiyingbao" bundleOpen="false"
-        url="git@code.gome.inc:mobile-android-business/GMeiyingbao.git" />
-    <project artifactId="phonerecharge" bundleOpen="true"
-        url="git@code.gome.inc:mobile-android-business/GPhoneRecharge.git" />
-    <project artifactId="storesearch" bundleOpen="true"
-        url="git@code.gome.inc:mobile-android-business/GStoreSearch.git" />
-    <project artifactId="greturn" bundleOpen="true"
-        url="git@code.gome.inc:mobile-android-business/GReturn.git" />
-    <project artifactId="materialorder"  bundleOpen="false"
-        url="git@code.gome.inc:mobile-android-business/GMaterialOrder.git" />
+    <project artifactId="meiyingbao" bundleOpen="false" url="git@code.gome.inc:mobile-android-business/GMeiyingbao.git" />
+    <project artifactId="phonerecharge" bundleOpen="true" url="git@code.gome.inc:mobile-android-business/GPhoneRecharge.git" />
+    <project artifactId="storesearch" bundleOpen="true" url="git@code.gome.inc:mobile-android-business/GStoreSearch.git" />
+    <project artifactId="greturn" bundleOpen="true" url="git@code.gome.inc:mobile-android-business/GReturn.git" />
+    <project artifactId="materialorder" bundleOpen="false" url="git@code.gome.inc:mobile-android-business/GMaterialOrder.git" />
     <project url="git@code.gome.inc:mobile-android-business/GGomeCurrency.git" />
     <project url="git@code.gome.inc:mobile-android-business/GPanicBuy.git" />
     <project url="git@code.gome.inc:mobile-android-business/GAppraise.git" />
 
     <project branch="master" url="git@code.gome.inc:mobile-android-mcp/GScanAuthLogin.git" />
-    <project artifactId="productsearch" bundleOpen="false"
-        url="git@code.gome.inc:mobile-android-business/GProductSearch.git" />
+    <project artifactId="productsearch" bundleOpen="false" url="git@code.gome.inc:mobile-android-business/GProductSearch.git" />
     <project url="git@code.gome.inc:mobile-android-business/GIMRedEnvelope.git" />
     <project url="git@code.gome.inc:mobile-android-business/MCommon.git" />
     <project url="git@code.gome.inc:mobile-android-business/GOnlinememberCard.git" />
@@ -130,13 +118,12 @@
     <project url="git@code.gome.inc:mobile-android-mcp/IMKit.git" />
     <project url="git@code.gome.inc:mobile-android-business/GMoreService.git" />
 
-    <project url="git@code.gome.inc:mobile-android-common/GCms.git" />
+    <project url="git@code.gome.inc:mobile-android-common/GCms.git" branch="cms20220718" groups="cms20220718" />
     <project url="git@code.gome.inc:mobile-android-business/GMallPage.git" />
 
     <project url="git@code.gome.inc:mobile-android-business/GCollection.git" />
 
-    <project artifactId="product" bundleOpen="false"
-        url="git@code.gome.inc:mobile-android-business/GProductDetail.git" />
+    <project artifactId="product" bundleOpen="false" url="git@code.gome.inc:mobile-android-business/GProductDetail.git" />
     <project url="git@code.gome.inc:mobile-android-business/GShoppingCart.git" />
     <project url="git@code.gome.inc:mobile-android-business/GShopCart.git" />
     <project url="git@code.gome.inc:mobile-android-business/GSetting.git" />
@@ -158,5 +145,5 @@
     <project url="git@code.gome.inc:mobile-android-business/GAmusement.git" />
 
     <!--主工程-->
-    <project app="true" groups="app" path="GomeApp" url="git@code.gome.inc:mobile-android/GomePlus.git" />
+    <project app="true" groups="cms20220718" path="GomeApp" url="git@code.gome.inc:mobile-android/GomePlus.git" branch="cms20220718" />
 </manifest>
