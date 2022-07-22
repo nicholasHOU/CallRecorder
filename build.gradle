@@ -28,7 +28,7 @@ buildscript {
         //classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.5"
 
         //神策gradle依赖
-//        classpath 'com.sensorsdata.analytics.android:android-gradle-plugin2:3.2.9'
+        classpath 'com.sensorsdata.analytics.android:android-gradle-plugin2:3.2.9'
         classpath 'com.gutils.router:build:' + getProperty('LIB_ROUTER_VERSION')
 
         /**
@@ -368,7 +368,7 @@ ext.deps = [
         GZSZFACECOMMON       : 'com.gome.ecmall.third:common-motion:' + getProperty('AAR_ZSZFACECOMMON_VERSION'),
 
 //        GECMainLib           : false ? project(':GECMainLib') : 'com.gome.ecmall.ecbiz:ecmain:202206211233',
-        GECMainLib           : false ? project(':GECMainLib') : 'com.gome.ecmall.ecbiz:ecmain:202207140955',
+        GECMainLib           : false ? project(':GECMainLib') : 'com.gome.ecmall.ecbiz:ecmain:202207201124',
         GAnimView            : 'io.github.tencent:vap:2.0.20'
 ]
 /**
