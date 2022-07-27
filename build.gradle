@@ -365,6 +365,7 @@ ext.deps = [
         GZSZFACECOMMON       : 'com.gome.ecmall.third:common-motion:' + getProperty('AAR_ZSZFACECOMMON_VERSION'),
 
 //        GECMainLib           : false ? project(':GECMainLib') : 'com.gome.ecmall.ecbiz:ecmain:202206211233',
+        BangBangMessages     : false ? project(':BangBangMessages') : 'com.gome.ecmall.bangbangmessages',
         GECMainLib           : false ? project(':GECMainLib') : 'com.gome.ecmall.ecbiz:ecmain:202206301750',
         GAnimView            : 'io.github.tencent:vap:2.0.20'
 ]
