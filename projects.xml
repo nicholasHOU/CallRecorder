@@ -89,6 +89,7 @@
     <project url="git@code.gome.inc:mobile-android-business/GMallService.git" />
     <project url="git@code.gome.inc:mobile-android-business/GBProduct.git" />
     <project url="git@code.gome.inc:mobile-android-business/GBCms.git" />
+    <project url="git@code.gome.inc:mobile-android-business/GShoppingCartProcessor.git" />
     <project url="git@code.gome.inc:mobile-android-business/GShopCarBus.git" />
     <project url="git@code.gome.inc:mobile-android-business/GGomeShareBus.git" />
     <project url="git@code.gome.inc:mobile-android-business/GSocialService.git" />
@@ -139,7 +140,6 @@
 
     <project artifactId="product" bundleOpen="false"
         url="git@code.gome.inc:mobile-android-business/GProductDetail.git" />
-    <project url="git@code.gome.inc:mobile-android-business/GShoppingCartProcessor.git" />
     <project url="git@code.gome.inc:mobile-android-business/GShoppingCart.git" />
     <project url="git@code.gome.inc:mobile-android-business/GShopCart.git" />
     <project url="git@code.gome.inc:mobile-android-business/GSetting.git" />
