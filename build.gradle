@@ -150,7 +150,7 @@ ext.deps = [
         GMsc                  : 'com.gome.ecmall:msc:1.0.4@aar',
         GMscStaff             : 'com.gome.staff:msc:21.11.18@aar',
         GAVSdk                : 'com.gome.third:sessionsdk:21.7.22',
-        GSuperplayerSDK       : 'com.gome.ecmall:superplayer:1.0.20',//播放器
+        GSuperplayerSDK       : 'com.gome.ecmall:superplayer:1.0.22',//播放器
         GImage                : 'com.gome.mcp:image:2.9.8',
         GCACHE                : 'com.gome.mcp:cache:' + getProperty('AAR_MCP_VERSION') + '@aar',
         //异形屏适配工具
@@ -369,7 +369,7 @@ ext.deps = [
         GZSZFACECOMMON        : 'com.gome.ecmall.third:common-motion:' + getProperty('AAR_ZSZFACECOMMON_VERSION'),
 
 //        GECMainLib           : false ? project(':GECMainLib') : 'com.gome.ecmall.ecbiz:ecmain:202206211233',
-        GECMainLib            : false ? project(':GECMainLib') : 'com.gome.ecmall.ecbiz:ecmain:202207201124',
+        GECMainLib            : false ? project(':GECMainLib') : 'com.gome.ecmall.ecbiz:ecmain:202207281830',
         GAnimView             : 'io.github.tencent:vap:2.0.20',
         BangBangMessages     : false ? project(':BangBangMessages') : 'com.gome.ecmall:bangbangmessages:' + getProperty('AAR_BANGBANG_MESSAGE_VERSION')
 
