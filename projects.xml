@@ -44,6 +44,7 @@
 
     <project groups="private" url="git@code.gome.inc:mobile-android-repo/GLogStatistics.git"/>
     <project groups="private" url="git@code.gome.inc:mobile-android-business/GSuperplayerSDK.git"/>
+    <project groups="private" url="git@code.gome.inc:FlutterGo/gm_bangbang_module.git"/>
 
     <!-- WEEX模块 -->
     <project groups="private" url="git@code.gome.inc:mobile-android-repo/GWeexCore.git" />
@@ -73,9 +74,9 @@
 
     <!--支持3D Wap-->
     <project url="git@code.gome.inc:mobile-android-repo/GX5Lib.git" />
-    <project  url="git@code.gome.inc:mobile-android-business/GRouterInterface.git" />
-    <project  url="git@code.gome.inc:mobile-android-video/VideoInterface.git" />
-    <project  url="git@code.gome.inc:mobile-android-business/GBusinessView.git" />
+    <project url="git@code.gome.inc:mobile-android-business/GRouterInterface.git" />
+    <project url="git@code.gome.inc:mobile-android-video/VideoInterface.git" />
+    <project url="git@code.gome.inc:mobile-android-business/GBusinessView.git" />
 
     <project url="git@code.gome.inc:mobile-android-business/GBusinessDeps.git" />
     <project url="git@code.gome.inc:mobile-android-business/GScheme.git" />
@@ -87,6 +88,7 @@
     <project url="git@code.gome.inc:mobile-android-business/GMallService.git" />
     <project url="git@code.gome.inc:mobile-android-business/GBProduct.git" />
     <project url="git@code.gome.inc:mobile-android-business/GBCms.git" />
+    <project url="git@code.gome.inc:mobile-android-business/GShoppingCartProcessor.git" />
     <project url="git@code.gome.inc:mobile-android-business/GShopCarBus.git" />
     <project url="git@code.gome.inc:mobile-android-business/GGomeShareBus.git" />
     <project url="git@code.gome.inc:mobile-android-business/GSocialService.git" />
@@ -156,7 +158,8 @@
     <project url="git@code.gome.inc:mobile-android-mcp/GEntMediaPicker.git" />
     <project url="git@code.gome.inc:mobile-android-business/GHomeAdd.git" />
     <project url="git@code.gome.inc:mobile-android-business/GAmusement.git" />
+    <project url="git@code.gome.inc:mobile-android-business/BangBangMessages.git" />
 
     <!--主工程-->
-    <project app="true" groups="app" path="GomeApp" url="git@code.gome.inc:mobile-android/GomePlus.git" />
+    <project app="true" path="GomeApp" url="git@code.gome.inc:mobile-android/GomePlus.git" />
 </manifest>
