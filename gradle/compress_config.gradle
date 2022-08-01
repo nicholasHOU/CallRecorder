@@ -131,6 +131,9 @@ if (project.plugins.toListString().contains("AppPlugin")) {
                 "R.drawable.umcsdk_*",
                 "R.drawable.im_*_emotion_logo",
                 "R.drawable.vivo_push_*",
+                "R.drawable.img_kuaidiyuan",
+                "R.drawable.gt_default_grey_*",
+                "R.drawable.gt_default_white_*",
 
                 //Group constraint_referenced_ids
                 "R.id.ve_img_music_closed",
