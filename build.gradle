@@ -348,7 +348,7 @@ ext.deps = [
 
         GLog                  : 'com.gome.mcp:log:2.9.3@aar',
         GVideoLiteAVSDK       : 'com.gome.zhibo:LiteAVSDK_Enterprise:9.5.11588', //企业版
-        GSZhiBo               : 'com.gome.ecmall:gzhibo:0.0.117', //企业版
+        GSZhiBo               : 'com.gome.ecmall:gzhibo:0.0.118', //企业版
         GZhiBoBeautysettingkit: false ?project(':GZhiBoBeautysettingkit'):'com.gome.ecmall:gzhibo_beautysettingkit:'+getProperty('AAR_ZHIBO_BEAUTYSETTINGKIT_VERSION')+'@aar',
         GStatusView           : false ? project(':GStatusView') : 'cn.gome.staff.ui:statusview:' + getProperty('AAR_UI_STATUSVIEW_VERSION') + '@aar',
         VideoInterface        : rootProject.ext.proDeps ? project(':VideoInterface') : 'cn.gome.video:vinterface:' + getProperty('AAR_VIDEOINTER_VERSION'),
