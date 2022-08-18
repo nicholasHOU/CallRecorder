@@ -348,7 +348,8 @@ ext.deps = [
 
         GLog                  : 'com.gome.mcp:log:2.9.3@aar',
         GVideoLiteAVSDK       : 'com.gome.zhibo:LiteAVSDK_Enterprise:9.5.11588', //企业版
-        GSZhiBo               : 'com.gome.ecmall:gzhibo:0.0.96', //企业版
+        GSZhiBo               : 'com.gome.ecmall:gzhibo:0.0.118', //企业版
+        GZhiBoBeautysettingkit: false ?project(':GZhiBoBeautysettingkit'):'com.gome.ecmall:gzhibo_beautysettingkit:'+getProperty('AAR_ZHIBO_BEAUTYSETTINGKIT_VERSION')+'@aar',
         GStatusView           : false ? project(':GStatusView') : 'cn.gome.staff.ui:statusview:' + getProperty('AAR_UI_STATUSVIEW_VERSION') + '@aar',
         VideoInterface        : rootProject.ext.proDeps ? project(':VideoInterface') : 'cn.gome.video:vinterface:' + getProperty('AAR_VIDEOINTER_VERSION'),
         GHomeAddInterface     : rootProject.ext.proDeps ? project(':GHomeAddInterface') : 'com.gome.ecmall:homeaddinter:' + getProperty('AAR_HOMEADDINTER_VERSION'),
@@ -369,7 +370,7 @@ ext.deps = [
         GZSZFACECOMMON        : 'com.gome.ecmall.third:common-motion:' + getProperty('AAR_ZSZFACECOMMON_VERSION'),
 
 //        GECMainLib           : false ? project(':GECMainLib') : 'com.gome.ecmall.ecbiz:ecmain:202206211233',
-        GECMainLib            : false ? project(':GECMainLib') : 'com.gome.ecmall.ecbiz:ecmain:202208021120',
+        GECMainLib            : false ? project(':GECMainLib') : 'com.gome.ecmall.ecbiz:ecmain:202208111107',
         GAnimView             : 'io.github.tencent:vap:2.0.20',
         BangBangMessages     : false ? project(':BangBangMessages') : 'com.gome.ecmall:bangbangmessages:' + getProperty('AAR_BANGBANG_MESSAGE_VERSION')
 
