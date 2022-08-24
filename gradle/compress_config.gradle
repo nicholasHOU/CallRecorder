@@ -173,22 +173,22 @@ if (project.plugins.toListString().contains("AppPlugin")) {
     andResGuardWhitelistScan{
         enable = false
     }
-}
 
-
-
-
-apply plugin: 'com.gome.apkscan'
-
-apkscan {
-    logLevel "D"
-    removeUnusedRes {
-        v2 = true
-        enable removeunusedres_enable
-        shrinkArsc true
-        shrinkDuplicates = !compress_enable
-        ignoreResources = ignoreRes
-        needSign = !compress_enable
-        zipAlign = !compress_enable
+    apply plugin: 'com.gome.apkscan'
+    apkscan {
+        logLevel "D"
+        removeUnusedRes {
+            v2 = true
+            enable removeunusedres_enable
+            shrinkArsc true
+            shrinkDuplicates = !compress_enable
+            ignoreResources = ignoreRes
+            needSign = !compress_enable
+            zipAlign = !compress_enable
+        }
     }
 }
+
+
+
+
