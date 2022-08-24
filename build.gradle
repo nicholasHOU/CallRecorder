@@ -31,17 +31,10 @@ buildscript {
         classpath 'com.sensorsdata.analytics.android:android-gradle-plugin2:3.2.9'
         classpath 'com.gutils.router:build:' + getProperty('LIB_ROUTER_VERSION')
 
-        /**
-         * add by yangbo
-         * 处理多渠道
-         */
+        // 处理多渠道
         classpath 'com.android.gome.cary:plugin:0.0.5'
-        /**
-         * TODO
-         * add by yangbo
-         * 删除冗余资源
-         */
-        classpath 'com.gome.utils:apkscan:1.0.2'
+       //删除冗余资源
+//        classpath 'com.gome.utils:apkscan:1.0.2'
         classpath 'com.huawei.agconnect:agcp:1.4.1.300'
 
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
@@ -50,7 +43,7 @@ buildscript {
         /**
          * 包体压缩插件
          */
-        classpath "com.gome.compress:compress_plugin:1.1.10.3"
+        classpath "com.gome.compress:compress_plugin:1.1.10.7"
         /**
          * 检测重复资源图片及去除特定分辨率图片资源插件
          */
