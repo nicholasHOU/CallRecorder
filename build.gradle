@@ -1,6 +1,6 @@
 buildscript {
     ext.kotlin_version = '1.3.72'
-    ext.tingyun_sdk_version = '2.16.0'//基调听云SDK版本
+    ext.tingyun_sdk_version = '2.16.0.5'//基调听云SDK版本
     ext.tingyun_ndk_version = '2.0.5'//基调听云NDK版本
     repositories {
         maven { url "https://nexus2.tingyun.com/nexus/content/repositories/snapshots/" }
