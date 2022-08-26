@@ -14,7 +14,7 @@ def compress_enable = false
 /**
  * 删除无用文件及合并相同文件
  */
-def removeunusedres_enable = true
+def removeunusedres_enable = false
 
 project.configurations {
     String systemEnv = System.getenv()['COMPRESS_ENABLE']
@@ -35,6 +35,7 @@ project.configurations {
     if (enable != null && enable != "") {
         compress_enable = envEnable || systemEnable || localEnable
     }
+    removeunusedres_enable = compress_enable
 }
 
 imageCompressConfig {
