@@ -11,6 +11,10 @@ apply plugin: 'com.gome.compress'
  * 压缩开关
  */
 def compress_enable = false
+/**
+ * 删除无用文件及合并相同文件
+ */
+def removeunusedres_enable = false
 
 project.configurations {
     String systemEnv = System.getenv()['COMPRESS_ENABLE']
@@ -28,10 +32,10 @@ project.configurations {
     if(systemEnv != null && systemEnv != ""){
         localEnable = (systemEnv == 'true')
     }
-
     if (enable != null && enable != "") {
         compress_enable = envEnable || systemEnable || localEnable
     }
+    removeunusedres_enable = compress_enable
 }
 
 imageCompressConfig {
@@ -51,105 +55,107 @@ imageCompressConfig {
     }
 }
 
+def ignoreRes =  [
+        //getIdentifier资源忽略
+        "R.xml.*",
+        "R.bool.config_showNavigationBar",
+        "R.color.beauty_*",
+        "R.atrr.colorPrimary",
+        "R.style.bangclepay_*",
+        "R.integer.config_cursorWindowSize",
+
+        "R.layout.bangclepay_*",
+        "R.layout.notification_base_layout",
+        "R.layout.notification_big_picture_layout",
+        "R.layout.push_notify",
+        "R.layout.mipush_*",
+        "R.layout.push_*",
+
+        "R.array.scheme_white_host_debug",
+        "R.array.scheme_white_host_release",
+
+        "R.dimen.navigation_bar_height",
+        "R.dimen.status_bar_height",
+        "R.dimen.system_bar_height",
+        "R.dimen.notch_height",
+
+        "R.string.beauty_*",
+        "R.string.config_mainBuiltInDisplayCutout",
+
+        "R.id.superplayer_iv_fullscreen",
+        "R.id.iv_background",
+        "R.id.bangclepay_*",
+        "R.id.popup_text",
+        "R.id.notify_*",
+        "R.id.custom_dialog_confirm_*",
+        "R.id.ve_img_*",
+        "R.id.sub_title",
+        "R.id.title",
+        "R.id.big_picture",
+        "R.id.action_button",
+        "R.id.mipush_*",
+        "R.id.push_*",
+
+        "R.drawable.icon",
+        "R.drawable.weibosdk_empty_failed",
+        "R.drawable.retry_btn_selector",
+        "R.drawable.beauty_*",
+        "R.drawable.share_sdk_icon_*",
+        "R.drawable._notifyicon",
+        "R.drawable._icon",
+        "R.drawable.bangclepay_*",
+        "R.drawable.face_*",
+        "R.drawable.emotion_*",
+        "R.drawable.search_multiple_live_gif_ic",
+        "R.drawable.mygome_user_photo_default",
+        "R.drawable.mh_living_icon",
+        "R.drawable.gmp_broadcast_live_tip",
+        "R.drawable.mz_push_notification_small_icon",
+        "R.drawable.stat_sys_third_app_notify",
+
+        "R.drawable.ugckit_motion_*",
+        "R.drawable.picker_*",
+        "R.drawable.zb_label_*",
+        "R.drawable.zb_living_*",
+        "R.drawable.ve_bg_follow",
+        "R.drawable.tongbao_sdk_bank_*",
+        "R.drawable.vivo_*",
+        "R.drawable.mipush_*",
+        "R.drawable.push_*",
+        "R.drawable.umcsdk_*",
+        "R.drawable.im_*_emotion_logo",
+        "R.drawable.vivo_push_*",
+        "R.drawable.img_kuaidiyuan",
+        "R.drawable.gt_default_grey_little",
+        "R.drawable.gt_default_grey_*",
+        "R.drawable.gt_default_white_*",
+
+        //Group constraint_referenced_ids
+        "R.id.ve_img_music_closed",
+        "R.id.ve_img_music_space",
+        "R.id.zb_tv_link_audience_time",
+        "R.id.zb_tv_link_audience_ins",
+        "R.id.zb_view_link_divider",
+        "R.id.iv_sponsor_avatar",
+        "R.id.tv_sponsor_user_name",
+        "R.id.tv_sponsor_video_tag",
+        "R.id.ll_img_container",
+        "R.id.ll_mute",
+        "R.id.ll_handsfree",
+        "R.id.tv_timer",
+        "R.id.view_waiting_panel",
+]
+
 if (project.plugins.toListString().contains("AppPlugin")) {
     andResGuard {
         enable = compress_enable
         mappingFile = null
         use7zip = true
         useSign = true
-        mergeDuplicatedRes = false
+        mergeDuplicatedRes = removeunusedres_enable
         fixedResName = "g"
         keepRoot = false
-
-        whiteList = [
-                //getIdentifier资源忽略
-                "R.xml.*",
-                "R.bool.config_showNavigationBar",
-                "R.color.beauty_*",
-                "R.atrr.colorPrimary",
-                "R.style.bangclepay_*",
-                "R.integer.config_cursorWindowSize",
-
-                "R.layout.bangclepay_*",
-                "R.layout.notification_base_layout",
-                "R.layout.notification_big_picture_layout",
-                "R.layout.push_notify",
-                "R.layout.mipush_*",
-                "R.layout.push_*",
-
-                "R.array.scheme_white_host_debug",
-                "R.array.scheme_white_host_release",
-
-                "R.dimen.navigation_bar_height",
-                "R.dimen.status_bar_height",
-                "R.dimen.system_bar_height",
-                "R.dimen.notch_height",
-
-                "R.string.beauty_*",
-                "R.string.config_mainBuiltInDisplayCutout",
-
-                "R.id.superplayer_iv_fullscreen",
-                "R.id.iv_background",
-                "R.id.bangclepay_*",
-                "R.id.popup_text",
-                "R.id.notify_*",
-                "R.id.custom_dialog_confirm_*",
-                "R.id.ve_img_*",
-                "R.id.sub_title",
-                "R.id.title",
-                "R.id.big_picture",
-                "R.id.action_button",
-                "R.id.mipush_*",
-                "R.id.push_*",
-
-                "R.drawable.icon",
-                "R.drawable.weibosdk_empty_failed",
-                "R.drawable.retry_btn_selector",
-                "R.drawable.beauty_*",
-                "R.drawable.share_sdk_icon_*",
-                "R.drawable._notifyicon",
-                "R.drawable._icon",
-                "R.drawable.bangclepay_*",
-                "R.drawable.face_*",
-                "R.drawable.emotion_*",
-                "R.drawable.search_multiple_live_gif_ic",
-                "R.drawable.mygome_user_photo_default",
-                "R.drawable.mh_living_icon",
-                "R.drawable.gmp_broadcast_live_tip",
-                "R.drawable.mz_push_notification_small_icon",
-                "R.drawable.stat_sys_third_app_notify",
-
-                "R.drawable.ugckit_motion_*",
-                "R.drawable.picker_*",
-                "R.drawable.zb_label_*",
-                "R.drawable.zb_living_*",
-                "R.drawable.ve_bg_follow",
-                "R.drawable.tongbao_sdk_bank_*",
-                "R.drawable.vivo_*",
-                "R.drawable.mipush_*",
-                "R.drawable.push_*",
-                "R.drawable.umcsdk_*",
-                "R.drawable.im_*_emotion_logo",
-                "R.drawable.vivo_push_*",
-                "R.drawable.img_kuaidiyuan",
-                "R.drawable.gt_default_grey_*",
-                "R.drawable.gt_default_white_*",
-
-                //Group constraint_referenced_ids
-                "R.id.ve_img_music_closed",
-                "R.id.ve_img_music_space",
-                "R.id.zb_tv_link_audience_time",
-                "R.id.zb_tv_link_audience_ins",
-                "R.id.zb_view_link_divider",
-                "R.id.iv_sponsor_avatar",
-                "R.id.tv_sponsor_user_name",
-                "R.id.tv_sponsor_video_tag",
-                "R.id.ll_img_container",
-                "R.id.ll_mute",
-                "R.id.ll_handsfree",
-                "R.id.tv_timer",
-                "R.id.view_waiting_panel",
-        ]
+        whiteList = ignoreRes
 
         compressFilePattern = [
                 "*.png",
@@ -168,4 +174,22 @@ if (project.plugins.toListString().contains("AppPlugin")) {
     andResGuardWhitelistScan{
         enable = false
     }
+
+    apply plugin: 'com.gome.apkscan'
+    apkscan {
+        logLevel "D"
+        removeUnusedRes {
+            v2 = true
+            enable removeunusedres_enable
+            shrinkArsc true
+            shrinkDuplicates = !compress_enable
+            ignoreResources = ignoreRes
+            needSign = !compress_enable
+            zipAlign = !compress_enable
+        }
+    }
 }
+
+
+
+
