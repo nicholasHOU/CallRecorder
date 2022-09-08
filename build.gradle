@@ -356,7 +356,7 @@ ext.deps = [
         GAmusement            : false ? project(':GAmusement') : 'com.gome.ecmall:amusement:' + getProperty('AAR_AMUSEMENT_VERSION'),
         GScanAuthLogin        : rootProject.ext.proDeps ? project(':GScanAuthLogin') : 'com.gome.mcp:gscanauth:' + getProperty('AAR_SCANAUTHLOGIN_VERSION') + '@aar',
         GAnimView             : 'io.github.tencent:vap:2.0.20',
-        GVideoGuide           : false ? project(':MTrtcAV') : 'com.gome.rtc:gome_video_guide_sdk:1.1.46',
+        GVideoGuide           : false ? project(':MTrtcAV') : 'com.gome.rtc:gome_video_guide_sdk:1.1.49',
             //  zszsdk相关
         GZSZNET               : 'com.gome.third:cashier_zsznet:' + getProperty('AAR_ZSZNET_VERSION'),
         GZSZSDK               : 'com.gome.third:cashier_zszsdk:' + getProperty('AAR_ZSZSDK_VERSION'),
