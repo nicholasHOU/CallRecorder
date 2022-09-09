@@ -1,4 +1,4 @@
-<?xml version="1.0" ?><manifest branch="tingyun06" bundleOpen="true" host="git@code.gome.inc:">
+<?xml version="1.0" ?><manifest branch="mergeDev" bundleOpen="true" host="git@code.gome.inc:">
     <!--私有工程-->
     <project branch="master" groups="private"
         url="git@code.gome.inc:mobile-android-admin/buildsrc.git" />
