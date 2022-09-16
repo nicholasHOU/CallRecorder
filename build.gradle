@@ -356,7 +356,7 @@ ext.deps = [
         GAmusement            : false ? project(':GAmusement') : 'com.gome.ecmall:amusement:' + getProperty('AAR_AMUSEMENT_VERSION'),
         GScanAuthLogin        : rootProject.ext.proDeps ? project(':GScanAuthLogin') : 'com.gome.mcp:gscanauth:' + getProperty('AAR_SCANAUTHLOGIN_VERSION') + '@aar',
         GAnimView             : 'io.github.tencent:vap:2.0.20',
-        GVideoGuide           : false ? project(':MTrtcAV') : 'com.gome.rtc:gome_video_guide_sdk:1.1.49',
+        GVideoGuide           : false ? project(':MTrtcAV') : 'com.gome.rtc:gome_video_guide_sdk:1.1.49.3',
             //  zszsdk相关
         GZSZNET               : 'com.gome.third:cashier_zsznet:' + getProperty('AAR_ZSZNET_VERSION'),
         GZSZSDK               : 'com.gome.third:cashier_zszsdk:' + getProperty('AAR_ZSZSDK_VERSION'),
@@ -364,7 +364,7 @@ ext.deps = [
         GZSZFACECOMMON        : 'com.gome.ecmall.third:common-motion:' + getProperty('AAR_ZSZFACECOMMON_VERSION'),
 
 //        GECMainLib           : false ? project(':GECMainLib') : 'com.gome.ecmall.ecbiz:ecmain:202206211233',
-        GECMainLib            : false ? project(':GECMainLib') : 'com.gome.ecmall.ecbiz:ecmain:202208301546',
+        GECMainLib            : false ? project(':GECMainLib') : 'com.gome.ecmall.ecbiz:ecmain:202209151451',
         GAnimView             : 'io.github.tencent:vap:2.0.20',
         BangBangMessages     : false ? project(':BangBangMessages') : 'com.gome.ecmall:bangbangmessages:' + getProperty('AAR_BANGBANG_MESSAGE_VERSION'),
         GBeautyShop          : false ? project(':GBeautyShop') : 'com.gome.ecmall:beautyshop:' + getProperty('AAR_GBEAUTYSHOP_VERSION')
