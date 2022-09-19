@@ -130,6 +130,9 @@ def ignoreRes =  [
         "R.drawable.gt_default_grey_*",
         "R.drawable.gt_default_white_*",
 
+        "R.drawable.share_custom_channel_*",
+        "R.drawable.share_more_friend",
+
         //Group constraint_referenced_ids
         "R.id.ve_img_music_closed",
         "R.id.ve_img_music_space",
