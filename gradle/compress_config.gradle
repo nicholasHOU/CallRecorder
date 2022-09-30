@@ -147,6 +147,8 @@ def ignoreRes =  [
         "R.id.ll_handsfree",
         "R.id.tv_timer",
         "R.id.view_waiting_panel",
+
+        "R.drawable.trtccalling_loading",
 ]
 
 if (project.plugins.toListString().contains("AppPlugin")) {
