@@ -87,7 +87,7 @@
     <project url="git@code.gome.inc:mobile-android-business/GDao.git" />
     <project url="git@code.gome.inc:mobile-android-business/GMallService.git" />
     <project url="git@code.gome.inc:mobile-android-business/GBProduct.git" />
-    <project groups="cms20220930" url="git@code.gome.inc:mobile-android-business/GBCms.git" />
+    <project url="git@code.gome.inc:mobile-android-business/GBCms.git" />
     <project url="git@code.gome.inc:mobile-android-business/GShoppingCartProcessor.git" />
     <project url="git@code.gome.inc:mobile-android-business/GShopCarBus.git" />
     <project url="git@code.gome.inc:mobile-android-business/GGomeShareBus.git" />
@@ -132,7 +132,7 @@
     <project url="git@code.gome.inc:mobile-android-mcp/IMKit.git" />
     <project url="git@code.gome.inc:mobile-android-business/GMoreService.git" />
 
-    <project url="git@code.gome.inc:mobile-android-common/GCms.git" />
+    <project groups="cms20220930" url="git@code.gome.inc:mobile-android-common/GCms.git" />
     <project groups="cms20220930" url="git@code.gome.inc:mobile-android-business/GMallPage.git" />
 
     <project url="git@code.gome.inc:mobile-android-business/GCollection.git" />
