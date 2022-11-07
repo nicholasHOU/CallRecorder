@@ -181,8 +181,8 @@ ext.deps = [
         GRouter               : 'com.gutils.router:router:' + getProperty('LIB_ROUTER_VERSION') + '@aar',
 
         GSafekeyboard         : 'com.gome.mcp:safeKeyboard:' + getProperty('AAR_GSAFEKEYBOARD_VERSION'),
-        GUpdate               : 'com.gome.mcp:update:2.9.6',
-        GYunNengTimeWidget    : 'com.gome.ecmall:yunnengtimewidget:3.3.0@aar',
+        GUpdate               : 'com.gome.mcp:update:2.9.7',
+        GYunNengTimeWidget    : 'com.gome.ecmall:yunnengtimewidget:3.5.0@aar',
         GWap                  : 'com.gome.mcp:wap:' + getProperty('AAR_MCP_WAP_VERSION') + '@aar',
         STitlebar             : 'cn.gome.staff.ui:titlebar:' + getProperty('AAR_UI_TITLEBAR_VERSION') + '@aar',
         GCrash                : 'com.gome.mcp:crash:3.1.16',
@@ -356,7 +356,7 @@ ext.deps = [
         GAmusement            : false ? project(':GAmusement') : 'com.gome.ecmall:amusement:' + getProperty('AAR_AMUSEMENT_VERSION'),
         GScanAuthLogin        : rootProject.ext.proDeps ? project(':GScanAuthLogin') : 'com.gome.mcp:gscanauth:' + getProperty('AAR_SCANAUTHLOGIN_VERSION') + '@aar',
         GAnimView             : 'io.github.tencent:vap:2.0.20',
-        GVideoGuide           : false ? project(':MTrtcAV') : 'com.gome.rtc:gome_video_guide_sdk:1.1.50',
+        GVideoGuide           : false ? project(':MTrtcAV') : 'com.gome.rtc:gome_video_guide_sdk:1.1.52',
             //  zszsdk相关
         GZSZNET               : 'com.gome.third:cashier_zsznet:' + getProperty('AAR_ZSZNET_VERSION'),
         GZSZSDK               : 'com.gome.third:cashier_zszsdk:' + getProperty('AAR_ZSZSDK_VERSION'),
