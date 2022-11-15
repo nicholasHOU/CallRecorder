@@ -1,4 +1,4 @@
-<?xml version="1.0" ?><manifest branch="mergeDev" bundleOpen="true" host="git@code.gome.inc:">
+<?xml version="1.0" ?><manifest branch="cms20220930" bundleOpen="true" host="git@code.gome.inc:">
     <!--私有工程-->
     <project branch="master" groups="private"
         url="git@code.gome.inc:mobile-android-admin/buildsrc.git" />
@@ -132,8 +132,8 @@
     <project url="git@code.gome.inc:mobile-android-mcp/IMKit.git" />
     <project url="git@code.gome.inc:mobile-android-business/GMoreService.git" />
 
-    <project url="git@code.gome.inc:mobile-android-common/GCms.git" />
-    <project url="git@code.gome.inc:mobile-android-business/GMallPage.git" />
+    <project groups="cms20220930" url="git@code.gome.inc:mobile-android-common/GCms.git" />
+    <project groups="cms20220930" url="git@code.gome.inc:mobile-android-business/GMallPage.git" />
 
     <project url="git@code.gome.inc:mobile-android-business/GCollection.git" />
 
@@ -162,5 +162,5 @@
     <project url="git@code.gome.inc:mobile-android-mcp/GBeautyShop.git" />
 
     <!--主工程-->
-    <project app="true" path="GomeApp" url="git@code.gome.inc:mobile-android/GomePlus.git" />
+    <project groups="cms20220930" app="true" path="GomeApp" url="git@code.gome.inc:mobile-android/GomePlus.git" />
 </manifest>
