@@ -53,7 +53,7 @@ buildscript {
 
 allprojects {
     repositories {
-        maven { url "https://nexus2.tingyun.com/nexus/content/repositories/snapshots/" }
+        
         maven {
             url "http://m-maven.ds.gome.com.cn/nexus/content/groups/public"
             credentials {
@@ -68,6 +68,8 @@ allprojects {
         //honor
 //        maven{url 'http://cloudartifact.ipd.hihonor.com/artifactory/Product-push-release'}
         maven { url 'https://maven.aliyun.com/repository/google' }
+        
+        maven { url "https://nexus2.tingyun.com/nexus/content/repositories/snapshots/" }
     }
     ext {
         compileSdkVersion = getProperty("COMPILE_SDK_VERSION") as Integer
