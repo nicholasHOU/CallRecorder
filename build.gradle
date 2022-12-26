@@ -366,7 +366,7 @@ ext.deps = [
         GZSZFACECOMMON        : 'com.gome.ecmall.third:common-motion:' + getProperty('AAR_ZSZFACECOMMON_VERSION'),
 
 //        GECMainLib           : false ? project(':GECMainLib') : 'com.gome.ecmall.ecbiz:ecmain:202206211233',
-        GECMainLib            : false ? project(':GECMainLib') : 'com.gome.ecmall.ecbiz:ecmain:202209271445',
+        GECMainLib            : false ? project(':GECMainLib') : 'com.gome.ecmall.ecbiz:ecmain:202212261400',
         GAnimView             : 'io.github.tencent:vap:2.0.20',
         BangBangMessages     : false ? project(':BangBangMessages') : 'com.gome.ecmall:bangbangmessages:' + getProperty('AAR_BANGBANG_MESSAGE_VERSION'),
         GBeautyShop          : false ? project(':GBeautyShop') : 'com.gome.ecmall:beautyshop:' + getProperty('AAR_GBEAUTYSHOP_VERSION')
