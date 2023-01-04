@@ -1,6 +1,6 @@
 # 国美APP & 帮帮APP & 极简APP
 
-真快乐APP、帮帮APP、极简APP工作空间，采用组件化方式，通过module、AAR进行项目构建
+国美APP、帮帮APP、极简APP工作空间，采用组件化方式，通过module、AAR进行项目构建
 
 ## 娱乐化项目开发说明
 
