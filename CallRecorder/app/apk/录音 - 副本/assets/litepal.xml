@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<litepal>
+    <dbname value = "CallLogDB" />
+    <version value = "5" />
+    <list>
+        <mapping class="com.zhudai.call.entity.CallNumberBo"/>
+        <mapping class="com.zhudai.call.entity.CallLogInfo"/>
+        <mapping class="com.zhudai.call.entity.CallRecordInfo"/>
+        <mapping class="com.zhudai.bo.MobileInfo"/>
+    </list>
+</litepal>

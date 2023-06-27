@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">CallRecorder</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="cancel">取消</string>
+    <string name="confirm">确定</string>
+    <string name="permission_fail_phone">手机电话权限获取失败，将导致手机APP部分功能无法正常使用</string>
+    <string name="permission_fail_storage">手机存储权限获取失败，您选择不再提示，请去手机设置中开启储存权限</string>
+    <string name="permission_request">为了保障您正常使用本应用，我们会申请获取手机状态权限、通话、存储等权限</string>
+    <string name="input_username_tip">请输入用户名</string>
+    <string name="input_password_tip">请输入密码</string>
+</resources>

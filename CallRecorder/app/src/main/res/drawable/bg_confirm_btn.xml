@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 这里是设置背景色-->
+    <!-- 这里是设置为四周 也可以单独设置某个位置为圆角-->
+    <corners android:radius="30dp" />
+    <!-- 这里设置边框 -->
+<!--    <stroke-->
+<!--        android:width="1px"-->
+<!--        android:color="@color/white" />-->
+    <gradient
+        android:angle="90"
+        android:endColor="#224477"
+        android:startColor="#442299" />
+</shape>
