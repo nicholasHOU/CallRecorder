@@ -11,6 +11,7 @@ public class SharedPreferenceUtil {
     private String SP_NAME = "callrecorder";
     private String K_USERNAME = "usernameU";
     private String K_PASSWORD = "passwordP";
+    private String K_HOST = "serverHost";
 
     private SharedPreferenceUtil() {
         prefs = context.getSharedPreferences(SP_NAME, Context.MODE_PRIVATE);
@@ -18,11 +19,11 @@ public class SharedPreferenceUtil {
 
     public static void init(Context ctx) {
         context = ctx;
-        Logs.e("SP init" ,"111111111111111111111111");
+        Logs.e("SP init", "111111111111111111111111");
     }
 
     public static SharedPreferenceUtil getInstance() {
-        Logs.e("SP init" ,"2222222222222222");
+        Logs.e("SP init", "2222222222222222");
         if (instance == null) {
             synchronized (SharedPreferenceUtil.class) {
                 if (instance == null) {
@@ -48,6 +49,27 @@ public class SharedPreferenceUtil {
     }
 
     /**
+     * 重置host
+     *
+     * @param value
+     * @return
+     */
+    public boolean setHost(String value) {
+        SharedPreferences.Editor editor = prefs.edit();
+        return editor.putString(K_HOST, value).commit();
+    }
+
+    /**
+     * 获取服务端host
+     *
+     * @param value
+     * @return
+     */
+    public String getHost(String value) {
+        return getString(K_HOST);
+    }
+
+    /**
      * 设置登录信息
      *
      * @param username
@@ -65,7 +87,7 @@ public class SharedPreferenceUtil {
     public boolean hasLoginInfo() {
         String username = getString(K_USERNAME, "");
         String password = getString(K_PASSWORD, "");
-        return !TextUtils.isEmpty(username) &&!TextUtils.isEmpty(password);
+        return !TextUtils.isEmpty(username) && !TextUtils.isEmpty(password);
     }
 
     public String getUsername() {

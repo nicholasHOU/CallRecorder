@@ -7,7 +7,7 @@
     <ImageView
         android:id="@+id/iv_launch_logo"
         android:layout_width="match_parent"
-        android:background="@drawable/ic_launcher_foreground"
+        android:background="@drawable/ic_launcher"
         android:layout_height="match_parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,18 +8,18 @@
     <fragment
         android:id="@+id/navigation_home"
         android:name="com.android.callrecorder.home.ui.home.CallLogFragment"
-        android:label="@string/title_home"
+        android:label="@string/title_callrecord"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/navigation_dashboard"
         android:name="com.android.callrecorder.home.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
+        android:label="@string/title_calllog"
         tools:layout="@layout/fragment_dashboard" />
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="com.android.callrecorder.home.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        android:name="com.android.callrecorder.home.ui.my.MyFragment"
+        android:label="@string/title_my"
+        tools:layout="@layout/fragment_my" />
 </navigation>

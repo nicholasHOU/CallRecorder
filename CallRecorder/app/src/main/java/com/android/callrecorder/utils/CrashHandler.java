@@ -37,6 +37,9 @@ public class CrashHandler implements UncaughtExceptionHandler {
 	private String exceptionMessage = null;
 	private String dirct = "HB_CrashFile";
 
+	private boolean b = false;
+	private String path;
+
 	// 保证只有一个CrashHandler实例
 	private CrashHandler() {
 	}
@@ -53,6 +56,12 @@ public class CrashHandler implements UncaughtExceptionHandler {
 
 		// 设置该CrashHandler为程序的默认处理器
 		Thread.setDefaultUncaughtExceptionHandler(this);
+
+		if (!this.b) {
+			this.path = mContext.getFilesDir() + File.separator + "crash";
+		} else {
+			this.path = mContext.getExternalFilesDir((String)null) + File.separator + "crash";
+		}
 	}
 
 	public void uncaughtException(Thread thread, Throwable ex) {
@@ -70,7 +79,7 @@ public class CrashHandler implements UncaughtExceptionHandler {
 		if (ex == null) {
 			return false;
 		}
-		
+
 		ex.printStackTrace();
 
 		new Thread() {
@@ -161,5 +170,25 @@ public class CrashHandler implements UncaughtExceptionHandler {
 			}
 		}
 		return null;
+	}
+
+
+	public void delCrashAllLogFile() {
+		File var1 = new File(this.path);
+		File[] var2 = var1.listFiles();
+		int var3 = var2.length;
+
+		for(int var4 = 0; var4 < var3; ++var4) {
+			File var5 = var2[var4];
+			this.del(var5.getAbsolutePath());
+		}
+	}
+
+	private void del(String var1) {
+		File var2 = new File(var1);
+		if (var2.exists()) {
+			var2.delete();
+		}
+
 	}
 }
