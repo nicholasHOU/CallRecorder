@@ -3,20 +3,64 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".home.ui.home.HomeFragment">
+    android:id="@+id/rl_content"
+    android:layout_height="wrap_content"
+    android:padding="12dp"
+    tools:context=".home.ui.home.CallLogFragment">
 
-    <ListView
-        android:id="@+id/text_home"
-        android:layout_width="match_parent"
+    <ImageView
+        android:id="@+id/ic_call"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
+        android:src="@drawable/ic_outgoing"
         android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textSize="20sp" />
+
+    <LinearLayout
+        android:id="@+id/ll_call"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@+id/ic_play"
+        android:layout_toRightOf="@+id/ic_call"
+        android:orientation="vertical"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp">
+
+        <TextView
+            android:id="@+id/tv_phone_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:textColor="@color/title_black"
+            android:textSize="22dp"
+            tools:text="18032401234" />
+
+        <TextView
+            android:id="@+id/tv_call_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:textColor="@color/title_grey"
+            android:textSize="20dp"
+            tools:text="12分12秒  2023-06-08 10:12" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/ic_play"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:src="@drawable/ic_play"
+        android:textAlignment="center"
+        android:textSize="20sp" />
+
 </RelativeLayout>
