@@ -15,7 +15,9 @@ import com.android.callrecorder.R;
 import com.android.callrecorder.base.BaseActivity;
 import com.android.callrecorder.databinding.ActivityLoginBinding;
 import com.android.callrecorder.databinding.ActivityMainBinding;
+import com.android.callrecorder.feedback.FeedbackActivity;
 import com.android.callrecorder.home.MainActivity;
+import com.android.callrecorder.setting.SettingActivity;
 import com.android.callrecorder.utils.Config;
 import com.android.callrecorder.utils.Constant;
 import com.android.callrecorder.utils.SharedPreferenceUtil;
@@ -70,6 +72,19 @@ public class LoginActivity extends BaseActivity {
                 });
             }
         });
+
+        binding.container.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                goSetting();
+                return false;
+            }
+        });
+    }
+
+    private void goSetting(){
+        Intent intent = new Intent(this, SettingActivity.class);
+        startActivity(intent);
     }
 
     /**

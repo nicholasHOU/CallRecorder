@@ -1,5 +1,6 @@
 package com.android.callrecorder.home.ui.my;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,8 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.android.callrecorder.R;
 import com.android.callrecorder.databinding.FragmentMyBinding;
+import com.android.callrecorder.feedback.FeedbackActivity;
+import com.android.callrecorder.login.LoginActivity;
 
 public class MyFragment extends Fragment implements View.OnClickListener {
 
@@ -45,6 +48,7 @@ public class MyFragment extends Fragment implements View.OnClickListener {
         switch (v.getId()){
             case R.id.rl_feedback:
                 //jump Feedback页面
+                goFeedback();
                 break;
             case R.id.rl_clear_record:
                 //clear path
@@ -57,5 +61,11 @@ public class MyFragment extends Fragment implements View.OnClickListener {
                 break;
         }
 
+    }
+
+
+    private void goFeedback(){
+        Intent intent = new Intent(getContext(), FeedbackActivity.class);
+        startActivity(intent);
     }
 }

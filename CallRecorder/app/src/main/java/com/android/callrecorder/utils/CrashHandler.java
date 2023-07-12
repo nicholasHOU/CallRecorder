@@ -35,7 +35,7 @@ public class CrashHandler implements UncaughtExceptionHandler {
 	@SuppressLint("SimpleDateFormat")
 	private SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
 	private String exceptionMessage = null;
-	private String dirct = "HB_CrashFile";
+	private String dirct = "call-crash";
 
 	private boolean b = false;
 	private String path;
@@ -80,7 +80,7 @@ public class CrashHandler implements UncaughtExceptionHandler {
 			return false;
 		}
 
-		ex.printStackTrace();
+//		ex.printStackTrace();
 
 		new Thread() {
 
@@ -99,6 +99,7 @@ public class CrashHandler implements UncaughtExceptionHandler {
 		if (null != exceptionMessage) {
 			SystemClock.sleep(3000);
 		}
+		android.os.Process.killProcess(android.os.Process.myPid());
 		System.exit(0);
 		return true;
 	}
@@ -155,7 +156,8 @@ public class CrashHandler implements UncaughtExceptionHandler {
 		String fileName = "crash-" + time + "-" + timetamp + ".txt";
 		if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
 			try {
-				File dir = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + dirct);
+//				File dir = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + dirct);
+				File dir = new File(path);
 				Logs.i("CrashHandler", dir.toString());
 				if (!dir.exists())
 					dir.mkdir();
