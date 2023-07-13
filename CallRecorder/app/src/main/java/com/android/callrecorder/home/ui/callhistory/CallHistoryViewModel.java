@@ -1,16 +1,16 @@
-package com.android.callrecorder.home.ui.home;
+package com.android.callrecorder.home.ui.callhistory;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class CallLogViewModel extends ViewModel {
+public class CallHistoryViewModel extends ViewModel {
 
     private final MutableLiveData<String> mText;
 
-    public CallLogViewModel() {
+    public CallHistoryViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is home fragment");
+        mText.setValue("This is dashboard fragment");
     }
 
     public LiveData<String> getText() {

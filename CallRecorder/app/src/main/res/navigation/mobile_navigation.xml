@@ -7,15 +7,15 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.android.callrecorder.home.ui.home.CallLogFragment"
+        android:name="com.android.callrecorder.home.ui.callrecord.CallLogFragment"
         android:label="@string/title_callrecord"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="com.android.callrecorder.home.ui.dashboard.DashboardFragment"
+        android:name="com.android.callrecorder.home.ui.callhistory.CallHistoryFragment"
         android:label="@string/title_calllog"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_calllog" />
 
     <fragment
         android:id="@+id/navigation_notifications"

@@ -12,7 +12,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.*/
 
-package com.android.callrecorder.home.ui.home;
+package com.android.callrecorder.home.ui.callrecord;
 
 import android.app.Activity;
 import android.view.View;
@@ -21,7 +21,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.callrecorder.R;
@@ -37,7 +36,7 @@ public class CallViewHolder extends RecyclerView.ViewHolder implements OnClickLi
 
 
 	public CallViewHolder(Activity context, ViewGroup parent) {
-		super(context.getLayoutInflater().inflate(R.layout.call_history_item, parent));
+		super(context.getLayoutInflater().inflate(R.layout.item_call_record, parent,false));
 		initView();
 	}
 

@@ -1,4 +1,4 @@
-package com.android.callrecorder.home.ui.dashboard;
+package com.android.callrecorder.home.ui.callhistory;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,22 +10,20 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.android.callrecorder.databinding.FragmentDashboardBinding;
+import com.android.callrecorder.databinding.FragmentCalllogBinding;
 
-public class DashboardFragment extends Fragment {
+public class CallHistoryFragment extends Fragment {
 
-    private FragmentDashboardBinding binding;
+    private FragmentCalllogBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        DashboardViewModel dashboardViewModel =
-                new ViewModelProvider(this).get(DashboardViewModel.class);
+        CallHistoryViewModel dashboardViewModel =
+                new ViewModelProvider(this).get(CallHistoryViewModel.class);
 
-        binding = FragmentDashboardBinding.inflate(inflater, container, false);
+        binding = FragmentCalllogBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textDashboard;
-        dashboardViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
     }
 

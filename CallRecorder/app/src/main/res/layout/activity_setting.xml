@@ -40,7 +40,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:background="@drawable/bg_input_black_line"
+            android:background="@drawable/bg_input_line"
             android:hint="请输入域名如：https://www.host.com/"
             android:maxLength="14"
             android:paddingLeft="12dp"
@@ -48,7 +48,7 @@
             android:paddingRight="12dp"
             android:paddingBottom="8dp"
             android:singleLine="true"
-            android:textColor="@color/title_black"
+            android:textColor="@color/white"
             android:textColorHint="#BBBBBB"
             android:textSize="18dp" />
     </LinearLayout>
