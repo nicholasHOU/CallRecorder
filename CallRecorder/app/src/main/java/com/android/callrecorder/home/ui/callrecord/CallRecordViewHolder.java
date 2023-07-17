@@ -31,11 +31,11 @@ import com.android.callrecorder.R;
 /**
  *
  */
-public class CallLogViewHolder extends RecyclerView.ViewHolder implements OnClickListener {
+public class CallRecordViewHolder extends RecyclerView.ViewHolder implements OnClickListener {
 	private static final String TAG = "DemoView";
 
 
-	public CallLogViewHolder(Activity context, ViewGroup parent) {
+	public CallRecordViewHolder(Activity context, ViewGroup parent) {
 		super(context.getLayoutInflater().inflate(R.layout.item_call_record, parent,false));
 		initView();
 	}

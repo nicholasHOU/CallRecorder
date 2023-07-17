@@ -17,10 +17,10 @@ import com.android.callrecorder.widget.MyRecycleViewDecoration;
 
 import java.util.List;
 
-public class CallLogFragment extends Fragment {
+public class CallRecordFragment extends Fragment {
 
     private FragmentCallRecordBinding binding;
-    private CallLogAdapter callLogAdapter;
+    private CallRecordAdapter callRecordAdapter;
 
     @Override
     public void onDestroyView() {
@@ -34,8 +34,8 @@ public class CallLogFragment extends Fragment {
      *
      * @return
      */
-    public static CallLogFragment createInstance() {
-        return new CallLogFragment();
+    public static CallRecordFragment createInstance() {
+        return new CallRecordFragment();
     }
 
 
@@ -44,8 +44,8 @@ public class CallLogFragment extends Fragment {
         super.onCreateView(inflater, container, savedInstanceState);
 //        setContentView(R.layout.fragment_home);
 
-        CallLogViewModel homeViewModel =
-                new ViewModelProvider(this).get(CallLogViewModel.class);
+        CallRecordViewModel homeViewModel =
+                new ViewModelProvider(this).get(CallRecordViewModel.class);
 
         binding = FragmentCallRecordBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
@@ -64,8 +64,8 @@ public class CallLogFragment extends Fragment {
     //UI显示区(操作UI，但不存在数据获取或处理代码，也不存在事件监听代码)<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
     public void initView() {//必须在onCreateView方法内调用
-        callLogAdapter = new CallLogAdapter((Activity) getContext());
-        binding.recycleView.setAdapter(callLogAdapter);
+        callRecordAdapter = new CallRecordAdapter((Activity) getContext());
+        binding.recycleView.setAdapter(callRecordAdapter);
 
         LinearLayoutManager manager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
         binding.recycleView.setLayoutManager(manager);
@@ -87,7 +87,7 @@ public class CallLogFragment extends Fragment {
 
         List<CallItem> callItems = CallHistoryUtil.getInstance().getDataList(getContext());
 //        List<CallItem> callItems = CallHistoryUtil.getInstance().getTestDataList();
-        callLogAdapter.refreshData(callItems);
+        callRecordAdapter.refreshData(callItems);
         if (callItems == null || callItems.size() == 0) {
             binding.tvEmpty.setVisibility(View.VISIBLE);
         } else {

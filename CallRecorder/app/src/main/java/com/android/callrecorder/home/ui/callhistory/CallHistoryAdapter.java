@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.callrecorder.R;
 import com.android.callrecorder.home.bean.CallItem;
-import com.android.callrecorder.home.ui.callrecord.CallLogViewHolder;
+import com.android.callrecorder.home.ui.callrecord.CallRecordViewHolder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +17,7 @@ import java.util.List;
 /**
  *
  */
-public class CallHistoryAdapter extends RecyclerView.Adapter<CallLogViewHolder> {
+public class CallHistoryAdapter extends RecyclerView.Adapter<CallRecordViewHolder> {
     private Activity context;
     private List<CallItem> items = new ArrayList<>();
     private CallItem item;
@@ -28,12 +28,12 @@ public class CallHistoryAdapter extends RecyclerView.Adapter<CallLogViewHolder> 
 
     @NonNull
     @Override
-    public CallLogViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new CallLogViewHolder(context, parent);
+    public CallRecordViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return new CallRecordViewHolder(context, parent);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CallLogViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull CallRecordViewHolder holder, int position) {
         item = items.get(position);
         holder.tvCallTime.setText(item.during + " " + item.time);
         holder.tvPhoneNum.setText(TextUtils.isEmpty(item.name) ? item.phonenum : item.name);

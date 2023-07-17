@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".home.ui.callrecord.CallLogFragment">
+    tools:context=".home.ui.callrecord.CallRecordFragment">
 
     <RelativeLayout
         android:id="@+id/rl_title"

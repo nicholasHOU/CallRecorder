@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".home.ui.callrecord.CallLogFragment">
+    tools:context=".home.ui.callhistory.CallHistoryFragment">
 
     <RelativeLayout
         android:id="@+id/rl_title"
@@ -22,11 +22,111 @@
             android:textSize="@dimen/title_size" />
     </RelativeLayout>
 
+    <LinearLayout
+
+        android:id="@+id/rl_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rl_title"
+        android:orientation="horizontal"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:weightSum="7">
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2">
+
+            <TextView
+                android:id="@+id/tv_year"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:singleLine="true"
+                android:textColor="@color/title_dark_grey"
+                android:textSize="15dp"
+                tools:text="2023年" />
+
+            <TextView
+                android:id="@+id/tv_month"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_year"
+                android:layout_centerHorizontal="true"
+                android:drawableRight="@drawable/bg_input_black_line"
+                android:drawablePadding="6dp"
+                android:singleLine="true"
+                android:textColor="@color/title_dark_grey"
+                android:textSize="15dp"
+                tools:text="120分钟23秒" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2">
+
+            <TextView
+                android:id="@+id/tv_call_record"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:singleLine="true"
+                android:text="通话记录"
+                android:textColor="@color/title_dark_grey"
+                android:textSize="15dp" />
+
+            <TextView
+                android:id="@+id/tv_call_record_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_call_record"
+                android:layout_centerHorizontal="true"
+                android:drawableRight="@drawable/bg_input_black_line"
+                android:drawablePadding="6dp"
+                android:singleLine="true"
+                android:textColor="@color/title_dark_grey"
+                android:textSize="15dp"
+                tools:text="23123" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3">
+
+            <TextView
+                android:id="@+id/tv_call_during_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:singleLine="true"
+                android:text="日均通话总时长"
+                android:textColor="@color/title_dark_grey"
+                android:textSize="15dp" />
+
+            <TextView
+                android:id="@+id/tv_call_during"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_call_during_title"
+                android:layout_centerHorizontal="true"
+                android:drawableRight="@drawable/bg_input_black_line"
+                android:drawablePadding="6dp"
+                android:singleLine="true"
+                android:textColor="@color/title_dark_grey"
+                android:textSize="15dp"
+                tools:text="6月" />
+        </RelativeLayout>
+
+    </LinearLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycleView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/rl_title" />
+        android:layout_below="@+id/rl_header" />
 
     <TextView
         android:id="@+id/tv_empty"
@@ -36,7 +136,7 @@
         android:layout_centerInParent="true"
         android:gravity="center"
         android:text="暂无通话录音"
-        android:textColor="@color/title_grey"
+        android:textColor="@color/title_dark_grey"
         android:textSize="@dimen/title_size"
         android:visibility="gone" />
 </RelativeLayout>

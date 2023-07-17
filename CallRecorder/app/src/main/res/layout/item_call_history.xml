@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    tools:context=".home.ui.callrecord.CallLogFragment">
+    tools:context=".home.ui.callrecord.CallRecordFragment">
 
     <TextView
         android:id="@+id/tv_call_date"

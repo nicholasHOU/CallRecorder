@@ -10,4 +10,5 @@
     <color name="theme_blue">#22629A</color>
     <color name="title_black">#333333</color>
     <color name="title_grey">#999999</color>
+    <color name="title_dark_grey">#666666</color>
 </resources>

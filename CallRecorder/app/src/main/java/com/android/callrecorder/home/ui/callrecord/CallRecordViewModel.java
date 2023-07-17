@@ -4,11 +4,11 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class CallLogViewModel extends ViewModel {
+public class CallRecordViewModel extends ViewModel {
 
     private final MutableLiveData<String> mText;
 
-    public CallLogViewModel() {
+    public CallRecordViewModel() {
         mText = new MutableLiveData<>();
         mText.setValue("This is home fragment");
     }

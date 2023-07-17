@@ -16,23 +16,23 @@ import java.util.List;
 /**
  *
  */
-public class CallLogAdapter extends RecyclerView.Adapter<CallLogViewHolder> {
+public class CallRecordAdapter extends RecyclerView.Adapter<CallRecordViewHolder> {
     private Activity context;
     private List<CallItem> items = new ArrayList<>();
     private CallItem item;
 
-    public CallLogAdapter(Activity ctx) {
+    public CallRecordAdapter(Activity ctx) {
         context = ctx;
     }
 
     @NonNull
     @Override
-    public CallLogViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new CallLogViewHolder(context, parent);
+    public CallRecordViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return new CallRecordViewHolder(context, parent);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CallLogViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull CallRecordViewHolder holder, int position) {
         item = items.get(position);
         holder.tvCallTime.setText(item.during + " " + item.time);
         holder.tvPhoneNum.setText(TextUtils.isEmpty(item.name) ? item.phonenum : item.name);
