@@ -1,4 +1,4 @@
-package com.android.callrecorder.home.ui.callrecord;
+package com.android.callrecorder.home.ui.callhistory;
 
 import android.app.Activity;
 import android.text.TextUtils;
@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.callrecorder.R;
 import com.android.callrecorder.home.bean.CallItem;
+import com.android.callrecorder.home.ui.callrecord.CallLogViewHolder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,12 +17,12 @@ import java.util.List;
 /**
  *
  */
-public class CallLogAdapter extends RecyclerView.Adapter<CallLogViewHolder> {
+public class CallHistoryAdapter extends RecyclerView.Adapter<CallLogViewHolder> {
     private Activity context;
     private List<CallItem> items = new ArrayList<>();
     private CallItem item;
 
-    public CallLogAdapter(Activity ctx) {
+    public CallHistoryAdapter(Activity ctx) {
         context = ctx;
     }
 
@@ -53,7 +54,6 @@ public class CallLogAdapter extends RecyclerView.Adapter<CallLogViewHolder> {
 
     public void refreshData(List<CallItem> callItems) {
         if (callItems != null && callItems.size() > 0) {
-            this.items.clear();
             this.items.addAll(callItems);
             notifyDataSetChanged();
         }

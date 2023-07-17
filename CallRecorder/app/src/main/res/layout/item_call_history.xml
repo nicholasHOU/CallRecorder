@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rl_content"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:context=".home.ui.callrecord.CallLogFragment">
+
+    <TextView
+        android:id="@+id/tv_call_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#dddddd"
+        android:paddingLeft="12dp"
+        android:paddingTop="6dp"
+        android:paddingRight="12dp"
+        android:paddingBottom="6dp"
+        android:singleLine="true"
+        android:textColor="@color/title_black"
+        android:textSize="16dp"
+        tools:text="6月20日" />
+
+
+    <RelativeLayout
+        android:id="@+id/ll_call_count"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp">
+
+        <TextView
+            android:id="@+id/tv_call_record_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:text="通话记录"
+            android:textColor="@color/title_black"
+            android:textSize="16dp" />
+
+        <TextView
+            android:id="@+id/tv_call_record"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_gravity="right"
+            android:layout_marginTop="4dp"
+            android:maxEms="12"
+            android:singleLine="true"
+            android:textColor="@color/title_grey"
+            android:textSize="14dp"
+            tools:text="20029323" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/ll_call_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp">
+
+        <TextView
+            android:id="@+id/tv_call_time_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:text="通话总时长"
+            android:textColor="@color/title_black"
+            android:textSize="16dp" />
+
+        <TextView
+            android:id="@+id/tv_call_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_gravity="right"
+            android:layout_marginTop="4dp"
+            android:maxEms="12"
+            android:singleLine="true"
+            android:textColor="@color/title_grey"
+            android:textSize="14dp"
+            tools:text="20029323" />
+
+    </RelativeLayout>
+
+</LinearLayout>

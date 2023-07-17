@@ -1,7 +1,0 @@
-apply plugin: 'com.gutils.gome.library'
-atlas {
-    bundleConfig {
-        awbBundle true
-    }
-}
-version = "${project.ext.getProperty("version")}"

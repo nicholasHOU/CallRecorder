@@ -9,7 +9,7 @@
         android:id="@+id/navigation_home"
         android:name="com.android.callrecorder.home.ui.callrecord.CallLogFragment"
         android:label="@string/title_callrecord"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_call_record" />
 
     <fragment
         android:id="@+id/navigation_dashboard"

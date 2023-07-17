@@ -1,5 +1,6 @@
 package com.android.callrecorder.home;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.navigation.NavController;
@@ -38,9 +39,21 @@ public class MainActivity extends BaseActivity {
         navController.getNavigatorProvider().addNavigator(new CustomNavigator(this, getSupportFragmentManager(), R.id.nav_host_fragment_activity_main));
         NavigationUI.setupWithNavController(binding.navView, navController);
 
+        startService();
         startTimer();
     }
 
+    /**
+     * 启动服务
+     */
+    private void startService() {
+        Intent intent=new Intent(MainActivity.this,PhoneListenerService.class) ;
+        startService(intent);
+    }
+
+    /**
+     * 启动计时器
+     */
     private void startTimer() {
         TimeRefresher.getInstance().addTimeRefreshListener(TAG_CALLPHONE, during, new TimeRefresher.OnTimeRefreshListener() {
             @Override

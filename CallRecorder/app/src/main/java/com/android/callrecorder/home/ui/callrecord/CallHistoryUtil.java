@@ -80,11 +80,11 @@ public class CallHistoryUtil {
             }
             CallItem callItem = new CallItem();
             callItem.phonenum = number;
-            callItem.name = (name == null) ? "未备注联系人" : name;
+            callItem.name = name;
             callItem.time = date;
             int minutes = (duration / 60);
             int seconds = (duration % 60);
-            String minute = minutes == 0 ? "" : minutes + "分钟";
+            String minute = minutes == 0 ? "" : minutes + "分";
             String second =  seconds + "秒";
             callItem.during = minute+second;
             callItem.callType = callType;
@@ -113,7 +113,7 @@ public class CallHistoryUtil {
             callItem.time = date;
             int minutes = (duration + i / 60);
             int seconds = (duration + i % 60);
-            String minute = minutes == 0 ? "" : minutes + "分钟";
+            String minute = minutes == 0 ? "" : minutes + "分";
             String second = seconds + "秒";
             callItem.during = minute + second;
             callItem.callType = i % 3;

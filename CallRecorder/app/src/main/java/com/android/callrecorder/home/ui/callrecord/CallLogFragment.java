@@ -11,18 +11,15 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.android.callrecorder.databinding.FragmentHomeBinding;
+import com.android.callrecorder.databinding.FragmentCallRecordBinding;
 import com.android.callrecorder.home.bean.CallItem;
 import com.android.callrecorder.widget.MyRecycleViewDecoration;
 
-import java.util.ArrayList;
 import java.util.List;
-
-import zuo.biao.library.model.Entry;
 
 public class CallLogFragment extends Fragment {
 
-    private FragmentHomeBinding binding;
+    private FragmentCallRecordBinding binding;
     private CallLogAdapter callLogAdapter;
 
     @Override
@@ -50,7 +47,7 @@ public class CallLogFragment extends Fragment {
         CallLogViewModel homeViewModel =
                 new ViewModelProvider(this).get(CallLogViewModel.class);
 
-        binding = FragmentHomeBinding.inflate(inflater, container, false);
+        binding = FragmentCallRecordBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
 //        final TextView textView = binding.textHome;
@@ -88,8 +85,8 @@ public class CallLogFragment extends Fragment {
      */
     public void initData() {//必须在onCreateView方法内调用
 
-//        List<CallItem> callItems = CallHistoryUtil.getInstance().getDataList(getContext());
-        List<CallItem> callItems = CallHistoryUtil.getInstance().getTestDataList();
+        List<CallItem> callItems = CallHistoryUtil.getInstance().getDataList(getContext());
+//        List<CallItem> callItems = CallHistoryUtil.getInstance().getTestDataList();
         callLogAdapter.refreshData(callItems);
         if (callItems == null || callItems.size() == 0) {
             binding.tvEmpty.setVisibility(View.VISIBLE);
@@ -98,17 +95,6 @@ public class CallLogFragment extends Fragment {
         }
     }
 
-    public void getListAsync(int page) {
-
-        //示例代码<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-
-        List<Entry<String, String>> list = new ArrayList<Entry<String, String>>();
-        for (int i = 0; i < 64; i++) {
-            list.add(new Entry<String, String>("联系人" + i, String.valueOf(1311736568 + i * i)));
-        }
-
-        //示例代码>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-    }
 
 
     //Data数据区(存在数据获取或处理代码，但不存在事件监听代码)>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
