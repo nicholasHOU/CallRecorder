@@ -11,6 +11,7 @@ import android.telephony.TelephonyManager;
 
 import androidx.annotation.Nullable;
 
+import com.android.callrecorder.utils.FileUtil;
 import com.android.callrecorder.utils.Logs;
 
 import java.io.File;
@@ -48,10 +49,12 @@ public class PhoneListenerService extends Service {
                     break;
                 case TelephonyManager.CALL_STATE_OFFHOOK: /* 接起电话时 */
                     try {
-                        File file = new File(Environment.getExternalStorageDirectory(), num + "_" + System.currentTimeMillis() + ".3gp");
+//                        File file = new File(Environment.getExternalStorageDirectory(), num + "_" + System.currentTimeMillis() + ".3gp");
+                        File file = FileUtil.getCallRecordSaveFile(System.currentTimeMillis(), num);
 //                        File file = new File(Environment.getExternalStorageDirectory(), num + "_" + System.currentTimeMillis() + ".mp3");
                         recorder = new MediaRecorder();
                         recorder.setAudioSource(MediaRecorder.AudioSource.MIC);//声音采集来源(话筒)
+//                        recorder.setOutputFormat(MediaRecorder.OutputFormat.RAW_AMR);//输出的格式
                         recorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);//输出的格式
                         recorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);//音频编码方式
                         recorder.setOutputFile(file.getAbsolutePath());//输出方向

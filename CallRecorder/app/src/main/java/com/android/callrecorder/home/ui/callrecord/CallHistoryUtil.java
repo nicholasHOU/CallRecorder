@@ -5,7 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.provider.CallLog;
 
-import com.android.callrecorder.home.bean.CallItem;
+import com.android.callrecorder.bean.CallItem;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -54,11 +54,6 @@ public class CallHistoryUtil {
         List<CallItem> list = new ArrayList();
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss");
         while (cursor.moveToNext()) {
-            String name = cursor.getString(cursor.getColumnIndex(CallLog.Calls.CACHED_NAME));
-            String number = cursor.getString(cursor.getColumnIndex(CallLog.Calls.NUMBER));
-            long dateLong = cursor.getLong(cursor.getColumnIndex(CallLog.Calls.DATE));
-            String date = format.format(new Date(dateLong));
-            int duration = cursor.getInt(cursor.getColumnIndex(CallLog.Calls.DURATION));
             int type = cursor.getInt(cursor.getColumnIndex(CallLog.Calls.TYPE));
             String typeString = "";
             int callType = 0;
@@ -74,10 +69,15 @@ public class CallHistoryUtil {
                 case CallLog.Calls.MISSED_TYPE:
                     typeString = "未接";
                     callType =  CallItem.CALLTYPE_NO;
-                    break;
+                    continue;//如果是未接，直接过滤掉
                 default:
                     break;
             }
+            String name = cursor.getString(cursor.getColumnIndex(CallLog.Calls.CACHED_NAME));
+            String number = cursor.getString(cursor.getColumnIndex(CallLog.Calls.NUMBER));
+            long dateLong = cursor.getLong(cursor.getColumnIndex(CallLog.Calls.DATE));
+            String date = format.format(new Date(dateLong));
+            int duration = cursor.getInt(cursor.getColumnIndex(CallLog.Calls.DURATION));
             CallItem callItem = new CallItem();
             callItem.phonenum = number;
             callItem.name = name;
@@ -88,6 +88,8 @@ public class CallHistoryUtil {
             String second =  seconds + "秒";
             callItem.during = minute+second;
             callItem.callType = callType;
+
+            callItem.recordPath = getRecordPath();
             list.add(callItem);
 
 //            Map<String, String> map = new HashMap<String, String>();
@@ -100,6 +102,13 @@ public class CallHistoryUtil {
         }
         return list;
     }
+
+    private String getRecordPath() {
+        String recordPath = "";
+
+        return recordPath;
+    }
+
 
     public List<CallItem> getTestDataList() {
         List<CallItem> list = new ArrayList<>(8);

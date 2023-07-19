@@ -8,7 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.callrecorder.R;
-import com.android.callrecorder.home.bean.CallItem;
+import com.android.callrecorder.bean.CallItem;
 import com.android.callrecorder.home.ui.callrecord.CallRecordViewHolder;
 
 import java.util.ArrayList;

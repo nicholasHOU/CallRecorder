@@ -5,7 +5,7 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/theme_blue"
+    android:background="@drawable/login_bg"
     android:paddingLeft="4dp"
     android:paddingTop="?attr/actionBarSize"
     android:paddingRight="4dp">

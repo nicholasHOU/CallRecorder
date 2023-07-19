@@ -8,7 +8,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.callrecorder.R;
-import com.android.callrecorder.home.bean.CallItem;
+import com.android.callrecorder.bean.CallItem;
+import com.android.callrecorder.bean.CallRecordInfo;
+import com.android.callrecorder.manager.RecordPlayerManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,6 +45,10 @@ public class CallRecordAdapter extends RecyclerView.Adapter<CallRecordViewHolder
         } else if (item.callType == CallItem.CALLTYPE_NO) {
             holder.ivCallType.setImageResource(R.drawable.ic_unkowntype);
         }
+        CallRecordInfo callRecordInfo = new CallRecordInfo();
+        callRecordInfo.setCallrecod("");
+        int during = RecordPlayerManager.getInstance().getDuration(callRecordInfo);
+        RecordPlayerManager.getInstance().setSeekBar(holder, during);
 
     }
 

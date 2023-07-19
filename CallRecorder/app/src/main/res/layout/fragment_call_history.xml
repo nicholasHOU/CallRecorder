@@ -17,7 +17,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="通话录音"
+            android:text="通话记录"
             android:textColor="@color/white"
             android:textSize="@dimen/title_size" />
     </RelativeLayout>
@@ -54,12 +54,11 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tv_year"
                 android:layout_centerHorizontal="true"
-                android:drawableRight="@drawable/bg_input_black_line"
-                android:drawablePadding="6dp"
+                android:drawableRight="@drawable/tab_down"
                 android:singleLine="true"
                 android:textColor="@color/title_dark_grey"
                 android:textSize="15dp"
-                tools:text="120分钟23秒" />
+                tools:text="6月" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -117,7 +116,7 @@
                 android:singleLine="true"
                 android:textColor="@color/title_dark_grey"
                 android:textSize="15dp"
-                tools:text="6月" />
+                tools:text="120分钟23秒" />
         </RelativeLayout>
 
     </LinearLayout>
@@ -135,7 +134,7 @@
         android:layout_below="@+id/rl_title"
         android:layout_centerInParent="true"
         android:gravity="center"
-        android:text="暂无通话录音"
+        android:text="暂无通话记录"
         android:textColor="@color/title_dark_grey"
         android:textSize="@dimen/title_size"
         android:visibility="gone" />

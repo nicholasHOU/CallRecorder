@@ -8,58 +8,110 @@
     android:padding="10dp"
     tools:context=".home.ui.callrecord.CallRecordFragment">
 
-    <ImageView
-        android:id="@+id/ic_call"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:src="@drawable/ic_outgoing" />
+    <RelativeLayout
+        android:id="@+id/rl_call"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <LinearLayout
-        android:id="@+id/ll_call"
+
+        <ImageView
+            android:id="@+id/ic_call"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/ic_outgoing" />
+
+        <LinearLayout
+            android:id="@+id/ll_call"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/ic_play"
+            android:layout_toRightOf="@+id/ic_call"
+            android:orientation="vertical"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp">
+
+            <TextView
+                android:id="@+id/tv_phone_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:textColor="@color/title_black"
+                android:textSize="20dp"
+                tools:text="18032401234" />
+
+            <TextView
+                android:id="@+id/tv_call_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:singleLine="true"
+                android:textColor="@color/title_grey"
+                android:textSize="14dp"
+                tools:text="12分12秒  2023-06-08 10:12" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/ic_play"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/ic_play"
+            android:textAlignment="center"
+            android:textSize="20sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_progress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_toLeftOf="@+id/ic_play"
-        android:layout_toRightOf="@+id/ic_call"
-        android:orientation="vertical"
-        android:paddingLeft="12dp"
-        android:paddingRight="12dp">
+        android:layout_below="@+id/rl_call"
+        android:layout_marginTop="6dp"
+        android:visibility="gone">
 
         <TextView
-            android:id="@+id/tv_phone_num"
+            android:id="@+id/tv_progress_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="4dp"
             android:singleLine="true"
             android:textColor="@color/title_black"
-            android:textSize="20dp"
-            tools:text="18032401234" />
+            android:textSize="14dp"
+            tools:text="00:12" />
+
+        <SeekBar
+            android:id="@+id/time_progress"
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="6dp"
+            android:layout_marginEnd="6dp"
+            android:layout_toLeftOf="@+id/tv_total_time"
+            android:layout_toRightOf="@+id/tv_progress_time"
+            android:progress="33"
+            app:indicatorColor="@color/theme_blue"
+            app:trackCornerRadius="4dp" />
 
         <TextView
-            android:id="@+id/tv_call_time"
+            android:id="@+id/tv_total_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:singleLine="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
             android:layout_marginTop="4dp"
-            android:textColor="@color/title_grey"
+            android:singleLine="true"
+            android:textColor="@color/title_black"
             android:textSize="14dp"
-            tools:text="12分12秒  2023-06-08 10:12" />
+            tools:text="10:12" />
 
-    </LinearLayout>
-
-    <ImageView
-        android:id="@+id/ic_play"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:src="@drawable/ic_play"
-        android:textAlignment="center"
-        android:textSize="20sp" />
-
+    </RelativeLayout>
 </RelativeLayout>

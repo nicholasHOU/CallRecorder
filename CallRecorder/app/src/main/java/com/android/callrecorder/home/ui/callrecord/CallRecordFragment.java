@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.callrecorder.databinding.FragmentCallRecordBinding;
-import com.android.callrecorder.home.bean.CallItem;
+import com.android.callrecorder.bean.CallItem;
 import com.android.callrecorder.widget.MyRecycleViewDecoration;
 
 import java.util.List;

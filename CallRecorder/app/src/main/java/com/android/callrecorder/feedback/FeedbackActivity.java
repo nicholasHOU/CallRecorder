@@ -24,6 +24,13 @@ public class FeedbackActivity extends BaseActivity {
     }
 
     private void initView() {
+        binding.ivBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
         binding.llCommit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
