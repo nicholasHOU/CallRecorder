@@ -114,7 +114,7 @@ public class CallHistoryFragment extends Fragment {
         createDateDialog();
         DatePicker dp = mdialog.getDatePicker();// 设置弹出年月日
         ((ViewGroup) ((ViewGroup) dp.getChildAt(0)).getChildAt(0))
-                .getChildAt(1).setVisibility(View.GONE);//.getChildAt(0)
+                .getChildAt(2).setVisibility(View.GONE);//.getChildAt(0)
         mdialog.show();
     }
 
@@ -160,17 +160,20 @@ public class CallHistoryFragment extends Fragment {
                 (MyHttpManager.ResponseListener<CallHistoryResponse>) (requestCode, isSuccess, resultJson) -> {
                     if (isSuccess) {
                         callLogDays = resultJson.son;
-                        if (callLogDays !=null&& callLogDays.size()>0){
+                        if (callLogDays != null && callLogDays.size() > 0) {
                             showData();
-                        }else {
+                        } else {
                             binding.tvEmpty.setVisibility(View.VISIBLE);
+                            binding.recycleView.setVisibility(View.GONE);
                         }
                     } else {
+                        binding.tvEmpty.setVisibility(View.VISIBLE);
+                        binding.recycleView.setVisibility(View.GONE);
                         if (resultJson != null && Constant.HttpCode.HTTP_NEED_LOGIN == resultJson.code) {
                             ToastUtil.showToast("登录信息失效，请登录后重试");
                             goLogin();
                         } else {
-                            ToastUtil.showToast("信息获取，请稍后重试");
+                            ToastUtil.showToast("信息获取失败，请稍后重试");
                         }
                     }
                 });
@@ -180,26 +183,30 @@ public class CallHistoryFragment extends Fragment {
      * 展示当月数据
      */
     private void showData() {
-        int length = callLogDays.size();
         boolean isHasCurrentMonth = false;
-        for (int i = 0; i < length; i++) {
-            CallHistoryResponse.CallLogDay day = callLogDays.get(i);
-            if (day.year == year && day.month == month) {
-                if (day.son != null && day.son.size() > 0) {
-                    isHasCurrentMonth = true;
-                    callHistoryAdapter.refreshData(day.son);
-                } else {
+        if (callLogDays == null || callLogDays.size() == 0) {
+        } else {
+            int length = callLogDays.size();
+            for (int i = 0; i < length; i++) {
+                CallHistoryResponse.CallLogDay day = callLogDays.get(i);
+                if (day.year == year && day.month == month) {
+                    if (day.son != null && day.son.size() > 0) {
+                        isHasCurrentMonth = true;
+                        callHistoryAdapter.refreshData(day.son);
+                    } else {
+                    }
+                    break;
                 }
-                break;
             }
         }
-
         if (isHasCurrentMonth) {
+            binding.tvEmpty.setVisibility(View.GONE);
+            binding.recycleView.setVisibility(View.VISIBLE);
+        } else {
             binding.tvEmpty.setVisibility(View.VISIBLE);
+            binding.recycleView.setVisibility(View.GONE);
         }
     }
-
-
 
     /**
      * @return

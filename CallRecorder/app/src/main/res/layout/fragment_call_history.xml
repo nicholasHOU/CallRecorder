@@ -30,7 +30,7 @@
         android:layout_below="@+id/rl_title"
         android:orientation="horizontal"
         android:paddingTop="8dp"
-        android:paddingBottom="8dp"
+        android:paddingBottom="6dp"
         android:weightSum="7">
 
         <RelativeLayout
@@ -121,11 +121,19 @@
 
     </LinearLayout>
 
+    <View
+
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_below="@+id/rl_header"
+        android:background="#666666" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycleView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/rl_header" />
+        android:layout_below="@+id/rl_header"
+        android:layout_marginTop="1dp" />
 
     <TextView
         android:id="@+id/tv_empty"
@@ -133,6 +141,7 @@
         android:layout_height="match_parent"
         android:layout_below="@+id/rl_title"
         android:layout_centerInParent="true"
+        android:layout_marginTop="1dp"
         android:gravity="center"
         android:text="暂无通话记录"
         android:textColor="@color/title_dark_grey"

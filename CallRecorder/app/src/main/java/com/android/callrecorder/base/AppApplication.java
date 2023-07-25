@@ -2,7 +2,6 @@ package com.android.callrecorder.base;
 
 import android.app.Activity;
 import android.app.ActivityManager;
-import android.app.Application;
 import android.content.Context;
 import android.os.Bundle;
 
@@ -14,10 +13,12 @@ import com.android.callrecorder.utils.ToastUtil;
 
 import java.util.List;
 
+import zuo.biao.library.base.BaseApplication;
+
 /**
  * @author hou
  */
-public class AppApplication extends Application {
+public class AppApplication extends BaseApplication {
 
     private static final String TAG = "AppApplication";
 
@@ -28,11 +29,11 @@ public class AppApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
-        if (isMainProcess()) {
+//        if (isMainProcess()) {
             initCrash();
             initLifecycle();
             initWidget();
-        }
+//        }
 
     }
 

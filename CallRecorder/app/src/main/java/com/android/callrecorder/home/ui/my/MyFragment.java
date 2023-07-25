@@ -94,7 +94,7 @@ public class MyFragment extends Fragment implements View.OnClickListener {
                             ToastUtil.showToast("登录信息失效，请登录后重试");
                             goLogin();
                         } else {
-                            ToastUtil.showToast("信息获取，请稍后重试");
+                            ToastUtil.showToast("信息获取失败，请稍后重试");
                         }
                     }
                 });
