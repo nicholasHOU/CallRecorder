@@ -79,14 +79,15 @@ public class CallHistoryUtil {
             String date = format.format(new Date(dateLong));
             int duration = cursor.getInt(cursor.getColumnIndex(CallLog.Calls.DURATION));
             CallItem callItem = new CallItem();
-            callItem.phonenum = number;
+            callItem.phone = number;
             callItem.name = name;
             callItem.time = date;
+            callItem.during = duration;
             int minutes = (duration / 60);
             int seconds = (duration % 60);
             String minute = minutes == 0 ? "" : minutes + "分";
             String second =  seconds + "秒";
-            callItem.during = minute+second;
+            callItem.duringStr = minute+second;
             callItem.callType = callType;
 
             callItem.recordPath = getRecordPath();
@@ -117,14 +118,14 @@ public class CallHistoryUtil {
         int duration = 300;
         for (int i = 0; i < 18; i++) {
             CallItem callItem = new CallItem();
-            callItem.phonenum = (18701660000l + i) + "";
+            callItem.phone = (18701660000l + i) + "";
             callItem.name = "张三" + i;
             callItem.time = date;
             int minutes = (duration + i / 60);
             int seconds = (duration + i % 60);
             String minute = minutes == 0 ? "" : minutes + "分";
             String second = seconds + "秒";
-            callItem.during = minute + second;
+            callItem.duringStr = minute + second;
             callItem.callType = i % 3;
             list.add(callItem);
         }

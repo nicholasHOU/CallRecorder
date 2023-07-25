@@ -36,8 +36,8 @@ public class CallRecordAdapter extends RecyclerView.Adapter<CallRecordViewHolder
     @Override
     public void onBindViewHolder(@NonNull CallRecordViewHolder holder, int position) {
         item = items.get(position);
-        holder.tvCallTime.setText(item.during + " " + item.time);
-        holder.tvPhoneNum.setText(TextUtils.isEmpty(item.name) ? item.phonenum : item.name);
+        holder.tvCallTime.setText(item.duringStr + " " + item.time);
+        holder.tvPhoneNum.setText(TextUtils.isEmpty(item.name) ? item.phone : item.name);
         if (item.callType == CallItem.CALLTYPE_OUT) {
             holder.ivCallType.setImageResource(R.drawable.ic_outgoing);
         } else if (item.callType == CallItem.CALLTYPE_IN) {

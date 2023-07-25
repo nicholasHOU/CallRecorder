@@ -1,26 +1,23 @@
 package com.android.callrecorder.home.ui.callhistory;
 
 import android.app.Activity;
-import android.text.TextUtils;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.android.callrecorder.R;
-import com.android.callrecorder.bean.CallItem;
-import com.android.callrecorder.home.ui.callrecord.CallRecordViewHolder;
+import com.android.callrecorder.bean.response.CallHistoryResponse;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * 通话历史统计
  */
-public class CallHistoryAdapter extends RecyclerView.Adapter<CallRecordViewHolder> {
+public class CallHistoryAdapter extends RecyclerView.Adapter<CallHistoryViewHolder> {
     private Activity context;
-    private List<CallItem> items = new ArrayList<>();
-    private CallItem item;
+    private List<CallHistoryResponse.CallLog> items = new ArrayList<>();
+    private CallHistoryResponse.CallLog item;
 
     public CallHistoryAdapter(Activity ctx) {
         context = ctx;
@@ -28,23 +25,20 @@ public class CallHistoryAdapter extends RecyclerView.Adapter<CallRecordViewHolde
 
     @NonNull
     @Override
-    public CallRecordViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new CallRecordViewHolder(context, parent);
+    public CallHistoryViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return new CallHistoryViewHolder(context, parent);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CallRecordViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull CallHistoryViewHolder holder, int position) {
         item = items.get(position);
-        holder.tvCallTime.setText(item.during + " " + item.time);
-        holder.tvPhoneNum.setText(TextUtils.isEmpty(item.name) ? item.phonenum : item.name);
-        if (item.callType == CallItem.CALLTYPE_OUT) {
-            holder.ivCallType.setImageResource(R.drawable.ic_outgoing);
-        } else if (item.callType == CallItem.CALLTYPE_IN) {
-            holder.ivCallType.setImageResource(R.drawable.ic_incoming);
-        } else if (item.callType == CallItem.CALLTYPE_NO) {
-            holder.ivCallType.setImageResource(R.drawable.ic_unkowntype);
-        }
-
+        holder.tvCallDay.setText(item.day);
+        holder.tvCallTimes.setText(item.total_number);
+        int minutes = (item.total_time / 60);
+        int seconds = (item.total_time % 60);
+        String minute = minutes == 0 ? "" : minutes + "分";
+        String second = seconds + "秒";
+        holder.tvCallTimeDuring.setText(minute + second);
     }
 
     @Override
@@ -52,7 +46,7 @@ public class CallHistoryAdapter extends RecyclerView.Adapter<CallRecordViewHolde
         return items == null ? 0 : items.size();
     }
 
-    public void refreshData(List<CallItem> callItems) {
+    public void refreshData(List<CallHistoryResponse.CallLog> callItems) {
         if (callItems != null && callItems.size() > 0) {
             this.items.addAll(callItems);
             notifyDataSetChanged();

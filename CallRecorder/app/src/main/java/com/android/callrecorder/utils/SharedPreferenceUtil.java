@@ -12,6 +12,7 @@ public class SharedPreferenceUtil {
     private String K_USERNAME = "usernameU";
     private String K_PASSWORD = "passwordP";
     private String K_HOST = "serverHost";
+    private String K_RECORD_UPLOAD_TIME = "recordUploadT";
 
     private SharedPreferenceUtil() {
         prefs = context.getSharedPreferences(SP_NAME, Context.MODE_PRIVATE);
@@ -83,6 +84,17 @@ public class SharedPreferenceUtil {
         return editor.commit();
     }
 
+    /**
+     * 设置上传时间信息
+     *
+     * @return
+     */
+    public boolean setRecordUploadTime(long time) {
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putLong(K_RECORD_UPLOAD_TIME, time);
+        return editor.commit();
+    }
+
 
     public boolean hasLoginInfo() {
         String username = getString(K_USERNAME, "");
@@ -92,6 +104,10 @@ public class SharedPreferenceUtil {
 
     public String getUsername() {
         return getString(K_USERNAME, "");
+    }
+
+    public long getRecordUploadTime() {
+        return prefs.getLong(K_RECORD_UPLOAD_TIME, 0l);
     }
 
     public String getPassword() {

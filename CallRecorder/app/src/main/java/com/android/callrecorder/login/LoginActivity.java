@@ -4,31 +4,22 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.Toast;
-
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
 
 import com.android.callrecorder.R;
 import com.android.callrecorder.base.BaseActivity;
+import com.android.callrecorder.bean.response.LoginResponse;
+import com.android.callrecorder.config.Constant;
+import com.android.callrecorder.config.GlobalConfig;
 import com.android.callrecorder.databinding.ActivityLoginBinding;
-import com.android.callrecorder.databinding.ActivityMainBinding;
-import com.android.callrecorder.feedback.FeedbackActivity;
 import com.android.callrecorder.home.MainActivity;
+import com.android.callrecorder.http.MyHttpManager;
 import com.android.callrecorder.setting.SettingActivity;
-import com.android.callrecorder.utils.Config;
-import com.android.callrecorder.utils.Constant;
 import com.android.callrecorder.utils.SharedPreferenceUtil;
 import com.android.callrecorder.utils.ToastUtil;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import zuo.biao.library.interfaces.OnHttpResponseListener;
-import zuo.biao.library.manager.HttpManager;
 import zuo.biao.library.util.MD5Util;
 
 public class LoginActivity extends BaseActivity {
@@ -46,8 +37,6 @@ public class LoginActivity extends BaseActivity {
         setContentView(binding.getRoot());
         initView();
         initLoginInfo();
-
-
     }
 
     private void initView() {
@@ -57,18 +46,18 @@ public class LoginActivity extends BaseActivity {
                 if (!isChecked()) {
                     return;
                 }
-                login(username, password, loginRequestCode, new OnHttpResponseListener() {
-                    @Override
-                    public void onHttpResponse(int requestCode, String resultJson, Exception e) {
-                        if (requestCode == loginRequestCode) {
-                            ToastUtil.showToast("login --- ");
-                            SharedPreferenceUtil.getInstance().setLoginInfo(username, password);
-                            goHome();
-                            if (!TextUtils.isEmpty(resultJson) && resultJson.contains("200")) {
-
-                            }
+                login(username, password, loginRequestCode, (requestCode,isSuccess, resultJson) -> {
+                    if (isSuccess){
+                        GlobalConfig.token = resultJson.token;
+                        ToastUtil.showToast("登录成功");
+                    }else {
+                        if (resultJson!=null&&Constant.HttpCode.HTTP_NEED_LOGIN == resultJson.code) {
+                        } else {
                         }
+                        ToastUtil.showToast("登录失败，请稍后重试");
                     }
+                    SharedPreferenceUtil.getInstance().setLoginInfo(username, password);
+                    goHome();
                 });
             }
         });
@@ -120,14 +109,14 @@ public class LoginActivity extends BaseActivity {
         }
     }
 
-
     private void login(String username, String password,
-                      final int requestCode, final OnHttpResponseListener listener) {
+                      final int requestCode, final MyHttpManager.ResponseListener<LoginResponse> listener) {
         Map<String, Object> request = new HashMap<>(8);
         request.put("username", username);
-        request.put("username", MD5Util.MD5(password));
+//        request.put("username", MD5Util.MD5(password));
+        request.put("password", password);
 
-        HttpManager.getInstance().post(request, Config.URL_BASE + Constant.URL_LOGIN, requestCode, listener);
+        MyHttpManager.getInstance().post(request, Constant.URL_LOGIN, requestCode, listener);
     }
 
 

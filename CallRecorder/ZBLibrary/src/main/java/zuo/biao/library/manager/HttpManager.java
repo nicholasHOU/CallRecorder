@@ -17,6 +17,7 @@ package zuo.biao.library.manager;
 import android.content.Context;
 import android.os.AsyncTask;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -31,6 +32,7 @@ import okhttp3.Cookie;
 import okhttp3.CookieJar;
 import okhttp3.FormBody;
 import okhttp3.HttpUrl;
+import okhttp3.Interceptor;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -92,103 +94,87 @@ public class HttpManager {
 	 *            在发起请求的类中可以用requestCode来区分各个请求
 	 * @param listener
 	 */
-	public void get(final Map<String, Object> request, final String url,
-					final int requestCode, final OnHttpResponseListener listener) {
-
-		new AsyncTask<Void, Void, Exception>() {
-
-			String result;
-			@Override
-			protected Exception doInBackground(Void... params) {
-				OkHttpClient client = getHttpClient(url);
-				if (client == null) {
-					return new Exception(TAG + ".get  AsyncTask.doInBackground  client == null >> return;");
-				}
-
-				StringBuffer sb = new StringBuffer();
-				sb.append(url);
-
-				Set<Map.Entry<String, Object>> set = request == null ? null : request.entrySet();
-				if (set != null) {
-					boolean isFirst = true;
-					for (Map.Entry<String, Object> entry : set) {
-						sb.append(isFirst ? "?" : "&");
-						sb.append(StringUtil.trim(entry.getKey()));
-						sb.append("=");
-						sb.append(StringUtil.trim(entry.getValue()));
-
-						isFirst = false;
-					}
-				}
-
-				try {
-					result = getResponseJson(
-							client,
-							new Request.Builder()
-									.url(sb.toString())
-									.build()
-					);
-					//仅供测试 result = "{\"code\":100,\"data\":{\"id\":1,\"name\":\"TestName\",\"phone\":\"1234567890\"}}";
-				} catch (Exception e) {
-					Log.e(TAG, "get  AsyncTask.doInBackground  try {  result = getResponseJson(..." +
-							"} catch (Exception e) {\n" + e.getMessage());
-					return e;
-				}
-
-				return null;
-			}
-
-			@Override
-			protected void onPostExecute(Exception exception) {
-				super.onPostExecute(exception);
-				listener.onHttpResponse(requestCode, result, exception);
-			}
-
-		}.execute();
-
-	}
-
-
-	/**GET请求，最快在 19.0 删除，请尽快迁移到 {@link #get(Map, String, int, OnHttpResponseListener)}
-	 * @param paramList 请求参数列表，（可以一个键对应多个值）
-	 * @param url 网络地址
-	 * @param requestCode
-	 *            请求码，类似onActivityResult中请求码，当同一activity中以实现接口方式发起多个网络请求时，请求结束后都会回调
-	 *            {@link OnHttpResponseListener#onHttpResponse(int, String, Exception)}<br>
-	 *            在发起请求的类中可以用requestCode来区分各个请求
-	 * @param listener
-	 */
-	@Deprecated
-	public void get(final List<Parameter> paramList, final String url,
-					final int requestCode, final OnHttpResponseListener listener) {
-		Map<String, Object> request = new HashMap<>();
-		if (paramList != null) {
-			for (Parameter p : paramList) {
-				request.put(p.key, p.value);
-			}
-		}
-		get(request, url, requestCode, listener);
-	}
+//	public void get(final Map<String, Object> request, final String url,
+//					final int requestCode, final OnHttpResponseListener listener) {
+//
+//		new AsyncTask<Void, Void, Exception>() {
+//
+//			String result;
+//			@Override
+//			protected Exception doInBackground(Void... params) {
+//				OkHttpClient client = getHttpClient(url);
+//				if (client == null) {
+//					return new Exception(TAG + ".get  AsyncTask.doInBackground  client == null >> return;");
+//				}
+//
+//				StringBuffer sb = new StringBuffer();
+//				sb.append(url);
+//
+//				Set<Map.Entry<String, Object>> set = request == null ? null : request.entrySet();
+//				if (set != null) {
+//					boolean isFirst = true;
+//					for (Map.Entry<String, Object> entry : set) {
+//						sb.append(isFirst ? "?" : "&");
+//						sb.append(StringUtil.trim(entry.getKey()));
+//						sb.append("=");
+//						sb.append(StringUtil.trim(entry.getValue()));
+//
+//						isFirst = false;
+//					}
+//				}
+//
+//				try {
+//					result = getResponseJson(
+//							client,
+//							new Request.Builder()
+//									.url(sb.toString())
+//									.build()
+//					);
+//					//仅供测试 result = "{\"code\":100,\"data\":{\"id\":1,\"name\":\"TestName\",\"phone\":\"1234567890\"}}";
+//				} catch (Exception e) {
+//					Log.e(TAG, "get  AsyncTask.doInBackground  try {  result = getResponseJson(..." +
+//							"} catch (Exception e) {\n" + e.getMessage());
+//					return e;
+//				}
+//
+//				return null;
+//			}
+//
+//			@Override
+//			protected void onPostExecute(Exception exception) {
+//				super.onPostExecute(exception);
+//				listener.onHttpResponse(requestCode, result, exception);
+//			}
+//
+//		}.execute();
+//
+//	}
 
 
-
+//	/**GET请求，最快在 19.0 删除，请尽快迁移到 {@link #get(Map, String, int, OnHttpResponseListener)}
+//	 * @param paramList 请求参数列表，（可以一个键对应多个值）
+//	 * @param url 网络地址
+//	 * @param requestCode
+//	 *            请求码，类似onActivityResult中请求码，当同一activity中以实现接口方式发起多个网络请求时，请求结束后都会回调
+//	 *            {@link OnHttpResponseListener#onHttpResponse(int, String, Exception)}<br>
+//	 *            在发起请求的类中可以用requestCode来区分各个请求
+//	 * @param listener
+//	 */
+//	@Deprecated
+//	public void get(final List<Parameter> paramList, final String url,
+//					final int requestCode, final OnHttpResponseListener listener) {
+//		Map<String, Object> request = new HashMap<>();
+//		if (paramList != null) {
+//			for (Parameter p : paramList) {
+//				request.put(p.key, p.value);
+//			}
+//		}
+//		get(request, url, requestCode, listener);
+//	}
 
 	public static final MediaType TYPE_JSON = MediaType.parse("application/json; charset=utf-8");
 
 
-	/**POST请求，以FORM表单形式提交
-	 * @param request 请求
-	 * @param url 网络地址
-	 * @param requestCode
-	 *            请求码，类似onActivityResult中请求码，当同一activity中以实现接口方式发起多个网络请求时，请求结束后都会回调
-	 *            {@link OnHttpResponseListener#onHttpResponse(int, String, Exception)}<br/>
-	 *            在发起请求的类中可以用requestCode来区分各个请求
-	 * @param listener
-	 */
-	public void post(final Map<String, Object> request, final String url
-			, final int requestCode, final OnHttpResponseListener listener) {
-		post(request, url, false, requestCode, listener);
-	}
 	/**POST请求
 	 * @param request 请求
 	 * @param url 网络地址
@@ -199,7 +185,7 @@ public class HttpManager {
 	 *            在发起请求的类中可以用requestCode来区分各个请求
 	 * @param listener
 	 */
-	public void post(final Map<String, Object> request, final String url, final boolean isJson
+	public void post(final Map<String, Object> request, final Map<String,String> headers,final String url, final boolean isJson
 			, final int requestCode, final OnHttpResponseListener listener) {
 		new AsyncTask<Void, Void, Exception>() {
 
@@ -208,7 +194,7 @@ public class HttpManager {
 			protected Exception doInBackground(Void... params) {
 
 				try {
-					OkHttpClient client = getHttpClient(url);
+					OkHttpClient client = getHttpClient(url,headers);
 					if (client == null) {
 						return new Exception(TAG + ".post  AsyncTask.doInBackground  client == null >> return;");
 					}
@@ -258,37 +244,13 @@ public class HttpManager {
 	}
 
 
-	/**POST请求，以FORM表单形式提交，最快在 19.0 删除，请尽快迁移到 {@link #post(Map, String, int, OnHttpResponseListener)}
-	 * @param paramList 请求参数列表，（可以一个键对应多个值）
-	 * @param url 网络地址
-	 * @param requestCode
-	 *            请求码，类似onActivityResult中请求码，当同一activity中以实现接口方式发起多个网络请求时，请求结束后都会回调
-	 *            {@link OnHttpResponseListener#onHttpResponse(int, String, Exception)}<br>
-	 *            {@link OnHttpResponseListener#onHttpResponse(int, String, Exception)}<br/>
-	 *            在发起请求的类中可以用requestCode来区分各个请求
-	 * @param listener
-	 */
-	@Deprecated
-	public void post(final List<Parameter> paramList, final String url,
-					 final int requestCode, final OnHttpResponseListener listener) {
-		Map<String, Object> request = new HashMap<>();
-		if (paramList != null) {
-			for (Parameter p : paramList) {
-				request.put(p.key, p.value);
-			}
-		}
-		post(request, url, requestCode, listener);
-	}
-
-
-
 	//httpGet/httpPost 内调用方法 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 	/**
 	 * @param url
 	 * @return
 	 */
-	private OkHttpClient getHttpClient(String url) {
+	private OkHttpClient getHttpClient(String url,Map<String,String> headers) {
 		Log.i(TAG, "getHttpClient  url = " + url);
 		if (StringUtil.isEmpty(url)) {
 			Log.e(TAG, "getHttpClient  StringUtil.isEmpty(url) >> return null;");
@@ -297,8 +259,18 @@ public class HttpManager {
 
 		OkHttpClient.Builder builder = new OkHttpClient.Builder()
 				.connectTimeout(15, TimeUnit.SECONDS)
-				.writeTimeout(10, TimeUnit.SECONDS)
+				.writeTimeout(15, TimeUnit.SECONDS)
 				.readTimeout(10, TimeUnit.SECONDS)
+				.addInterceptor(new Interceptor() {
+					@Override
+					public Response intercept(Chain chain) throws IOException {
+						Request.Builder build = chain.request().newBuilder();
+						for (String key : headers.keySet()) {
+							build.addHeader(key, headers.get(key));
+						}
+						return chain.proceed(build.build());
+					}
+				})
 				.cookieJar(new CookieJar() {
 
 					@Override
