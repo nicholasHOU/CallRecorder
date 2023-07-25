@@ -26,14 +26,14 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
+import zuo.biao.library.util.thread.pool.ThreadPoolProxyFactory;
+
 public class MyFragment extends Fragment implements View.OnClickListener {
 
     private FragmentMyBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        MyViewModel viewModel = new ViewModelProvider(this).get(MyViewModel.class);
-
         binding = FragmentMyBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
@@ -112,7 +112,7 @@ public class MyFragment extends Fragment implements View.OnClickListener {
      */
     private void uploadRecord() {
 
-        binding.tvGroup.post(new Runnable() {
+        ThreadPoolProxyFactory.getCacheThreadPool().execute(new Runnable() {
             @Override
             public void run() {
                 Map params = new HashMap();

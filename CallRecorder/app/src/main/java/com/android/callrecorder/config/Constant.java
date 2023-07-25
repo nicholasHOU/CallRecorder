@@ -38,4 +38,12 @@ public interface Constant {
      * 获取通话记录
      */
     public static final String URL_CALLLOG_LIST = Config.URL_BASE + "/login";
+    /**
+     * 轮训拨打电话
+     */
+    public static final String URL_CALLPHONE = Config.URL_BASE + "/login";
+    /**
+     * 获取本地录音地址目录及刷新轮训时间间隔
+     */
+    public static final String URL_CONFIG = Config.URL_BASE + "/login";
 }
