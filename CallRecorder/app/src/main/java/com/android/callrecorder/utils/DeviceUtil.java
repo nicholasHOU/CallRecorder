@@ -40,7 +40,7 @@ public class DeviceUtil {
                 try {
                     field.setAccessible(true);
                     info.put(field.getName(), field.get("").toString());
-                    Logs.d("DeviceUtil", field.getName() + ":" + field.get(""));
+//                    Logs.d("DeviceUtil", field.getName() + ":" + field.get(""));
                 } catch (IllegalArgumentException e) {
                     e.printStackTrace();
                 } catch (IllegalAccessException e) {

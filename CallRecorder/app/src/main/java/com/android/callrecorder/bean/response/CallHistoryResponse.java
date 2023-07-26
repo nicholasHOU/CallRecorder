@@ -5,7 +5,7 @@ import java.util.List;
 public class CallHistoryResponse extends BaseResponse {
     public List<CallLogDay> son;
 
-    public class CallLogDay {
+    public static class CallLogDay {
         /**
          * {
          * “year”:”2023”
@@ -28,7 +28,7 @@ public class CallHistoryResponse extends BaseResponse {
 
     }
 
-    public class CallLog {
+    public static class CallLog {
         /**
          * “day”:”7月1日”,
          * “total_number”:123, // 通话记录数

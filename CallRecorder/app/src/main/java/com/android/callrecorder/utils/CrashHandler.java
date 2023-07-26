@@ -122,7 +122,7 @@ public class CrashHandler implements UncaughtExceptionHandler {
 			try {
 				field.setAccessible(true);
 				info.put(field.getName(), field.get("").toString());
-				Logs.d(TAG, field.getName() + ":" + field.get(""));
+//				Logs.d(TAG, field.getName() + ":" + field.get(""));
 			} catch (IllegalArgumentException e) {
 				e.printStackTrace();
 			} catch (IllegalAccessException e) {
@@ -136,6 +136,7 @@ public class CrashHandler implements UncaughtExceptionHandler {
 		for (Map.Entry<String, String> entry : info.entrySet()) {
 			String key = entry.getKey();
 			String value = entry.getValue();
+			if ("unknown".equals(value))continue;
 			sb.append(key + "=" + value + "\r\n");
 		}
 		Writer writer = new StringWriter();

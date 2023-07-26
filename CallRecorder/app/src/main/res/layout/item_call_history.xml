@@ -27,7 +27,7 @@
         android:id="@+id/ll_call_count"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:paddingTop="8dp"
         android:paddingLeft="12dp"
         android:paddingRight="12dp">
 
@@ -59,7 +59,8 @@
         android:id="@+id/ll_call_time"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="6dp"
+        android:paddingBottom="8dp"
         android:paddingLeft="12dp"
         android:paddingRight="12dp">
 

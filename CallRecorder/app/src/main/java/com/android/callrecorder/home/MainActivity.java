@@ -5,6 +5,9 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -40,7 +43,7 @@ public class MainActivity extends BaseActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        BottomNavigationView navView = findViewById(R.id.nav_view);
+//        BottomNavigationView navView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
@@ -49,10 +52,33 @@ public class MainActivity extends BaseActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
         navController.getNavigatorProvider().addNavigator(new CustomNavigator(this, getSupportFragmentManager(), R.id.nav_host_fragment_activity_main));
         NavigationUI.setupWithNavController(binding.navView, navController);
+//        initFragment();
         loadConfigData();
         startService();
         startTimer();
     }
+
+//    private void initFragment() {
+//        FragmentManager fragmentManager = getSupportFragmentManager();
+//        FragmentTransaction ft = fragmentManager.beginTransaction();
+//        // 获取当前显示的Fragment
+//        Fragment fragment = fragmentManager.getPrimaryNavigationFragment();
+//        if (fragment != null) {
+//            ft.hide(fragment);
+//        }
+//        final String tag = String.valueOf(destination.getId());
+//        fragment = fragmentManager.findFragmentByTag(tag);
+//        if (fragment != null) {
+//            ft.show(fragment);
+//        } else {
+//            fragment = new(context, fragmentManager, destination.getClassName(), args);
+//            ft.add(containerId, fragment, tag);
+//        }
+//        ft.setPrimaryNavigationFragment(fragment);
+//        ft.setReorderingAllowed(true);
+//        ft.commit();
+//
+//    }
 
     private void loadConfigData() {
         Map params = new HashMap();

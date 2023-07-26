@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -43,25 +42,13 @@ public class CallRecordFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
 //        setContentView(R.layout.fragment_home);
-
-        CallRecordViewModel homeViewModel =
-                new ViewModelProvider(this).get(CallRecordViewModel.class);
-
         binding = FragmentCallRecordBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-//        final TextView textView = binding.textHome;
-//        homeViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
-        //功能归类分区方法，必须调用<<<<<<<<<<
         initView();
         initData();
-        //功能归类分区方法，必须调用>>>>>>>>>>
-
         return root;//返回值必须为view
     }
-
-
-    //UI显示区(操作UI，但不存在数据获取或处理代码，也不存在事件监听代码)<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
     public void initView() {//必须在onCreateView方法内调用
         callRecordAdapter = new CallRecordAdapter((Activity) getContext());

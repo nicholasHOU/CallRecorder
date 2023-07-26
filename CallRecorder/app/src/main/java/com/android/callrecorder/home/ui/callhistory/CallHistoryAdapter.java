@@ -33,7 +33,7 @@ public class CallHistoryAdapter extends RecyclerView.Adapter<CallHistoryViewHold
     public void onBindViewHolder(@NonNull CallHistoryViewHolder holder, int position) {
         item = items.get(position);
         holder.tvCallDay.setText(item.day);
-        holder.tvCallTimes.setText(item.total_number);
+        holder.tvCallTimes.setText(item.total_number+"");
         int minutes = (item.total_time / 60);
         int seconds = (item.total_time % 60);
         String minute = minutes == 0 ? "" : minutes + "分";
@@ -48,6 +48,7 @@ public class CallHistoryAdapter extends RecyclerView.Adapter<CallHistoryViewHold
 
     public void refreshData(List<CallHistoryResponse.CallLog> callItems) {
         if (callItems != null && callItems.size() > 0) {
+            this.items.clear();
             this.items.addAll(callItems);
             notifyDataSetChanged();
         }
