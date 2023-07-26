@@ -29,7 +29,11 @@ public interface Constant {
     /**
      * 上传录音
      */
-    public static final String URL_UPLOAD_RECORD_ALL = Config.URL_BASE + "/uploadrecord";
+    public static final String URL_UPLOAD_RECORD = Config.URL_BASE + "/uploadrecord";
+    /**
+     * 上传录音
+     */
+    public static final String URL_UPLOAD_RECORD_ALL = Config.URL_BASE + "/uploadrecordall";
     /**
      * 意见反馈
      */

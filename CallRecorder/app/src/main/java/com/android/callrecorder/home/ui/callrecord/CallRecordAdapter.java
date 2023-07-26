@@ -47,6 +47,7 @@ public class CallRecordAdapter extends RecyclerView.Adapter<CallRecordViewHolder
         }
         CallRecordInfo callRecordInfo = new CallRecordInfo();
         callRecordInfo.setCallrecod("");
+        callRecordInfo.setCallrecod("");
         int during = RecordPlayerManager.getInstance().getDuration(callRecordInfo);
         RecordPlayerManager.getInstance().setSeekBar(holder, during);
 
