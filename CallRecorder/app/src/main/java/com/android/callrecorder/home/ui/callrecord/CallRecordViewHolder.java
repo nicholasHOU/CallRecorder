@@ -17,7 +17,7 @@ import com.android.callrecorder.manager.RecordPlayerManager;
 /**
  *
  */
-public class CallRecordViewHolder extends RecyclerView.ViewHolder implements OnClickListener {
+public class CallRecordViewHolder extends RecyclerView.ViewHolder {
 	private static final String TAG = "DemoView";
 
 	public CallRecordViewHolder(Activity context, ViewGroup parent) {
@@ -46,20 +46,6 @@ public class CallRecordViewHolder extends RecyclerView.ViewHolder implements OnC
 		tvPlayProgressTime = itemView.findViewById(R.id.tv_progress_time);
 		tvPlayTotalTime = itemView.findViewById(R.id.tv_total_time);
 		lProgress = itemView.findViewById(R.id.time_progress);
-	}
-
-
-	@Override
-	public void onClick(View v) {
-		switch (v.getId()) {
-		case R.id.ic_play:
-			CallRecordInfo callRecordInfo = new CallRecordInfo();
-			callRecordInfo.setCallrecod("");
-			RecordPlayerManager.getInstance().play(this,callRecordInfo);
-			break;
-		default:
-			break;
-		}
 	}
 
 }

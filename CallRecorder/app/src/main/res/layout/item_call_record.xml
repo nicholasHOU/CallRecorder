@@ -75,6 +75,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/rl_call"
         android:layout_marginTop="6dp"
+        tools:visibility="visible"
         android:visibility="gone">
 
         <TextView
@@ -97,7 +98,7 @@
             android:layout_marginEnd="6dp"
             android:layout_toLeftOf="@+id/tv_total_time"
             android:layout_toRightOf="@+id/tv_progress_time"
-            android:progress="33"
+            android:progress="73"
             app:indicatorColor="@color/theme_blue"
             app:trackCornerRadius="4dp" />
 

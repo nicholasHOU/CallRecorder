@@ -10,6 +10,7 @@ import com.android.callrecorder.R;
 import com.android.callrecorder.bean.CallRecordInfo;
 import com.android.callrecorder.home.ui.callrecord.CallRecordViewHolder;
 import com.android.callrecorder.utils.DateUtil;
+import com.android.callrecorder.utils.Logs;
 import com.android.callrecorder.utils.ToastUtil;
 
 import java.io.IOException;
@@ -75,7 +76,10 @@ public class RecordPlayerManager {
                     return;
                 }
                 if (RecordPlayerManager.this.mPlayer != null) {
-                    paramViewHolder.lProgress.setProgress(RecordPlayerManager.this.mPlayer.getCurrentPosition());
+                    int progress =RecordPlayerManager.this.mPlayer.getCurrentPosition()*100/RecordPlayerManager.this.mPlayer.getDuration();
+                    Logs.e("RecordPlayerManager","progress = "+ progress);
+                    Logs.e("RecordPlayerManager","current = "+ RecordPlayerManager.this.mPlayer.getCurrentPosition());
+                    paramViewHolder.lProgress.setProgress(progress);
                     paramViewHolder.tvPlayProgressTime.setText(DateUtil.formatTime(false, RecordPlayerManager.this.mPlayer.getCurrentPosition()));
                 }
             }
@@ -123,7 +127,7 @@ public class RecordPlayerManager {
             if ((this.mDisposable != null) && (!this.mDisposable.isDisposed())) {
                 this.mDisposable.dispose();
             }
-            return;
+//            return;
         }
         try {
             if (this.mPlayer == null) {
@@ -136,6 +140,8 @@ public class RecordPlayerManager {
             updateProgress(paramViewHolder);
             this.mPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 public void onCompletion(MediaPlayer paramAnonymousMediaPlayer) {
+                    Logs.e("RecordPlayerManager","onCompletion =   ");
+
                     if (paramViewHolder != null) {
                         paramViewHolder.ivPlay.setImageResource(R.drawable.ic_play);
                         paramViewHolder.rlProgress.setVisibility(View.GONE);
@@ -171,7 +177,7 @@ public class RecordPlayerManager {
             this.mThumb_normal = paramViewHolder.rlProgress.getContext().getResources().getDrawable(R.drawable.thumb);
         }
         SeekBar localSeekBar = (SeekBar) paramViewHolder.lProgress;
-        localSeekBar.setMax(paramInt);
+        localSeekBar.setMax(100);
         localSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             public void onProgressChanged(SeekBar paramAnonymousSeekBar, int paramAnonymousInt, boolean paramAnonymousBoolean) {
                 if ((RecordPlayerManager.this.mPlayer != null) && (paramAnonymousBoolean)) {

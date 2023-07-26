@@ -53,7 +53,6 @@ public class PhoneListenerService extends Service {
                     try {
 //                        File file = new File(Environment.getExternalStorageDirectory(), num + "_" + System.currentTimeMillis() + ".3gp");
                         file = FileUtil.getCallRecordSaveFile(System.currentTimeMillis(), phone);
-//                        File file = new File(Environment.getExternalStorageDirectory(), num + "_" + System.currentTimeMillis() + ".mp3");
                         recorder = new MediaRecorder();
                         recorder.setAudioSource(MediaRecorder.AudioSource.MIC);//声音采集来源(话筒)
 //                        recorder.setOutputFormat(MediaRecorder.OutputFormat.RAW_AMR);//输出的格式
