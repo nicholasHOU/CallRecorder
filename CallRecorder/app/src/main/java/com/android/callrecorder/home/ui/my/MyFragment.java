@@ -17,6 +17,7 @@ import com.android.callrecorder.config.Constant;
 import com.android.callrecorder.config.GlobalConfig;
 import com.android.callrecorder.databinding.FragmentMyBinding;
 import com.android.callrecorder.feedback.FeedbackActivity;
+import com.android.callrecorder.home.ui.callrecord.CallRecordFragment;
 import com.android.callrecorder.http.MyHttpManager;
 import com.android.callrecorder.login.LoginActivity;
 import com.android.callrecorder.utils.SharedPreferenceUtil;
@@ -31,6 +32,10 @@ import zuo.biao.library.util.thread.pool.ThreadPoolProxyFactory;
 public class MyFragment extends Fragment implements View.OnClickListener {
 
     private FragmentMyBinding binding;
+
+    public static MyFragment createInstance() {
+        return new MyFragment();
+    }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {

@@ -50,8 +50,8 @@ public class CallHistoryFragment extends Fragment {
      *
      * @return
      */
-    public static CallRecordFragment createInstance() {
-        return new CallRecordFragment();
+    public static CallHistoryFragment createInstance() {
+        return new CallHistoryFragment();
     }
 
 
