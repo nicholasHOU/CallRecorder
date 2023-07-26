@@ -42,7 +42,6 @@ public class MainActivity extends BaseActivity {
     private FragmentManager mFragmentManager;
     private FragmentTransaction mTransaction;
     protected Fragment mCurrentFragment;
-    private int mOnClickedTabPos;
     private int mCurrentTabPos;
     private boolean isDestroyed;
 
@@ -77,11 +76,13 @@ public class MainActivity extends BaseActivity {
     }
 
     private void selectTablayout() {
-        View view = binding.tabLayout.getTabAt(mCurrentTabPos).getCustomView();
-        ImageView img = view.findViewById(R.id.iv_bg);
-        TextView tvTitle = view.findViewById(R.id.tv_title);
-        img.setSelected(true);
-        tvTitle.setSelected(true);
+        for (int i = 0; i < 3; i++) {
+            View view = binding.tabLayout.getTabAt(i).getCustomView();
+            ImageView img = view.findViewById(R.id.iv_bg);
+            TextView tvTitle = view.findViewById(R.id.tv_title);
+            img.setSelected(mCurrentTabPos == i);
+            tvTitle.setSelected(mCurrentTabPos == i);
+        }
     }
 
     protected View getTabView(int position) {
@@ -104,7 +105,6 @@ public class MainActivity extends BaseActivity {
         binding.tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-                mOnClickedTabPos = tab.getPosition();
                 mCurrentTabPos = tab.getPosition();
                 createCurrentFragment(mCurrentTabPos);
                 selectTablayout();
@@ -117,9 +117,7 @@ public class MainActivity extends BaseActivity {
 
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
-//                if (mCurrentTabPos != mOnClickedTabPos) {
-                    onTabSelected(tab);
-//                }
+                onTabSelected(tab);
             }
         });
     }
