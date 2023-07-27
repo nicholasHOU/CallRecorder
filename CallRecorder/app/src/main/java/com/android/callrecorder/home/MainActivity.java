@@ -212,19 +212,27 @@ public class MainActivity extends BaseActivity {
     private void loadConfigData() {
         Map params = new HashMap();
         MyHttpManager.getInstance().post(params, Constant.URL_CONFIG, 125,
-                (MyHttpManager.ResponseListener<ConfigResponse>) (requestCode, isSuccess, resultJson) -> {
-                    if (isSuccess) {
-                        if (!TextUtils.isEmpty(resultJson.url)) {
-                            GlobalConfig.url = resultJson.url;
-                        }
-                        if (resultJson.runTime > 2000) {
-                            GlobalConfig.runTime = resultJson.runTime;
-                        }
-                    } else {
-                        if (resultJson != null && Constant.HttpCode.HTTP_NEED_LOGIN == resultJson.code) {
-                            goLogin();
+                new MyHttpManager.ResponseListener<ConfigResponse>() {
+                    @Override
+                    public void onHttpResponse(int requestCode, boolean isSuccess, ConfigResponse resultJson) {
+                        if (isSuccess) {
+                            if (!TextUtils.isEmpty(resultJson.url)) {
+                                GlobalConfig.url = resultJson.url;
+                            }
+                            if (resultJson.runTime > 2000) {
+                                GlobalConfig.runTime = resultJson.runTime;
+                            }
                         } else {
+                            if (resultJson != null && Constant.HttpCode.HTTP_NEED_LOGIN == resultJson.code) {
+                                goLogin();
+                            } else {
+                            }
                         }
+                    }
+
+                    @Override
+                    public Class getTClass() {
+                        return ConfigResponse.class;
                     }
                 });
     }
@@ -268,22 +276,31 @@ public class MainActivity extends BaseActivity {
     private void loadServerCallPhoneTask() {
         Map params = new HashMap();
         MyHttpManager.getInstance().post(params, Constant.URL_CALLPHONE, 125,
-                (MyHttpManager.ResponseListener<CallPhoneResponse>) (requestCode, isSuccess, resultJson) -> {
-                    if (isSuccess) {
-                        if (!TextUtils.isEmpty(resultJson.phone)) {
-                            Intent intent = new Intent(Intent.ACTION_DIAL);
-                            Uri data = Uri.parse("tel:" + resultJson.phone);
-                            intent.setData(data);
-                            startActivity(intent);
-                            TimeRefresher.getInstance().stopTimeRefreshListener(TAG_CALLPHONE);
-                        }
-                    } else {
-                        if (resultJson != null && Constant.HttpCode.HTTP_NEED_LOGIN == resultJson.code) {
-                            goLogin();
+                new MyHttpManager.ResponseListener<CallPhoneResponse>() {
+                    @Override
+                    public void onHttpResponse(int requestCode, boolean isSuccess, CallPhoneResponse resultJson) {
+                        if (isSuccess) {
+                            if (!TextUtils.isEmpty(resultJson.phone)) {
+                                Intent intent = new Intent(Intent.ACTION_DIAL);
+                                Uri data = Uri.parse("tel:" + resultJson.phone);
+                                intent.setData(data);
+                                startActivity(intent);
+                                TimeRefresher.getInstance().stopTimeRefreshListener(TAG_CALLPHONE);
+                            }
                         } else {
+                            if (resultJson != null && Constant.HttpCode.HTTP_NEED_LOGIN == resultJson.code) {
+                                goLogin();
+                            } else {
+                            }
                         }
                     }
+
+                    @Override
+                    public Class getTClass() {
+                        return CallPhoneResponse.class;
+                    }
                 });
+
     }
 
 
@@ -348,18 +365,25 @@ public class MainActivity extends BaseActivity {
      */
     private void uploadFile(Map params) {
         MyHttpManager.getInstance().post(params, Constant.URL_UPLOAD_RECORD_ALL, 125,
-                (MyHttpManager.ResponseListener<UserInfoResponse>) (requestCode, isSuccess, resultJson) -> {
-                    if (isSuccess) {
-                        // 已上传成功的更新上传时间戳
-                        SharedPreferenceUtil.getInstance().setRecordUploadTime((Long) params.get("time"));
-                    } else {
-                        if (resultJson != null && Constant.HttpCode.HTTP_NEED_LOGIN == resultJson.code) {
-                            goLogin();
+                new MyHttpManager.ResponseListener<UserInfoResponse>() {
+                    @Override
+                    public void onHttpResponse(int requestCode, boolean isSuccess, UserInfoResponse resultJson) {
+                        if (isSuccess) {
+                            // 已上传成功的更新上传时间戳
+                            SharedPreferenceUtil.getInstance().setRecordUploadTime((Long) params.get("time"));
                         } else {
+                            if (resultJson != null && Constant.HttpCode.HTTP_NEED_LOGIN == resultJson.code) {
+                                goLogin();
+                            } else {
 //                            ToastUtil.showToast("，请稍后重试");
+                            }
                         }
+                    }
+
+                    @Override
+                    public Class getTClass() {
+                        return UserInfoResponse.class;
                     }
                 });
     }
-
 }

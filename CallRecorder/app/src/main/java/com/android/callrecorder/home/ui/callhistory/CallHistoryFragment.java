@@ -135,24 +135,32 @@ public class CallHistoryFragment extends Fragment {
      */
     private void loadCallHistory() {
         MyHttpManager.getInstance().post(new HashMap<>(), Constant.URL_CALLLOG_LIST, 124,
-                (MyHttpManager.ResponseListener<CallHistoryResponse>) (requestCode, isSuccess, resultJson) -> {
-                    if (isSuccess) {
-                        callLogDays = resultJson.son;
-                        if (callLogDays != null && callLogDays.size() > 0) {
-                            showData();
+                new MyHttpManager.ResponseListener<CallHistoryResponse>() {
+                    @Override
+                    public void onHttpResponse(int requestCode, boolean isSuccess, CallHistoryResponse resultJson) {
+                        if (isSuccess) {
+                            callLogDays = resultJson.son;
+                            if (callLogDays != null && callLogDays.size() > 0) {
+                                showData();
+                            } else {
+                                binding.tvEmpty.setVisibility(View.VISIBLE);
+                                binding.recycleView.setVisibility(View.GONE);
+                            }
                         } else {
                             binding.tvEmpty.setVisibility(View.VISIBLE);
                             binding.recycleView.setVisibility(View.GONE);
+                            if (resultJson != null && Constant.HttpCode.HTTP_NEED_LOGIN == resultJson.code) {
+                                ToastUtil.showToast("登录信息失效，请登录后重试");
+                                goLogin();
+                            } else {
+                                ToastUtil.showToast("信息获取失败，请稍后重试");
+                            }
                         }
-                    } else {
-                        binding.tvEmpty.setVisibility(View.VISIBLE);
-                        binding.recycleView.setVisibility(View.GONE);
-                        if (resultJson != null && Constant.HttpCode.HTTP_NEED_LOGIN == resultJson.code) {
-                            ToastUtil.showToast("登录信息失效，请登录后重试");
-                            goLogin();
-                        } else {
-                            ToastUtil.showToast("信息获取失败，请稍后重试");
-                        }
+                    }
+
+                    @Override
+                    public Class getTClass() {
+                        return CallHistoryResponse.class;
                     }
                 });
     }
@@ -180,7 +188,7 @@ public class CallHistoryFragment extends Fragment {
                     String minute = minutes == 0 ? "" : minutes + "分";
                     String second = seconds + "秒";
                     binding.tvCallDuring.setText(minute + second);
-                    binding.tvCallRecordCount.setText(day.total_number+"");
+                    binding.tvCallRecordCount.setText(day.total_number + "");
                     break;
                 }
             }

@@ -56,7 +56,7 @@ public class CallHistoryUtil {
                         , CallLog.Calls.DURATION// 通话时长
                         , CallLog.Calls.TYPE}// 通话类型
                 , selection, selectionArgs, CallLog.Calls.DEFAULT_SORT_ORDER// 按照时间逆序排列，最近打的最先显示
-        ).;
+        );
         // 3.通过Cursor获得数据
         List<CallItem> list = new ArrayList();
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss");

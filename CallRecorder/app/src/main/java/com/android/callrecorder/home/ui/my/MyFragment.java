@@ -88,19 +88,27 @@ public class MyFragment extends Fragment implements View.OnClickListener {
 
     private void initData() {
         MyHttpManager.getInstance().post(new HashMap<>(), Constant.URL_USERINFO, 124,
-                (MyHttpManager.ResponseListener<UserInfoResponse>) (requestCode, isSuccess, resultJson) -> {
-                    if (isSuccess) {
-                        GlobalConfig.username = resultJson.name;
-                        binding.tvName.setText(resultJson.name);
-                        binding.tvGroup.setText(resultJson.city + " " + resultJson.company + " " +
-                                resultJson.department_big + " " + resultJson.department);
-                    } else {
-                        if (resultJson != null && Constant.HttpCode.HTTP_NEED_LOGIN == resultJson.code) {
-                            ToastUtil.showToast("登录信息失效，请登录后重试");
-                            goLogin();
+                new MyHttpManager.ResponseListener<UserInfoResponse>() {
+                    @Override
+                    public void onHttpResponse(int requestCode, boolean isSuccess, UserInfoResponse resultJson) {
+                        if (isSuccess) {
+                            GlobalConfig.username = resultJson.name;
+                            binding.tvName.setText(resultJson.name);
+                            binding.tvGroup.setText(resultJson.city + " " + resultJson.company + " " +
+                                    resultJson.department_big + " " + resultJson.department);
                         } else {
-                            ToastUtil.showToast("信息获取失败，请稍后重试");
+                            if (resultJson != null && Constant.HttpCode.HTTP_NEED_LOGIN == resultJson.code) {
+                                ToastUtil.showToast("登录信息失效，请登录后重试");
+                                goLogin();
+                            } else {
+                                ToastUtil.showToast("信息获取失败，请稍后重试");
+                            }
                         }
+                    }
+
+                    @Override
+                    public Class getTClass() {
+                        return UserInfoResponse.class;
                     }
                 });
     }
@@ -121,17 +129,18 @@ public class MyFragment extends Fragment implements View.OnClickListener {
             @Override
             public void run() {
                 Map params = new HashMap();
-                params.put("time","");
-                params.put("during","");
-                params.put("phone","");
-                params.put("name","");
-                params.put("callType","");
+                params.put("time", "");
+                params.put("during", "");
+                params.put("phone", "");
+                params.put("name", "");
+                params.put("callType", "");
                 uploadFile(params);
 
             }
         });
 
     }
+
     /**
      * “time”:13123131,  //时间戳
      * “video”: file,  //视频文件
@@ -139,19 +148,27 @@ public class MyFragment extends Fragment implements View.OnClickListener {
      * “phone”: 13211111111, // 手机号
      * “back”: “手机号的备注” // 手机号备注   可以为空
      */
-    private void uploadFile(Map params){
+    private void uploadFile(Map params) {
 
         MyHttpManager.getInstance().post(params, Constant.URL_UPLOAD_RECORD_ALL, 125,
-                (MyHttpManager.ResponseListener<UserInfoResponse>) (requestCode, isSuccess, resultJson) -> {
-                    if (isSuccess) {
-                      // 已上传成功的更新上传时间戳
-                        SharedPreferenceUtil.getInstance().setRecordUploadTime((Long) params.get("time"));
-                    } else {
-                        if (resultJson != null && Constant.HttpCode.HTTP_NEED_LOGIN == resultJson.code) {
-                            goLogin();
+                new MyHttpManager.ResponseListener<UserInfoResponse>() {
+                    @Override
+                    public void onHttpResponse(int requestCode, boolean isSuccess, UserInfoResponse resultJson) {
+                        if (isSuccess) {
+                            // 已上传成功的更新上传时间戳
+                            SharedPreferenceUtil.getInstance().setRecordUploadTime((Long) params.get("time"));
                         } else {
+                            if (resultJson != null && Constant.HttpCode.HTTP_NEED_LOGIN == resultJson.code) {
+                                goLogin();
+                            } else {
 //                            ToastUtil.showToast("，请稍后重试");
+                            }
                         }
+                    }
+
+                    @Override
+                    public Class getTClass() {
+                        return UserInfoResponse.class;
                     }
                 });
     }

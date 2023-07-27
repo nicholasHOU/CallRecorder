@@ -46,18 +46,27 @@ public class LoginActivity extends BaseActivity {
                 if (!isChecked()) {
                     return;
                 }
-                login(username, password, loginRequestCode, (requestCode,isSuccess, resultJson) -> {
-                    if (isSuccess){
-                        GlobalConfig.token = resultJson.token;
-                        ToastUtil.showToast("登录成功");
-                    }else {
-                        if (resultJson!=null&&Constant.HttpCode.HTTP_NEED_LOGIN == resultJson.code) {
-                        } else {
+                login(username, password, loginRequestCode, new MyHttpManager.ResponseListener<LoginResponse>() {
+                    @Override
+                    public void onHttpResponse(int requestCode, boolean isSuccess, LoginResponse resultJson) {
+                        if (isSuccess){
+                            GlobalConfig.token = resultJson.token;
+                            ToastUtil.showToast("登录成功");
+                            SharedPreferenceUtil.getInstance().setLoginInfo(username, password);
+                            goHome();
+                        }else {
+                            if (resultJson != null && !TextUtils.isEmpty(resultJson.message)) {
+                                ToastUtil.showToast(resultJson.message);
+                            } else {
+                                ToastUtil.showToast("登录失败，请稍后重试");
+                            }
                         }
-                        ToastUtil.showToast("登录失败，请稍后重试");
                     }
-                    SharedPreferenceUtil.getInstance().setLoginInfo(username, password);
-                    goHome();
+
+                    @Override
+                    public Class getTClass() {
+                        return LoginResponse.class;
+                    }
                 });
             }
         });
@@ -82,12 +91,8 @@ public class LoginActivity extends BaseActivity {
      * @return
      */
     private boolean isChecked() {
-        if (TextUtils.isEmpty(username)) {
-            username = binding.etUsername.getText().toString();
-        }
-        if (TextUtils.isEmpty(password)) {
-            password = binding.etPassword.getText().toString();
-        }
+        username = binding.etUsername.getText().toString();
+        password = binding.etPassword.getText().toString();
         if (TextUtils.isEmpty(username)) {
             ToastUtil.showToast(R.string.input_username_tip);
             return false;

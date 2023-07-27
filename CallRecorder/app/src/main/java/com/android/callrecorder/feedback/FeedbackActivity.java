@@ -53,20 +53,27 @@ public class FeedbackActivity extends BaseActivity {
         });
     }
 
-    private void uploadFeedback(Map params){
-
+    private void uploadFeedback(Map params) {
         MyHttpManager.getInstance().post(params, Constant.URL_FEEDBACK, 125,
-                (MyHttpManager.ResponseListener<BaseResponse>) (requestCode, isSuccess, resultJson) -> {
-                    if (isSuccess) {
-                         ToastUtil.showToast("提交成功，谢谢您的反馈");
-                         finish();
-                    } else {
-                        if (resultJson != null && Constant.HttpCode.HTTP_NEED_LOGIN == resultJson.code) {
-                            ToastUtil.showToast("登录信息失效，请登录后重试");
-                            goLogin();
+                new MyHttpManager.ResponseListener<BaseResponse>() {
+                    @Override
+                    public void onHttpResponse(int requestCode, boolean isSuccess, BaseResponse resultJson) {
+                        if (isSuccess) {
+                            ToastUtil.showToast("提交成功，谢谢您的反馈");
+                            finish();
                         } else {
-                            ToastUtil.showToast("提交失败，请稍后重试");
+                            if (resultJson != null && Constant.HttpCode.HTTP_NEED_LOGIN == resultJson.code) {
+                                ToastUtil.showToast("登录信息失效，请登录后重试");
+                                goLogin();
+                            } else {
+                                ToastUtil.showToast("提交失败，请稍后重试");
+                            }
                         }
+                    }
+
+                    @Override
+                    public Class getTClass() {
+                        return BaseResponse.class;
                     }
                 });
     }

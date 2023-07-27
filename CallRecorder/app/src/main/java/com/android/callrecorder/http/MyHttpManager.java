@@ -21,7 +21,7 @@ import java.util.Map;
 import zuo.biao.library.interfaces.OnHttpResponseListener;
 import zuo.biao.library.manager.HttpManager;
 
-public class MyHttpManager {
+public class MyHttpManager<T> {
 
     private static MyHttpManager instance;// 单例
 
@@ -40,28 +40,36 @@ public class MyHttpManager {
     }
 
     public void post(final Map<String, Object> request, final String url
-            , final int requestCode, final ResponseListener listener) {
+            , final int requestCode, final ResponseListener<T> listener) {
         Map<String, String> headers = new HashMap<>();
         headers.put(Constant.K_TOKEN, GlobalConfig.token);
         headers.put(Constant.K_TYPE, GlobalConfig.type);
         headers.put(Constant.K_EXTRA, GlobalConfig.extra);
-//        HttpManager.getInstance().post(request, headers, url,
-//                true, requestCode, new OnHttpResponseListener() {
-//                    @Override
-//                    public void onHttpResponse(int requestCode, String resultJson, Exception e) {
-//                        if (!TextUtils.isEmpty(resultJson)) {
-//                            BaseResponse data = JSON.parseObject(resultJson, BaseResponse.class);
-//                            if (Constant.HttpCode.HTTP_SUCCESS == data.code) {
-//                                listener.onHttpResponse(requestCode, true, T);
-//                            } else {
-//                                listener.onHttpResponse(requestCode, false, T);
-//                            }
-//                        } else {
-//                            listener.onHttpResponse(requestCode, false, null);
-//                        }
-//                    }
-//                });
-        loadTestData(url, requestCode, listener);
+        HttpManager.getInstance().post(request, headers, url,
+                true, requestCode, new OnHttpResponseListener() {
+                    @Override
+                    public void onHttpResponse(int requestCode, String resultJson, Exception e) {
+                        if (!TextUtils.isEmpty(resultJson)) {
+                            BaseResponse data = JSON.parseObject(resultJson, BaseResponse.class);
+
+
+                            Class<T> tClass = listener.getTClass();
+                            if (tClass == null) {
+                                listener.onHttpResponse(requestCode, false, null);
+                            } else {
+                                T data3 = JSON.parseObject(resultJson, tClass);
+                                if (Constant.HttpCode.HTTP_SUCCESS == data.code) {
+                                    listener.onHttpResponse(requestCode, true, data3);
+                                } else {
+                                    listener.onHttpResponse(requestCode, false, data3);
+                                }
+                            }
+                        } else {
+                            listener.onHttpResponse(requestCode, false, null);
+                        }
+                    }
+                });
+//        loadTestData(url, requestCode, listener);
     }
 
     private void loadTestData(final String url
@@ -87,7 +95,7 @@ public class MyHttpManager {
                 List<CallHistoryResponse.CallLog> days = new ArrayList<>();
                 for (int j = 0; j < 4; j++) {
                     CallHistoryResponse.CallLog callLog = new CallHistoryResponse.CallLog();
-                    callLog.day = day.month + "月"+(21+j);
+                    callLog.day = day.month + "月" + (21 + j);
                     callLog.total_number = j + 4;
                     callLog.total_time = 623;
                     days.add(callLog);
@@ -119,5 +127,7 @@ public class MyHttpManager {
          * @param resultJson  服务器返回的Json串
          */
         void onHttpResponse(int requestCode, boolean isSuccess, T resultJson);
+
+        Class getTClass();
     }
 }
