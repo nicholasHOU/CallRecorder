@@ -78,10 +78,4 @@ public class FeedbackActivity extends BaseActivity {
                 });
     }
 
-    private void goLogin() {
-        Intent intent = new Intent(this, LoginActivity.class);
-        startActivity(intent);
-        finish();
-    }
-
 }

@@ -26,8 +26,6 @@ import com.android.callrecorder.home.ui.callhistory.CallHistoryFragment;
 import com.android.callrecorder.home.ui.callrecord.CallRecordFragment;
 import com.android.callrecorder.home.ui.my.MyFragment;
 import com.android.callrecorder.http.MyHttpManager;
-import com.android.callrecorder.login.LoginActivity;
-import com.android.callrecorder.utils.Logs;
 import com.android.callrecorder.utils.SharedPreferenceUtil;
 import com.google.android.material.tabs.TabLayout;
 
@@ -303,14 +301,6 @@ public class MainActivity extends BaseActivity {
 
     }
 
-
-    private void goLogin() {
-        Intent intent = new Intent(this, LoginActivity.class);
-        startActivity(intent);
-        finish();
-    }
-
-
     @Override
     protected void onResume() {
         super.onResume();
@@ -364,7 +354,7 @@ public class MainActivity extends BaseActivity {
      * “back”: “手机号的备注” // 手机号备注   可以为空
      */
     private void uploadFile(Map params) {
-        MyHttpManager.getInstance().post(params, Constant.URL_UPLOAD_RECORD_ALL, 125,
+        MyHttpManager.getInstance().post(params, Constant.URL_UPLOAD_RECORD, 125,
                 new MyHttpManager.ResponseListener<UserInfoResponse>() {
                     @Override
                     public void onHttpResponse(int requestCode, boolean isSuccess, UserInfoResponse resultJson) {

@@ -1,7 +1,6 @@
 package com.android.callrecorder.home.ui.callrecord;
 
 import android.app.Activity;
-import android.os.Environment;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,10 +11,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.android.callrecorder.R;
 import com.android.callrecorder.bean.CallItem;
 import com.android.callrecorder.bean.CallRecordInfo;
+import com.android.callrecorder.config.Constant;
 import com.android.callrecorder.manager.RecordPlayerManager;
 import com.android.callrecorder.utils.DateUtil;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -63,8 +62,7 @@ public class CallRecordAdapter extends RecyclerView.Adapter<CallRecordViewHolder
 
                 }
                 if (holder.getPlayPosition() != position) {//如果是其他，需要播放自己
-                    String filePath = Environment.getExternalStorageDirectory().getPath() + File.separator + "ZDTCallRecord";
-                    filePath = filePath + "/1689647006883_18032408866.amr";
+                    String filePath = Constant.APP_FILE_PATH + "/1689647006883_18032408866.amr";
                     CallRecordInfo callRecordInfo = new CallRecordInfo();
                     callRecordInfo.setCallrecod(filePath);
                     RecordPlayerManager.getInstance().play(holder, callRecordInfo);

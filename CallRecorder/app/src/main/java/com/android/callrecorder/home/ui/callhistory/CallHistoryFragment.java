@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.android.callrecorder.bean.response.CallHistoryResponse;
 import com.android.callrecorder.config.Constant;
 import com.android.callrecorder.databinding.FragmentCallHistoryBinding;
+import com.android.callrecorder.home.MainActivity;
 import com.android.callrecorder.home.ui.callrecord.CallRecordFragment;
 import com.android.callrecorder.http.MyHttpManager;
 import com.android.callrecorder.login.LoginActivity;
@@ -151,7 +152,7 @@ public class CallHistoryFragment extends Fragment {
                             binding.recycleView.setVisibility(View.GONE);
                             if (resultJson != null && Constant.HttpCode.HTTP_NEED_LOGIN == resultJson.code) {
                                 ToastUtil.showToast("登录信息失效，请登录后重试");
-                                goLogin();
+                                ((MainActivity)getActivity()).goLogin();
                             } else {
                                 ToastUtil.showToast("信息获取失败，请稍后重试");
                             }
@@ -210,13 +211,6 @@ public class CallHistoryFragment extends Fragment {
         year = calendar.get(Calendar.YEAR);
         month = calendar.get(Calendar.MONTH) + 1;
 //        int day = calendar.get(Calendar.DAY_OF_MONTH);
-    }
-
-
-    private void goLogin() {
-        Intent intent = new Intent(getContext(), LoginActivity.class);
-        startActivity(intent);
-        getActivity().finish();
     }
 
 }

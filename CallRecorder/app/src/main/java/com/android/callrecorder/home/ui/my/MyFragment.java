@@ -8,22 +8,18 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 
 import com.android.callrecorder.R;
-import com.android.callrecorder.bean.response.LoginResponse;
 import com.android.callrecorder.bean.response.UserInfoResponse;
 import com.android.callrecorder.config.Constant;
 import com.android.callrecorder.config.GlobalConfig;
 import com.android.callrecorder.databinding.FragmentMyBinding;
 import com.android.callrecorder.feedback.FeedbackActivity;
-import com.android.callrecorder.home.ui.callrecord.CallRecordFragment;
+import com.android.callrecorder.home.MainActivity;
 import com.android.callrecorder.http.MyHttpManager;
-import com.android.callrecorder.login.LoginActivity;
 import com.android.callrecorder.utils.SharedPreferenceUtil;
 import com.android.callrecorder.utils.ToastUtil;
 
-import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -99,7 +95,7 @@ public class MyFragment extends Fragment implements View.OnClickListener {
                         } else {
                             if (resultJson != null && Constant.HttpCode.HTTP_NEED_LOGIN == resultJson.code) {
                                 ToastUtil.showToast("登录信息失效，请登录后重试");
-                                goLogin();
+                                ((MainActivity)getActivity()).goLogin();
                             } else {
                                 ToastUtil.showToast("信息获取失败，请稍后重试");
                             }
@@ -150,7 +146,7 @@ public class MyFragment extends Fragment implements View.OnClickListener {
      */
     private void uploadFile(Map params) {
 
-        MyHttpManager.getInstance().post(params, Constant.URL_UPLOAD_RECORD_ALL, 125,
+        MyHttpManager.getInstance().post(params, Constant.URL_UPLOAD_RECORD, 125,
                 new MyHttpManager.ResponseListener<UserInfoResponse>() {
                     @Override
                     public void onHttpResponse(int requestCode, boolean isSuccess, UserInfoResponse resultJson) {
@@ -159,7 +155,7 @@ public class MyFragment extends Fragment implements View.OnClickListener {
                             SharedPreferenceUtil.getInstance().setRecordUploadTime((Long) params.get("time"));
                         } else {
                             if (resultJson != null && Constant.HttpCode.HTTP_NEED_LOGIN == resultJson.code) {
-                                goLogin();
+//                                ((MainActivity)getActivity()).goLogin();
                             } else {
 //                            ToastUtil.showToast("，请稍后重试");
                             }
@@ -171,12 +167,6 @@ public class MyFragment extends Fragment implements View.OnClickListener {
                         return UserInfoResponse.class;
                     }
                 });
-    }
-
-    private void goLogin() {
-        Intent intent = new Intent(getContext(), LoginActivity.class);
-        startActivity(intent);
-        getActivity().finish();
     }
 
     private void goFeedback() {

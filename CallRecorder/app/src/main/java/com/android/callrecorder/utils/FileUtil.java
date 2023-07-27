@@ -1,7 +1,8 @@
 package com.android.callrecorder.utils;
 
-import android.os.Environment;
 import android.text.TextUtils;
+
+import com.android.callrecorder.config.Constant;
 
 import java.io.File;
 import java.io.IOException;
@@ -19,14 +20,13 @@ public class FileUtil {
     }
 
     public static File getCallRecordSaveFile(long paramLong, String paramString) {
-        String str = Environment.getExternalStorageDirectory().getPath() + File.separator + "ZDTCallRecord";
-        Object localObject = new File(str);
+        Object localObject = new File(Constant.RECORD_FILE);
         if (!((File) localObject).exists()) {
             ((File) localObject).mkdirs();
         }
         localObject = new StringBuilder();
         ((StringBuilder) localObject).append(paramLong).append("_").append(paramString).append(".3gp");
-        file = new File(str, ((StringBuilder) localObject).toString());
+        file = new File(Constant.RECORD_FILE, ((StringBuilder) localObject).toString());
         try {
             if (!file.exists()) {
                 file.createNewFile();

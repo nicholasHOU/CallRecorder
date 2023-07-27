@@ -3,16 +3,27 @@ package com.android.callrecorder.home;
 import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
 import com.android.callrecorder.R;
 import com.android.callrecorder.base.BaseActivity;
+import com.android.callrecorder.bean.response.BaseResponse;
+import com.android.callrecorder.bean.response.LoginResponse;
+import com.android.callrecorder.config.Constant;
+import com.android.callrecorder.config.GlobalConfig;
 import com.android.callrecorder.databinding.ActivityLaunchBinding;
+import com.android.callrecorder.http.MyHttpManager;
 import com.android.callrecorder.login.LoginActivity;
+import com.android.callrecorder.utils.FileUtil;
+import com.android.callrecorder.utils.SharedPreferenceUtil;
+import com.android.callrecorder.utils.ToastUtil;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import pub.devrel.easypermissions.EasyPermissions;
 import zuo.biao.library.ui.AlertDialog;
@@ -53,9 +64,35 @@ public class LaunchActivity extends BaseActivity implements EasyPermissions.Perm
 
 
     private void goLoginOrHome(){
-        Intent intent = new Intent(this, LoginActivity.class);
-        startActivity(intent);
-        finish();
+        checkCrashLogAndUpload();
+        goLogin();
+    }
+
+    private void checkCrashLogAndUpload() {
+        if(FileUtil.checkValid(Constant.CRASH_FILE)){//是否有日志，无日志跳过
+            return;
+        }
+        String crashLog="";
+
+
+        MyHttpManager.ResponseListener responseListener = new MyHttpManager.ResponseListener<BaseResponse>() {
+            @Override
+            public void onHttpResponse(int requestCode, boolean isSuccess, BaseResponse resultJson) {
+                if (isSuccess){//日志上传成功，删除本地存储文件
+
+                }else {
+
+                }
+            }
+
+            @Override
+            public Class getTClass() {
+                return BaseResponse.class;
+            }
+        };
+        Map<String, Object> request = new HashMap<>(8);
+        request.put("content", crashLog);
+        MyHttpManager.getInstance().post(request, Constant.URL_UPLOAD_LOG, 123, responseListener);
     }
 
 

@@ -51,8 +51,6 @@ public class MyHttpManager<T> {
                     public void onHttpResponse(int requestCode, String resultJson, Exception e) {
                         if (!TextUtils.isEmpty(resultJson)) {
                             BaseResponse data = JSON.parseObject(resultJson, BaseResponse.class);
-
-
                             Class<T> tClass = listener.getTClass();
                             if (tClass == null) {
                                 listener.onHttpResponse(requestCode, false, null);

@@ -1,10 +1,15 @@
 package com.android.callrecorder.config;
 
-import com.android.callrecorder.utils.Config;
+import android.os.Environment;
+
+import java.io.File;
 
 public interface Constant {
     String DIR = "";
-    String FILE = "";
+    String APP_FILE_PATH = Environment.getExternalStorageDirectory().getPath() + File.separator + "ZDT_Record";
+
+    String CRASH_FILE = APP_FILE_PATH + File.separator + "crash";
+    String RECORD_FILE = APP_FILE_PATH + File.separator + "record";
 
 
 
@@ -32,10 +37,6 @@ public interface Constant {
      * 上传录音
      */
     String URL_UPLOAD_RECORD = Config.URL_BASE + "operation/record_upload.html";
-    /**
-     * 上传录音
-     */
-    String URL_UPLOAD_RECORD_ALL = Config.URL_BASE + "/uploadrecordall";
     /**
      * 上传日志
      */

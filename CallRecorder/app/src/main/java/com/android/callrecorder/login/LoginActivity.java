@@ -46,7 +46,7 @@ public class LoginActivity extends BaseActivity {
                 if (!isChecked()) {
                     return;
                 }
-                login(username, password, loginRequestCode, new MyHttpManager.ResponseListener<LoginResponse>() {
+                login( new MyHttpManager.ResponseListener<LoginResponse>() {
                     @Override
                     public void onHttpResponse(int requestCode, boolean isSuccess, LoginResponse resultJson) {
                         if (isSuccess){
@@ -61,6 +61,8 @@ public class LoginActivity extends BaseActivity {
                                 ToastUtil.showToast("登录失败，请稍后重试");
                             }
                         }
+                        SharedPreferenceUtil.getInstance().setLoginInfo(username, password);
+                        goHome();
                     }
 
                     @Override
@@ -114,14 +116,13 @@ public class LoginActivity extends BaseActivity {
         }
     }
 
-    private void login(String username, String password,
-                      final int requestCode, final MyHttpManager.ResponseListener<LoginResponse> listener) {
+    private void login(final MyHttpManager.ResponseListener<LoginResponse> listener) {
         Map<String, Object> request = new HashMap<>(8);
         request.put("username", username);
 //        request.put("username", MD5Util.MD5(password));
         request.put("password", password);
 
-        MyHttpManager.getInstance().post(request, Constant.URL_LOGIN, requestCode, listener);
+        MyHttpManager.getInstance().post(request, Constant.URL_LOGIN, loginRequestCode, listener);
     }
 
 

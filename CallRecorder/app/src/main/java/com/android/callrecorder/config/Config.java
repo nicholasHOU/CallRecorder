@@ -1,4 +1,4 @@
-package com.android.callrecorder.utils;
+package com.android.callrecorder.config;
 
 public class Config {
     public static final boolean isDebug = true;
