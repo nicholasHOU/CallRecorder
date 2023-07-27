@@ -19,6 +19,7 @@ import com.android.callrecorder.manager.RecordPlayerManager;
  */
 public class CallRecordViewHolder extends RecyclerView.ViewHolder {
 	private static final String TAG = "DemoView";
+	private int playPosition;
 
 	public CallRecordViewHolder(Activity context, ViewGroup parent) {
 		super(context.getLayoutInflater().inflate(R.layout.item_call_record, parent,false));
@@ -48,4 +49,16 @@ public class CallRecordViewHolder extends RecyclerView.ViewHolder {
 		lProgress = itemView.findViewById(R.id.time_progress);
 	}
 
+	public void setPlayPosition(int position){
+		playPosition = position;
+	}
+
+	/**
+	 * -1：无播放中的；else：有播放中的
+	 * 点击播放，设置position，播放结束，置为-1；
+	 * @return
+	 */
+	public int getPlayPosition() {
+		return playPosition;
+	}
 }

@@ -31,6 +31,10 @@ public class CallHistoryUtil {
     }
 
     public List<CallItem> getDataList(Context context) {
+        return  getDataList(context,0);
+    }
+
+    public List<CallItem> getDataList(Context context,long timeStamp) {
         // 1.获得ContentResolver
         ContentResolver resolver = context.getContentResolver();
         // 2.利用ContentResolver的query方法查询通话记录数据库
@@ -42,14 +46,17 @@ public class CallHistoryUtil {
          * @param sortOrder 排序方式
          *
          */
+//        String selection ="date > ? AND pkg_name = ? ";
+        String selection ="date > ? ";
+        String[] selectionArgs = new String[]{timeStamp+""};
         Cursor cursor = resolver.query(CallLog.Calls.CONTENT_URI, // 查询通话记录的URI
                 new String[]{CallLog.Calls.CACHED_NAME// 通话记录的联系人
                         , CallLog.Calls.NUMBER// 通话记录的电话号码
                         , CallLog.Calls.DATE// 通话记录的日期
                         , CallLog.Calls.DURATION// 通话时长
                         , CallLog.Calls.TYPE}// 通话类型
-                , null, null, CallLog.Calls.DEFAULT_SORT_ORDER// 按照时间逆序排列，最近打的最先显示
-        );
+                , selection, selectionArgs, CallLog.Calls.DEFAULT_SORT_ORDER// 按照时间逆序排列，最近打的最先显示
+        ).;
         // 3.通过Cursor获得数据
         List<CallItem> list = new ArrayList();
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss");

@@ -67,18 +67,22 @@ public class PhoneListenerService extends Service {
                     }
                     break;
                 case TelephonyManager.CALL_STATE_IDLE: /* 无任何状态时 */
-                    if (recorder != null) {
-                        recorder.stop();
-                        recorder.release();
+                    try {
+                        if (recorder != null) {
+                            recorder.stop();
+                            recorder.release();
+                        }
+                        CallRecordEvent event = new CallRecordEvent(CallRecordEvent.START, System.currentTimeMillis());
+                        if (file != null) {
+                            event.recordFile = file.getAbsolutePath();
+                            event.phone = phone;
+                            EventBus.getDefault().post(event);
+                        }
+                        phone = "";
+                        file = null;
+                    } catch (Exception e) {
+                        e.printStackTrace();
                     }
-                    CallRecordEvent event = new CallRecordEvent(CallRecordEvent.START, System.currentTimeMillis());
-                    if (file != null) {
-                        event.recordFile = file.getAbsolutePath();
-                        event.phone = phone;
-                        EventBus.getDefault().post(event);
-                    }
-                    phone = "";
-                    file = null;
                     break;
             }
         }

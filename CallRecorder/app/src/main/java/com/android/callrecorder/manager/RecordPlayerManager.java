@@ -47,7 +47,7 @@ public class RecordPlayerManager {
     /**
      * 将上一个播放暂停，并隐藏播放进度
      */
-    private void clearLast() {
+    public void clearLast() {
         if (this.mCurViewRef != null) {
             CallRecordViewHolder holder = this.mCurViewRef.get();
             if ((holder != null) && (holder.rlProgress.getVisibility() == View.VISIBLE)) {

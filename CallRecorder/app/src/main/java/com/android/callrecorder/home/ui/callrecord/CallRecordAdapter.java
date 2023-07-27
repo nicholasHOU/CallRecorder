@@ -54,16 +54,27 @@ public class CallRecordAdapter extends RecyclerView.Adapter<CallRecordViewHolder
         callRecordInfo.setCallrecod("");
         int during = RecordPlayerManager.getInstance().getDuration(callRecordInfo);
         RecordPlayerManager.getInstance().setSeekBar(holder, during);
-       String totalTime = DateUtil.formatTime(false,during);
+        String totalTime = DateUtil.formatTime(false, during);
         holder.tvPlayTotalTime.setText(totalTime);
         holder.ivPlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String filePath = Environment.getExternalStorageDirectory().getPath() + File.separator + "ZDTCallRecord";
-                filePath=filePath+"/1689647006883_18032408866.amr";
-                CallRecordInfo callRecordInfo = new CallRecordInfo();
-                callRecordInfo.setCallrecod(filePath);
-                RecordPlayerManager.getInstance().play(holder,callRecordInfo);
+                if (holder.getPlayPosition() != -1) {//判断当前是否在播放，如果有播放的,先暂停播放中的task
+
+                }
+                if (holder.getPlayPosition() != position) {//如果是其他，需要播放自己
+                    String filePath = Environment.getExternalStorageDirectory().getPath() + File.separator + "ZDTCallRecord";
+                    filePath = filePath + "/1689647006883_18032408866.amr";
+                    CallRecordInfo callRecordInfo = new CallRecordInfo();
+                    callRecordInfo.setCallrecod(filePath);
+                    RecordPlayerManager.getInstance().play(holder, callRecordInfo);
+                    holder.setPlayPosition(position);// 记录播放位置
+                } else {
+                    holder.ivPlay.setImageResource(R.drawable.ic_play);
+                    holder.rlProgress.setVisibility(View.GONE);
+                    holder.tvPlayProgressTime.setText("00:00");
+                    holder.setPlayPosition(-1);// 如果是自己，只暂停，不播放；此时无播放
+                }
             }
         });
     }
@@ -80,4 +91,5 @@ public class CallRecordAdapter extends RecyclerView.Adapter<CallRecordViewHolder
             notifyDataSetChanged();
         }
     }
+
 }
