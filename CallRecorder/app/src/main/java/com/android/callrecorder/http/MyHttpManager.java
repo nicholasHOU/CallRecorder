@@ -110,7 +110,9 @@ public class MyHttpManager<T> {
             listener.onHttpResponse(requestCode, true, response);
         } else if (Constant.URL_LOGIN.equals(url)) {
             LoginResponse response = new LoginResponse();
-            response.token = "2u392rjcu8394cnn82934y1238ncjeh182358";
+            LoginResponse.Data data = new LoginResponse.Data();
+            data.token = "2u392rjcu8394cnn82934y1238ncjeh182358";
+            response.data = data;
             listener.onHttpResponse(requestCode, true, response);
         } else {
             UserInfoResponse response = new UserInfoResponse();

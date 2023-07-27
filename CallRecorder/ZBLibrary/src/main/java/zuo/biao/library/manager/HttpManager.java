@@ -16,6 +16,7 @@ package zuo.biao.library.manager;
 
 import android.content.Context;
 import android.os.AsyncTask;
+import android.text.TextUtils;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -267,7 +268,10 @@ public class HttpManager {
 					public Response intercept(Chain chain) throws IOException {
 						Request.Builder build = chain.request().newBuilder();
 						for (String key : headers.keySet()) {
-							build.addHeader(key, headers.get(key));
+							String value = headers.get(key);
+							if (!TextUtils.isEmpty(key)&&!TextUtils.isEmpty(value)){
+								build.addHeader(key, value);
+							}
 						}
 						return chain.proceed(build.build());
 					}

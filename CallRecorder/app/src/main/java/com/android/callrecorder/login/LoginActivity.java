@@ -50,7 +50,7 @@ public class LoginActivity extends BaseActivity {
                     @Override
                     public void onHttpResponse(int requestCode, boolean isSuccess, LoginResponse resultJson) {
                         if (isSuccess){
-                            GlobalConfig.token = resultJson.token;
+                            GlobalConfig.token = resultJson.data.token;
                             ToastUtil.showToast("登录成功");
                             SharedPreferenceUtil.getInstance().setLoginInfo(username, password);
                             goHome();
@@ -118,7 +118,7 @@ public class LoginActivity extends BaseActivity {
 
     private void login(final MyHttpManager.ResponseListener<LoginResponse> listener) {
         Map<String, Object> request = new HashMap<>(8);
-        request.put("username", username);
+        request.put("phone", username);
 //        request.put("username", MD5Util.MD5(password));
         request.put("password", password);
 
