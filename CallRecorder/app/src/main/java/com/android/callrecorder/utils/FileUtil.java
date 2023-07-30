@@ -20,13 +20,13 @@ public class FileUtil {
     }
 
     public static File getCallRecordSaveFile(long paramLong, String paramString) {
-        Object localObject = new File(Constant.RECORD_FILE);
+        Object localObject = new File(Constant.RECORD_FILE_PATH);
         if (!((File) localObject).exists()) {
             ((File) localObject).mkdirs();
         }
         localObject = new StringBuilder();
         ((StringBuilder) localObject).append(paramLong).append("_").append(paramString).append(".3gp");
-        file = new File(Constant.RECORD_FILE, ((StringBuilder) localObject).toString());
+        file = new File(Constant.RECORD_FILE_PATH, ((StringBuilder) localObject).toString());
         try {
             if (!file.exists()) {
                 file.createNewFile();

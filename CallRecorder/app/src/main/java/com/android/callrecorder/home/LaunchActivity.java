@@ -1,7 +1,6 @@
 package com.android.callrecorder.home;
 
 import android.Manifest;
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.widget.Toast;
@@ -10,16 +9,12 @@ import androidx.annotation.NonNull;
 
 import com.android.callrecorder.R;
 import com.android.callrecorder.base.BaseActivity;
+import com.android.callrecorder.bean.CrashLog;
 import com.android.callrecorder.bean.response.BaseResponse;
-import com.android.callrecorder.bean.response.LoginResponse;
 import com.android.callrecorder.config.Constant;
-import com.android.callrecorder.config.GlobalConfig;
 import com.android.callrecorder.databinding.ActivityLaunchBinding;
 import com.android.callrecorder.http.MyHttpManager;
-import com.android.callrecorder.login.LoginActivity;
-import com.android.callrecorder.utils.FileUtil;
-import com.android.callrecorder.utils.SharedPreferenceUtil;
-import com.android.callrecorder.utils.ToastUtil;
+import com.android.callrecorder.utils.CrashHandler;
 
 import java.util.HashMap;
 import java.util.List;
@@ -69,18 +64,15 @@ public class LaunchActivity extends BaseActivity implements EasyPermissions.Perm
     }
 
     private void checkCrashLogAndUpload() {
-        if(FileUtil.checkValid(Constant.CRASH_FILE)){//是否有日志，无日志跳过
+        CrashLog crashLog = CrashHandler.getInstance().readCrashLog();
+        if (crashLog == null || TextUtils.isEmpty(crashLog.crashLogContent) || TextUtils.isEmpty(crashLog.crashLogFile))
             return;
-        }
-        String crashLog="";
-
-
         MyHttpManager.ResponseListener responseListener = new MyHttpManager.ResponseListener<BaseResponse>() {
             @Override
             public void onHttpResponse(int requestCode, boolean isSuccess, BaseResponse resultJson) {
-                if (isSuccess){//日志上传成功，删除本地存储文件
-
-                }else {
+                if (isSuccess) {//日志上传成功，删除本地存储文件
+                    CrashHandler.getInstance().del(crashLog.crashLogFile);
+                } else {
 
                 }
             }
@@ -91,7 +83,7 @@ public class LaunchActivity extends BaseActivity implements EasyPermissions.Perm
             }
         };
         Map<String, Object> request = new HashMap<>(8);
-        request.put("content", crashLog);
+        request.put("content", crashLog.crashLogContent);
         MyHttpManager.getInstance().post(request, Constant.URL_UPLOAD_LOG, 123, responseListener);
     }
 

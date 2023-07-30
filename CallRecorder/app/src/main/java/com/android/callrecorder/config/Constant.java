@@ -1,15 +1,13 @@
 package com.android.callrecorder.config;
 
-import android.os.Environment;
-
 import java.io.File;
 
 public interface Constant {
     String DIR = "";
-    String APP_FILE_PATH = Environment.getExternalStorageDirectory().getPath() + File.separator + "ZDT_Record";
+//    String APP_FILE_PATH = Environment.getExternalStorageDirectory().getPath() + File.separator + "ZDT_Record";
 
-    String CRASH_FILE = APP_FILE_PATH + File.separator + "crash";
-    String RECORD_FILE = APP_FILE_PATH + File.separator + "record";
+    String CRASH_FILE_PATH = Config.APP_FILE_PATH + File.separator + "crash";
+    String RECORD_FILE_PATH = Config.APP_FILE_PATH + File.separator + "record";
 
 
 

@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.android.callrecorder.R;
 import com.android.callrecorder.bean.CallItem;
 import com.android.callrecorder.bean.CallRecordInfo;
-import com.android.callrecorder.config.Constant;
+import com.android.callrecorder.config.Config;
 import com.android.callrecorder.manager.RecordPlayerManager;
 import com.android.callrecorder.utils.DateUtil;
 
@@ -50,7 +50,6 @@ public class CallRecordAdapter extends RecyclerView.Adapter<CallRecordViewHolder
         }
         CallRecordInfo callRecordInfo = new CallRecordInfo();
         callRecordInfo.setCallrecod("");
-        callRecordInfo.setCallrecod("");
         int during = RecordPlayerManager.getInstance().getDuration(callRecordInfo);
         RecordPlayerManager.getInstance().setSeekBar(holder, during);
         String totalTime = DateUtil.formatTime(false, during);
@@ -62,7 +61,7 @@ public class CallRecordAdapter extends RecyclerView.Adapter<CallRecordViewHolder
 
                 }
                 if (holder.getPlayPosition() != position) {//如果是其他，需要播放自己
-                    String filePath = Constant.APP_FILE_PATH + "/1689647006883_18032408866.amr";
+                    String filePath = Config.APP_FILE_PATH + "/1689647006883_18032408866.amr";
                     CallRecordInfo callRecordInfo = new CallRecordInfo();
                     callRecordInfo.setCallrecod(filePath);
                     RecordPlayerManager.getInstance().play(holder, callRecordInfo);

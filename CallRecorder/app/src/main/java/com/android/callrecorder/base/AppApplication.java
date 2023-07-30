@@ -1,10 +1,12 @@
 package com.android.callrecorder.base;
 
+
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.content.Context;
 import android.os.Bundle;
 
+import com.android.callrecorder.config.Config;
 import com.android.callrecorder.utils.AppManager;
 import com.android.callrecorder.utils.CrashHandler;
 import com.android.callrecorder.utils.Logs;
@@ -89,6 +91,7 @@ public class AppApplication extends BaseApplication {
     }
 
     private void initCrash() {
+        Config.APP_FILE_PATH =  getExternalFilesDir("ZDT_Record").getAbsolutePath() ;//外部存储
         CrashHandler crashHandler = CrashHandler.getInstance();
         crashHandler.init(getApplicationContext());
     }
