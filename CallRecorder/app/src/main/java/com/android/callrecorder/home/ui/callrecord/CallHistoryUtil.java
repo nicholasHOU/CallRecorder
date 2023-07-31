@@ -76,7 +76,13 @@ public class CallHistoryUtil {
                 case CallLog.Calls.MISSED_TYPE:
                     typeString = "未接";
                     callType =  CallItem.CALLTYPE_NO;
-                    continue;//如果是未接，直接过滤掉
+//                    continue;//如果是未接，直接过滤掉
+                    break;
+                case CallLog.Calls.REJECTED_TYPE:
+                    typeString = "拒接";
+                    callType =  CallItem.CALLTYPE_REJECT;
+//                    continue;//如果是未接，直接过滤掉
+                    break;
                 default:
                     break;
             }

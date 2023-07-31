@@ -2,6 +2,7 @@ package com.android.callrecorder.home.ui.my;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.android.callrecorder.R;
+import com.android.callrecorder.bean.CrashLog;
 import com.android.callrecorder.bean.response.UserInfoResponse;
 import com.android.callrecorder.config.Constant;
 import com.android.callrecorder.config.GlobalConfig;
@@ -17,9 +19,11 @@ import com.android.callrecorder.databinding.FragmentMyBinding;
 import com.android.callrecorder.feedback.FeedbackActivity;
 import com.android.callrecorder.home.MainActivity;
 import com.android.callrecorder.http.MyHttpManager;
+import com.android.callrecorder.utils.FileUtil;
 import com.android.callrecorder.utils.SharedPreferenceUtil;
 import com.android.callrecorder.utils.ToastUtil;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -88,10 +92,10 @@ public class MyFragment extends Fragment implements View.OnClickListener {
                     @Override
                     public void onHttpResponse(int requestCode, boolean isSuccess, UserInfoResponse resultJson) {
                         if (isSuccess) {
-                            GlobalConfig.username = resultJson.name;
-                            binding.tvName.setText(resultJson.name);
-                            binding.tvGroup.setText(resultJson.city + " " + resultJson.company + " " +
-                                    resultJson.department_big + " " + resultJson.department);
+                            GlobalConfig.username = resultJson.data.name;
+                            binding.tvName.setText(resultJson.data.name);
+                            binding.tvGroup.setText(resultJson.data.city + " " + resultJson.data.company + " " +
+                                    resultJson.data.department_big + " " + resultJson.data.department);
                         } else {
                             if (resultJson != null && Constant.HttpCode.HTTP_NEED_LOGIN == resultJson.code) {
                                 ToastUtil.showToast("登录信息失效，请登录后重试");
@@ -118,9 +122,21 @@ public class MyFragment extends Fragment implements View.OnClickListener {
 
     /**
      * 上传录音
+     * String filePath = Constant.RECORD_FILE_PATH + "/1689647006883_18032408866.amr";
      */
     private void uploadRecord() {
+//        File file = new File(Constant.RECORD_FILE_PATH);
+        File file = new File(Constant.RECORD_FILE_PATH);
 
+        if (file.isDirectory()) {
+            File[] files = file.listFiles();
+            for (File recordFile : files) {
+                uploadRecord(recordFile.getAbsolutePath());
+            }
+        }
+    }
+
+    private void uploadRecord(String recordFile) {
         ThreadPoolProxyFactory.getCacheThreadPool().execute(new Runnable() {
             @Override
             public void run() {
@@ -130,11 +146,10 @@ public class MyFragment extends Fragment implements View.OnClickListener {
                 params.put("phone", "");
                 params.put("name", "");
                 params.put("callType", "");
+                params.put("video", FileUtil.getRecordFile(recordFile));
                 uploadFile(params);
-
             }
         });
-
     }
 
     /**
@@ -145,7 +160,6 @@ public class MyFragment extends Fragment implements View.OnClickListener {
      * “back”: “手机号的备注” // 手机号备注   可以为空
      */
     private void uploadFile(Map params) {
-
         MyHttpManager.getInstance().post(params, Constant.URL_UPLOAD_RECORD, 125,
                 new MyHttpManager.ResponseListener<UserInfoResponse>() {
                     @Override
@@ -155,7 +169,7 @@ public class MyFragment extends Fragment implements View.OnClickListener {
                             SharedPreferenceUtil.getInstance().setRecordUploadTime((Long) params.get("time"));
                         } else {
                             if (resultJson != null && Constant.HttpCode.HTTP_NEED_LOGIN == resultJson.code) {
-//                                ((MainActivity)getActivity()).goLogin();
+//                                goLogin();
                             } else {
 //                            ToastUtil.showToast("，请稍后重试");
                             }

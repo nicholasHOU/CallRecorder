@@ -26,6 +26,7 @@ import com.android.callrecorder.home.ui.callhistory.CallHistoryFragment;
 import com.android.callrecorder.home.ui.callrecord.CallRecordFragment;
 import com.android.callrecorder.home.ui.my.MyFragment;
 import com.android.callrecorder.http.MyHttpManager;
+import com.android.callrecorder.utils.FileUtil;
 import com.android.callrecorder.utils.SharedPreferenceUtil;
 import com.google.android.material.tabs.TabLayout;
 
@@ -33,6 +34,12 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -55,6 +62,7 @@ public class MainActivity extends BaseActivity {
     private int tabImages[] = {R.drawable.bg_home_first, R.drawable.bg_home_second, R.drawable.bg_home_third};
     private boolean isRecording;//是否正在录音
     private long recordStartTime;//开始录音的时间点
+    private byte[] bFile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -337,13 +345,12 @@ public class MainActivity extends BaseActivity {
                 params.put("phone", event.phone);
                 params.put("name", "");
                 params.put("callType", "");
+                params.put("video", FileUtil.getRecordFile(event.recordFile));
                 uploadFile(params);
 
                 isRecording = false;
             }
         }
-
-
     }
 
     /**

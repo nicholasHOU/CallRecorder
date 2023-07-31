@@ -10,11 +10,17 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.callrecorder.bean.response.UserInfoResponse;
+import com.android.callrecorder.config.Constant;
 import com.android.callrecorder.databinding.FragmentCallRecordBinding;
 import com.android.callrecorder.bean.CallItem;
+import com.android.callrecorder.http.MyHttpManager;
+import com.android.callrecorder.utils.SharedPreferenceUtil;
 import com.android.callrecorder.widget.MyRecycleViewDecoration;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class CallRecordFragment extends Fragment {
 
@@ -57,8 +63,41 @@ public class CallRecordFragment extends Fragment {
         LinearLayoutManager manager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
         binding.recycleView.setLayoutManager(manager);
         binding.recycleView.addItemDecoration(new MyRecycleViewDecoration(getContext(), manager.getOrientation()));
-//        FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
-//        transaction.setMaxLifecycle(this, Lifecycle.State.RESUMED).commit();
+
+        binding.tvTitle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                uploadCallLog();
+            }
+
+
+        });
+    }
+    private void uploadCallLog() {
+        Map params = new HashMap();
+        params.put("time", "");
+        params.put("during", "");
+        MyHttpManager.getInstance().post(params, Constant.URL_CALLLOG_UPLOAD, 125,
+                new MyHttpManager.ResponseListener<UserInfoResponse>() {
+                    @Override
+                    public void onHttpResponse(int requestCode, boolean isSuccess, UserInfoResponse resultJson) {
+                        if (isSuccess) {
+                            // 已上传成功的更新上传时间戳
+                            SharedPreferenceUtil.getInstance().setRecordUploadTime((Long) params.get("time"));
+                        } else {
+                            if (resultJson != null && Constant.HttpCode.HTTP_NEED_LOGIN == resultJson.code) {
+//                                goLogin();
+                            } else {
+//                            ToastUtil.showToast("，请稍后重试");
+                            }
+                        }
+                    }
+
+                    @Override
+                    public Class getTClass() {
+                        return UserInfoResponse.class;
+                    }
+                });
     }
 
     @Override

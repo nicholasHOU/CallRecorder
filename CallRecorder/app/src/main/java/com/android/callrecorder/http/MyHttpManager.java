@@ -74,11 +74,12 @@ public class MyHttpManager<T> {
             , final int requestCode, ResponseListener listener) {
         if (Constant.URL_USERINFO.equals(url)) {
             UserInfoResponse response = new UserInfoResponse();
-            response.name = "张三";
-            response.city = "北京";
-            response.company = "company";
-            response.department_big = "big";
-            response.department = "department";
+            response.data = new UserInfoResponse.DataInfo();
+            response.data.name = "张三";
+            response.data.city = "北京";
+            response.data.company = "company";
+            response.data.department_big = "big";
+            response.data.department = "department";
 
             listener.onHttpResponse(requestCode, true, response);
         } else if (Constant.URL_CALLLOG_LIST.equals(url)) {
@@ -115,8 +116,8 @@ public class MyHttpManager<T> {
             response.data = data;
             listener.onHttpResponse(requestCode, true, response);
         } else {
-            UserInfoResponse response = new UserInfoResponse();
-            response.name = "张三";
+//            UserInfoResponse response = new UserInfoResponse();
+//            response.name = "张三";
         }
 
     }
