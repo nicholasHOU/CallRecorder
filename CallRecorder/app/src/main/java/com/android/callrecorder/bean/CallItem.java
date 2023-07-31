@@ -8,7 +8,8 @@ public class CallItem {
     public static final int CALLTYPE_REJECT = 5;
 
     public int callType;//0:呼出；1：呼入;2 未接
-    public String time;//通话时间
+    public long time;//通话时间
+    public String timeStr;//通话时间
     public String duringStr;//通话时长
     public long during;//通话时长
     public String name;//电话号码

@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.android.callrecorder.R;
 import com.android.callrecorder.bean.CallItem;
 import com.android.callrecorder.bean.CallRecordInfo;
-import com.android.callrecorder.config.Config;
 import com.android.callrecorder.config.Constant;
 import com.android.callrecorder.manager.RecordPlayerManager;
 import com.android.callrecorder.utils.DateUtil;
@@ -40,7 +39,7 @@ public class CallRecordAdapter extends RecyclerView.Adapter<CallRecordViewHolder
     @Override
     public void onBindViewHolder(@NonNull CallRecordViewHolder holder, int position) {
         item = items.get(position);
-        holder.tvCallTime.setText(item.duringStr + " " + item.time);
+        holder.tvCallTime.setText(item.duringStr + " " + item.timeStr);
         holder.tvPhoneNum.setText(TextUtils.isEmpty(item.name) ? item.phone : item.name);
         if (item.callType == CallItem.CALLTYPE_OUT) {
             holder.ivCallType.setImageResource(R.drawable.ic_outgoing);

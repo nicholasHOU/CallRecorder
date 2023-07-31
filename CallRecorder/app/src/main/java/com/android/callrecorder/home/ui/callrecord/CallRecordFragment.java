@@ -26,6 +26,7 @@ public class CallRecordFragment extends Fragment {
 
     private FragmentCallRecordBinding binding;
     private CallRecordAdapter callRecordAdapter;
+    private List<CallItem> callLogs;
 
     @Override
     public void onDestroyView() {
@@ -74,9 +75,12 @@ public class CallRecordFragment extends Fragment {
         });
     }
     private void uploadCallLog() {
+        if (callLogs==null||callLogs.size()==0){
+            return;
+        }
         Map params = new HashMap();
-        params.put("time", "");
-        params.put("during", "");
+        params.put("callLog", callLogs);
+
         MyHttpManager.getInstance().post(params, Constant.URL_CALLLOG_UPLOAD, 125,
                 new MyHttpManager.ResponseListener<UserInfoResponse>() {
                     @Override
@@ -111,10 +115,10 @@ public class CallRecordFragment extends Fragment {
      */
     public void initData() {//必须在onCreateView方法内调用
 
-        List<CallItem> callItems = CallHistoryUtil.getInstance().getDataList(getContext());
+        callLogs = CallHistoryUtil.getInstance().getDataList(getContext());
 //        List<CallItem> callItems = CallHistoryUtil.getInstance().getTestDataList();
-        callRecordAdapter.refreshData(callItems);
-        if (callItems == null || callItems.size() == 0) {
+        callRecordAdapter.refreshData(callLogs);
+        if (callLogs == null || callLogs.size() == 0) {
             binding.tvEmpty.setVisibility(View.VISIBLE);
         } else {
             binding.tvEmpty.setVisibility(View.GONE);

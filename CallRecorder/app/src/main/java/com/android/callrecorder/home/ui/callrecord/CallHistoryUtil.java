@@ -94,7 +94,8 @@ public class CallHistoryUtil {
             CallItem callItem = new CallItem();
             callItem.phone = number;
             callItem.name = name;
-            callItem.time = date;
+            callItem.time = dateLong;
+            callItem.timeStr = date;
             callItem.during = duration;
             int minutes = (duration / 60);
             int seconds = (duration % 60);
@@ -133,7 +134,7 @@ public class CallHistoryUtil {
             CallItem callItem = new CallItem();
             callItem.phone = (18701660000l + i) + "";
             callItem.name = "张三" + i;
-            callItem.time = date;
+            callItem.timeStr = date;
             int minutes = (duration + i / 60);
             int seconds = (duration + i % 60);
             String minute = minutes == 0 ? "" : minutes + "分";
