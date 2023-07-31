@@ -47,6 +47,8 @@ public class CallRecordAdapter extends RecyclerView.Adapter<CallRecordViewHolder
             holder.ivCallType.setImageResource(R.drawable.ic_incoming);
         } else if (item.callType == CallItem.CALLTYPE_NO) {
             holder.ivCallType.setImageResource(R.drawable.ic_unkowntype);
+        } else if (item.callType == CallItem.CALLTYPE_REJECT) {
+            holder.ivCallType.setImageResource(R.drawable.ic_incoming);
         }
         CallRecordInfo callRecordInfo = new CallRecordInfo();
         callRecordInfo.setCallrecod("");
@@ -66,11 +68,12 @@ public class CallRecordAdapter extends RecyclerView.Adapter<CallRecordViewHolder
                     callRecordInfo.setCallrecod(filePath);
                     RecordPlayerManager.getInstance().play(holder, callRecordInfo);
                     holder.setPlayPosition(position);// 记录播放位置
-                } else {
+                } else {// 如果是自己，只暂停，不播放；此时无播放
+                    RecordPlayerManager.getInstance().clearLast();
                     holder.ivPlay.setImageResource(R.drawable.ic_play);
                     holder.rlProgress.setVisibility(View.GONE);
                     holder.tvPlayProgressTime.setText("00:00");
-                    holder.setPlayPosition(-1);// 如果是自己，只暂停，不播放；此时无播放
+                    holder.setPlayPosition(-1);
                 }
             }
         });
