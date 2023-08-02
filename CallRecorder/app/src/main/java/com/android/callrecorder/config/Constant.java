@@ -52,6 +52,10 @@ public interface Constant {
      */
     String URL_CALLLOG_LIST = Config.URL_BASE + "operation/call_log.html";
     /**
+     * 获取通话记录-一天的
+     */
+    String URL_CALLLOG_DAY_LIST = Config.URL_BASE + "operation/record_list.html";
+    /**
      * 轮训拨打电话
      */
     String URL_CALLPHONE = Config.URL_BASE + "operation/ring_up.html";

@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.SeekBar;
 
 import com.android.callrecorder.R;
-import com.android.callrecorder.bean.CallRecordInfo;
 import com.android.callrecorder.home.ui.callrecord.CallRecordViewHolder;
 import com.android.callrecorder.utils.DateUtil;
 import com.android.callrecorder.utils.Logs;
@@ -112,7 +111,7 @@ public class RecordPlayerManager {
         return 0;
     }
 
-    public void play(final CallRecordViewHolder paramViewHolder, CallRecordInfo paramCallRecordInfo) {
+    public void play(final CallRecordViewHolder paramViewHolder, String recordFilePath) {
         WeakReference localWeakReference = this.mCurViewRef;
         if ((localWeakReference != null) && (localWeakReference.get() != paramViewHolder)) {
             clearLast();
@@ -134,7 +133,7 @@ public class RecordPlayerManager {
                 this.mPlayer = new MediaPlayer();
             }
             this.mPlayer.reset();
-            this.mPlayer.setDataSource(paramCallRecordInfo.getCallrecod());
+            this.mPlayer.setDataSource(recordFilePath);
             this.mPlayer.prepare();
             this.mPlayer.start();
             updateProgress(paramViewHolder);

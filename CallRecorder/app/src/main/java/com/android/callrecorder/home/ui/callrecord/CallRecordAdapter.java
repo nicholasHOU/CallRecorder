@@ -55,6 +55,7 @@ public class CallRecordAdapter extends RecyclerView.Adapter<CallRecordViewHolder
         RecordPlayerManager.getInstance().setSeekBar(holder, during);
         String totalTime = DateUtil.formatTime(false, during);
         holder.tvPlayTotalTime.setText(totalTime);
+        holder.setTag(item);
         holder.ivPlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -62,10 +63,10 @@ public class CallRecordAdapter extends RecyclerView.Adapter<CallRecordViewHolder
 
                 }
                 if (holder.getPlayPosition() != position) {//如果是其他，需要播放自己
-                    String filePath = Constant.RECORD_FILE_PATH + "/1689647006883_18032408866.amr";
-                    CallRecordInfo callRecordInfo = new CallRecordInfo();
-                    callRecordInfo.setCallrecod(filePath);
-                    RecordPlayerManager.getInstance().play(holder, callRecordInfo);
+//                    String filePath = Constant.RECORD_FILE_PATH + "/1689647006883_18032408866.amr";
+//                    CallRecordInfo callRecordInfo = new CallRecordInfo();
+//                    callRecordInfo.setCallrecod(filePath);
+                    RecordPlayerManager.getInstance().play(holder, holder.getData().recordPath);
                     holder.setPlayPosition(position);// 记录播放位置
                 } else {// 如果是自己，只暂停，不播放；此时无播放
                     RecordPlayerManager.getInstance().clearLast();

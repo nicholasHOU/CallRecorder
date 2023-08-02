@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.callrecorder.R;
+import com.android.callrecorder.bean.CallItem;
 import com.android.callrecorder.bean.CallRecordInfo;
 import com.android.callrecorder.manager.RecordPlayerManager;
 
@@ -20,6 +21,7 @@ import com.android.callrecorder.manager.RecordPlayerManager;
 public class CallRecordViewHolder extends RecyclerView.ViewHolder {
 	private static final String TAG = "DemoView";
 	private int playPosition;
+	private CallItem data;
 
 	public CallRecordViewHolder(Activity context, ViewGroup parent) {
 		super(context.getLayoutInflater().inflate(R.layout.item_call_record, parent,false));
@@ -60,5 +62,13 @@ public class CallRecordViewHolder extends RecyclerView.ViewHolder {
 	 */
 	public int getPlayPosition() {
 		return playPosition;
+	}
+
+	public void setTag(CallItem item){
+		this.data = item;
+	}
+
+	public CallItem getData(){
+		return this.data;
 	}
 }

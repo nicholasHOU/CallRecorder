@@ -61,8 +61,8 @@ public class LoginActivity extends BaseActivity {
                                 ToastUtil.showToast("登录失败，请稍后重试");
                             }
                         }
-                        SharedPreferenceUtil.getInstance().setLoginInfo(username, password);
-                        goHome();
+//                        SharedPreferenceUtil.getInstance().setLoginInfo(username, password);
+//                        goHome();
                     }
 
                     @Override

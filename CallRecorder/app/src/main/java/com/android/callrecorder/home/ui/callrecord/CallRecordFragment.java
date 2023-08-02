@@ -33,9 +33,9 @@ import java.util.Map;
 
 public class CallRecordFragment extends Fragment {
 
-    private FragmentCallRecordBinding binding;
-    private CallRecordAdapter callRecordAdapter;
-    private List<CallItem> callLogs = new ArrayList<>();
+    protected FragmentCallRecordBinding binding;
+    protected CallRecordAdapter callRecordAdapter;
+    protected List<CallItem> callLogs = new ArrayList<>();
     private SimpleDateFormat dateFormat;
 
     @Override
@@ -44,14 +44,17 @@ public class CallRecordFragment extends Fragment {
         binding = null;
     }
 
-
     /**
      * 创建一个Fragment实例
      *
      * @return
      */
     public static CallRecordFragment createInstance() {
-        return new CallRecordFragment();
+        CallRecordFragment fragment = new CallRecordFragment();
+//        Bundle bundle = new Bundle();
+//        bundle.putLong("time", time);
+//        fragment.setArguments(bundle);
+        return fragment;
     }
 
 
@@ -88,7 +91,7 @@ public class CallRecordFragment extends Fragment {
     /**
      * 页面可见再次刷新调用，获取最新的通话记录情况
      */
-    public void initData() {//必须在onCreateView方法内调用
+    protected void initData() {//必须在onCreateView方法内调用
         loadConfigData();
 
     }
@@ -145,11 +148,11 @@ public class CallRecordFragment extends Fragment {
             File[] filesChilds = file.listFiles();
             for (File recordFile : filesChilds) {
                 CallItem callItem = null;
-                if (file.isDirectory()) {
-                    File[] files = file.listFiles();
+                if (recordFile.isDirectory()) {
+                    File[] files = recordFile.listFiles();
                     for (File recordItem : files) {
                         callItem = getRecordInfo(recordItem);
-                        callItem.name = recordItem.getName();
+                        callItem.phone = recordFile.getName();//更改文件名为目录名，目录为电话号码
                         callLogs.add(callItem);
                     }
                 } else {
@@ -170,9 +173,9 @@ public class CallRecordFragment extends Fragment {
         String date = dateFormat.format(callItem.time);
         callItem.timeStr = date;
 
-        callItem.during = duration;
-        int minutes = (duration / 60);
-        int seconds = (duration % 60);
+        callItem.during = duration/60;
+        int minutes = (int) (callItem.during / 60);
+        int seconds = (int) (callItem.during % 60);
         String minute = minutes == 0 ? "" : minutes + "分";
         String second = seconds + "秒";
         callItem.duringStr = minute + second;

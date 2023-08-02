@@ -133,7 +133,7 @@ public class CallHistoryFragment extends Fragment {
      */
     private void loadCallHistory() {
         Map params = new HashMap();
-        params.put("time",4294967295l);
+        params.put("time",System.currentTimeMillis());
         MyHttpManager.getInstance().post(params, Constant.URL_CALLLOG_LIST, 124,
                 new MyHttpManager.ResponseListener<CallHistoryResponse>() {
                     @Override

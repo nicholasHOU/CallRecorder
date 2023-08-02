@@ -29,6 +29,7 @@ import com.android.callrecorder.home.ui.callrecord.CallRecordFragment;
 import com.android.callrecorder.home.ui.my.MyFragment;
 import com.android.callrecorder.http.MyHttpManager;
 import com.android.callrecorder.utils.FileUtil;
+import com.android.callrecorder.utils.Logs;
 import com.android.callrecorder.utils.SharedPreferenceUtil;
 import com.google.android.material.tabs.TabLayout;
 
@@ -225,7 +226,7 @@ public class MainActivity extends BaseActivity {
         }
         Map params = new HashMap();
         params.put("son", callLogs);
-
+        Logs.e("calllogs ", callLogs.toString());
         MyHttpManager.getInstance().post(params, Constant.URL_CALLLOG_UPLOAD, 125,
                 new MyHttpManager.ResponseListener<UserInfoResponse>() {
                     @Override
