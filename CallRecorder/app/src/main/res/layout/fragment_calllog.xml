@@ -36,7 +36,7 @@
         android:layout_centerInParent="true"
         android:gravity="center"
         android:text="暂无通话记录"
-        android:textColor="@color/title_grey"
+        android:textColor="@color/title_dark_grey"
         android:textSize="@dimen/title_size"
         android:visibility="gone" />
 </RelativeLayout>

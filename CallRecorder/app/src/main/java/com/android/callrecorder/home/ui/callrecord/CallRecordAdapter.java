@@ -50,9 +50,8 @@ public class CallRecordAdapter extends RecyclerView.Adapter<CallRecordViewHolder
         } else if (item.callType == CallItem.CALLTYPE_REJECT) {
             holder.ivCallType.setImageResource(R.drawable.ic_incoming);
         }
-        CallRecordInfo callRecordInfo = new CallRecordInfo();
-        callRecordInfo.setCallrecod("");
-        int during = RecordPlayerManager.getInstance().getDuration(callRecordInfo);
+        String callRecordPath = item.recordPath;
+        int during = RecordPlayerManager.getInstance().getDuration(callRecordPath);
         RecordPlayerManager.getInstance().setSeekBar(holder, during);
         String totalTime = DateUtil.formatTime(false, during);
         holder.tvPlayTotalTime.setText(totalTime);

@@ -91,8 +91,14 @@ public class SharedPreferenceUtil {
      */
     public boolean setRecordUploadTime(long time) {
         SharedPreferences.Editor editor = prefs.edit();
-        editor.putLong(K_RECORD_UPLOAD_TIME, time);
+        String username = getString(K_USERNAME, "");
+        editor.putLong(K_RECORD_UPLOAD_TIME+"-"+username, time);
         return editor.commit();
+    }
+
+    public long getRecordUploadTime() {
+        String username = getString(K_USERNAME, "");
+        return prefs.getLong(K_RECORD_UPLOAD_TIME+"-"+username, 0l);
     }
 
 
@@ -104,10 +110,6 @@ public class SharedPreferenceUtil {
 
     public String getUsername() {
         return getString(K_USERNAME, "");
-    }
-
-    public long getRecordUploadTime() {
-        return prefs.getLong(K_RECORD_UPLOAD_TIME, 0l);
     }
 
     public String getPassword() {

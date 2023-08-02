@@ -93,8 +93,8 @@ public class RecordPlayerManager {
         }
     }
 
-    public int getDuration(CallRecordInfo paramCallRecordInfo) {
-        if (TextUtils.isEmpty(paramCallRecordInfo.getCallrecod())) {
+    public int getDuration(String filePath) {
+        if (TextUtils.isEmpty(filePath)) {
             return 0;
         }
         if (this.mPlayer == null) {
@@ -102,7 +102,7 @@ public class RecordPlayerManager {
         }
         try {
             this.mPlayer.reset();
-            this.mPlayer.setDataSource(paramCallRecordInfo.getCallrecod());
+            this.mPlayer.setDataSource(filePath);
             this.mPlayer.prepare();
             int i = this.mPlayer.getDuration();
             return i;

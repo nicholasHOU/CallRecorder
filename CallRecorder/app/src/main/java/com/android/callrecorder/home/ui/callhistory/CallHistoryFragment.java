@@ -3,7 +3,6 @@ package com.android.callrecorder.home.ui.callhistory;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.DatePickerDialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.DatePicker;
 
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -19,15 +17,14 @@ import com.android.callrecorder.bean.response.CallHistoryResponse;
 import com.android.callrecorder.config.Constant;
 import com.android.callrecorder.databinding.FragmentCallHistoryBinding;
 import com.android.callrecorder.home.MainActivity;
-import com.android.callrecorder.home.ui.callrecord.CallRecordFragment;
 import com.android.callrecorder.http.MyHttpManager;
-import com.android.callrecorder.login.LoginActivity;
 import com.android.callrecorder.utils.ToastUtil;
 import com.android.callrecorder.widget.MyRecycleViewDecoration;
 
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class CallHistoryFragment extends Fragment {
 
@@ -135,7 +132,9 @@ public class CallHistoryFragment extends Fragment {
      * 获取网络通话历史记录数据
      */
     private void loadCallHistory() {
-        MyHttpManager.getInstance().post(new HashMap<>(), Constant.URL_CALLLOG_LIST, 124,
+        Map params = new HashMap();
+        params.put("time",4294967295l);
+        MyHttpManager.getInstance().post(params, Constant.URL_CALLLOG_LIST, 124,
                 new MyHttpManager.ResponseListener<CallHistoryResponse>() {
                     @Override
                     public void onHttpResponse(int requestCode, boolean isSuccess, CallHistoryResponse resultJson) {

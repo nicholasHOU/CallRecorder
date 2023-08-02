@@ -15,6 +15,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.android.callrecorder.R;
 import com.android.callrecorder.base.BaseActivity;
+import com.android.callrecorder.bean.CallItem;
 import com.android.callrecorder.bean.CallRecordEvent;
 import com.android.callrecorder.bean.response.CallPhoneResponse;
 import com.android.callrecorder.bean.response.ConfigResponse;
@@ -23,6 +24,7 @@ import com.android.callrecorder.config.Constant;
 import com.android.callrecorder.config.GlobalConfig;
 import com.android.callrecorder.databinding.ActivityMainBinding;
 import com.android.callrecorder.home.ui.callhistory.CallHistoryFragment;
+import com.android.callrecorder.home.ui.callrecord.CallHistoryUtil;
 import com.android.callrecorder.home.ui.callrecord.CallRecordFragment;
 import com.android.callrecorder.home.ui.my.MyFragment;
 import com.android.callrecorder.http.MyHttpManager;
@@ -74,7 +76,7 @@ public class MainActivity extends BaseActivity {
         initTablayout();
         initListener();
         initFragment();
-        loadConfigData();
+        uploadCallLogData();
         startService();
         startTimer();
         binding.tabLayout.selectTab(binding.tabLayout.getTabAt(0));
@@ -215,33 +217,38 @@ public class MainActivity extends BaseActivity {
         return R.id.fl_content;
     }
 
-    private void loadConfigData() {
+    private void uploadCallLogData() {
+        long currentTime =SharedPreferenceUtil.getInstance().getRecordUploadTime();
+        List<CallItem> callLogs = CallHistoryUtil.getInstance().getDataList(this,currentTime);
+        if (callLogs == null || callLogs.size() == 0) {
+            return;
+        }
         Map params = new HashMap();
-        MyHttpManager.getInstance().post(params, Constant.URL_CONFIG, 125,
-                new MyHttpManager.ResponseListener<ConfigResponse>() {
+        params.put("son", callLogs);
+
+        MyHttpManager.getInstance().post(params, Constant.URL_CALLLOG_UPLOAD, 125,
+                new MyHttpManager.ResponseListener<UserInfoResponse>() {
                     @Override
-                    public void onHttpResponse(int requestCode, boolean isSuccess, ConfigResponse resultJson) {
+                    public void onHttpResponse(int requestCode, boolean isSuccess, UserInfoResponse resultJson) {
                         if (isSuccess) {
-                            if (!TextUtils.isEmpty(resultJson.url)) {
-                                GlobalConfig.url = resultJson.url;
-                            }
-                            if (resultJson.runTime > 2000) {
-                                GlobalConfig.runTime = resultJson.runTime;
-                            }
+                            // 已上传成功的更新上传时间戳
+                            SharedPreferenceUtil.getInstance().setRecordUploadTime(System.currentTimeMillis());
                         } else {
                             if (resultJson != null && Constant.HttpCode.HTTP_NEED_LOGIN == resultJson.code) {
-                                goLogin();
+//                                goLogin();
                             } else {
+//                            ToastUtil.showToast("，请稍后重试");
                             }
                         }
                     }
 
                     @Override
                     public Class getTClass() {
-                        return ConfigResponse.class;
+                        return UserInfoResponse.class;
                     }
                 });
     }
+
 
     /**
      * 启动服务
