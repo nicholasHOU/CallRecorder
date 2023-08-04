@@ -15,6 +15,7 @@ import com.android.callrecorder.R;
  */
 public class CallHistoryViewHolder extends RecyclerView.ViewHolder implements OnClickListener {
 	private static final String TAG = "DemoView";
+	private Object data;
 
 
 	public CallHistoryViewHolder(Activity context, ViewGroup parent) {
@@ -35,6 +36,12 @@ public class CallHistoryViewHolder extends RecyclerView.ViewHolder implements On
 		tvCallTimeDuring = itemView.findViewById(R.id.tv_call_time);
 	}
 
+	public void setData(Object data){
+		this.data = data;
+	}
+	public Object getData(){
+		return this.data;
+	}
 
 	@Override
 	public void onClick(View v) {

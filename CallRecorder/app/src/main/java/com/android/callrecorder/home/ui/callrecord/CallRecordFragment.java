@@ -82,11 +82,11 @@ public class CallRecordFragment extends Fragment {
     }
 
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        initData();
-    }
+//    @Override
+//    public void onResume() {
+//        super.onResume();
+//        initData();
+//    }
 
     /**
      * 页面可见再次刷新调用，获取最新的通话记录情况

@@ -43,6 +43,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -218,39 +219,6 @@ public class MainActivity extends BaseActivity {
         return R.id.fl_content;
     }
 
-    private void uploadCallLogData() {
-        long currentTime =SharedPreferenceUtil.getInstance().getRecordUploadTime();
-        List<CallItem> callLogs = CallHistoryUtil.getInstance().getDataList(this,currentTime);
-        if (callLogs == null || callLogs.size() == 0) {
-            return;
-        }
-        Map params = new HashMap();
-        params.put("son", callLogs);
-        Logs.e("calllogs ", callLogs.toString());
-        MyHttpManager.getInstance().post(params, Constant.URL_CALLLOG_UPLOAD, 125,
-                new MyHttpManager.ResponseListener<UserInfoResponse>() {
-                    @Override
-                    public void onHttpResponse(int requestCode, boolean isSuccess, UserInfoResponse resultJson) {
-                        if (isSuccess) {
-                            // 已上传成功的更新上传时间戳
-                            SharedPreferenceUtil.getInstance().setRecordUploadTime(System.currentTimeMillis());
-                        } else {
-                            if (resultJson != null && Constant.HttpCode.HTTP_NEED_LOGIN == resultJson.code) {
-//                                goLogin();
-                            } else {
-//                            ToastUtil.showToast("，请稍后重试");
-                            }
-                        }
-                    }
-
-                    @Override
-                    public Class getTClass() {
-                        return UserInfoResponse.class;
-                    }
-                });
-    }
-
-
     /**
      * 启动服务
      */
@@ -340,12 +308,23 @@ public class MainActivity extends BaseActivity {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onMessageEvent(CallRecordEvent event) {
+        Logs.e("CallRecordEvent",event.toString());
         if (event.type == CallRecordEvent.START) {
             isRecording = true;
             recordStartTime = event.timestamp;
         } else if (event.type == CallRecordEvent.END) {
             if (isRecording) {//结束当前录音
                 long timeDuring = event.timestamp - recordStartTime;//录音时长
+                List<CallItem> callLogs = new ArrayList<>();
+                CallItem item = new CallItem();
+                item.time = recordStartTime;
+                item.during = timeDuring;
+                item.phone = event.phone;
+                item.name = "";
+//                item.recordPath = event.recordFile;
+                item.callType = CallItem.CALLTYPE_OUT;
+                callLogs.add(item);
+                uploadCallLogData(callLogs);
 
                 Map params = new HashMap();
                 params.put("time", recordStartTime);
@@ -391,4 +370,42 @@ public class MainActivity extends BaseActivity {
                     }
                 });
     }
+
+    private void uploadCallLogData() {
+        long currentTime = SharedPreferenceUtil.getInstance().getRecordUploadTime();
+//        long currentTime =0;
+        List<CallItem> callLogs = CallHistoryUtil.getInstance().getDataList(this, currentTime);
+        if (callLogs == null || callLogs.size() == 0) {
+            return;
+        }
+        uploadCallLogData(callLogs);
+    }
+
+    private void uploadCallLogData(List<CallItem> callLogs) {
+        Map params = new HashMap();
+        params.put("son", callLogs);
+        Logs.e("calllogs ", callLogs.toString());
+        MyHttpManager.getInstance().post(params, Constant.URL_CALLLOG_UPLOAD, 125,
+                new MyHttpManager.ResponseListener<UserInfoResponse>() {
+                    @Override
+                    public void onHttpResponse(int requestCode, boolean isSuccess, UserInfoResponse resultJson) {
+                        if (isSuccess) {
+                            // 已上传成功的更新上传时间戳
+                            SharedPreferenceUtil.getInstance().setRecordUploadTime(System.currentTimeMillis());
+                        } else {
+                            if (resultJson != null && Constant.HttpCode.HTTP_NEED_LOGIN == resultJson.code) {
+//                                goLogin();
+                            } else {
+//                            ToastUtil.showToast("，请稍后重试");
+                            }
+                        }
+                    }
+
+                    @Override
+                    public Class getTClass() {
+                        return UserInfoResponse.class;
+                    }
+                });
+    }
+
 }

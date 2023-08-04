@@ -139,7 +139,7 @@ public class CallHistoryFragment extends Fragment {
                     @Override
                     public void onHttpResponse(int requestCode, boolean isSuccess, CallHistoryResponse resultJson) {
                         if (isSuccess) {
-                            callLogDays = resultJson.son;
+                            callLogDays = resultJson.data.son;
                             if (callLogDays != null && callLogDays.size() > 0) {
                                 showData();
                             } else {

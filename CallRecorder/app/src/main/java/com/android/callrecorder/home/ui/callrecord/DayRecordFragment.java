@@ -61,8 +61,8 @@ public class DayRecordFragment extends CallRecordFragment {
         MyHttpManager.ResponseListener responseListener = new MyHttpManager.ResponseListener<CallHistoryDayResponse>() {
             @Override
             public void onHttpResponse(int requestCode, boolean isSuccess, CallHistoryDayResponse resultJson) {
-                if (isSuccess && resultJson.son != null && resultJson.son.size() > 0) {//日志上传成功，删除本地存储文件
-                    for (CallHistoryDayResponse.CallLogDay day : resultJson.son) {
+                if (isSuccess && resultJson.data.son != null && resultJson.data.son.size() > 0) {//日志上传成功，删除本地存储文件
+                    for (CallHistoryDayResponse.CallLogDay day : resultJson.data.son) {
                         CallItem item = new CallItem();
                         item.phone = day.phone;
                         item.callType = day.callType;

@@ -3,7 +3,11 @@ package com.android.callrecorder.bean.response;
 import java.util.List;
 
 public class CallHistoryResponse extends BaseResponse {
-    public List<CallLogDay> son;
+    public DataInfo data;
+
+    public static class DataInfo {
+        public List<CallLogDay> son;
+    }
 
     public static class CallLogDay {
         /**
@@ -40,5 +44,6 @@ public class CallHistoryResponse extends BaseResponse {
         public int total_number;
         public int total_time;
         public long time;
+        public String timeStr;
     }
 }

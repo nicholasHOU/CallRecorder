@@ -24,7 +24,6 @@ public class SharedPreferenceUtil {
     }
 
     public static SharedPreferenceUtil getInstance() {
-        Logs.e("SP init", "2222222222222222");
         if (instance == null) {
             synchronized (SharedPreferenceUtil.class) {
                 if (instance == null) {

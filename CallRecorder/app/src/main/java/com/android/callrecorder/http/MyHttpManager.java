@@ -102,7 +102,9 @@ public class MyHttpManager<T> {
                 day.son = days;
                 son.add(day);
             }
-            response.son = son;
+            CallHistoryResponse.DataInfo data = new CallHistoryResponse.DataInfo();
+            response.data = data;
+            response.data.son = son;
             listener.onHttpResponse(requestCode, true, response);
 
         } else if (Constant.URL_CALLPHONE.equals(url)) {

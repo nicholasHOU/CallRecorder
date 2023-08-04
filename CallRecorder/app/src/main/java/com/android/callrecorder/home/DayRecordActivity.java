@@ -1,5 +1,7 @@
 package com.android.callrecorder.home;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -20,6 +22,13 @@ public class DayRecordActivity extends BaseActivity {
     private Fragment fragment;
     private long time;
     private String timeStr;
+
+    public static void jump(Activity context, long time, String timeStr) {
+        Intent intent  = new Intent(context,DayRecordActivity.class);
+        intent.putExtra("time",time);
+        intent.putExtra("timeStr",timeStr);
+        context.startActivity(intent);
+    }
 
 
     @Override

@@ -47,9 +47,11 @@ public class PhoneListenerService extends Service {
         public void onCallStateChanged(int state, String incomingNumber) {
             switch (state) {
                 case TelephonyManager.CALL_STATE_RINGING: /* 电话进来时 */
+                    Logs.e("PhoneCall ","CALL_STATE_RINGING");
                     phone = incomingNumber;
                     break;
                 case TelephonyManager.CALL_STATE_OFFHOOK: /* 接起电话时 */
+                    Logs.e("PhoneCall ","CALL_STATE_OFFHOOK");
                     try {
 //                        File file = new File(Environment.getExternalStorageDirectory(), num + "_" + System.currentTimeMillis() + ".3gp");
                         file = FileUtil.getCallRecordSaveFile(System.currentTimeMillis(), phone);
@@ -67,19 +69,20 @@ public class PhoneListenerService extends Service {
                     }
                     break;
                 case TelephonyManager.CALL_STATE_IDLE: /* 无任何状态时 */
+                    Logs.e("PhoneCall ","CALL_STATE_IDLE");
                     try {
-                        if (recorder != null) {
-                            recorder.stop();
-                            recorder.release();
-                        }
-                        CallRecordEvent event = new CallRecordEvent(CallRecordEvent.START, System.currentTimeMillis());
+                        CallRecordEvent event = new CallRecordEvent(CallRecordEvent.END, System.currentTimeMillis());
                         if (file != null) {
                             event.recordFile = file.getAbsolutePath();
                             event.phone = phone;
                             EventBus.getDefault().post(event);
+                            phone = "";
+                            file = null;
                         }
-                        phone = "";
-                        file = null;
+                        if (recorder != null) {
+                            recorder.stop();
+                            recorder.release();
+                        }
                     } catch (Exception e) {
                         e.printStackTrace();
                     }

@@ -2,7 +2,7 @@ package com.android.callrecorder.bean;
 
 public class CallItem {
 
-    public static final int CALLTYPE_OUT = 1;
+    public static final int CALLTYPE_OUT = 2;
     public static final int CALLTYPE_IN = 1;
     public static final int CALLTYPE_NO = 3;
     public static final int CALLTYPE_REJECT = 5;
