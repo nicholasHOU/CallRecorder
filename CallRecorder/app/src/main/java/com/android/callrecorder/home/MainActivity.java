@@ -62,8 +62,10 @@ public class MainActivity extends BaseActivity {
     private int mCurrentTabPos;
     private boolean isDestroyed;
 
-    private int tabTitles[] = {R.string.title_callrecord, R.string.title_calllog, R.string.title_my};
-    private int tabImages[] = {R.drawable.bg_home_first, R.drawable.bg_home_second, R.drawable.bg_home_third};
+//    private int tabTitles[] = {R.string.title_callrecord, R.string.title_calllog, R.string.title_my};
+//    private int tabImages[] = {R.drawable.bg_home_first, R.drawable.bg_home_second, R.drawable.bg_home_third};
+    private int tabTitles[] = {R.string.title_calllog, R.string.title_my};
+    private int tabImages[] = { R.drawable.bg_home_second, R.drawable.bg_home_third};
     private boolean isRecording;//是否正在录音
     private long recordStartTime;//开始录音的时间点
     private byte[] bFile;
@@ -86,7 +88,7 @@ public class MainActivity extends BaseActivity {
 
     private void initTablayout() {
         binding.tabLayout.removeAllTabs();
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < tabImages.length; i++) {
             TabLayout.Tab tab = binding.tabLayout.newTab();
             if (tab != null) {
                 tab.setCustomView(getTabView(i));
@@ -96,7 +98,7 @@ public class MainActivity extends BaseActivity {
     }
 
     private void selectTablayout() {
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < tabImages.length; i++) {
             View view = binding.tabLayout.getTabAt(i).getCustomView();
             ImageView img = view.findViewById(R.id.iv_bg);
             TextView tvTitle = view.findViewById(R.id.tv_title);
@@ -197,13 +199,15 @@ public class MainActivity extends BaseActivity {
     private Fragment getItem(int position) {
         Fragment fragment = null;
         switch (position) {
+//            case 0:
+//                fragment = CallRecordFragment.createInstance();
+//                break;
+//            case 1:
             case 0:
-                fragment = CallRecordFragment.createInstance();
-                break;
-            case 1:
                 fragment = CallHistoryFragment.createInstance();
                 break;
-            case 2:
+//            case 2:
+            case 1:
                 fragment = MyFragment.createInstance();
                 break;
 
@@ -324,7 +328,7 @@ public class MainActivity extends BaseActivity {
 //                item.recordPath = event.recordFile;
                 item.callType = CallItem.CALLTYPE_OUT;
                 callLogs.add(item);
-                uploadCallLogData(callLogs);
+                CallHistoryUtil.getInstance().uploadCallLogData(callLogs);
 
                 Map params = new HashMap();
                 params.put("time", recordStartTime);
@@ -378,34 +382,7 @@ public class MainActivity extends BaseActivity {
         if (callLogs == null || callLogs.size() == 0) {
             return;
         }
-        uploadCallLogData(callLogs);
-    }
-
-    private void uploadCallLogData(List<CallItem> callLogs) {
-        Map params = new HashMap();
-        params.put("son", callLogs);
-        Logs.e("calllogs ", callLogs.toString());
-        MyHttpManager.getInstance().post(params, Constant.URL_CALLLOG_UPLOAD, 125,
-                new MyHttpManager.ResponseListener<UserInfoResponse>() {
-                    @Override
-                    public void onHttpResponse(int requestCode, boolean isSuccess, UserInfoResponse resultJson) {
-                        if (isSuccess) {
-                            // 已上传成功的更新上传时间戳
-                            SharedPreferenceUtil.getInstance().setRecordUploadTime(System.currentTimeMillis());
-                        } else {
-                            if (resultJson != null && Constant.HttpCode.HTTP_NEED_LOGIN == resultJson.code) {
-//                                goLogin();
-                            } else {
-//                            ToastUtil.showToast("，请稍后重试");
-                            }
-                        }
-                    }
-
-                    @Override
-                    public Class getTClass() {
-                        return UserInfoResponse.class;
-                    }
-                });
+        CallHistoryUtil.getInstance().uploadCallLogData(callLogs);
     }
 
 }

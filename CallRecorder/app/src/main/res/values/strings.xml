@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">CallRecorder</string>
+    <string name="app_name">记时通</string>
     <string name="title_callrecord">通话录音</string>
     <string name="title_calllog">通话记录</string>
     <string name="title_my">我的</string>

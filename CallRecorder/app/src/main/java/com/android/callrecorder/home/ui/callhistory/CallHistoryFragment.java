@@ -61,6 +61,7 @@ public class CallHistoryFragment extends Fragment {
         View root = binding.getRoot();
         getCurrentDate();
         initView();
+        initData();
         return root;//返回值必须为view
     }
 
@@ -79,6 +80,13 @@ public class CallHistoryFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 showDatePickerDialog();
+            }
+        });
+
+        binding.ivRefresh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                initData();
             }
         });
     }
@@ -102,7 +110,9 @@ public class CallHistoryFragment extends Fragment {
                 CallHistoryFragment.this.month = month + 1;
                 CallHistoryFragment.this.year = year;
 //                String date = year+"年"+month+"月"+day+"日";//把日期变成字符串格式显示出来
-                showData();
+                Calendar calendar = Calendar.getInstance();
+                calendar.set(year,month,1);
+                loadCallHistory(calendar.getTimeInMillis());
             }
         };
         if (mdialog == null) {
@@ -110,30 +120,32 @@ public class CallHistoryFragment extends Fragment {
         }
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        initData();
-    }
+//    @Override
+//    public void onResume() {
+//        super.onResume();
+//        initData();
+//    }
 
     /**
      * 页面可见再次刷新调用，获取最新的通话记录情况
      */
     public void initData() {//必须在onCreateView方法内调用
-        if (loaded) return;
+//        if (loaded) return;
         binding.tvYear.setText(year + "年");
         binding.tvMonth.setText(month + "月");
-        loadCallHistory();
-        loaded = true;
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(year,month-1,1);
+        loadCallHistory(calendar.getTimeInMillis());
+//        loaded = true;
     }
 
 
     /**
      * 获取网络通话历史记录数据
      */
-    private void loadCallHistory() {
+    private void loadCallHistory(long time) {
         Map params = new HashMap();
-        params.put("time",System.currentTimeMillis());
+        params.put("time",time);
         MyHttpManager.getInstance().post(params, Constant.URL_CALLLOG_LIST, 124,
                 new MyHttpManager.ResponseListener<CallHistoryResponse>() {
                     @Override

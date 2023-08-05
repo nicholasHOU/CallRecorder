@@ -6,11 +6,19 @@ import android.database.Cursor;
 import android.provider.CallLog;
 
 import com.android.callrecorder.bean.CallItem;
+import com.android.callrecorder.bean.response.BaseResponse;
+import com.android.callrecorder.bean.response.UserInfoResponse;
+import com.android.callrecorder.config.Constant;
+import com.android.callrecorder.http.MyHttpManager;
+import com.android.callrecorder.utils.Logs;
+import com.android.callrecorder.utils.SharedPreferenceUtil;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class CallHistoryUtil {
     private static volatile CallHistoryUtil instance;
@@ -144,6 +152,33 @@ public class CallHistoryUtil {
             list.add(callItem);
         }
         return list;
+    }
+
+    public void uploadCallLogData(List<CallItem> callLogs) {
+        Map params = new HashMap();
+        params.put("son", callLogs);
+        Logs.e("calllogs ", callLogs.toString());
+        MyHttpManager.getInstance().post(params, Constant.URL_CALLLOG_UPLOAD, 125,
+                new MyHttpManager.ResponseListener<BaseResponse>() {
+                    @Override
+                    public void onHttpResponse(int requestCode, boolean isSuccess, BaseResponse resultJson) {
+                        if (isSuccess) {
+                            // 已上传成功的更新上传时间戳
+                            SharedPreferenceUtil.getInstance().setRecordUploadTime(System.currentTimeMillis());
+                        } else {
+                            if (resultJson != null && Constant.HttpCode.HTTP_NEED_LOGIN == resultJson.code) {
+//                                goLogin();
+                            } else {
+//                            ToastUtil.showToast("，请稍后重试");
+                            }
+                        }
+                    }
+
+                    @Override
+                    public Class getTClass() {
+                        return BaseResponse.class;
+                    }
+                });
     }
 
 }

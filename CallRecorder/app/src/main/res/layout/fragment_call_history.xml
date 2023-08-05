@@ -20,6 +20,17 @@
             android:text="通话记录"
             android:textColor="@color/white"
             android:textSize="@dimen/title_size" />
+
+        <ImageView
+            android:id="@+id/iv_refresh"
+            android:layout_width="46dp"
+            android:layout_height="46dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="12dp"
+            android:padding="8dp"
+            android:src="@drawable/data_sync" />
+
     </RelativeLayout>
 
     <LinearLayout
@@ -80,9 +91,9 @@
                 android:id="@+id/tv_call_record_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
                 android:layout_below="@+id/tv_call_record"
                 android:layout_centerHorizontal="true"
+                android:layout_marginTop="2dp"
                 android:singleLine="true"
                 android:textColor="@color/title_dark_grey"
                 android:textSize="15dp"
@@ -107,10 +118,10 @@
             <TextView
                 android:id="@+id/tv_call_during"
                 android:layout_width="wrap_content"
-                android:layout_marginTop="2dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tv_call_during_title"
                 android:layout_centerHorizontal="true"
+                android:layout_marginTop="2dp"
                 android:singleLine="true"
                 android:textColor="@color/title_dark_grey"
                 android:textSize="15dp"

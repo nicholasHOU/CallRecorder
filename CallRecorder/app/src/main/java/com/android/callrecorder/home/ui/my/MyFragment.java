@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.android.callrecorder.R;
+import com.android.callrecorder.bean.CallItem;
 import com.android.callrecorder.bean.CrashLog;
 import com.android.callrecorder.bean.response.UserInfoResponse;
 import com.android.callrecorder.config.Constant;
@@ -18,6 +19,7 @@ import com.android.callrecorder.config.GlobalConfig;
 import com.android.callrecorder.databinding.FragmentMyBinding;
 import com.android.callrecorder.feedback.FeedbackActivity;
 import com.android.callrecorder.home.MainActivity;
+import com.android.callrecorder.home.ui.callrecord.CallHistoryUtil;
 import com.android.callrecorder.http.MyHttpManager;
 import com.android.callrecorder.utils.FileUtil;
 import com.android.callrecorder.utils.SharedPreferenceUtil;
@@ -25,6 +27,7 @@ import com.android.callrecorder.utils.ToastUtil;
 
 import java.io.File;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import zuo.biao.library.util.thread.pool.ThreadPoolProxyFactory;
@@ -50,6 +53,7 @@ public class MyFragment extends Fragment implements View.OnClickListener {
         binding.rlClearRecord.setOnClickListener(this);
         binding.rlFeedback.setOnClickListener(this);
         binding.rlUploadRecord.setOnClickListener(this);
+        binding.rlUploadCalllog.setOnClickListener(this);
     }
 
     @Override
@@ -79,10 +83,27 @@ public class MyFragment extends Fragment implements View.OnClickListener {
                 //upload record
                 uploadRecord();
                 break;
+            case R.id.rl_upload_calllog:
+                //upload uploadCallLogData
+                uploadCallLogData();
+                break;
             default:
                 break;
         }
 
+    }
+
+    /**
+     * 上传全量通话记录到服务端
+     */
+    private void uploadCallLogData() {
+//            long currentTime = SharedPreferenceUtil.getInstance().getRecordUploadTime();
+        long currentTime = 0;
+        List<CallItem> callLogs = CallHistoryUtil.getInstance().getDataList(getContext(), currentTime);
+        if (callLogs == null || callLogs.size() == 0) {
+            return;
+        }
+        CallHistoryUtil.getInstance().uploadCallLogData(callLogs);
     }
 
 
@@ -99,7 +120,7 @@ public class MyFragment extends Fragment implements View.OnClickListener {
                         } else {
                             if (resultJson != null && Constant.HttpCode.HTTP_NEED_LOGIN == resultJson.code) {
                                 ToastUtil.showToast("登录信息失效，请登录后重试");
-                                ((MainActivity)getActivity()).goLogin();
+                                ((MainActivity) getActivity()).goLogin();
                             } else {
                                 ToastUtil.showToast("信息获取失败，请稍后重试");
                             }
