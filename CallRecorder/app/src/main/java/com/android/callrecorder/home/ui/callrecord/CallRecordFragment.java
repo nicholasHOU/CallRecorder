@@ -13,20 +13,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.callrecorder.base.BaseActivity;
 import com.android.callrecorder.bean.CallItem;
-import com.android.callrecorder.bean.CrashLog;
 import com.android.callrecorder.bean.response.ConfigResponse;
 import com.android.callrecorder.config.Constant;
 import com.android.callrecorder.config.GlobalConfig;
 import com.android.callrecorder.databinding.FragmentCallRecordBinding;
 import com.android.callrecorder.http.MyHttpManager;
-import com.android.callrecorder.manager.RecordPlayerManager;
-import com.android.callrecorder.utils.StringUtil;
+import com.android.callrecorder.utils.FileUtil;
 import com.android.callrecorder.widget.MyRecycleViewDecoration;
 
 import java.io.File;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -36,7 +32,6 @@ public class CallRecordFragment extends Fragment {
     protected FragmentCallRecordBinding binding;
     protected CallRecordAdapter callRecordAdapter;
     protected List<CallItem> callLogs = new ArrayList<>();
-    private SimpleDateFormat dateFormat;
 
     @Override
     public void onDestroyView() {
@@ -67,7 +62,6 @@ public class CallRecordFragment extends Fragment {
 
         initView();
         initData();
-        dateFormat = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss");
 
         return root;//返回值必须为view
     }
@@ -143,48 +137,7 @@ public class CallRecordFragment extends Fragment {
 
     private void loadLocalRecordFile() {
         callLogs.clear();
-        File file = new File(GlobalConfig.url);
-        if (file.isDirectory()) {
-            File[] filesChilds = file.listFiles();
-            for (File recordFile : filesChilds) {
-                CallItem callItem = null;
-                if (recordFile.isDirectory()) {
-                    File[] files = recordFile.listFiles();
-                    for (File recordItem : files) {
-                        callItem = getRecordInfo(recordItem);
-                        callItem.phone = recordFile.getName();//更改文件名为目录名，目录为电话号码
-                        callLogs.add(callItem);
-                    }
-                } else {
-                    callItem = getRecordInfo(recordFile);
-                    callLogs.add(callItem);
-                }
-            }
-        }
+        callLogs.addAll(FileUtil.loadLocalRecordFile());
     }
-
-    private CallItem getRecordInfo(File recordFile) {
-        String callRecordPath = recordFile.getAbsolutePath();
-        int duration = RecordPlayerManager.getInstance().getDuration(callRecordPath);
-        CallItem callItem = new CallItem();
-        callItem.phone = StringUtil.checkNum(callRecordPath);
-        callItem.name = "";
-        callItem.time = recordFile.lastModified();
-        String date = dateFormat.format(callItem.time);
-        callItem.timeStr = date;
-
-        callItem.during = duration/60;
-        int minutes = (int) (callItem.during / 60);
-        int seconds = (int) (callItem.during % 60);
-        String minute = minutes == 0 ? "" : minutes + "分";
-        String second = seconds + "秒";
-        callItem.duringStr = minute + second;
-//                callItem.callType = callType;
-        callItem.recordPath = callRecordPath;
-        return callItem;
-    }
-
-    //Data数据区(存在数据获取或处理代码，但不存在事件监听代码)>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-
 
 }

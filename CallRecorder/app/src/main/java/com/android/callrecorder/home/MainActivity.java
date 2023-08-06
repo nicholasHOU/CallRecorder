@@ -18,8 +18,6 @@ import com.android.callrecorder.base.BaseActivity;
 import com.android.callrecorder.bean.CallItem;
 import com.android.callrecorder.bean.CallRecordEvent;
 import com.android.callrecorder.bean.response.CallPhoneResponse;
-import com.android.callrecorder.bean.response.ConfigResponse;
-import com.android.callrecorder.bean.response.UserInfoResponse;
 import com.android.callrecorder.config.Constant;
 import com.android.callrecorder.config.GlobalConfig;
 import com.android.callrecorder.databinding.ActivityMainBinding;
@@ -37,12 +35,6 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -62,13 +54,13 @@ public class MainActivity extends BaseActivity {
     private int mCurrentTabPos;
     private boolean isDestroyed;
 
-//    private int tabTitles[] = {R.string.title_callrecord, R.string.title_calllog, R.string.title_my};
-//    private int tabImages[] = {R.drawable.bg_home_first, R.drawable.bg_home_second, R.drawable.bg_home_third};
+    private int tabTitlesV2[] = {R.string.title_callrecord, R.string.title_calllog, R.string.title_my};
+    private int tabImagesV2[] = {R.drawable.bg_home_first, R.drawable.bg_home_second, R.drawable.bg_home_third};
     private int tabTitles[] = {R.string.title_calllog, R.string.title_my};
-    private int tabImages[] = { R.drawable.bg_home_second, R.drawable.bg_home_third};
+    private int tabImages[] = {R.drawable.bg_home_second, R.drawable.bg_home_third};
     private boolean isRecording;//是否正在录音
     private long recordStartTime;//开始录音的时间点
-    private byte[] bFile;
+    private boolean isV1 = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +68,11 @@ public class MainActivity extends BaseActivity {
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        if (!isV1) {
+            tabTitles = tabTitlesV2;
+            tabImages = tabImagesV2;
+        }
+
         EventBus.getDefault().register(this);
         initTablayout();
         initListener();
@@ -199,15 +196,13 @@ public class MainActivity extends BaseActivity {
     private Fragment getItem(int position) {
         Fragment fragment = null;
         switch (position) {
-//            case 0:
-//                fragment = CallRecordFragment.createInstance();
-//                break;
-//            case 1:
             case 0:
-                fragment = CallHistoryFragment.createInstance();
+                fragment = isV1 ? CallHistoryFragment.createInstance() : CallRecordFragment.createInstance();
                 break;
-//            case 2:
             case 1:
+                fragment = isV1 ? MyFragment.createInstance() : CallHistoryFragment.createInstance();
+                break;
+            case 2:
                 fragment = MyFragment.createInstance();
                 break;
 
@@ -312,7 +307,7 @@ public class MainActivity extends BaseActivity {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onMessageEvent(CallRecordEvent event) {
-        Logs.e("CallRecordEvent",event.toString());
+        Logs.e("CallRecordEvent", event.toString());
         if (event.type == CallRecordEvent.START) {
             isRecording = true;
             recordStartTime = event.timestamp;
@@ -337,42 +332,11 @@ public class MainActivity extends BaseActivity {
                 params.put("name", "");
                 params.put("callType", "");
                 params.put("video", FileUtil.getRecordFile(event.recordFile));
-                uploadFile(params);
+                FileUtil.uploadFile(params);
 
                 isRecording = false;
             }
         }
-    }
-
-    /**
-     * “time”:13123131,  //时间戳
-     * “video”: file,  //视频文件
-     * “long”: 12312,  // 视频的长度
-     * “phone”: 13211111111, // 手机号
-     * “back”: “手机号的备注” // 手机号备注   可以为空
-     */
-    private void uploadFile(Map params) {
-        MyHttpManager.getInstance().post(params, Constant.URL_UPLOAD_RECORD, 125,
-                new MyHttpManager.ResponseListener<UserInfoResponse>() {
-                    @Override
-                    public void onHttpResponse(int requestCode, boolean isSuccess, UserInfoResponse resultJson) {
-                        if (isSuccess) {
-                            // 已上传成功的更新上传时间戳
-                            SharedPreferenceUtil.getInstance().setRecordUploadTime((Long) params.get("time"));
-                        } else {
-                            if (resultJson != null && Constant.HttpCode.HTTP_NEED_LOGIN == resultJson.code) {
-                                goLogin();
-                            } else {
-//                            ToastUtil.showToast("，请稍后重试");
-                            }
-                        }
-                    }
-
-                    @Override
-                    public Class getTClass() {
-                        return UserInfoResponse.class;
-                    }
-                });
     }
 
     private void uploadCallLogData() {

@@ -144,14 +144,14 @@ public class LaunchActivity extends BaseActivity implements EasyPermissions.Perm
     @Override
     public void onPermissionsGranted(int requestCode, @NonNull List<String> perms) {
         // 一些权限被授予
-        Toast.makeText(this, "允许----" + perms, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, "允许----" + perms, Toast.LENGTH_SHORT).show();
         goLoginOrHome();
     }
 
     @Override
     public void onPermissionsDenied(int requestCode, @NonNull List<String> perms) {
         // 一些权限被禁止
-        Toast.makeText(this, "权限禁止，权限开启后可正常使用----" + perms, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, "权限禁止，权限开启后可正常使用----" + perms, Toast.LENGTH_SHORT).show();
 //        goLoginOrHome();
     }
 

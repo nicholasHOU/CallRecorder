@@ -2,7 +2,6 @@ package com.android.callrecorder.home.ui.my;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +11,6 @@ import androidx.fragment.app.Fragment;
 
 import com.android.callrecorder.R;
 import com.android.callrecorder.bean.CallItem;
-import com.android.callrecorder.bean.CrashLog;
 import com.android.callrecorder.bean.response.UserInfoResponse;
 import com.android.callrecorder.config.Constant;
 import com.android.callrecorder.config.GlobalConfig;
@@ -22,10 +20,8 @@ import com.android.callrecorder.home.MainActivity;
 import com.android.callrecorder.home.ui.callrecord.CallHistoryUtil;
 import com.android.callrecorder.http.MyHttpManager;
 import com.android.callrecorder.utils.FileUtil;
-import com.android.callrecorder.utils.SharedPreferenceUtil;
 import com.android.callrecorder.utils.ToastUtil;
 
-import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -147,61 +143,26 @@ public class MyFragment extends Fragment implements View.OnClickListener {
      */
     private void uploadRecord() {
 //        File file = new File(Constant.RECORD_FILE_PATH);
-        File file = new File(Constant.RECORD_FILE_PATH);
-
-        if (file.isDirectory()) {
-            File[] files = file.listFiles();
-            for (File recordFile : files) {
-                uploadRecord(recordFile.getAbsolutePath());
-            }
+        List<CallItem> callLogs = FileUtil.loadLocalRecordFile();
+        for (CallItem callItem : callLogs) {
+            uploadRecord(callItem);
         }
     }
 
-    private void uploadRecord(String recordFile) {
+    private void uploadRecord(CallItem recordFile) {
         ThreadPoolProxyFactory.getCacheThreadPool().execute(new Runnable() {
             @Override
             public void run() {
                 Map params = new HashMap();
-                params.put("time", "");
-                params.put("during", "");
-                params.put("phone", "");
-                params.put("name", "");
-                params.put("callType", "");
-                params.put("video", FileUtil.getRecordFile(recordFile));
-                uploadFile(params);
+                params.put("time", recordFile.time);
+                params.put("during", recordFile.during);
+                params.put("phone", recordFile.phone);
+                params.put("name", recordFile.name);
+                params.put("callType", recordFile.callType);
+                params.put("video", FileUtil.getRecordFile(recordFile.recordPath));
+                FileUtil.uploadFile(params);
             }
         });
-    }
-
-    /**
-     * “time”:13123131,  //时间戳
-     * “video”: file,  //视频文件
-     * “long”: 12312,  // 视频的长度
-     * “phone”: 13211111111, // 手机号
-     * “back”: “手机号的备注” // 手机号备注   可以为空
-     */
-    private void uploadFile(Map params) {
-        MyHttpManager.getInstance().post(params, Constant.URL_UPLOAD_RECORD, 125,
-                new MyHttpManager.ResponseListener<UserInfoResponse>() {
-                    @Override
-                    public void onHttpResponse(int requestCode, boolean isSuccess, UserInfoResponse resultJson) {
-                        if (isSuccess) {
-                            // 已上传成功的更新上传时间戳
-                            SharedPreferenceUtil.getInstance().setRecordUploadTime((Long) params.get("time"));
-                        } else {
-                            if (resultJson != null && Constant.HttpCode.HTTP_NEED_LOGIN == resultJson.code) {
-//                                goLogin();
-                            } else {
-//                            ToastUtil.showToast("，请稍后重试");
-                            }
-                        }
-                    }
-
-                    @Override
-                    public Class getTClass() {
-                        return UserInfoResponse.class;
-                    }
-                });
     }
 
     private void goFeedback() {

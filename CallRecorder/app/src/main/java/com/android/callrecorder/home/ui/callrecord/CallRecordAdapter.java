@@ -39,8 +39,6 @@ public class CallRecordAdapter extends RecyclerView.Adapter<CallRecordViewHolder
     @Override
     public void onBindViewHolder(@NonNull CallRecordViewHolder holder, int position) {
         item = items.get(position);
-        holder.tvCallTime.setText(item.duringStr + " " + item.timeStr);
-        holder.tvPhoneNum.setText(TextUtils.isEmpty(item.name) ? item.phone : item.name);
         if (item.callType == CallItem.CALLTYPE_OUT) {
             holder.ivCallType.setImageResource(R.drawable.ic_outgoing);
         } else if (item.callType == CallItem.CALLTYPE_IN) {
@@ -52,9 +50,11 @@ public class CallRecordAdapter extends RecyclerView.Adapter<CallRecordViewHolder
         }
         String callRecordPath = item.recordPath;
         int during = RecordPlayerManager.getInstance().getDuration(callRecordPath);
-        RecordPlayerManager.getInstance().setSeekBar(holder, during);
         String totalTime = DateUtil.formatTime(false, during);
+        RecordPlayerManager.getInstance().setSeekBar(holder, during);
         holder.tvPlayTotalTime.setText(totalTime);
+        holder.tvCallTime.setText(totalTime + " " + item.timeStr);
+        holder.tvPhoneNum.setText(TextUtils.isEmpty(item.name) ? item.phone : item.name);
         holder.setTag(item);
         holder.ivPlay.setOnClickListener(new View.OnClickListener() {
             @Override
