@@ -30,6 +30,8 @@ import com.android.callrecorder.utils.ToastUtil;
 import java.util.HashMap;
 import java.util.List;
 
+import zuo.biao.library.util.thread.pool.ThreadPoolProxyFactory;
+
 public class MyFragment extends Fragment implements View.OnClickListener {
 
     private FragmentMyBinding binding;
@@ -148,30 +150,37 @@ public class MyFragment extends Fragment implements View.OnClickListener {
      * 上传全量通话记录到服务端
      */
     private void uploadCallLogData() {
-            long currentTime = SharedPreferenceUtil.getInstance().getCallLogUploadTime();
-//        long currentTime = 0;
-        List<CallItem> callLogs = CallHistoryUtil.getInstance().getDataList(getContext(), currentTime);
-        if (callLogs == null || callLogs.size() == 0) {
-            ToastUtil.showToast("暂无需要上传的通话记录");
-            return;
-        }
-        if (loadingDialog==null){
-            loadingDialog = DialogUtil.createLoadingDialog(getContext(),"");
-        }else{
-            loadingDialog.show();
-        }
-        CallHistoryUtil.getInstance().uploadCallLogData(callLogs, new Callback() {
+        ToastUtil.showToastLong("通话记录后台上传中~");
+        ThreadPoolProxyFactory.getCacheThreadPool().execute(new Runnable() {
             @Override
-            public void call(boolean isSuccess) {
-                if (loadingDialog != null) {
-                    loadingDialog.dismiss();
+            public void run() {
+                long currentTime = SharedPreferenceUtil.getInstance().getCallLogUploadTime();
+//        long currentTime = 0;
+                List<CallItem> callLogs = CallHistoryUtil.getInstance().getDataList(getContext(), currentTime);
+                if (callLogs == null || callLogs.size() == 0) {
+//            ToastUtil.showToast("暂无需要上传的通话记录");
+                    return;
                 }
-                if (isSuccess){
-                    ToastUtil.showToast("上传成功");
-                }
-                SharedPreferenceUtil.getInstance().setRecordUploadTime(System.currentTimeMillis());
+//                if (loadingDialog==null){
+//                    loadingDialog = DialogUtil.createLoadingDialog(getContext(),"");
+//                }else{
+//                    loadingDialog.show();
+//                }
+                CallHistoryUtil.getInstance().uploadCallLogData(callLogs, new Callback() {
+                    @Override
+                    public void call(boolean isSuccess) {
+//                        if (loadingDialog != null) {
+//                            loadingDialog.dismiss();
+//                        }
+                        if (isSuccess){
+                            ToastUtil.showToast("通话记录上传成功");
+                        }
+                        SharedPreferenceUtil.getInstance().setRecordUploadTime(System.currentTimeMillis());
+                    }
+                });
             }
         });
+
     }
 
 

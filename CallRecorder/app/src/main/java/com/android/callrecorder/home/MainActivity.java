@@ -84,12 +84,22 @@ public class MainActivity extends BaseActivity {
         initTablayout();
         initListener();
         initFragment();
-        uploadCallLogData();
-        startService();
-        startTimer();
+
+        lateLoad();
         binding.tabLayout.selectTab(binding.tabLayout.getTabAt(0));
         FloatUtils.openFloatWindow(this);
         registerService();
+    }
+
+    private void lateLoad() {
+        binding.tabLayout.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                uploadCallLogData();
+                startService();
+                startTimer();
+            }
+        },3000);
     }
 
     private void registerService() {

@@ -9,13 +9,12 @@
     <RelativeLayout
         android:layout_width="160dp"
         android:layout_height="160dp"
-        android:alpha="0.2"
-        android:background="#000000">
+     >
 
         <ImageView
             android:id="@+id/iv_ing"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_centerInParent="true"
             android:src="@drawable/loading" />
 
@@ -27,6 +26,6 @@
             android:gravity="center"
             android:paddingTop="5dp"
             android:text="请稍等..."
-            android:textColor="@color/gray_deep" />
+            android:textColor="#333333" />
     </RelativeLayout>
 </LinearLayout>
