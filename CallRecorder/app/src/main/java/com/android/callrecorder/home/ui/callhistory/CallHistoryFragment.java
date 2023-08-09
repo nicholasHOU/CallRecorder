@@ -3,6 +3,7 @@ package com.android.callrecorder.home.ui.callhistory;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +19,7 @@ import com.android.callrecorder.config.Constant;
 import com.android.callrecorder.databinding.FragmentCallHistoryBinding;
 import com.android.callrecorder.home.MainActivity;
 import com.android.callrecorder.http.MyHttpManager;
+import com.android.callrecorder.utils.DialogUtil;
 import com.android.callrecorder.utils.ToastUtil;
 import com.android.callrecorder.widget.MyRecycleViewDecoration;
 
@@ -35,6 +37,7 @@ public class CallHistoryFragment extends Fragment {
     private int month;
     private List<CallHistoryResponse.CallLogDay> callLogDays;
     private boolean loaded;
+    private Dialog loadingDialog;
 
     @Override
     public void onDestroyView() {
@@ -116,15 +119,9 @@ public class CallHistoryFragment extends Fragment {
             }
         };
         if (mdialog == null) {
-            mdialog = new DatePickerDialog(getContext(), 3, onDateSetListener, year, month, 1);
+            mdialog = new DatePickerDialog(getContext(), 3, onDateSetListener, year, month-1, 1);
         }
     }
-
-//    @Override
-//    public void onResume() {
-//        super.onResume();
-//        initData();
-//    }
 
     /**
      * 页面可见再次刷新调用，获取最新的通话记录情况
@@ -144,6 +141,11 @@ public class CallHistoryFragment extends Fragment {
      * 获取网络通话历史记录数据
      */
     private void loadCallHistory(long time) {
+        if (loadingDialog ==null){
+            loadingDialog = DialogUtil.createLoadingDialog(getContext(),"");
+        }else{
+            loadingDialog.show();
+        }
         Map params = new HashMap();
         params.put("time",time);
         MyHttpManager.getInstance().post(params, Constant.URL_CALLLOG_LIST, 124,
@@ -168,6 +170,7 @@ public class CallHistoryFragment extends Fragment {
                                 ToastUtil.showToast("信息获取失败，请稍后重试");
                             }
                         }
+                        loadingDialog.dismiss();
                     }
 
                     @Override

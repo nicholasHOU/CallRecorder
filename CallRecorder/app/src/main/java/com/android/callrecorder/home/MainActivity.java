@@ -1,8 +1,11 @@
 package com.android.callrecorder.home;
 
 import android.content.Intent;
+import android.media.MediaRecorder;
 import android.net.Uri;
 import android.os.Bundle;
+import android.telephony.PhoneStateListener;
+import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,15 +29,19 @@ import com.android.callrecorder.home.ui.callrecord.CallHistoryUtil;
 import com.android.callrecorder.home.ui.callrecord.CallRecordFragment;
 import com.android.callrecorder.home.ui.my.MyFragment;
 import com.android.callrecorder.http.MyHttpManager;
+import com.android.callrecorder.listener.Callback;
+import com.android.callrecorder.utils.DataUtil;
 import com.android.callrecorder.utils.FileUtil;
 import com.android.callrecorder.utils.Logs;
 import com.android.callrecorder.utils.SharedPreferenceUtil;
+import com.android.callrecorder.widget.floatwindow.FloatUtils;
 import com.google.android.material.tabs.TabLayout;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -81,6 +88,65 @@ public class MainActivity extends BaseActivity {
         startService();
         startTimer();
         binding.tabLayout.selectTab(binding.tabLayout.getTabAt(0));
+        FloatUtils.openFloatWindow(this);
+        registerService();
+    }
+
+    private void registerService() {
+
+    }
+
+        private final class MyListener extends PhoneStateListener {
+            private String phone;
+            private MediaRecorder recorder;
+            private File file;
+
+            public void onCallStateChanged(int state, String incomingNumber) {
+                switch (state) {
+                    case TelephonyManager.CALL_STATE_RINGING: /* 电话进来时 */
+                        Logs.e("PhoneCall ","CALL_STATE_RINGING");
+                        phone = incomingNumber;
+                        break;
+                    case TelephonyManager.CALL_STATE_OFFHOOK: /* 接起电话时 */
+                        Logs.e("PhoneCall ","CALL_STATE_OFFHOOK");
+                        try {
+//                        File file = new File(Environment.getExternalStorageDirectory(), num + "_" + System.currentTimeMillis() + ".3gp");
+                            file = FileUtil.getCallRecordSaveFile(System.currentTimeMillis(), phone);
+                            recorder = new MediaRecorder();
+                            recorder.setAudioSource(MediaRecorder.AudioSource.MIC);//声音采集来源(话筒)
+//                        recorder.setOutputFormat(MediaRecorder.OutputFormat.RAW_AMR);//输出的格式
+                            recorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);//输出的格式
+                            recorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);//音频编码方式
+                            recorder.setOutputFile(file.getAbsolutePath());//输出方向
+                            recorder.prepare();
+                            recorder.start();
+                            EventBus.getDefault().post(new CallRecordEvent(CallRecordEvent.START, System.currentTimeMillis()));
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                        break;
+                    case TelephonyManager.CALL_STATE_IDLE: /* 无任何状态时 */
+                        Logs.e("PhoneCall ","CALL_STATE_IDLE");
+                        try {
+                            CallRecordEvent event = new CallRecordEvent(CallRecordEvent.END, System.currentTimeMillis());
+                            if (file != null) {
+                                event.recordFile = file.getAbsolutePath();
+                                event.phone = phone;
+                                EventBus.getDefault().post(event);
+                                phone = "";
+                                file = null;
+                            }
+                            if (recorder != null) {
+                                recorder.stop();
+                                recorder.release();
+                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                        break;
+                }
+            }
+
     }
 
     private void initTablayout() {
@@ -222,8 +288,8 @@ public class MainActivity extends BaseActivity {
      * 启动服务
      */
     private void startService() {
-        Intent intent = new Intent(MainActivity.this, PhoneListenerService.class);
-        startService(intent);
+//        Intent intent = new Intent(MainActivity.this, PhoneListenerService.class);
+//        startService(intent);
     }
 
     /**
@@ -323,7 +389,7 @@ public class MainActivity extends BaseActivity {
 //                item.recordPath = event.recordFile;
                 item.callType = CallItem.CALLTYPE_OUT;
                 callLogs.add(item);
-                CallHistoryUtil.getInstance().uploadCallLogData(callLogs);
+                CallHistoryUtil.getInstance().uploadCallLogData(callLogs,null);
 
                 Map params = new HashMap();
                 params.put("time", recordStartTime);
@@ -331,22 +397,44 @@ public class MainActivity extends BaseActivity {
                 params.put("phone", event.phone);
                 params.put("name", "");
                 params.put("callType", "");
-                params.put("video", FileUtil.getRecordFile(event.recordFile));
-                FileUtil.uploadFile(params);
-
+                byte[] file = FileUtil.getRecordFile(event.recordFile);
+                if(file.length == 0){
+                    uploadSystemCallRecordFile();
+                }else{
+                    params.put("video", file);
+                    DataUtil.uploadFile(params);
+                }
                 isRecording = false;
             }
         }
     }
 
+    private void uploadSystemCallRecordFile() {
+        List<CallItem> callLogs = FileUtil.loadLocalRecordFile();
+        if (callLogs.size() > 0) {
+            for (CallItem callItem : callLogs) {
+                DataUtil.uploadRecord(callItem);
+            }
+            SharedPreferenceUtil.getInstance().setCallLogUploadTime(System.currentTimeMillis());
+        } else {
+        }
+    }
+
     private void uploadCallLogData() {
-        long currentTime = SharedPreferenceUtil.getInstance().getRecordUploadTime();
+        long currentTime = SharedPreferenceUtil.getInstance().getCallLogUploadTime();
 //        long currentTime =0;
         List<CallItem> callLogs = CallHistoryUtil.getInstance().getDataList(this, currentTime);
         if (callLogs == null || callLogs.size() == 0) {
             return;
         }
-        CallHistoryUtil.getInstance().uploadCallLogData(callLogs);
+        CallHistoryUtil.getInstance().uploadCallLogData(callLogs, new Callback() {
+            @Override
+            public void call(boolean isSuccess) {
+                if (isSuccess) {
+                    SharedPreferenceUtil.getInstance().setRecordUploadTime(System.currentTimeMillis());
+                }
+            }
+        });
     }
 
 }

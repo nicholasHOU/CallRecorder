@@ -3,10 +3,8 @@ package com.android.callrecorder.utils;
 import android.text.TextUtils;
 
 import com.android.callrecorder.bean.CallItem;
-import com.android.callrecorder.bean.response.BaseResponse;
 import com.android.callrecorder.config.Constant;
 import com.android.callrecorder.config.GlobalConfig;
-import com.android.callrecorder.http.MyHttpManager;
 import com.android.callrecorder.manager.RecordPlayerManager;
 
 import java.io.ByteArrayOutputStream;
@@ -18,7 +16,6 @@ import java.nio.file.Files;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class FileUtil {
     public static final String SEP = "_";
@@ -58,6 +55,7 @@ public class FileUtil {
      */
     public static List<CallItem> loadLocalRecordFile() {
         List<CallItem> callLogs = new ArrayList<>();
+        if (TextUtils.isEmpty(GlobalConfig.url)) return callLogs;
         File file = new File(GlobalConfig.url);
         if (file.isDirectory()) {
             File[] filesChilds = file.listFiles();
@@ -67,11 +65,13 @@ public class FileUtil {
                     File[] files = recordFile.listFiles();
                     for (File recordItem : files) {
                         callItem = getRecordInfo(recordItem);
+                        if (callItem==null){continue;}
                         callItem.phone = recordFile.getName();//更改文件名为目录名，目录为电话号码
                         callLogs.add(callItem);
                     }
                 } else {
                     callItem = getRecordInfo(recordFile);
+                    if (callItem==null){continue;}
                     callLogs.add(callItem);
                 }
             }
@@ -82,15 +82,19 @@ public class FileUtil {
 
     private static CallItem getRecordInfo(File recordFile) {
         String callRecordPath = recordFile.getAbsolutePath();
+        long fileTime = recordFile.lastModified();
+        long uploadTime = SharedPreferenceUtil.getInstance().getCallLogUploadTime();
+        if (fileTime < uploadTime) return null;//获取时间点以后新生成的录音文件
         int duration = RecordPlayerManager.getInstance().getDuration(callRecordPath);
         CallItem callItem = new CallItem();
         callItem.phone = StringUtil.checkNum(callRecordPath);
         callItem.name = "";
-        callItem.time = recordFile.lastModified();
+        callItem.time = fileTime;
+
         String date = dateFormat.format(callItem.time);
         callItem.timeStr = date;
 
-        callItem.during = duration/60;
+        callItem.during = duration / 60;
         int minutes = (int) (callItem.during / 60);
         int seconds = (int) (callItem.during % 60);
         String minute = minutes == 0 ? "" : minutes + "分";
@@ -149,35 +153,6 @@ public class FileUtil {
     }
 
 
-    /**
-     * “time”:13123131,  //时间戳
-     * “video”: file,  //视频文件
-     * “long”: 12312,  // 视频的长度
-     * “phone”: 13211111111, // 手机号
-     * “back”: “手机号的备注” // 手机号备注   可以为空
-     */
-    public static  void uploadFile(Map params) {
-        MyHttpManager.getInstance().post(params, Constant.URL_UPLOAD_RECORD, 125,
-                new MyHttpManager.ResponseListener<BaseResponse>() {
-                    @Override
-                    public void onHttpResponse(int requestCode, boolean isSuccess, BaseResponse resultJson) {
-                        if (isSuccess) {
-                            // 已上传成功的更新上传时间戳
-                            SharedPreferenceUtil.getInstance().setRecordUploadTime((Long) params.get("time"));
-                        } else {
-                            if (resultJson != null && Constant.HttpCode.HTTP_NEED_LOGIN == resultJson.code) {
-//                                goLogin();
-                            } else {
-//                            ToastUtil.showToast("，请稍后重试");
-                            }
-                        }
-                    }
 
-                    @Override
-                    public Class getTClass() {
-                        return BaseResponse.class;
-                    }
-                });
-    }
 
 }

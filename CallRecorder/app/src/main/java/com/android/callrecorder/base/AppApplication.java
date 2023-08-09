@@ -26,11 +26,11 @@ public class AppApplication extends BaseApplication {
 
     private int count;
     private boolean isBackground;
-
+    public static AppApplication app ;
     @Override
     public void onCreate() {
         super.onCreate();
-
+        app = this;
 //        if (isMainProcess()) {
             initCrash();
             initLifecycle();

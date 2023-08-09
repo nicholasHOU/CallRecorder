@@ -36,9 +36,7 @@ public class LaunchActivity extends BaseActivity implements EasyPermissions.Perm
             Manifest.permission.READ_CONTACTS,};
     // requestCode
     static final int RC_PERMISSION = 1;
-
-
-
+    private AlertDialog dialog;//权限申请弹窗
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,7 +91,7 @@ public class LaunchActivity extends BaseActivity implements EasyPermissions.Perm
             // 已获取权限
             goLoginOrHome();
         } else {
-            new AlertDialog(this, "温馨提示", getString(R.string.permission_request),
+            dialog = new AlertDialog(this, "温馨提示", getString(R.string.permission_request),
                     true, 0, new AlertDialog.OnDialogButtonClickListener() {
                 @Override
                 public void onDialogButtonClick(int requestCode, boolean isPositive) {
@@ -102,8 +100,10 @@ public class LaunchActivity extends BaseActivity implements EasyPermissions.Perm
                     }else {
                         goLoginOrHome();
                     }
+                    dialog.dismiss();
                 }
-            }).show();
+            });
+            dialog.show();
 
 //            new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
 //                    .setTitleText("温馨提示")

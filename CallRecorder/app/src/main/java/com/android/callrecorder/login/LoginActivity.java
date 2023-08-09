@@ -1,6 +1,7 @@
 package com.android.callrecorder.login;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.view.View;
 import com.android.callrecorder.R;
 import com.android.callrecorder.base.BaseActivity;
 import com.android.callrecorder.bean.response.LoginResponse;
+import com.android.callrecorder.bean.response.UpdateResponse;
 import com.android.callrecorder.config.Constant;
 import com.android.callrecorder.config.GlobalConfig;
 import com.android.callrecorder.databinding.ActivityLoginBinding;
@@ -20,7 +22,7 @@ import com.android.callrecorder.utils.ToastUtil;
 import java.util.HashMap;
 import java.util.Map;
 
-import zuo.biao.library.util.MD5Util;
+import zuo.biao.library.ui.AlertDialog;
 
 public class LoginActivity extends BaseActivity {
 
@@ -29,6 +31,7 @@ public class LoginActivity extends BaseActivity {
     private String username;
     private String password;
     private int loginRequestCode = 123;
+    private AlertDialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +40,7 @@ public class LoginActivity extends BaseActivity {
         setContentView(binding.getRoot());
         initView();
         initLoginInfo();
+        checkVersion();
     }
 
     private void initView() {
@@ -46,15 +50,15 @@ public class LoginActivity extends BaseActivity {
                 if (!isChecked()) {
                     return;
                 }
-                login( new MyHttpManager.ResponseListener<LoginResponse>() {
+                login(new MyHttpManager.ResponseListener<LoginResponse>() {
                     @Override
                     public void onHttpResponse(int requestCode, boolean isSuccess, LoginResponse resultJson) {
-                        if (isSuccess){
+                        if (isSuccess) {
                             GlobalConfig.token = resultJson.data.token;
                             ToastUtil.showToast("登录成功");
                             SharedPreferenceUtil.getInstance().setLoginInfo(username, password);
                             goHome();
-                        }else {
+                        } else {
                             if (resultJson != null && !TextUtils.isEmpty(resultJson.message)) {
                                 ToastUtil.showToast(resultJson.message);
                             } else {
@@ -82,7 +86,7 @@ public class LoginActivity extends BaseActivity {
         });
     }
 
-    private void goSetting(){
+    private void goSetting() {
         Intent intent = new Intent(this, SettingActivity.class);
         startActivity(intent);
     }
@@ -125,8 +129,70 @@ public class LoginActivity extends BaseActivity {
         MyHttpManager.getInstance().post(request, Constant.URL_LOGIN, loginRequestCode, listener);
     }
 
+    /**
+     * 检测升级
+     */
+    private void checkVersion() {
+        Map<String, Object> request = new HashMap<>(8);
+//        request.put("version", username);
 
-    private void goHome(){
+        MyHttpManager.getInstance().post(request, Constant.URL_LOGIN, loginRequestCode, new MyHttpManager.ResponseListener<UpdateResponse>() {
+            @Override
+            public void onHttpResponse(int requestCode, boolean isSuccess, UpdateResponse resultJson) {
+                if (isSuccess) {
+                    int updateType = resultJson.data.updateType;
+                    if (updateType == UpdateResponse.UPDATETYPE_NONE) {
+                        return;
+                    } else if (updateType == UpdateResponse.UPDATETYPE_FORCE) {
+                        showUpdateDialog(resultJson.data.tip, true, resultJson.data.downloadUrl);
+                    } else if (updateType == UpdateResponse.UPDATETYPE_NORMAL) {
+                        showUpdateDialog(resultJson.data.tip, false, resultJson.data.downloadUrl);
+                    }
+                } else {
+                    if (resultJson != null && !TextUtils.isEmpty(resultJson.message)) {
+//                        ToastUtil.showToast(resultJson.message);
+                    } else {
+//                        ToastUtil.showToast("登录失败，请稍后重试");
+                    }
+                }
+            }
+
+            @Override
+            public Class getTClass() {
+                return UpdateResponse.class;
+            }
+        });
+    }
+
+    private void showUpdateDialog(String title, boolean isForceUpdate, String updateUrl) {
+        String tips = (TextUtils.isEmpty(title)) ? "优化了已知的bug，体验更佳~\n是否立刻升级" : title;
+        dialog = new AlertDialog(this, "温馨提示", tips,
+                !isForceUpdate, 0, new AlertDialog.OnDialogButtonClickListener() {
+            @Override
+            public void onDialogButtonClick(int requestCode, boolean isPositive) {
+                if (isPositive) {
+                    openUrl(updateUrl);
+                } else {
+                    if (isForceUpdate) {
+                        finish();
+                    }else {
+                        dialog.dismiss();
+                    }
+                }
+            }
+        });
+        dialog.show();
+    }
+
+    private void openUrl(String url) {
+        Intent intent = new Intent();
+        intent.setAction("android.intent.action.VIEW");
+        Uri contentUrl = Uri.parse(url);
+        intent.setData(contentUrl);
+        startActivity(intent);
+    }
+
+    private void goHome() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();

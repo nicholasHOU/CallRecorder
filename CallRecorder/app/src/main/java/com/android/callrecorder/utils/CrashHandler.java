@@ -102,9 +102,9 @@ public class CrashHandler implements UncaughtExceptionHandler {
         collectDeviceInfo(mContext);
         exceptionMessage = saveCrashInfo2File(ex);
 
-        if (null != exceptionMessage) {
-            SystemClock.sleep(3000);
-        }
+//        if (null != exceptionMessage) {
+//            SystemClock.sleep(1000);
+//        }
         android.os.Process.killProcess(android.os.Process.myPid());
         System.exit(0);
         return true;

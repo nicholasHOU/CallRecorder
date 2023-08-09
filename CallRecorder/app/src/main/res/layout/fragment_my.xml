@@ -100,10 +100,12 @@
 
     <View
         android:layout_width="match_parent"
+        android:visibility="gone"
         android:layout_height="1px"
         android:background="#E2E2E2" />
 
     <RelativeLayout
+        android:visibility="gone"
         android:id="@+id/rl_upload_record"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

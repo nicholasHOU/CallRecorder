@@ -5,11 +5,14 @@ import android.content.Context;
 import android.database.Cursor;
 import android.provider.CallLog;
 
+import androidx.core.widget.ContentLoadingProgressBar;
+
 import com.android.callrecorder.bean.CallItem;
 import com.android.callrecorder.bean.response.BaseResponse;
 import com.android.callrecorder.bean.response.UserInfoResponse;
 import com.android.callrecorder.config.Constant;
 import com.android.callrecorder.http.MyHttpManager;
+import com.android.callrecorder.listener.Callback;
 import com.android.callrecorder.utils.Logs;
 import com.android.callrecorder.utils.SharedPreferenceUtil;
 
@@ -154,7 +157,7 @@ public class CallHistoryUtil {
         return list;
     }
 
-    public void uploadCallLogData(List<CallItem> callLogs) {
+    public void uploadCallLogData(List<CallItem> callLogs, Callback callback) {
         Map params = new HashMap();
         params.put("son", callLogs);
         Logs.e("calllogs ", callLogs.toString());
@@ -165,11 +168,17 @@ public class CallHistoryUtil {
                         if (isSuccess) {
                             // 已上传成功的更新上传时间戳
                             SharedPreferenceUtil.getInstance().setRecordUploadTime(System.currentTimeMillis());
+                            if (callback!=null){
+                                callback.call(true);
+                            }
                         } else {
                             if (resultJson != null && Constant.HttpCode.HTTP_NEED_LOGIN == resultJson.code) {
 //                                goLogin();
                             } else {
 //                            ToastUtil.showToast("，请稍后重试");
+                            }
+                            if (callback!=null){
+                                callback.call(false);
                             }
                         }
                     }

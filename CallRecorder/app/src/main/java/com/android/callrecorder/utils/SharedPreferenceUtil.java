@@ -13,6 +13,8 @@ public class SharedPreferenceUtil {
     private String K_PASSWORD = "passwordP";
     private String K_HOST = "serverHost";
     private String K_RECORD_UPLOAD_TIME = "recordUploadT";
+    private String K_CALLLOG_UPLOAD_TIME = "callLogUploadT";
+    private String K_RECORD_FILE_PATH = "recordFilePath";
 
     private SharedPreferenceUtil() {
         prefs = context.getSharedPreferences(SP_NAME, Context.MODE_PRIVATE);
@@ -99,6 +101,33 @@ public class SharedPreferenceUtil {
         String username = getString(K_USERNAME, "");
         return prefs.getLong(K_RECORD_UPLOAD_TIME+"-"+username, 0l);
     }
+
+    public boolean setCallLogUploadTime(long time) {
+        SharedPreferences.Editor editor = prefs.edit();
+        String username = getString(K_USERNAME, "");
+        editor.putLong(K_CALLLOG_UPLOAD_TIME+"-"+username, time);
+        return editor.commit();
+    }
+
+    public long getCallLogUploadTime() {
+        String username = getString(K_USERNAME, "");
+        return prefs.getLong(K_CALLLOG_UPLOAD_TIME+"-"+username, 0l);
+    }
+    /**
+     * 设置上传时间信息
+     *
+     * @return
+     */
+    public boolean setRecordFilepath(String filePath) {
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString(K_RECORD_FILE_PATH, filePath);
+        return editor.commit();
+    }
+
+    public String getRecordFilepath() {
+        return getString(K_RECORD_FILE_PATH);
+    }
+
 
 
     public boolean hasLoginInfo() {

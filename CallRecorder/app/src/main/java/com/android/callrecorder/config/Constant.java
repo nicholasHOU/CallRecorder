@@ -22,6 +22,7 @@ public interface Constant {
     String K_TOKEN = "token";
     String K_EXTRA = "extra";
     String K_TYPE = "type";
+    String K_APP_VERSION = "appVersion";
 
     /**
      * 登录

@@ -1,5 +1,6 @@
 package com.android.callrecorder.home.ui.my;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -19,18 +20,20 @@ import com.android.callrecorder.feedback.FeedbackActivity;
 import com.android.callrecorder.home.MainActivity;
 import com.android.callrecorder.home.ui.callrecord.CallHistoryUtil;
 import com.android.callrecorder.http.MyHttpManager;
+import com.android.callrecorder.listener.Callback;
+import com.android.callrecorder.utils.DataUtil;
+import com.android.callrecorder.utils.DialogUtil;
 import com.android.callrecorder.utils.FileUtil;
+import com.android.callrecorder.utils.SharedPreferenceUtil;
 import com.android.callrecorder.utils.ToastUtil;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
-import zuo.biao.library.util.thread.pool.ThreadPoolProxyFactory;
 
 public class MyFragment extends Fragment implements View.OnClickListener {
 
     private FragmentMyBinding binding;
+    private Dialog loadingDialog;
 
     public static MyFragment createInstance() {
         return new MyFragment();
@@ -89,20 +92,6 @@ public class MyFragment extends Fragment implements View.OnClickListener {
 
     }
 
-    /**
-     * 上传全量通话记录到服务端
-     */
-    private void uploadCallLogData() {
-//            long currentTime = SharedPreferenceUtil.getInstance().getRecordUploadTime();
-        long currentTime = 0;
-        List<CallItem> callLogs = CallHistoryUtil.getInstance().getDataList(getContext(), currentTime);
-        if (callLogs == null || callLogs.size() == 0) {
-            return;
-        }
-        CallHistoryUtil.getInstance().uploadCallLogData(callLogs);
-    }
-
-
     private void initData() {
         MyHttpManager.getInstance().post(new HashMap<>(), Constant.URL_USERINFO, 124,
                 new MyHttpManager.ResponseListener<UserInfoResponse>() {
@@ -144,26 +133,47 @@ public class MyFragment extends Fragment implements View.OnClickListener {
     private void uploadRecord() {
 //        File file = new File(Constant.RECORD_FILE_PATH);
         List<CallItem> callLogs = FileUtil.loadLocalRecordFile();
-        for (CallItem callItem : callLogs) {
-            uploadRecord(callItem);
+        if (callLogs.size() > 0) {
+            for (CallItem callItem : callLogs) {
+                DataUtil.uploadRecord(callItem);
+            }
+            ToastUtil.showToast("录音文件后台上传中");
+            SharedPreferenceUtil.getInstance().setCallLogUploadTime(System.currentTimeMillis());
+        } else {
+            ToastUtil.showToast("暂无需要上传的通话录音文件");
         }
     }
 
-    private void uploadRecord(CallItem recordFile) {
-        ThreadPoolProxyFactory.getCacheThreadPool().execute(new Runnable() {
+    /**
+     * 上传全量通话记录到服务端
+     */
+    private void uploadCallLogData() {
+            long currentTime = SharedPreferenceUtil.getInstance().getCallLogUploadTime();
+//        long currentTime = 0;
+        List<CallItem> callLogs = CallHistoryUtil.getInstance().getDataList(getContext(), currentTime);
+        if (callLogs == null || callLogs.size() == 0) {
+            ToastUtil.showToast("暂无需要上传的通话记录");
+            return;
+        }
+        if (loadingDialog==null){
+            loadingDialog = DialogUtil.createLoadingDialog(getContext(),"");
+        }else{
+            loadingDialog.show();
+        }
+        CallHistoryUtil.getInstance().uploadCallLogData(callLogs, new Callback() {
             @Override
-            public void run() {
-                Map params = new HashMap();
-                params.put("time", recordFile.time);
-                params.put("during", recordFile.during);
-                params.put("phone", recordFile.phone);
-                params.put("name", recordFile.name);
-                params.put("callType", recordFile.callType);
-                params.put("video", FileUtil.getRecordFile(recordFile.recordPath));
-                FileUtil.uploadFile(params);
+            public void call(boolean isSuccess) {
+                if (loadingDialog != null) {
+                    loadingDialog.dismiss();
+                }
+                if (isSuccess){
+                    ToastUtil.showToast("上传成功");
+                }
+                SharedPreferenceUtil.getInstance().setRecordUploadTime(System.currentTimeMillis());
             }
         });
     }
+
 
     private void goFeedback() {
         Intent intent = new Intent(getContext(), FeedbackActivity.class);

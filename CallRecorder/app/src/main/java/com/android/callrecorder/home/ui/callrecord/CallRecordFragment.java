@@ -18,6 +18,8 @@ import com.android.callrecorder.config.Constant;
 import com.android.callrecorder.config.GlobalConfig;
 import com.android.callrecorder.databinding.FragmentCallRecordBinding;
 import com.android.callrecorder.http.MyHttpManager;
+import com.android.callrecorder.listener.Callback;
+import com.android.callrecorder.utils.DataUtil;
 import com.android.callrecorder.utils.FileUtil;
 import com.android.callrecorder.widget.MyRecycleViewDecoration;
 
@@ -86,38 +88,15 @@ public class CallRecordFragment extends Fragment {
      * 页面可见再次刷新调用，获取最新的通话记录情况
      */
     protected void initData() {//必须在onCreateView方法内调用
-        loadConfigData();
+        DataUtil.loadConfigData(new Callback() {
+            @Override
+            public void call(boolean isSuccess) {
+                if (isSuccess){
+                    loadRecordFile();
+                }
+            }
+        });
 
-    }
-
-
-    private void loadConfigData() {
-        Map params = new HashMap();
-        MyHttpManager.getInstance().post(params, Constant.URL_CONFIG, 125,
-                new MyHttpManager.ResponseListener<ConfigResponse>() {
-                    @Override
-                    public void onHttpResponse(int requestCode, boolean isSuccess, ConfigResponse resultJson) {
-                        if (isSuccess) {
-                            if (!TextUtils.isEmpty(resultJson.data.url)) {
-                                GlobalConfig.url = resultJson.data.url;
-                            }
-                            if (resultJson.data.runTime > 2000) {
-                                GlobalConfig.runTime = resultJson.data.runTime;
-                            }
-                            loadRecordFile();
-                        } else {
-                            if (resultJson != null && Constant.HttpCode.HTTP_NEED_LOGIN == resultJson.code) {
-                                ((BaseActivity)getActivity()).goLogin();
-                            } else {
-                            }
-                        }
-                    }
-
-                    @Override
-                    public Class getTClass() {
-                        return ConfigResponse.class;
-                    }
-                });
     }
 
     private void loadRecordFile() {

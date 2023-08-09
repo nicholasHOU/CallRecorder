@@ -58,6 +58,15 @@
         tools:replace="android:icon">
         <meta-data android:name="android.max_aspect" android:value="2.1" />
         <service android:name="com.android.callrecorder.home.PhoneListenerService"></service>
+        <receiver
+            android:name=".home.receiver.PhoneCallReceiverImpl"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.PHONE_STATE"/>
+                <action android:name="android.intent.action.NEW_OUTGOING_CALL"/>
+                <action android:name="android.intent.extra.PHONE_NUMBER"/>
+            </intent-filter>
+        </receiver>
         <activity
             android:name=".home.LaunchActivity"
             android:exported="true"

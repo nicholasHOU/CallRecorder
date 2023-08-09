@@ -45,22 +45,28 @@ public class MyHttpManager<T> {
         headers.put(Constant.K_TOKEN, GlobalConfig.token);
         headers.put(Constant.K_TYPE, GlobalConfig.type);
         headers.put(Constant.K_EXTRA, GlobalConfig.extra);
+        headers.put(Constant.K_APP_VERSION, GlobalConfig.appVersion);
         HttpManager.getInstance().post(request, headers, url,
                 true, requestCode, new OnHttpResponseListener() {
                     @Override
                     public void onHttpResponse(int requestCode, String resultJson, Exception e) {
                         if (!TextUtils.isEmpty(resultJson)) {
-                            BaseResponse data = JSON.parseObject(resultJson, BaseResponse.class);
-                            Class<T> tClass = listener.getTClass();
-                            if (tClass == null) {
-                                listener.onHttpResponse(requestCode, false, null);
-                            } else {
-                                T data3 = JSON.parseObject(resultJson, tClass);
-                                if (Constant.HttpCode.HTTP_SUCCESS == data.code) {
-                                    listener.onHttpResponse(requestCode, true, data3);
+                            try {
+                                BaseResponse data = JSON.parseObject(resultJson, BaseResponse.class);
+                                Class<T> tClass = listener.getTClass();
+                                if (tClass == null) {
+                                    listener.onHttpResponse(requestCode, false, null);
                                 } else {
-                                    listener.onHttpResponse(requestCode, false, data3);
+                                    T data3 = JSON.parseObject(resultJson, tClass);
+                                    if (Constant.HttpCode.HTTP_SUCCESS == data.code) {
+                                        listener.onHttpResponse(requestCode, true, data3);
+                                    } else {
+                                        listener.onHttpResponse(requestCode, false, data3);
+                                    }
                                 }
+                            } catch (Exception e1) {
+                                e1.printStackTrace();
+                                listener.onHttpResponse(requestCode, false, null);
                             }
                         } else {
                             listener.onHttpResponse(requestCode, false, null);
