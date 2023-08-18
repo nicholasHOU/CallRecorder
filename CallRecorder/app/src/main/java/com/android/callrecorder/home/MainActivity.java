@@ -67,7 +67,7 @@ public class MainActivity extends BaseActivity {
     private int tabImages[] = {R.drawable.bg_home_second, R.drawable.bg_home_third};
     private boolean isRecording;//是否正在录音
     private long recordStartTime;//开始录音的时间点
-    private boolean isV1 = true;
+    private boolean isV1 = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -389,7 +389,7 @@ public class MainActivity extends BaseActivity {
             recordStartTime = event.timestamp;
         } else if (event.type == CallRecordEvent.END) {
             if (isRecording) {//结束当前录音
-                long timeDuring = event.timestamp - recordStartTime;//录音时长
+                long timeDuring = (event.timestamp - recordStartTime)/1000;//录音时长
                 List<CallItem> callLogs = new ArrayList<>();
                 CallItem item = new CallItem();
                 item.time = recordStartTime;

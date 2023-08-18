@@ -64,4 +64,8 @@ public interface Constant {
      * 获取本地录音地址目录及刷新轮训时间间隔
      */
     String URL_CONFIG = Config.URL_BASE + "operation/record_url.html";
+    /**
+     * 升级接口
+     */
+    String URL_UPDATE = Config.URL_BASE + "operation/upgrade.html";
 }

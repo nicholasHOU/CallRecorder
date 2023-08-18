@@ -51,6 +51,7 @@ public class FileUtil {
 
     /**
      * 获取通话记录录音文件
+     * new File("/storage/emulated/0/MIUI/sound_recorder/call_rec/本机(18032408866)_20230805171115.mp3").length();
      * @return
      */
     public static List<CallItem> loadLocalRecordFile() {

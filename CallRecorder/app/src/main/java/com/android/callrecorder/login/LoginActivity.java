@@ -136,7 +136,7 @@ public class LoginActivity extends BaseActivity {
         Map<String, Object> request = new HashMap<>(8);
 //        request.put("version", username);
 
-        MyHttpManager.getInstance().post(request, Constant.URL_LOGIN, loginRequestCode, new MyHttpManager.ResponseListener<UpdateResponse>() {
+        MyHttpManager.getInstance().post(request, Constant.URL_UPDATE, loginRequestCode, new MyHttpManager.ResponseListener<UpdateResponse>() {
             @Override
             public void onHttpResponse(int requestCode, boolean isSuccess, UpdateResponse resultJson) {
                 if (isSuccess) {

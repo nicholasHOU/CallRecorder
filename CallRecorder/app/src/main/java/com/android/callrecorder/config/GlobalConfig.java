@@ -4,9 +4,6 @@ import android.os.Build;
 
 import com.android.callrecorder.utils.DeviceUtil;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class GlobalConfig {
     public static long runTime = 5;//5s 循环调用接口，获取是否有需要拨号的任务
 
@@ -14,7 +11,7 @@ public class GlobalConfig {
     public static String username = "";
 
     public static String token = "";
-    public static String appVersion = "1.0";
+    public static String appVersion = "1.1";
     public static String type = Build.BRAND + "-" + Build.MODEL;
     public static String extra = DeviceUtil.getDeviceInfo().toString();
 
