@@ -181,6 +181,8 @@ public class LoginActivity extends BaseActivity {
                 }
             }
         });
+        dialog.setCancelable(!isForceUpdate);
+        dialog.setCanceledOnTouchOutside(!isForceUpdate);
         dialog.show();
     }
 

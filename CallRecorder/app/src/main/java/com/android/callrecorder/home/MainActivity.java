@@ -48,13 +48,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import zuo.biao.library.manager.TimeRefresher;
-
 public class MainActivity extends BaseActivity {
 
     private ActivityMainBinding binding;
     private String TAG_CALLPHONE = "callPhoneCheck";//循环调用接口，获取是否有需要拨号的任务
-    private TimeRefresher.OnTimeRefreshListener onTimeRefreshListener;
 
     private FragmentManager mFragmentManager;
     private FragmentTransaction mTransaction;
@@ -99,7 +96,7 @@ public class MainActivity extends BaseActivity {
             public void run() {
                 uploadCallLogData();
                 startService();
-                startTimer();
+//                startTimer();
             }
         },3000);
     }

@@ -20,6 +20,8 @@ import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -100,8 +102,10 @@ public class AlertDialog extends Dialog implements android.view.View.OnClickList
 	protected void onCreate(Bundle savedInstanceState) {  
 		super.onCreate(savedInstanceState);  
 		setContentView(R.layout.alert_dialog); 
-		setCanceledOnTouchOutside(true);
-
+//		WindowManager.LayoutParams params = getWindow().getAttributes();
+//		params.width = ViewGroup.LayoutParams.MATCH_PARENT;
+//		params.height = ViewGroup.LayoutParams.MATCH_PARENT;
+//		getWindow().setAttributes(params);
 		tvTitle = findViewById(R.id.tvAlertDialogTitle);
 		tvMessage = findViewById(R.id.tvAlertDialogMessage);
 		btnPositive = findViewById(R.id.btnAlertDialogPositive);
