@@ -76,59 +76,59 @@ public class MyHttpManager<T> {
 //        loadTestData(url, requestCode, listener);
     }
 
-    private void loadTestData(final String url
-            , final int requestCode, ResponseListener listener) {
-        if (Constant.URL_USERINFO.equals(url)) {
-            UserInfoResponse response = new UserInfoResponse();
-            response.data = new UserInfoResponse.DataInfo();
-            response.data.name = "张三";
-            response.data.city = "北京";
-            response.data.company = "company";
-            response.data.department_big = "big";
-            response.data.department = "department";
-
-            listener.onHttpResponse(requestCode, true, response);
-        } else if (Constant.URL_CALLLOG_LIST.equals(url)) {
-            CallHistoryResponse response = new CallHistoryResponse();
-            List<CallHistoryResponse.CallLogDay> son = new ArrayList<>();
-            for (int i = 0; i < 4; i++) {
-                CallHistoryResponse.CallLogDay day = new CallHistoryResponse.CallLogDay();
-                day.year = 2023;
-                day.month = 3 + i;
-                day.total_number = 123;
-                day.total_time = 6123;
-                List<CallHistoryResponse.CallLog> days = new ArrayList<>();
-                for (int j = 0; j < 4; j++) {
-                    CallHistoryResponse.CallLog callLog = new CallHistoryResponse.CallLog();
-                    callLog.day = day.month + "月" + (21 + j);
-                    callLog.total_number = j + 4;
-                    callLog.total_time = 623;
-                    days.add(callLog);
-                }
-                day.son = days;
-                son.add(day);
-            }
-            CallHistoryResponse.DataInfo data = new CallHistoryResponse.DataInfo();
-            response.data = data;
-            response.data.son = son;
-            listener.onHttpResponse(requestCode, true, response);
-
-        } else if (Constant.URL_CALLPHONE.equals(url)) {
-            CallPhoneResponse response = new CallPhoneResponse();
-            response.phone = "18701636595";
-            listener.onHttpResponse(requestCode, true, response);
-        } else if (Constant.URL_LOGIN.equals(url)) {
-            LoginResponse response = new LoginResponse();
-            LoginResponse.Data data = new LoginResponse.Data();
-            data.token = "2u392rjcu8394cnn82934y1238ncjeh182358";
-            response.data = data;
-            listener.onHttpResponse(requestCode, true, response);
-        } else {
+//    private void loadTestData(final String url
+//            , final int requestCode, ResponseListener listener) {
+//        if (Constant.URL_USERINFO.equals(url)) {
 //            UserInfoResponse response = new UserInfoResponse();
-//            response.name = "张三";
-        }
-
-    }
+//            response.data = new UserInfoResponse.DataInfo();
+//            response.data.name = "张三";
+//            response.data.city = "北京";
+//            response.data.company = "company";
+//            response.data.department_big = "big";
+//            response.data.department = "department";
+//
+//            listener.onHttpResponse(requestCode, true, response);
+//        } else if (Constant.URL_CALLLOG_LIST.equals(url)) {
+//            CallHistoryResponse response = new CallHistoryResponse();
+//            List<CallHistoryResponse.CallLogDay> son = new ArrayList<>();
+//            for (int i = 0; i < 4; i++) {
+//                CallHistoryResponse.CallLogDay day = new CallHistoryResponse.CallLogDay();
+//                day.year = 2023;
+//                day.month = 3 + i;
+//                day.total_number = 123;
+//                day.total_time = 6123;
+//                List<CallHistoryResponse.CallLog> days = new ArrayList<>();
+//                for (int j = 0; j < 4; j++) {
+//                    CallHistoryResponse.CallLog callLog = new CallHistoryResponse.CallLog();
+//                    callLog.day = day.month + "月" + (21 + j);
+//                    callLog.total_number = j + 4;
+//                    callLog.total_time = 623;
+//                    days.add(callLog);
+//                }
+//                day.son = days;
+//                son.add(day);
+//            }
+//            CallHistoryResponse.DataInfo data = new CallHistoryResponse.DataInfo();
+//            response.data = data;
+//            response.data.son = son;
+//            listener.onHttpResponse(requestCode, true, response);
+//
+//        } else if (Constant.URL_CALLPHONE.equals(url)) {
+//            CallPhoneResponse response = new CallPhoneResponse();
+//            response.phone = "18701636595";
+//            listener.onHttpResponse(requestCode, true, response);
+//        } else if (Constant.URL_LOGIN.equals(url)) {
+//            LoginResponse response = new LoginResponse();
+//            LoginResponse.Data data = new LoginResponse.Data();
+//            data.token = "2u392rjcu8394cnn82934y1238ncjeh182358";
+//            response.data = data;
+//            listener.onHttpResponse(requestCode, true, response);
+//        } else {
+////            UserInfoResponse response = new UserInfoResponse();
+////            response.name = "张三";
+//        }
+//
+//    }
 
     public interface ResponseListener<T> {
         /**

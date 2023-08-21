@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.media.MediaRecorder;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
@@ -68,6 +69,7 @@ public class MainActivity extends BaseActivity {
     private boolean isRecording;//是否正在录音
     private long recordStartTime;//开始录音的时间点
     private boolean isV1 = false;
+    private CountDownTimer timer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -306,24 +308,20 @@ public class MainActivity extends BaseActivity {
      * 启动计时器
      */
     private void startTimer() {
-        TimeRefresher.getInstance().addTimeRefreshListener(TAG_CALLPHONE, GlobalConfig.runTime, onTimeRefreshListener);
-        onTimeRefreshListener = new TimeRefresher.OnTimeRefreshListener() {
+//        timer = new CountDownTimer(24 * 60 * 60 * 1000, GlobalConfig.runTime) {
+        timer = new CountDownTimer(60 * 1000, GlobalConfig.runTime*1000) {
             @Override
-            public void onTimerStart() {
-
-            }
-
-            @Override
-            public void onTimerRefresh() {
+            public void onTick(long timeleft) {
+                Logs.e("onTick","onTick ===== " + timeleft/1000 );
                 loadServerCallPhoneTask();
             }
 
-
             @Override
-            public void onTimerStop() {
+            public void onFinish() {
 
             }
         };
+        timer.start();
     }
 
 
@@ -337,12 +335,11 @@ public class MainActivity extends BaseActivity {
                     @Override
                     public void onHttpResponse(int requestCode, boolean isSuccess, CallPhoneResponse resultJson) {
                         if (isSuccess) {
-                            if (!TextUtils.isEmpty(resultJson.phone)) {
+                            if (!TextUtils.isEmpty(resultJson.data.phone)) {
                                 Intent intent = new Intent(Intent.ACTION_DIAL);
-                                Uri data = Uri.parse("tel:" + resultJson.phone);
+                                Uri data = Uri.parse("tel:" + resultJson.data.phone);
                                 intent.setData(data);
                                 startActivity(intent);
-                                TimeRefresher.getInstance().stopTimeRefreshListener(TAG_CALLPHONE);
                             }
                         } else {
                             if (resultJson != null && Constant.HttpCode.HTTP_NEED_LOGIN == resultJson.code) {
@@ -363,21 +360,24 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        TimeRefresher.getInstance().startTimeRefreshListener(TAG_CALLPHONE);
+        if (timer!=null){
+            timer.start();
+        }
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        TimeRefresher.getInstance().stopTimeRefreshListener(TAG_CALLPHONE);
-
+        if (timer!=null){
+            timer.cancel();
+        }
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
         isDestroyed = true;
-        TimeRefresher.getInstance().removeTimeRefreshListener(TAG_CALLPHONE);
+        timer =null;
         EventBus.getDefault().unregister(this);
     }
 

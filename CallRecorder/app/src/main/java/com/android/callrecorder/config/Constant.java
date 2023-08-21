@@ -41,6 +41,10 @@ public interface Constant {
      */
     String URL_UPLOAD_LOG = Config.URL_BASE + "log/index.html";
     /**
+     * 升级接口
+     */
+    String URL_UPDATE = Config.URL_BASE + "log/upgrade.html";
+    /**
      * 意见反馈
      */
     String URL_FEEDBACK = Config.URL_BASE + "operation/feedback.html";
@@ -64,8 +68,5 @@ public interface Constant {
      * 获取本地录音地址目录及刷新轮训时间间隔
      */
     String URL_CONFIG = Config.URL_BASE + "operation/record_url.html";
-    /**
-     * 升级接口
-     */
-    String URL_UPDATE = Config.URL_BASE + "operation/upgrade.html";
+
 }
