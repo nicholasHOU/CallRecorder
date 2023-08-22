@@ -96,7 +96,7 @@ public class MainActivity extends BaseActivity {
             public void run() {
                 uploadCallLogData();
                 startService();
-//                startTimer();
+                startTimer();
             }
         },3000);
     }
@@ -305,8 +305,7 @@ public class MainActivity extends BaseActivity {
      * 启动计时器
      */
     private void startTimer() {
-//        timer = new CountDownTimer(24 * 60 * 60 * 1000, GlobalConfig.runTime) {
-        timer = new CountDownTimer(60 * 1000, GlobalConfig.runTime*1000) {
+        timer = new CountDownTimer(72 * 60 * 60 * 1000, GlobalConfig.runTime * 1000) {
             @Override
             public void onTick(long timeleft) {
                 Logs.e("onTick","onTick ===== " + timeleft/1000 );
@@ -417,7 +416,7 @@ public class MainActivity extends BaseActivity {
     }
 
     private void uploadSystemCallRecordFile() {
-        List<CallItem> callLogs = FileUtil.loadLocalRecordFile();
+        List<CallItem> callLogs = FileUtil.loadLocalRecordFile(false);
         if (callLogs.size() > 0) {
             for (CallItem callItem : callLogs) {
                 DataUtil.uploadRecord(callItem);

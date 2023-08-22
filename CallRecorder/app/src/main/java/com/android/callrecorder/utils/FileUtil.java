@@ -55,6 +55,15 @@ public class FileUtil {
      * @return
      */
     public static List<CallItem> loadLocalRecordFile() {
+        return loadLocalRecordFile(true);
+    }
+
+    /**
+     *
+     * @param isAll 是否返回全量本地通话录音文件，or增量数据
+     * @return
+     */
+    public static List<CallItem> loadLocalRecordFile(boolean isAll) {
         List<CallItem> callLogs = new ArrayList<>();
         if (TextUtils.isEmpty(GlobalConfig.url)) return callLogs;
         File file = new File(GlobalConfig.url);
@@ -65,13 +74,13 @@ public class FileUtil {
                 if (recordFile.isDirectory()) {
                     File[] files = recordFile.listFiles();
                     for (File recordItem : files) {
-                        callItem = getRecordInfo(recordItem);
+                        callItem = getRecordInfo(recordItem,isAll);
                         if (callItem==null){continue;}
                         callItem.phone = recordFile.getName();//更改文件名为目录名，目录为电话号码
                         callLogs.add(callItem);
                     }
                 } else {
-                    callItem = getRecordInfo(recordFile);
+                    callItem = getRecordInfo(recordFile,isAll);
                     if (callItem==null){continue;}
                     callLogs.add(callItem);
                 }
@@ -81,11 +90,11 @@ public class FileUtil {
     }
 
 
-    private static CallItem getRecordInfo(File recordFile) {
+    private static CallItem getRecordInfo(File recordFile,boolean isAll) {
         String callRecordPath = recordFile.getAbsolutePath();
         long fileTime = recordFile.lastModified();
         long uploadTime = SharedPreferenceUtil.getInstance().getCallLogUploadTime();
-        if (fileTime < uploadTime) return null;//获取时间点以后新生成的录音文件
+        if (!isAll&&fileTime < uploadTime) return null;//获取时间点以后新生成的录音文件，如果是全量,不过滤
         int duration = RecordPlayerManager.getInstance().getDuration(callRecordPath);
         CallItem callItem = new CallItem();
         callItem.phone = StringUtil.checkNum(callRecordPath);
