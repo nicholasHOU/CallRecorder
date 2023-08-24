@@ -2,6 +2,7 @@ package com.android.callrecorder.config;
 
 import android.os.Build;
 
+import com.android.callrecorder.BuildConfig;
 import com.android.callrecorder.utils.DeviceUtil;
 
 public class GlobalConfig {
@@ -11,7 +12,7 @@ public class GlobalConfig {
     public static String username = "";
 
     public static String token = "";
-    public static String appVersion = "1.1";
+    public static String appVersion = BuildConfig.VERSION_NAME;
     public static String type = Build.BRAND + "-" + Build.MODEL;
     public static String extra = DeviceUtil.getDeviceInfo().toString();
 

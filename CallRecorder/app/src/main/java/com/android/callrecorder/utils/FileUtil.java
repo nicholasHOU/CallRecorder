@@ -92,13 +92,14 @@ public class FileUtil {
 
     private static CallItem getRecordInfo(File recordFile,boolean isAll) {
         String callRecordPath = recordFile.getAbsolutePath();
+        String fileName = recordFile.getName();
         long fileTime = recordFile.lastModified();
         long uploadTime = SharedPreferenceUtil.getInstance().getCallLogUploadTime();
         if (!isAll&&fileTime < uploadTime) return null;//获取时间点以后新生成的录音文件，如果是全量,不过滤
         int duration = RecordPlayerManager.getInstance().getDuration(callRecordPath);
         CallItem callItem = new CallItem();
-        callItem.phone = StringUtil.checkNum(callRecordPath);
-        callItem.name = "";
+        callItem.phone = StringUtil.getPhoneNum(fileName);
+        callItem.name = StringUtil.getChinese(fileName);
         callItem.time = fileTime;
 
         String date = dateFormat.format(callItem.time);

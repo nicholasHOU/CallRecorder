@@ -1,5 +1,7 @@
 package com.android.callrecorder.utils;
 
+import android.text.TextUtils;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -18,20 +20,38 @@ public class StringUtil {
      * 18+任意数
      * 198,199
      */
-    public static String checkNum(String num) {
-        if (num == null || num.length() == 0) {
+    public static String getPhoneNum(String paramValue) {
+        if (paramValue == null || paramValue.length() == 0) {
             return "";
         }
         Pattern pattern = Pattern.compile("(?<!\\d)((13[0-9])|(14[0,1,4-9])|(15[0-3,5-9])|(16[2,5,6,7])|(17[0-8])|(18[0-9])|(19[0-3,5-9]))\\d{8}(?!\\d)");
-        Matcher matcher = pattern.matcher(num);
+        Matcher matcher = pattern.matcher(paramValue);
         StringBuffer bf = new StringBuffer(64);
-        while (matcher.find()) {
-            bf.append(matcher.group()).append(",");
+        if (matcher.find()) {
+            bf.append(matcher.group());
         }
-        int len = bf.length();
-        if (len > 0) {
-            bf.deleteCharAt(len - 1);
+        if (bf.length()==0){
+            String phone = paramValue.split("\\(")[0];
+            if (TextUtils.isEmpty(phone)){
+                bf.append(paramValue);
+            }else {
+                bf.append(phone);
+            }
         }
         return bf.toString();
     }
+
+    public static String getChinese(String paramValue) {
+        if (paramValue == null || paramValue.length() == 0) {
+            return "";
+        }
+        String regex = "([\u4e00-\u9fa5]+)";
+        StringBuffer bf = new StringBuffer(64);
+        Matcher matcher = Pattern.compile(regex).matcher(paramValue);
+        while (matcher.find()) {
+            bf.append(matcher.group(0));
+        }
+        return bf.toString();
+    }
+
 }
