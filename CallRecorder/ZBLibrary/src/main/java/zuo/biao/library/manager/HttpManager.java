@@ -174,6 +174,7 @@ public class HttpManager {
 //	}
 
 	public static final MediaType TYPE_JSON = MediaType.parse("application/json; charset=utf-8");
+	public static final MediaType TYPE_FORM = MediaType.parse("multipart/form-data; charset=utf-8");
 
 
 	/**POST请求
@@ -186,8 +187,13 @@ public class HttpManager {
 	 *            在发起请求的类中可以用requestCode来区分各个请求
 	 * @param listener
 	 */
-	public void post(final Map<String, Object> request, final Map<String,String> headers,final String url, final boolean isJson
+	public void post(final Map<String, Object> request, final Map<String, String> headers, final String url, final boolean isJson
 			, final int requestCode, final OnHttpResponseListener listener) {
+		post(request, headers, url, isJson, requestCode, listener, TYPE_JSON);
+	}
+
+	public void post(final Map<String, Object> request, final Map<String, String> headers, final String url, final boolean isJson
+			, final int requestCode, final OnHttpResponseListener listener, MediaType mediaType) {
 		new AsyncTask<Void, Void, Exception>() {
 
 			String result;
@@ -204,7 +210,7 @@ public class HttpManager {
 					if (isJson) {
 						String body = JSON.toJSONString(request);
 						Log.d(TAG, "\n\n<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n post  url = " + url + "\n request = \n" + body);
-						requestBody = RequestBody.create(TYPE_JSON, body);
+						requestBody = RequestBody.create(mediaType, body);
 					}
 					else {
 						FormBody.Builder builder = new FormBody.Builder();

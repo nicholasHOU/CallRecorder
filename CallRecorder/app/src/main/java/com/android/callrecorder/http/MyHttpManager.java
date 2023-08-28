@@ -1,21 +1,13 @@
 package com.android.callrecorder.http;
 
-import static android.icu.lang.UCharacter.GraphemeClusterBreak.T;
-
 import android.text.TextUtils;
 
 import com.alibaba.fastjson.JSON;
 import com.android.callrecorder.bean.response.BaseResponse;
-import com.android.callrecorder.bean.response.CallHistoryResponse;
-import com.android.callrecorder.bean.response.CallPhoneResponse;
-import com.android.callrecorder.bean.response.LoginResponse;
-import com.android.callrecorder.bean.response.UserInfoResponse;
 import com.android.callrecorder.config.Constant;
 import com.android.callrecorder.config.GlobalConfig;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import zuo.biao.library.interfaces.OnHttpResponseListener;
@@ -46,36 +38,48 @@ public class MyHttpManager<T> {
         headers.put(Constant.K_TYPE, GlobalConfig.type);
         headers.put(Constant.K_EXTRA, GlobalConfig.extra);
         headers.put(Constant.K_APP_VERSION, GlobalConfig.appVersion);
-        HttpManager.getInstance().post(request, headers, url,
-                true, requestCode, new OnHttpResponseListener() {
-                    @Override
-                    public void onHttpResponse(int requestCode, String resultJson, Exception e) {
-                        if (!TextUtils.isEmpty(resultJson)) {
-                            try {
-                                BaseResponse data = JSON.parseObject(resultJson, BaseResponse.class);
-                                Class<T> tClass = listener.getTClass();
-                                if (tClass == null) {
-                                    listener.onHttpResponse(requestCode, false, null);
-                                } else {
-                                    T data3 = JSON.parseObject(resultJson, tClass);
-                                    if (Constant.HttpCode.HTTP_SUCCESS == data.code) {
-                                        listener.onHttpResponse(requestCode, true, data3);
-                                    } else {
-                                        listener.onHttpResponse(requestCode, false, data3);
-                                    }
-                                }
-                            } catch (Exception e1) {
-                                e1.printStackTrace();
-                                listener.onHttpResponse(requestCode, false, null);
-                            }
-                        } else {
-                            listener.onHttpResponse(requestCode, false, null);
-                        }
-                    }
-                });
+        if (Constant.URL_UPLOAD_RECORD.equals(url)) {
+            HttpManager.getInstance().post(request, headers, url,
+                    true, requestCode, new MyOnHttpResponseListener(listener),HttpManager.TYPE_FORM);
+        } else {
+            HttpManager.getInstance().post(request, headers, url,
+                    true, requestCode, new MyOnHttpResponseListener(listener));
+        }
 //        loadTestData(url, requestCode, listener);
     }
 
+    public class MyOnHttpResponseListener implements OnHttpResponseListener {
+        ResponseListener<T> listener;
+
+        MyOnHttpResponseListener(ResponseListener<T> listener) {
+            this.listener = listener;
+        }
+
+        @Override
+        public void onHttpResponse(int requestCode, String resultJson, Exception e) {
+            if (!TextUtils.isEmpty(resultJson)) {
+                try {
+                    BaseResponse data = JSON.parseObject(resultJson, BaseResponse.class);
+                    Class<T> tClass = listener.getTClass();
+                    if (tClass == null) {
+                        listener.onHttpResponse(requestCode, false, null);
+                    } else {
+                        T data3 = JSON.parseObject(resultJson, tClass);
+                        if (Constant.HttpCode.HTTP_SUCCESS == data.code) {
+                            listener.onHttpResponse(requestCode, true, data3);
+                        } else {
+                            listener.onHttpResponse(requestCode, false, data3);
+                        }
+                    }
+                } catch (Exception e1) {
+                    e1.printStackTrace();
+                    listener.onHttpResponse(requestCode, false, null);
+                }
+            } else {
+                listener.onHttpResponse(requestCode, false, null);
+            }
+        }
+    }
 //    private void loadTestData(final String url
 //            , final int requestCode, ResponseListener listener) {
 //        if (Constant.URL_USERINFO.equals(url)) {

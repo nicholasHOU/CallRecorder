@@ -53,6 +53,7 @@ dependencies {
 //    }
     //网络请求
     implementation project(path: ':ZBLibrary')
+    implementation files('libs/folj_aliyun-oss-sdk-android-2.9.11.aar')
 
     implementation 'io.reactivex.rxjava2:rxjava:2.2.21' //会替换 rxandroid:2.1.1包默认的rxjava为2.2.21版本
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'

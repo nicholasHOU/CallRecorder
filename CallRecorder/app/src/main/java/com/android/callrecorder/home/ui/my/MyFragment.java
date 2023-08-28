@@ -134,7 +134,7 @@ public class MyFragment extends Fragment implements View.OnClickListener {
      */
     private void uploadRecord() {
 //        File file = new File(Constant.RECORD_FILE_PATH);
-        List<CallItem> callLogs = FileUtil.loadLocalRecordFile(false);
+        List<CallItem> callLogs = FileUtil.loadLocalRecordFile(true);
         if (callLogs.size() > 0) {
             for (CallItem callItem : callLogs) {
                 DataUtil.uploadRecord(callItem);
