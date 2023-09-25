@@ -113,6 +113,7 @@ public class FileUtil {
         callItem.duringStr = minute + second;
 //                callItem.callType = callType;
         callItem.recordPath = callRecordPath;
+        callItem.recordFileName = fileName;
         return callItem;
     }
 

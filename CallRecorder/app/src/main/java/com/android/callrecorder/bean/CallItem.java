@@ -15,4 +15,5 @@ public class CallItem {
     public String name;//电话号码
     public String phone;//电话号码
     public String recordPath;//录音文件
+    public String recordFileName;//录音文件
 }

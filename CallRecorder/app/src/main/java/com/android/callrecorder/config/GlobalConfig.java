@@ -9,6 +9,10 @@ public class GlobalConfig {
     public static long runTime = 5;//5s 循环调用接口，获取是否有需要拨号的任务
 
     public static String url;//录音地址目录
+    public static String SecurityToken;
+    public static String AccessKeyId;
+    public static String AccessKeySecret;
+    public static String Expiration;
     public static String username = "";
 
     public static String token = "";

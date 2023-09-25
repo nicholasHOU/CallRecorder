@@ -96,7 +96,7 @@ public class MainActivity extends BaseActivity {
             public void run() {
                 uploadCallLogData();
                 startService();
-                startTimer();
+//                startTimer();
             }
         },3000);
     }

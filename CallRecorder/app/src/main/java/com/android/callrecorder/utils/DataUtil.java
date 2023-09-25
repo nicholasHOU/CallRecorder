@@ -2,11 +2,13 @@ package com.android.callrecorder.utils;
 
 import android.text.TextUtils;
 
+import com.android.callrecorder.base.AppApplication;
 import com.android.callrecorder.bean.CallItem;
 import com.android.callrecorder.bean.response.BaseResponse;
 import com.android.callrecorder.bean.response.ConfigResponse;
 import com.android.callrecorder.config.Constant;
 import com.android.callrecorder.config.GlobalConfig;
+import com.android.callrecorder.file.FileUploader;
 import com.android.callrecorder.http.MyHttpManager;
 import com.android.callrecorder.listener.Callback;
 
@@ -21,14 +23,29 @@ public class DataUtil {
         ThreadPoolProxyFactory.getCacheThreadPool().execute(new Runnable() {
             @Override
             public void run() {
-                Map params = new HashMap();
-                params.put("time", recordFile.time);
-                params.put("during", recordFile.during);
-                params.put("phone", recordFile.phone);
-                params.put("name", recordFile.name);
-                params.put("callType", recordFile.callType);
-                params.put("video", FileUtil.getRecordFile(recordFile.recordPath));
-                DataUtil.uploadFile(params);
+//                String name = TextUtils.isEmpty(recordFile.name)?recordFile.phone:recordFile.name;
+                String name = recordFile.recordFileName;
+                FileUploader.getInstance().uploadFile(name,recordFile.recordPath, new FileUploader.CallBack() {
+                    @Override
+                    public void onSuccess(String eTag, String requstId) {
+                        Map params = new HashMap();
+                        params.put("time", recordFile.time);
+                        params.put("during", recordFile.during);
+                        params.put("phone", recordFile.phone);
+                        params.put("name", recordFile.name);
+                        params.put("callType", recordFile.callType);
+//                        params.put("video", FileUtil.getRecordFile(recordFile.recordPath));
+                        params.put("eTag",eTag);
+                        params.put("requstId",requstId);
+                        params.put("fileName",name);
+                        DataUtil.uploadFile(params);
+                    }
+
+                    @Override
+                    public void onFail(String errorCode, String requstId) {
+
+                    }
+                });
             }
         });
     }
@@ -92,7 +109,13 @@ public class DataUtil {
                             if (callback!=null){
                                 callback.call(!TextUtils.isEmpty(GlobalConfig.url));
                             }
-
+                            if (resultJson.data.aliyun!=null) {
+                                GlobalConfig.SecurityToken = resultJson.data.aliyun.SecurityToken;
+                                GlobalConfig.AccessKeyId = resultJson.data.aliyun.AccessKeyId;
+                                GlobalConfig.AccessKeySecret = resultJson.data.aliyun.AccessKeySecret;
+                                GlobalConfig.Expiration = resultJson.data.aliyun.Expiration;
+                                FileUploader.getInstance().init(AppApplication.app);
+                            }
                         } else {
                             if (resultJson != null && Constant.HttpCode.HTTP_NEED_LOGIN == resultJson.code) {
 //                                ((BaseActivity)getActivity()).goLogin();
