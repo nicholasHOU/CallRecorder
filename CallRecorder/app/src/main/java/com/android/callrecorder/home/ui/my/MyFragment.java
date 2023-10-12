@@ -24,6 +24,7 @@ import com.android.callrecorder.listener.Callback;
 import com.android.callrecorder.utils.DataUtil;
 import com.android.callrecorder.utils.DialogUtil;
 import com.android.callrecorder.utils.FileUtil;
+import com.android.callrecorder.utils.Logs;
 import com.android.callrecorder.utils.SharedPreferenceUtil;
 import com.android.callrecorder.utils.ToastUtil;
 
@@ -36,6 +37,7 @@ public class MyFragment extends Fragment implements View.OnClickListener {
 
     private FragmentMyBinding binding;
     private Dialog loadingDialog;
+    private boolean isUploading;
 
     public static MyFragment createInstance() {
         return new MyFragment();
@@ -134,16 +136,20 @@ public class MyFragment extends Fragment implements View.OnClickListener {
      */
     private void uploadRecord() {
 //        File file = new File(Constant.RECORD_FILE_PATH);
-        List<CallItem> callLogs = FileUtil.loadLocalRecordFile(true);
+//        List<CallItem> callLogs = FileUtil.loadLocalRecordFile(true);
+        if (isUploading)
+            ToastUtil.showToast("录音文件后台上传中，请稍后继续上传");
+        isUploading = true;
+        List<CallItem> callLogs = FileUtil.loadOrderLocalRecordFile(false);
         if (callLogs.size() > 0) {
             for (CallItem callItem : callLogs) {
                 DataUtil.uploadRecord(callItem);
             }
             ToastUtil.showToast("录音文件后台上传中");
-            SharedPreferenceUtil.getInstance().setCallLogUploadTime(System.currentTimeMillis());
         } else {
             ToastUtil.showToast("暂无需要上传的通话录音文件");
         }
+        isUploading = false;
     }
 
     /**
@@ -154,13 +160,15 @@ public class MyFragment extends Fragment implements View.OnClickListener {
         ThreadPoolProxyFactory.getCacheThreadPool().execute(new Runnable() {
             @Override
             public void run() {
+                Logs.e("MyFragment","");
                 long currentTime = SharedPreferenceUtil.getInstance().getCallLogUploadTime();
 //        long currentTime = 0;
                 List<CallItem> callLogs = CallHistoryUtil.getInstance().getDataList(getContext(), currentTime);
                 if (callLogs == null || callLogs.size() == 0) {
-//            ToastUtil.showToast("暂无需要上传的通话记录");
                     return;
                 }
+                Logs.e("MyFragment","2");
+
 //                if (loadingDialog==null){
 //                    loadingDialog = DialogUtil.createLoadingDialog(getContext(),"");
 //                }else{
@@ -175,7 +183,7 @@ public class MyFragment extends Fragment implements View.OnClickListener {
                         if (isSuccess){
                             ToastUtil.showToast("通话记录上传成功");
                         }
-                        SharedPreferenceUtil.getInstance().setRecordUploadTime(System.currentTimeMillis());
+                        SharedPreferenceUtil.getInstance().setCallLogUploadTime(System.currentTimeMillis());
                     }
                 });
             }

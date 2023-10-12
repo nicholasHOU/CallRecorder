@@ -115,7 +115,7 @@ public class FileUploader {
                     @Override
                     public void onHttpResponse(int requestCode, boolean isSuccess, BaseResponse resultJson) {
                         if (isSuccess) {
-                            ToastUtil.showToast("提交成功，谢谢您的反馈");
+                            ToastUtil.showToast("文件上传失败，问题已反馈");
                         } else {
                             if (resultJson != null && Constant.HttpCode.HTTP_NEED_LOGIN == resultJson.code) {
                                 ToastUtil.showToast("登录信息失效，请登录后重试");

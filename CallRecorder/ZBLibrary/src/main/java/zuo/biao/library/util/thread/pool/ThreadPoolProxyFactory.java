@@ -30,7 +30,7 @@ public class ThreadPoolProxyFactory {
         if (defaultThreadPool == null){
             synchronized (ThreadPoolProxyFactory.class){
                 if (defaultThreadPool == null){
-                    defaultThreadPool = new DefaultThreadPool(3, 5);
+                    defaultThreadPool = new DefaultThreadPool(4, 10);
                 }
             }
         }

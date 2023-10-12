@@ -2,7 +2,6 @@ package com.android.callrecorder.home.ui.callrecord;
 
 import android.app.Activity;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.SeekBar;
@@ -12,8 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.callrecorder.R;
 import com.android.callrecorder.bean.CallItem;
-import com.android.callrecorder.bean.CallRecordInfo;
-import com.android.callrecorder.manager.RecordPlayerManager;
 
 /**
  *

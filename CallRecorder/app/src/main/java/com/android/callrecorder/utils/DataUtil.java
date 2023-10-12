@@ -20,7 +20,7 @@ import zuo.biao.library.util.thread.pool.ThreadPoolProxyFactory;
 public class DataUtil {
 
     public static void uploadRecord(CallItem recordFile) {
-        ThreadPoolProxyFactory.getCacheThreadPool().execute(new Runnable() {
+        ThreadPoolProxyFactory.getDefaultThreadPool().execute(new Runnable() {
             @Override
             public void run() {
 //                String name = TextUtils.isEmpty(recordFile.name)?recordFile.phone:recordFile.name;
@@ -28,17 +28,19 @@ public class DataUtil {
                 FileUploader.getInstance().uploadFile(name,recordFile.recordPath, new FileUploader.CallBack() {
                     @Override
                     public void onSuccess(String eTag, String requstId) {
-                        Map params = new HashMap();
-                        params.put("time", recordFile.time);
-                        params.put("during", recordFile.during);
-                        params.put("phone", recordFile.phone);
-                        params.put("name", recordFile.name);
-                        params.put("callType", recordFile.callType);
-//                        params.put("video", FileUtil.getRecordFile(recordFile.recordPath));
-                        params.put("eTag",eTag);
-                        params.put("requstId",requstId);
-                        params.put("fileName",name);
-                        DataUtil.uploadFile(params);
+                        SharedPreferenceUtil.getInstance().setRecordUploadTime(recordFile.time);
+
+//                        Map params = new HashMap();
+//                        params.put("time", recordFile.time);
+//                        params.put("during", recordFile.during);
+//                        params.put("phone", recordFile.phone);
+//                        params.put("name", recordFile.name);
+//                        params.put("callType", recordFile.callType);
+////                        params.put("video", FileUtil.getRecordFile(recordFile.recordPath));
+//                        params.put("eTag",eTag);
+//                        params.put("requstId",requstId);
+//                        params.put("fileName",name);
+//                        DataUtil.uploadFile(params);
                     }
 
                     @Override
@@ -58,29 +60,29 @@ public class DataUtil {
      * “phone”: 13211111111, // 手机号
      * “back”: “手机号的备注” // 手机号备注   可以为空
      */
-    public static  void uploadFile(Map params) {
-        MyHttpManager.getInstance().post(params, Constant.URL_UPLOAD_RECORD, 125,
-                new MyHttpManager.ResponseListener<BaseResponse>() {
-                    @Override
-                    public void onHttpResponse(int requestCode, boolean isSuccess, BaseResponse resultJson) {
-                        if (isSuccess) {
-                            // 已上传成功的更新上传时间戳
-                            SharedPreferenceUtil.getInstance().setRecordUploadTime((Long) params.get("time"));
-                        } else {
-                            if (resultJson != null && Constant.HttpCode.HTTP_NEED_LOGIN == resultJson.code) {
-//                                goLogin();
-                            } else {
-//                            ToastUtil.showToast("，请稍后重试");
-                            }
-                        }
-                    }
-
-                    @Override
-                    public Class getTClass() {
-                        return BaseResponse.class;
-                    }
-                });
-    }
+//    public static  void uploadFile(Map params) {
+//        MyHttpManager.getInstance().post(params, Constant.URL_UPLOAD_RECORD, 125,
+//                new MyHttpManager.ResponseListener<BaseResponse>() {
+//                    @Override
+//                    public void onHttpResponse(int requestCode, boolean isSuccess, BaseResponse resultJson) {
+//                        if (isSuccess) {
+//                            // 已上传成功的更新上传时间戳
+//                            SharedPreferenceUtil.getInstance().setRecordUploadTime((Long) params.get("time"));
+//                        } else {
+//                            if (resultJson != null && Constant.HttpCode.HTTP_NEED_LOGIN == resultJson.code) {
+////                                goLogin();
+//                            } else {
+////                            ToastUtil.showToast("，请稍后重试");
+//                            }
+//                        }
+//                    }
+//
+//                    @Override
+//                    public Class getTClass() {
+//                        return BaseResponse.class;
+//                    }
+//                });
+//    }
 
 
     /**

@@ -1,6 +1,8 @@
 package com.android.callrecorder.bean;
 
-public class CallItem {
+import androidx.annotation.NonNull;
+
+public class CallItem implements  Comparable<CallItem> {
 
     public static final int CALLTYPE_OUT = 2;
     public static final int CALLTYPE_IN = 1;
@@ -16,4 +18,15 @@ public class CallItem {
     public String phone;//电话号码
     public String recordPath;//录音文件
     public String recordFileName;//录音文件
+
+    @NonNull
+    @Override
+    public String toString() {
+        return name + " ----- " + phone;
+    }
+
+    @Override
+    public int compareTo(CallItem callItem) {
+        return (int) (this.time - callItem.time);
+    }
 }

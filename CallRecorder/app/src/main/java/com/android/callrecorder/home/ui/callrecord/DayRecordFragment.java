@@ -1,36 +1,15 @@
 package com.android.callrecorder.home.ui.callrecord;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import com.android.callrecorder.base.BaseActivity;
 import com.android.callrecorder.bean.CallItem;
-import com.android.callrecorder.bean.CrashLog;
-import com.android.callrecorder.bean.response.BaseResponse;
 import com.android.callrecorder.bean.response.CallHistoryDayResponse;
-import com.android.callrecorder.bean.response.ConfigResponse;
 import com.android.callrecorder.config.Constant;
-import com.android.callrecorder.config.GlobalConfig;
-import com.android.callrecorder.databinding.FragmentCallRecordBinding;
 import com.android.callrecorder.http.MyHttpManager;
-import com.android.callrecorder.manager.RecordPlayerManager;
-import com.android.callrecorder.utils.CrashHandler;
-import com.android.callrecorder.utils.StringUtil;
-import com.android.callrecorder.widget.MyRecycleViewDecoration;
 
-import java.io.File;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class DayRecordFragment extends CallRecordFragment {
@@ -52,7 +31,6 @@ public class DayRecordFragment extends CallRecordFragment {
     @Override
     protected void initData() {
 //        super.initData();
-
        long time= getArguments().getLong("time");
        String  timeStr= getArguments().getString("timeStr");
        if (!TextUtils.isEmpty(timeStr)){

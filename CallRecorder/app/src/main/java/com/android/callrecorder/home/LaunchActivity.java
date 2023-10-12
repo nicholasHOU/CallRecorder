@@ -98,7 +98,8 @@ public class LaunchActivity extends BaseActivity implements EasyPermissions.Perm
                     if (isPositive){
                         requestPermissionsReal();
                     }else {
-                        goLoginOrHome();
+//                        goLoginOrHome();
+                        finish();
                     }
                     dialog.dismiss();
                 }
@@ -151,8 +152,8 @@ public class LaunchActivity extends BaseActivity implements EasyPermissions.Perm
     @Override
     public void onPermissionsDenied(int requestCode, @NonNull List<String> perms) {
         // 一些权限被禁止
-//        Toast.makeText(this, "权限禁止，权限开启后可正常使用----" + perms, Toast.LENGTH_SHORT).show();
-//        goLoginOrHome();
+        Toast.makeText(this, "权限禁止，权限开启后可正常使用----" + perms, Toast.LENGTH_SHORT).show();
+        finish();
     }
 
 }

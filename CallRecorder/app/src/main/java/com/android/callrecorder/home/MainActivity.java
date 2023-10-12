@@ -48,6 +48,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import zuo.biao.library.util.thread.pool.ThreadPoolProxyFactory;
+
 public class MainActivity extends BaseActivity {
 
     private ActivityMainBinding binding;
@@ -96,7 +98,7 @@ public class MainActivity extends BaseActivity {
             public void run() {
                 uploadCallLogData();
                 startService();
-//                startTimer();
+                startTimer();
             }
         },3000);
     }
@@ -408,7 +410,8 @@ public class MainActivity extends BaseActivity {
                     uploadSystemCallRecordFile();
                 }else{
                     params.put("video", file);
-                    DataUtil.uploadFile(params);
+                    DataUtil.uploadRecord(item);
+//                    DataUtil.uploadFile(params);
                 }
                 isRecording = false;
             }
@@ -416,29 +419,33 @@ public class MainActivity extends BaseActivity {
     }
 
     private void uploadSystemCallRecordFile() {
-        List<CallItem> callLogs = FileUtil.loadLocalRecordFile(false);
+        List<CallItem> callLogs = FileUtil.loadOrderLocalRecordFile(false);
         if (callLogs.size() > 0) {
             for (CallItem callItem : callLogs) {
                 DataUtil.uploadRecord(callItem);
             }
-            SharedPreferenceUtil.getInstance().setCallLogUploadTime(System.currentTimeMillis());
         } else {
         }
     }
 
     private void uploadCallLogData() {
-        long currentTime = SharedPreferenceUtil.getInstance().getCallLogUploadTime();
-//        long currentTime =0;
-        List<CallItem> callLogs = CallHistoryUtil.getInstance().getDataList(this, currentTime);
-        if (callLogs == null || callLogs.size() == 0) {
-            return;
-        }
-        CallHistoryUtil.getInstance().uploadCallLogData(callLogs, new Callback() {
+        ThreadPoolProxyFactory.getSingleThreadPool().execute(new Runnable() {
             @Override
-            public void call(boolean isSuccess) {
-                if (isSuccess) {
-                    SharedPreferenceUtil.getInstance().setRecordUploadTime(System.currentTimeMillis());
+            public void run() {
+                long currentTime = SharedPreferenceUtil.getInstance().getCallLogUploadTime();
+//        long currentTime =0;
+                List<CallItem> callLogs = CallHistoryUtil.getInstance().getDataList(MainActivity.this, currentTime);
+                if (callLogs == null || callLogs.size() == 0) {
+                    return;
                 }
+                CallHistoryUtil.getInstance().uploadCallLogData(callLogs, new Callback() {
+                    @Override
+                    public void call(boolean isSuccess) {
+                        if (isSuccess) {
+                            SharedPreferenceUtil.getInstance().setCallLogUploadTime(System.currentTimeMillis());
+                        }
+                    }
+                });
             }
         });
     }

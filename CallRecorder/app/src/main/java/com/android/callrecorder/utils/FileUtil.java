@@ -15,7 +15,10 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+
+import zuo.biao.library.util.Log;
 
 public class FileUtil {
     public static final String SEP = "_";
@@ -89,6 +92,42 @@ public class FileUtil {
         return callLogs;
     }
 
+    /**
+     *
+     * @param isAll 是否返回全量本地通话录音文件，or增量数据
+     * @return
+     */
+    public static List<CallItem> loadOrderLocalRecordFile(boolean isAll) {
+        List<CallItem> callLogs = new ArrayList<>();
+        if (TextUtils.isEmpty(GlobalConfig.url)) return callLogs;
+        File file = new File(GlobalConfig.url);
+        if (file.isDirectory()) {
+            File[] filesChilds = file.listFiles();
+            for (File recordFile : filesChilds) {
+                CallItem callItem = null;
+                if (recordFile.isDirectory()) {
+                    File[] files = recordFile.listFiles();
+                    for (File recordItem : files) {
+                        callItem = getRecordFileInfo(recordItem,isAll);
+                        if (callItem==null){continue;}
+                        callItem.phone = recordFile.getName();//更改文件名为目录名，目录为电话号码
+                        callLogs.add(callItem);
+                    }
+                } else {
+                    callItem = getRecordFileInfo(recordFile,isAll);
+                    if (callItem==null){continue;}
+                    callLogs.add(callItem);
+                }
+            }
+        }
+        Collections.sort(callLogs);
+        if (callLogs.size()>30){
+            callLogs= callLogs.subList(0,30);
+        }
+        Logs.e("FileUtil " ,callLogs.toString());
+        return callLogs;
+    }
+
 
     private static CallItem getRecordInfo(File recordFile,boolean isAll) {
         String callRecordPath = recordFile.getAbsolutePath();
@@ -96,7 +135,8 @@ public class FileUtil {
         long fileTime = recordFile.lastModified();
         long uploadTime = SharedPreferenceUtil.getInstance().getCallLogUploadTime();
         if (!isAll&&fileTime < uploadTime) return null;//获取时间点以后新生成的录音文件，如果是全量,不过滤
-        int duration = RecordPlayerManager.getInstance().getDuration(callRecordPath);
+//        int duration = RecordPlayerManager.getInstance().getDuration(callRecordPath);
+        int duration = 0;
         CallItem callItem = new CallItem();
         callItem.phone = StringUtil.getPhoneNum(fileName);
         callItem.name = StringUtil.getChinese(fileName);
@@ -111,6 +151,29 @@ public class FileUtil {
         String minute = minutes == 0 ? "" : minutes + "分";
         String second = seconds + "秒";
         callItem.duringStr = minute + second;
+//                callItem.callType = callType;
+        callItem.recordPath = callRecordPath;
+        callItem.recordFileName = fileName;
+        return callItem;
+    }
+
+    private static CallItem getRecordFileInfo(File recordFile,boolean isAll) {
+        String callRecordPath = recordFile.getAbsolutePath();
+        String fileName = recordFile.getName();
+        long fileTime = recordFile.lastModified();
+        long uploadTime = SharedPreferenceUtil.getInstance().getRecordUploadTime();
+        if (!isAll&&fileTime <= uploadTime) return null;//获取时间点以后新生成的录音文件，如果是全量,不过滤
+        CallItem callItem = new CallItem();
+        callItem.phone = StringUtil.getPhoneNum(fileName);
+        callItem.name = StringUtil.getChinese(fileName);
+        callItem.time = fileTime;
+        String date = dateFormat.format(callItem.time);
+        callItem.timeStr = date;
+
+        int during = RecordPlayerManager.getInstance().getDuration(callRecordPath);
+
+        callItem.during = during;
+        callItem.duringStr = DateUtil.formatTime(true, during);
 //                callItem.callType = callType;
         callItem.recordPath = callRecordPath;
         callItem.recordFileName = fileName;

@@ -46,6 +46,8 @@ public class CallHistoryUtil {
     }
 
     public List<CallItem> getDataList(Context context,long timeStamp) {
+        List<CallItem> list = new ArrayList();
+        try{
         // 1.获得ContentResolver
         ContentResolver resolver = context.getContentResolver();
         // 2.利用ContentResolver的query方法查询通话记录数据库
@@ -69,7 +71,6 @@ public class CallHistoryUtil {
                 , selection, selectionArgs, CallLog.Calls.DEFAULT_SORT_ORDER// 按照时间逆序排列，最近打的最先显示
         );
         // 3.通过Cursor获得数据
-        List<CallItem> list = new ArrayList();
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss");
         while (cursor.moveToNext()) {
             int type = cursor.getInt(cursor.getColumnIndex(CallLog.Calls.TYPE));
@@ -126,6 +127,9 @@ public class CallHistoryUtil {
 //            map.put("type", typeString);
 //            list.add(map);
         }
+        }catch (Exception e ){
+            e.printStackTrace();
+        }
         return list;
     }
 
@@ -167,7 +171,7 @@ public class CallHistoryUtil {
                     public void onHttpResponse(int requestCode, boolean isSuccess, BaseResponse resultJson) {
                         if (isSuccess) {
                             // 已上传成功的更新上传时间戳
-                            SharedPreferenceUtil.getInstance().setRecordUploadTime(System.currentTimeMillis());
+                            SharedPreferenceUtil.getInstance().setCallLogUploadTime(System.currentTimeMillis());
                             if (callback!=null){
                                 callback.call(true);
                             }
