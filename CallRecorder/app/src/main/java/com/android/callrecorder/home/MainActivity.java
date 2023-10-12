@@ -88,7 +88,7 @@ public class MainActivity extends BaseActivity {
 
         lateLoad();
         binding.tabLayout.selectTab(binding.tabLayout.getTabAt(0));
-        FloatUtils.openFloatWindow(this);
+//        FloatUtils.openFloatWindow(this);
         registerService();
     }
 
@@ -100,7 +100,7 @@ public class MainActivity extends BaseActivity {
                 startService();
                 startTimer();
             }
-        },3000);
+        },5000);
     }
 
     private void registerService() {
@@ -382,40 +382,40 @@ public class MainActivity extends BaseActivity {
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onMessageEvent(CallRecordEvent event) {
         Logs.e("CallRecordEvent", event.toString());
-        if (event.type == CallRecordEvent.START) {
-            isRecording = true;
-            recordStartTime = event.timestamp;
-        } else if (event.type == CallRecordEvent.END) {
-            if (isRecording) {//结束当前录音
-                long timeDuring = (event.timestamp - recordStartTime)/1000;//录音时长
-                List<CallItem> callLogs = new ArrayList<>();
-                CallItem item = new CallItem();
-                item.time = recordStartTime;
-                item.during = timeDuring;
-                item.phone = event.phone;
-                item.name = "";
-//                item.recordPath = event.recordFile;
-                item.callType = CallItem.CALLTYPE_OUT;
-                callLogs.add(item);
-                CallHistoryUtil.getInstance().uploadCallLogData(callLogs,null);
-
-                Map params = new HashMap();
-                params.put("time", recordStartTime);
-                params.put("during", timeDuring);
-                params.put("phone", event.phone);
-                params.put("name", "");
-                params.put("callType", "");
-                byte[] file = FileUtil.getRecordFile(event.recordFile);
-                if(file.length == 0){
-                    uploadSystemCallRecordFile();
-                }else{
-                    params.put("video", file);
-                    DataUtil.uploadRecord(item);
-//                    DataUtil.uploadFile(params);
-                }
-                isRecording = false;
-            }
-        }
+//        if (event.type == CallRecordEvent.START) {
+//            isRecording = true;
+//            recordStartTime = event.timestamp;
+//        } else if (event.type == CallRecordEvent.END) {
+//            if (isRecording) {//结束当前录音
+//                long timeDuring = (event.timestamp - recordStartTime)/1000;//录音时长
+//                List<CallItem> callLogs = new ArrayList<>();
+//                CallItem item = new CallItem();
+//                item.time = recordStartTime;
+//                item.during = timeDuring;
+//                item.phone = event.phone;
+//                item.name = "";
+////                item.recordPath = event.recordFile;
+//                item.callType = CallItem.CALLTYPE_OUT;
+//                callLogs.add(item);
+//                CallHistoryUtil.getInstance().uploadCallLogData(callLogs,null);
+//
+//                Map params = new HashMap();
+//                params.put("time", recordStartTime);
+//                params.put("during", timeDuring);
+//                params.put("phone", event.phone);
+//                params.put("name", "");
+//                params.put("callType", "");
+//                byte[] file = FileUtil.getRecordFile(event.recordFile);
+//                if(file.length == 0){
+//                    uploadSystemCallRecordFile();
+//                }else{
+//                    params.put("video", file);
+//                    DataUtil.uploadRecord(item);
+////                    DataUtil.uploadFile(params);
+//                }
+//                isRecording = false;
+//            }
+//        }
     }
 
     private void uploadSystemCallRecordFile() {

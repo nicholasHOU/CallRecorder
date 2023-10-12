@@ -140,15 +140,21 @@ public class MyFragment extends Fragment implements View.OnClickListener {
         if (isUploading)
             ToastUtil.showToast("录音文件后台上传中，请稍后继续上传");
         isUploading = true;
-        List<CallItem> callLogs = FileUtil.loadOrderLocalRecordFile(false);
-        if (callLogs.size() > 0) {
-            for (CallItem callItem : callLogs) {
-                DataUtil.uploadRecord(callItem);
+        ThreadPoolProxyFactory.getSingleThreadPool().execute(new Runnable() {
+            @Override
+            public void run() {
+                List<CallItem> callLogs = FileUtil.loadOrderLocalRecordFile(false);
+                if (callLogs.size() > 0) {
+                    for (CallItem callItem : callLogs) {
+                        DataUtil.uploadRecord(callItem);
+                    }
+                } else {
+//                    ToastUtil.showToast("暂无需要上传的通话录音文件");
+                }
             }
-            ToastUtil.showToast("录音文件后台上传中");
-        } else {
-            ToastUtil.showToast("暂无需要上传的通话录音文件");
-        }
+        });
+        ToastUtil.showToast("录音文件后台上传中");
+
         isUploading = false;
     }
 

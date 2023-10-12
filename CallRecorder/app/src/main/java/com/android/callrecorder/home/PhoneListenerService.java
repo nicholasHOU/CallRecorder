@@ -57,10 +57,10 @@ public class PhoneListenerService extends Service {
         private File file;
 
         public void onCallStateChanged(int state, String incomingNumber) {
+            phone = incomingNumber;
             switch (state) {
                 case TelephonyManager.CALL_STATE_RINGING: /* 电话进来时 */
                     Logs.e("PhoneCall ","CALL_STATE_RINGING");
-                    phone = incomingNumber;
                     break;
                 case TelephonyManager.CALL_STATE_OFFHOOK: /* 接起电话时 */
                     Logs.e("PhoneCall ","CALL_STATE_OFFHOOK");
