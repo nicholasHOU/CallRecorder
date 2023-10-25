@@ -4,13 +4,15 @@ import android.text.TextUtils;
 
 import com.android.callrecorder.base.AppApplication;
 import com.android.callrecorder.bean.CallItem;
-import com.android.callrecorder.bean.response.BaseResponse;
+import com.android.callrecorder.bean.UploadRecordEvent;
 import com.android.callrecorder.bean.response.ConfigResponse;
 import com.android.callrecorder.config.Constant;
 import com.android.callrecorder.config.GlobalConfig;
 import com.android.callrecorder.file.FileUploader;
 import com.android.callrecorder.http.MyHttpManager;
 import com.android.callrecorder.listener.Callback;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -29,6 +31,8 @@ public class DataUtil {
                     @Override
                     public void onSuccess(String eTag, String requstId) {
                         SharedPreferenceUtil.getInstance().setRecordUploadTime(recordFile.time);
+                        Logs.e("DataUtil", "上传成功 " + requstId);
+                        EventBus.getDefault().post(new UploadRecordEvent(true));
 
 //                        Map params = new HashMap();
 //                        params.put("time", recordFile.time);
@@ -45,7 +49,8 @@ public class DataUtil {
 
                     @Override
                     public void onFail(String errorCode, String requstId) {
-
+                        EventBus.getDefault().post(new UploadRecordEvent(false));
+                        Logs.e("DataUtil", "上传失败 " + requstId);
                     }
                 });
             }

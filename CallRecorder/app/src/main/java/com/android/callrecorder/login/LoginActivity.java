@@ -80,7 +80,7 @@ public class LoginActivity extends BaseActivity {
         binding.container.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                goSetting();
+//                goSetting();
                 return false;
             }
         });

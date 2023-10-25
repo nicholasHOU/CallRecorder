@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 
 import com.android.callrecorder.R;
 import com.android.callrecorder.bean.CallItem;
+import com.android.callrecorder.bean.UploadRecordEvent;
 import com.android.callrecorder.bean.response.UserInfoResponse;
 import com.android.callrecorder.config.Constant;
 import com.android.callrecorder.config.GlobalConfig;
@@ -22,12 +23,16 @@ import com.android.callrecorder.home.ui.callrecord.CallHistoryUtil;
 import com.android.callrecorder.http.MyHttpManager;
 import com.android.callrecorder.listener.Callback;
 import com.android.callrecorder.utils.DataUtil;
-import com.android.callrecorder.utils.DialogUtil;
 import com.android.callrecorder.utils.FileUtil;
 import com.android.callrecorder.utils.Logs;
 import com.android.callrecorder.utils.SharedPreferenceUtil;
 import com.android.callrecorder.utils.ToastUtil;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 
@@ -49,6 +54,7 @@ public class MyFragment extends Fragment implements View.OnClickListener {
         View root = binding.getRoot();
 
         initView();
+        EventBus.getDefault().register(this);
         return root;
     }
 
@@ -123,6 +129,13 @@ public class MyFragment extends Fragment implements View.OnClickListener {
                 });
     }
 
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(UploadRecordEvent event) {
+        ToastUtil.showToast(event.isSuccess?"上传成功":"上传失败");
+        Logs.e("MyFragment", event.isSuccess?"上传成功":"上传失败");
+    }
+
     /**
      * 清除录音
      */
@@ -137,13 +150,17 @@ public class MyFragment extends Fragment implements View.OnClickListener {
     private void uploadRecord() {
 //        File file = new File(Constant.RECORD_FILE_PATH);
 //        List<CallItem> callLogs = FileUtil.loadLocalRecordFile(true);
-        if (isUploading)
+        if (isUploading){
             ToastUtil.showToast("录音文件后台上传中，请稍后继续上传");
+            return;
+        }
         isUploading = true;
         ThreadPoolProxyFactory.getSingleThreadPool().execute(new Runnable() {
             @Override
             public void run() {
+                Logs.e("MyFragment", "开始上传");
                 List<CallItem> callLogs = FileUtil.loadOrderLocalRecordFile(false);
+                Logs.e("MyFragment", "上传 callLogs = " + callLogs == null ? " empty " : callLogs.size() + "");
                 if (callLogs.size() > 0) {
                     for (CallItem callItem : callLogs) {
                         DataUtil.uploadRecord(callItem);
@@ -171,7 +188,15 @@ public class MyFragment extends Fragment implements View.OnClickListener {
 //        long currentTime = 0;
                 List<CallItem> callLogs = CallHistoryUtil.getInstance().getDataList(getContext(), currentTime);
                 if (callLogs == null || callLogs.size() == 0) {
-                    return;
+                    Calendar calendar = Calendar.getInstance();
+                    calendar.set(Calendar.HOUR_OF_DAY,0);
+                    calendar.set(Calendar.MINUTE,0);
+                    calendar.set(Calendar.SECOND,0);
+                    currentTime = calendar.getTimeInMillis();
+                    callLogs = CallHistoryUtil.getInstance().getDataList(getContext(), currentTime);
+                    if (callLogs == null || callLogs.size() == 0) {
+                        return;
+                    }
                 }
                 Logs.e("MyFragment","2");
 
