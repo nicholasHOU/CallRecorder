@@ -105,7 +105,7 @@ public class RecordPlayerManager {
             this.mPlayer.prepare();
             int i = this.mPlayer.getDuration();
             return i;
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return 0;
